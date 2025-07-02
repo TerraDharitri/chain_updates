@@ -29,7 +29,7 @@ def test_create_keypair():
 
 def test_sign_and_verify_transaction():
     """
-    Also see: https://github.com/TerraDharitri/drt-go-chain/blob/master/examples/construction_test.go
+    Also see: https://github.com/TerraDharitri/drt-go-chain/blob/main/examples/construction_test.go
     """
 
     tx = Transaction(
