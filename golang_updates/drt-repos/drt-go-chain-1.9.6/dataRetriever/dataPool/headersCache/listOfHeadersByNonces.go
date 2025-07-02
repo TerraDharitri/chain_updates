@@ -4,7 +4,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 type listOfHeadersByNonces map[uint64]timestampedListOfHeaders

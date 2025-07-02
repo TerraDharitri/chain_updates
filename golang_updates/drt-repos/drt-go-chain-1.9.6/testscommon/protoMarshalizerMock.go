@@ -3,7 +3,7 @@ package testscommon
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 var _ marshal.Marshalizer = (*ProtoMarshalizerMock)(nil)

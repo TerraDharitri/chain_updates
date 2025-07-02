@@ -5,11 +5,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -45,12 +45,12 @@ func testRelayedAsyncCallShouldWork(t *testing.T, enableEpochs config.EnableEpoc
 	testContext, err := vm.CreatePreparedTxProcessorWithVMs(enableEpochs, 1)
 	require.Nil(t, err)
 
-	localEgldBalance := big.NewInt(100000000)
+	localRewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("12345678901234567890123456789010")
 	relayerAddr := []byte("12345678901234567890123456789017")
 
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localEgldBalance)
-	_, _ = vm.CreateAccount(testContext.Accounts, relayerAddr, 0, localEgldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localRewaBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, relayerAddr, 0, localRewaBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(50000)

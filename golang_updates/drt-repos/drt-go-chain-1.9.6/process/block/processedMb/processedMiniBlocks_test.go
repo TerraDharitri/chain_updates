@@ -3,8 +3,8 @@ package processedMb_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/process/block/bootstrapStorage"
-	"github.com/multiversx/mx-chain-go/process/block/processedMb"
+	"github.com/TerraDharitri/drt-go-chain/process/block/bootstrapStorage"
+	"github.com/TerraDharitri/drt-go-chain/process/block/processedMb"
 	"github.com/stretchr/testify/assert"
 )
 

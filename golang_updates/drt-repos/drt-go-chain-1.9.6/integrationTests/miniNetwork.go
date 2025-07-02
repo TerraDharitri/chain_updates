@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 )
 
 // MiniNetwork is a mini network, useful for some integration tests

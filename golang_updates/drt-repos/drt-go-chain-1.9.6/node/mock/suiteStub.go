@@ -3,7 +3,7 @@ package mock
 import (
 	"crypto/cipher"
 
-	"github.com/multiversx/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // SuiteMock -

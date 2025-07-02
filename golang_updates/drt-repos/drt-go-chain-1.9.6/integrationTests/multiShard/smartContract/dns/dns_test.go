@@ -10,17 +10,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/hashing/keccak"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/keccak"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/multiShard/relayedTx"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/multiShard/relayedTx"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 func TestSCCallingDNSUserNames(t *testing.T) {
@@ -319,7 +319,7 @@ func selectDNSAddressFromUserName(sortedDNSAddresses []string, userName string) 
 }
 
 func generateNewUserName() string {
-	return RandStringBytes(10) + ".elrond"
+	return RandStringBytes(10) + ".numbat"
 }
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyz"

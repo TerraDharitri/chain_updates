@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/ntp"
 	beevikNtp "github.com/beevik/ntp"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/ntp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

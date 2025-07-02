@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/data"
-	"github.com/multiversx/mx-chain-go/genesis/mock"
-	"github.com/multiversx/mx-chain-go/genesis/parsing"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/data"
+	"github.com/TerraDharitri/drt-go-chain/genesis/mock"
+	"github.com/TerraDharitri/drt-go-chain/genesis/parsing"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

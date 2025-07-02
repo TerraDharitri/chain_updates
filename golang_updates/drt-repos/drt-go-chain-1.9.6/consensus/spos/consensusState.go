@@ -5,13 +5,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/p2p"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 )
 
 var log = logger.GetOrCreate("consensus/spos")

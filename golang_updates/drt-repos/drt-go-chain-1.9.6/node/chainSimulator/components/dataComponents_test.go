@@ -5,12 +5,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	retriever "github.com/multiversx/mx-chain-go/dataRetriever"
-	chainStorage "github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/cache"
-	"github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/storage"
+	retriever "github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	chainStorage "github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cache"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storage"
 )
 
 func createArgsDataComponentsHolder() ArgsDataComponentsHolder {

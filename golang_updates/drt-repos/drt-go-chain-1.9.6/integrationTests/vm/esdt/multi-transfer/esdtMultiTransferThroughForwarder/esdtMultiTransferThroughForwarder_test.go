@@ -3,11 +3,11 @@ package esdtMultiTransferThroughForwarder
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/esdt"
-	multitransfer "github.com/multiversx/mx-chain-go/integrationTests/vm/esdt/multi-transfer"
-	"github.com/multiversx/mx-chain-go/testscommon/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	multitransfer "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt/multi-transfer"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 func TestESDTMultiTransferThroughForwarder(t *testing.T) {

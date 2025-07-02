@@ -3,7 +3,7 @@ package trie_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/trie"
+	"github.com/TerraDharitri/drt-go-chain/trie"
 	"github.com/stretchr/testify/assert"
 )
 

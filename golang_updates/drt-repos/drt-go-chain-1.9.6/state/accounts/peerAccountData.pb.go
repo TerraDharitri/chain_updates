@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -86,7 +86,7 @@ type PeerAccountData struct {
 	ValidatorIgnoredSignaturesRate      uint32        `protobuf:"varint,6,opt,name=ValidatorIgnoredSignaturesRate,proto3" json:"validatorIgnoredSignaturesRate"`
 	Rating                              uint32        `protobuf:"varint,7,opt,name=Rating,proto3" json:"rating"`
 	TempRating                          uint32        `protobuf:"varint,8,opt,name=TempRating,proto3" json:"tempRating"`
-	AccumulatedFees                     *math_big.Int `protobuf:"bytes,9,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"accumulatedFees,omitempty"`
+	AccumulatedFees                     *math_big.Int `protobuf:"bytes,9,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"accumulatedFees,omitempty"`
 	NumSelectedInSuccessBlocks          uint32        `protobuf:"varint,10,opt,name=NumSelectedInSuccessBlocks,proto3" json:"numSelectedInSuccessBlocks"`
 	IndexInList                         uint32        `protobuf:"varint,11,opt,name=IndexInList,proto3" json:"indexInList"`
 	List                                string        `protobuf:"bytes,12,opt,name=List,proto3" json:"list,omitempty"`
@@ -402,7 +402,7 @@ func (this *PeerAccountData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.AccumulatedFees, that1.AccumulatedFees) {
 			return false
 		}
@@ -623,7 +623,7 @@ func (m *PeerAccountData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x50
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.AccumulatedFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.AccumulatedFees, dAtA[i:]); err != nil {
@@ -747,7 +747,7 @@ func (m *PeerAccountData) Size() (n int) {
 		n += 1 + sovPeerAccountData(uint64(m.TempRating))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.AccumulatedFees)
 		n += 1 + l + sovPeerAccountData(uint64(l))
 	}
@@ -1201,7 +1201,7 @@ func (m *PeerAccountData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

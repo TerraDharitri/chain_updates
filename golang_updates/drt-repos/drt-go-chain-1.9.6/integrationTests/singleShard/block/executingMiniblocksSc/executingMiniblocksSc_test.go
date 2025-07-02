@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/singleShard/block"
-	"github.com/multiversx/mx-chain-go/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/singleShard/block"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
 )
 
 func TestShouldProcessMultipleERC20ContractsInSingleShard(t *testing.T) {

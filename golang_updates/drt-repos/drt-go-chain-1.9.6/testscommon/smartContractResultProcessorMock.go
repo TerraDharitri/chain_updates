@@ -1,8 +1,8 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // SmartContractResultsProcessorMock -

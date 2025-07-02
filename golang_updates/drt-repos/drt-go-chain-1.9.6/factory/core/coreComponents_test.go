@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	coreComp "github.com/multiversx/mx-chain-go/factory/core"
-	"github.com/multiversx/mx-chain-go/state"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	coreComp "github.com/TerraDharitri/drt-go-chain/factory/core"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/require"
 )
 

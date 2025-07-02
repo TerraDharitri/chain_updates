@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"testing"
 
-	chainSimulatorIntegrationTests "github.com/multiversx/mx-chain-go/integrationTests/chainSimulator"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	chainSimulatorProcess "github.com/multiversx/mx-chain-go/node/chainSimulator/process"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/vm"
+	chainSimulatorIntegrationTests "github.com/TerraDharitri/drt-go-chain/integrationTests/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	chainSimulatorProcess "github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/require"
 )
 

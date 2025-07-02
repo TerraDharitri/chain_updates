@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/node"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var formatter = logger.PlainFormatter{}

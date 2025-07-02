@@ -1,11 +1,11 @@
-package esdtSupply
+package dcdtSupply
 
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
 	"github.com/stretchr/testify/require"
 )
 

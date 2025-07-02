@@ -9,38 +9,38 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/atomic"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	vmcommonBuiltInFunctions "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	vmcommonBuiltInFunctions "github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/accounts"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/cache"
-	dataRetrieverMock "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/accounts"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cache"
+	dataRetrieverMock "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 )
 
 func createMockBlockChainHookArgs() hooks.ArgBlockChainHook {
@@ -59,7 +59,7 @@ func createMockBlockChainHookArgs() hooks.ArgBlockChainHook {
 		Uint64Converter:       &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:      vmcommonBuiltInFunctions.NewBuiltInFunctionContainer(),
 		NFTStorageHandler:     &testscommon.SimpleNFTStorageHandlerStub{},
-		GlobalSettingsHandler: &testscommon.ESDTGlobalSettingsHandlerStub{},
+		GlobalSettingsHandler: &testscommon.DCDTGlobalSettingsHandlerStub{},
 		DataPool:              datapool,
 		CompiledSCPool:        datapool.SmartContracts(),
 		EpochNotifier:         &epochNotifier.EpochNotifierStub{},
@@ -183,7 +183,7 @@ func TestNewBlockChainHookImpl(t *testing.T) {
 				args.GlobalSettingsHandler = nil
 				return args
 			},
-			expectedErr: process.ErrNilESDTGlobalSettingsHandler,
+			expectedErr: process.ErrNilDCDTGlobalSettingsHandler,
 		},
 		{
 			args: func() hooks.ArgBlockChainHook {
@@ -1846,20 +1846,20 @@ func TestBlockChainHookImpl_ProcessBuiltInFunction(t *testing.T) {
 	})
 }
 
-func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
+func TestBlockChainHookImpl_GetDCDTToken(t *testing.T) {
 	t.Parallel()
 
 	address := []byte("address")
 	token := []byte("tkn")
 	nonce := uint64(0)
-	emptyESDTData := &esdt.ESDigitalToken{Value: big.NewInt(0)}
+	emptyDCDTData := &dcdt.DCDigitalToken{Value: big.NewInt(0)}
 	expectedErr := errors.New("expected error")
-	completeEsdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(token))
-	testESDTData := &esdt.ESDigitalToken{
+	completeDcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(token))
+	testDCDTData := &dcdt.DCDigitalToken{
 		Type:       uint32(core.Fungible),
 		Value:      big.NewInt(1),
 		Properties: []byte("properties"),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce:      1,
 			Name:       []byte("name"),
 			Creator:    []byte("creator"),
@@ -1871,7 +1871,7 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		Reserved: []byte("reserved"),
 	}
 
-	t.Run("account not found returns an empty esdt data", func(t *testing.T) {
+	t.Run("account not found returns an empty dcdt data", func(t *testing.T) {
 		t.Parallel()
 
 		args := createMockBlockChainHookArgs()
@@ -1882,10 +1882,10 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		}
 
 		bh, _ := hooks.NewBlockChainHookImpl(args)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
 		assert.Nil(t, err)
-		require.NotNil(t, esdtData)
-		assert.Equal(t, emptyESDTData, esdtData)
+		require.NotNil(t, dcdtData)
+		assert.Equal(t, emptyDCDTData, dcdtData)
 	})
 	t.Run("error unmarshal", func(t *testing.T) {
 		t.Parallel()
@@ -1896,7 +1896,7 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 			GetExistingAccountCalled: func(addressContainer []byte) (vmcommon.AccountHandler, error) {
 				require.Equal(t, address, addressContainer)
 				account := stateMock.NewAccountWrapMock(address)
-				_ = account.SaveKeyValue(completeEsdtTokenKey, invalidUnmarshalledData)
+				_ = account.SaveKeyValue(completeDcdtTokenKey, invalidUnmarshalledData)
 
 				return account, nil
 			},
@@ -1904,7 +1904,7 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		errMarshaller := errors.New("error marshaller")
 		args.Marshalizer = &marshallerMock.MarshalizerStub{
 			UnmarshalCalled: func(obj interface{}, buff []byte) error {
-				require.Equal(t, emptyESDTData, obj)
+				require.Equal(t, emptyDCDTData, obj)
 				require.Equal(t, invalidUnmarshalledData, buff)
 				return errMarshaller
 			},
@@ -1915,8 +1915,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
 		enableEpochsHandlerStub.RemoveActiveFlags(common.OptimizeNFTStoreFlag)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
-		require.Nil(t, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
+		require.Nil(t, dcdtData)
 		require.Equal(t, errMarshaller, err)
 	})
 	t.Run("accountsDB errors returns error", func(t *testing.T) {
@@ -1930,8 +1930,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		}
 
 		bh, _ := hooks.NewBlockChainHookImpl(args)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
-		assert.Nil(t, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
+		assert.Nil(t, dcdtData)
 		assert.Equal(t, expectedErr, err)
 	})
 	t.Run("backwards compatibility - retrieve value errors, should return error", func(t *testing.T) {
@@ -1952,11 +1952,11 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
 		enableEpochsHandlerStub.RemoveActiveFlags(common.OptimizeNFTStoreFlag)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
-		assert.Nil(t, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
+		assert.Nil(t, dcdtData)
 		assert.Equal(t, state.ErrNilTrie, err)
 	})
-	t.Run("backwards compatibility - empty byte slice should return empty esdt token", func(t *testing.T) {
+	t.Run("backwards compatibility - empty byte slice should return empty dcdt token", func(t *testing.T) {
 		t.Parallel()
 
 		args := createMockBlockChainHookArgs()
@@ -1978,11 +1978,11 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
 		enableEpochsHandlerStub.RemoveActiveFlags(common.OptimizeNFTStoreFlag)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
-		assert.Equal(t, emptyESDTData, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
+		assert.Equal(t, emptyDCDTData, dcdtData)
 		assert.Nil(t, err)
 	})
-	t.Run("backwards compatibility - should load the esdt data in case of an NFT", func(t *testing.T) {
+	t.Run("backwards compatibility - should load the dcdt data in case of an NFT", func(t *testing.T) {
 		t.Parallel()
 
 		nftNonce := uint64(44)
@@ -1990,8 +1990,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		args.Accounts = &stateMock.AccountsStub{
 			GetExistingAccountCalled: func(addressContainer []byte) (vmcommon.AccountHandler, error) {
 				addressHandler := stateMock.NewAccountWrapMock(address)
-				buffToken, _ := args.Marshalizer.Marshal(testESDTData)
-				key := append(completeEsdtTokenKey, big.NewInt(0).SetUint64(nftNonce).Bytes()...)
+				buffToken, _ := args.Marshalizer.Marshal(testDCDTData)
+				key := append(completeDcdtTokenKey, big.NewInt(0).SetUint64(nftNonce).Bytes()...)
 				_ = addressHandler.SaveKeyValue(key, buffToken)
 
 				return addressHandler, nil
@@ -2003,19 +2003,19 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
 		enableEpochsHandlerStub.RemoveActiveFlags(common.OptimizeNFTStoreFlag)
-		esdtData, err := bh.GetESDTToken(address, token, nftNonce)
-		assert.Equal(t, testESDTData, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nftNonce)
+		assert.Equal(t, testDCDTData, dcdtData)
 		assert.Nil(t, err)
 	})
-	t.Run("backwards compatibility - should load the esdt data", func(t *testing.T) {
+	t.Run("backwards compatibility - should load the dcdt data", func(t *testing.T) {
 		t.Parallel()
 
 		args := createMockBlockChainHookArgs()
 		args.Accounts = &stateMock.AccountsStub{
 			GetExistingAccountCalled: func(addressContainer []byte) (vmcommon.AccountHandler, error) {
 				addressHandler := stateMock.NewAccountWrapMock(address)
-				buffToken, _ := args.Marshalizer.Marshal(testESDTData)
-				_ = addressHandler.SaveKeyValue(completeEsdtTokenKey, buffToken)
+				buffToken, _ := args.Marshalizer.Marshal(testDCDTData)
+				_ = addressHandler.SaveKeyValue(completeDcdtTokenKey, buffToken)
 
 				return addressHandler, nil
 			},
@@ -2026,8 +2026,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
 		enableEpochsHandlerStub.RemoveActiveFlags(common.OptimizeNFTStoreFlag)
-		esdtData, err := bh.GetESDTToken(address, token, nonce)
-		assert.Equal(t, testESDTData, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nonce)
+		assert.Equal(t, testDCDTData, dcdtData)
 		assert.Nil(t, err)
 	})
 	t.Run("new optimized implementation - NFTStorageHandler errors", func(t *testing.T) {
@@ -2041,8 +2041,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 			},
 		}
 		args.NFTStorageHandler = &testscommon.SimpleNFTStorageHandlerStub{
-			GetESDTNFTTokenOnDestinationCalled: func(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
-				assert.Equal(t, completeEsdtTokenKey, esdtTokenKey)
+			GetDCDTNFTTokenOnDestinationCalled: func(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
+				assert.Equal(t, completeDcdtTokenKey, dcdtTokenKey)
 				assert.Equal(t, nftNonce, nonce)
 
 				return nil, false, expectedErr
@@ -2052,11 +2052,11 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
-		esdtData, err := bh.GetESDTToken(address, token, nftNonce)
-		assert.Nil(t, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nftNonce)
+		assert.Nil(t, dcdtData)
 		assert.Equal(t, expectedErr, err)
 	})
-	t.Run("new optimized implementation - should return the esdt by calling NFTStorageHandler", func(t *testing.T) {
+	t.Run("new optimized implementation - should return the dcdt by calling NFTStorageHandler", func(t *testing.T) {
 		t.Parallel()
 
 		nftNonce := uint64(44)
@@ -2067,10 +2067,10 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 			},
 		}
 		args.NFTStorageHandler = &testscommon.SimpleNFTStorageHandlerStub{
-			GetESDTNFTTokenOnDestinationCalled: func(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
-				assert.Equal(t, completeEsdtTokenKey, esdtTokenKey)
+			GetDCDTNFTTokenOnDestinationCalled: func(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
+				assert.Equal(t, completeDcdtTokenKey, dcdtTokenKey)
 				assert.Equal(t, nftNonce, nonce)
-				copyToken := *testESDTData
+				copyToken := *testDCDTData
 
 				return &copyToken, false, nil
 			},
@@ -2079,8 +2079,8 @@ func TestBlockChainHookImpl_GetESDTToken(t *testing.T) {
 
 		bh, _ := hooks.NewBlockChainHookImpl(args)
 
-		esdtData, err := bh.GetESDTToken(address, token, nftNonce)
-		assert.Equal(t, testESDTData, esdtData)
+		dcdtData, err := bh.GetDCDTToken(address, token, nftNonce)
+		assert.Equal(t, testDCDTData, dcdtData)
 		assert.Nil(t, err)
 	})
 }
@@ -2211,7 +2211,7 @@ func TestBlockChainHookImpl_ClearCompiledCodes(t *testing.T) {
 
 	args := createMockBlockChainHookArgs()
 	args.EnableEpochs.DoNotReturnOldBlockInBlockchainHookEnableEpoch = 0
-	args.EnableEpochs.ESDTEnableEpoch = 10
+	args.EnableEpochs.DCDTEnableEpoch = 10
 	args.EnableEpochs.IsPayableBySCEnableEpoch = 11
 
 	clearCalled := 0
@@ -2303,11 +2303,11 @@ func TestBlockChainHookImpl_IsPaused(t *testing.T) {
 
 	args := createMockBlockChainHookArgs()
 	isPausedCalled := false
-	expectedTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + "token ID")
-	args.GlobalSettingsHandler = &testscommon.ESDTGlobalSettingsHandlerStub{
-		IsPausedCalled: func(esdtTokenKey []byte) bool {
+	expectedTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + "token ID")
+	args.GlobalSettingsHandler = &testscommon.DCDTGlobalSettingsHandlerStub{
+		IsPausedCalled: func(dcdtTokenKey []byte) bool {
 			isPausedCalled = true
-			assert.Equal(t, expectedTokenKey, esdtTokenKey)
+			assert.Equal(t, expectedTokenKey, dcdtTokenKey)
 			return true
 		},
 	}
@@ -2322,11 +2322,11 @@ func TestBlockChainHookImpl_IsLimitedTransfer(t *testing.T) {
 
 	args := createMockBlockChainHookArgs()
 	isLimitedTransferCalled := false
-	expectedTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + "token ID")
-	args.GlobalSettingsHandler = &testscommon.ESDTGlobalSettingsHandlerStub{
-		IsLimitedTransferCalled: func(esdtTokenKey []byte) bool {
+	expectedTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + "token ID")
+	args.GlobalSettingsHandler = &testscommon.DCDTGlobalSettingsHandlerStub{
+		IsLimitedTransferCalled: func(dcdtTokenKey []byte) bool {
 			isLimitedTransferCalled = true
-			assert.Equal(t, expectedTokenKey, esdtTokenKey)
+			assert.Equal(t, expectedTokenKey, dcdtTokenKey)
 			return true
 		},
 	}

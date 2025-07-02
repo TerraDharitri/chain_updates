@@ -5,11 +5,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/display"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/require"
 )
 
@@ -257,32 +257,32 @@ func TestGetPrettyValue(t *testing.T) {
 	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(1), big.NewInt(1000000)))
 	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(1), big.NewInt(10000000)))
 
-	oneEGLD := big.NewInt(1000000000000000000)
-	denominationEGLD := big.NewInt(int64(math.Pow10(18)))
+	oneREWA := big.NewInt(1000000000000000000)
+	denominationREWA := big.NewInt(int64(math.Pow10(18)))
 
-	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(0), denominationEGLD))
-	require.Equal(t, "1.00000", getPrettyValue(oneEGLD, denominationEGLD))
-	require.Equal(t, "1.10000", getPrettyValue(big.NewInt(1100000000000000000), denominationEGLD))
-	require.Equal(t, "1.10000", getPrettyValue(big.NewInt(1100000000000000001), denominationEGLD))
-	require.Equal(t, "1.11000", getPrettyValue(big.NewInt(1110000000000000001), denominationEGLD))
-	require.Equal(t, "0.11100", getPrettyValue(big.NewInt(111000000000000001), denominationEGLD))
-	require.Equal(t, "0.01110", getPrettyValue(big.NewInt(11100000000000001), denominationEGLD))
-	require.Equal(t, "0.00111", getPrettyValue(big.NewInt(1110000000000001), denominationEGLD))
-	require.Equal(t, "0.00011", getPrettyValue(big.NewInt(111000000000001), denominationEGLD))
-	require.Equal(t, "0.00001", getPrettyValue(big.NewInt(11100000000001), denominationEGLD))
-	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(1110000000001), denominationEGLD))
-	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(111000000001), denominationEGLD))
+	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(0), denominationREWA))
+	require.Equal(t, "1.00000", getPrettyValue(oneREWA, denominationREWA))
+	require.Equal(t, "1.10000", getPrettyValue(big.NewInt(1100000000000000000), denominationREWA))
+	require.Equal(t, "1.10000", getPrettyValue(big.NewInt(1100000000000000001), denominationREWA))
+	require.Equal(t, "1.11000", getPrettyValue(big.NewInt(1110000000000000001), denominationREWA))
+	require.Equal(t, "0.11100", getPrettyValue(big.NewInt(111000000000000001), denominationREWA))
+	require.Equal(t, "0.01110", getPrettyValue(big.NewInt(11100000000000001), denominationREWA))
+	require.Equal(t, "0.00111", getPrettyValue(big.NewInt(1110000000000001), denominationREWA))
+	require.Equal(t, "0.00011", getPrettyValue(big.NewInt(111000000000001), denominationREWA))
+	require.Equal(t, "0.00001", getPrettyValue(big.NewInt(11100000000001), denominationREWA))
+	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(1110000000001), denominationREWA))
+	require.Equal(t, "0.00000", getPrettyValue(big.NewInt(111000000001), denominationREWA))
 
-	require.Equal(t, "2.00000", getPrettyValue(big.NewInt(0).Mul(oneEGLD, big.NewInt(2)), denominationEGLD))
-	require.Equal(t, "20.00000", getPrettyValue(big.NewInt(0).Mul(oneEGLD, big.NewInt(20)), denominationEGLD))
-	require.Equal(t, "2000000.00000", getPrettyValue(big.NewInt(0).Mul(oneEGLD, big.NewInt(2000000)), denominationEGLD))
+	require.Equal(t, "2.00000", getPrettyValue(big.NewInt(0).Mul(oneREWA, big.NewInt(2)), denominationREWA))
+	require.Equal(t, "20.00000", getPrettyValue(big.NewInt(0).Mul(oneREWA, big.NewInt(20)), denominationREWA))
+	require.Equal(t, "2000000.00000", getPrettyValue(big.NewInt(0).Mul(oneREWA, big.NewInt(2000000)), denominationREWA))
 
-	require.Equal(t, "3.22220", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(2222200000000000000)), denominationEGLD))
-	require.Equal(t, "1.22222", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(222220000000000000)), denominationEGLD))
-	require.Equal(t, "1.02222", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(22222000000000000)), denominationEGLD))
-	require.Equal(t, "1.00222", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(2222200000000000)), denominationEGLD))
-	require.Equal(t, "1.00022", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(222220000000000)), denominationEGLD))
-	require.Equal(t, "1.00002", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(22222000000000)), denominationEGLD))
-	require.Equal(t, "1.00000", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(2222200000000)), denominationEGLD))
-	require.Equal(t, "1.00000", getPrettyValue(big.NewInt(0).Add(oneEGLD, big.NewInt(222220000000)), denominationEGLD))
+	require.Equal(t, "3.22220", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(2222200000000000000)), denominationREWA))
+	require.Equal(t, "1.22222", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(222220000000000000)), denominationREWA))
+	require.Equal(t, "1.02222", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(22222000000000000)), denominationREWA))
+	require.Equal(t, "1.00222", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(2222200000000000)), denominationREWA))
+	require.Equal(t, "1.00022", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(222220000000000)), denominationREWA))
+	require.Equal(t, "1.00002", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(22222000000000)), denominationREWA))
+	require.Equal(t, "1.00000", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(2222200000000)), denominationREWA))
+	require.Equal(t, "1.00000", getPrettyValue(big.NewInt(0).Add(oneREWA, big.NewInt(222220000000)), denominationREWA))
 }

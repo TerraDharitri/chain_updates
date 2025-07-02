@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/process"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 var log = logger.GetOrCreate("process/smartcontract/blockchainhook/counters")
@@ -30,17 +30,17 @@ type usageCounter struct {
 	crtNumberOfTransfers            uint64
 	crtNumberOfTrieReads            uint64
 
-	esdtTransferParser vmcommon.ESDTTransferParser
+	dcdtTransferParser vmcommon.DCDTTransferParser
 }
 
 // NewUsageCounter will create a new instance of type usageCounter
-func NewUsageCounter(esdtTransferParser vmcommon.ESDTTransferParser) (*usageCounter, error) {
-	if check.IfNil(esdtTransferParser) {
-		return nil, process.ErrNilESDTTransferParser
+func NewUsageCounter(dcdtTransferParser vmcommon.DCDTTransferParser) (*usageCounter, error) {
+	if check.IfNil(dcdtTransferParser) {
+		return nil, process.ErrNilDCDTTransferParser
 	}
 
 	return &usageCounter{
-		esdtTransferParser: esdtTransferParser,
+		dcdtTransferParser: dcdtTransferParser,
 	}, nil
 }
 
@@ -69,15 +69,15 @@ func (counter *usageCounter) ProcessMaxBuiltInCounters(input *vmcommon.ContractC
 		return fmt.Errorf("%w: too many built-in functions calls", process.ErrMaxCallsReached)
 	}
 
-	parsedTransfer, errESDTTransfer := counter.esdtTransferParser.ParseESDTTransfers(input.CallerAddr, input.RecipientAddr, input.Function, input.Arguments)
-	if errESDTTransfer != nil {
+	parsedTransfer, errDCDTTransfer := counter.dcdtTransferParser.ParseDCDTTransfers(input.CallerAddr, input.RecipientAddr, input.Function, input.Arguments)
+	if errDCDTTransfer != nil {
 		// not a transfer - no need to count max transfers
 		return nil
 	}
 
-	counter.crtNumberOfTransfers += uint64(len(parsedTransfer.ESDTTransfers))
+	counter.crtNumberOfTransfers += uint64(len(parsedTransfer.DCDTTransfers))
 	if counter.crtNumberOfTransfers > counter.maxNumberOfTransfersPerTx {
-		return fmt.Errorf("%w: too many ESDT transfers", process.ErrMaxCallsReached)
+		return fmt.Errorf("%w: too many DCDT transfers", process.ErrMaxCallsReached)
 	}
 
 	return nil

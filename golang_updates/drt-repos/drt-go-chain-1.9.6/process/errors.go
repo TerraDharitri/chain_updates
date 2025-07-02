@@ -1023,8 +1023,8 @@ var ErrNilAccountsDBSyncer = errors.New("nil accounts DB syncer")
 // ErrNilCurrentNetworkEpochProvider signals that a nil CurrentNetworkEpochProvider handler has been provided
 var ErrNilCurrentNetworkEpochProvider = errors.New("nil current network epoch provider")
 
-// ErrNilESDTTransferParser signals that a nil ESDT transfer parser has been provided
-var ErrNilESDTTransferParser = errors.New("nil esdt transfer parser")
+// ErrNilDCDTTransferParser signals that a nil DCDT transfer parser has been provided
+var ErrNilDCDTTransferParser = errors.New("nil dcdt transfer parser")
 
 // ErrResultingSCRIsTooBig signals that resulting smart contract result is too big
 var ErrResultingSCRIsTooBig = errors.New("resulting SCR is too big")
@@ -1140,8 +1140,8 @@ var ErrNilReceiptsRepository = errors.New("nil receipts repository")
 // ErrNilBlockProcessingCutoffHandler signals that a nil block processing cutoff handler has been provided
 var ErrNilBlockProcessingCutoffHandler = errors.New("nil block processing cutoff handler")
 
-// ErrNilESDTGlobalSettingsHandler signals that nil global settings handler was provided
-var ErrNilESDTGlobalSettingsHandler = errors.New("nil esdt global settings handler")
+// ErrNilDCDTGlobalSettingsHandler signals that nil global settings handler was provided
+var ErrNilDCDTGlobalSettingsHandler = errors.New("nil dcdt global settings handler")
 
 // ErrNilEnableEpochsHandler signals that a nil enable epochs handler has been provided
 var ErrNilEnableEpochsHandler = errors.New("nil enable epochs handler")

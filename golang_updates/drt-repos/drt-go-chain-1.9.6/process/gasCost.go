@@ -16,18 +16,18 @@ type BuiltInCost struct {
 	ClaimDeveloperRewards    uint64
 	SaveUserName             uint64
 	SaveKeyValue             uint64
-	ESDTTransfer             uint64
-	ESDTBurn                 uint64
-	ESDTLocalMint            uint64
-	ESDTLocalBurn            uint64
-	ESDTNFTCreate            uint64
-	ESDTNFTAddQuantity       uint64
-	ESDTNFTBurn              uint64
-	ESDTNFTTransfer          uint64
-	ESDTNFTChangeCreateOwner uint64
-	ESDTNFTAddUri            uint64
-	ESDTNFTUpdateAttributes  uint64
-	ESDTNFTMultiTransfer     uint64
+	DCDTTransfer             uint64
+	DCDTBurn                 uint64
+	DCDTLocalMint            uint64
+	DCDTLocalBurn            uint64
+	DCDTNFTCreate            uint64
+	DCDTNFTAddQuantity       uint64
+	DCDTNFTBurn              uint64
+	DCDTNFTTransfer          uint64
+	DCDTNFTChangeCreateOwner uint64
+	DCDTNFTAddUri            uint64
+	DCDTNFTUpdateAttributes  uint64
+	DCDTNFTMultiTransfer     uint64
 	SetGuardian              uint64
 	GuardAccount             uint64
 	UnGuardAccount           uint64

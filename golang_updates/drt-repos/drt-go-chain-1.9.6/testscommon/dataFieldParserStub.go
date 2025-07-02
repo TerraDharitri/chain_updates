@@ -1,6 +1,6 @@
 package testscommon
 
-import datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+import datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 
 // DataFieldParserStub -
 type DataFieldParserStub struct {

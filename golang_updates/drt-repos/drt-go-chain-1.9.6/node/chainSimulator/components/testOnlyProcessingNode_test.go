@@ -7,15 +7,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/components/api"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/configs"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	"github.com/multiversx/mx-chain-go/testscommon/factory"
-	"github.com/multiversx/mx-chain-go/testscommon/state"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/components/api"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/configs"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/factory"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/state"
 
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -154,7 +154,7 @@ func TestTestOnlyProcessingNode_SetKeyValueForAddress(t *testing.T) {
 	node, err := NewTestOnlyProcessingNode(createMockArgsTestOnlyProcessingNode(t))
 	require.NoError(t, err)
 
-	address := "erd1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq6e5zgj"
+	address := "drt1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq89rptv"
 	addressBytes, _ := node.CoreComponentsHolder.AddressPubKeyConverter().Decode(address)
 
 	t.Run("should work", func(t *testing.T) {
@@ -263,12 +263,12 @@ func TestTestOnlyProcessingNode_SetStateForAddress(t *testing.T) {
 	require.NoError(t, err)
 	nonce := uint64(100)
 
-	address := "erd1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq6e5zgj"
-	scAddress := "erd1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqn46gtd"
+	address := "drt1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq89rptv"
+	scAddress := "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn"
 	addressBytes, _ := node.CoreComponentsHolder.AddressPubKeyConverter().Decode(address)
 	scAddressBytes, _ := node.CoreComponentsHolder.AddressPubKeyConverter().Decode(scAddress)
 	addressState := &dtos.AddressState{
-		Address: "erd1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq6e5zgj",
+		Address: "drt1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq89rptv",
 		Nonce:   &nonce,
 		Balance: "1000000000000000000",
 		Pairs: map[string]string{

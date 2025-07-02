@@ -1,7 +1,7 @@
 package trigger
 
 import (
-	"github.com/multiversx/mx-chain-go/update"
+	"github.com/TerraDharitri/drt-go-chain/update"
 )
 
 const HardforkTriggerString = hardforkTriggerString

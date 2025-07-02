@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/stretchr/testify/require"
 )
 

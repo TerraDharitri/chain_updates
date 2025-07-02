@@ -3,7 +3,7 @@ package logs_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/api/logs"
+	"github.com/TerraDharitri/drt-go-chain/api/logs"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,8 +3,8 @@ package state
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/common"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 type dataTriesHolder struct {

@@ -4,10 +4,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -18,7 +18,7 @@ func TestTokenProcessorProcessEventWrongNumberOfTopics(t *testing.T) {
 
 	markedAccounts := make(map[string]*markedAlteredAccount)
 	tp.processEvent(&transaction.Event{
-		Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+		Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 		Address:    []byte("addr"),
 		Topics:     [][]byte{[]byte("0"), []byte("1"), []byte("2")},
 	}, markedAccounts)
@@ -26,7 +26,7 @@ func TestTokenProcessorProcessEventWrongNumberOfTopics(t *testing.T) {
 	require.Equal(t, 0, len(markedAccounts))
 
 	tp.processEvent(&transaction.Event{
-		Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+		Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 		Address:    []byte("addr"),
 		Topics:     [][]byte{[]byte("0"), []byte("1"), []byte("2"), []byte("0"), []byte("1")},
 	}, markedAccounts)
@@ -41,7 +41,7 @@ func TestTokenProcessorProcessEventMultiTransferV2(t *testing.T) {
 
 	markedAccounts := make(map[string]*markedAlteredAccount)
 	tp.processEvent(&transaction.Event{
-		Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+		Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 		Address:    []byte("addr"),
 		Topics:     [][]byte{[]byte("token1"), big.NewInt(0).Bytes(), []byte("2"), []byte("token2"), big.NewInt(1).Bytes(), []byte("3"), []byte("receiver")},
 	}, markedAccounts)
@@ -63,16 +63,16 @@ func TestTokenProcessorProcessEventMultiTransferV2(t *testing.T) {
 	require.Equal(t, markedAccount, markedAccounts["receiver"])
 }
 
-func TestTokenProcessorProcessEventMultiTransferV2WithEGLD(t *testing.T) {
+func TestTokenProcessorProcessEventMultiTransferV2WithREWA(t *testing.T) {
 	t.Parallel()
 
 	tp := newTokensProcessor(&mock.ShardCoordinatorStub{})
 
 	markedAccounts := make(map[string]*markedAlteredAccount)
 	tp.processEvent(&transaction.Event{
-		Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+		Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 		Address:    []byte("addr"),
-		Topics:     [][]byte{[]byte("token1"), big.NewInt(0).Bytes(), []byte("2"), []byte(vmcommon.EGLDIdentifier), big.NewInt(0).Bytes(), []byte("3"), []byte("receiver")},
+		Topics:     [][]byte{[]byte("token1"), big.NewInt(0).Bytes(), []byte("2"), []byte(vmcommon.REWAIdentifier), big.NewInt(0).Bytes(), []byte("3"), []byte("receiver")},
 	}, markedAccounts)
 
 	require.Equal(t, 2, len(markedAccounts))
@@ -98,16 +98,16 @@ func TestTokenProcessorProcessEventMultiTransferV2WithEGLD(t *testing.T) {
 	require.Equal(t, markedAccount2, markedAccounts["receiver"])
 }
 
-func TestTokenProcessorProcessEventMultiTransferV2WithEGLDAndMoreTokens(t *testing.T) {
+func TestTokenProcessorProcessEventMultiTransferV2WithREWAAndMoreTokens(t *testing.T) {
 	t.Parallel()
 
 	tp := newTokensProcessor(&mock.ShardCoordinatorStub{})
 
 	markedAccounts := make(map[string]*markedAlteredAccount)
 	tp.processEvent(&transaction.Event{
-		Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+		Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 		Address:    []byte("addr"),
-		Topics:     [][]byte{[]byte("token1"), big.NewInt(0).Bytes(), []byte("2"), []byte(vmcommon.EGLDIdentifier), big.NewInt(0).Bytes(), []byte("3"), []byte("token2"), big.NewInt(0).Bytes(), []byte("2"), []byte("receiver")},
+		Topics:     [][]byte{[]byte("token1"), big.NewInt(0).Bytes(), []byte("2"), []byte(vmcommon.REWAIdentifier), big.NewInt(0).Bytes(), []byte("3"), []byte("token2"), big.NewInt(0).Bytes(), []byte("2"), []byte("receiver")},
 	}, markedAccounts)
 
 	require.Equal(t, 2, len(markedAccounts))

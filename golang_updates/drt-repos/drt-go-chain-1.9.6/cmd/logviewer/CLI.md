@@ -1,18 +1,18 @@
 
 # Logviewer App
 
-The **MultiversX Logviewer App** exposes the following Command Line Interface:
+The **Dharitri Logviewer App** exposes the following Command Line Interface:
 
 ```
 $ logviewer --help
 
 NAME:
-   MultiversX Logviewer App - Logviewer application used to communicate with mx-chain-go node to log the message lines
+   Dharitri Logviewer App - Logviewer application used to communicate with mx-chain-go node to log the message lines
 USAGE:
    logviewer [global options]
    
 AUTHOR:
-   The MultiversX Team <contact@multiversx.com>
+   The Dharitri Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --address value            Address and port number on which the application will try to connect to the mx-chain-go node (default: "127.0.0.1:8080")

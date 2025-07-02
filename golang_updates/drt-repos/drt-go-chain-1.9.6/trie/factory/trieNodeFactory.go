@@ -1,6 +1,6 @@
 package factory
 
-import "github.com/multiversx/mx-chain-go/trie"
+import "github.com/TerraDharitri/drt-go-chain/trie"
 
 type trieNodeFactory struct {
 }

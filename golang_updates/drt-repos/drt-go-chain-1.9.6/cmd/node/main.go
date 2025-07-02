@@ -6,16 +6,16 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
+	"github.com/TerraDharitri/drt-go-chain/cmd/node/factory"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/config/overridableConfig"
+	"github.com/TerraDharitri/drt-go-chain/node"
 	"github.com/klauspost/cpuid/v2"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/cmd/node/factory"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/config/overridableConfig"
-	"github.com/multiversx/mx-chain-go/node"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
 	"github.com/urfave/cli"
 	// test point 1 for custom profiler
 )
@@ -64,17 +64,17 @@ func main() {
 
 	app := cli.NewApp()
 	cli.AppHelpTemplate = nodeHelpTemplate
-	app.Name = "MultiversX Node CLI App"
+	app.Name = "Dharitri Node CLI App"
 	machineID := core.GetAnonymizedMachineID(app.Name)
 
 	baseVersion := fmt.Sprintf("%s/%s/%s-%s", appVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
 	app.Version = fmt.Sprintf("%s/%s", baseVersion, machineID)
-	app.Usage = "This is the entry point for starting a new MultiversX node - the app will start after the genesis timestamp"
+	app.Usage = "This is the entry point for starting a new Dharitri node - the app will start after the genesis timestamp"
 	app.Flags = getFlags()
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

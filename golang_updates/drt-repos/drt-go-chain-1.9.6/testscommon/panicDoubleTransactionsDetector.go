@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 const noDoubledTransactionsFoundMessage = "no double transactions found"

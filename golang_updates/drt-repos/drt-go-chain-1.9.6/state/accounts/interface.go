@@ -1,7 +1,7 @@
 package accounts
 
 import (
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 type dataTrieInteractor interface {

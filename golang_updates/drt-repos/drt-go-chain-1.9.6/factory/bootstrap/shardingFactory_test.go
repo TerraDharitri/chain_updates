@@ -5,25 +5,25 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-go/config"
-	errErd "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/bootstrapMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/chainParameters"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/genesisMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/nodeTypeProviderMock"
-	"github.com/multiversx/mx-chain-go/testscommon/shardingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/storage"
-	validatorInfoCacherMocks "github.com/multiversx/mx-chain-go/testscommon/validatorInfoCacher"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	errDrt "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/bootstrapMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/chainParameters"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genesisMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/nodeTypeProviderMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	validatorInfoCacherMocks "github.com/TerraDharitri/drt-go-chain/testscommon/validatorInfoCacher"
 	"github.com/stretchr/testify/require"
 )
 
@@ -36,7 +36,7 @@ func TestCreateShardCoordinator(t *testing.T) {
 		t.Parallel()
 
 		shardC, nodeType, err := CreateShardCoordinator(nil, nil, config.PreferencesConfig{}, nil)
-		require.Equal(t, errErd.ErrNilGenesisNodesSetupHandler, err)
+		require.Equal(t, errDrt.ErrNilGenesisNodesSetupHandler, err)
 		require.Empty(t, nodeType)
 		require.True(t, check.IfNil(shardC))
 	})
@@ -44,7 +44,7 @@ func TestCreateShardCoordinator(t *testing.T) {
 		t.Parallel()
 
 		shardC, nodeType, err := CreateShardCoordinator(&genesisMocks.NodesSetupStub{}, nil, config.PreferencesConfig{}, nil)
-		require.Equal(t, errErd.ErrNilPublicKey, err)
+		require.Equal(t, errDrt.ErrNilPublicKey, err)
 		require.Empty(t, nodeType)
 		require.True(t, check.IfNil(shardC))
 	})
@@ -52,7 +52,7 @@ func TestCreateShardCoordinator(t *testing.T) {
 		t.Parallel()
 
 		shardC, nodeType, err := CreateShardCoordinator(&genesisMocks.NodesSetupStub{}, &cryptoMocks.PublicKeyStub{}, config.PreferencesConfig{}, nil)
-		require.Equal(t, errErd.ErrNilLogger, err)
+		require.Equal(t, errDrt.ErrNilLogger, err)
 		require.Empty(t, nodeType)
 		require.True(t, check.IfNil(shardC))
 	})
@@ -213,7 +213,7 @@ func TestCreateNodesCoordinator(t *testing.T) {
 			&shardingMocks.NodesCoordinatorRegistryFactoryMock{},
 			&chainParameters.ChainParametersHandlerStub{},
 		)
-		require.Equal(t, errErd.ErrNilShuffleOutCloser, err)
+		require.Equal(t, errDrt.ErrNilShuffleOutCloser, err)
 		require.True(t, check.IfNil(nodesC))
 	})
 	t.Run("nil nodes config should error", func(t *testing.T) {
@@ -240,7 +240,7 @@ func TestCreateNodesCoordinator(t *testing.T) {
 			&shardingMocks.NodesCoordinatorRegistryFactoryMock{},
 			&chainParameters.ChainParametersHandlerStub{},
 		)
-		require.Equal(t, errErd.ErrNilGenesisNodesSetupHandler, err)
+		require.Equal(t, errDrt.ErrNilGenesisNodesSetupHandler, err)
 		require.True(t, check.IfNil(nodesC))
 	})
 	t.Run("nil epoch start notifier should error", func(t *testing.T) {
@@ -267,7 +267,7 @@ func TestCreateNodesCoordinator(t *testing.T) {
 			&shardingMocks.NodesCoordinatorRegistryFactoryMock{},
 			&chainParameters.ChainParametersHandlerStub{},
 		)
-		require.Equal(t, errErd.ErrNilEpochStartNotifier, err)
+		require.Equal(t, errDrt.ErrNilEpochStartNotifier, err)
 		require.True(t, check.IfNil(nodesC))
 	})
 	t.Run("nil pub key should error", func(t *testing.T) {
@@ -294,7 +294,7 @@ func TestCreateNodesCoordinator(t *testing.T) {
 			&shardingMocks.NodesCoordinatorRegistryFactoryMock{},
 			&chainParameters.ChainParametersHandlerStub{},
 		)
-		require.Equal(t, errErd.ErrNilPublicKey, err)
+		require.Equal(t, errDrt.ErrNilPublicKey, err)
 		require.True(t, check.IfNil(nodesC))
 	})
 	t.Run("nil bootstrap params should error", func(t *testing.T) {
@@ -321,7 +321,7 @@ func TestCreateNodesCoordinator(t *testing.T) {
 			&shardingMocks.NodesCoordinatorRegistryFactoryMock{},
 			&chainParameters.ChainParametersHandlerStub{},
 		)
-		require.Equal(t, errErd.ErrNilBootstrapParamsHandler, err)
+		require.Equal(t, errDrt.ErrNilBootstrapParamsHandler, err)
 		require.True(t, check.IfNil(nodesC))
 	})
 	t.Run("nil chan should error", func(t *testing.T) {
@@ -629,7 +629,7 @@ func TestCreateNodesShuffleOut(t *testing.T) {
 		t.Parallel()
 
 		shuffler, err := CreateNodesShuffleOut(nil, config.EpochStartConfig{}, make(chan endProcess.ArgEndProcess, 1))
-		require.Equal(t, errErd.ErrNilGenesisNodesSetupHandler, err)
+		require.Equal(t, errDrt.ErrNilGenesisNodesSetupHandler, err)
 		require.True(t, check.IfNil(shuffler))
 	})
 	t.Run("invalid MaxShuffledOutRestartThreshold should error", func(t *testing.T) {

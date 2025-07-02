@@ -1,21 +1,21 @@
 package statusCore
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/common/statistics/disabled"
-	"github.com/multiversx/mx-chain-go/common/statistics/machine"
-	"github.com/multiversx/mx-chain-go/config"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/node/metrics"
-	"github.com/multiversx/mx-chain-go/statusHandler"
-	"github.com/multiversx/mx-chain-go/statusHandler/persister"
-	trieStatistics "github.com/multiversx/mx-chain-go/trie/statistics"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics/disabled"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics/machine"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/node/metrics"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler/persister"
+	trieStatistics "github.com/TerraDharitri/drt-go-chain/trie/statistics"
 )
 
 var log = logger.GetOrCreate("factory")

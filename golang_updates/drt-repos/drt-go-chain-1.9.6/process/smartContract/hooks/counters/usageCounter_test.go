@@ -3,10 +3,10 @@ package counters
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -21,17 +21,17 @@ func generateMapsOfValues(value uint64) map[string]uint64 {
 func TestNewUsageCounter(t *testing.T) {
 	t.Parallel()
 
-	t.Run("nil esdt transfer parser should error", func(t *testing.T) {
+	t.Run("nil dcdt transfer parser should error", func(t *testing.T) {
 		t.Parallel()
 
 		counter, err := NewUsageCounter(nil)
 		assert.True(t, check.IfNil(counter))
-		assert.Equal(t, process.ErrNilESDTTransferParser, err)
+		assert.Equal(t, process.ErrNilDCDTTransferParser, err)
 	})
-	t.Run("nil esdt transfer parser should error", func(t *testing.T) {
+	t.Run("nil dcdt transfer parser should error", func(t *testing.T) {
 		t.Parallel()
 
-		counter, err := NewUsageCounter(&testscommon.ESDTTransferParserStub{})
+		counter, err := NewUsageCounter(&testscommon.DCDTTransferParserStub{})
 		assert.False(t, check.IfNil(counter))
 		assert.Nil(t, err)
 	})
@@ -40,7 +40,7 @@ func TestNewUsageCounter(t *testing.T) {
 func TestUsageCounter_ProcessCrtNumberOfTrieReadsCounter(t *testing.T) {
 	t.Parallel()
 
-	counter, _ := NewUsageCounter(&testscommon.ESDTTransferParserStub{})
+	counter, _ := NewUsageCounter(&testscommon.DCDTTransferParserStub{})
 	counter.SetMaximumValues(generateMapsOfValues(3))
 
 	assert.Nil(t, counter.ProcessCrtNumberOfTrieReadsCounter())                                 // counter is now 1
@@ -79,7 +79,7 @@ func TestUsageCounter_ProcessMaxBuiltInCounters(t *testing.T) {
 	t.Run("builtin functions exceeded", func(t *testing.T) {
 		t.Parallel()
 
-		counter, _ := NewUsageCounter(&testscommon.ESDTTransferParserStub{})
+		counter, _ := NewUsageCounter(&testscommon.DCDTTransferParserStub{})
 		counter.SetMaximumValues(generateMapsOfValues(3))
 
 		vmInput := &vmcommon.ContractCallInput{}
@@ -116,10 +116,10 @@ func TestUsageCounter_ProcessMaxBuiltInCounters(t *testing.T) {
 	t.Run("number of transfers exceeded", func(t *testing.T) {
 		t.Parallel()
 
-		counter, _ := NewUsageCounter(&testscommon.ESDTTransferParserStub{
-			ParseESDTTransfersCalled: func(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedESDTTransfers, error) {
-				return &vmcommon.ParsedESDTTransfers{
-					ESDTTransfers: make([]*vmcommon.ESDTTransfer, 2),
+		counter, _ := NewUsageCounter(&testscommon.DCDTTransferParserStub{
+			ParseDCDTTransfersCalled: func(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedDCDTTransfers, error) {
+				return &vmcommon.ParsedDCDTTransfers{
+					DCDTTransfers: make([]*vmcommon.DCDTTransfer, 2),
 				}, nil
 			},
 		})
@@ -136,7 +136,7 @@ func TestUsageCounter_ProcessMaxBuiltInCounters(t *testing.T) {
 		err := counter.ProcessMaxBuiltInCounters(vmInput)                                         // counter is now 10, error signalled
 		assert.ErrorIs(t, err, process.ErrMaxCallsReached)
 		t.Run("backwards compatibility on error message string", func(t *testing.T) {
-			assert.Equal(t, "max calls reached: too many ESDT transfers", err.Error())
+			assert.Equal(t, "max calls reached: too many DCDT transfers", err.Error())
 		})
 
 		countersMap := counter.GetCounterValues()

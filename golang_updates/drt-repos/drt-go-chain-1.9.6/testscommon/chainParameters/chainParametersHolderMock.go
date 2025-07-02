@@ -1,7 +1,7 @@
 package chainParameters
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 var testChainParams = config.ChainParametersByEpochConfig{

@@ -3,9 +3,9 @@ package notifier
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
 )
 
 var log = logger.GetOrCreate("epochstart/notifier")

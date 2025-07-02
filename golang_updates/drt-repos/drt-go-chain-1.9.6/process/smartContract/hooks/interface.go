@@ -1,6 +1,6 @@
 package hooks
 
-import vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+import vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 
 // BlockChainHookCounter defines the operations of a blockchain hook counter handler
 type BlockChainHookCounter interface {

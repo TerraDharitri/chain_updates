@@ -1,6 +1,6 @@
 package host
 
-import "github.com/multiversx/mx-chain-communication-go/websocket"
+import "github.com/TerraDharitri/drt-go-chain-communication/websocket"
 
 // SenderHost defines the actions that a host sender should do
 type SenderHost interface {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
 )
 
 var errCannotReturnTotalStakedFromShardNode = errors.New("total staked value cannot be returned by a shard node")

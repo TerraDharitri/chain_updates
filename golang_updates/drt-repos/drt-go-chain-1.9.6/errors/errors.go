@@ -469,8 +469,8 @@ var ErrNilTxsSender = errors.New("nil transactions sender has been provided")
 // ErrNilProcessStatusHandler signals that a nil process status handler was provided
 var ErrNilProcessStatusHandler = errors.New("nil process status handler")
 
-// ErrNilESDTDataStorage signals that a nil esdt data storage has been provided
-var ErrNilESDTDataStorage = errors.New("nil esdt data storage")
+// ErrNilDCDTDataStorage signals that a nil dcdt data storage has been provided
+var ErrNilDCDTDataStorage = errors.New("nil dcdt data storage")
 
 // ErrNilEnableEpochsHandler signals that a nil enable epochs handler was provided
 var ErrNilEnableEpochsHandler = errors.New("nil enable epochs handler")

@@ -31,4 +31,4 @@ jobs:
           file: ./docker/keygenerator/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: multiversx/chain-keygenerator:latest
+          tags: dharitri/chain-keygenerator:latest

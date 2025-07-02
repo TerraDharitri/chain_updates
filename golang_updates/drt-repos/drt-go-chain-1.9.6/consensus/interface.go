@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 
-	"github.com/multiversx/mx-chain-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
 )
 
 // BlsConsensusType specifies the signature scheme used in the consensus

@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 )
 
 type validatorEntry struct {

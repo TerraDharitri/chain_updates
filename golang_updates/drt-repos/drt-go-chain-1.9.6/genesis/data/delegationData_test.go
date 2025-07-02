@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/genesis"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

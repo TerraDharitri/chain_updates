@@ -10,28 +10,28 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	atomicCore "github.com/multiversx/mx-chain-core-go/core/atomic"
-	nodeData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/debug"
-	"github.com/multiversx/mx-chain-go/facade/mock"
-	"github.com/multiversx/mx-chain-go/heartbeat/data"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/process"
-	txSimData "github.com/multiversx/mx-chain-go/process/transactionEvaluator/data"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	atomicCore "github.com/TerraDharitri/drt-go-chain-core/core/atomic"
+	nodeData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/debug"
+	"github.com/TerraDharitri/drt-go-chain/facade/mock"
+	"github.com/TerraDharitri/drt-go-chain/heartbeat/data"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	txSimData "github.com/TerraDharitri/drt-go-chain/process/transactionEvaluator/data"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -885,43 +885,43 @@ func TestNodeFacade_GetGuardianData(t *testing.T) {
 	})
 }
 
-func TestNodeFacade_GetAllESDTTokens(t *testing.T) {
+func TestNodeFacade_GetAllDCDTTokens(t *testing.T) {
 	t.Parallel()
 
-	expectedTokens := map[string]*esdt.ESDigitalToken{
+	expectedTokens := map[string]*dcdt.DCDigitalToken{
 		"token0": {Value: big.NewInt(10)},
-		"token1": {TokenMetaData: &esdt.MetaData{Name: []byte("name1")}},
+		"token1": {TokenMetaData: &dcdt.MetaData{Name: []byte("name1")}},
 	}
 	arg := createMockArguments()
 	arg.Node = &mock.NodeStub{
-		GetAllESDTTokensCalled: func(_ string, _ api.AccountQueryOptions, _ context.Context) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
+		GetAllDCDTTokensCalled: func(_ string, _ api.AccountQueryOptions, _ context.Context) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
 			return expectedTokens, api.BlockInfo{}, nil
 		},
 	}
 
 	nf, _ := NewNodeFacade(arg)
 
-	res, _, err := nf.GetAllESDTTokens("addr", api.AccountQueryOptions{})
+	res, _, err := nf.GetAllDCDTTokens("addr", api.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, expectedTokens, res)
 }
 
-func TestNodeFacade_GetESDTData(t *testing.T) {
+func TestNodeFacade_GetDCDTData(t *testing.T) {
 	t.Parallel()
 
-	expectedData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{Name: []byte("name1")},
+	expectedData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{Name: []byte("name1")},
 	}
 	arg := createMockArguments()
 	arg.Node = &mock.NodeStub{
-		GetESDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
+		GetDCDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
 			return expectedData, api.BlockInfo{}, nil
 		},
 	}
 
 	nf, _ := NewNodeFacade(arg)
 
-	res, _, err := nf.GetESDTData("addr", "tkn", 0, api.AccountQueryOptions{})
+	res, _, err := nf.GetDCDTData("addr", "tkn", 0, api.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, expectedData, res)
 }
@@ -944,39 +944,39 @@ func TestNodeFacade_GetValueForKey(t *testing.T) {
 	require.Equal(t, expectedValue, res)
 }
 
-func TestNodeFacade_GetAllIssuedESDTs(t *testing.T) {
+func TestNodeFacade_GetAllIssuedDCDTs(t *testing.T) {
 	t.Parallel()
 
 	expectedValue := []string{"value"}
 	arg := createMockArguments()
 	arg.Node = &mock.NodeStub{
-		GetAllIssuedESDTsCalled: func(_ string, _ context.Context) ([]string, error) {
+		GetAllIssuedDCDTsCalled: func(_ string, _ context.Context) ([]string, error) {
 			return expectedValue, nil
 		},
 	}
 
 	nf, _ := NewNodeFacade(arg)
 
-	res, err := nf.GetAllIssuedESDTs("")
+	res, err := nf.GetAllIssuedDCDTs("")
 	require.NoError(t, err)
 	require.Equal(t, expectedValue, res)
 }
 
-func TestNodeFacade_GetESDTsWithRole(t *testing.T) {
+func TestNodeFacade_GetDCDTsWithRole(t *testing.T) {
 	t.Parallel()
 
 	expectedResponse := []string{"ABC-1q2w3e", "PPP-sc78gh"}
 	args := createMockArguments()
 
 	args.Node = &mock.NodeStub{
-		GetESDTsWithRoleCalled: func(address string, role string, _ api.AccountQueryOptions, _ context.Context) ([]string, api.BlockInfo, error) {
+		GetDCDTsWithRoleCalled: func(address string, role string, _ api.AccountQueryOptions, _ context.Context) ([]string, api.BlockInfo, error) {
 			return expectedResponse, api.BlockInfo{}, nil
 		},
 	}
 
 	nf, _ := NewNodeFacade(args)
 
-	res, _, err := nf.GetESDTsWithRole("address", "role", api.AccountQueryOptions{})
+	res, _, err := nf.GetDCDTsWithRole("address", "role", api.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, expectedResponse, res)
 }
@@ -1000,20 +1000,20 @@ func TestNodeFacade_GetNFTTokenIDsRegisteredByAddress(t *testing.T) {
 	require.Equal(t, expectedResponse, res)
 }
 
-func TestNodeFacade_GetAllIssuedESDTsWithError(t *testing.T) {
+func TestNodeFacade_GetAllIssuedDCDTsWithError(t *testing.T) {
 	t.Parallel()
 
 	localErr := errors.New("local")
 	arg := createMockArguments()
 	arg.Node = &mock.NodeStub{
-		GetAllIssuedESDTsCalled: func(_ string, _ context.Context) ([]string, error) {
+		GetAllIssuedDCDTsCalled: func(_ string, _ context.Context) ([]string, error) {
 			return nil, localErr
 		},
 	}
 
 	nf, _ := NewNodeFacade(arg)
 
-	_, err := nf.GetAllIssuedESDTs("")
+	_, err := nf.GetAllIssuedDCDTs("")
 	require.Equal(t, err, localErr)
 }
 
@@ -2120,7 +2120,7 @@ func TestNodeFacade_InternalValidatorsInfo(t *testing.T) {
 	})
 }
 
-func TestNodeFacade_GetESDTsRoles(t *testing.T) {
+func TestNodeFacade_GetDCDTsRoles(t *testing.T) {
 	t.Parallel()
 
 	expectedResponse := map[string][]string{
@@ -2130,14 +2130,14 @@ func TestNodeFacade_GetESDTsRoles(t *testing.T) {
 	args.WsAntifloodConfig.WebServerAntifloodEnabled = true // coverage
 
 	args.Node = &mock.NodeStub{
-		GetESDTsRolesCalled: func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
+		GetDCDTsRolesCalled: func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
 			return expectedResponse, api.BlockInfo{}, nil
 		},
 	}
 
 	nf, _ := NewNodeFacade(args)
 
-	res, _, err := nf.GetESDTsRoles("address", api.AccountQueryOptions{})
+	res, _, err := nf.GetDCDTsRoles("address", api.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, expectedResponse, res)
 }
@@ -2145,14 +2145,14 @@ func TestNodeFacade_GetESDTsRoles(t *testing.T) {
 func TestNodeFacade_GetTokenSupply(t *testing.T) {
 	t.Parallel()
 
-	providedResponse := &api.ESDTSupply{
+	providedResponse := &api.DCDTSupply{
 		Supply: "1000",
 		Burned: "500",
 		Minted: "1500",
 	}
 	args := createMockArguments()
 	args.Node = &mock.NodeStub{
-		GetTokenSupplyCalled: func(token string) (*api.ESDTSupply, error) {
+		GetTokenSupplyCalled: func(token string) (*api.DCDTSupply, error) {
 			return providedResponse, nil
 		},
 	}

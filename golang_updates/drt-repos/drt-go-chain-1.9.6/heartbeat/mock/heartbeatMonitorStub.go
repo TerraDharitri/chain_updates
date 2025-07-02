@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-go/heartbeat/data"
+import "github.com/TerraDharitri/drt-go-chain/heartbeat/data"
 
 // HeartbeatMonitorStub -
 type HeartbeatMonitorStub struct {

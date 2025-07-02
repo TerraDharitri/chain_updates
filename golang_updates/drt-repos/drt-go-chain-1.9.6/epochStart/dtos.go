@@ -3,7 +3,7 @@ package epochStart
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // OwnerData is a struct containing relevant information about owner's nodes data

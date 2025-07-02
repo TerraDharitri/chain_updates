@@ -9,33 +9,33 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/display"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	factoryMarshalizer "github.com/multiversx/mx-chain-core-go/marshal/factory"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/secp256k1"
-	secp256k1SinglerSig "github.com/multiversx/mx-chain-crypto-go/signing/secp256k1/singlesig"
-	"github.com/multiversx/mx-chain-go/cmd/node/factory"
-	"github.com/multiversx/mx-chain-go/cmd/seednode/api"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	p2pDebug "github.com/multiversx/mx-chain-go/debug/p2p"
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap/disabled"
-	"github.com/multiversx/mx-chain-go/facade"
-	cryptoFactory "github.com/multiversx/mx-chain-go/factory/crypto"
-	"github.com/multiversx/mx-chain-go/p2p"
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
-	p2pFactory "github.com/multiversx/mx-chain-go/p2p/factory"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	factoryMarshalizer "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/secp256k1"
+	secp256k1SinglerSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/secp256k1/singlesig"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
+	"github.com/TerraDharitri/drt-go-chain/cmd/node/factory"
+	"github.com/TerraDharitri/drt-go-chain/cmd/seednode/api"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	p2pDebug "github.com/TerraDharitri/drt-go-chain/debug/p2p"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap/disabled"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	cryptoFactory "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
+	p2pFactory "github.com/TerraDharitri/drt-go-chain/p2p/factory"
 	"github.com/urfave/cli"
 )
 
 const (
 	defaultLogsPath     = "logs"
-	logFilePrefix       = "multiversx-seed"
+	logFilePrefix       = "dharitri-seed"
 	filePathPlaceholder = "[path]"
 )
 
@@ -126,8 +126,8 @@ func main() {
 	app.Version = "v0.0.1"
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

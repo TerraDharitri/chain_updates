@@ -3,12 +3,12 @@ package consensus_test
 import (
 	"testing"
 
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	consensusComp "github.com/multiversx/mx-chain-go/factory/consensus"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
-	factoryMocks "github.com/multiversx/mx-chain-go/testscommon/factory"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	consensusComp "github.com/TerraDharitri/drt-go-chain/factory/consensus"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
+	factoryMocks "github.com/TerraDharitri/drt-go-chain/testscommon/factory"
 	"github.com/stretchr/testify/require"
 )
 

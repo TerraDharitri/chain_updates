@@ -3,8 +3,8 @@ package testscommon
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // BlockProcessorStub mocks the implementation for a blockProcessor

@@ -1,7 +1,7 @@
 package components
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 // GetGeneralConfig -
@@ -11,7 +11,7 @@ func GetGeneralConfig() config.Config {
 			Length:          32,
 			Type:            "bech32",
 			SignatureLength: 0,
-			Hrp:             "erd",
+			Hrp:             "drt",
 		},
 		ValidatorPubkeyConverter: config.PubkeyConfig{
 			Length:          96,
@@ -76,9 +76,9 @@ func GetGeneralConfig() config.Config {
 						{StartEpoch: 0, Version: "v0.3"},
 					},
 					TransferAndExecuteByUserAddresses: []string{
-						"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-						"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-						"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+						"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+						"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+						"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 					},
 				},
 			},
@@ -87,9 +87,9 @@ func GetGeneralConfig() config.Config {
 					{StartEpoch: 0, Version: "v0.3"},
 				},
 				TransferAndExecuteByUserAddresses: []string{
-					"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-					"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-					"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+					"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+					"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+					"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 				},
 			},
 			GasConfig: config.VirtualMachineGasConfig{
@@ -119,14 +119,14 @@ func GetGeneralConfig() config.Config {
 		},
 		BuiltInFunctions: config.BuiltInFunctionsConfig{
 			AutomaticCrawlerAddresses: []string{
-				"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-				"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-				"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+				"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+				"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+				"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 			},
 			DNSV2Addresses: []string{
-				"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-				"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-				"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+				"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+				"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+				"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 			},
 			MaxNumAddressesInTransferRole: 100,
 		},
@@ -260,7 +260,7 @@ func CreateDummyEconomicsConfig() config.EconomicsConfig {
 				{
 					LeaderPercentage:                 0.1,
 					ProtocolSustainabilityPercentage: 0.1,
-					ProtocolSustainabilityAddress:    "erd1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797su0dlxp",
+					ProtocolSustainabilityAddress:    "drt1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797spn6u9l",
 					TopUpFactor:                      0.25,
 					TopUpGradientPoint:               "3000000000000000000000000",
 				},

@@ -4,7 +4,7 @@ import (
 	"crypto/cipher"
 	"encoding/hex"
 
-	"github.com/multiversx/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // SuiteStub -

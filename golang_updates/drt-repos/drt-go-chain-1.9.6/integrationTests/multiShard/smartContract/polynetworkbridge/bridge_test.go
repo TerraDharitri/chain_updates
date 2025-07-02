@@ -10,13 +10,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 )
 
 func TestBridgeSetupAndBurn(t *testing.T) {
@@ -34,10 +34,10 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 		FixAsyncCallBackArgsListEnableEpoch: integrationTests.UnreachableEpoch,
 		AndromedaEnableEpoch:                integrationTests.UnreachableEpoch,
 	}
-	arwenVersion := config.WasmVMVersionByEpoch{Version: "v1.4"}
+	andesVersion := config.WasmVMVersionByEpoch{Version: "v1.4"}
 	vmConfig := &config.VirtualMachineConfig{
-		WasmVMVersions:                    []config.WasmVMVersionByEpoch{arwenVersion},
-		TransferAndExecuteByUserAddresses: []string{"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe3"},
+		WasmVMVersions:                    []config.WasmVMVersionByEpoch{andesVersion},
+		TransferAndExecuteByUserAddresses: []string{"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qkswz60"},
 	}
 	nodes := integrationTests.CreateNodesWithEnableEpochsAndVmConfig(
 		numOfShards,
@@ -74,7 +74,7 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	tokenManagerPath := "../testdata/polynetworkbridge/esdt_token_manager.wasm"
+	tokenManagerPath := "../testdata/polynetworkbridge/dcdt_token_manager.wasm"
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 2, nonce, round)
 
 	blockChainHook := ownerNode.BlockchainHook
@@ -105,7 +105,7 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 1, nonce, round)
 
 	txValue := big.NewInt(1000)
-	txData := "performWrappedEgldIssue@05"
+	txData := "performWrappedRewaIssue@05"
 	integrationTests.CreateAndSendTransaction(
 		ownerNode,
 		shard,
@@ -119,7 +119,7 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 	scQuery := &process.SCQuery{
 		CallerAddr: ownerNode.OwnAccount.Address,
 		ScAddress:  scAddressBytes,
-		FuncName:   "getWrappedEgldTokenIdentifier",
+		FuncName:   "getWrappedRewaTokenIdentifier",
 		Arguments:  [][]byte{},
 	}
 	vmOutput, _, err := ownerNode.SCQueryService.ExecuteQuery(scQuery)
@@ -128,11 +128,11 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 	require.NotZero(t, len(vmOutput.ReturnData[0]))
 
 	tokenIdentifier := vmOutput.ReturnData[0]
-	require.Equal(t, []byte("WEGLD"), tokenIdentifier[:5])
+	require.Equal(t, []byte("WREWA"), tokenIdentifier[:5])
 
 	valueToBurn := big.NewInt(5)
 	txValue = big.NewInt(0)
-	txData = "burnEsdtToken@" + hex.EncodeToString(tokenIdentifier) + "@" + hex.EncodeToString(valueToBurn.Bytes())
+	txData = "burnDcdtToken@" + hex.EncodeToString(tokenIdentifier) + "@" + hex.EncodeToString(valueToBurn.Bytes())
 	integrationTests.CreateAndSendTransaction(
 		ownerNode,
 		shard,
@@ -144,13 +144,13 @@ func TestBridgeSetupAndBurn(t *testing.T) {
 
 	_, _ = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 12, nonce, round)
 
-	checkBurnedOnESDTContract(t, nodes, tokenIdentifier, valueToBurn)
+	checkBurnedOnDCDTContract(t, nodes, tokenIdentifier, valueToBurn)
 }
 
-func checkBurnedOnESDTContract(t *testing.T, nodes []*integrationTests.TestProcessorNode, tokenIdentifier []byte, burntValue *big.Int) {
-	esdtSCAcc := getUserAccountWithAddress(t, vm.ESDTSCAddress, nodes)
-	retrievedData, _, _ := esdtSCAcc.RetrieveValue(tokenIdentifier)
-	tokenInSystemSC := &systemSmartContracts.ESDTDataV2{}
+func checkBurnedOnDCDTContract(t *testing.T, nodes []*integrationTests.TestProcessorNode, tokenIdentifier []byte, burntValue *big.Int) {
+	dcdtSCAcc := getUserAccountWithAddress(t, vm.DCDTSCAddress, nodes)
+	retrievedData, _, _ := dcdtSCAcc.RetrieveValue(tokenIdentifier)
+	tokenInSystemSC := &systemSmartContracts.DCDTDataV2{}
 	_ = integrationTests.TestMarshalizer.Unmarshal(tokenInSystemSC, retrievedData)
 
 	assert.Equal(t, tokenInSystemSC.BurntValue.String(), burntValue.String())

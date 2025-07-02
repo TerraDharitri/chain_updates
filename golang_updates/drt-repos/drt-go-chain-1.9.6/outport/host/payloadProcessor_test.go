@@ -3,8 +3,8 @@ package host
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/require"
 )
 

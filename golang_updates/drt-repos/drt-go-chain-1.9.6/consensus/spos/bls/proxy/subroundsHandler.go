@@ -1,17 +1,17 @@
 package proxy
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/consensus/spos"
-	v1 "github.com/multiversx/mx-chain-go/consensus/spos/bls/v1"
-	v2 "github.com/multiversx/mx-chain-go/consensus/spos/bls/v2"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/outport"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
+	v1 "github.com/TerraDharitri/drt-go-chain/consensus/spos/bls/v1"
+	v2 "github.com/TerraDharitri/drt-go-chain/consensus/spos/bls/v2"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/outport"
 )
 
 var log = logger.GetOrCreate("consensus/spos/bls/proxy")

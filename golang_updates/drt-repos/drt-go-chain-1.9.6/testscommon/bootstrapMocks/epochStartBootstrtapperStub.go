@@ -1,8 +1,8 @@
 package bootstrapMocks
 
 import (
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap"
 )
 
 // EpochStartBootstrapperStub -

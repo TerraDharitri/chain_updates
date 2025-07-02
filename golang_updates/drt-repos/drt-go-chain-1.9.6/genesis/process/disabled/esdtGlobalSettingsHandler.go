@@ -1,20 +1,20 @@
 package disabled
 
-// ESDTGlobalSettingsHandler implements the ESDTGlobalSettingsHandler interface but does nothing as it is disabled
-type ESDTGlobalSettingsHandler struct {
+// DCDTGlobalSettingsHandler implements the DCDTGlobalSettingsHandler interface but does nothing as it is disabled
+type DCDTGlobalSettingsHandler struct {
 }
 
 // IsPaused is disabled
-func (e *ESDTGlobalSettingsHandler) IsPaused(_ []byte) bool {
+func (e *DCDTGlobalSettingsHandler) IsPaused(_ []byte) bool {
 	return false
 }
 
 // IsLimitedTransfer is disabled
-func (e *ESDTGlobalSettingsHandler) IsLimitedTransfer(_ []byte) bool {
+func (e *DCDTGlobalSettingsHandler) IsLimitedTransfer(_ []byte) bool {
 	return false
 }
 
 // IsInterfaceNil return true if underlying object is nil
-func (e *ESDTGlobalSettingsHandler) IsInterfaceNil() bool {
+func (e *DCDTGlobalSettingsHandler) IsInterfaceNil() bool {
 	return e == nil
 }

@@ -6,14 +6,14 @@
 IP_HOST_BYTE=3
 
 cloneRepositories() {
-  cd $(dirname $MULTIVERSXDIR)
+  cd $(dirname $DHARITRIDIR)
 
-  git clone git@github.com:multiversx/mx-chain-deploy-go.git || true
-  git clone git@github.com:multiversx/mx-chain-proxy-go.git || true
+  git clone git@github.com:dharitri/mx-chain-deploy-go.git || true
+  git clone git@github.com:dharitri/mx-chain-proxy-go.git || true
 }
 
 buildNodeImages() {
-  cd $MULTIVERSXDIR
+  cd $DHARITRIDIR
 
   docker build -f docker/seednode/Dockerfile . -t seednode:dev
 

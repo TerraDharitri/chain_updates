@@ -4,21 +4,21 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/debug"
-	"github.com/multiversx/mx-chain-go/heartbeat/data"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/process"
-	txSimData "github.com/multiversx/mx-chain-go/process/transactionEvaluator/data"
-	"github.com/multiversx/mx-chain-go/state"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/debug"
+	"github.com/TerraDharitri/drt-go-chain/heartbeat/data"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	txSimData "github.com/TerraDharitri/drt-go-chain/process/transactionEvaluator/data"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // NodeHandler contains all functions that a node should contain.
@@ -41,26 +41,26 @@ type NodeHandler interface {
 	// GetKeyValuePairs returns the key-value pairs under a given address
 	GetKeyValuePairs(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]string, api.BlockInfo, error)
 
-	// GetAllIssuedESDTs returns all the issued esdt tokens from esdt system smart contract
-	GetAllIssuedESDTs(tokenType string, ctx context.Context) ([]string, error)
+	// GetAllIssuedDCDTs returns all the issued dcdt tokens from dcdt system smart contract
+	GetAllIssuedDCDTs(tokenType string, ctx context.Context) ([]string, error)
 
-	// GetESDTData returns the esdt data from a given account, given key and given nonce
-	GetESDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error)
+	// GetDCDTData returns the dcdt data from a given account, given key and given nonce
+	GetDCDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error)
 
-	// GetESDTsRoles returns the token identifiers and the roles for a given address
-	GetESDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error)
+	// GetDCDTsRoles returns the token identifiers and the roles for a given address
+	GetDCDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error)
 
 	// GetNFTTokenIDsRegisteredByAddress returns all the token identifiers for semi or non fungible tokens registered by the address
 	GetNFTTokenIDsRegisteredByAddress(address string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
 
-	// GetESDTsWithRole returns the token identifiers where the specified address has the given role
-	GetESDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
+	// GetDCDTsWithRole returns the token identifiers where the specified address has the given role
+	GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
 
-	// GetAllESDTTokens returns the value of a key from a given account
-	GetAllESDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error)
+	// GetAllDCDTTokens returns the value of a key from a given account
+	GetAllDCDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error)
 
 	// GetTokenSupply returns the provided token supply from current shard
-	GetTokenSupply(token string) (*api.ESDTSupply, error)
+	GetTokenSupply(token string) (*api.DCDTSupply, error)
 
 	// CreateTransaction will return a transaction from all needed fields
 	CreateTransaction(txArgs *external.ArgsCreateTransaction) (*transaction.Transaction, []byte, error)

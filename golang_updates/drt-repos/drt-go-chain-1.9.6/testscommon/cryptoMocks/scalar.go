@@ -1,8 +1,6 @@
 package cryptoMocks
 
-import (
-	"github.com/multiversx/mx-chain-crypto-go"
-)
+import crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 
 // ScalarMock represents a mock implementation of a Scalar
 type ScalarMock struct {

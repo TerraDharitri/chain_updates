@@ -1,14 +1,14 @@
 package requesterscontainer
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/random"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/containers"
-	"github.com/multiversx/mx-chain-go/dataRetriever/requestHandlers/requesters"
-	"github.com/multiversx/mx-chain-go/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/random"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/requestHandlers/requesters"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
 )
 
 type shardRequestersContainerFactory struct {

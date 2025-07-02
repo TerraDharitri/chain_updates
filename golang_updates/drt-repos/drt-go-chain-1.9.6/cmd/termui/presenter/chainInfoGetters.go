@@ -1,9 +1,9 @@
 package presenter
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/cmd/termui/provider"
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/provider"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 var maxSpeedHistorySaved = 2000

@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-export MULTIVERSXTESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export DHARITRITESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 export TESTNETMODE=$1
 export EXTRA=$2
 
-source "$MULTIVERSXTESTNETSCRIPTSDIR/variables.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/config.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/build.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/validators.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/observers.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/tools.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/variables.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/config.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/build.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/validators.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/observers.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/tools.sh"
 
 prepareFolders
 
@@ -34,14 +34,14 @@ fi
 
 # Phase 3: start the Seednode
 startSeednode
-showTerminalSession "multiversx-tools"
+showTerminalSession "dharitri-tools"
 echo "Waiting for the Seednode to start ($SEEDNODE_DELAY s)..."
 sleep $SEEDNODE_DELAY
 
 # Phase 4: start the Observer Nodes and Validator Nodes
 startObservers
 startValidators
-showTerminalSession "multiversx-nodes"
+showTerminalSession "dharitri-nodes"
 echo "Waiting for the Nodes to start ($NODE_DELAY s)..."
 sleep $NODE_DELAY
 

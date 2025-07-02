@@ -5,12 +5,12 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // VMOutputAccountsProcessor will process the VMOutput from a regular of builtin function call
@@ -184,7 +184,7 @@ func (oap *VMOutputAccountsProcessor) updateSmartContractCodeStep(
 		return nil, err
 	}
 
-	// This check is desirable (not required though) since currently both Arwen and IELE send the code in the output account even for "regular" execution
+	// This check is desirable (not required though) since currently both Andes and IELE send the code in the output account even for "regular" execution
 	sameCode := bytes.Equal(outputAccount.Code, oap.sc.accounts.GetCode(stateAccount.GetCodeHash()))
 	sameCodeMetadata := bytes.Equal(outputAccountCodeMetadataBytes, stateAccount.GetCodeMetadata())
 	if sameCode && sameCodeMetadata {

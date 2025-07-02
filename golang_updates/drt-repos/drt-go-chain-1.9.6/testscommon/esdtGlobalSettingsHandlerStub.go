@@ -1,28 +1,28 @@
 package testscommon
 
-// ESDTGlobalSettingsHandlerStub -
-type ESDTGlobalSettingsHandlerStub struct {
-	IsPausedCalled          func(esdtTokenKey []byte) bool
-	IsLimitedTransferCalled func(esdtTokenKey []byte) bool
+// DCDTGlobalSettingsHandlerStub -
+type DCDTGlobalSettingsHandlerStub struct {
+	IsPausedCalled          func(dcdtTokenKey []byte) bool
+	IsLimitedTransferCalled func(dcdtTokenKey []byte) bool
 }
 
 // IsPaused -
-func (e *ESDTGlobalSettingsHandlerStub) IsPaused(esdtTokenKey []byte) bool {
+func (e *DCDTGlobalSettingsHandlerStub) IsPaused(dcdtTokenKey []byte) bool {
 	if e.IsPausedCalled != nil {
-		return e.IsPausedCalled(esdtTokenKey)
+		return e.IsPausedCalled(dcdtTokenKey)
 	}
 	return false
 }
 
 // IsLimitedTransfer -
-func (e *ESDTGlobalSettingsHandlerStub) IsLimitedTransfer(esdtTokenKey []byte) bool {
+func (e *DCDTGlobalSettingsHandlerStub) IsLimitedTransfer(dcdtTokenKey []byte) bool {
 	if e.IsLimitedTransferCalled != nil {
-		return e.IsLimitedTransferCalled(esdtTokenKey)
+		return e.IsLimitedTransferCalled(dcdtTokenKey)
 	}
 	return false
 }
 
 // IsInterfaceNil -
-func (e *ESDTGlobalSettingsHandlerStub) IsInterfaceNil() bool {
+func (e *DCDTGlobalSettingsHandlerStub) IsInterfaceNil() bool {
 	return e == nil
 }

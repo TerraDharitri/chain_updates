@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/process/track"
+	"github.com/TerraDharitri/drt-go-chain/process/track"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // BlockTrackerHandlerMock -

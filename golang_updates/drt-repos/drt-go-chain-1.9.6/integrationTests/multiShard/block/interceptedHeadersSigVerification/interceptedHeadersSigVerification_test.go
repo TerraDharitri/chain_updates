@@ -5,15 +5,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
 )
 
 const broadcastDelay = 2 * time.Second

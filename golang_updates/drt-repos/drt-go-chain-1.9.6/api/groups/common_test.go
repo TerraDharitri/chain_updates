@@ -7,8 +7,8 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-go/api/shared"
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/api/shared"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 func init() {

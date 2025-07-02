@@ -1,13 +1,13 @@
 [
   {
-    "owner": "erd16grmckn46ry7fwyvass8e8pz88klazzpc0c5f0pnrv643td4797sgnvjkm",
+    "owner": "drt16grmckn46ry7fwyvass8e8pz88klazzpc0c5f0pnrv643td4797s40m349",
     "filename": "testdata/dns.wasm",
     "vm-type": "0500",
     "init-parameters": "64",
     "type": "dns"
   },
   {
-    "owner": "erd16grmckn46ry7fwyvass8e8pz88klazzpc0c5f0pnrv643td4797sgnvjkm",
+    "owner": "drt16grmckn46ry7fwyvass8e8pz88klazzpc0c5f0pnrv643td4797s40m349",
     "filename": "testdata/delegation.wasm",
     "vm-type": "0500",
     "init-parameters": "%validator_sc_address%@03E8@03E8@03E8",

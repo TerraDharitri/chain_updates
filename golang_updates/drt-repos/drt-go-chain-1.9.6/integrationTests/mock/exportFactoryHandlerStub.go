@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-go/update"
+import "github.com/TerraDharitri/drt-go-chain/update"
 
 // ExportFactoryHandlerStub -
 type ExportFactoryHandlerStub struct {

@@ -311,8 +311,8 @@ var ErrInvalidRewardsPerBlock = errors.New("invalid rewards per block")
 // ErrResetLastUnJailedFromQueue signals that reset unjailed from queue failed
 var ErrResetLastUnJailedFromQueue = errors.New("reset last unjailed from queue failed")
 
-// ErrEmptyESDTOwnerAddress signals that an empty ESDT owner address was provided
-var ErrEmptyESDTOwnerAddress = errors.New("empty ESDT owner address")
+// ErrEmptyDCDTOwnerAddress signals that an empty DCDT owner address was provided
+var ErrEmptyDCDTOwnerAddress = errors.New("empty DCDT owner address")
 
 // ErrNilScheduledTxsHandler signals that a nil scheduled transactions handler has been provided
 var ErrNilScheduledTxsHandler = errors.New("nil scheduled transactions handler")

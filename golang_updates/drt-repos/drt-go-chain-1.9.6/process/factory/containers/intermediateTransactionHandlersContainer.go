@@ -3,10 +3,10 @@ package containers
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/container"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/container"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 )
 
 var _ process.IntermediateProcessorContainer = (*intermediateTransactionHandlersContainer)(nil)

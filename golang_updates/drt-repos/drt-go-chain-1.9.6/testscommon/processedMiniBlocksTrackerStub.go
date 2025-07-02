@@ -1,8 +1,8 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-go/process/block/bootstrapStorage"
-	"github.com/multiversx/mx-chain-go/process/block/processedMb"
+	"github.com/TerraDharitri/drt-go-chain/process/block/bootstrapStorage"
+	"github.com/TerraDharitri/drt-go-chain/process/block/processedMb"
 )
 
 // ProcessedMiniBlocksTrackerStub -

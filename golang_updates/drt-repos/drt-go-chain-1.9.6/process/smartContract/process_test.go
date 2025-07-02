@@ -8,40 +8,40 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	vmData "github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmData "github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/enablers"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/block/postprocess"
-	"github.com/multiversx/mx-chain-go/process/economics"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/accounts"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/storage/txcache"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	"github.com/multiversx/mx-chain-go/testscommon/trie"
-	"github.com/multiversx/mx-chain-go/testscommon/vmcommonMocks"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/enablers"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/block/postprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/economics"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/accounts"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/storage/txcache"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/vmcommonMocks"
 )
 
 const setGuardianCost = 250000
@@ -79,7 +79,7 @@ func createMockSmartContractProcessorArguments() scrCommon.ArgsNewSmartContractP
 	gasSchedule[common.BaseOpsAPICost][common.AsyncCallStepField] = 1000
 	gasSchedule[common.BaseOpsAPICost][common.AsyncCallbackGasLockField] = 3000
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 2000
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 2000
 	gasSchedule[common.BuiltInCost][core.BuiltInFunctionSetGuardian] = setGuardianCost
 
 	return scrCommon.ArgsNewSmartContractProcessor{
@@ -430,12 +430,12 @@ func TestGasScheduleChangeNoApiCostShouldNotChange(t *testing.T) {
 	gasSchedule[common.BuiltInCost] = nil
 
 	sc.GasScheduleChange(gasSchedule)
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTNFTTransfer], uint64(0))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTNFTTransfer], uint64(0))
 
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 2000
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 2000
 	sc.GasScheduleChange(gasSchedule)
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTTransfer], uint64(2000))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTTransfer], uint64(2000))
 }
 
 func TestGasScheduleChangeShouldWork(t *testing.T) {
@@ -446,11 +446,11 @@ func TestGasScheduleChangeShouldWork(t *testing.T) {
 
 	gasSchedule := make(map[string]map[string]uint64)
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 20
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 20
 
 	sc.GasScheduleChange(gasSchedule)
 
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTTransfer], uint64(20))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTTransfer], uint64(20))
 }
 
 // ===================== TestDeploySmartContract =====================
@@ -2891,7 +2891,7 @@ func TestScProcessor_CreateIntraShardTransactionsWithAsyncCalls(t *testing.T) {
 	arguments := createMockSmartContractProcessorArguments()
 	arguments.AccountsDB = accountsDB
 	arguments.ShardCoordinator = shardCoordinator
-	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.MultiESDTTransferFixOnCallBackFlag)
+	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.MultiDCDTTransferFixOnCallBackFlag)
 	sc, err := NewSmartContractProcessor(arguments)
 	require.NotNil(t, sc)
 	require.Nil(t, err)
@@ -3610,7 +3610,7 @@ func TestGasLockedInSmartContractProcessor(t *testing.T) {
 		return shardCoordinator.SelfId() + 1
 	}
 	arguments.ShardCoordinator = shardCoordinator
-	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.MultiESDTTransferFixOnCallBackFlag)
+	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.MultiDCDTTransferFixOnCallBackFlag)
 	sc, _ := NewSmartContractProcessor(arguments)
 
 	outaddress := []byte("newsmartcontract")
@@ -4216,7 +4216,7 @@ func createRealEconomicsDataArgs() *economics.ArgsNewEconomicsData {
 						LeaderPercentage:                 0.1,
 						DeveloperPercentage:              0.3,
 						ProtocolSustainabilityPercentage: 0.1,
-						ProtocolSustainabilityAddress:    "erd1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqqe2rw5",
+						ProtocolSustainabilityAddress:    "drt1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqa9aqd2",
 						TopUpGradientPoint:               "300000000000000000000",
 						TopUpFactor:                      0.25,
 					},

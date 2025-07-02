@@ -5,26 +5,26 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
 	"github.com/stretchr/testify/require"
 
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	mclMultisig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/multisig"
-	"github.com/multiversx/mx-chain-crypto-go/signing/multisig"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	mclMultisig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/multisig"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/multisig"
 
-	"github.com/multiversx/mx-chain-go/consensus/spos/bls"
-	dataRetrieverMocks "github.com/multiversx/mx-chain-go/dataRetriever/mock"
-	"github.com/multiversx/mx-chain-go/testscommon/consensus/initializers"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos/bls"
+	dataRetrieverMocks "github.com/TerraDharitri/drt-go-chain/dataRetriever/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/consensus/initializers"
 
-	"github.com/multiversx/mx-chain-go/common"
-	factoryCrypto "github.com/multiversx/mx-chain-go/factory/crypto"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/consensus"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	factoryCrypto "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
 )
 
 const benchmarkKeyPairsCardinal = 400

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-go/facade"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/assert"
 )
 

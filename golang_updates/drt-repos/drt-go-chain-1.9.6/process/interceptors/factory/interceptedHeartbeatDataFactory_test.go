@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/heartbeat"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/heartbeat"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
 	"github.com/stretchr/testify/assert"
 )
 

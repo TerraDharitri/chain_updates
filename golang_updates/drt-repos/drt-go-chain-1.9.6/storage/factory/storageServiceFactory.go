@@ -5,21 +5,21 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/clean"
-	"github.com/multiversx/mx-chain-go/storage/databaseremover/disabled"
-	"github.com/multiversx/mx-chain-go/storage/databaseremover/factory"
-	storageDisabled "github.com/multiversx/mx-chain-go/storage/disabled"
-	"github.com/multiversx/mx-chain-go/storage/pruning"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/clean"
+	"github.com/TerraDharitri/drt-go-chain/storage/databaseremover/disabled"
+	"github.com/TerraDharitri/drt-go-chain/storage/databaseremover/factory"
+	storageDisabled "github.com/TerraDharitri/drt-go-chain/storage/disabled"
+	"github.com/TerraDharitri/drt-go-chain/storage/pruning"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 )
 
 var log = logger.GetOrCreate("storage/factory")
@@ -534,30 +534,30 @@ func (psf *StorageServiceFactory) setUpDbLookupExtensions(chainStorer *dataRetri
 
 	chainStorer.AddStorer(dataRetriever.EpochByHashUnit, epochByHashUnit)
 
-	return psf.setUpEsdtSuppliesStorer(chainStorer, shardID)
+	return psf.setUpDcdtSuppliesStorer(chainStorer, shardID)
 }
 
-func (psf *StorageServiceFactory) setUpEsdtSuppliesStorer(chainStorer *dataRetriever.ChainStorer, shardIDStr string) error {
-	esdtSuppliesUnit, err := psf.createStaticStorageUnit(psf.generalConfig.DbLookupExtensions.ESDTSuppliesStorageConfig, shardIDStr, emptyDBPathSuffix)
+func (psf *StorageServiceFactory) setUpDcdtSuppliesStorer(chainStorer *dataRetriever.ChainStorer, shardIDStr string) error {
+	dcdtSuppliesUnit, err := psf.createStaticStorageUnit(psf.generalConfig.DbLookupExtensions.DCDTSuppliesStorageConfig, shardIDStr, emptyDBPathSuffix)
 	if err != nil {
-		return fmt.Errorf("%w for DbLookupExtensions.ESDTSuppliesStorageConfig", err)
+		return fmt.Errorf("%w for DbLookupExtensions.DCDTSuppliesStorageConfig", err)
 	}
 
 	if psf.repopulateTokensSupplies {
 		// if the flag is set, then we need to clear the storer at this point. The easiest way is to destroy it and then create it again
-		err = esdtSuppliesUnit.DestroyUnit()
+		err = dcdtSuppliesUnit.DestroyUnit()
 		if err != nil {
 			return err
 		}
 
 		time.Sleep(time.Second) // making sure the unit was properly closed and destroyed
-		esdtSuppliesUnit, err = psf.createStaticStorageUnit(psf.generalConfig.DbLookupExtensions.ESDTSuppliesStorageConfig, shardIDStr, emptyDBPathSuffix)
+		dcdtSuppliesUnit, err = psf.createStaticStorageUnit(psf.generalConfig.DbLookupExtensions.DCDTSuppliesStorageConfig, shardIDStr, emptyDBPathSuffix)
 		if err != nil {
 			return err
 		}
 	}
 
-	chainStorer.AddStorer(dataRetriever.ESDTSuppliesUnit, esdtSuppliesUnit)
+	chainStorer.AddStorer(dataRetriever.DCDTSuppliesUnit, dcdtSuppliesUnit)
 	return nil
 }
 

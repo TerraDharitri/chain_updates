@@ -1,8 +1,8 @@
 package processor
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 type interceptedDataSizeHandler interface {

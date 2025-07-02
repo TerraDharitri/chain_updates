@@ -4,12 +4,12 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/components"
 
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 func createArgsCoreComponentsHolder() ArgsCoreComponentsHolder {
@@ -33,7 +33,7 @@ func createArgsCoreComponentsHolder() ArgsCoreComponentsHolder {
 			AddressPubkeyConverter: config.PubkeyConfig{
 				Length: 32,
 				Type:   "bech32",
-				Hrp:    "erd",
+				Hrp:    "drt",
 			},
 			ValidatorPubkeyConverter: config.PubkeyConfig{
 				Length: 96,

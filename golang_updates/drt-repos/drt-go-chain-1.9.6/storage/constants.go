@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/multiversx/mx-chain-storage-go/common"
+	"github.com/TerraDharitri/drt-go-chain-storage/common"
 )
 
 // MaxRetriesToCreateDB represents the maximum number of times to try to create DB if it failed

@@ -3,7 +3,7 @@ package lastSnapshotMarker
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/testscommon/storageManager"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storageManager"
 	"github.com/stretchr/testify/assert"
 )
 

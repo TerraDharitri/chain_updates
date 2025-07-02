@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 // ErrClose signals that a close error occurred

@@ -3,9 +3,9 @@ package chainSimulator
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/configs"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/configs"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 )
 
 const (

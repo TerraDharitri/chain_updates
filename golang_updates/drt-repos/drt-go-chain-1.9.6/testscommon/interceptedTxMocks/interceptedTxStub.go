@@ -3,7 +3,7 @@ package interceptedTxMocks
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // InterceptedTxHandlerStub -

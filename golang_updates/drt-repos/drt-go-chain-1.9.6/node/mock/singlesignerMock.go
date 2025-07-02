@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"errors"
 
-	"github.com/multiversx/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // SinglesignMock -

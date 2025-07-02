@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/integrationTests/resolvers"
-	"github.com/multiversx/mx-chain-go/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/resolvers"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 func TestRequestResolveMiniblockByHashRequestingShardResolvingSameShard(t *testing.T) {

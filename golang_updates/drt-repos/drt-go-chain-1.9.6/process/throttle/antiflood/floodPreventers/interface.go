@@ -1,6 +1,6 @@
 package floodPreventers
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // QuotaStatusHandler defines the behavior of a quota handler able to process periodic updates of peers quota measured
 // by the system

@@ -1,8 +1,8 @@
 package data
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // SimulationResultsWithVMOutput is the data transfer object which will hold results for simulation a transaction's execution

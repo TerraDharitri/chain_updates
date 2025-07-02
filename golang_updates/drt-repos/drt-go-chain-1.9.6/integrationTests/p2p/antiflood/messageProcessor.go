@@ -4,12 +4,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/p2p"
-	"github.com/multiversx/mx-chain-go/process"
-	antiflood2 "github.com/multiversx/mx-chain-go/process/throttle/antiflood"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	antiflood2 "github.com/TerraDharitri/drt-go-chain/process/throttle/antiflood"
 )
 
 // MessageProcessor -

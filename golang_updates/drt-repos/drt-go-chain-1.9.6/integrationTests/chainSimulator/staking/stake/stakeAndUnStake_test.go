@@ -8,23 +8,23 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	chainSimulatorIntegrationTests "github.com/multiversx/mx-chain-go/integrationTests/chainSimulator"
-	"github.com/multiversx/mx-chain-go/integrationTests/chainSimulator/staking"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/components/api"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/configs"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	chainSimulatorProcess "github.com/multiversx/mx-chain-go/node/chainSimulator/process"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	chainSimulatorIntegrationTests "github.com/TerraDharitri/drt-go-chain/integrationTests/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/chainSimulator/staking"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/components/api"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/configs"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	chainSimulatorProcess "github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreAPI "github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreAPI "github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/stretchr/testify/require"
 )
 
@@ -89,15 +89,15 @@ func TestChainSimulator_AddValidatorKey(t *testing.T) {
 	err = cs.AddValidatorKeys(privateKey)
 	require.Nil(t, err)
 
-	newValidatorOwner := "erd1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sae0kxl"
+	newValidatorOwner := "drt1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sq9c49p"
 	newValidatorOwnerBytes, _ := cs.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(newValidatorOwner)
-	rcv := "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l"
+	rcv := "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf"
 	rcvAddrBytes, _ := cs.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(rcv)
 
 	// Step 2 --- set an initial balance for the address that will initialize all the transactions
 	err = cs.SetStateMultiple([]*dtos.AddressState{
 		{
-			Address: "erd1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sae0kxl",
+			Address: "drt1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sq9c49p",
 			Balance: "10000000000000000000000",
 		},
 	})
@@ -226,15 +226,15 @@ func TestChainSimulator_AddANewValidatorAfterStakingV4(t *testing.T) {
 	err = cs.AddValidatorKeys(validatorSecretKeysBytes)
 	require.Nil(t, err)
 
-	newValidatorOwner := "erd1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sae0kxl"
+	newValidatorOwner := "drt1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sq9c49p"
 	newValidatorOwnerBytes, _ := cs.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(newValidatorOwner)
-	rcv := "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l"
+	rcv := "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf"
 	rcvAddrBytes, _ := cs.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(rcv)
 
 	// Step 2 --- set an initial balance for the address that will initialize all the transactions
 	err = cs.SetStateMultiple([]*dtos.AddressState{
 		{
-			Address: "erd1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sae0kxl",
+			Address: "drt1l6xt0rqlyzw56a3k8xwwshq2dcjwy3q9cppucvqsmdyw8r98dz3sq9c49p",
 			Balance: "1000000000000000000000000",
 		},
 	})
@@ -354,7 +354,7 @@ func testStakeUnStakeUnBond(t *testing.T, targetEpoch int32) {
 	err = cs.AddValidatorKeys(privateKeys)
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(2600))
+	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(2600))
 	walletAddressShardID := uint32(0)
 	walletAddress, err := cs.GenerateAndMintWalletAddress(walletAddressShardID, mintValue)
 	require.Nil(t, err)
@@ -435,10 +435,10 @@ func checkValidatorsRating(t *testing.T, validatorStatistics map[string]*validat
 // Test description
 //  Stake funds - happy flow
 //
-//  Preconditions: have an account with egld and 2 staked nodes (2500 stake per node) - directly staked, and no unstake
+//  Preconditions: have an account with rewa and 2 staked nodes (2500 stake per node) - directly staked, and no unstake
 //
-//  1. Check the stake amount for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current EGLD balance
-//  2. Create from the owner of staked nodes a transaction to stake 1 EGLD and send it to the network
+//  1. Check the stake amount for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current REWA balance
+//  2. Create from the owner of staked nodes a transaction to stake 1 REWA and send it to the network
 //  3. Check the outcome of the TX & verify new stake state with vmquery
 
 // Internal test scenario #24
@@ -587,7 +587,7 @@ func testChainSimulatorDirectStakedNodesStakingFunds(t *testing.T, cs chainSimul
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(5010)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -618,9 +618,9 @@ func testChainSimulatorDirectStakedNodesStakingFunds(t *testing.T, cs chainSimul
 	log.Info("Step 1. Check the stake amount for the owner of the staked nodes")
 	checkExpectedStakedValue(t, metachainNode, validatorOwner.Bytes, 5000)
 
-	log.Info("Step 2. Create from the owner of the staked nodes a tx to stake 1 EGLD")
+	log.Info("Step 2. Create from the owner of the staked nodes a tx to stake 1 REWA")
 
-	stakeValue = big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(1))
+	stakeValue = big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(1))
 	txDataField = fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 2, vm.ValidatorSCAddress, stakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -638,7 +638,7 @@ func checkExpectedStakedValue(t *testing.T, metachainNode chainSimulatorProcess.
 	totalStaked := getTotalStaked(t, metachainNode, blsKey)
 
 	expectedStaked := big.NewInt(expectedValue)
-	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedStaked)
+	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedStaked)
 	require.Equal(t, expectedStaked.String(), string(totalStaked))
 }
 
@@ -673,8 +673,8 @@ func TestChainSimulator_DirectStakingNodes_UnstakeFundsWithDeactivation(t *testi
 	}
 
 	// Test Steps
-	//  1. Check the stake amount and number of nodes for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current EGLD balance
-	//  2. Create from the owner of staked nodes a transaction to unstake 10 EGLD and send it to the network
+	//  1. Check the stake amount and number of nodes for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current REWA balance
+	//  2. Create from the owner of staked nodes a transaction to unstake 10 REWA and send it to the network
 	//  3. Check the outcome of the TX & verify new stake state with vmquery "getTotalStaked" and "getUnStakedTokensList"
 	//  4. Wait for change of epoch and check the outcome
 
@@ -818,7 +818,7 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivation(t *testing.T, cs
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(5010)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -853,10 +853,10 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivation(t *testing.T, cs
 	log.Info("Step 1. Check the stake amount for the owner of the staked nodes")
 	checkExpectedStakedValue(t, metachainNode, validatorOwner.Bytes, 5000)
 
-	log.Info("Step 2. Create from the owner of staked nodes a transaction to unstake 10 EGLD and send it to the network")
+	log.Info("Step 2. Create from the owner of staked nodes a transaction to unstake 10 REWA and send it to the network")
 
 	unStakeValue := big.NewInt(10)
-	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue)
+	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 2, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -872,7 +872,7 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivation(t *testing.T, cs
 	unStakedTokensAmount := getUnStakedTokensList(t, metachainNode, validatorOwner.Bytes)
 
 	expectedUnStaked := big.NewInt(10)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(unStakedTokensAmount).String())
 
 	log.Info("Step 4. Wait for change of epoch and check the outcome")
@@ -955,10 +955,10 @@ func TestChainSimulator_DirectStakingNodes_UnstakeFundsWithDeactivation_WithReac
 	}
 
 	// Test Steps
-	// 1. Check the stake amount and number of nodes for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current EGLD balance
-	// 2. Create from the owner of staked nodes a transaction to unstake 10 EGLD and send it to the network
+	// 1. Check the stake amount and number of nodes for the owner of the staked nodes with the vmquery "getTotalStaked", and the account current REWA balance
+	// 2. Create from the owner of staked nodes a transaction to unstake 10 REWA and send it to the network
 	// 3. Check the outcome of the TX & verify new stake state with vmquery
-	// 4. Create from the owner of staked nodes a transaction to stake 10 EGLD and send it to the network
+	// 4. Create from the owner of staked nodes a transaction to stake 10 REWA and send it to the network
 	// 5. Check the outcome of the TX & verify new stake state with vmquery
 	// 6. Wait for change of epoch and check the outcome
 
@@ -1102,7 +1102,7 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivationAndReactivation(t
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(6000)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -1137,10 +1137,10 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivationAndReactivation(t
 	log.Info("Step 1. Check the stake amount for the owner of the staked nodes")
 	checkExpectedStakedValue(t, metachainNode, validatorOwner.Bytes, 5000)
 
-	log.Info("Step 2. Create from the owner of staked nodes a transaction to unstake 10 EGLD and send it to the network")
+	log.Info("Step 2. Create from the owner of staked nodes a transaction to unstake 10 REWA and send it to the network")
 
 	unStakeValue := big.NewInt(10)
-	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue)
+	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 2, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1156,13 +1156,13 @@ func testChainSimulatorDirectStakedUnstakeFundsWithDeactivationAndReactivation(t
 	unStakedTokensAmount := getUnStakedTokensList(t, metachainNode, validatorOwner.Bytes)
 
 	expectedUnStaked := big.NewInt(10)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(unStakedTokensAmount).String())
 
-	log.Info("Step 4. Create from the owner of staked nodes a transaction to stake 10 EGLD and send it to the network")
+	log.Info("Step 4. Create from the owner of staked nodes a transaction to stake 10 REWA and send it to the network")
 
 	newStakeValue := big.NewInt(10)
-	newStakeValue = newStakeValue.Mul(chainSimulatorIntegrationTests.OneEGLD, newStakeValue)
+	newStakeValue = newStakeValue.Mul(chainSimulatorIntegrationTests.OneREWA, newStakeValue)
 	txDataField = fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 3, vm.ValidatorSCAddress, newStakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1335,7 +1335,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsBeforeUnbonding(t *testi
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(10000)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -1343,7 +1343,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsBeforeUnbonding(t *testi
 	err = cs.GenerateBlocks(1)
 	require.Nil(t, err)
 
-	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(2600))
+	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(2600))
 	txDataField := fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 0, vm.ValidatorSCAddress, stakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1363,7 +1363,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsBeforeUnbonding(t *testi
 	log.Info("Step 1. Create from the owner of staked nodes a transaction to withdraw the unstaked funds")
 
 	unStakeValue := big.NewInt(10)
-	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue)
+	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 1, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1399,7 +1399,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsBeforeUnbonding(t *testi
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedUnStaked := big.NewInt(10)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(result.ReturnData[0]).String())
 
 	// the owner balance should decrease only with the txs fee
@@ -1572,7 +1572,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInFirstEpoch(t *testing.
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(10000)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -1580,7 +1580,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInFirstEpoch(t *testing.
 	err = cs.GenerateBlocks(1)
 	require.Nil(t, err)
 
-	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(2600))
+	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(2600))
 	txDataField := fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 0, vm.ValidatorSCAddress, stakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1598,7 +1598,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInFirstEpoch(t *testing.
 	balanceBeforeUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
 
 	unStakeValue := big.NewInt(10)
-	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue)
+	unStakeValue = unStakeValue.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 1, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1623,7 +1623,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInFirstEpoch(t *testing.
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedUnStaked := big.NewInt(10)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(result.ReturnData[0]).String())
 
 	log.Info("Step 1. Wait for the unbonding epoch to start")
@@ -1656,10 +1656,10 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInFirstEpoch(t *testing.
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedStaked := big.NewInt(2590)
-	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedStaked)
+	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedStaked)
 	require.Equal(t, expectedStaked.String(), string(result.ReturnData[0]))
 
-	// the owner balance should increase with the (10 EGLD - tx fee)
+	// the owner balance should increase with the (10 REWA - tx fee)
 	accountValidatorOwner, _, err = cs.GetNodeHandler(shardIDValidatorOwner).GetFacadeHandler().GetAccount(validatorOwner.Bech32, coreAPI.AccountQueryOptions{})
 	require.Nil(t, err)
 	balanceAfterUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
@@ -1696,7 +1696,7 @@ func TestChainSimulator_DirectStakingNodes_WithdrawUnstakedInBatches(t *testing.
 	}
 
 	// Test Steps
-	// 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.
+	// 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.
 	// 2. Send the transactions in consecutive epochs, one TX in each epoch.
 	// 3. Wait for the epoch when first tx unbonding period ends.
 	// 4. Create a transaction for withdraw and send it to the network
@@ -1846,7 +1846,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(2700)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -1854,7 +1854,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	err = cs.GenerateBlocks(1)
 	require.Nil(t, err)
 
-	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(2600))
+	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(2600))
 	txDataField := fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 0, vm.ValidatorSCAddress, stakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1873,11 +1873,11 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Nil(t, err)
 	balanceBeforeUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
 
-	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 egld, second one unstaking 12 egld and third one unstaking 13 egld.")
+	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 rewa, second one unstaking 12 rewa and third one unstaking 13 rewa.")
 	log.Info("Step 2. Send the transactions in consecutive epochs, one TX in each epoch.")
 
 	unStakeValue1 := big.NewInt(11)
-	unStakeValue1 = unStakeValue1.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue1)
+	unStakeValue1 = unStakeValue1.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue1)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue1.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 1, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1891,7 +1891,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Nil(t, err)
 
 	unStakeValue2 := big.NewInt(12)
-	unStakeValue2 = unStakeValue2.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue2)
+	unStakeValue2 = unStakeValue2.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue2)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue2.Bytes()))
 	txUnStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 2, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1903,7 +1903,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Nil(t, err)
 
 	unStakeValue3 := big.NewInt(13)
-	unStakeValue3 = unStakeValue3.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue3)
+	unStakeValue3 = unStakeValue3.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue3)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue3.Bytes()))
 	txUnStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 3, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -1929,7 +1929,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedUnStaked := big.NewInt(11)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(result.ReturnData[0]).String())
 
 	scQuery = &process.SCQuery{
@@ -1944,7 +1944,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedStaked := big.NewInt(2600 - 11 - 12 - 13)
-	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedStaked)
+	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedStaked)
 	require.Equal(t, expectedStaked.String(), string(result.ReturnData[0]))
 
 	log.Info("Step 3. Wait for the unbonding epoch to start")
@@ -1966,7 +1966,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	err = cs.GenerateBlocks(2)
 	require.Nil(t, err)
 
-	// the owner balance should increase with the (11 EGLD - tx fee)
+	// the owner balance should increase with the (11 REWA - tx fee)
 	accountValidatorOwner, _, err = cs.GetNodeHandler(shardIDValidatorOwner).GetFacadeHandler().GetAccount(validatorOwner.Bech32, coreAPI.AccountQueryOptions{})
 	require.Nil(t, err)
 	balanceAfterUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
@@ -2000,7 +2000,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	err = cs.GenerateBlocks(2)
 	require.Nil(t, err)
 
-	// the owner balance should increase with the (11+12 EGLD - tx fee)
+	// the owner balance should increase with the (11+12 REWA - tx fee)
 	accountValidatorOwner, _, err = cs.GetNodeHandler(shardIDValidatorOwner).GetFacadeHandler().GetAccount(validatorOwner.Bech32, coreAPI.AccountQueryOptions{})
 	require.Nil(t, err)
 	balanceAfterUnbonding, _ = big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
@@ -2028,7 +2028,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInBatches(t *testing.T, 
 	err = cs.GenerateBlocks(2)
 	require.Nil(t, err)
 
-	// the owner balance should increase with the (11+12+13 EGLD - tx fee)
+	// the owner balance should increase with the (11+12+13 REWA - tx fee)
 	accountValidatorOwner, _, err = cs.GetNodeHandler(shardIDValidatorOwner).GetFacadeHandler().GetAccount(validatorOwner.Bech32, coreAPI.AccountQueryOptions{})
 	require.Nil(t, err)
 	balanceAfterUnbonding, _ = big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
@@ -2059,7 +2059,7 @@ func TestChainSimulator_DirectStakingNodes_WithdrawUnstakedInEpoch(t *testing.T)
 	}
 
 	// Test Steps
-	// 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.
+	// 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.
 	// 2. Send the transactions consecutively in the same epoch
 	// 3. Wait for the epoch when unbonding period ends.
 	// 4. Create a transaction for withdraw and send it to the network
@@ -2205,7 +2205,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	metachainNode := cs.GetNodeHandler(core.MetachainShardId)
 
 	mintValue := big.NewInt(2700)
-	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneEGLD, mintValue)
+	mintValue = mintValue.Mul(chainSimulatorIntegrationTests.OneREWA, mintValue)
 
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
@@ -2213,7 +2213,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	err = cs.GenerateBlocks(1)
 	require.Nil(t, err)
 
-	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(2600))
+	stakeValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(2600))
 	txDataField := fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
 	txStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 0, vm.ValidatorSCAddress, stakeValue, txDataField, staking.GasLimitForStakeOperation)
 	stakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -2232,11 +2232,11 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	require.Nil(t, err)
 	balanceBeforeUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
 
-	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 egld each, second one unstaking 12 egld and third one unstaking 13 egld.")
+	log.Info("Step 1. Create 3 transactions for unstaking: first one unstaking 11 rewa each, second one unstaking 12 rewa and third one unstaking 13 rewa.")
 	log.Info("Step 2. Send the transactions in consecutively in same epoch.")
 
 	unStakeValue1 := big.NewInt(11)
-	unStakeValue1 = unStakeValue1.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue1)
+	unStakeValue1 = unStakeValue1.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue1)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue1.Bytes()))
 	txUnStake := chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 1, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err := cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -2246,7 +2246,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	unStakeTxFee, _ := big.NewInt(0).SetString(unStakeTx.Fee, 10)
 
 	unStakeValue2 := big.NewInt(12)
-	unStakeValue2 = unStakeValue2.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue2)
+	unStakeValue2 = unStakeValue2.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue2)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue2.Bytes()))
 	txUnStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 2, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -2254,7 +2254,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	require.NotNil(t, unStakeTx)
 
 	unStakeValue3 := big.NewInt(13)
-	unStakeValue3 = unStakeValue3.Mul(chainSimulatorIntegrationTests.OneEGLD, unStakeValue3)
+	unStakeValue3 = unStakeValue3.Mul(chainSimulatorIntegrationTests.OneREWA, unStakeValue3)
 	txDataField = fmt.Sprintf("unStakeTokens@%s", hex.EncodeToString(unStakeValue3.Bytes()))
 	txUnStake = chainSimulatorIntegrationTests.GenerateTransaction(validatorOwner.Bytes, 3, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.ZeroValue, txDataField, staking.GasLimitForStakeOperation)
 	unStakeTx, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(txUnStake, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -2276,7 +2276,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedUnStaked := big.NewInt(11 + 12 + 13)
-	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedUnStaked)
+	expectedUnStaked = expectedUnStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedUnStaked)
 	require.Equal(t, expectedUnStaked.String(), big.NewInt(0).SetBytes(result.ReturnData[0]).String())
 
 	scQuery = &process.SCQuery{
@@ -2291,7 +2291,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	require.Equal(t, chainSimulatorIntegrationTests.OkReturnCode, result.ReturnCode)
 
 	expectedStaked := big.NewInt(2600 - 11 - 12 - 13)
-	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneEGLD, expectedStaked)
+	expectedStaked = expectedStaked.Mul(chainSimulatorIntegrationTests.OneREWA, expectedStaked)
 	require.Equal(t, expectedStaked.String(), string(result.ReturnData[0]))
 
 	log.Info("Step 3. Wait for the unbonding epoch to start")
@@ -2313,7 +2313,7 @@ func testChainSimulatorDirectStakedWithdrawUnstakedFundsInEpoch(t *testing.T, cs
 	err = cs.GenerateBlocks(2)
 	require.Nil(t, err)
 
-	// the owner balance should increase with the (11+12+13 EGLD - tx fee)
+	// the owner balance should increase with the (11+12+13 REWA - tx fee)
 	accountValidatorOwner, _, err = cs.GetNodeHandler(shardIDValidatorOwner).GetFacadeHandler().GetAccount(validatorOwner.Bech32, coreAPI.AccountQueryOptions{})
 	require.Nil(t, err)
 	balanceAfterUnbonding, _ := big.NewInt(0).SetString(accountValidatorOwner.Balance, 10)
@@ -2550,7 +2550,7 @@ func createStakeTransaction(t *testing.T, cs chainSimulatorIntegrationTests.Chai
 	err = cs.AddValidatorKeys(privateKey)
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Add(chainSimulatorIntegrationTests.MinimumStakeValue, chainSimulatorIntegrationTests.OneEGLD)
+	mintValue := big.NewInt(0).Add(chainSimulatorIntegrationTests.MinimumStakeValue, chainSimulatorIntegrationTests.OneREWA)
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
 
@@ -2589,7 +2589,7 @@ func unStakeOneActiveNode(t *testing.T, cs chainSimulatorIntegrationTests.ChainS
 		}
 	}
 
-	rcv := "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l"
+	rcv := "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf"
 	rcvAddrBytes, _ := cs.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(rcv)
 
 	validatorWallet := cs.GetInitialWalletKeys().StakeWallets[idx].Address

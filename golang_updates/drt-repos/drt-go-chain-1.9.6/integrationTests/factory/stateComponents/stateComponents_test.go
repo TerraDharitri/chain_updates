@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/integrationTests/factory"
-	"github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-go/testscommon/goroutines"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/factory"
+	"github.com/TerraDharitri/drt-go-chain/node"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/goroutines"
 )
 
 func TestStateComponents_Create_Close_ShouldWork(t *testing.T) {

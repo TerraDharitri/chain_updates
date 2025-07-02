@@ -1,6 +1,6 @@
 package dataRetriever
 
-import "github.com/multiversx/mx-chain-go/dataRetriever"
+import "github.com/TerraDharitri/drt-go-chain/dataRetriever"
 
 // HeaderRequesterStub -
 type HeaderRequesterStub struct {

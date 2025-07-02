@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	wasmvm "github.com/multiversx/mx-chain-go/integrationTests/vm/wasm/wasmvm"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts/defaults"
-	wasmConfig "github.com/multiversx/mx-chain-vm-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	wasmvm "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm/wasmvm"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts/defaults"
+	wasmConfig "github.com/TerraDharitri/drt-go-chain-vm/config"
 )
 
 // ArgWasmBenchmark is the wasm type benchmark argument used in constructor

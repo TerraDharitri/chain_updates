@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	storageErrors "github.com/multiversx/mx-chain-storage-go/common"
+	storageErrors "github.com/TerraDharitri/drt-go-chain-storage/common"
 )
 
 // ErrInvalidNumberOfPersisters signals that an invalid number of persisters has been provided

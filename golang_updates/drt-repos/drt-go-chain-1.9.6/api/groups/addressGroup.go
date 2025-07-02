@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"sync"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain/api/errors"
+	"github.com/TerraDharitri/drt-go-chain/api/shared"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-go/api/errors"
-	"github.com/multiversx/mx-chain-go/api/shared"
 )
 
 const (
@@ -25,12 +25,12 @@ const (
 	getKeysPath                    = "/:address/keys"
 	getKeyPath                     = "/:address/key/:key"
 	getDataTrieMigrationStatusPath = "/:address/is-data-trie-migrated"
-	getESDTTokensPath              = "/:address/esdt"
-	getESDTBalancePath             = "/:address/esdt/:tokenIdentifier"
-	getESDTTokensWithRolePath      = "/:address/esdts-with-role/:role"
-	getESDTsRolesPath              = "/:address/esdts/roles"
+	getDCDTTokensPath              = "/:address/dcdt"
+	getDCDTBalancePath             = "/:address/dcdt/:tokenIdentifier"
+	getDCDTTokensWithRolePath      = "/:address/dcdts-with-role/:role"
+	getDCDTsRolesPath              = "/:address/dcdts/roles"
 	getRegisteredNFTsPath          = "/:address/registered-nfts"
-	getESDTNFTDataPath             = "/:address/nft/:tokenIdentifier/nonce/:nonce"
+	getDCDTNFTDataPath             = "/:address/nft/:tokenIdentifier/nonce/:nonce"
 	getGuardianData                = "/:address/guardian-data"
 	urlParamOnFinalBlock           = "onFinalBlock"
 	urlParamOnStartOfEpoch         = "onStartOfEpoch"
@@ -49,11 +49,11 @@ type addressFacadeHandler interface {
 	GetValueForKey(address string, key string, options api.AccountQueryOptions) (string, api.BlockInfo, error)
 	GetAccount(address string, options api.AccountQueryOptions) (api.AccountResponse, api.BlockInfo, error)
 	GetAccounts(addresses []string, options api.AccountQueryOptions) (map[string]*api.AccountResponse, api.BlockInfo, error)
-	GetESDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error)
-	GetESDTsRoles(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error)
+	GetDCDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.ESDigitalToken, api.BlockInfo, error)
+	GetDCDTsRoles(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error)
 	GetNFTTokenIDsRegisteredByAddress(address string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
-	GetESDTsWithRole(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
-	GetAllESDTTokens(address string, options api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error)
+	GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
+	GetAllDCDTTokens(address string, options api.AccountQueryOptions) (map[string]*dcdt.ESDigitalToken, api.BlockInfo, error)
 	GetKeyValuePairs(address string, options api.AccountQueryOptions) (map[string]string, api.BlockInfo, error)
 	GetGuardianData(address string, options api.AccountQueryOptions) (api.GuardianData, api.BlockInfo, error)
 	IsDataTrieMigrated(address string, options api.AccountQueryOptions) (bool, error)
@@ -66,14 +66,14 @@ type addressGroup struct {
 	mutFacade sync.RWMutex
 }
 
-type esdtTokenData struct {
+type dcdtTokenData struct {
 	TokenIdentifier string `json:"tokenIdentifier"`
 	Balance         string `json:"balance"`
 	Properties      string `json:"properties"`
 }
 
-// ESDTNFTTokenData defines the exposed nft token data structure
-type ESDTNFTTokenData struct {
+// DCDTNFTTokenData defines the exposed nft token data structure
+type DCDTNFTTokenData struct {
 	TokenIdentifier string   `json:"tokenIdentifier"`
 	Balance         string   `json:"balance"`
 	Type            string   `json:"type"`
@@ -135,19 +135,19 @@ func NewAddressGroup(facade addressFacadeHandler) (*addressGroup, error) {
 			Handler: ag.getKeyValuePairs,
 		},
 		{
-			Path:    getESDTBalancePath,
+			Path:    getDCDTBalancePath,
 			Method:  http.MethodGet,
-			Handler: ag.getESDTBalance,
+			Handler: ag.getDCDTBalance,
 		},
 		{
-			Path:    getESDTNFTDataPath,
+			Path:    getDCDTNFTDataPath,
 			Method:  http.MethodGet,
-			Handler: ag.getESDTNFTData,
+			Handler: ag.getDCDTNFTData,
 		},
 		{
-			Path:    getESDTTokensPath,
+			Path:    getDCDTTokensPath,
 			Method:  http.MethodGet,
-			Handler: ag.getAllESDTData,
+			Handler: ag.getAllDCDTData,
 		},
 		{
 			Path:    getRegisteredNFTsPath,
@@ -155,14 +155,14 @@ func NewAddressGroup(facade addressFacadeHandler) (*addressGroup, error) {
 			Handler: ag.getNFTTokenIDsRegisteredByAddress,
 		},
 		{
-			Path:    getESDTTokensWithRolePath,
+			Path:    getDCDTTokensWithRolePath,
 			Method:  http.MethodGet,
-			Handler: ag.getESDTTokensWithRole,
+			Handler: ag.getDCDTTokensWithRole,
 		},
 		{
-			Path:    getESDTsRolesPath,
+			Path:    getDCDTsRolesPath,
 			Method:  http.MethodGet,
-			Handler: ag.getESDTsRoles,
+			Handler: ag.getDCDTsRoles,
 		},
 		{
 			Path:    getGuardianData,
@@ -344,38 +344,38 @@ func (ag *addressGroup) getKeyValuePairs(c *gin.Context) {
 	shared.RespondWithSuccess(c, gin.H{"pairs": value, "blockInfo": blockInfo})
 }
 
-// getESDTBalance returns the balance for the given address and esdt token
-func (ag *addressGroup) getESDTBalance(c *gin.Context) {
-	addr, tokenIdentifier, options, err := extractGetESDTBalanceParams(c)
+// getDCDTBalance returns the balance for the given address and dcdt token
+func (ag *addressGroup) getDCDTBalance(c *gin.Context) {
+	addr, tokenIdentifier, options, err := extractGetDCDTBalanceParams(c)
 	if err != nil {
-		shared.RespondWithValidationError(c, errors.ErrGetESDTBalance, err)
+		shared.RespondWithValidationError(c, errors.ErrGetDCDTBalance, err)
 		return
 	}
 
-	esdtData, blockInfo, err := ag.getFacade().GetESDTData(addr, tokenIdentifier, 0, options)
+	dcdtData, blockInfo, err := ag.getFacade().GetDCDTData(addr, tokenIdentifier, 0, options)
 	if err != nil {
-		shared.RespondWithInternalError(c, errors.ErrGetESDTBalance, err)
+		shared.RespondWithInternalError(c, errors.ErrGetDCDTBalance, err)
 		return
 	}
 
-	tokenData := esdtTokenData{
+	tokenData := dcdtTokenData{
 		TokenIdentifier: tokenIdentifier,
-		Balance:         esdtData.Value.String(),
-		Properties:      hex.EncodeToString(esdtData.Properties),
+		Balance:         dcdtData.Value.String(),
+		Properties:      hex.EncodeToString(dcdtData.Properties),
 	}
 
 	shared.RespondWithSuccess(c, gin.H{"tokenData": tokenData, "blockInfo": blockInfo})
 }
 
-// getESDTsRoles returns the token identifiers and roles for a given address
-func (ag *addressGroup) getESDTsRoles(c *gin.Context) {
+// getDCDTsRoles returns the token identifiers and roles for a given address
+func (ag *addressGroup) getDCDTsRoles(c *gin.Context) {
 	addr, options, err := extractBaseParams(c)
 	if err != nil {
 		shared.RespondWithValidationError(c, errors.ErrGetRolesForAccount, err)
 		return
 	}
 
-	tokensRoles, blockInfo, err := ag.getFacade().GetESDTsRoles(addr, options)
+	tokensRoles, blockInfo, err := ag.getFacade().GetDCDTsRoles(addr, options)
 	if err != nil {
 		shared.RespondWithInternalError(c, errors.ErrGetRolesForAccount, err)
 		return
@@ -384,17 +384,17 @@ func (ag *addressGroup) getESDTsRoles(c *gin.Context) {
 	shared.RespondWithSuccess(c, gin.H{"roles": tokensRoles, "blockInfo": blockInfo})
 }
 
-// getESDTTokensWithRole returns the token identifiers where a given address has the given role
-func (ag *addressGroup) getESDTTokensWithRole(c *gin.Context) {
-	addr, role, options, err := extractGetESDTTokensWithRoleParams(c)
+// getDCDTTokensWithRole returns the token identifiers where a given address has the given role
+func (ag *addressGroup) getDCDTTokensWithRole(c *gin.Context) {
+	addr, role, options, err := extractGetDCDTTokensWithRoleParams(c)
 	if err != nil {
-		shared.RespondWithValidationError(c, errors.ErrGetESDTTokensWithRole, err)
+		shared.RespondWithValidationError(c, errors.ErrGetDCDTTokensWithRole, err)
 		return
 	}
 
-	tokens, blockInfo, err := ag.getFacade().GetESDTsWithRole(addr, role, options)
+	tokens, blockInfo, err := ag.getFacade().GetDCDTsWithRole(addr, role, options)
 	if err != nil {
-		shared.RespondWithInternalError(c, errors.ErrGetESDTTokensWithRole, err)
+		shared.RespondWithInternalError(c, errors.ErrGetDCDTTokensWithRole, err)
 		return
 	}
 
@@ -418,46 +418,46 @@ func (ag *addressGroup) getNFTTokenIDsRegisteredByAddress(c *gin.Context) {
 	shared.RespondWithSuccess(c, gin.H{"tokens": tokens, "blockInfo": blockInfo})
 }
 
-// getESDTNFTData returns the nft data for the given token
-func (ag *addressGroup) getESDTNFTData(c *gin.Context) {
-	addr, tokenIdentifier, nonce, options, err := extractGetESDTNFTDataParams(c)
+// getDCDTNFTData returns the nft data for the given token
+func (ag *addressGroup) getDCDTNFTData(c *gin.Context) {
+	addr, tokenIdentifier, nonce, options, err := extractGetDCDTNFTDataParams(c)
 	if err != nil {
-		shared.RespondWithValidationError(c, errors.ErrGetESDTNFTData, err)
+		shared.RespondWithValidationError(c, errors.ErrGetDCDTNFTData, err)
 		return
 	}
 
-	esdtData, blockInfo, err := ag.getFacade().GetESDTData(addr, tokenIdentifier, nonce.Uint64(), options)
+	dcdtData, blockInfo, err := ag.getFacade().GetDCDTData(addr, tokenIdentifier, nonce.Uint64(), options)
 	if err != nil {
-		shared.RespondWithInternalError(c, errors.ErrGetESDTNFTData, err)
+		shared.RespondWithInternalError(c, errors.ErrGetDCDTNFTData, err)
 		return
 	}
 
-	tokenData := buildTokenDataApiResponse(tokenIdentifier, esdtData)
+	tokenData := buildTokenDataApiResponse(tokenIdentifier, dcdtData)
 	shared.RespondWithSuccess(c, gin.H{"tokenData": tokenData, "blockInfo": blockInfo})
 }
 
-// getAllESDTData returns the tokens list from this account
-func (ag *addressGroup) getAllESDTData(c *gin.Context) {
+// getAllDCDTData returns the tokens list from this account
+func (ag *addressGroup) getAllDCDTData(c *gin.Context) {
 	addr, options, err := extractBaseParams(c)
 	if err != nil {
-		shared.RespondWithValidationError(c, errors.ErrGetESDTNFTData, err)
+		shared.RespondWithValidationError(c, errors.ErrGetDCDTNFTData, err)
 		return
 	}
 
-	tokens, blockInfo, err := ag.getFacade().GetAllESDTTokens(addr, options)
+	tokens, blockInfo, err := ag.getFacade().GetAllDCDTTokens(addr, options)
 	if err != nil {
-		shared.RespondWithInternalError(c, errors.ErrGetESDTNFTData, err)
+		shared.RespondWithInternalError(c, errors.ErrGetDCDTNFTData, err)
 		return
 	}
 
-	formattedTokens := make(map[string]*ESDTNFTTokenData)
-	for tokenID, esdtData := range tokens {
-		tokenData := buildTokenDataApiResponse(tokenID, esdtData)
+	formattedTokens := make(map[string]*DCDTNFTTokenData)
+	for tokenID, dcdtData := range tokens {
+		tokenData := buildTokenDataApiResponse(tokenID, dcdtData)
 
 		formattedTokens[tokenID] = tokenData
 	}
 
-	shared.RespondWithSuccess(c, gin.H{"esdts": formattedTokens, "blockInfo": blockInfo})
+	shared.RespondWithSuccess(c, gin.H{"dcdts": formattedTokens, "blockInfo": blockInfo})
 }
 
 // isDataTrieMigrated returns true if the data trie is migrated for the given address
@@ -483,24 +483,24 @@ func (ag *addressGroup) isDataTrieMigrated(c *gin.Context) {
 	shared.RespondWithSuccess(c, gin.H{"isMigrated": isMigrated})
 }
 
-func buildTokenDataApiResponse(tokenIdentifier string, esdtData *esdt.ESDigitalToken) *ESDTNFTTokenData {
-	tokenData := &ESDTNFTTokenData{
+func buildTokenDataApiResponse(tokenIdentifier string, dcdtData *dcdt.ESDigitalToken) *DCDTNFTTokenData {
+	tokenData := &DCDTNFTTokenData{
 		TokenIdentifier: tokenIdentifier,
-		Balance:         esdtData.Value.String(),
-		Properties:      hex.EncodeToString(esdtData.Properties),
+		Balance:         dcdtData.Value.String(),
+		Properties:      hex.EncodeToString(dcdtData.Properties),
 	}
 
-	tokenType := core.ESDTType(esdtData.Type).String()
-	if esdtData.TokenMetaData != nil {
-		tokenData.Name = string(esdtData.TokenMetaData.Name)
-		tokenData.Nonce = esdtData.TokenMetaData.Nonce
-		tokenData.Creator = string(esdtData.TokenMetaData.Creator)
-		tokenData.Royalties = big.NewInt(int64(esdtData.TokenMetaData.Royalties)).String()
-		tokenData.Hash = esdtData.TokenMetaData.Hash
-		tokenData.URIs = esdtData.TokenMetaData.URIs
-		tokenData.Attributes = esdtData.TokenMetaData.Attributes
+	tokenType := core.DCDTType(dcdtData.Type).String()
+	if dcdtData.TokenMetaData != nil {
+		tokenData.Name = string(dcdtData.TokenMetaData.Name)
+		tokenData.Nonce = dcdtData.TokenMetaData.Nonce
+		tokenData.Creator = string(dcdtData.TokenMetaData.Creator)
+		tokenData.Royalties = big.NewInt(int64(dcdtData.TokenMetaData.Royalties)).String()
+		tokenData.Hash = dcdtData.TokenMetaData.Hash
+		tokenData.URIs = dcdtData.TokenMetaData.URIs
+		tokenData.Attributes = dcdtData.TokenMetaData.Attributes
 
-		tokenType = getTokenType(esdtData.GetType(), tokenData.Nonce)
+		tokenType = getTokenType(dcdtData.GetType(), tokenData.Nonce)
 	}
 
 	tokenData.Type = tokenType
@@ -510,12 +510,12 @@ func buildTokenDataApiResponse(tokenIdentifier string, esdtData *esdt.ESDigitalT
 
 func getTokenType(tokenType uint32, tokenNonce uint64) string {
 	isNotFungible := tokenNonce != 0
-	tokenTypeNotSet := isNotFungible && core.ESDTType(tokenType) == core.NonFungible
+	tokenTypeNotSet := isNotFungible && core.DCDTType(tokenType) == core.NonFungible
 	if tokenTypeNotSet {
 		return ""
 	}
 
-	return core.ESDTType(tokenType).String()
+	return core.DCDTType(tokenType).String()
 }
 
 func (ag *addressGroup) getFacade() addressFacadeHandler {
@@ -539,7 +539,7 @@ func extractBaseParams(c *gin.Context) (string, api.AccountQueryOptions, error) 
 	return addr, options, nil
 }
 
-func extractGetESDTBalanceParams(c *gin.Context) (string, string, api.AccountQueryOptions, error) {
+func extractGetDCDTBalanceParams(c *gin.Context) (string, string, api.AccountQueryOptions, error) {
 	addr, options, err := extractBaseParams(c)
 	if err != nil {
 		return "", "", api.AccountQueryOptions{}, err
@@ -553,7 +553,7 @@ func extractGetESDTBalanceParams(c *gin.Context) (string, string, api.AccountQue
 	return addr, tokenIdentifier, options, nil
 }
 
-func extractGetESDTTokensWithRoleParams(c *gin.Context) (string, string, api.AccountQueryOptions, error) {
+func extractGetDCDTTokensWithRoleParams(c *gin.Context) (string, string, api.AccountQueryOptions, error) {
 	addr, options, err := extractBaseParams(c)
 	if err != nil {
 		return "", "", api.AccountQueryOptions{}, err
@@ -564,14 +564,14 @@ func extractGetESDTTokensWithRoleParams(c *gin.Context) (string, string, api.Acc
 		return "", "", api.AccountQueryOptions{}, errors.ErrEmptyRole
 	}
 
-	if !core.IsValidESDTRole(role) {
+	if !core.IsValidDCDTRole(role) {
 		return "", "", api.AccountQueryOptions{}, fmt.Errorf("%w: %s", errors.ErrInvalidRole, role)
 	}
 
 	return addr, role, options, nil
 }
 
-func extractGetESDTNFTDataParams(c *gin.Context) (string, string, *big.Int, api.AccountQueryOptions, error) {
+func extractGetDCDTNFTDataParams(c *gin.Context) (string, string, *big.Int, api.AccountQueryOptions, error) {
 	addr, options, err := extractBaseParams(c)
 	if err != nil {
 		return "", "", nil, api.AccountQueryOptions{}, err

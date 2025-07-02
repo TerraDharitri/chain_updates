@@ -4,8 +4,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/require"
 )
 
@@ -13,7 +13,7 @@ func TestGetEncodedAddress(t *testing.T) {
 	t.Parallel()
 
 	address := []byte("12345678901234567890123456789012")
-	expectedEncodedAddr := "erd1xyerxdp4xcmnswfsxyerxdp4xcmnswfsxyerxdp4xcmnswfsxyeqlrqt99"
+	expectedEncodedAddr := "drt1xyerxdp4xcmnswfsxyerxdp4xcmnswfsxyerxdp4xcmnswfsxyeqzlhgxm"
 	txUnmarshalledHandler := &txUnmarshaller{
 		addressPubKeyConverter: &testscommon.PubkeyConverterStub{
 			LenCalled: func() int {

@@ -1,6 +1,6 @@
 package disabled
 
-import "github.com/multiversx/mx-chain-go/update"
+import "github.com/TerraDharitri/drt-go-chain/update"
 
 // ExportFactoryHandler implements ExportFactoryHandler interface but does nothing
 type ExportFactoryHandler struct {

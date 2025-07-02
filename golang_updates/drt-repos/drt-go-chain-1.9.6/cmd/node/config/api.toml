@@ -85,20 +85,20 @@
         # /:address/guardian-data will return the guardian data for the given account
         { Name = "/:address/guardian-data", Open = true},
 
-        # /address/:address/esdt will return the list of esdt tokens for a given account
-        { Name = "/:address/esdt", Open = true },
+        # /address/:address/dcdt will return the list of dcdt tokens for a given account
+        { Name = "/:address/dcdt", Open = true },
 
-        # /:address/esdts/roles will return the list of esdt tokens and roles for a given account
-        { Name = "/:address/esdts/roles", Open = true },
+        # /:address/dcdts/roles will return the list of dcdt tokens and roles for a given account
+        { Name = "/:address/dcdts/roles", Open = true },
 
-        # /address/:address/esdt/:tokenIdentifier will return the balance for a given account and esdt tokenID
-        { Name = "/:address/esdt/:tokenIdentifier", Open = true },
+        # /address/:address/dcdt/:tokenIdentifier will return the balance for a given account and dcdt tokenID
+        { Name = "/:address/dcdt/:tokenIdentifier", Open = true },
 
-        # /address/:address/nft/:tokenIdentifier/nonce/:nonce will return data of an nft esdt token for a given account, tokenID and nonce
+        # /address/:address/nft/:tokenIdentifier/nonce/:nonce will return data of an nft dcdt token for a given account, tokenID and nonce
         { Name = "/:address/nft/:tokenIdentifier/nonce/:nonce", Open = true },
 
-        # /address/:address/esdts-with-role/:role will return the token identifiers with the given role for an address
-        { Name = "/:address/esdts-with-role/:role", Open = true },
+        # /address/:address/dcdts-with-role/:role will return the token identifiers with the given role for an address
+        { Name = "/:address/dcdts-with-role/:role", Open = true },
 
         # /address/:address/registered-nfts will return the token identifiers of the tokens registered by the address
         { Name = "/:address/registered-nfts", Open = true },
@@ -128,20 +128,20 @@
         # /network/enable-epochs will return metrics related to activation epochs
         { Name = "/enable-epochs", Open = true },
 
-        # /network/esdts will return all the issued esdts on the protocol
-        { Name = "/esdts", Open = true },
+        # /network/dcdts will return all the issued dcdts on the protocol
+        { Name = "/dcdts", Open = true },
 
         # /network/fungible-tokens will return all the issued fungible tokens on the protocol
-        { Name = "/esdt/fungible-tokens", Open = true },
+        { Name = "/dcdt/fungible-tokens", Open = true },
 
         # /network/semi-fungible-tokens will return all the issued semi fungible tokens on the protocol
-        { Name = "/esdt/semi-fungible-tokens", Open = true },
+        { Name = "/dcdt/semi-fungible-tokens", Open = true },
 
         # /network/non-fungible-tokens will return all the issued non fungible tokens on the protocol
-        { Name = "/esdt/non-fungible-tokens", Open = true },
+        { Name = "/dcdt/non-fungible-tokens", Open = true },
 
-        # /network/esdt/supply/:token will return the supply for a given token
-        { Name = "/esdt/supply/:token", Open = true },
+        # /network/dcdt/supply/:token will return the supply for a given token
+        { Name = "/dcdt/supply/:token", Open = true },
 
         # /network/direct-staked-info will return a list containing direct staked list of addresses
         # and their staked values
@@ -213,10 +213,10 @@
 
         # /transaction/pool will return the hashes of the transactions that are currently in the pool
         # /transaction/pool?fields=sender,receiver,gaslimit,gasprice will return hashes and all the optional fields mentioned that are currently in the pool
-        # /transaction/pool?by-sender=erd1... will return the hashes of the transactions that are currently in the pool for the sender
-        # /transaction/pool?by-sender=erd1...&fields=sender,receiver,gaslimit,gasprice will return the hashes and all the optional fields mentioned of the transactions that are currently in the pool for the sender
-        # /transaction/pool?by-sender=erd1...&last-nonce=true will return the last nonce for the sender from the pool
-        # /transaction/pool?by-sender=erd1...&nonce-gaps=true will return all nonce gaps for the sender from the pool, if applicable
+        # /transaction/pool?by-sender=drt1... will return the hashes of the transactions that are currently in the pool for the sender
+        # /transaction/pool?by-sender=drt1...&fields=sender,receiver,gaslimit,gasprice will return the hashes and all the optional fields mentioned of the transactions that are currently in the pool for the sender
+        # /transaction/pool?by-sender=drt1...&last-nonce=true will return the last nonce for the sender from the pool
+        # /transaction/pool?by-sender=drt1...&nonce-gaps=true will return all nonce gaps for the sender from the pool, if applicable
         { Name = "/pool", Open = true },
 
         # /transaction/:txhash will return the transaction in JSON format based on its hash

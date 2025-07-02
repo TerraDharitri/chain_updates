@@ -30,7 +30,7 @@ type EnableEpochs struct {
 	StakingV2EnableEpoch                                     uint32
 	StakeEnableEpoch                                         uint32
 	DoubleKeyProtectionEnableEpoch                           uint32
-	ESDTEnableEpoch                                          uint32
+	DCDTEnableEpoch                                          uint32
 	GovernanceEnableEpoch                                    uint32
 	DelegationManagerEnableEpoch                             uint32
 	DelegationSmartContractEnableEpoch                       uint32
@@ -45,16 +45,16 @@ type EnableEpochs struct {
 	ReDelegateBelowMinCheckEnableEpoch                       uint32
 	IncrementSCRNonceInMultiTransferEnableEpoch              uint32
 	ScheduledMiniBlocksEnableEpoch                           uint32
-	ESDTMultiTransferEnableEpoch                             uint32
+	DCDTMultiTransferEnableEpoch                             uint32
 	GlobalMintBurnDisableEpoch                               uint32
-	ESDTTransferRoleEnableEpoch                              uint32
+	DCDTTransferRoleEnableEpoch                              uint32
 	ComputeRewardCheckpointEnableEpoch                       uint32
 	SCRSizeInvariantCheckEnableEpoch                         uint32
 	BackwardCompSaveKeyValueEnableEpoch                      uint32
-	ESDTNFTCreateOnMultiShardEnableEpoch                     uint32
-	MetaESDTSetEnableEpoch                                   uint32
+	DCDTNFTCreateOnMultiShardEnableEpoch                     uint32
+	MetaDCDTSetEnableEpoch                                   uint32
 	AddTokensToDelegationEnableEpoch                         uint32
-	MultiESDTTransferFixOnCallBackOnEnableEpoch              uint32
+	MultiDCDTTransferFixOnCallBackOnEnableEpoch              uint32
 	OptimizeGasUsedInCrossMiniBlocksEnableEpoch              uint32
 	CorrectFirstQueuedEpoch                                  uint32
 	CorrectJailedNotUnstakedEmptyQueueEpoch                  uint32
@@ -69,7 +69,7 @@ type EnableEpochs struct {
 	CleanUpInformativeSCRsEnableEpoch                        uint32
 	StorageAPICostOptimizationEnableEpoch                    uint32
 	TransformToMultiShardCreateEnableEpoch                   uint32
-	ESDTRegisterAndSetAllRolesEnableEpoch                    uint32
+	DCDTRegisterAndSetAllRolesEnableEpoch                    uint32
 	DoNotReturnOldBlockInBlockchainHookEnableEpoch           uint32
 	AddFailedRelayedTxToInvalidMBsDisableEpoch               uint32
 	SCRSizeInvariantOnBuiltInResultEnableEpoch               uint32
@@ -81,7 +81,7 @@ type EnableEpochs struct {
 	CheckFunctionArgumentEnableEpoch                         uint32
 	CheckExecuteOnReadOnlyEnableEpoch                        uint32
 	MiniBlockPartialExecutionEnableEpoch                     uint32
-	ESDTMetadataContinuousCleanupEnableEpoch                 uint32
+	DCDTMetadataContinuousCleanupEnableEpoch                 uint32
 	FixAsyncCallBackArgsListEnableEpoch                      uint32
 	FixOldTokenLiquidityEnableEpoch                          uint32
 	RuntimeMemStoreLimitEnableEpoch                          uint32
@@ -115,15 +115,15 @@ type EnableEpochs struct {
 	CleanupAuctionOnLowWaitingListEnableEpoch                uint32
 	AlwaysMergeContextsInEEIEnableEpoch                      uint32
 	UseGasBoundedShouldFailExecutionEnableEpoch              uint32
-	DynamicESDTEnableEpoch                                   uint32
-	EGLDInMultiTransferEnableEpoch                           uint32
+	DynamicDCDTEnableEpoch                                   uint32
+	REWAInMultiTransferEnableEpoch                           uint32
 	CryptoOpcodesV2EnableEpoch                               uint32
 	UnJailCleanupEnableEpoch                                 uint32
 	FixRelayedBaseCostEnableEpoch                            uint32
-	MultiESDTNFTTransferAndExecuteByUserEnableEpoch          uint32
+	MultiDCDTNFTTransferAndExecuteByUserEnableEpoch          uint32
 	FixRelayedMoveBalanceToNonPayableSCEnableEpoch           uint32
 	RelayedTransactionsV3EnableEpoch                         uint32
-	RelayedTransactionsV3FixESDTTransferEnableEpoch          uint32
+	RelayedTransactionsV3FixDCDTTransferEnableEpoch          uint32
 	AndromedaEnableEpoch                                     uint32
 	CheckBuiltInCallOnTransferValueAndFailEnableRound        uint32
 	BLSMultiSignerEnableEpoch                                []MultiSignerConfig

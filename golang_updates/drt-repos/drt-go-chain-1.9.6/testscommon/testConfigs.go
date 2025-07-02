@@ -1,6 +1,6 @@
 package testscommon
 
-import "github.com/multiversx/mx-chain-go/config"
+import "github.com/TerraDharitri/drt-go-chain/config"
 
 // GetDefaultRoundsConfig -
 func GetDefaultRoundsConfig() config.RoundConfig {

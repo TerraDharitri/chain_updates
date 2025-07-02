@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-go/genesis"
+import "github.com/TerraDharitri/drt-go-chain/genesis"
 
 // DeployProcessorStub -
 type DeployProcessorStub struct {

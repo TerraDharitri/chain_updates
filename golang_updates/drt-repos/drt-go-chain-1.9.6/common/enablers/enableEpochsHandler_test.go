@@ -4,15 +4,15 @@ import (
 	"math"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
 )
 
 func createEnableEpochsConfig() config.EnableEpochs {
@@ -36,7 +36,7 @@ func createEnableEpochsConfig() config.EnableEpochs {
 		StakeEnableEpoch:                                         17,
 		StakingV2EnableEpoch:                                     18,
 		DoubleKeyProtectionEnableEpoch:                           19,
-		ESDTEnableEpoch:                                          20,
+		DCDTEnableEpoch:                                          20,
 		GovernanceEnableEpoch:                                    21,
 		DelegationManagerEnableEpoch:                             22,
 		DelegationSmartContractEnableEpoch:                       23,
@@ -47,16 +47,16 @@ func createEnableEpochsConfig() config.EnableEpochs {
 		ReDelegateBelowMinCheckEnableEpoch:                       28,
 		ValidatorToDelegationEnableEpoch:                         29,
 		IncrementSCRNonceInMultiTransferEnableEpoch:              31,
-		ESDTMultiTransferEnableEpoch:                             32,
+		DCDTMultiTransferEnableEpoch:                             32,
 		GlobalMintBurnDisableEpoch:                               33,
-		ESDTTransferRoleEnableEpoch:                              34,
+		DCDTTransferRoleEnableEpoch:                              34,
 		ComputeRewardCheckpointEnableEpoch:                       36,
 		SCRSizeInvariantCheckEnableEpoch:                         37,
 		BackwardCompSaveKeyValueEnableEpoch:                      38,
-		ESDTNFTCreateOnMultiShardEnableEpoch:                     39,
-		MetaESDTSetEnableEpoch:                                   40,
+		DCDTNFTCreateOnMultiShardEnableEpoch:                     39,
+		MetaDCDTSetEnableEpoch:                                   40,
 		AddTokensToDelegationEnableEpoch:                         41,
-		MultiESDTTransferFixOnCallBackOnEnableEpoch:              42,
+		MultiDCDTTransferFixOnCallBackOnEnableEpoch:              42,
 		OptimizeGasUsedInCrossMiniBlocksEnableEpoch:              43,
 		CorrectFirstQueuedEpoch:                                  44,
 		DeleteDelegatorAfterClaimRewardsEnableEpoch:              45,
@@ -70,7 +70,7 @@ func createEnableEpochsConfig() config.EnableEpochs {
 		CleanUpInformativeSCRsEnableEpoch:                        53,
 		StorageAPICostOptimizationEnableEpoch:                    54,
 		TransformToMultiShardCreateEnableEpoch:                   55,
-		ESDTRegisterAndSetAllRolesEnableEpoch:                    56,
+		DCDTRegisterAndSetAllRolesEnableEpoch:                    56,
 		ScheduledMiniBlocksEnableEpoch:                           57,
 		CorrectJailedNotUnstakedEmptyQueueEpoch:                  58,
 		DoNotReturnOldBlockInBlockchainHookEnableEpoch:           59,
@@ -83,7 +83,7 @@ func createEnableEpochsConfig() config.EnableEpochs {
 		ManagedCryptoAPIsEnableEpoch:                             66,
 		CheckFunctionArgumentEnableEpoch:                         67,
 		CheckExecuteOnReadOnlyEnableEpoch:                        68,
-		ESDTMetadataContinuousCleanupEnableEpoch:                 69,
+		DCDTMetadataContinuousCleanupEnableEpoch:                 69,
 		MiniBlockPartialExecutionEnableEpoch:                     70,
 		FixAsyncCallBackArgsListEnableEpoch:                      71,
 		FixOldTokenLiquidityEnableEpoch:                          72,
@@ -116,15 +116,15 @@ func createEnableEpochsConfig() config.EnableEpochs {
 		StakingV4Step3EnableEpoch:                                99,
 		AlwaysMergeContextsInEEIEnableEpoch:                      100,
 		CleanupAuctionOnLowWaitingListEnableEpoch:                101,
-		DynamicESDTEnableEpoch:                                   102,
-		EGLDInMultiTransferEnableEpoch:                           103,
+		DynamicDCDTEnableEpoch:                                   102,
+		REWAInMultiTransferEnableEpoch:                           103,
 		CryptoOpcodesV2EnableEpoch:                               104,
 		FixRelayedBaseCostEnableEpoch:                            105,
-		MultiESDTNFTTransferAndExecuteByUserEnableEpoch:          106,
+		MultiDCDTNFTTransferAndExecuteByUserEnableEpoch:          106,
 		FixRelayedMoveBalanceToNonPayableSCEnableEpoch:           107,
 		UseGasBoundedShouldFailExecutionEnableEpoch:              108,
 		RelayedTransactionsV3EnableEpoch:                         109,
-		RelayedTransactionsV3FixESDTTransferEnableEpoch:          110,
+		RelayedTransactionsV3FixDCDTTransferEnableEpoch:          110,
 		AndromedaEnableEpoch:                                     111,
 		CheckBuiltInCallOnTransferValueAndFailEnableRound:        112,
 	}
@@ -232,8 +232,8 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.False(t, handler.IsFlagEnabled(common.StakingV2OwnerFlagInSpecificEpochOnly)) // ==
 	require.True(t, handler.IsFlagEnabled(common.StakingV2FlagAfterEpoch))
 	require.True(t, handler.IsFlagEnabled(common.DoubleKeyProtectionFlag))
-	require.True(t, handler.IsFlagEnabled(common.ESDTFlag))
-	require.False(t, handler.IsFlagEnabled(common.ESDTFlagInSpecificEpochOnly)) // ==
+	require.True(t, handler.IsFlagEnabled(common.DCDTFlag))
+	require.False(t, handler.IsFlagEnabled(common.DCDTFlagInSpecificEpochOnly)) // ==
 	require.True(t, handler.IsFlagEnabled(common.GovernanceFlag))
 	require.False(t, handler.IsFlagEnabled(common.GovernanceFlagInSpecificEpochOnly)) // ==
 	require.True(t, handler.IsFlagEnabled(common.DelegationManagerFlag))
@@ -247,16 +247,16 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.True(t, handler.IsFlagEnabled(common.ReDelegateBelowMinCheckFlag))
 	require.True(t, handler.IsFlagEnabled(common.ValidatorToDelegationFlag))
 	require.True(t, handler.IsFlagEnabled(common.IncrementSCRNonceInMultiTransferFlag))
-	require.True(t, handler.IsFlagEnabled(common.ESDTMultiTransferFlag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTMultiTransferFlag))
 	require.False(t, handler.IsFlagEnabled(common.GlobalMintBurnFlag)) // <
-	require.True(t, handler.IsFlagEnabled(common.ESDTTransferRoleFlag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTTransferRoleFlag))
 	require.True(t, handler.IsFlagEnabled(common.ComputeRewardCheckpointFlag))
 	require.True(t, handler.IsFlagEnabled(common.SCRSizeInvariantCheckFlag))
 	require.False(t, handler.IsFlagEnabled(common.BackwardCompSaveKeyValueFlag)) // <
-	require.True(t, handler.IsFlagEnabled(common.ESDTNFTCreateOnMultiShardFlag))
-	require.True(t, handler.IsFlagEnabled(common.MetaESDTSetFlag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTNFTCreateOnMultiShardFlag))
+	require.True(t, handler.IsFlagEnabled(common.MetaDCDTSetFlag))
 	require.True(t, handler.IsFlagEnabled(common.AddTokensToDelegationFlag))
-	require.True(t, handler.IsFlagEnabled(common.MultiESDTTransferFixOnCallBackFlag))
+	require.True(t, handler.IsFlagEnabled(common.MultiDCDTTransferFixOnCallBackFlag))
 	require.True(t, handler.IsFlagEnabled(common.OptimizeGasUsedInCrossMiniBlocksFlag))
 	require.True(t, handler.IsFlagEnabled(common.CorrectFirstQueuedFlag))
 	require.True(t, handler.IsFlagEnabled(common.DeleteDelegatorAfterClaimRewardsFlag))
@@ -268,7 +268,7 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.True(t, handler.IsFlagEnabled(common.PayableBySCFlag))
 	require.True(t, handler.IsFlagEnabled(common.CleanUpInformativeSCRsFlag))
 	require.True(t, handler.IsFlagEnabled(common.StorageAPICostOptimizationFlag))
-	require.True(t, handler.IsFlagEnabled(common.ESDTRegisterAndSetAllRolesFlag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTRegisterAndSetAllRolesFlag))
 	require.True(t, handler.IsFlagEnabled(common.ScheduledMiniBlocksFlag))
 	require.True(t, handler.IsFlagEnabled(common.CorrectJailedNotUnStakedEmptyQueueFlag))
 	require.True(t, handler.IsFlagEnabled(common.DoNotReturnOldBlockInBlockchainHookFlag))
@@ -278,7 +278,7 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.True(t, handler.IsFlagEnabled(common.FailExecutionOnEveryAPIErrorFlag))
 	require.True(t, handler.IsFlagEnabled(common.MiniBlockPartialExecutionFlag))
 	require.True(t, handler.IsFlagEnabled(common.ManagedCryptoAPIsFlag))
-	require.True(t, handler.IsFlagEnabled(common.ESDTMetadataContinuousCleanupFlag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTMetadataContinuousCleanupFlag))
 	require.True(t, handler.IsFlagEnabled(common.DisableExecByCallerFlag))
 	require.True(t, handler.IsFlagEnabled(common.RefactorContextFlag))
 	require.True(t, handler.IsFlagEnabled(common.CheckFunctionArgumentFlag))
@@ -290,7 +290,7 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.True(t, handler.IsFlagEnabled(common.SendAlwaysFlag))
 	require.True(t, handler.IsFlagEnabled(common.ValueLengthCheckFlag))
 	require.True(t, handler.IsFlagEnabled(common.CheckTransferFlag))
-	require.True(t, handler.IsFlagEnabled(common.ESDTNFTImprovementV1Flag))
+	require.True(t, handler.IsFlagEnabled(common.DCDTNFTImprovementV1Flag))
 	require.True(t, handler.IsFlagEnabled(common.ChangeDelegationOwnerFlag))
 	require.True(t, handler.IsFlagEnabled(common.RefactorPeersMiniBlocksFlag))
 	require.True(t, handler.IsFlagEnabled(common.SCProcessorV2Flag))
@@ -326,7 +326,7 @@ func TestEnableEpochsHandler_IsFlagEnabled(t *testing.T) {
 	require.True(t, handler.IsFlagEnabled(common.StakingV4Step3Flag))
 	require.True(t, handler.IsFlagEnabled(common.StakingV4StartedFlag))
 	require.True(t, handler.IsFlagEnabled(common.AlwaysMergeContextsInEEIFlag))
-	require.True(t, handler.IsFlagEnabled(common.DynamicESDTFlag))
+	require.True(t, handler.IsFlagEnabled(common.DynamicDCDTFlag))
 	require.True(t, handler.IsFlagEnabled(common.FixRelayedBaseCostFlag))
 	require.True(t, handler.IsFlagEnabled(common.FixRelayedMoveBalanceToNonPayableSCFlag))
 	require.True(t, handler.IsFlagEnabled(common.AndromedaFlag))
@@ -355,7 +355,7 @@ func TestEnableEpochsHandler_GetActivationEpoch(t *testing.T) {
 	require.Equal(t, cfg.StakeEnableEpoch, handler.GetActivationEpoch(common.StakeFlag))
 	require.Equal(t, cfg.StakingV2EnableEpoch, handler.GetActivationEpoch(common.StakingV2Flag))
 	require.Equal(t, cfg.DoubleKeyProtectionEnableEpoch, handler.GetActivationEpoch(common.DoubleKeyProtectionFlag))
-	require.Equal(t, cfg.ESDTEnableEpoch, handler.GetActivationEpoch(common.ESDTFlag))
+	require.Equal(t, cfg.DCDTEnableEpoch, handler.GetActivationEpoch(common.DCDTFlag))
 	require.Equal(t, cfg.GovernanceEnableEpoch, handler.GetActivationEpoch(common.GovernanceFlag))
 	require.Equal(t, cfg.DelegationManagerEnableEpoch, handler.GetActivationEpoch(common.DelegationManagerFlag))
 	require.Equal(t, cfg.DelegationSmartContractEnableEpoch, handler.GetActivationEpoch(common.DelegationSmartContractFlag))
@@ -366,16 +366,16 @@ func TestEnableEpochsHandler_GetActivationEpoch(t *testing.T) {
 	require.Equal(t, cfg.ReDelegateBelowMinCheckEnableEpoch, handler.GetActivationEpoch(common.ReDelegateBelowMinCheckFlag))
 	require.Equal(t, cfg.ValidatorToDelegationEnableEpoch, handler.GetActivationEpoch(common.ValidatorToDelegationFlag))
 	require.Equal(t, cfg.IncrementSCRNonceInMultiTransferEnableEpoch, handler.GetActivationEpoch(common.IncrementSCRNonceInMultiTransferFlag))
-	require.Equal(t, cfg.ESDTMultiTransferEnableEpoch, handler.GetActivationEpoch(common.ESDTMultiTransferFlag))
+	require.Equal(t, cfg.DCDTMultiTransferEnableEpoch, handler.GetActivationEpoch(common.DCDTMultiTransferFlag))
 	require.Equal(t, cfg.GlobalMintBurnDisableEpoch, handler.GetActivationEpoch(common.GlobalMintBurnFlag))
-	require.Equal(t, cfg.ESDTTransferRoleEnableEpoch, handler.GetActivationEpoch(common.ESDTTransferRoleFlag))
+	require.Equal(t, cfg.DCDTTransferRoleEnableEpoch, handler.GetActivationEpoch(common.DCDTTransferRoleFlag))
 	require.Equal(t, cfg.ComputeRewardCheckpointEnableEpoch, handler.GetActivationEpoch(common.ComputeRewardCheckpointFlag))
 	require.Equal(t, cfg.SCRSizeInvariantCheckEnableEpoch, handler.GetActivationEpoch(common.SCRSizeInvariantCheckFlag))
 	require.Equal(t, cfg.BackwardCompSaveKeyValueEnableEpoch, handler.GetActivationEpoch(common.BackwardCompSaveKeyValueFlag))
-	require.Equal(t, cfg.ESDTNFTCreateOnMultiShardEnableEpoch, handler.GetActivationEpoch(common.ESDTNFTCreateOnMultiShardFlag))
-	require.Equal(t, cfg.MetaESDTSetEnableEpoch, handler.GetActivationEpoch(common.MetaESDTSetFlag))
+	require.Equal(t, cfg.DCDTNFTCreateOnMultiShardEnableEpoch, handler.GetActivationEpoch(common.DCDTNFTCreateOnMultiShardFlag))
+	require.Equal(t, cfg.MetaDCDTSetEnableEpoch, handler.GetActivationEpoch(common.MetaDCDTSetFlag))
 	require.Equal(t, cfg.AddTokensToDelegationEnableEpoch, handler.GetActivationEpoch(common.AddTokensToDelegationFlag))
-	require.Equal(t, cfg.MultiESDTTransferFixOnCallBackOnEnableEpoch, handler.GetActivationEpoch(common.MultiESDTTransferFixOnCallBackFlag))
+	require.Equal(t, cfg.MultiDCDTTransferFixOnCallBackOnEnableEpoch, handler.GetActivationEpoch(common.MultiDCDTTransferFixOnCallBackFlag))
 	require.Equal(t, cfg.OptimizeGasUsedInCrossMiniBlocksEnableEpoch, handler.GetActivationEpoch(common.OptimizeGasUsedInCrossMiniBlocksFlag))
 	require.Equal(t, cfg.CorrectFirstQueuedEpoch, handler.GetActivationEpoch(common.CorrectFirstQueuedFlag))
 	require.Equal(t, cfg.DeleteDelegatorAfterClaimRewardsEnableEpoch, handler.GetActivationEpoch(common.DeleteDelegatorAfterClaimRewardsFlag))
@@ -387,7 +387,7 @@ func TestEnableEpochsHandler_GetActivationEpoch(t *testing.T) {
 	require.Equal(t, cfg.IsPayableBySCEnableEpoch, handler.GetActivationEpoch(common.PayableBySCFlag))
 	require.Equal(t, cfg.CleanUpInformativeSCRsEnableEpoch, handler.GetActivationEpoch(common.CleanUpInformativeSCRsFlag))
 	require.Equal(t, cfg.StorageAPICostOptimizationEnableEpoch, handler.GetActivationEpoch(common.StorageAPICostOptimizationFlag))
-	require.Equal(t, cfg.ESDTRegisterAndSetAllRolesEnableEpoch, handler.GetActivationEpoch(common.ESDTRegisterAndSetAllRolesFlag))
+	require.Equal(t, cfg.DCDTRegisterAndSetAllRolesEnableEpoch, handler.GetActivationEpoch(common.DCDTRegisterAndSetAllRolesFlag))
 	require.Equal(t, cfg.ScheduledMiniBlocksEnableEpoch, handler.GetActivationEpoch(common.ScheduledMiniBlocksFlag))
 	require.Equal(t, cfg.CorrectJailedNotUnstakedEmptyQueueEpoch, handler.GetActivationEpoch(common.CorrectJailedNotUnStakedEmptyQueueFlag))
 	require.Equal(t, cfg.DoNotReturnOldBlockInBlockchainHookEnableEpoch, handler.GetActivationEpoch(common.DoNotReturnOldBlockInBlockchainHookFlag))
@@ -397,20 +397,20 @@ func TestEnableEpochsHandler_GetActivationEpoch(t *testing.T) {
 	require.Equal(t, cfg.FailExecutionOnEveryAPIErrorEnableEpoch, handler.GetActivationEpoch(common.FailExecutionOnEveryAPIErrorFlag))
 	require.Equal(t, cfg.MiniBlockPartialExecutionEnableEpoch, handler.GetActivationEpoch(common.MiniBlockPartialExecutionFlag))
 	require.Equal(t, cfg.ManagedCryptoAPIsEnableEpoch, handler.GetActivationEpoch(common.ManagedCryptoAPIsFlag))
-	require.Equal(t, cfg.ESDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.ESDTMetadataContinuousCleanupFlag))
+	require.Equal(t, cfg.DCDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.DCDTMetadataContinuousCleanupFlag))
 	require.Equal(t, cfg.DisableExecByCallerEnableEpoch, handler.GetActivationEpoch(common.DisableExecByCallerFlag))
 	require.Equal(t, cfg.RefactorContextEnableEpoch, handler.GetActivationEpoch(common.RefactorContextFlag))
 	require.Equal(t, cfg.CheckFunctionArgumentEnableEpoch, handler.GetActivationEpoch(common.CheckFunctionArgumentFlag))
 	require.Equal(t, cfg.CheckExecuteOnReadOnlyEnableEpoch, handler.GetActivationEpoch(common.CheckExecuteOnReadOnlyFlag))
 	require.Equal(t, cfg.SetSenderInEeiOutputTransferEnableEpoch, handler.GetActivationEpoch(common.SetSenderInEeiOutputTransferFlag))
-	require.Equal(t, cfg.ESDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.FixAsyncCallbackCheckFlag))
+	require.Equal(t, cfg.DCDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.FixAsyncCallbackCheckFlag))
 	require.Equal(t, cfg.OptimizeNFTStoreEnableEpoch, handler.GetActivationEpoch(common.SaveToSystemAccountFlag))
 	require.Equal(t, cfg.OptimizeNFTStoreEnableEpoch, handler.GetActivationEpoch(common.CheckFrozenCollectionFlag))
-	require.Equal(t, cfg.ESDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.SendAlwaysFlag))
+	require.Equal(t, cfg.DCDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.SendAlwaysFlag))
 	require.Equal(t, cfg.OptimizeNFTStoreEnableEpoch, handler.GetActivationEpoch(common.ValueLengthCheckFlag))
 	require.Equal(t, cfg.OptimizeNFTStoreEnableEpoch, handler.GetActivationEpoch(common.CheckTransferFlag))
-	require.Equal(t, cfg.ESDTMultiTransferEnableEpoch, handler.GetActivationEpoch(common.ESDTNFTImprovementV1Flag))
-	require.Equal(t, cfg.ESDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.ChangeDelegationOwnerFlag))
+	require.Equal(t, cfg.DCDTMultiTransferEnableEpoch, handler.GetActivationEpoch(common.DCDTNFTImprovementV1Flag))
+	require.Equal(t, cfg.DCDTMetadataContinuousCleanupEnableEpoch, handler.GetActivationEpoch(common.ChangeDelegationOwnerFlag))
 	require.Equal(t, cfg.RefactorPeersMiniBlocksEnableEpoch, handler.GetActivationEpoch(common.RefactorPeersMiniBlocksFlag))
 	require.Equal(t, cfg.SCProcessorV2EnableEpoch, handler.GetActivationEpoch(common.SCProcessorV2Flag))
 	require.Equal(t, cfg.FixAsyncCallBackArgsListEnableEpoch, handler.GetActivationEpoch(common.FixAsyncCallBackArgsListFlag))
@@ -447,14 +447,14 @@ func TestEnableEpochsHandler_GetActivationEpoch(t *testing.T) {
 	require.Equal(t, cfg.StakingV4Step1EnableEpoch, handler.GetActivationEpoch(common.StakingV4StartedFlag))
 	require.Equal(t, cfg.AlwaysMergeContextsInEEIEnableEpoch, handler.GetActivationEpoch(common.AlwaysMergeContextsInEEIFlag))
 	require.Equal(t, cfg.UseGasBoundedShouldFailExecutionEnableEpoch, handler.GetActivationEpoch(common.UseGasBoundedShouldFailExecutionFlag))
-	require.Equal(t, cfg.DynamicESDTEnableEpoch, handler.GetActivationEpoch(common.DynamicESDTFlag))
-	require.Equal(t, cfg.EGLDInMultiTransferEnableEpoch, handler.GetActivationEpoch(common.EGLDInESDTMultiTransferFlag))
+	require.Equal(t, cfg.DynamicDCDTEnableEpoch, handler.GetActivationEpoch(common.DynamicDCDTFlag))
+	require.Equal(t, cfg.REWAInMultiTransferEnableEpoch, handler.GetActivationEpoch(common.REWAInDCDTMultiTransferFlag))
 	require.Equal(t, cfg.CryptoOpcodesV2EnableEpoch, handler.GetActivationEpoch(common.CryptoOpcodesV2Flag))
 	require.Equal(t, cfg.FixRelayedBaseCostEnableEpoch, handler.GetActivationEpoch(common.FixRelayedBaseCostFlag))
-	require.Equal(t, cfg.MultiESDTNFTTransferAndExecuteByUserEnableEpoch, handler.GetActivationEpoch(common.MultiESDTNFTTransferAndExecuteByUserFlag))
+	require.Equal(t, cfg.MultiDCDTNFTTransferAndExecuteByUserEnableEpoch, handler.GetActivationEpoch(common.MultiDCDTNFTTransferAndExecuteByUserFlag))
 	require.Equal(t, cfg.FixRelayedMoveBalanceToNonPayableSCEnableEpoch, handler.GetActivationEpoch(common.FixRelayedMoveBalanceToNonPayableSCFlag))
 	require.Equal(t, cfg.RelayedTransactionsV3EnableEpoch, handler.GetActivationEpoch(common.RelayedTransactionsV3Flag))
-	require.Equal(t, cfg.RelayedTransactionsV3FixESDTTransferEnableEpoch, handler.GetActivationEpoch(common.RelayedTransactionsV3FixESDTTransferFlag))
+	require.Equal(t, cfg.RelayedTransactionsV3FixDCDTTransferEnableEpoch, handler.GetActivationEpoch(common.RelayedTransactionsV3FixDCDTTransferFlag))
 	require.Equal(t, cfg.AndromedaEnableEpoch, handler.GetActivationEpoch(common.AndromedaFlag))
 	require.Equal(t, cfg.CheckBuiltInCallOnTransferValueAndFailEnableRound, handler.GetActivationEpoch(common.CheckBuiltInCallOnTransferValueAndFailExecutionFlag))
 }

@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
 )
 
 var _ record = (*dummyRecord)(nil)

@@ -3,7 +3,7 @@ package testadder
 import (
 	"testing"
 
-	mc "github.com/multiversx/mx-chain-go/integrationTests/vm/wasm/wasmvm/scenariosConverter"
+	mc "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm/wasmvm/scenariosConverter"
 )
 
 func TestScenariosConverter_AdderWithExternalSteps(t *testing.T) {

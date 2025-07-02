@@ -14,64 +14,64 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	atomicCore "github.com/multiversx/mx-chain-core-go/core/atomic"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/keyValStorage"
-	"github.com/multiversx/mx-chain-core-go/core/versioning"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/guardians"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/holders"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext/esdtSupply"
-	"github.com/multiversx/mx-chain-go/factory"
-	factoryMock "github.com/multiversx/mx-chain-go/factory/mock"
-	heartbeatData "github.com/multiversx/mx-chain-go/heartbeat/data"
-	integrationTestsMock "github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/node/mock"
-	nodeMockFactory "github.com/multiversx/mx-chain-go/node/mock/factory"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/accounts"
-	"github.com/multiversx/mx-chain-go/state/parsers"
-	"github.com/multiversx/mx-chain-go/state/trackableDataTrie"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/bootstrapMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/consensus"
-	dataRetrieverMock "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/dblookupext"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	factoryTests "github.com/multiversx/mx-chain-go/testscommon/factory"
-	"github.com/multiversx/mx-chain-go/testscommon/genesisMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/guardianMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/mainFactoryMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/p2pmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/shardingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/stakingcommon"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	statusHandlerMock "github.com/multiversx/mx-chain-go/testscommon/statusHandler"
-	mockStorage "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/testscommon/storageManager"
-	trieMock "github.com/multiversx/mx-chain-go/testscommon/trie"
-	"github.com/multiversx/mx-chain-go/testscommon/txsSenderMock"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	atomicCore "github.com/TerraDharitri/drt-go-chain-core/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/keyValStorage"
+	"github.com/TerraDharitri/drt-go-chain-core/core/versioning"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/guardians"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/holders"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	factoryMock "github.com/TerraDharitri/drt-go-chain/factory/mock"
+	heartbeatData "github.com/TerraDharitri/drt-go-chain/heartbeat/data"
+	integrationTestsMock "github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/node"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/node/mock"
+	nodeMockFactory "github.com/TerraDharitri/drt-go-chain/node/mock/factory"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/accounts"
+	"github.com/TerraDharitri/drt-go-chain/state/parsers"
+	"github.com/TerraDharitri/drt-go-chain/state/trackableDataTrie"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/bootstrapMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
+	dataRetrieverMock "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	factoryTests "github.com/TerraDharitri/drt-go-chain/testscommon/factory"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genesisMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/guardianMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/mainFactoryMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/stakingcommon"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	statusHandlerMock "github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
+	mockStorage "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storageManager"
+	trieMock "github.com/TerraDharitri/drt-go-chain/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txsSenderMock"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -305,7 +305,7 @@ func TestGetBalance(t *testing.T) {
 func TestGetUsername(t *testing.T) {
 	t.Parallel()
 
-	expectedUsername := []byte("elrond")
+	expectedUsername := []byte("numbat")
 
 	testAccount, _ := accounts.NewUserAccount(testscommon.TestPubKeyAlice, &trieMock.DataTrieTrackerStub{}, &trieMock.TrieLeafParserStub{})
 	testAccount.UserName = expectedUsername
@@ -367,7 +367,7 @@ func TestNode_GetCodeHashAccNotFoundShouldReturnEmpty(t *testing.T) {
 		node.WithStateComponents(stateComponents),
 	)
 
-	codeHash, bInfo, err := n.GetCodeHash("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th", api.AccountQueryOptions{})
+	codeHash, bInfo, err := n.GetCodeHash("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf", api.AccountQueryOptions{})
 	require.Nil(t, err)
 	require.Equal(t, dummyBlockInfo.apiResult(), bInfo)
 	require.Empty(t, codeHash)
@@ -704,10 +704,10 @@ func TestNode_GetValueForKey(t *testing.T) {
 	assert.Equal(t, hex.EncodeToString(v1), value)
 }
 
-func TestNode_GetESDTDataAccNotFoundShouldReturnEmpty(t *testing.T) {
+func TestNode_GetDCDTDataAccNotFoundShouldReturnEmpty(t *testing.T) {
 	t.Parallel()
 
-	esdtToken := "newToken"
+	dcdtToken := "newToken"
 
 	accDB := &stateMock.AccountsStub{
 		GetAccountWithBlockInfoCalled: func(address []byte, options common.RootHashHolder) (vmcommon.AccountHandler, common.BlockInfo, error) {
@@ -738,19 +738,19 @@ func TestNode_GetESDTDataAccNotFoundShouldReturnEmpty(t *testing.T) {
 		node.WithStateComponents(stateComponents),
 	)
 
-	esdtTokenData, bInfo, err := n.GetESDTData(testscommon.TestAddressAlice, esdtToken, 0, api.AccountQueryOptions{})
+	dcdtTokenData, bInfo, err := n.GetDCDTData(testscommon.TestAddressAlice, dcdtToken, 0, api.AccountQueryOptions{})
 	require.Nil(t, err)
 	require.Equal(t, dummyBlockInfo.apiResult(), bInfo)
-	require.Equal(t, "0", esdtTokenData.Value.String())
+	require.Equal(t, "0", dcdtTokenData.Value.String())
 }
 
-func TestNode_GetESDTData(t *testing.T) {
+func TestNode_GetDCDTData(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
-	esdtToken := "newToken"
+	dcdtToken := "newToken"
 
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(10)}
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(10)}
 
 	accDB := &stateMock.AccountsStub{
 		GetAccountWithBlockInfoCalled: func(address []byte, options common.RootHashHolder) (vmcommon.AccountHandler, common.BlockInfo, error) {
@@ -761,9 +761,9 @@ func TestNode_GetESDTData(t *testing.T) {
 		},
 	}
 
-	esdtStorageStub := &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error) {
-			return esdtData, false, nil
+	dcdtStorageStub := &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error) {
+			return dcdtData, false, nil
 		},
 	}
 
@@ -785,26 +785,26 @@ func TestNode_GetESDTData(t *testing.T) {
 		node.WithDataComponents(dataComponents),
 		node.WithCoreComponents(coreComponents),
 		node.WithStateComponents(stateComponents),
-		node.WithESDTNFTStorageHandler(esdtStorageStub),
+		node.WithDCDTNFTStorageHandler(dcdtStorageStub),
 	)
 
-	esdtTokenData, _, err := n.GetESDTData(testscommon.TestAddressAlice, esdtToken, 0, api.AccountQueryOptions{})
+	dcdtTokenData, _, err := n.GetDCDTData(testscommon.TestAddressAlice, dcdtToken, 0, api.AccountQueryOptions{})
 	require.Nil(t, err)
-	require.Equal(t, esdtData.Value.String(), esdtTokenData.Value.String())
+	require.Equal(t, dcdtData.Value.String(), dcdtTokenData.Value.String())
 }
 
-func TestNode_GetESDTDataForNFT(t *testing.T) {
+func TestNode_GetDCDTDataForNFT(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
-	esdtToken := "newToken"
+	dcdtToken := "newToken"
 	nonce := int64(100)
 
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(10)}
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(10)}
 
-	esdtStorageStub := &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error) {
-			return esdtData, false, nil
+	dcdtStorageStub := &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error) {
+			return dcdtData, false, nil
 		},
 	}
 	accDB := &stateMock.AccountsStub{
@@ -830,26 +830,26 @@ func TestNode_GetESDTDataForNFT(t *testing.T) {
 		node.WithDataComponents(dataComponents),
 		node.WithCoreComponents(coreComponents),
 		node.WithStateComponents(stateComponents),
-		node.WithESDTNFTStorageHandler(esdtStorageStub),
+		node.WithDCDTNFTStorageHandler(dcdtStorageStub),
 	)
 
-	esdtTokenData, _, err := n.GetESDTData(testscommon.TestAddressAlice, esdtToken, uint64(nonce), api.AccountQueryOptions{})
+	dcdtTokenData, _, err := n.GetDCDTData(testscommon.TestAddressAlice, dcdtToken, uint64(nonce), api.AccountQueryOptions{})
 	require.Nil(t, err)
-	require.Equal(t, esdtData.Value.String(), esdtTokenData.Value.String())
+	require.Equal(t, dcdtData.Value.String(), dcdtTokenData.Value.String())
 }
 
-func TestNode_GetAllESDTTokens(t *testing.T) {
+func TestNode_GetAllDCDTTokens(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
-	esdtToken := "newToken"
-	esdtKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + esdtToken)
+	dcdtToken := "newToken"
+	dcdtKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + dcdtToken)
 
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(10)}
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(10)}
 
-	esdtStorageStub := &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error) {
-			return esdtData, false, nil
+	dcdtStorageStub := &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error) {
+			return dcdtData, false, nil
 		},
 	}
 
@@ -857,7 +857,7 @@ func TestNode_GetAllESDTTokens(t *testing.T) {
 		&trieMock.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, _ common.KeyBuilder, _ common.TrieLeafParser) error {
 				go func() {
-					trieLeaf := keyValStorage.NewKeyValStorage(esdtKey, nil)
+					trieLeaf := keyValStorage.NewKeyValStorage(dcdtKey, nil)
 					leavesChannels.LeavesChan <- trieLeaf
 					close(leavesChannels.LeavesChan)
 					leavesChannels.ErrChan.Close()
@@ -897,16 +897,16 @@ func TestNode_GetAllESDTTokens(t *testing.T) {
 		node.WithCoreComponents(coreComponents),
 		node.WithStateComponents(stateComponents),
 		node.WithDataComponents(dataComponents),
-		node.WithESDTNFTStorageHandler(esdtStorageStub),
+		node.WithDCDTNFTStorageHandler(dcdtStorageStub),
 	)
 
-	value, _, err := n.GetAllESDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
+	value, _, err := n.GetAllDCDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 1, len(value))
-	assert.Equal(t, esdtData, value[esdtToken])
+	assert.Equal(t, dcdtData, value[dcdtToken])
 }
 
-func TestNode_GetAllESDTTokens_GetAllLeavesShouldFail(t *testing.T) {
+func TestNode_GetAllDCDTTokens_GetAllLeavesShouldFail(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
@@ -956,13 +956,13 @@ func TestNode_GetAllESDTTokens_GetAllLeavesShouldFail(t *testing.T) {
 		node.WithDataComponents(dataComponents),
 	)
 
-	value, blockInfo, err := n.GetAllESDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
+	value, blockInfo, err := n.GetAllDCDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	assert.Nil(t, value)
 	assert.Equal(t, expectedErr, err)
 	assert.Equal(t, api.BlockInfo{}, blockInfo)
 }
 
-func TestNode_GetAllESDTTokensContextShouldTimeout(t *testing.T) {
+func TestNode_GetAllDCDTTokensContextShouldTimeout(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
@@ -1015,12 +1015,12 @@ func TestNode_GetAllESDTTokensContextShouldTimeout(t *testing.T) {
 	ctxWithTimeout, cancel := context.WithTimeout(context.Background(), time.Millisecond)
 	defer cancel()
 
-	value, _, err := n.GetAllESDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, ctxWithTimeout)
+	value, _, err := n.GetAllDCDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, ctxWithTimeout)
 	assert.Nil(t, value)
 	assert.Equal(t, node.ErrTrieOperationsTimeout, err)
 }
 
-func TestNode_GetAllESDTsAccNotFoundShouldReturnEmpty(t *testing.T) {
+func TestNode_GetAllDCDTsAccNotFoundShouldReturnEmpty(t *testing.T) {
 	t.Parallel()
 
 	accDB := &stateMock.AccountsStub{
@@ -1052,39 +1052,39 @@ func TestNode_GetAllESDTsAccNotFoundShouldReturnEmpty(t *testing.T) {
 		node.WithStateComponents(stateComponents),
 	)
 
-	tokens, bInfo, err := n.GetAllESDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
+	tokens, bInfo, err := n.GetAllDCDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	require.Nil(t, err)
 	require.Equal(t, dummyBlockInfo.apiResult(), bInfo)
 	require.Len(t, tokens, 0)
 }
 
-func TestNode_GetAllESDTTokensShouldReturnEsdtAndFormattedNft(t *testing.T) {
+func TestNode_GetAllDCDTTokensShouldReturnDcdtAndFormattedNft(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc(testscommon.TestPubKeyAlice)
 
-	esdtToken := "TKKR-7q8w9e"
-	esdtKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + esdtToken)
+	dcdtToken := "TKKR-7q8w9e"
+	dcdtKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + dcdtToken)
 
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(10)}
-	marshalledData, _ := getMarshalizer().Marshal(esdtData)
-	suffix := append(esdtKey, acc.AddressBytes()...)
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(10)}
+	marshalledData, _ := getMarshalizer().Marshal(dcdtData)
+	suffix := append(dcdtKey, acc.AddressBytes()...)
 
 	nftToken := "TCKR-67tgv3"
 	nftNonce := big.NewInt(1)
-	nftKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + nftToken)
+	nftKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + nftToken)
 	nftKeyWithBytes := append(nftKey, nftNonce.Bytes()...)
 	nftSuffix := append(nftKeyWithBytes, acc.AddressBytes()...)
 
-	nftMetaData := &esdt.MetaData{Nonce: nftNonce.Uint64(), Creator: []byte("12345678901234567890123456789012")}
-	nftData := &esdt.ESDigitalToken{Type: uint32(core.NonFungible), Value: big.NewInt(10), TokenMetaData: nftMetaData}
+	nftMetaData := &dcdt.MetaData{Nonce: nftNonce.Uint64(), Creator: []byte("12345678901234567890123456789012")}
+	nftData := &dcdt.DCDigitalToken{Type: uint32(core.NonFungible), Value: big.NewInt(10), TokenMetaData: nftMetaData}
 	marshalledNftData, _ := getMarshalizer().Marshal(nftData)
 
-	esdtStorageStub := &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error) {
-			switch string(esdtTokenKey) {
-			case string(esdtKey):
-				return esdtData, false, nil
+	dcdtStorageStub := &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, _ vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error) {
+			switch string(dcdtTokenKey) {
+			case string(dcdtKey):
+				return dcdtData, false, nil
 			case string(nftKey):
 				return nftData, false, nil
 			default:
@@ -1098,7 +1098,7 @@ func TestNode_GetAllESDTTokensShouldReturnEsdtAndFormattedNft(t *testing.T) {
 				wg := &sync.WaitGroup{}
 				wg.Add(1)
 				go func() {
-					trieLeaf := keyValStorage.NewKeyValStorage(esdtKey, append(marshalledData, suffix...))
+					trieLeaf := keyValStorage.NewKeyValStorage(dcdtKey, append(marshalledData, suffix...))
 					leavesChannels.LeavesChan <- trieLeaf
 
 					trieLeaf = keyValStorage.NewKeyValStorage(nftKey, append(marshalledNftData, nftSuffix...))
@@ -1140,13 +1140,13 @@ func TestNode_GetAllESDTTokensShouldReturnEsdtAndFormattedNft(t *testing.T) {
 		node.WithCoreComponents(coreComponents),
 		node.WithDataComponents(dataComponents),
 		node.WithStateComponents(stateComponents),
-		node.WithESDTNFTStorageHandler(esdtStorageStub),
+		node.WithDCDTNFTStorageHandler(dcdtStorageStub),
 	)
 
-	tokens, _, err := n.GetAllESDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
+	tokens, _, err := n.GetAllDCDTTokens(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 2, len(tokens))
-	assert.Equal(t, esdtData, tokens[esdtToken])
+	assert.Equal(t, dcdtData, tokens[dcdtToken])
 
 	// check that the NFT was formatted correctly
 	expectedNftFormattedKey := "TCKR-67tgv3-01"
@@ -1154,42 +1154,42 @@ func TestNode_GetAllESDTTokensShouldReturnEsdtAndFormattedNft(t *testing.T) {
 	assert.Equal(t, uint64(1), tokens[expectedNftFormattedKey].TokenMetaData.Nonce)
 }
 
-func TestNode_GetAllIssuedESDTs(t *testing.T) {
+func TestNode_GetAllIssuedDCDTs(t *testing.T) {
 	t.Parallel()
 
 	acc := createAcc([]byte("newaddress"))
-	esdtToken := []byte("TCK-RANDOM")
+	dcdtToken := []byte("TCK-RANDOM")
 	sftToken := []byte("SFT-RANDOM")
 	sftTokenDynamic := []byte("SFT-Dynamic")
 	nftToken := []byte("NFT-RANDOM")
 	nftTokenV2 := []byte("NFT-RANDOM-V2")
 	nftTokenDynamic := []byte("NFT-Dynamic")
 
-	esdtData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleESDT)}
-	marshalledData, _ := getMarshalizer().Marshal(esdtData)
-	_ = acc.SaveKeyValue(esdtToken, marshalledData)
+	dcdtData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleDCDT)}
+	marshalledData, _ := getMarshalizer().Marshal(dcdtData)
+	_ = acc.SaveKeyValue(dcdtToken, marshalledData)
 
-	sftData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("semi fungible"), TokenType: []byte(core.SemiFungibleESDT)}
+	sftData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("semi fungible"), TokenType: []byte(core.SemiFungibleDCDT)}
 	sftMarshalledData, _ := getMarshalizer().Marshal(sftData)
 	_ = acc.SaveKeyValue(sftToken, sftMarshalledData)
 
-	sftDataDynamic := &systemSmartContracts.ESDTDataV2{TokenName: []byte("semi fungible dynamic"), TokenType: []byte(core.DynamicSFTESDT)}
+	sftDataDynamic := &systemSmartContracts.DCDTDataV2{TokenName: []byte("semi fungible dynamic"), TokenType: []byte(core.DynamicSFTDCDT)}
 	sftMarshalledDataDynamic, _ := getMarshalizer().Marshal(sftDataDynamic)
 	_ = acc.SaveKeyValue(sftTokenDynamic, sftMarshalledDataDynamic)
 
-	nftData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("non fungible"), TokenType: []byte(core.NonFungibleESDT)}
+	nftData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("non fungible"), TokenType: []byte(core.NonFungibleDCDT)}
 	nftMarshalledData, _ := getMarshalizer().Marshal(nftData)
 	_ = acc.SaveKeyValue(nftToken, nftMarshalledData)
 
-	nftData2 := &systemSmartContracts.ESDTDataV2{TokenName: []byte("non fungible v2"), TokenType: []byte(core.NonFungibleESDT)}
+	nftData2 := &systemSmartContracts.DCDTDataV2{TokenName: []byte("non fungible v2"), TokenType: []byte(core.NonFungibleDCDT)}
 	nftMarshalledData2, _ := getMarshalizer().Marshal(nftData2)
 	_ = acc.SaveKeyValue(nftTokenV2, nftMarshalledData2)
 
-	nftDataDynamic := &systemSmartContracts.ESDTDataV2{TokenName: []byte("non fungible dynamic"), TokenType: []byte(core.DynamicNFTESDT)}
+	nftDataDynamic := &systemSmartContracts.DCDTDataV2{TokenName: []byte("non fungible dynamic"), TokenType: []byte(core.DynamicNFTDCDT)}
 	nftMarshalledDataDyamic, _ := getMarshalizer().Marshal(nftDataDynamic)
 	_ = acc.SaveKeyValue(nftTokenDynamic, nftMarshalledDataDyamic)
 
-	esdtSuffix := append(esdtToken, acc.AddressBytes()...)
+	dcdtSuffix := append(dcdtToken, acc.AddressBytes()...)
 	nftSuffix := append(nftToken, acc.AddressBytes()...)
 	nftSuffix2 := append(nftTokenV2, acc.AddressBytes()...)
 	nftDynamicSuffix := append(nftTokenDynamic, acc.AddressBytes()...)
@@ -1200,7 +1200,7 @@ func TestNode_GetAllIssuedESDTs(t *testing.T) {
 		&trieMock.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, _ common.KeyBuilder, tlp common.TrieLeafParser) error {
 				go func() {
-					trieLeaf, _ := tlp.ParseLeaf(esdtToken, append(marshalledData, esdtSuffix...), core.NotSpecified)
+					trieLeaf, _ := tlp.ParseLeaf(dcdtToken, append(marshalledData, dcdtSuffix...), core.NotSpecified)
 					leavesChannels.LeavesChan <- trieLeaf
 
 					trieLeaf, _ = tlp.ParseLeaf(sftToken, append(sftMarshalledData, sftSuffix...), core.NotSpecified)
@@ -1255,61 +1255,61 @@ func TestNode_GetAllIssuedESDTs(t *testing.T) {
 		node.WithProcessComponents(processComponents),
 	)
 
-	value, err := n.GetAllIssuedESDTs(core.FungibleESDT, context.Background())
+	value, err := n.GetAllIssuedDCDTs(core.FungibleDCDT, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 1, len(value))
-	assert.Equal(t, string(esdtToken), value[0])
+	assert.Equal(t, string(dcdtToken), value[0])
 
-	value, err = n.GetAllIssuedESDTs(core.SemiFungibleESDT, context.Background())
+	value, err = n.GetAllIssuedDCDTs(core.SemiFungibleDCDT, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 2, len(value))
 	assert.Equal(t, string(sftToken), value[0])
 	assert.Equal(t, string(sftTokenDynamic), value[1])
 
-	value, err = n.GetAllIssuedESDTs(core.NonFungibleESDT, context.Background())
+	value, err = n.GetAllIssuedDCDTs(core.NonFungibleDCDT, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 3, len(value)) // for both versions
 	assert.Equal(t, string(nftToken), value[0])
 	assert.Equal(t, string(nftTokenV2), value[1])
 	assert.Equal(t, string(nftTokenDynamic), value[2])
 
-	value, err = n.GetAllIssuedESDTs(core.NonFungibleESDTv2, context.Background())
+	value, err = n.GetAllIssuedDCDTs(core.NonFungibleDCDTv2, context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 3, len(value)) // for both versions
 	assert.Equal(t, string(nftToken), value[0])
 	assert.Equal(t, string(nftTokenV2), value[1])
 	assert.Equal(t, string(nftTokenDynamic), value[2])
 
-	value, err = n.GetAllIssuedESDTs("", context.Background())
+	value, err = n.GetAllIssuedDCDTs("", context.Background())
 	assert.Nil(t, err)
 	assert.Equal(t, 6, len(value))
 }
 
-func TestNode_GetESDTsWithRole(t *testing.T) {
+func TestNode_GetDCDTsWithRole(t *testing.T) {
 	t.Parallel()
 
 	addrBytes := testscommon.TestPubKeyAlice
 	acc := createAcc(addrBytes)
-	esdtToken := []byte("TCK-RANDOM")
+	dcdtToken := []byte("TCK-RANDOM")
 
-	specialRoles := []*systemSmartContracts.ESDTRoles{
+	specialRoles := []*systemSmartContracts.DCDTRoles{
 		{
 			Address: addrBytes,
-			Roles:   [][]byte{[]byte(core.ESDTRoleNFTAddQuantity), []byte(core.ESDTRoleLocalMint)},
+			Roles:   [][]byte{[]byte(core.DCDTRoleNFTAddQuantity), []byte(core.DCDTRoleLocalMint)},
 		},
 	}
 
-	esdtData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleESDT), SpecialRoles: specialRoles}
-	marshalledData, _ := getMarshalizer().Marshal(esdtData)
-	_ = acc.SaveKeyValue(esdtToken, marshalledData)
+	dcdtData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleDCDT), SpecialRoles: specialRoles}
+	marshalledData, _ := getMarshalizer().Marshal(dcdtData)
+	_ = acc.SaveKeyValue(dcdtToken, marshalledData)
 
-	esdtSuffix := append(esdtToken, acc.AddressBytes()...)
+	dcdtSuffix := append(dcdtToken, acc.AddressBytes()...)
 
 	acc.SetDataTrie(
 		&trieMock.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, _ common.KeyBuilder, tlp common.TrieLeafParser) error {
 				go func() {
-					trieLeaf, _ := tlp.ParseLeaf(esdtToken, append(marshalledData, esdtSuffix...), core.NotSpecified)
+					trieLeaf, _ := tlp.ParseLeaf(dcdtToken, append(marshalledData, dcdtSuffix...), core.NotSpecified)
 					leavesChannels.LeavesChan <- trieLeaf
 					close(leavesChannels.LeavesChan)
 					leavesChannels.ErrChan.Close()
@@ -1350,45 +1350,45 @@ func TestNode_GetESDTsWithRole(t *testing.T) {
 		node.WithProcessComponents(processComponents),
 	)
 
-	tokenResult, _, err := n.GetESDTsWithRole(testscommon.TestAddressAlice, core.ESDTRoleNFTAddQuantity, api.AccountQueryOptions{}, context.Background())
+	tokenResult, _, err := n.GetDCDTsWithRole(testscommon.TestAddressAlice, core.DCDTRoleNFTAddQuantity, api.AccountQueryOptions{}, context.Background())
 	require.NoError(t, err)
 	require.Equal(t, 1, len(tokenResult))
-	require.Equal(t, string(esdtToken), tokenResult[0])
+	require.Equal(t, string(dcdtToken), tokenResult[0])
 
-	tokenResult, _, err = n.GetESDTsWithRole(testscommon.TestAddressAlice, core.ESDTRoleLocalMint, api.AccountQueryOptions{}, context.Background())
+	tokenResult, _, err = n.GetDCDTsWithRole(testscommon.TestAddressAlice, core.DCDTRoleLocalMint, api.AccountQueryOptions{}, context.Background())
 	require.NoError(t, err)
 	require.Equal(t, 1, len(tokenResult))
-	require.Equal(t, string(esdtToken), tokenResult[0])
+	require.Equal(t, string(dcdtToken), tokenResult[0])
 
-	tokenResult, _, err = n.GetESDTsWithRole(testscommon.TestAddressAlice, core.ESDTRoleNFTCreate, api.AccountQueryOptions{}, context.Background())
+	tokenResult, _, err = n.GetDCDTsWithRole(testscommon.TestAddressAlice, core.DCDTRoleNFTCreate, api.AccountQueryOptions{}, context.Background())
 	require.NoError(t, err)
 	require.Len(t, tokenResult, 0)
 }
 
-func TestNode_GetESDTsRoles(t *testing.T) {
+func TestNode_GetDCDTsRoles(t *testing.T) {
 	t.Parallel()
 
 	addrBytes := testscommon.TestPubKeyAlice
 	acc := createAcc(addrBytes)
-	esdtToken := []byte("TCK-RANDOM")
+	dcdtToken := []byte("TCK-RANDOM")
 
-	specialRoles := []*systemSmartContracts.ESDTRoles{
+	specialRoles := []*systemSmartContracts.DCDTRoles{
 		{
 			Address: addrBytes,
-			Roles:   [][]byte{[]byte(core.ESDTRoleNFTAddQuantity), []byte(core.ESDTRoleLocalMint)},
+			Roles:   [][]byte{[]byte(core.DCDTRoleNFTAddQuantity), []byte(core.DCDTRoleLocalMint)},
 		},
 	}
 
-	esdtData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleESDT), SpecialRoles: specialRoles}
-	marshalledData, _ := getMarshalizer().Marshal(esdtData)
+	dcdtData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.FungibleDCDT), SpecialRoles: specialRoles}
+	marshalledData, _ := getMarshalizer().Marshal(dcdtData)
 
-	esdtSuffix := append(esdtToken, acc.AddressBytes()...)
+	dcdtSuffix := append(dcdtToken, acc.AddressBytes()...)
 
 	acc.SetDataTrie(
 		&trieMock.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, _ common.KeyBuilder, tlp common.TrieLeafParser) error {
 				go func() {
-					trieLeaf, _ := tlp.ParseLeaf(esdtToken, append(marshalledData, esdtSuffix...), core.NotSpecified)
+					trieLeaf, _ := tlp.ParseLeaf(dcdtToken, append(marshalledData, dcdtSuffix...), core.NotSpecified)
 					leavesChannels.LeavesChan <- trieLeaf
 					close(leavesChannels.LeavesChan)
 					leavesChannels.ErrChan.Close()
@@ -1429,10 +1429,10 @@ func TestNode_GetESDTsRoles(t *testing.T) {
 		node.WithProcessComponents(processComponents),
 	)
 
-	tokenResult, _, err := n.GetESDTsRoles(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
+	tokenResult, _, err := n.GetDCDTsRoles(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	require.NoError(t, err)
 	require.Equal(t, map[string][]string{
-		string(esdtToken): {core.ESDTRoleNFTAddQuantity, core.ESDTRoleLocalMint},
+		string(dcdtToken): {core.DCDTRoleNFTAddQuantity, core.DCDTRoleLocalMint},
 	}, tokenResult)
 }
 
@@ -1441,19 +1441,19 @@ func TestNode_GetNFTTokenIDsRegisteredByAddress(t *testing.T) {
 
 	addrBytes := testscommon.TestPubKeyAlice
 	acc := createAcc(addrBytes)
-	esdtToken := []byte("TCK-RANDOM")
+	dcdtToken := []byte("TCK-RANDOM")
 
-	esdtData := &systemSmartContracts.ESDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.SemiFungibleESDT), OwnerAddress: addrBytes}
-	marshalledData, _ := getMarshalizer().Marshal(esdtData)
-	_ = acc.SaveKeyValue(esdtToken, marshalledData)
+	dcdtData := &systemSmartContracts.DCDTDataV2{TokenName: []byte("fungible"), TokenType: []byte(core.SemiFungibleDCDT), OwnerAddress: addrBytes}
+	marshalledData, _ := getMarshalizer().Marshal(dcdtData)
+	_ = acc.SaveKeyValue(dcdtToken, marshalledData)
 
-	esdtSuffix := append(esdtToken, acc.AddressBytes()...)
+	dcdtSuffix := append(dcdtToken, acc.AddressBytes()...)
 
 	acc.SetDataTrie(
 		&trieMock.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, _ common.KeyBuilder, tlp common.TrieLeafParser) error {
 				go func() {
-					trieLeaf, _ := tlp.ParseLeaf(esdtToken, append(marshalledData, esdtSuffix...), core.NotSpecified)
+					trieLeaf, _ := tlp.ParseLeaf(dcdtToken, append(marshalledData, dcdtSuffix...), core.NotSpecified)
 					leavesChannels.LeavesChan <- trieLeaf
 					close(leavesChannels.LeavesChan)
 					leavesChannels.ErrChan.Close()
@@ -1498,7 +1498,7 @@ func TestNode_GetNFTTokenIDsRegisteredByAddress(t *testing.T) {
 	tokenResult, _, err := n.GetNFTTokenIDsRegisteredByAddress(testscommon.TestAddressAlice, api.AccountQueryOptions{}, context.Background())
 	require.NoError(t, err)
 	require.Equal(t, 1, len(tokenResult))
-	require.Equal(t, string(esdtToken), tokenResult[0])
+	require.Equal(t, string(dcdtToken), tokenResult[0])
 }
 
 func TestNode_GetNFTTokenIDsRegisteredByAddressContextShouldTimeout(t *testing.T) {
@@ -3050,7 +3050,7 @@ func TestValidateTransaction_ShouldAdaptAccountNotFoundError(t *testing.T) {
 		}
 
 		err := n.ValidateTransaction(tx)
-		require.Equal(t, "insufficient funds for address erd1xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycspcqad6", err.Error())
+		require.Equal(t, "insufficient funds for address drt1xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycsuyh7wy", err.Error())
 	})
 	t.Run("relayed tx v3, no funds for sender", func(t *testing.T) {
 		tx := &transaction.Transaction{
@@ -3063,7 +3063,7 @@ func TestValidateTransaction_ShouldAdaptAccountNotFoundError(t *testing.T) {
 			ChainID:          []byte("chainID"),
 		}
 		err := n.ValidateTransaction(tx)
-		require.Equal(t, "insufficient funds for address erd1xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycspcqad6", err.Error())
+		require.Equal(t, "insufficient funds for address drt1xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycnzvf3xycsuyh7wy", err.Error())
 	})
 	t.Run("relayed tx v3, no funds for relayer", func(t *testing.T) {
 		tx := &transaction.Transaction{
@@ -3095,7 +3095,7 @@ func TestValidateTransaction_ShouldAdaptAccountNotFoundError(t *testing.T) {
 		)
 
 		err := nLocal.ValidateTransaction(tx)
-		require.Equal(t, "insufficient funds for address erd1xgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeqvw86cj", err.Error())
+		require.Equal(t, "insufficient funds for address drt1xgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeryv3jxgeq3jsemv", err.Error())
 	})
 }
 
@@ -4492,7 +4492,7 @@ func TestNode_IsDataTrieMigrated(t *testing.T) {
 			node.WithCoreComponents(getDefaultCoreComponents()),
 		)
 
-		isMigrated, err := n.IsDataTrieMigrated("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l", api.AccountQueryOptions{})
+		isMigrated, err := n.IsDataTrieMigrated("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf", api.AccountQueryOptions{})
 		assert.False(t, isMigrated)
 		assert.Equal(t, expectedErr, err)
 	})
@@ -4512,7 +4512,7 @@ func TestNode_IsDataTrieMigrated(t *testing.T) {
 			node.WithCoreComponents(getDefaultCoreComponents()),
 		)
 
-		isMigrated, err := n.IsDataTrieMigrated("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l", api.AccountQueryOptions{})
+		isMigrated, err := n.IsDataTrieMigrated("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf", api.AccountQueryOptions{})
 		assert.False(t, isMigrated)
 		assert.True(t, strings.Contains(err.Error(), "wrong type assertion"))
 	})
@@ -4539,7 +4539,7 @@ func TestNode_IsDataTrieMigrated(t *testing.T) {
 			node.WithCoreComponents(getDefaultCoreComponents()),
 		)
 
-		isMigrated, err := n.IsDataTrieMigrated("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l", api.AccountQueryOptions{})
+		isMigrated, err := n.IsDataTrieMigrated("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf", api.AccountQueryOptions{})
 		assert.False(t, isMigrated)
 		assert.Nil(t, err)
 	})
@@ -4566,18 +4566,18 @@ func TestNode_IsDataTrieMigrated(t *testing.T) {
 			node.WithCoreComponents(getDefaultCoreComponents()),
 		)
 
-		isMigrated, err := n.IsDataTrieMigrated("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l", api.AccountQueryOptions{})
+		isMigrated, err := n.IsDataTrieMigrated("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf", api.AccountQueryOptions{})
 		assert.True(t, isMigrated)
 		assert.Nil(t, err)
 	})
 }
 
-func TestGetESDTSupplyError(t *testing.T) {
+func TestGetDCDTSupplyError(t *testing.T) {
 	t.Parallel()
 
 	localErr := errors.New("local error")
 	historyProc := &dblookupext.HistoryRepositoryStub{
-		GetESDTSupplyCalled: func(token string) (*esdtSupply.SupplyESDT, error) {
+		GetDCDTSupplyCalled: func(token string) (*dcdtSupply.SupplyDCDT, error) {
 			return nil, localErr
 		},
 	}
@@ -4592,12 +4592,12 @@ func TestGetESDTSupplyError(t *testing.T) {
 	require.Equal(t, localErr, err)
 }
 
-func TestGetESDTSupply(t *testing.T) {
+func TestGetDCDTSupply(t *testing.T) {
 	t.Parallel()
 
 	historyProc := &dblookupext.HistoryRepositoryStub{
-		GetESDTSupplyCalled: func(token string) (*esdtSupply.SupplyESDT, error) {
-			return &esdtSupply.SupplyESDT{
+		GetDCDTSupplyCalled: func(token string) (*dcdtSupply.SupplyDCDT, error) {
+			return &dcdtSupply.SupplyDCDT{
 				Supply: big.NewInt(100),
 				Minted: big.NewInt(15),
 			}, nil
@@ -4613,7 +4613,7 @@ func TestGetESDTSupply(t *testing.T) {
 	supply, err := n.GetTokenSupply("my-token")
 	require.Nil(t, err)
 
-	require.Equal(t, &api.ESDTSupply{
+	require.Equal(t, &api.DCDTSupply{
 		Supply: "100",
 		Burned: "0",
 		Minted: "15",

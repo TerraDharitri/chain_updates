@@ -5,11 +5,11 @@
 #		Copy the generated files to the testnet folder
 #		Copy configuration for the seednode, nodes, proxy and txgen into the testnet folder
 
-export MULTIVERSXTESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export DHARITRITESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-source "$MULTIVERSXTESTNETSCRIPTSDIR/variables.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/config.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/build.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/variables.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/config.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/build.sh"
 
 prepareFolders
 

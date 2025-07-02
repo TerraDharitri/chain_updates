@@ -6,16 +6,16 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/require"
 )
 
-func TestESDTTransferShouldWork(t *testing.T) {
+func TestDCDTTransferShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -30,14 +30,14 @@ func TestESDTTransferShouldWork(t *testing.T) {
 	rcvAddr := []byte("12345678901234567890123456789011")
 	require.Equal(t, uint32(1), testContext.ShardCoordinator.ComputeId(rcvAddr))
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasPrice := uint64(10)
 	gasLimit := uint64(40)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
@@ -46,10 +46,10 @@ func TestESDTTransferShouldWork(t *testing.T) {
 	require.Nil(t, err)
 
 	expectedReceiverBalance := big.NewInt(100)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 }
 
-func TestMultiESDTNFTTransferViaRelayedV2(t *testing.T) {
+func TestMultiDCDTNFTTransferViaRelayedV2(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -73,13 +73,13 @@ func TestMultiESDTNFTTransferViaRelayedV2(t *testing.T) {
 	_, _ = vm.CreateAccount(sh1Context.Accounts, relayerSh1, 0, big.NewInt(1000000000))
 
 	// create the nfts, add the liquidity to the system accounts and check for balances
-	utils.CreateAccountWithESDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID1, 1, big.NewInt(1), uint32(core.NonFungible))
-	utils.CreateAccountWithESDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID2, 1, big.NewInt(1), uint32(core.NonFungible))
+	utils.CreateAccountWithDCDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID1, 1, big.NewInt(1), uint32(core.NonFungible))
+	utils.CreateAccountWithDCDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID2, 1, big.NewInt(1), uint32(core.NonFungible))
 
 	sh0Accnt, _ := sh0Context.Accounts.LoadAccount(sh0Addr)
 	sh1Accnt, _ := sh1Context.Accounts.LoadAccount(sh1Addr)
 
-	transfers := []*utils.TransferESDTData{
+	transfers := []*utils.TransferDCDTData{
 		{
 			Token: tokenID1,
 			Nonce: 1,
@@ -114,10 +114,10 @@ func TestMultiESDTNFTTransferViaRelayedV2(t *testing.T) {
 	}
 	// check the balances after the transfer, as well as the liquidity
 	utils.ProcessSCRResult(t, sh1Context, shard1Scr, vmcommon.Ok, nil)
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
 
 	//
 	// Step 2: transfer the NFTs sh1->sh0 via multi transfer with a shard 1 relayer
@@ -143,10 +143,10 @@ func TestMultiESDTNFTTransferViaRelayedV2(t *testing.T) {
 	}
 	// check the balances after the transfer, as well as the liquidity
 	utils.ProcessSCRResult(t, sh0Context, shard0Scr, vmcommon.Ok, nil)
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
 
 	//
 	// Step 3: transfer the NFTs sh0->s1 via multi transfer with a shard 1 relayer
@@ -172,10 +172,10 @@ func TestMultiESDTNFTTransferViaRelayedV2(t *testing.T) {
 	}
 	// check the balances after the transfer, as well as the liquidity
 	utils.ProcessSCRResult(t, sh1Context, shard1Scr, vmcommon.Ok, nil)
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, sh1Addr, tokenID1, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID1, 1, big.NewInt(1))
 }
 
 func createRelayedV2FromInnerTx(relayerNonce uint64, relayer []byte, innerTx *transaction.Transaction) *transaction.Transaction {

@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 func getReflectValue(original reflect.Value, fieldName string) (value reflect.Value, err error) {

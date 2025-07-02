@@ -3,13 +3,13 @@ package broadcast
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/consensus/broadcast/shared"
-	"github.com/multiversx/mx-chain-go/sharding"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus/broadcast/shared"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 // HeaderDataForValidator -

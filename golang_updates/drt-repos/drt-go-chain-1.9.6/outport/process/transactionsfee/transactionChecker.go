@@ -6,18 +6,18 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-go/common"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
-func (tep *transactionsFeeProcessor) isESDTOperationWithSCCall(tx data.TransactionHandler) bool {
+func (tep *transactionsFeeProcessor) isDCDTOperationWithSCCall(tx data.TransactionHandler) bool {
 	res := tep.dataFieldParser.Parse(tx.GetData(), tx.GetSndAddr(), tx.GetRcvAddr(), tep.shardCoordinator.NumberOfShards())
 
-	isESDTTransferOperation := res.Operation == core.BuiltInFunctionESDTTransfer ||
-		res.Operation == core.BuiltInFunctionESDTNFTTransfer || res.Operation == core.BuiltInFunctionMultiESDTNFTTransfer
+	isDCDTTransferOperation := res.Operation == core.BuiltInFunctionDCDTTransfer ||
+		res.Operation == core.BuiltInFunctionDCDTNFTTransfer || res.Operation == core.BuiltInFunctionMultiDCDTNFTTransfer
 
 	isReceiverSC := core.IsSmartContractAddress(tx.GetRcvAddr())
 	hasFunction := res.Function != ""
@@ -26,7 +26,7 @@ func (tep *transactionsFeeProcessor) isESDTOperationWithSCCall(tx data.Transacti
 	}
 
 	if !bytes.Equal(tx.GetSndAddr(), tx.GetRcvAddr()) {
-		return isESDTTransferOperation && isReceiverSC && hasFunction
+		return isDCDTTransferOperation && isReceiverSC && hasFunction
 	}
 
 	if len(res.Receivers) == 0 {
@@ -35,7 +35,7 @@ func (tep *transactionsFeeProcessor) isESDTOperationWithSCCall(tx data.Transacti
 
 	isReceiverSC = core.IsSmartContractAddress(res.Receivers[0])
 
-	return isESDTTransferOperation && isReceiverSC && hasFunction
+	return isDCDTTransferOperation && isReceiverSC && hasFunction
 }
 
 func isSCRForSenderWithRefund(scr *smartContractResult.SmartContractResult, txHashHex string, tx data.TransactionHandler) bool {

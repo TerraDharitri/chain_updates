@@ -6,18 +6,18 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts/shared"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/state"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts/shared"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 var (
@@ -41,7 +41,7 @@ type ArgsAlteredAccountsProvider struct {
 	ShardCoordinator       sharding.Coordinator
 	AddressConverter       core.PubkeyConverter
 	AccountsDB             state.AccountsAdapter
-	EsdtDataStorageHandler vmcommon.ESDTNFTStorageHandler
+	DcdtDataStorageHandler vmcommon.DCDTNFTStorageHandler
 }
 
 type alteredAccountsProvider struct {
@@ -49,7 +49,7 @@ type alteredAccountsProvider struct {
 	addressConverter       core.PubkeyConverter
 	accountsDB             state.AccountsAdapter
 	tokensProc             *tokensProcessor
-	esdtDataStorageHandler vmcommon.ESDTNFTStorageHandler
+	dcdtDataStorageHandler vmcommon.DCDTNFTStorageHandler
 	mutExtractAccounts     sync.Mutex
 }
 
@@ -65,7 +65,7 @@ func NewAlteredAccountsProvider(args ArgsAlteredAccountsProvider) (*alteredAccou
 		addressConverter:       args.AddressConverter,
 		accountsDB:             args.AccountsDB,
 		tokensProc:             newTokensProcessor(args.ShardCoordinator),
-		esdtDataStorageHandler: args.EsdtDataStorageHandler,
+		dcdtDataStorageHandler: args.DcdtDataStorageHandler,
 	}, nil
 }
 
@@ -85,7 +85,7 @@ func (aap *alteredAccountsProvider) ExtractAlteredAccountsFromPool(txPool *outpo
 
 	markedAccounts := make(map[string]*markedAlteredAccount)
 	aap.extractAddressesWithBalanceChange(txPool, markedAccounts)
-	err := aap.tokensProc.extractESDTAccounts(txPool, markedAccounts)
+	err := aap.tokensProc.extractDCDTAccounts(txPool, markedAccounts)
 	if err != nil {
 		return nil, err
 	}
@@ -200,7 +200,7 @@ func (aap *alteredAccountsProvider) addTokensDataForMarkedAccount(
 	nonce := markedAccountToken.nonce
 	tokenID := markedAccountToken.identifier
 
-	storageKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier)
+	storageKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier)
 	storageKey = append(storageKey, []byte(tokenID)...)
 
 	userAccountVmCommon, ok := userAccount.(vmcommon.UserAccountHandler)
@@ -208,22 +208,22 @@ func (aap *alteredAccountsProvider) addTokensDataForMarkedAccount(
 		return fmt.Errorf("%w for address %s", errCannotCastToVmCommonUserAccountHandler, encodedAddress)
 	}
 
-	esdtToken, _, err := aap.esdtDataStorageHandler.GetESDTNFTTokenOnDestination(userAccountVmCommon, storageKey, nonce)
+	dcdtToken, _, err := aap.dcdtDataStorageHandler.GetDCDTNFTTokenOnDestination(userAccountVmCommon, storageKey, nonce)
 	if err != nil {
 		return err
 	}
-	if esdtToken == nil {
-		log.Warn("alteredAccountsProvider: nil esdt/nft token", "address", encodedAddress, "token ID", tokenID, "nonce", nonce)
+	if dcdtToken == nil {
+		log.Warn("alteredAccountsProvider: nil dcdt/nft token", "address", encodedAddress, "token ID", tokenID, "nonce", nonce)
 		return nil
 	}
 
 	accountTokenData := &alteredAccount.AccountTokenData{
 		Identifier: tokenID,
-		Balance:    esdtToken.Value.String(),
+		Balance:    dcdtToken.Value.String(),
 		Nonce:      nonce,
-		Properties: hex.EncodeToString(esdtToken.Properties),
-		MetaData:   aap.convertMetaData(esdtToken.TokenMetaData),
-		Type:       getTokenType(esdtToken.Type, nonce),
+		Properties: hex.EncodeToString(dcdtToken.Properties),
+		MetaData:   aap.convertMetaData(dcdtToken.TokenMetaData),
+		Type:       getTokenType(dcdtToken.Type, nonce),
 	}
 	if options.WithAdditionalOutportData {
 		accountTokenData.AdditionalData = &alteredAccount.AdditionalAccountTokenData{
@@ -239,15 +239,15 @@ func (aap *alteredAccountsProvider) addTokensDataForMarkedAccount(
 
 func getTokenType(tokenType uint32, tokenNonce uint64) string {
 	isNotFungible := tokenNonce != 0
-	tokenTypeNotSet := isNotFungible && core.ESDTType(tokenType) == core.NonFungible
+	tokenTypeNotSet := isNotFungible && core.DCDTType(tokenType) == core.NonFungible
 	if tokenTypeNotSet {
 		return ""
 	}
 
-	return core.ESDTType(tokenType).String()
+	return core.DCDTType(tokenType).String()
 }
 
-func (aap *alteredAccountsProvider) convertMetaData(metaData *esdt.MetaData) *alteredAccount.TokenMetaData {
+func (aap *alteredAccountsProvider) convertMetaData(metaData *dcdt.MetaData) *alteredAccount.TokenMetaData {
 	if metaData == nil {
 		return nil
 	}
@@ -387,8 +387,8 @@ func checkArgAlteredAccountsProvider(args ArgsAlteredAccountsProvider) error {
 	if check.IfNil(args.AccountsDB) {
 		return ErrNilAccountsDB
 	}
-	if check.IfNil(args.EsdtDataStorageHandler) {
-		return ErrNilESDTDataStorageHandler
+	if check.IfNil(args.DcdtDataStorageHandler) {
+		return ErrNilDCDTDataStorageHandler
 	}
 
 	return nil

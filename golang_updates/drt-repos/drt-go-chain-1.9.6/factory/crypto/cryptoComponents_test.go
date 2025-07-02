@@ -5,13 +5,13 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-go/config"
-	errErd "github.com/multiversx/mx-chain-go/errors"
-	cryptoComp "github.com/multiversx/mx-chain-go/factory/crypto"
-	"github.com/multiversx/mx-chain-go/factory/mock"
-	integrationTestsMock "github.com/multiversx/mx-chain-go/integrationTests/mock"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	errDrt "github.com/TerraDharitri/drt-go-chain/errors"
+	cryptoComp "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	"github.com/TerraDharitri/drt-go-chain/factory/mock"
+	integrationTestsMock "github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -22,7 +22,7 @@ func TestNewCryptoComponentsFactory_NilCoreComponentsHandlerShouldErr(t *testing
 	args := componentsMock.GetCryptoArgs(nil)
 	ccf, err := cryptoComp.NewCryptoComponentsFactory(args)
 	require.Nil(t, ccf)
-	require.Equal(t, errErd.ErrNilCoreComponents, err)
+	require.Equal(t, errDrt.ErrNilCoreComponents, err)
 }
 
 func TestNewCryptoComponentsFactory_NilValidatorPublicKeyConverterShouldErr(t *testing.T) {
@@ -38,7 +38,7 @@ func TestNewCryptoComponentsFactory_NilValidatorPublicKeyConverterShouldErr(t *t
 
 	ccf, err := cryptoComp.NewCryptoComponentsFactory(args)
 	require.Nil(t, ccf)
-	require.Equal(t, errErd.ErrNilPubKeyConverter, err)
+	require.Equal(t, errDrt.ErrNilPubKeyConverter, err)
 }
 
 func TestNewCryptoComponentsFactory_NilPemFileShouldErr(t *testing.T) {
@@ -49,7 +49,7 @@ func TestNewCryptoComponentsFactory_NilPemFileShouldErr(t *testing.T) {
 	args.ValidatorKeyPemFileName = ""
 	ccf, err := cryptoComp.NewCryptoComponentsFactory(args)
 	require.Nil(t, ccf)
-	require.Equal(t, errErd.ErrNilPath, err)
+	require.Equal(t, errDrt.ErrNilPath, err)
 }
 
 func TestCryptoComponentsFactory_CreateCryptoParamsNilKeyLoaderShouldErr(t *testing.T) {
@@ -61,7 +61,7 @@ func TestCryptoComponentsFactory_CreateCryptoParamsNilKeyLoaderShouldErr(t *test
 	ccf, err := cryptoComp.NewCryptoComponentsFactory(args)
 
 	require.Nil(t, ccf)
-	require.Equal(t, errErd.ErrNilKeyLoader, err)
+	require.Equal(t, errDrt.ErrNilKeyLoader, err)
 }
 
 func TestNewCryptoComponentsFactory_OkValsShouldWork(t *testing.T) {
@@ -95,7 +95,7 @@ func TestNewCryptoComponentsFactory_CreateInvalidConsensusTypeShouldErr(t *testi
 
 	cc, err := ccf.Create()
 	require.Nil(t, cc)
-	require.Equal(t, err, errErd.ErrInvalidConsensusConfig)
+	require.Equal(t, err, errDrt.ErrInvalidConsensusConfig)
 }
 
 func TestCryptoComponentsFactory_CreateShouldErrDueToMissingConfig(t *testing.T) {
@@ -129,7 +129,7 @@ func TestCryptoComponentsFactory_CreateInvalidMultiSigHasherShouldErr(t *testing
 
 	cspf, err := ccf.Create()
 	require.Nil(t, cspf)
-	require.Equal(t, errErd.ErrMultiSigHasherMissmatch, err)
+	require.Equal(t, errDrt.ErrMultiSigHasherMissmatch, err)
 }
 
 func TestCryptoComponentsFactory_CreateOK(t *testing.T) {
@@ -186,7 +186,7 @@ func TestCryptoComponentsFactory_CreateSingleSignerInvalidConsensusTypeShouldErr
 
 	singleSigner, err := ccf.CreateSingleSigner(false)
 	require.Nil(t, singleSigner)
-	require.Equal(t, errErd.ErrInvalidConsensusConfig, err)
+	require.Equal(t, errDrt.ErrInvalidConsensusConfig, err)
 }
 
 func TestCryptoComponentsFactory_CreateSingleSignerOK(t *testing.T) {
@@ -215,7 +215,7 @@ func TestCryptoComponentsFactory_CreateMultiSignerInvalidConsensusTypeShouldErr(
 
 	multiSigner, err := ccf.CreateMultiSignerContainer(&mock.KeyGenMock{}, false)
 	require.Nil(t, multiSigner)
-	require.Equal(t, errErd.ErrInvalidConsensusConfig, err)
+	require.Equal(t, errDrt.ErrInvalidConsensusConfig, err)
 }
 
 func TestCryptoComponentsFactory_CreateMultiSignerOK(t *testing.T) {
@@ -247,7 +247,7 @@ func TestCryptoComponentsFactory_GetSuiteInvalidConsensusTypeShouldErr(t *testin
 
 	suite, err := ccf.GetSuite()
 	require.Nil(t, suite)
-	require.Equal(t, errErd.ErrInvalidConsensusConfig, err)
+	require.Equal(t, errDrt.ErrInvalidConsensusConfig, err)
 }
 
 func TestCryptoComponentsFactory_GetSuiteOK(t *testing.T) {

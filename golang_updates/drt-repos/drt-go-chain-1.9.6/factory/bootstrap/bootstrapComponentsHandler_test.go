@@ -4,10 +4,10 @@ import (
 	"errors"
 	"testing"
 
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/factory/bootstrap"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

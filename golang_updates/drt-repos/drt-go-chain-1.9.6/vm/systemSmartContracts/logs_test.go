@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/vm/mock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/vm/mock"
 	"github.com/stretchr/testify/require"
 )
 

@@ -8,11 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	apiErrors "github.com/multiversx/mx-chain-go/api/errors"
-	"github.com/multiversx/mx-chain-go/api/logs"
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	apiErrors "github.com/TerraDharitri/drt-go-chain/api/errors"
+	"github.com/TerraDharitri/drt-go-chain/api/logs"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"gopkg.in/go-playground/validator.v8"
 )
 

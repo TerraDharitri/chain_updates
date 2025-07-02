@@ -3,8 +3,8 @@ package mock
 import (
 	"bytes"
 
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/consensus/mock"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	"github.com/TerraDharitri/drt-go-chain/consensus/mock"
 )
 
 // PublicKeyMock -

@@ -3,12 +3,12 @@ package api
 import (
 	"net/http"
 
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/api/logs"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/api/logs"
-	logger "github.com/multiversx/mx-chain-logger-go"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 

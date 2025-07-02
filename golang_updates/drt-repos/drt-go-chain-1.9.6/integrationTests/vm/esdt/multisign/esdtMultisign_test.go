@@ -8,22 +8,22 @@ import (
 	"testing"
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/esdt"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 var vmType = []byte{5, 0}
 var emptyAddress = make([]byte, 32)
-var log = logger.GetOrCreate("integrationtests/vm/esdt")
+var log = logger.GetOrCreate("integrationtests/vm/dcdt")
 
-func TestESDTTransferWithMultisig(t *testing.T) {
+func TestDCDTTransferWithMultisig(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -67,7 +67,7 @@ func TestESDTTransferWithMultisig(t *testing.T) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, numRoundsToPropagateIntraShard, nonce, round)
 	time.Sleep(time.Second)
 
-	// ----- issue ESDT token
+	// ----- issue DCDT token
 	initalSupply := big.NewInt(10000000000)
 	ticker := "TCK"
 	proposeIssueTokenAndTransferFunds(nodes, multisignContractAddress, initalSupply, 0, ticker)
@@ -93,12 +93,12 @@ func TestESDTTransferWithMultisig(t *testing.T) {
 	time.Sleep(time.Second)
 
 	tokenIdentifier := integrationTests.GetTokenIdentifier(nodes, []byte(ticker))
-	esdt.CheckAddressHasTokens(t, multisignContractAddress, nodes, tokenIdentifier, 0, initalSupply.Int64())
+	dcdt.CheckAddressHasTokens(t, multisignContractAddress, nodes, tokenIdentifier, 0, initalSupply.Int64())
 
 	checkCallBackWasSaved(t, nodes, multisignContractAddress)
 
-	// ----- transfer ESDT token
-	destinationAddress, _ := integrationTests.TestAddressPubkeyConverter.Decode("erd1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqqe2rw5")
+	// ----- transfer DCDT token
+	destinationAddress, _ := integrationTests.TestAddressPubkeyConverter.Decode("drt1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqa9aqd2")
 	transferValue := big.NewInt(10)
 	proposeTransferToken(nodes, multisignContractAddress, transferValue, 0, destinationAddress, tokenIdentifier)
 
@@ -123,8 +123,8 @@ func TestESDTTransferWithMultisig(t *testing.T) {
 
 	expectedBalance := big.NewInt(0).Set(initalSupply)
 	expectedBalance.Sub(expectedBalance, transferValue)
-	esdt.CheckAddressHasTokens(t, multisignContractAddress, nodes, tokenIdentifier, 0, expectedBalance.Int64())
-	esdt.CheckAddressHasTokens(t, destinationAddress, nodes, tokenIdentifier, 0, transferValue.Int64())
+	dcdt.CheckAddressHasTokens(t, multisignContractAddress, nodes, tokenIdentifier, 0, expectedBalance.Int64())
+	dcdt.CheckAddressHasTokens(t, destinationAddress, nodes, tokenIdentifier, 0, transferValue.Int64())
 }
 
 func checkCallBackWasSaved(t *testing.T, nodes []*integrationTests.TestProcessorNode, contract []byte) {
@@ -204,11 +204,11 @@ func proposeIssueTokenAndTransferFunds(
 	issuePrice := big.NewInt(1000)
 	multisigParams := []string{
 		"proposeSCCall",
-		hex.EncodeToString(vm.ESDTSCAddress),
+		hex.EncodeToString(vm.DCDTSCAddress),
 		hex.EncodeToString(issuePrice.Bytes()),
 	}
 
-	esdtParams := []string{
+	dcdtParams := []string{
 		hex.EncodeToString([]byte("issue")),
 		hex.EncodeToString(tokenName),
 		hex.EncodeToString([]byte(ticker)),
@@ -230,7 +230,7 @@ func proposeIssueTokenAndTransferFunds(
 		hexEncodedTrue,
 	}
 
-	params := append(multisigParams, esdtParams...)
+	params := append(multisigParams, dcdtParams...)
 	params = append(params, tokenPropertiesParams...)
 	txData := strings.Join(params, "@")
 
@@ -319,13 +319,13 @@ func proposeTransferToken(
 		"00",
 	}
 
-	esdtParams := []string{
-		hex.EncodeToString([]byte("ESDTTransfer")),
+	dcdtParams := []string{
+		hex.EncodeToString([]byte("DCDTTransfer")),
 		hex.EncodeToString(tokenID),
 		hex.EncodeToString(transferValue.Bytes()),
 	}
 
-	params := append(multisigParams, esdtParams...)
+	params := append(multisigParams, dcdtParams...)
 	txData := strings.Join(params, "@")
 
 	integrationTests.CreateAndSendTransaction(nodes[ownerIdx], nodes, big.NewInt(0), multisignContractAddress, txData, 1000000)

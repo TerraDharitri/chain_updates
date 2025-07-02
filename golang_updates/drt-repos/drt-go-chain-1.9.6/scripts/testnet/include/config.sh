@@ -46,7 +46,7 @@ copySeednodeConfig() {
   cp $SEEDNODEDIR/config/* ./seednode/config
   popd
 
-  pushd $MULTIVERSXDIR/cmd/keygenerator
+  pushd $DHARITRIDIR/cmd/keygenerator
 
   if [[ ! -f "p2pKey.pem" ]]; then
       go build

@@ -3,11 +3,11 @@ package nodeDebugFactory
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/debug/factory"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/debug/factory"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 // InterceptorDebugger is the constant string for the debugger

@@ -5,14 +5,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	dataRetrieverMocks "github.com/multiversx/mx-chain-go/dataRetriever/mock"
-	"github.com/multiversx/mx-chain-go/debug"
-	"github.com/multiversx/mx-chain-go/node/mock"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	dataRetrieverTests "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	dataRetrieverMocks "github.com/TerraDharitri/drt-go-chain/dataRetriever/mock"
+	"github.com/TerraDharitri/drt-go-chain/debug"
+	"github.com/TerraDharitri/drt-go-chain/node/mock"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	dataRetrieverTests "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,10 +1,10 @@
 package database
 
 import (
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-storage-go/leveldb"
-	"github.com/multiversx/mx-chain-storage-go/memorydb"
-	"github.com/multiversx/mx-chain-storage-go/sharded"
+	"github.com/TerraDharitri/drt-go-chain-storage/leveldb"
+	"github.com/TerraDharitri/drt-go-chain-storage/memorydb"
+	"github.com/TerraDharitri/drt-go-chain-storage/sharded"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 // MemDB represents the memory database storage. It holds a map of key value pairs

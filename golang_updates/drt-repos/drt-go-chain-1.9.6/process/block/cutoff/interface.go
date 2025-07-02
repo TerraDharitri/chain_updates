@@ -1,6 +1,6 @@
 package cutoff
 
-import "github.com/multiversx/mx-chain-core-go/data"
+import "github.com/TerraDharitri/drt-go-chain-core/data"
 
 // BlockProcessingCutoffHandler defines the actions that a block processing handler has to take care of
 type BlockProcessingCutoffHandler interface {

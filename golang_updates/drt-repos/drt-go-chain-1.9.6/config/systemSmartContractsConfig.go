@@ -2,7 +2,7 @@ package config
 
 // SystemSmartContractsConfig defines the system smart contract configs
 type SystemSmartContractsConfig struct {
-	ESDTSystemSCConfig              ESDTSystemSCConfig
+	DCDTSystemSCConfig              DCDTSystemSCConfig
 	GovernanceSystemSCConfig        GovernanceSystemSCConfig
 	StakingSystemSCConfig           StakingSystemSCConfig
 	DelegationManagerSystemSCConfig DelegationManagerSystemSCConfig
@@ -28,8 +28,8 @@ type StakingSystemSCConfig struct {
 	NodeLimitPercentage                  float64
 }
 
-// ESDTSystemSCConfig defines a set of constant to initialize the esdt system smart contract
-type ESDTSystemSCConfig struct {
+// DCDTSystemSCConfig defines a set of constant to initialize the dcdt system smart contract
+type DCDTSystemSCConfig struct {
 	BaseIssuingCost string
 	OwnerAddress    string
 }

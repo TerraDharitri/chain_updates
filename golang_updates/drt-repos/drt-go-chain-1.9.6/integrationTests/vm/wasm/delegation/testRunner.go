@@ -9,18 +9,18 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	systemVm "github.com/multiversx/mx-chain-go/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	systemVm "github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 var log = logger.GetOrCreate("integrationtests/vm/wasm/delegation")
@@ -90,7 +90,7 @@ func RunDelegationStressTest(
 		_ = node.VMContainer.Close()
 	}()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20MIL eGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20MIL rEWA
 	nodeInitialBalance := big.NewInt(0).Set(totalSupply)
 	nodeInitialBalance.Div(nodeInitialBalance, big.NewInt(2))
 	node.EconomicsData.SetMaxGasLimitPerBlock(1500000000, 0)
@@ -100,7 +100,7 @@ func RunDelegationStressTest(
 	integrationTests.MintAllNodes([]*integrationTests.TestProcessorNode{node}, nodeInitialBalance)
 
 	numAccounts := 100000
-	accountsInitialBalance, _ := big.NewInt(0).SetString("1000000000000000000000", 10) // 1000eGLD
+	accountsInitialBalance, _ := big.NewInt(0).SetString("1000000000000000000000", 10) // 1000rEWA
 	addresses, err := generateAndMintAccounts(node, accountsInitialBalance, numAccounts)
 	if err != nil {
 		return nil, err
@@ -275,7 +275,7 @@ func generateAndMintAccounts(node *integrationTests.TestProcessorNode, initialBa
 }
 
 func doStake(node *integrationTests.TestProcessorNode, addresses [][]byte, scAddress []byte) error {
-	stakeVal, _ := big.NewInt(0).SetString("10000000000000000000", 10) // 10eGLD
+	stakeVal, _ := big.NewInt(0).SetString("10000000000000000000", 10) // 10rEWA
 
 	for _, addr := range addresses {
 		err := doStakeOneAddress(node, addr, stakeVal, scAddress)

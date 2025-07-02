@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/state"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,12 +32,12 @@ func TestNewPubkeyConverter_Bech32ShouldWork(t *testing.T) {
 		config.PubkeyConfig{
 			Length: 32,
 			Type:   "bech32",
-			Hrp:    "erd",
+			Hrp:    "drt",
 		},
 	)
 
 	assert.Nil(t, err)
-	expected, err := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+	expected, err := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 	assert.Nil(t, err)
 	assert.IsType(t, expected, pc)
 }

@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 )
 
 func TestNewProcessorRunnerAndClose(t *testing.T) {

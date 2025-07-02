@@ -10,28 +10,28 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/typeConverters"
-	"github.com/multiversx/mx-chain-core-go/hashing/keccak"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory/containers"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/typeConverters"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/keccak"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 )
 
 var _ process.BlockChainHookHandler = (*BlockChainHookImpl)(nil)
@@ -52,8 +52,8 @@ type ArgBlockChainHook struct {
 	Marshalizer              marshal.Marshalizer
 	Uint64Converter          typeConverters.Uint64ByteSliceConverter
 	BuiltInFunctions         vmcommon.BuiltInFunctionContainer
-	NFTStorageHandler        vmcommon.SimpleESDTNFTStorageHandler
-	GlobalSettingsHandler    vmcommon.ESDTGlobalSettingsHandler
+	NFTStorageHandler        vmcommon.SimpleDCDTNFTStorageHandler
+	GlobalSettingsHandler    vmcommon.DCDTGlobalSettingsHandler
 	CompiledSCPool           storage.Cacher
 	ConfigSCStorage          config.StorageConfig
 	EnableEpochs             config.EnableEpochs
@@ -77,8 +77,8 @@ type BlockChainHookImpl struct {
 	uint64Converter       typeConverters.Uint64ByteSliceConverter
 	builtInFunctions      vmcommon.BuiltInFunctionContainer
 	vmContainer           process.VirtualMachinesContainer
-	nftStorageHandler     vmcommon.SimpleESDTNFTStorageHandler
-	globalSettingsHandler vmcommon.ESDTGlobalSettingsHandler
+	nftStorageHandler     vmcommon.SimpleDCDTNFTStorageHandler
+	globalSettingsHandler vmcommon.DCDTGlobalSettingsHandler
 	enableEpochsHandler   common.EnableEpochsHandler
 	counter               BlockChainHookCounter
 
@@ -194,7 +194,7 @@ func checkForNil(args ArgBlockChainHook) error {
 		return process.ErrNilEpochNotifier
 	}
 	if check.IfNil(args.GlobalSettingsHandler) {
-		return process.ErrNilESDTGlobalSettingsHandler
+		return process.ErrNilDCDTGlobalSettingsHandler
 	}
 	if check.IfNil(args.EnableEpochsHandler) {
 		return process.ErrNilEnableEpochsHandler
@@ -659,66 +659,66 @@ func (bh *BlockChainHookImpl) GetAllState(_ []byte) (map[string][]byte, error) {
 	return nil, nil
 }
 
-// GetESDTToken returns the unmarshalled esdt data for the given key
-func (bh *BlockChainHookImpl) GetESDTToken(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error) {
+// GetDCDTToken returns the unmarshalled dcdt data for the given key
+func (bh *BlockChainHookImpl) GetDCDTToken(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error) {
 	userAcc, err := bh.GetUserAccount(address)
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(0)}
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(0)}
 	if err == state.ErrAccNotFound {
-		return esdtData, nil
+		return dcdtData, nil
 	}
 	if err != nil {
 		return nil, err
 	}
 
-	esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(tokenID))
+	dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(tokenID))
 	if !bh.enableEpochsHandler.IsFlagEnabled(common.OptimizeNFTStoreFlag) {
-		return bh.returnESDTTokenByLegacyMethod(userAcc, esdtData, esdtTokenKey, nonce)
+		return bh.returnDCDTTokenByLegacyMethod(userAcc, dcdtData, dcdtTokenKey, nonce)
 	}
 
-	esdtData, _, err = bh.nftStorageHandler.GetESDTNFTTokenOnDestination(userAcc, esdtTokenKey, nonce)
+	dcdtData, _, err = bh.nftStorageHandler.GetDCDTNFTTokenOnDestination(userAcc, dcdtTokenKey, nonce)
 	if err != nil {
 		return nil, err
 	}
 
-	return esdtData, nil
+	return dcdtData, nil
 }
 
 // IsPaused returns true if the transfers for the given token ID are paused
 func (bh *BlockChainHookImpl) IsPaused(tokenID []byte) bool {
-	esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(tokenID))
-	return bh.globalSettingsHandler.IsPaused(esdtTokenKey)
+	dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(tokenID))
+	return bh.globalSettingsHandler.IsPaused(dcdtTokenKey)
 }
 
 // IsLimitedTransfer returns true if the transfers
 func (bh *BlockChainHookImpl) IsLimitedTransfer(tokenID []byte) bool {
-	esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(tokenID))
-	return bh.globalSettingsHandler.IsLimitedTransfer(esdtTokenKey)
+	dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(tokenID))
+	return bh.globalSettingsHandler.IsLimitedTransfer(dcdtTokenKey)
 }
 
-func (bh *BlockChainHookImpl) returnESDTTokenByLegacyMethod(
+func (bh *BlockChainHookImpl) returnDCDTTokenByLegacyMethod(
 	userAcc vmcommon.UserAccountHandler,
-	esdtData *esdt.ESDigitalToken,
-	esdtTokenKey []byte,
+	dcdtData *dcdt.DCDigitalToken,
+	dcdtTokenKey []byte,
 	nonce uint64,
-) (*esdt.ESDigitalToken, error) {
+) (*dcdt.DCDigitalToken, error) {
 	if nonce > 0 {
-		esdtTokenKey = append(esdtTokenKey, big.NewInt(0).SetUint64(nonce).Bytes()...)
+		dcdtTokenKey = append(dcdtTokenKey, big.NewInt(0).SetUint64(nonce).Bytes()...)
 	}
 
-	value, _, err := userAcc.AccountDataHandler().RetrieveValue(esdtTokenKey)
+	value, _, err := userAcc.AccountDataHandler().RetrieveValue(dcdtTokenKey)
 	if err != nil {
 		return nil, err
 	}
 	if len(value) == 0 {
-		return esdtData, nil
+		return dcdtData, nil
 	}
 
-	err = bh.marshalizer.Unmarshal(esdtData, value)
+	err = bh.marshalizer.Unmarshal(dcdtData, value)
 	if err != nil {
 		return nil, err
 	}
 
-	return esdtData, nil
+	return dcdtData, nil
 }
 
 // NumberOfShards returns the number of shards

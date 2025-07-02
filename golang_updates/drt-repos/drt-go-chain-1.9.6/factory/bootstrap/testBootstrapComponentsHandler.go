@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/sharding"
+	"github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 type testManagedBootstrapComponents struct {

@@ -7,19 +7,19 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts/shared"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/state"
-	"github.com/multiversx/mx-chain-go/testscommon/trie"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts/shared"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 	"github.com/stretchr/testify/require"
 )
 
@@ -59,15 +59,15 @@ func TestNewAlteredAccountsProvider(t *testing.T) {
 		require.Equal(t, ErrNilAccountsDB, err)
 	})
 
-	t.Run("nil esdt data storage handler", func(t *testing.T) {
+	t.Run("nil dcdt data storage handler", func(t *testing.T) {
 		t.Parallel()
 
 		args := getMockArgs()
-		args.EsdtDataStorageHandler = nil
+		args.DcdtDataStorageHandler = nil
 
 		aap, err := NewAlteredAccountsProvider(args)
 		require.Nil(t, aap)
-		require.Equal(t, ErrNilESDTDataStorageHandler, err)
+		require.Equal(t, ErrNilDCDTDataStorageHandler, err)
 	})
 
 	t.Run("should work", func(t *testing.T) {
@@ -152,14 +152,14 @@ func TestAlteredAccountsProvider_ExtractAlteredAccountsFromPool(t *testing.T) {
 	t.Run("should return addresses from scrs, invalid and rewards", testExtractAlteredAccountsFromPoolScrsInvalidRewards)
 	t.Run("should check data from trie", testExtractAlteredAccountsFromPoolTrieDataChecks)
 	t.Run("should error when casting to vm common user account handler", testExtractAlteredAccountsFromPoolShouldReturnErrorWhenCastingToVmCommonUserAccountHandler)
-	t.Run("should include esdt data", testExtractAlteredAccountsFromPoolShouldIncludeESDT)
+	t.Run("should include dcdt data", testExtractAlteredAccountsFromPoolShouldIncludeDCDT)
 	t.Run("should include nft data", testExtractAlteredAccountsFromPoolShouldIncludeNFT)
 	t.Run("should not include receiver if log if nft create", testExtractAlteredAccountsFromPoolShouldNotIncludeReceiverAddressIfNftCreateLog)
 	t.Run("should include receiver from tokens logs", testExtractAlteredAccountsFromPoolShouldIncludeDestinationFromTokensLogsTopics)
-	t.Run("should work when an address has balance changes, esdt and nft", testExtractAlteredAccountsFromPoolAddressHasBalanceChangeEsdtAndfNft)
+	t.Run("should work when an address has balance changes, dcdt and nft", testExtractAlteredAccountsFromPoolAddressHasBalanceChangeDcdtAndfNft)
 	t.Run("should work when an address has multiple nfts with different nonces", testExtractAlteredAccountsFromPoolAddressHasMultipleNfts)
 	t.Run("should work for multi transfer v2", testExtractAlteredAccountsFromPoolMultiTransferEventV2)
-	t.Run("should not return balanceChanged for a receiver on an ESDTTransfer", testExtractAlteredAccountsFromPoolESDTTransferBalanceNotChanged)
+	t.Run("should not return balanceChanged for a receiver on an DCDTTransfer", testExtractAlteredAccountsFromPoolDCDTTransferBalanceNotChanged)
 	t.Run("should return balanceChanged for sender and receiver", testExtractAlteredAccountsFromPoolReceiverShouldHaveBalanceChanged)
 	t.Run("should return balanceChanged only for sender", testExtractAlteredAccountsFromPoolOnlySenderShouldHaveBalanceChanged)
 	t.Run("should return balanceChanged for sender nft create", textExtractAlteredAccountsFromPoolNftCreate)
@@ -512,13 +512,13 @@ func testExtractAlteredAccountsFromPoolScrsInvalidRewards(t *testing.T) {
 func testExtractAlteredAccountsFromPoolShouldReturnErrorWhenCastingToVmCommonUserAccountHandler(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value:      big.NewInt(37),
 		Properties: []byte("ok"),
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -538,7 +538,7 @@ func testExtractAlteredAccountsFromPoolShouldReturnErrorWhenCastingToVmCommonUse
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(0).Bytes(),
@@ -546,7 +546,7 @@ func testExtractAlteredAccountsFromPoolShouldReturnErrorWhenCastingToVmCommonUse
 						},
 						{
 							Address:    []byte("addr"), // other event for the same token, to ensure it isn't added twice
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(0).Bytes(),
@@ -561,16 +561,16 @@ func testExtractAlteredAccountsFromPoolShouldReturnErrorWhenCastingToVmCommonUse
 	require.Nil(t, res)
 }
 
-func testExtractAlteredAccountsFromPoolShouldIncludeESDT(t *testing.T) {
+func testExtractAlteredAccountsFromPoolShouldIncludeDCDT(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value:      big.NewInt(37),
 		Properties: []byte("ok"),
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -590,7 +590,7 @@ func testExtractAlteredAccountsFromPoolShouldIncludeESDT(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(0).Bytes(),
@@ -598,7 +598,7 @@ func testExtractAlteredAccountsFromPoolShouldIncludeESDT(t *testing.T) {
 						},
 						{
 							Address:    []byte("addr"), // other event for the same token, to ensure it isn't added twice
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(0).Bytes(),
@@ -620,23 +620,23 @@ func testExtractAlteredAccountsFromPoolShouldIncludeESDT(t *testing.T) {
 		Nonce:      0,
 		Properties: "6f6b",
 		MetaData:   nil,
-		Type:       core.FungibleESDT,
+		Type:       core.FungibleDCDT,
 	}, res[encodedAddr].Tokens[0])
 }
 
 func testExtractAlteredAccountsFromPoolShouldIncludeNFT(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Type:  uint32(core.NonFungible),
 		Value: big.NewInt(37),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 38,
 		},
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -656,7 +656,7 @@ func testExtractAlteredAccountsFromPoolShouldIncludeNFT(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(38).Bytes(),
@@ -683,16 +683,16 @@ func testExtractAlteredAccountsFromPoolShouldNotIncludeReceiverAddressIfNftCreat
 
 	sendAddrShard0 := []byte("sender in shard 0 - tx 1  ")
 	receiverOnDestination := []byte("receiver on destination shard")
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 38,
 		},
 	}
 	args := getMockArgs()
 	args.AddressConverter = testscommon.NewPubkeyConverterMock(len(sendAddrShard0))
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -724,7 +724,7 @@ func testExtractAlteredAccountsFromPoolShouldNotIncludeReceiverAddressIfNftCreat
 					Events: []*transaction.Event{
 						{
 							Address:    sendAddrShard0,
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(38).Bytes(),
@@ -757,10 +757,10 @@ func testExtractAlteredAccountsFromPoolShouldIncludeDestinationFromTokensLogsTop
 	t.Parallel()
 
 	receiverOnDestination := []byte("receiver on destination shard")
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
 		Type:  uint32(core.NonFungible),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce:      38,
 			Name:       []byte("name"),
 			Creator:    []byte("creator"),
@@ -771,8 +771,8 @@ func testExtractAlteredAccountsFromPoolShouldIncludeDestinationFromTokensLogsTop
 		},
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -792,7 +792,7 @@ func testExtractAlteredAccountsFromPoolShouldIncludeDestinationFromTokensLogsTop
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"),
 								big.NewInt(38).Bytes(),
@@ -830,18 +830,18 @@ func testExtractAlteredAccountsFromPoolShouldIncludeDestinationFromTokensLogsTop
 	})
 }
 
-func testExtractAlteredAccountsFromPoolAddressHasBalanceChangeEsdtAndfNft(t *testing.T) {
+func testExtractAlteredAccountsFromPoolAddressHasBalanceChangeDcdtAndfNft(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 38,
 		},
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -872,15 +872,15 @@ func testExtractAlteredAccountsFromPoolAddressHasBalanceChangeEsdtAndfNft(t *tes
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
-								[]byte("esdt"),
+								[]byte("dcdt"),
 								big.NewInt(1).Bytes(),
 							},
 						},
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 							Topics: [][]byte{
 								[]byte("nft"),
 								big.NewInt(38).Bytes(),
@@ -901,24 +901,24 @@ func testExtractAlteredAccountsFromPoolAddressHasBalanceChangeEsdtAndfNft(t *tes
 func testExtractAlteredAccountsFromPoolMultiTransferEventV2(t *testing.T) {
 	t.Parallel()
 
-	expectedToken1 := esdt.ESDigitalToken{
+	expectedToken1 := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 1,
 		},
 		Type: uint32(core.NonFungible),
 	}
-	expectedToken2 := &esdt.ESDigitalToken{
+	expectedToken2 := &dcdt.DCDigitalToken{
 		Value: big.NewInt(10),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 1,
 		},
 		Type: uint32(core.NonFungible),
 	}
 	args := getMockArgs()
 
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			if string(acnt.AddressBytes()) == "rcv" {
 				return expectedToken2, false, nil
 			}
@@ -952,9 +952,9 @@ func testExtractAlteredAccountsFromPoolMultiTransferEventV2(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionMultiESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionMultiDCDTNFTTransfer),
 							Topics: [][]byte{
-								[]byte("esdt"),
+								[]byte("dcdt"),
 								big.NewInt(1).Bytes(),
 								big.NewInt(10).Bytes(),
 								[]byte("rcv"),
@@ -974,7 +974,7 @@ func testExtractAlteredAccountsFromPoolMultiTransferEventV2(t *testing.T) {
 		Tokens: []*alteredAccount.AccountTokenData{
 			{
 				Nonce:      1,
-				Identifier: "esdt",
+				Identifier: "dcdt",
 				Balance:    "37",
 				MetaData: &alteredAccount.TokenMetaData{
 					Nonce: 1,
@@ -990,7 +990,7 @@ func testExtractAlteredAccountsFromPoolMultiTransferEventV2(t *testing.T) {
 		Tokens: []*alteredAccount.AccountTokenData{
 			{
 				Nonce:      1,
-				Identifier: "esdt",
+				Identifier: "dcdt",
 				Balance:    "10",
 				MetaData: &alteredAccount.TokenMetaData{
 					Nonce: 1,
@@ -1003,37 +1003,37 @@ func testExtractAlteredAccountsFromPoolMultiTransferEventV2(t *testing.T) {
 func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 	t.Parallel()
 
-	expectedToken0 := esdt.ESDigitalToken{
+	expectedToken0 := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
 	}
-	expectedToken1 := esdt.ESDigitalToken{
+	expectedToken1 := dcdt.DCDigitalToken{
 		Value: big.NewInt(38),
 		Type:  uint32(core.NonFungible),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 5,
 			Name:  []byte("nft-0"),
 		},
 	}
-	expectedToken2 := esdt.ESDigitalToken{
+	expectedToken2 := dcdt.DCDigitalToken{
 		Value: big.NewInt(37),
 		Type:  uint32(core.NonFungible),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce: 6,
 			Name:  []byte("nft-0"),
 		},
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
-			if strings.Contains(string(esdtTokenKey), "esdttoken") {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
+			if strings.Contains(string(dcdtTokenKey), "dcdttoken") {
 				return &expectedToken0, false, nil
 			}
 
-			if strings.Contains(string(esdtTokenKey), "nft-0") && nonce == 5 {
+			if strings.Contains(string(dcdtTokenKey), "nft-0") && nonce == 5 {
 				return &expectedToken1, false, nil
 			}
 
-			if strings.Contains(string(esdtTokenKey), "nft-0") && nonce == 6 {
+			if strings.Contains(string(dcdtTokenKey), "nft-0") && nonce == 6 {
 				return &expectedToken2, false, nil
 			}
 
@@ -1045,7 +1045,7 @@ func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 		LoadAccountCalled: func(_ []byte) (vmcommon.AccountHandler, error) {
 			trieMock := trie.DataTrieTrackerStub{
 				RetrieveValueCalled: func(key []byte) ([]byte, uint32, error) {
-					if strings.Contains(string(key), "esdttoken") {
+					if strings.Contains(string(key), "dcdttoken") {
 						tokenBytes, _ := marshaller.Marshal(expectedToken0)
 						return tokenBytes, 0, nil
 					}
@@ -1093,15 +1093,15 @@ func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
-								[]byte("esdttoken"),
+								[]byte("dcdttoken"),
 								big.NewInt(0).Bytes(),
 							},
 						},
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 							Topics: [][]byte{
 								expectedToken1.TokenMetaData.Name,
 								big.NewInt(0).SetUint64(expectedToken1.TokenMetaData.Nonce).Bytes(),
@@ -1109,7 +1109,7 @@ func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 						},
 						{
 							Address:    []byte("addr"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 							Topics: [][]byte{
 								expectedToken2.TokenMetaData.Name,
 								big.NewInt(0).SetUint64(expectedToken2.TokenMetaData.Nonce).Bytes(),
@@ -1127,11 +1127,11 @@ func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 	require.Len(t, res[encodedAddr].Tokens, 3)
 
 	require.Contains(t, res[encodedAddr].Tokens, &alteredAccount.AccountTokenData{
-		Identifier: "esdttoken",
+		Identifier: "dcdttoken",
 		Balance:    expectedToken0.Value.String(),
 		Nonce:      0,
 		MetaData:   nil,
-		Type:       core.FungibleESDT,
+		Type:       core.FungibleDCDT,
 	})
 
 	require.Contains(t, res[encodedAddr].Tokens, &alteredAccount.AccountTokenData{
@@ -1156,16 +1156,16 @@ func testExtractAlteredAccountsFromPoolAddressHasMultipleNfts(t *testing.T) {
 
 }
 
-func testExtractAlteredAccountsFromPoolESDTTransferBalanceNotChanged(t *testing.T) {
+func testExtractAlteredAccountsFromPoolDCDTTransferBalanceNotChanged(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value:      big.NewInt(37),
 		Properties: []byte("ok"),
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -1200,7 +1200,7 @@ func testExtractAlteredAccountsFromPoolESDTTransferBalanceNotChanged(t *testing.
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("snd"),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
 							Topics: [][]byte{
 								[]byte("token0"), big.NewInt(0).Bytes(), big.NewInt(10).Bytes(), []byte("rcv"),
 							},
@@ -1230,7 +1230,7 @@ func testExtractAlteredAccountsFromPoolESDTTransferBalanceNotChanged(t *testing.
 					AdditionalData: &alteredAccount.AdditionalAccountTokenData{
 						IsNFTCreate: false,
 					},
-					Type: core.FungibleESDT,
+					Type: core.FungibleDCDT,
 				},
 			},
 			AdditionalData: &alteredAccount.AdditionalAccountData{
@@ -1250,7 +1250,7 @@ func testExtractAlteredAccountsFromPoolESDTTransferBalanceNotChanged(t *testing.
 					AdditionalData: &alteredAccount.AdditionalAccountTokenData{
 						IsNFTCreate: false,
 					},
-					Type: core.FungibleESDT,
+					Type: core.FungibleDCDT,
 				},
 			},
 			AdditionalData: &alteredAccount.AdditionalAccountData{
@@ -1372,13 +1372,13 @@ func testExtractAlteredAccountsFromPoolOnlySenderShouldHaveBalanceChanged(t *tes
 func textExtractAlteredAccountsFromPoolNftCreate(t *testing.T) {
 	t.Parallel()
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Value:      big.NewInt(37),
 		Properties: []byte("ok"),
 	}
 	args := getMockArgs()
-	args.EsdtDataStorageHandler = &testscommon.EsdtStorageHandlerStub{
-		GetESDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
+	args.DcdtDataStorageHandler = &testscommon.DcdtStorageHandlerStub{
+		GetDCDTNFTTokenOnDestinationCalled: func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
 			return &expectedToken, false, nil
 		},
 	}
@@ -1413,7 +1413,7 @@ func textExtractAlteredAccountsFromPoolNftCreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    []byte("snd"),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics: [][]byte{
 								[]byte("token0"), big.NewInt(0).Bytes(), big.NewInt(10).Bytes(), []byte("a"),
 							},
@@ -1442,7 +1442,7 @@ func textExtractAlteredAccountsFromPoolNftCreate(t *testing.T) {
 					AdditionalData: &alteredAccount.AdditionalAccountTokenData{
 						IsNFTCreate: true,
 					},
-					Type: core.FungibleESDT,
+					Type: core.FungibleDCDT,
 				},
 			},
 			AdditionalData: &alteredAccount.AdditionalAccountData{
@@ -1504,6 +1504,6 @@ func getMockArgs() ArgsAlteredAccountsProvider {
 		ShardCoordinator:       &testscommon.ShardsCoordinatorMock{},
 		AddressConverter:       &testscommon.PubkeyConverterMock{},
 		AccountsDB:             &state.AccountsStub{},
-		EsdtDataStorageHandler: &testscommon.EsdtStorageHandlerStub{},
+		DcdtDataStorageHandler: &testscommon.DcdtStorageHandlerStub{},
 	}
 }

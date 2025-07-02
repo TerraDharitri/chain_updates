@@ -3,8 +3,8 @@ package transactionAPI
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 )
 
 type feeComputer interface {

@@ -3,13 +3,13 @@ package state_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	stateComp "github.com/multiversx/mx-chain-go/factory/state"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
-	"github.com/multiversx/mx-chain-go/testscommon/storageManager"
-	trieMock "github.com/multiversx/mx-chain-go/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	stateComp "github.com/TerraDharitri/drt-go-chain/factory/state"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storageManager"
+	trieMock "github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 	"github.com/stretchr/testify/require"
 )
 

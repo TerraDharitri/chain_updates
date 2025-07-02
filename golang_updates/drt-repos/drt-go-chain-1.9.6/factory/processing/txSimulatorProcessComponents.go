@@ -1,30 +1,30 @@
 package processing
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/common/disabled"
-	bootstrapDisabled "github.com/multiversx/mx-chain-go/epochStart/bootstrap/disabled"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/genesis"
-	processDisabled "github.com/multiversx/mx-chain-go/genesis/process/disabled"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/block/preprocess"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/factory/shard"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	"github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/process/transactionEvaluator"
-	"github.com/multiversx/mx-chain-go/process/transactionLog"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	"github.com/multiversx/mx-chain-go/storage"
-	storageFactory "github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain/common/disabled"
+	bootstrapDisabled "github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap/disabled"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	processDisabled "github.com/TerraDharitri/drt-go-chain/genesis/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/block/preprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/shard"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	"github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/process/transactionEvaluator"
+	"github.com/TerraDharitri/drt-go-chain/process/transactionLog"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	storageFactory "github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 )
 
 func (pcf *processComponentsFactory) createAPITransactionEvaluator() (factory.TransactionEvaluator, process.VirtualMachinesContainerFactory, error) {
@@ -136,7 +136,7 @@ func (pcf *processComponentsFactory) createArgsTxSimulatorProcessorForMeta(
 		builtInFuncFactory.BuiltInFunctionContainer(),
 		pcf.config.SmartContractsStorageSimulate,
 		builtInFuncFactory.NFTStorageHandler(),
-		builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		builtInFuncFactory.DCDTGlobalSettingsHandler(),
 	)
 	if err != nil {
 		return args, nil, nil, err
@@ -228,7 +228,7 @@ func (pcf *processComponentsFactory) createArgsTxSimulatorProcessorForMeta(
 }
 
 func (pcf *processComponentsFactory) createTxTypeHandler(builtInFuncFactory vmcommon.BuiltInFunctionFactory) (process.TxTypeHandler, error) {
-	esdtTransferParser, err := parsers.NewESDTTransferParser(pcf.coreData.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(pcf.coreData.InternalMarshalizer())
 	if err != nil {
 		return nil, err
 	}
@@ -238,7 +238,7 @@ func (pcf *processComponentsFactory) createTxTypeHandler(builtInFuncFactory vmco
 		ShardCoordinator:    pcf.bootstrapComponents.ShardCoordinator(),
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: pcf.coreData.EnableEpochsHandler(),
 	}
 
@@ -285,7 +285,7 @@ func (pcf *processComponentsFactory) createArgsTxSimulatorProcessorShard(
 	}
 
 	smartContractStorageSimulate := pcf.config.SmartContractsStorageSimulate
-	esdtTransferParser, err := parsers.NewESDTTransferParser(pcf.coreData.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(pcf.coreData.InternalMarshalizer())
 	if err != nil {
 		return args, nil, nil, err
 	}
@@ -294,11 +294,11 @@ func (pcf *processComponentsFactory) createArgsTxSimulatorProcessorShard(
 		accountsAdapter,
 		syncer.NewMissingTrieNodesNotifier(),
 		builtInFuncFactory.BuiltInFunctionContainer(),
-		esdtTransferParser,
+		dcdtTransferParser,
 		pcf.coreData.WasmVMChangeLocker(),
 		smartContractStorageSimulate,
 		builtInFuncFactory.NFTStorageHandler(),
-		builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		builtInFuncFactory.DCDTGlobalSettingsHandler(),
 	)
 	if err != nil {
 		return args, nil, nil, err

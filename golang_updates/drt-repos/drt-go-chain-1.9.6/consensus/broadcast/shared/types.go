@@ -1,7 +1,7 @@
 package shared
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // DelayedBroadcastData is exported to be accessible in delayedBroadcasterMock

@@ -8,24 +8,24 @@ import (
 	"math/big"
 	"sort"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/atomic"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/errChan"
-	vInfo "github.com/multiversx/mx-chain-go/common/validatorInfo"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/errChan"
+	vInfo "github.com/TerraDharitri/drt-go-chain/common/validatorInfo"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 )
 
 type legacySystemSCProcessor struct {
@@ -43,7 +43,7 @@ type legacySystemSCProcessor struct {
 	maxNodesChangeConfigProvider epochStart.MaxNodesChangeConfigProvider
 	endOfEpochCallerAddress      []byte
 	stakingSCAddress             []byte
-	esdtOwnerAddressBytes        []byte
+	dcdtOwnerAddressBytes        []byte
 	mapNumSwitchedPerShard       map[uint32]uint32
 	mapNumSwitchablePerShard     map[uint32]uint32
 	maxNodes                     uint32
@@ -74,7 +74,7 @@ func newLegacySystemSCProcessor(args ArgsNewEpochStartSystemSCProcessing) (*lega
 		stakingDataProvider:          args.StakingDataProvider,
 		nodesConfigProvider:          args.NodesConfigProvider,
 		shardCoordinator:             args.ShardCoordinator,
-		esdtOwnerAddressBytes:        args.ESDTOwnerAddressBytes,
+		dcdtOwnerAddressBytes:        args.DCDTOwnerAddressBytes,
 		maxNodesChangeConfigProvider: args.MaxNodesChangeConfigProvider,
 		enableEpochsHandler:          args.EnableEpochsHandler,
 	}
@@ -125,8 +125,8 @@ func checkLegacyArgs(args ArgsNewEpochStartSystemSCProcessing) error {
 	if check.IfNil(args.EnableEpochsHandler) {
 		return process.ErrNilEnableEpochsHandler
 	}
-	if len(args.ESDTOwnerAddressBytes) == 0 {
-		return epochStart.ErrEmptyESDTOwnerAddress
+	if len(args.DCDTOwnerAddressBytes) == 0 {
+		return epochStart.ErrEmptyDCDTOwnerAddress
 	}
 
 	return nil
@@ -216,11 +216,11 @@ func (s *legacySystemSCProcessor) processLegacy(
 		}
 	}
 
-	if s.enableEpochsHandler.IsFlagEnabled(common.ESDTFlagInSpecificEpochOnly) {
-		err := s.initESDT()
+	if s.enableEpochsHandler.IsFlagEnabled(common.DCDTFlagInSpecificEpochOnly) {
+		err := s.initDCDT()
 		if err != nil {
 			// not a critical error
-			log.Error("error while initializing ESDT", "err", err)
+			log.Error("error while initializing DCDT", "err", err)
 		}
 	}
 
@@ -1101,7 +1101,7 @@ func (s *legacySystemSCProcessor) updateSystemSCContractsCode(contractMetadata [
 	contractsToUpdate = append(contractsToUpdate, vm.StakingSCAddress)
 	contractsToUpdate = append(contractsToUpdate, vm.ValidatorSCAddress)
 	contractsToUpdate = append(contractsToUpdate, vm.GovernanceSCAddress)
-	contractsToUpdate = append(contractsToUpdate, vm.ESDTSCAddress)
+	contractsToUpdate = append(contractsToUpdate, vm.DCDTSCAddress)
 	contractsToUpdate = append(contractsToUpdate, vm.DelegationManagerSCAddress)
 	contractsToUpdate = append(contractsToUpdate, vm.FirstDelegationSCAddress)
 
@@ -1292,16 +1292,16 @@ func (s *legacySystemSCProcessor) addNewValidator(
 	return validatorsInfoMap.Add(validatorInfo)
 }
 
-func (s *legacySystemSCProcessor) initESDT() error {
-	currentConfigValues, err := s.extractConfigFromESDTContract()
+func (s *legacySystemSCProcessor) initDCDT() error {
+	currentConfigValues, err := s.extractConfigFromDCDTContract()
 	if err != nil {
 		return err
 	}
 
-	return s.changeESDTOwner(currentConfigValues)
+	return s.changeDCDTOwner(currentConfigValues)
 }
 
-func (s *legacySystemSCProcessor) extractConfigFromESDTContract() ([][]byte, error) {
+func (s *legacySystemSCProcessor) extractConfigFromDCDTContract() ([][]byte, error) {
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
 			CallerAddr:  s.endOfEpochCallerAddress,
@@ -1310,7 +1310,7 @@ func (s *legacySystemSCProcessor) extractConfigFromESDTContract() ([][]byte, err
 			GasProvided: math.MaxInt64,
 		},
 		Function:      "getContractConfig",
-		RecipientAddr: vm.ESDTSCAddress,
+		RecipientAddr: vm.DCDTSCAddress,
 	}
 
 	output, err := s.systemVM.RunSmartContractCall(vmInput)
@@ -1324,7 +1324,7 @@ func (s *legacySystemSCProcessor) extractConfigFromESDTContract() ([][]byte, err
 	return output.ReturnData, nil
 }
 
-func (s *legacySystemSCProcessor) changeESDTOwner(currentConfigValues [][]byte) error {
+func (s *legacySystemSCProcessor) changeDCDTOwner(currentConfigValues [][]byte) error {
 	baseIssuingCost := currentConfigValues[1]
 	minTokenNameLength := currentConfigValues[2]
 	maxTokenNameLength := currentConfigValues[3]
@@ -1332,12 +1332,12 @@ func (s *legacySystemSCProcessor) changeESDTOwner(currentConfigValues [][]byte) 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
 			CallerAddr:  s.endOfEpochCallerAddress,
-			Arguments:   [][]byte{s.esdtOwnerAddressBytes, baseIssuingCost, minTokenNameLength, maxTokenNameLength},
+			Arguments:   [][]byte{s.dcdtOwnerAddressBytes, baseIssuingCost, minTokenNameLength, maxTokenNameLength},
 			CallValue:   big.NewInt(0),
 			GasProvided: math.MaxUint64,
 		},
 		Function:      "configChange",
-		RecipientAddr: vm.ESDTSCAddress,
+		RecipientAddr: vm.DCDTSCAddress,
 	}
 
 	output, err := s.systemVM.RunSmartContractCall(vmInput)
@@ -1345,7 +1345,7 @@ func (s *legacySystemSCProcessor) changeESDTOwner(currentConfigValues [][]byte) 
 		return err
 	}
 	if output.ReturnCode != vmcommon.Ok {
-		return fmt.Errorf("%w changeESDTOwner should have returned Ok", epochStart.ErrInvalidSystemSCReturn)
+		return fmt.Errorf("%w changeDCDTOwner should have returned Ok", epochStart.ErrInvalidSystemSCReturn)
 	}
 
 	return s.processSCOutputAccounts(output)

@@ -3,10 +3,10 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/process/rewardTransaction"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/process/rewardTransaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
 	"github.com/stretchr/testify/assert"
 )
 

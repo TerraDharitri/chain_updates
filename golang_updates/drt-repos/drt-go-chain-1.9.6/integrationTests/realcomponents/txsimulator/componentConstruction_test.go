@@ -5,13 +5,13 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/realcomponents"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/realcomponents"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -26,7 +26,7 @@ func TestTransactionSimulationComponentConstructionOnMetachain(t *testing.T) {
 	cfg, err := testscommon.CreateTestConfigs(t.TempDir(), "../../../cmd/node/config")
 	require.Nil(t, err)
 
-	cfg.EpochConfig.EnableEpochs.ESDTEnableEpoch = 0
+	cfg.EpochConfig.EnableEpochs.DCDTEnableEpoch = 0
 	cfg.EpochConfig.EnableEpochs.BuiltInFunctionsEnableEpoch = 0
 	cfg.PreferencesConfig.Preferences.DestinationShardAsObserver = "metachain" // the problem was only on the metachain
 
@@ -50,12 +50,12 @@ func TestTransactionSimulationComponentConstructionOnMetachain(t *testing.T) {
 		}, rootHash)
 	require.Nil(t, err)
 
-	issueCost, _ := big.NewInt(0).SetString(pr.Config.SystemSCConfig.ESDTSystemSCConfig.BaseIssuingCost, 10)
+	issueCost, _ := big.NewInt(0).SetString(pr.Config.SystemSCConfig.DCDTSystemSCConfig.BaseIssuingCost, 10)
 
 	txForSimulation := &transaction.Transaction{
 		Nonce:    pr.GetUserAccount(t, alice).GetNonce(),
 		Value:    issueCost,
-		RcvAddr:  vm.ESDTSCAddress,
+		RcvAddr:  vm.DCDTSCAddress,
 		SndAddr:  alice,
 		GasPrice: pr.CoreComponents.EconomicsData().MinGasPrice(),
 		GasLimit: 60_000_000,
@@ -97,7 +97,7 @@ func TestTransactionSimulationComponentConstructionOnShard(t *testing.T) {
 	)
 
 	// mint some tokens for alice
-	mintValue, _ := big.NewInt(0).SetString("1000000000000000000", 10) // 1 EGLD
+	mintValue, _ := big.NewInt(0).SetString("1000000000000000000", 10) // 1 REWA
 	pr.AddBalanceToAccount(t, alice, mintValue)
 
 	// deploy the contract

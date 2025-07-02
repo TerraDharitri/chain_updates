@@ -10,151 +10,151 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	vmData "github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/mock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmData "github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-func createMockArgumentsForESDT() ArgsNewESDTSmartContract {
-	return ArgsNewESDTSmartContract{
+func createMockArgumentsForDCDT() ArgsNewDCDTSmartContract {
+	return ArgsNewDCDTSmartContract{
 		Eei:     &mock.SystemEIStub{},
-		GasCost: vm.GasCost{MetaChainSystemSCsCost: vm.MetaChainSystemSCsCost{ESDTIssue: 10}},
-		ESDTSCConfig: config.ESDTSystemSCConfig{
+		GasCost: vm.GasCost{MetaChainSystemSCsCost: vm.MetaChainSystemSCsCost{DCDTIssue: 10}},
+		DCDTSCConfig: config.DCDTSystemSCConfig{
 			BaseIssuingCost: "1000",
 		},
-		ESDTSCAddress:          []byte("address"),
+		DCDTSCAddress:          []byte("address"),
 		Marshalizer:            &mock.MarshalizerMock{},
 		Hasher:                 &hashingMocks.HasherMock{},
 		AddressPubKeyConverter: testscommon.NewPubkeyConverterMock(32),
 		EndOfEpochSCAddress:    vm.EndOfEpochAddress,
 		EnableEpochsHandler: enableEpochsHandlerMock.NewEnableEpochsHandlerStub(
-			common.ESDTFlag,
+			common.DCDTFlag,
 			common.GlobalMintBurnFlag,
-			common.MetaESDTSetFlag,
-			common.ESDTRegisterAndSetAllRolesFlag,
-			common.ESDTNFTCreateOnMultiShardFlag,
-			common.ESDTTransferRoleFlag,
-			common.ESDTMetadataContinuousCleanupFlag,
+			common.MetaDCDTSetFlag,
+			common.DCDTRegisterAndSetAllRolesFlag,
+			common.DCDTNFTCreateOnMultiShardFlag,
+			common.DCDTTransferRoleFlag,
+			common.DCDTMetadataContinuousCleanupFlag,
 		),
 	}
 }
 
-func TestNewESDTSmartContract(t *testing.T) {
+func TestNewDCDTSmartContract(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	e, err := NewESDTSmartContract(args)
-	ky := hex.EncodeToString([]byte("ELRONDesdttxgenESDTtkn"))
+	args := createMockArgumentsForDCDT()
+	e, err := NewDCDTSmartContract(args)
+	ky := hex.EncodeToString([]byte("NUMBATdcdttxgenDCDTtkn"))
 	fmt.Println(ky)
 
 	assert.Nil(t, err)
 	assert.NotNil(t, e)
 }
 
-func TestNewESDTSmartContract_NilEEIShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_NilEEIShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei = nil
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrNilSystemEnvironmentInterface, err)
 }
 
-func TestNewESDTSmartContract_NilMarshalizerShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_NilMarshalizerShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Marshalizer = nil
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrNilMarshalizer, err)
 }
 
-func TestNewESDTSmartContract_NilHasherShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_NilHasherShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Hasher = nil
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrNilHasher, err)
 }
 
-func TestNewESDTSmartContract_NilEnableEpochsHandlerShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_NilEnableEpochsHandlerShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.EnableEpochsHandler = nil
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrNilEnableEpochsHandler, err)
 }
 
-func TestNewESDTSmartContract_InvalidEnableEpochsHandlerShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_InvalidEnableEpochsHandlerShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStubWithNoFlagsDefined()
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.True(t, errors.Is(err, core.ErrInvalidEnableEpochsHandler))
 }
 
-func TestNewESDTSmartContract_NilPubKeyConverterShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_NilPubKeyConverterShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.AddressPubKeyConverter = nil
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrNilAddressPubKeyConverter, err)
 }
 
-func TestNewESDTSmartContract_BaseIssuingCostLessThanZeroShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_BaseIssuingCostLessThanZeroShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	args.ESDTSCConfig.BaseIssuingCost = "-1"
+	args := createMockArgumentsForDCDT()
+	args.DCDTSCConfig.BaseIssuingCost = "-1"
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrInvalidBaseIssuingCost, err)
 }
 
-func TestNewESDTSmartContract_InvalidBaseIssuingCostShouldErr(t *testing.T) {
+func TestNewDCDTSmartContract_InvalidBaseIssuingCostShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	args.ESDTSCConfig.BaseIssuingCost = "invalid cost"
+	args := createMockArgumentsForDCDT()
+	args.DCDTSCConfig.BaseIssuingCost = "invalid cost"
 
-	e, err := NewESDTSmartContract(args)
+	e, err := NewDCDTSmartContract(args)
 	assert.Nil(t, e)
 	assert.Equal(t, vm.ErrInvalidBaseIssuingCost, err)
 }
 
-func TestEsdt_ExecuteIssueAlways6charactersForRandom(t *testing.T) {
+func TestDcdt_ExecuteIssueAlways6charactersForRandom(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -166,8 +166,8 @@ func TestEsdt_ExecuteIssueAlways6charactersForRandom(t *testing.T) {
 		Function:      "issueNonFungible",
 	}
 	eei.gasRemaining = vmInput.GasProvided
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 	ticker := []byte("TICKER")
 	vmInput.Arguments = [][]byte{[]byte("name"), ticker}
 
@@ -195,14 +195,14 @@ func TestEsdt_ExecuteIssueAlways6charactersForRandom(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_ExecuteIssueWithMultiNFTCreate(t *testing.T) {
+func TestDcdt_ExecuteIssueWithMultiNFTCreate(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -214,16 +214,16 @@ func TestEsdt_ExecuteIssueWithMultiNFTCreate(t *testing.T) {
 		Function:      "issue",
 	}
 	eei.gasRemaining = vmInput.GasProvided
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 	ticker := []byte("TICKER")
 	vmInput.Arguments = [][]byte{[]byte("name"), ticker, []byte(canCreateMultiShard), []byte("true")}
 
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTNFTCreateOnMultiShardFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTNFTCreateOnMultiShardFlag)
 	returnCode := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, returnCode)
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTNFTCreateOnMultiShardFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTNFTCreateOnMultiShardFlag)
 	returnCode = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, returnCode)
 
@@ -244,13 +244,13 @@ func TestEsdt_ExecuteIssueWithMultiNFTCreate(t *testing.T) {
 	assert.True(t, token.CanCreateMultiShard)
 }
 
-func TestEsdt_ExecuteIssue(t *testing.T) {
+func TestDcdt_ExecuteIssue(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -273,8 +273,8 @@ func TestEsdt_ExecuteIssue(t *testing.T) {
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(10).Bytes())
 	vmInput.Arguments = append(vmInput.Arguments, []byte(upgradable), boolToSlice(false))
 	vmInput.Arguments = append(vmInput.Arguments, []byte(canAddSpecialRoles), boolToSlice(false))
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
@@ -291,14 +291,14 @@ func TestEsdt_ExecuteIssue(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_ExecuteIssueWithZero(t *testing.T) {
+func TestDcdt_ExecuteIssueWithZero(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -313,21 +313,21 @@ func TestEsdt_ExecuteIssueWithZero(t *testing.T) {
 	vmInput.Arguments = [][]byte{[]byte("name"), []byte("TICKER")}
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(0).Bytes())
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(10).Bytes())
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 
-	enableEpochsHandler.RemoveActiveFlags(common.GlobalMintBurnFlag, common.ESDTNFTCreateOnMultiShardFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.GlobalMintBurnFlag, common.DCDTNFTCreateOnMultiShardFlag)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteIssueTooMuchSupply(t *testing.T) {
+func TestDcdt_ExecuteIssueTooMuchSupply(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -345,19 +345,19 @@ func TestEsdt_ExecuteIssueTooMuchSupply(t *testing.T) {
 	tooMuchToIssue[0] = 1
 	vmInput.Arguments = append(vmInput.Arguments, tooMuchToIssue)
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(10).Bytes())
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_IssueInvalidNumberOfDecimals(t *testing.T) {
+func TestDcdt_IssueInvalidNumberOfDecimals(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -378,27 +378,27 @@ func TestEsdt_IssueInvalidNumberOfDecimals(t *testing.T) {
 
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(100).Bytes())
 	vmInput.Arguments = append(vmInput.Arguments, big.NewInt(25).Bytes())
-	vmInput.CallValue, _ = big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
-	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.ESDTIssue
+	vmInput.CallValue, _ = big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
+	vmInput.GasProvided = args.GasCost.MetaChainSystemSCsCost.DCDTIssue
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_ExecuteNilArgsShouldErr(t *testing.T) {
+func TestDcdt_ExecuteNilArgsShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	e, _ := NewESDTSmartContract(args)
+	args := createMockArgumentsForDCDT()
+	e, _ := NewDCDTSmartContract(args)
 
 	output := e.Execute(nil)
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_ExecuteInit(t *testing.T) {
+func TestDcdt_ExecuteInit(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	e, _ := NewESDTSmartContract(args)
+	args := createMockArgumentsForDCDT()
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -418,12 +418,12 @@ func TestEsdt_ExecuteInit(t *testing.T) {
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteWrongFunctionCall(t *testing.T) {
+func TestDcdt_ExecuteWrongFunctionCall(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	args.ESDTSCConfig.OwnerAddress = "owner"
-	e, _ := NewESDTSmartContract(args)
+	args := createMockArgumentsForDCDT()
+	args.DCDTSCConfig.OwnerAddress = "owner"
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -443,15 +443,15 @@ func TestEsdt_ExecuteWrongFunctionCall(t *testing.T) {
 	assert.Equal(t, vmcommon.FunctionNotFound, output)
 }
 
-func TestEsdt_ExecuteBurnWrongNumOfArgsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteBurnWrongNumOfArgsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 	vmInput.Arguments = [][]byte{[]byte("wrong_token_name")}
 
 	output := e.Execute(vmInput)
@@ -459,15 +459,15 @@ func TestEsdt_ExecuteBurnWrongNumOfArgsShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "number of arguments must be equal with 2"))
 }
 
-func TestEsdt_ExecuteBurnWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteBurnWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -475,15 +475,15 @@ func TestEsdt_ExecuteBurnWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteBurnWrongValueToBurnShouldFail(t *testing.T) {
+func TestDcdt_ExecuteBurnWrongValueToBurnShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 	vmInput.Arguments[1] = []byte{0}
 
 	output := e.Execute(vmInput)
@@ -491,52 +491,52 @@ func TestEsdt_ExecuteBurnWrongValueToBurnShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "negative or 0 value to burn"))
 }
 
-func TestEsdt_ExecuteBurnOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteBurnOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteBurnAndMintDisabled(t *testing.T) {
+func TestDcdt_ExecuteBurnAndMintDisabled(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	enableEpochsHandler.RemoveActiveFlags(common.GlobalMintBurnFlag)
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "global burn is no more enabled, use local burn"))
 
-	vmInput = getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {100}})
+	vmInput = getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {100}})
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "global mint is no more enabled, use local mint"))
 }
 
-func TestEsdt_ExecuteBurnOnNonBurnableTokenShouldWorkAndReturnBurntTokens(t *testing.T) {
+func TestDcdt_ExecuteBurnOnNonBurnableTokenShouldWorkAndReturnBurntTokens(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		Burnable: false,
 	})
 	tokensMap[string(tokenName)] = marshalizedData
@@ -544,27 +544,27 @@ func TestEsdt_ExecuteBurnOnNonBurnableTokenShouldWorkAndReturnBurntTokens(t *tes
 	args.Eei = eei
 
 	burnValue := []byte{100}
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{tokenName, burnValue})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{tokenName, burnValue})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "token is not burnable"))
 
 	outputTransfer := eei.outputAccounts["owner"].OutputTransfers[0]
-	expectedReturnData := []byte(core.BuiltInFunctionESDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(burnValue))
+	expectedReturnData := []byte(core.BuiltInFunctionDCDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(burnValue))
 	assert.Equal(t, expectedReturnData, outputTransfer.Data)
 }
 
-func TestEsdt_ExecuteBurn(t *testing.T) {
+func TestDcdt_ExecuteBurn(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:  tokenName,
 		Burnable:   true,
 		BurntValue: big.NewInt(100),
@@ -573,56 +573,56 @@ func TestEsdt_ExecuteBurn(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionESDTBurn, [][]byte{[]byte("esdtToken"), {100}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc(core.BuiltInFunctionDCDTBurn, [][]byte{[]byte("dcdtToken"), {100}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.Equal(t, big.NewInt(200), esdtData.BurntValue)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.Equal(t, big.NewInt(200), dcdtData.BurntValue)
 }
 
-func TestEsdt_ExecuteMintTooFewArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintTooFewArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "accepted arguments number 2/3"))
 }
 
-func TestEsdt_ExecuteMintTooManyArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintTooManyArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {200}, []byte("dest"), []byte("arg")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {200}, []byte("dest"), []byte("arg")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "accepted arguments number 2/3"))
 }
 
-func TestEsdt_ExecuteMintWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {200}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {200}})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -630,54 +630,54 @@ func TestEsdt_ExecuteMintWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteMintNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {200}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {200}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecuteMintOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {200}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {200}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteMintNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, {200}})
 
 	output := e.Execute(vmInput)
@@ -685,23 +685,23 @@ func TestEsdt_ExecuteMintNotByOwnerShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecuteMintWrongMintValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintWrongMintValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("owner"),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, {0}})
 
 	output := e.Execute(vmInput)
@@ -709,16 +709,16 @@ func TestEsdt_ExecuteMintWrongMintValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "negative or zero mint value"))
 }
 
-func TestEsdt_ExecuteMintNonMintableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintNonMintableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("owner"),
 		Mintable:     false,
 	})
@@ -726,7 +726,7 @@ func TestEsdt_ExecuteMintNonMintableTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, {200}})
 
 	output := e.Execute(vmInput)
@@ -734,17 +734,17 @@ func TestEsdt_ExecuteMintNonMintableTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "token is not mintable"))
 }
 
-func TestEsdt_ExecuteMintSavesTokenWithMintedTokensAdded(t *testing.T) {
+func TestDcdt_ExecuteMintSavesTokenWithMintedTokensAdded(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
-		TokenName:    []byte("esdtToken"),
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
+		TokenName:    []byte("dcdtToken"),
 		OwnerAddress: []byte("owner"),
 		Mintable:     true,
 		MintedValue:  big.NewInt(100),
@@ -753,30 +753,30 @@ func TestEsdt_ExecuteMintSavesTokenWithMintedTokensAdded(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, {200}})
 
 	_ = e.Execute(vmInput)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.Equal(t, big.NewInt(300), esdtData.MintedValue)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.Equal(t, big.NewInt(300), dcdtData.MintedValue)
 
 	vmInput.Arguments[1] = make([]byte, 101)
 	returnCode := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, returnCode)
 }
 
-func TestEsdt_ExecuteMintInvalidDestinationAddressShouldFail(t *testing.T) {
+func TestDcdt_ExecuteMintInvalidDestinationAddressShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: []byte("owner"),
 		Mintable:     true,
@@ -786,7 +786,7 @@ func TestEsdt_ExecuteMintInvalidDestinationAddressShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, {200}, []byte("dest")})
 
 	output := e.Execute(vmInput)
@@ -794,13 +794,13 @@ func TestEsdt_ExecuteMintInvalidDestinationAddressShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "destination address of invalid length"))
 }
 
-func TestEsdt_ExecuteMintTransferNoErr(t *testing.T) {
+func TestDcdt_ExecuteMintTransferNoErr(t *testing.T) {
 	t.Parallel()
 
 	err := errors.New("transfer error")
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei.(*mock.SystemEIStub).GetStorageCalled = func(key []byte) []byte {
-		marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+		marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 			OwnerAddress: []byte("owner"),
 			Mintable:     true,
 			MintedValue:  big.NewInt(100),
@@ -811,24 +811,24 @@ func TestEsdt_ExecuteMintTransferNoErr(t *testing.T) {
 		assert.Equal(t, err.Error(), msg)
 	}
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("esdtToken"), {200}})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("mint", [][]byte{[]byte("dcdtToken"), {200}})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteMintWithTwoArgsShouldSetOwnerAsDestination(t *testing.T) {
+func TestDcdt_ExecuteMintWithTwoArgsShouldSetOwnerAsDestination(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
+	tokenName := []byte("dcdtToken")
 	mintValue := []byte{200}
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		Mintable:     true,
@@ -838,14 +838,14 @@ func TestEsdt_ExecuteMintWithTwoArgsShouldSetOwnerAsDestination(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, mintValue})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(owner)]
@@ -856,23 +856,23 @@ func TestEsdt_ExecuteMintWithTwoArgsShouldSetOwnerAsDestination(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(mintValue)
+	expectedInput := core.BuiltInFunctionDCDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(mintValue)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteMintWithThreeArgsShouldSetThirdArgAsDestination(t *testing.T) {
+func TestDcdt_ExecuteMintWithThreeArgsShouldSetThirdArgAsDestination(t *testing.T) {
 	t.Parallel()
 
 	dest := []byte("_dest")
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
+	tokenName := []byte("dcdtToken")
 	mintValue := []byte{200}
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		Mintable:     true,
@@ -882,14 +882,14 @@ func TestEsdt_ExecuteMintWithThreeArgsShouldSetThirdArgAsDestination(t *testing.
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("mint", [][]byte{tokenName, mintValue, dest})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(dest)]
@@ -900,20 +900,20 @@ func TestEsdt_ExecuteMintWithThreeArgsShouldSetThirdArgAsDestination(t *testing.
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(mintValue)
+	expectedInput := core.BuiltInFunctionDCDTTransfer + "@" + hex.EncodeToString(tokenName) + "@" + hex.EncodeToString(mintValue)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteIssueDisabled(t *testing.T) {
+func TestDcdt_ExecuteIssueDisabled(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTFlag)
-	e, _ := NewESDTSmartContract(args)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTFlag)
+	e, _ := NewDCDTSmartContract(args)
 
-	callValue, _ := big.NewInt(0).SetString(args.ESDTSCConfig.BaseIssuingCost, 10)
+	callValue, _ := big.NewInt(0).SetString(args.DCDTSCConfig.BaseIssuingCost, 10)
 	vmInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
 			CallerAddr:     []byte("addr"),
@@ -921,7 +921,7 @@ func TestEsdt_ExecuteIssueDisabled(t *testing.T) {
 			CallValue:      callValue,
 			CallType:       0,
 			GasPrice:       0,
-			GasProvided:    args.GasCost.MetaChainSystemSCsCost.ESDTIssue,
+			GasProvided:    args.GasCost.MetaChainSystemSCsCost.DCDTIssue,
 			OriginalTxHash: nil,
 			CurrentTxHash:  nil,
 		},
@@ -932,15 +932,15 @@ func TestEsdt_ExecuteIssueDisabled(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_ExecuteToggleFreezeTooFewArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeTooFewArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
@@ -952,15 +952,15 @@ func TestEsdt_ExecuteToggleFreezeTooFewArgumentsShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of arguments, wanted 3"))
 }
 
-func TestEsdt_ExecuteToggleFreezeWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -974,16 +974,16 @@ func TestEsdt_ExecuteToggleFreezeWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteToggleFreezeNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
@@ -996,15 +996,15 @@ func TestEsdt_ExecuteToggleFreezeNotEnoughGasShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecuteToggleFreezeOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
@@ -1017,22 +1017,22 @@ func TestEsdt_ExecuteToggleFreezeOnNonExistentTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteToggleFreezeNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := "esdtToken"
-	args := createMockArgumentsForESDT()
+	tokenName := "dcdtToken"
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[tokenName] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte(tokenName), []byte("owner")})
 
 	output := e.Execute(vmInput)
@@ -1046,16 +1046,16 @@ func TestEsdt_ExecuteToggleFreezeNotByOwnerShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecuteToggleFreezeNonFreezableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeNonFreezableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanFreeze:    false,
 	})
@@ -1063,7 +1063,7 @@ func TestEsdt_ExecuteToggleFreezeNonFreezableTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{tokenName, owner})
 
 	output := e.Execute(vmInput)
@@ -1077,13 +1077,13 @@ func TestEsdt_ExecuteToggleFreezeNonFreezableTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot freeze"))
 }
 
-func TestEsdt_ExecuteToggleFreezeTransferNoErr(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeTransferNoErr(t *testing.T) {
 	t.Parallel()
 
 	err := errors.New("transfer error")
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei.(*mock.SystemEIStub).GetStorageCalled = func(key []byte) []byte {
-		marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+		marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 			OwnerAddress: []byte("owner"),
 			CanFreeze:    true,
 		})
@@ -1093,23 +1093,23 @@ func TestEsdt_ExecuteToggleFreezeTransferNoErr(t *testing.T) {
 		assert.Equal(t, err.Error(), msg)
 	}
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("esdtToken"), getAddress()})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{[]byte("dcdtToken"), getAddress()})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteToggleFreezeSingleNFTTransferNoErr(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeSingleNFTTransferNoErr(t *testing.T) {
 	t.Parallel()
 
 	err := errors.New("transfer error")
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei.(*mock.SystemEIStub).GetStorageCalled = func(key []byte) []byte {
-		marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+		marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 			OwnerAddress: []byte("owner"),
 			CanFreeze:    true,
-			TokenType:    []byte(core.NonFungibleESDT),
+			TokenType:    []byte(core.NonFungibleDCDT),
 		})
 		return marshalizedData
 	}
@@ -1117,25 +1117,25 @@ func TestEsdt_ExecuteToggleFreezeSingleNFTTransferNoErr(t *testing.T) {
 		assert.Equal(t, err.Error(), msg)
 	}
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("freezeSingleNFT", [][]byte{[]byte("esdtToken"), big.NewInt(10).Bytes(), getAddress()})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("freezeSingleNFT", [][]byte{[]byte("dcdtToken"), big.NewInt(10).Bytes(), getAddress()})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteToggleFreezeShouldWorkWithRealBech32Address(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeShouldWorkWithRealBech32Address(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	args.AddressPubKeyConverter = testscommon.RealWorldBech32PubkeyConverter
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
@@ -1144,18 +1144,18 @@ func TestEsdt_ExecuteToggleFreezeShouldWorkWithRealBech32Address(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	addressToFreezeBech32 := "erd158tgst07d6rt93td6nh5cd2mmpfhtp7hr24l4wfgtlggqpnp6kjsnpvdqj"
+	addressToFreezeBech32 := "drt158tgst07d6rt93td6nh5cd2mmpfhtp7hr24l4wfgtlggqpnp6kjswamwrv"
 	addressToFreeze, err := args.AddressPubKeyConverter.Decode(addressToFreezeBech32)
 	assert.NoError(t, err)
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{tokenName, addressToFreeze})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToFreeze)]
@@ -1166,23 +1166,23 @@ func TestEsdt_ExecuteToggleFreezeShouldWorkWithRealBech32Address(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTFreeze + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTFreeze + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteToggleFreezeShouldFailWithBech32Converter(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeShouldFailWithBech32Converter(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	args.AddressPubKeyConverter = testscommon.RealWorldBech32PubkeyConverter
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
@@ -1193,7 +1193,7 @@ func TestEsdt_ExecuteToggleFreezeShouldFailWithBech32Converter(t *testing.T) {
 
 	addressToFreeze := []byte("not a bech32 address")
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{tokenName, addressToFreeze})
 
 	output := e.Execute(vmInput)
@@ -1207,16 +1207,16 @@ func TestEsdt_ExecuteToggleFreezeShouldFailWithBech32Converter(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid address to freeze/unfreeze"))
 }
 
-func TestEsdt_ExecuteToggleFreezeShouldWork(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
@@ -1227,14 +1227,14 @@ func TestEsdt_ExecuteToggleFreezeShouldWork(t *testing.T) {
 
 	addressToFreeze := getAddress()
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freeze", [][]byte{tokenName, addressToFreeze})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToFreeze)]
@@ -1245,21 +1245,21 @@ func TestEsdt_ExecuteToggleFreezeShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTFreeze + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTFreeze + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteToggleUnFreezeShouldWork(t *testing.T) {
+func TestDcdt_ExecuteToggleUnFreezeShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
@@ -1270,14 +1270,14 @@ func TestEsdt_ExecuteToggleUnFreezeShouldWork(t *testing.T) {
 
 	addressToUnfreeze := getAddress()
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unFreeze", [][]byte{tokenName, addressToUnfreeze})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToUnfreeze)]
@@ -1288,25 +1288,25 @@ func TestEsdt_ExecuteToggleUnFreezeShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTUnFreeze + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTUnFreeze + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteToggleFreezeSingleNFTShouldWork(t *testing.T) {
+func TestDcdt_ExecuteToggleFreezeSingleNFTShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
-		TokenType:    []byte(core.NonFungibleESDT),
+		TokenType:    []byte(core.NonFungibleDCDT),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
@@ -1314,14 +1314,14 @@ func TestEsdt_ExecuteToggleFreezeSingleNFTShouldWork(t *testing.T) {
 
 	addressToFreeze := getAddress()
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("freezeSingleNFT", [][]byte{tokenName, big.NewInt(10).Bytes(), addressToFreeze})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToFreeze)]
@@ -1332,25 +1332,25 @@ func TestEsdt_ExecuteToggleFreezeSingleNFTShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTFreeze + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
+	expectedInput := core.BuiltInFunctionDCDTFreeze + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteToggleUnFreezeSingleNFTShouldWork(t *testing.T) {
+func TestDcdt_ExecuteToggleUnFreezeSingleNFTShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanFreeze:    true,
-		TokenType:    []byte(core.NonFungibleESDT),
+		TokenType:    []byte(core.NonFungibleDCDT),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
@@ -1358,14 +1358,14 @@ func TestEsdt_ExecuteToggleUnFreezeSingleNFTShouldWork(t *testing.T) {
 
 	addressToUnfreeze := getAddress()
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unFreezeSingleNFT", [][]byte{tokenName, big.NewInt(10).Bytes(), addressToUnfreeze})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToUnfreeze)]
@@ -1376,20 +1376,20 @@ func TestEsdt_ExecuteToggleUnFreezeSingleNFTShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTUnFreeze + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
+	expectedInput := core.BuiltInFunctionDCDTUnFreeze + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteWipeTooFewArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeTooFewArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
@@ -1401,15 +1401,15 @@ func TestEsdt_ExecuteWipeTooFewArgumentsShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of arguments, wanted 3"))
 }
 
-func TestEsdt_ExecuteWipeWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -1423,16 +1423,16 @@ func TestEsdt_ExecuteWipeWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteWipeNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
@@ -1445,15 +1445,15 @@ func TestEsdt_ExecuteWipeNotEnoughGasShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecuteWipeOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("esdtToken"), []byte("owner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("dcdtToken"), []byte("owner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
@@ -1466,22 +1466,22 @@ func TestEsdt_ExecuteWipeOnNonExistentTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteWipeNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := "esdtToken"
-	args := createMockArgumentsForESDT()
+	tokenName := "dcdtToken"
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[tokenName] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte(tokenName), []byte("owner")})
 
 	output := e.Execute(vmInput)
@@ -1495,16 +1495,16 @@ func TestEsdt_ExecuteWipeNotByOwnerShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecuteWipeNonWipeableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeNonWipeableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanWipe:      false,
 	})
@@ -1512,7 +1512,7 @@ func TestEsdt_ExecuteWipeNonWipeableTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{tokenName, owner})
 
 	output := e.Execute(vmInput)
@@ -1526,16 +1526,16 @@ func TestEsdt_ExecuteWipeNonWipeableTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot wipe"))
 }
 
-func TestEsdt_ExecuteWipeInvalidDestShouldFail(t *testing.T) {
+func TestDcdt_ExecuteWipeInvalidDestShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanWipe:      true,
 	})
@@ -1543,7 +1543,7 @@ func TestEsdt_ExecuteWipeInvalidDestShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{tokenName, []byte("dest")})
 
 	output := e.Execute(vmInput)
@@ -1557,16 +1557,16 @@ func TestEsdt_ExecuteWipeInvalidDestShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid"))
 }
 
-func TestEsdt_ExecuteWipeTransferFailsNoErr(t *testing.T) {
+func TestDcdt_ExecuteWipeTransferFailsNoErr(t *testing.T) {
 	t.Parallel()
 
 	err := errors.New("transfer error")
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei.(*mock.SystemEIStub).GetStorageCalled = func(key []byte) []byte {
-		marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+		marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 			OwnerAddress: []byte("owner"),
 			CanWipe:      true,
-			TokenType:    []byte(core.FungibleESDT),
+			TokenType:    []byte(core.FungibleDCDT),
 		})
 		return marshalizedData
 	}
@@ -1574,23 +1574,23 @@ func TestEsdt_ExecuteWipeTransferFailsNoErr(t *testing.T) {
 		assert.Equal(t, err.Error(), msg)
 	}
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("esdtToken"), getAddress()})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{[]byte("dcdtToken"), getAddress()})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteWipeSingleNFTTransferNoErr(t *testing.T) {
+func TestDcdt_ExecuteWipeSingleNFTTransferNoErr(t *testing.T) {
 	t.Parallel()
 
 	err := errors.New("transfer error")
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	args.Eei.(*mock.SystemEIStub).GetStorageCalled = func(key []byte) []byte {
-		marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+		marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 			OwnerAddress: []byte("owner"),
 			CanWipe:      true,
-			TokenType:    []byte(core.NonFungibleESDT),
+			TokenType:    []byte(core.NonFungibleDCDT),
 		})
 		return marshalizedData
 	}
@@ -1598,26 +1598,26 @@ func TestEsdt_ExecuteWipeSingleNFTTransferNoErr(t *testing.T) {
 		assert.Equal(t, err.Error(), msg)
 	}
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("wipeSingleNFT", [][]byte{[]byte("esdtToken"), big.NewInt(10).Bytes(), getAddress()})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("wipeSingleNFT", [][]byte{[]byte("dcdtToken"), big.NewInt(10).Bytes(), getAddress()})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteWipeShouldWork(t *testing.T) {
+func TestDcdt_ExecuteWipeShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
 	addressToWipe := getAddress()
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
-		TokenType:    []byte(core.FungibleESDT),
+		TokenType:    []byte(core.FungibleDCDT),
 		OwnerAddress: owner,
 		CanWipe:      true,
 	})
@@ -1625,14 +1625,14 @@ func TestEsdt_ExecuteWipeShouldWork(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("wipe", [][]byte{tokenName, addressToWipe})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToWipe)]
@@ -1643,24 +1643,24 @@ func TestEsdt_ExecuteWipeShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTWipe + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTWipe + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteWipeSingleNFTShouldWork(t *testing.T) {
+func TestDcdt_ExecuteWipeSingleNFTShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
 	addressToWipe := getAddress()
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
-		TokenType:    []byte(core.NonFungibleESDT),
+		TokenType:    []byte(core.NonFungibleDCDT),
 		OwnerAddress: owner,
 		CanWipe:      true,
 	})
@@ -1668,14 +1668,14 @@ func TestEsdt_ExecuteWipeSingleNFTShouldWork(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("wipeSingleNFT", [][]byte{tokenName, big.NewInt(10).Bytes(), addressToWipe})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	vmOutput := eei.CreateVMOutput()
-	_, accCreated := vmOutput.OutputAccounts[string(args.ESDTSCAddress)]
+	_, accCreated := vmOutput.OutputAccounts[string(args.DCDTSCAddress)]
 	assert.True(t, accCreated)
 
 	destAcc, accCreated := vmOutput.OutputAccounts[string(addressToWipe)]
@@ -1686,19 +1686,19 @@ func TestEsdt_ExecuteWipeSingleNFTShouldWork(t *testing.T) {
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
 	assert.Equal(t, uint64(0), outputTransfer.GasLimit)
-	expectedInput := core.BuiltInFunctionESDTWipe + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
+	expectedInput := core.BuiltInFunctionDCDTWipe + "@" + hex.EncodeToString(append(tokenName, big.NewInt(10).Bytes()...))
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecutePauseTooFewArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseTooFewArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{})
 
 	output := e.Execute(vmInput)
@@ -1706,15 +1706,15 @@ func TestEsdt_ExecutePauseTooFewArgumentsShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of arguments, wanted 1"))
 }
 
-func TestEsdt_ExecutePauseWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("dcdtToken")})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -1722,53 +1722,53 @@ func TestEsdt_ExecutePauseWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecutePauseNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecutePauseOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecutePauseNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := "esdtToken"
-	args := createMockArgumentsForESDT()
+	tokenName := "dcdtToken"
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[tokenName] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{[]byte(tokenName)})
 
 	output := e.Execute(vmInput)
@@ -1776,16 +1776,16 @@ func TestEsdt_ExecutePauseNotByOwnerShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecutePauseNonPauseableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseNonPauseableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanPause:     false,
 	})
@@ -1793,7 +1793,7 @@ func TestEsdt_ExecutePauseNonPauseableTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{tokenName})
 
 	output := e.Execute(vmInput)
@@ -1801,16 +1801,16 @@ func TestEsdt_ExecutePauseNonPauseableTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot pause/un-pause"))
 }
 
-func TestEsdt_ExecutePauseOnAPausedTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecutePauseOnAPausedTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanPause:     true,
 		IsPaused:     true,
@@ -1819,7 +1819,7 @@ func TestEsdt_ExecutePauseOnAPausedTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{tokenName})
 
 	output := e.Execute(vmInput)
@@ -1827,16 +1827,16 @@ func TestEsdt_ExecutePauseOnAPausedTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot pause an already paused contract"))
 }
 
-func TestEsdt_ExecuteTogglePauseSavesTokenWithPausedFlagSet(t *testing.T) {
+func TestDcdt_ExecuteTogglePauseSavesTokenWithPausedFlagSet(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: []byte("owner"),
 		CanPause:     true,
@@ -1846,32 +1846,32 @@ func TestEsdt_ExecuteTogglePauseSavesTokenWithPausedFlagSet(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{tokenName})
 
 	_ = e.Execute(vmInput)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.Equal(t, true, esdtData.IsPaused)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.Equal(t, true, dcdtData.IsPaused)
 
 	require.Equal(t, &vmcommon.LogEntry{
-		Identifier: []byte(core.BuiltInFunctionESDTPause),
-		Topics:     [][]byte{[]byte("esdtToken")},
+		Identifier: []byte(core.BuiltInFunctionDCDTPause),
+		Topics:     [][]byte{[]byte("dcdtToken")},
 		Address:    []byte("owner"),
 	}, eei.logs[0])
 }
 
-func TestEsdt_ExecuteTogglePauseShouldWork(t *testing.T) {
+func TestDcdt_ExecuteTogglePauseShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanPause:     true,
@@ -1880,7 +1880,7 @@ func TestEsdt_ExecuteTogglePauseShouldWork(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("pause", [][]byte{tokenName})
 
 	output := e.Execute(vmInput)
@@ -1899,21 +1899,21 @@ func TestEsdt_ExecuteTogglePauseShouldWork(t *testing.T) {
 	outputTransfer := createdAcc.OutputTransfers[0]
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
-	expectedInput := core.BuiltInFunctionESDTPause + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTPause + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteUnPauseOnAnUnPausedTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteUnPauseOnAnUnPausedTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: owner,
 		CanPause:     true,
 		IsPaused:     false,
@@ -1922,7 +1922,7 @@ func TestEsdt_ExecuteUnPauseOnAnUnPausedTokenShouldFail(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unPause", [][]byte{tokenName})
 
 	output := e.Execute(vmInput)
@@ -1930,16 +1930,16 @@ func TestEsdt_ExecuteUnPauseOnAnUnPausedTokenShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot unPause an already un-paused contract"))
 }
 
-func TestEsdt_ExecuteUnPauseSavesTokenWithPausedFlagSetToFalse(t *testing.T) {
+func TestDcdt_ExecuteUnPauseSavesTokenWithPausedFlagSetToFalse(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: []byte("owner"),
 		CanPause:     true,
@@ -1949,32 +1949,32 @@ func TestEsdt_ExecuteUnPauseSavesTokenWithPausedFlagSetToFalse(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unPause", [][]byte{tokenName})
 
 	_ = e.Execute(vmInput)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.Equal(t, false, esdtData.IsPaused)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.Equal(t, false, dcdtData.IsPaused)
 
 	require.Equal(t, &vmcommon.LogEntry{
-		Identifier: []byte(core.BuiltInFunctionESDTUnPause),
-		Topics:     [][]byte{[]byte("esdtToken")},
+		Identifier: []byte(core.BuiltInFunctionDCDTUnPause),
+		Topics:     [][]byte{[]byte("dcdtToken")},
 		Address:    []byte("owner"),
 	}, eei.logs[0])
 }
 
-func TestEsdt_ExecuteUnPauseShouldWork(t *testing.T) {
+func TestDcdt_ExecuteUnPauseShouldWork(t *testing.T) {
 	t.Parallel()
 
 	owner := []byte("owner")
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanPause:     true,
@@ -1984,7 +1984,7 @@ func TestEsdt_ExecuteUnPauseShouldWork(t *testing.T) {
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unPause", [][]byte{tokenName})
 
 	output := e.Execute(vmInput)
@@ -2003,35 +2003,35 @@ func TestEsdt_ExecuteUnPauseShouldWork(t *testing.T) {
 	outputTransfer := createdAcc.OutputTransfers[0]
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
-	expectedInput := core.BuiltInFunctionESDTUnPause + "@" + hex.EncodeToString(tokenName)
+	expectedInput := core.BuiltInFunctionDCDTUnPause + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 }
 
-func TestEsdt_ExecuteTransferOwnershipWrongNumOfArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipWrongNumOfArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "expected num of arguments 2"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("newOwner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("newOwner")})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -2039,71 +2039,71 @@ func TestEsdt_ExecuteTransferOwnershipWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("newOwner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("newOwner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("newOwner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("newOwner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteTransferOwnershipNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("newOwner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("newOwner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipNonTransferableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipNonTransferableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress:   []byte("owner"),
 		CanChangeOwner: false,
 	})
@@ -2111,24 +2111,24 @@ func TestEsdt_ExecuteTransferOwnershipNonTransferableTokenShouldFail(t *testing.
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("newOwner")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("newOwner")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot change owner of the token"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipInvalidDestinationAddressShouldFail(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipInvalidDestinationAddressShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:      tokenName,
 		OwnerAddress:   []byte("owner"),
 		CanChangeOwner: true,
@@ -2137,26 +2137,26 @@ func TestEsdt_ExecuteTransferOwnershipInvalidDestinationAddressShouldFail(t *tes
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), []byte("invalid address")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), []byte("invalid address")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid"))
 }
 
-func TestEsdt_ExecuteTransferOwnershipSavesTokenWithNewOwnerAddressSet(t *testing.T) {
+func TestDcdt_ExecuteTransferOwnershipSavesTokenWithNewOwnerAddressSet(t *testing.T) {
 	t.Parallel()
 
 	newOwner := getAddress()
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
-		TokenName:      []byte("esdtToken"),
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
+		TokenName:      []byte("dcdtToken"),
 		OwnerAddress:   []byte("owner"),
 		CanChangeOwner: true,
 	})
@@ -2164,41 +2164,41 @@ func TestEsdt_ExecuteTransferOwnershipSavesTokenWithNewOwnerAddressSet(t *testin
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("esdtToken"), newOwner})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("transferOwnership", [][]byte{[]byte("dcdtToken"), newOwner})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.Equal(t, newOwner, esdtData.OwnerAddress)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.Equal(t, newOwner, dcdtData.OwnerAddress)
 }
 
-func TestEsdt_ExecuteEsdtControlChangesWrongNumOfArgumentsShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesWrongNumOfArgumentsShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough arguments"))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesWrongCallValueShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesWrongCallValueShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte("burnable")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte("burnable")})
 	vmInput.CallValue = big.NewInt(1)
 
 	output := e.Execute(vmInput)
@@ -2206,71 +2206,71 @@ func TestEsdt_ExecuteEsdtControlChangesWrongCallValueShouldFail(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesNotEnoughGasShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesNotEnoughGasShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte("burnable")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte("burnable")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesOnNonExistentTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesOnNonExistentTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte("burnable")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte("burnable")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrNoTickerWithGivenName.Error()))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesNotByOwnerShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesNotByOwnerShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("random address"),
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte("burnable")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte("burnable")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "can be called by owner only"))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesNonUpgradableTokenShouldFail(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesNonUpgradableTokenShouldFail(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress: []byte("owner"),
 		Upgradable:   false,
 	})
@@ -2278,26 +2278,26 @@ func TestEsdt_ExecuteEsdtControlChangesNonUpgradableTokenShouldFail(t *testing.T
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte("burnable")})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte("burnable")})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "token is not upgradable"))
 }
 
-func TestEsdt_ExecuteEsdtControlChangesSavesTokenWithUpgradedProperties(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesSavesTokenWithUpgradedProperties(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
-		TokenName:        []byte("esdtToken"),
-		TokenType:        []byte(core.FungibleESDT),
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
+		TokenName:        []byte("dcdtToken"),
+		TokenType:        []byte(core.FungibleDCDT),
 		OwnerAddress:     []byte("owner"),
 		Upgradable:       true,
 		BurntValue:       big.NewInt(100),
@@ -2309,14 +2309,14 @@ func TestEsdt_ExecuteEsdtControlChangesSavesTokenWithUpgradedProperties(t *testi
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"), []byte(burnable)})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"), []byte(burnable)})
 
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrInvalidNumOfArguments.Error()))
 
-	vmInput = getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"),
+	vmInput = getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"),
 		[]byte(burnable), []byte("true"),
 		[]byte(mintable), []byte("true"),
 		[]byte(canPause), []byte("true"),
@@ -2329,24 +2329,24 @@ func TestEsdt_ExecuteEsdtControlChangesSavesTokenWithUpgradedProperties(t *testi
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData := &ESDTDataV2{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage(tokenName))
-	assert.True(t, esdtData.Burnable)
-	assert.True(t, esdtData.Mintable)
-	assert.True(t, esdtData.CanPause)
-	assert.True(t, esdtData.CanFreeze)
-	assert.True(t, esdtData.CanWipe)
-	assert.False(t, esdtData.Upgradable)
-	assert.True(t, esdtData.CanChangeOwner)
+	dcdtData := &DCDTDataV2{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage(tokenName))
+	assert.True(t, dcdtData.Burnable)
+	assert.True(t, dcdtData.Mintable)
+	assert.True(t, dcdtData.CanPause)
+	assert.True(t, dcdtData.CanFreeze)
+	assert.True(t, dcdtData.CanWipe)
+	assert.False(t, dcdtData.Upgradable)
+	assert.True(t, dcdtData.CanChangeOwner)
 
 	eei.output = make([][]byte, 0)
-	vmInput = getDefaultVmInputForFunc("getTokenProperties", [][]byte{[]byte("esdtToken")})
+	vmInput = getDefaultVmInputForFunc("getTokenProperties", [][]byte{[]byte("dcdtToken")})
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	assert.Equal(t, 18, len(eei.output))
-	assert.Equal(t, []byte("esdtToken"), eei.output[0])
-	assert.Equal(t, []byte(core.FungibleESDT), eei.output[1])
+	assert.Equal(t, []byte("dcdtToken"), eei.output[0])
+	assert.Equal(t, []byte(core.FungibleDCDT), eei.output[1])
 	assert.Equal(t, vmInput.CallerAddr, eei.output[2])
 	assert.Equal(t, "1000", string(eei.output[3]))
 	assert.Equal(t, "100", string(eei.output[4]))
@@ -2365,18 +2365,18 @@ func TestEsdt_ExecuteEsdtControlChangesSavesTokenWithUpgradedProperties(t *testi
 	assert.Equal(t, []byte("NumWiped-37"), eei.output[17])
 }
 
-func TestEsdt_ExecuteEsdtControlChangesForMultiNFTTransferShouldFaild(t *testing.T) {
+func TestDcdt_ExecuteDcdtControlChangesForMultiNFTTransferShouldFaild(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
-		TokenName:        []byte("esdtToken"),
-		TokenType:        []byte(core.NonFungibleESDT),
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
+		TokenName:        []byte("dcdtToken"),
+		TokenType:        []byte(core.NonFungibleDCDT),
 		OwnerAddress:     []byte("owner"),
 		Upgradable:       true,
 		BurntValue:       big.NewInt(0),
@@ -2388,26 +2388,26 @@ func TestEsdt_ExecuteEsdtControlChangesForMultiNFTTransferShouldFaild(t *testing
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("esdtToken"),
+	vmInput := getDefaultVmInputForFunc("controlChanges", [][]byte{[]byte("dcdtToken"),
 		[]byte(canCreateMultiShard), []byte("true"),
 	})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 }
 
-func TestEsdt_GetSpecialRolesValueNotZeroShouldErr(t *testing.T) {
+func TestDcdt_GetSpecialRolesValueNotZeroShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	vmInput.CallValue = big.NewInt(37)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
@@ -2415,115 +2415,115 @@ func TestEsdt_GetSpecialRolesValueNotZeroShouldErr(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "callValue must be 0"))
 }
 
-func TestEsdt_GetSpecialRolesInvalidNumOfArgsShouldErr(t *testing.T) {
+func TestDcdt_GetSpecialRolesInvalidNumOfArgsShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken"), []byte("additional arg")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken"), []byte("additional arg")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrInvalidNumOfArguments.Error()))
 }
 
-func TestEsdt_GetSpecialRolesNotEnoughGasShouldErr(t *testing.T) {
+func TestDcdt_GetSpecialRolesNotEnoughGasShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	args.GasCost.MetaChainSystemSCsCost.ESDTOperations = 10
+	args.GasCost.MetaChainSystemSCsCost.DCDTOperations = 10
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.OutOfGas, output)
 
 	assert.True(t, strings.Contains(eei.returnMessage, "not enough gas"))
 }
 
-func TestEsdt_GetSpecialRolesInvalidTokenShouldErr(t *testing.T) {
+func TestDcdt_GetSpecialRolesInvalidTokenShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("invalid esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("invalid dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 
 	assert.True(t, strings.Contains(eei.returnMessage, "no ticker with given name"))
 }
 
-func TestEsdt_GetSpecialRolesNoSpecialRoles(t *testing.T) {
+func TestDcdt_GetSpecialRolesNoSpecialRoles(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{})
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	assert.Equal(t, 0, len(eei.output))
 }
 
-func TestEsdt_GetSpecialRolesShouldWork(t *testing.T) {
+func TestDcdt_GetSpecialRolesShouldWork(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	addr1 := "erd1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s8kszxk"
+	addr1 := "drt1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s628p9g"
 	addr1Bytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(addr1)
 
-	addr2 := "erd1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qk05usw"
+	addr2 := "drt1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qtnrlns"
 	addr2Bytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(addr2)
 
-	specialRoles := []*ESDTRoles{
+	specialRoles := []*DCDTRoles{
 		{
 			Address: addr1Bytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleLocalMint),
-				[]byte(core.ESDTRoleLocalBurn),
+				[]byte(core.DCDTRoleLocalMint),
+				[]byte(core.DCDTRoleLocalBurn),
 			},
 		},
 		{
 			Address: addr2Bytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleNFTAddQuantity),
-				[]byte(core.ESDTRoleNFTCreate),
-				[]byte(core.ESDTRoleNFTBurn),
+				[]byte(core.DCDTRoleNFTAddQuantity),
+				[]byte(core.DCDTRoleNFTCreate),
+				[]byte(core.DCDTRoleNFTBurn),
 			},
 		},
 	}
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		SpecialRoles: specialRoles,
 	})
 	tokensMap[string(tokenName)] = marshalizedData
@@ -2532,54 +2532,54 @@ func TestEsdt_GetSpecialRolesShouldWork(t *testing.T) {
 
 	args.AddressPubKeyConverter = testscommon.RealWorldBech32PubkeyConverter
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	assert.Equal(t, 2, len(eei.output))
-	assert.Equal(t, []byte("erd1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s8kszxk:ESDTRoleLocalMint,ESDTRoleLocalBurn"), eei.output[0])
-	assert.Equal(t, []byte("erd1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qk05usw:ESDTRoleNFTAddQuantity,ESDTRoleNFTCreate,ESDTRoleNFTBurn"), eei.output[1])
+	assert.Equal(t, []byte("drt1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s628p9g:DCDTRoleLocalMint,DCDTRoleLocalBurn"), eei.output[0])
+	assert.Equal(t, []byte("drt1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qtnrlns:DCDTRoleNFTAddQuantity,DCDTRoleNFTCreate,DCDTRoleNFTBurn"), eei.output[1])
 }
 
-func TestEsdt_GetSpecialRolesWithEmptyAddressShouldWork(t *testing.T) {
+func TestDcdt_GetSpecialRolesWithEmptyAddressShouldWork(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
 	addr := ""
 	addrBytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(addr)
 
-	specialRoles := []*ESDTRoles{
+	specialRoles := []*DCDTRoles{
 		{
 			Address: addrBytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleLocalMint),
-				[]byte(core.ESDTRoleLocalBurn),
+				[]byte(core.DCDTRoleLocalMint),
+				[]byte(core.DCDTRoleLocalBurn),
 			},
 		},
 		{
 			Address: addrBytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleNFTAddQuantity),
-				[]byte(core.ESDTRoleNFTCreate),
-				[]byte(core.ESDTRoleNFTBurn),
+				[]byte(core.DCDTRoleNFTAddQuantity),
+				[]byte(core.DCDTRoleNFTCreate),
+				[]byte(core.DCDTRoleNFTBurn),
 			},
 		},
 		{
 			Address: addrBytes,
 			Roles: [][]byte{
-				[]byte(vmcommon.ESDTRoleBurnForAll),
+				[]byte(vmcommon.DCDTRoleBurnForAll),
 			},
 		},
 	}
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		SpecialRoles: specialRoles,
 	})
 	tokensMap[string(tokenName)] = marshalizedData
@@ -2588,54 +2588,54 @@ func TestEsdt_GetSpecialRolesWithEmptyAddressShouldWork(t *testing.T) {
 
 	args.AddressPubKeyConverter = testscommon.RealWorldBech32PubkeyConverter
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	assert.Equal(t, 3, len(eei.output))
-	assert.Equal(t, []byte(":ESDTRoleLocalMint,ESDTRoleLocalBurn"), eei.output[0])
-	assert.Equal(t, []byte(":ESDTRoleNFTAddQuantity,ESDTRoleNFTCreate,ESDTRoleNFTBurn"), eei.output[1])
-	assert.Equal(t, []byte(":ESDTRoleBurnForAll"), eei.output[2])
+	assert.Equal(t, []byte(":DCDTRoleLocalMint,DCDTRoleLocalBurn"), eei.output[0])
+	assert.Equal(t, []byte(":DCDTRoleNFTAddQuantity,DCDTRoleNFTCreate,DCDTRoleNFTBurn"), eei.output[1])
+	assert.Equal(t, []byte(":DCDTRoleBurnForAll"), eei.output[2])
 }
 
-func TestEsdt_UnsetSpecialRoleWithRemoveEntryFromSpecialRoles(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleWithRemoveEntryFromSpecialRoles(t *testing.T) {
 	t.Parallel()
 
-	tokenName := []byte("esdtToken")
-	args := createMockArgumentsForESDT()
+	tokenName := []byte("dcdtToken")
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	owner := "erd1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qk05usw"
+	owner := "drt1e7n8rzxdtl2n2fl6mrsg4l7stp2elxhfy6l9p7eeafspjhhrjq7qtnrlns"
 	ownerBytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(owner)
 
-	addr1 := "erd1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s8kszxk"
+	addr1 := "drt1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s628p9g"
 	addr1Bytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(addr1)
 
-	addr2 := "erd1rsq30t33aqeg8cuc3q4kfnx0jukzsx52yfua92r233zhhmndl3uszcs5qj"
+	addr2 := "drt1rsq30t33aqeg8cuc3q4kfnx0jukzsx52yfua92r233zhhmndl3usly8hrv"
 	addr2Bytes, _ := testscommon.RealWorldBech32PubkeyConverter.Decode(addr2)
 
-	specialRoles := []*ESDTRoles{
+	specialRoles := []*DCDTRoles{
 		{
 			Address: addr1Bytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleLocalMint),
+				[]byte(core.DCDTRoleLocalMint),
 			},
 		},
 		{
 			Address: addr2Bytes,
 			Roles: [][]byte{
-				[]byte(core.ESDTRoleNFTAddQuantity),
-				[]byte(core.ESDTRoleNFTCreate),
-				[]byte(core.ESDTRoleNFTBurn),
+				[]byte(core.DCDTRoleNFTAddQuantity),
+				[]byte(core.DCDTRoleNFTCreate),
+				[]byte(core.DCDTRoleNFTBurn),
 			},
 		},
 	}
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		OwnerAddress:       ownerBytes,
 		SpecialRoles:       specialRoles,
 		CanAddSpecialRoles: true,
@@ -2646,27 +2646,27 @@ func TestEsdt_UnsetSpecialRoleWithRemoveEntryFromSpecialRoles(t *testing.T) {
 
 	args.AddressPubKeyConverter = testscommon.RealWorldBech32PubkeyConverter
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.output = make([][]byte, 0)
-	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput := getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 	assert.Equal(t, 2, len(eei.output))
-	assert.Equal(t, []byte("erd1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s8kszxk:ESDTRoleLocalMint"), eei.output[0])
-	assert.Equal(t, []byte("erd1rsq30t33aqeg8cuc3q4kfnx0jukzsx52yfua92r233zhhmndl3uszcs5qj:ESDTRoleNFTAddQuantity,ESDTRoleNFTCreate,ESDTRoleNFTBurn"), eei.output[1])
+	assert.Equal(t, []byte("drt1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s628p9g:DCDTRoleLocalMint"), eei.output[0])
+	assert.Equal(t, []byte("drt1rsq30t33aqeg8cuc3q4kfnx0jukzsx52yfua92r233zhhmndl3usly8hrv:DCDTRoleNFTAddQuantity,DCDTRoleNFTCreate,DCDTRoleNFTBurn"), eei.output[1])
 
 	// unset the role for the address
 	eei.output = make([][]byte, 0)
 	vmInput = getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
 	vmInput.CallerAddr = ownerBytes
-	vmInput.Arguments = [][]byte{[]byte("esdtToken"), addr1Bytes, []byte(core.ESDTRoleLocalMint)}
+	vmInput.Arguments = [][]byte{[]byte("dcdtToken"), addr1Bytes, []byte(core.DCDTRoleLocalMint)}
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	// get roles again
 	eei.output = make([][]byte, 0)
-	vmInput = getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput = getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 	assert.Equal(t, 1, len(eei.output))
@@ -2675,28 +2675,28 @@ func TestEsdt_UnsetSpecialRoleWithRemoveEntryFromSpecialRoles(t *testing.T) {
 	eei.output = make([][]byte, 0)
 	vmInput = getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
 	vmInput.CallerAddr = ownerBytes
-	vmInput.Arguments = [][]byte{[]byte("esdtToken"), addr1Bytes, []byte(core.ESDTRoleLocalMint)}
+	vmInput.Arguments = [][]byte{[]byte("dcdtToken"), addr1Bytes, []byte(core.DCDTRoleLocalMint)}
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	// get roles again
 	eei.output = make([][]byte, 0)
-	vmInput = getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("esdtToken")})
+	vmInput = getDefaultVmInputForFunc("getSpecialRoles", [][]byte{[]byte("dcdtToken")})
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 	assert.Equal(t, 2, len(eei.output))
-	assert.Equal(t, []byte("erd1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s8kszxk:ESDTRoleLocalMint"), eei.output[1])
+	assert.Equal(t, []byte("drt1kzzv2uw97q5k9mt458qk3q9u3cwhwqykvyk598q2f6wwx7gvrd9s628p9g:DCDTRoleLocalMint"), eei.output[1])
 }
 
-func TestEsdt_ExecuteConfigChangeGetContractConfig(t *testing.T) {
+func TestDcdt_ExecuteConfigChangeGetContractConfig(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	vmInput := getDefaultVmInputForFunc("configChange", [][]byte{[]byte("esdtToken"), []byte(burnable)})
+	e, _ := NewDCDTSmartContract(args)
+	vmInput := getDefaultVmInputForFunc("configChange", [][]byte{[]byte("dcdtToken"), []byte(burnable)})
 	vmInput.CallerAddr = e.ownerAddress
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
@@ -2713,12 +2713,12 @@ func TestEsdt_ExecuteConfigChangeGetContractConfig(t *testing.T) {
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData := &ESDTConfig{}
-	_ = args.Marshalizer.Unmarshal(esdtData, eei.GetStorage([]byte(configKeyPrefix)))
-	assert.True(t, esdtData.BaseIssuingCost.Cmp(newBaseIssingCost) == 0)
-	assert.Equal(t, uint32(newMaxTokenNameLength), esdtData.MaxTokenNameLength)
-	assert.Equal(t, uint32(newMinTokenNameLength), esdtData.MinTokenNameLength)
-	assert.Equal(t, newOwner, esdtData.OwnerAddress)
+	dcdtData := &DCDTConfig{}
+	_ = args.Marshalizer.Unmarshal(dcdtData, eei.GetStorage([]byte(configKeyPrefix)))
+	assert.True(t, dcdtData.BaseIssuingCost.Cmp(newBaseIssingCost) == 0)
+	assert.Equal(t, uint32(newMaxTokenNameLength), dcdtData.MaxTokenNameLength)
+	assert.Equal(t, uint32(newMinTokenNameLength), dcdtData.MinTokenNameLength)
+	assert.Equal(t, newOwner, dcdtData.OwnerAddress)
 
 	vmInput = getDefaultVmInputForFunc("getContractConfig", make([][]byte, 0))
 	vmInput.CallerAddr = []byte("any address")
@@ -2732,14 +2732,14 @@ func TestEsdt_ExecuteConfigChangeGetContractConfig(t *testing.T) {
 
 }
 
-func TestEsdt_ExecuteClaim(t *testing.T) {
+func TestDcdt_ExecuteClaim(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("claim", [][]byte{})
 	vmInput.CallerAddr = e.ownerAddress
 
@@ -2766,14 +2766,14 @@ func getAddress() []byte {
 	return key
 }
 
-func TestEsdt_SetSpecialRoleCheckArgumentsErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleCheckArgumentsErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
 
@@ -2781,17 +2781,17 @@ func TestEsdt_SetSpecialRoleCheckArgumentsErr(t *testing.T) {
 	require.Equal(t, vmcommon.FunctionWrongSignature, retCode)
 }
 
-func TestEsdt_SetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller")
 	vmInput.CallValue = big.NewInt(1)
 
@@ -2799,28 +2799,28 @@ func TestEsdt_SetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
 	require.Equal(t, vmcommon.OutOfFunds, retCode)
 }
 
-func TestEsdt_SetSpecialRoleNewSendRoleChangeDataErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleNewSendRoleChangeDataErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller"),
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4275726e"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4275726e"), input)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -2829,18 +2829,18 @@ func TestEsdt_SetSpecialRoleNewSendRoleChangeDataErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_SetSpecialRoleAlreadyExists(t *testing.T) {
+func TestDcdt_SetSpecialRoleAlreadyExists(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalBurn)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalBurn)},
 					},
 				},
 			}
@@ -2848,15 +2848,15 @@ func TestEsdt_SetSpecialRoleAlreadyExists(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4275726e"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4275726e"), input)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -2865,38 +2865,38 @@ func TestEsdt_SetSpecialRoleAlreadyExists(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_SetSpecialRoleCannotSaveToken(t *testing.T) {
+func TestDcdt_SetSpecialRoleCannotSaveToken(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
-				TokenType:          []byte(core.FungibleESDT),
+				TokenType:          []byte(core.FungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4275726e"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4275726e"), input)
 			castedMarshalizer := args.Marshalizer.(*mock.MarshalizerMock)
 			castedMarshalizer.Fail = true
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -2905,41 +2905,41 @@ func TestEsdt_SetSpecialRoleCannotSaveToken(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_SetSpecialRoleShouldWork(t *testing.T) {
+func TestDcdt_SetSpecialRoleShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
-				TokenType:          []byte(core.FungibleESDT),
+				TokenType:          []byte(core.FungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4275726e"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4275726e"), input)
 		},
 		SetStorageCalled: func(key []byte, value []byte) {
-			token := &ESDTDataV2{}
+			token := &DCDTDataV2{}
 			_ = args.Marshalizer.Unmarshal(token, value)
-			require.Equal(t, [][]byte{[]byte(core.ESDTRoleLocalMint), []byte(core.ESDTRoleLocalBurn)}, token.SpecialRoles[0].Roles)
+			require.Equal(t, [][]byte{[]byte(core.DCDTRoleLocalMint), []byte(core.DCDTRoleLocalBurn)}, token.SpecialRoles[0].Roles)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -2948,41 +2948,41 @@ func TestEsdt_SetSpecialRoleShouldWork(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_SetSpecialRoleNFTShouldErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleNFTShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
-				TokenType:          []byte(core.NonFungibleESDT),
+				TokenType:          []byte(core.NonFungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654e4654437265617465"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654e4654437265617465"), input)
 		},
 		SetStorageCalled: func(key []byte, value []byte) {
-			token := &ESDTDataV2{}
+			token := &DCDTDataV2{}
 			_ = args.Marshalizer.Unmarshal(token, value)
-			require.Equal(t, [][]byte{[]byte(core.ESDTRoleLocalMint), []byte(core.ESDTRoleNFTCreate)}, token.SpecialRoles[0].Roles)
+			require.Equal(t, [][]byte{[]byte(core.DCDTRoleLocalMint), []byte(core.DCDTRoleNFTCreate)}, token.SpecialRoles[0].Roles)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -2990,34 +2990,34 @@ func TestEsdt_SetSpecialRoleNFTShouldErr(t *testing.T) {
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	vmInput.Arguments[2] = []byte(core.ESDTRoleNFTAddQuantity)
+	vmInput.Arguments[2] = []byte(core.DCDTRoleNFTAddQuantity)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	vmInput.Arguments[2] = []byte(core.ESDTRoleNFTCreate)
+	vmInput.Arguments[2] = []byte(core.DCDTRoleNFTCreate)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_SetSpecialRoleTransferNotEnabledShouldErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleTransferNotEnabledShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTTransferRoleFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTTransferRoleFlag)
 
-	token := &ESDTDataV2{
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller123"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("myAddress"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 			},
 		},
-		TokenType:          []byte(core.NonFungibleESDT),
+		TokenType:          []byte(core.NonFungibleDCDT),
 		CanAddSpecialRoles: true,
 	}
-	esdtTransferData := core.BuiltInFunctionESDTSetLimitedTransfer + "@" + hex.EncodeToString([]byte("myToken"))
+	dcdtTransferData := core.BuiltInFunctionDCDTSetLimitedTransfer + "@" + hex.EncodeToString([]byte("myToken"))
 	called := false
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
@@ -3025,56 +3025,56 @@ func TestEsdt_SetSpecialRoleTransferNotEnabledShouldErr(t *testing.T) {
 			return tokenBytes
 		},
 		SendGlobalSettingToAllCalled: func(sender []byte, input []byte) {
-			assert.Equal(t, input, []byte(esdtTransferData))
+			assert.Equal(t, input, []byte(dcdtTransferData))
 			called = true
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	e, _ := NewDCDTSmartContract(args)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleTransfer)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleTransfer)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	token.TokenType = []byte(core.FungibleESDT)
+	token.TokenType = []byte(core.FungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	token.TokenType = []byte(core.SemiFungibleESDT)
+	token.TokenType = []byte(core.SemiFungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTTransferRoleFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTTransferRoleFlag)
 	called = false
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.True(t, called)
 
-	token.TokenType = []byte(core.FungibleESDT)
+	token.TokenType = []byte(core.FungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 
 	called = false
-	newAddressRole := &ESDTRoles{
+	newAddressRole := &DCDTRoles{
 		Address: []byte("address"),
-		Roles:   [][]byte{[]byte(core.ESDTRoleTransfer)},
+		Roles:   [][]byte{[]byte(core.DCDTRoleTransfer)},
 	}
 	token.SpecialRoles = append(token.SpecialRoles, newAddressRole)
-	token.TokenType = []byte(core.SemiFungibleESDT)
+	token.TokenType = []byte(core.SemiFungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.False(t, called)
 
-	token.SpecialRoles[0].Roles = append(token.SpecialRoles[0].Roles, []byte(core.ESDTRoleTransfer))
-	token.TokenType = []byte(core.SemiFungibleESDT)
+	token.SpecialRoles[0].Roles = append(token.SpecialRoles[0].Roles, []byte(core.DCDTRoleTransfer))
+	token.TokenType = []byte(core.SemiFungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 	require.False(t, called)
@@ -3084,29 +3084,29 @@ func TestEsdt_SetSpecialRoleTransferNotEnabledShouldErr(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.False(t, called)
 
-	esdtTransferData = core.BuiltInFunctionESDTUnSetLimitedTransfer + "@" + hex.EncodeToString([]byte("myToken"))
+	dcdtTransferData = core.BuiltInFunctionDCDTUnSetLimitedTransfer + "@" + hex.EncodeToString([]byte("myToken"))
 	token.SpecialRoles = token.SpecialRoles[:1]
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.True(t, called)
 }
 
-func TestEsdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
+func TestDcdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTTransferRoleFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTTransferRoleFlag)
 
-	token := &ESDTDataV2{
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller123"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("myAddress"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 			},
 		},
-		TokenType:          []byte(core.NonFungibleESDT),
+		TokenType:          []byte(core.NonFungibleDCDT),
 		CanAddSpecialRoles: true,
 	}
 	called := 0
@@ -3118,22 +3118,22 @@ func TestEsdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleTransfer)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleTransfer)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTTransferRoleFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTTransferRoleFlag)
 	called = 0
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	eei.SendGlobalSettingToAllCalled = func(sender []byte, input []byte) {
 		if called == 0 {
-			assert.Equal(t, core.BuiltInFunctionESDTSetLimitedTransfer+"@"+hex.EncodeToString([]byte("myToken")), string(input))
+			assert.Equal(t, core.BuiltInFunctionDCDTSetLimitedTransfer+"@"+hex.EncodeToString([]byte("myToken")), string(input))
 		} else {
-			assert.Equal(t, vmcommon.BuiltInFunctionESDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
+			assert.Equal(t, vmcommon.BuiltInFunctionDCDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
 		}
 		called++
 	}
@@ -3143,25 +3143,25 @@ func TestEsdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
 	require.Equal(t, called, 2)
 
 	called = 0
-	newAddressRole := &ESDTRoles{
+	newAddressRole := &DCDTRoles{
 		Address: []byte("address"),
-		Roles:   [][]byte{[]byte(core.ESDTRoleTransfer)},
+		Roles:   [][]byte{[]byte(core.DCDTRoleTransfer)},
 	}
 	token.SpecialRoles = append(token.SpecialRoles, newAddressRole)
-	token.TokenType = []byte(core.SemiFungibleESDT)
+	token.TokenType = []byte(core.SemiFungibleDCDT)
 	eei.SendGlobalSettingToAllCalled = func(sender []byte, input []byte) {
-		assert.Equal(t, vmcommon.BuiltInFunctionESDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
+		assert.Equal(t, vmcommon.BuiltInFunctionDCDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
 		called++
 	}
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Equal(t, called, 1)
 
-	token.SpecialRoles[0].Roles = append(token.SpecialRoles[0].Roles, []byte(core.ESDTRoleTransfer))
+	token.SpecialRoles[0].Roles = append(token.SpecialRoles[0].Roles, []byte(core.DCDTRoleTransfer))
 	vmInput.Function = "unSetSpecialRole"
 	called = 0
 	eei.SendGlobalSettingToAllCalled = func(sender []byte, input []byte) {
-		assert.Equal(t, vmcommon.BuiltInFunctionESDTTransferRoleDeleteAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
+		assert.Equal(t, vmcommon.BuiltInFunctionDCDTTransferRoleDeleteAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
 		called++
 	}
 	retCode = e.Execute(vmInput)
@@ -3171,9 +3171,9 @@ func TestEsdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
 	called = 0
 	eei.SendGlobalSettingToAllCalled = func(sender []byte, input []byte) {
 		if called == 0 {
-			assert.Equal(t, core.BuiltInFunctionESDTUnSetLimitedTransfer+"@"+hex.EncodeToString([]byte("myToken")), string(input))
+			assert.Equal(t, core.BuiltInFunctionDCDTUnSetLimitedTransfer+"@"+hex.EncodeToString([]byte("myToken")), string(input))
 		} else {
-			assert.Equal(t, vmcommon.BuiltInFunctionESDTTransferRoleDeleteAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
+			assert.Equal(t, vmcommon.BuiltInFunctionDCDTTransferRoleDeleteAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress")), string(input))
 		}
 
 		called++
@@ -3184,30 +3184,30 @@ func TestEsdt_SetSpecialRoleTransferWithTransferRoleEnhancement(t *testing.T) {
 	require.Equal(t, called, 2)
 }
 
-func TestEsdt_SendAllTransferRoleAddresses(t *testing.T) {
+func TestDcdt_SendAllTransferRoleAddresses(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 
-	token := &ESDTDataV2{
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1234"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("myAddress1"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleTransfer)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleTransfer)},
 			},
 			{
 				Address: []byte("myAddress2"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleTransfer)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleTransfer)},
 			},
 			{
 				Address: []byte("myAddress3"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleTransfer)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleTransfer)},
 			},
 		},
-		TokenType:          []byte(core.NonFungibleESDT),
+		TokenType:          []byte(core.NonFungibleDCDT),
 		CanAddSpecialRoles: true,
 	}
 	called := 0
@@ -3219,7 +3219,7 @@ func TestEsdt_SendAllTransferRoleAddresses(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("sendAllTransferRoleAddresses", [][]byte{})
 	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress")}
@@ -3230,16 +3230,16 @@ func TestEsdt_SendAllTransferRoleAddresses(t *testing.T) {
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.FunctionNotFound, retCode)
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	eei.ReturnMessage = ""
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 	require.Equal(t, "wrong number of arguments, expected 1", eei.ReturnMessage)
 
 	called = 0
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	eei.SendGlobalSettingToAllCalled = func(sender []byte, input []byte) {
-		assert.Equal(t, vmcommon.BuiltInFunctionESDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress1"))+"@"+hex.EncodeToString([]byte("myAddress2"))+"@"+hex.EncodeToString([]byte("myAddress3")), string(input))
+		assert.Equal(t, vmcommon.BuiltInFunctionDCDTTransferRoleAddAddress+"@"+hex.EncodeToString([]byte("myToken"))+"@"+hex.EncodeToString([]byte("myAddress1"))+"@"+hex.EncodeToString([]byte("myAddress2"))+"@"+hex.EncodeToString([]byte("myAddress3")), string(input))
 		called++
 	}
 	vmInput.Arguments = [][]byte{[]byte("myToken")}
@@ -3248,47 +3248,47 @@ func TestEsdt_SendAllTransferRoleAddresses(t *testing.T) {
 	require.Equal(t, called, 1)
 
 	called = 0
-	token.SpecialRoles = make([]*ESDTRoles, 0)
+	token.SpecialRoles = make([]*DCDTRoles, 0)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 	require.Equal(t, "no address with transfer role", eei.ReturnMessage)
 }
 
-func TestEsdt_SetSpecialRoleSFTShouldErr(t *testing.T) {
+func TestDcdt_SetSpecialRoleSFTShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
-				TokenType:          []byte(core.SemiFungibleESDT),
+				TokenType:          []byte(core.SemiFungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTSetRole@6d79546f6b656e@45534454526f6c654e46544164645175616e74697479"), input)
+			require.Equal(t, []byte("DCDTSetRole@6d79546f6b656e@44434454526f6c654e46544164645175616e74697479"), input)
 		},
 		SetStorageCalled: func(key []byte, value []byte) {
-			token := &ESDTDataV2{}
+			token := &DCDTDataV2{}
 			_ = args.Marshalizer.Unmarshal(token, value)
-			require.Equal(t, [][]byte{[]byte(core.ESDTRoleLocalMint), []byte(core.ESDTRoleNFTAddQuantity)}, token.SpecialRoles[0].Roles)
+			require.Equal(t, [][]byte{[]byte(core.DCDTRoleLocalMint), []byte(core.DCDTRoleNFTAddQuantity)}, token.SpecialRoles[0].Roles)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3296,26 +3296,26 @@ func TestEsdt_SetSpecialRoleSFTShouldErr(t *testing.T) {
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	vmInput.Arguments[2] = []byte(core.ESDTRoleNFTAddQuantity)
+	vmInput.Arguments[2] = []byte(core.DCDTRoleNFTAddQuantity)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_SetSpecialRoleCreateNFTTwoTimesShouldError(t *testing.T) {
+func TestDcdt_SetSpecialRoleCreateNFTTwoTimesShouldError(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 					},
 				},
-				TokenType:          []byte(core.NonFungibleESDT),
+				TokenType:          []byte(core.NonFungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
@@ -3324,10 +3324,10 @@ func TestEsdt_SetSpecialRoleCreateNFTTwoTimesShouldError(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.ESDTRoleNFTCreate)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.DCDTRoleNFTCreate)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3336,21 +3336,21 @@ func TestEsdt_SetSpecialRoleCreateNFTTwoTimesShouldError(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_SetSpecialRoleCreateNFTTwoTimesMultiShardShouldWork(t *testing.T) {
+func TestDcdt_SetSpecialRoleCreateNFTTwoTimesMultiShardShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddres4"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 					},
 				},
-				TokenType:           []byte(core.NonFungibleESDT),
+				TokenType:           []byte(core.NonFungibleDCDT),
 				CanAddSpecialRoles:  true,
 				CanCreateMultiShard: true,
 			}
@@ -3360,10 +3360,10 @@ func TestEsdt_SetSpecialRoleCreateNFTTwoTimesMultiShardShouldWork(t *testing.T) 
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.ESDTRoleNFTCreate)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.DCDTRoleNFTCreate)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3377,21 +3377,21 @@ func TestEsdt_SetSpecialRoleCreateNFTTwoTimesMultiShardShouldWork(t *testing.T) 
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_UnSetSpecialRoleCreateNFTShouldError(t *testing.T) {
+func TestDcdt_UnSetSpecialRoleCreateNFTShouldError(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 					},
 				},
-				TokenType:          []byte(core.NonFungibleESDT),
+				TokenType:          []byte(core.NonFungibleDCDT),
 				CanAddSpecialRoles: true,
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
@@ -3400,10 +3400,10 @@ func TestEsdt_UnSetSpecialRoleCreateNFTShouldError(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.ESDTRoleNFTCreate)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller234"), []byte(core.DCDTRoleNFTCreate)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3412,17 +3412,17 @@ func TestEsdt_UnSetSpecialRoleCreateNFTShouldError(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleCheckArgumentsErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleCheckArgumentsErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller2")
 	vmInput.CallValue = big.NewInt(1)
 
@@ -3430,14 +3430,14 @@ func TestEsdt_UnsetSpecialRoleCheckArgumentsErr(t *testing.T) {
 	require.Equal(t, vmcommon.FunctionWrongSignature, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleCheckArgumentsInvalidRoleErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleCheckArgumentsInvalidRoleErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
 	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte("mirage")}
@@ -3448,17 +3448,17 @@ func TestEsdt_UnsetSpecialRoleCheckArgumentsInvalidRoleErr(t *testing.T) {
 	require.Equal(t, vmcommon.OutOfFunds, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleCheckArgumentsDuplicatedRoleInArgsShouldErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleCheckArgumentsDuplicatedRoleInArgsShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.ESDTRoleLocalBurn), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.DCDTRoleLocalBurn), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller")
 	vmInput.CallValue = big.NewInt(1)
 
@@ -3466,17 +3466,17 @@ func TestEsdt_UnsetSpecialRoleCheckArgumentsDuplicatedRoleInArgsShouldErr(t *tes
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("1"), []byte("caller"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller")
 	vmInput.CallValue = big.NewInt(1)
 
@@ -3484,13 +3484,13 @@ func TestEsdt_UnsetSpecialRoleCheckBasicOwnershipErr(t *testing.T) {
 	require.Equal(t, vmcommon.OutOfFunds, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleNewShouldErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleNewShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller"),
 			}
 			tokenBytes, _ := args.Marshalizer.Marshal(token)
@@ -3499,10 +3499,10 @@ func TestEsdt_UnsetSpecialRoleNewShouldErr(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("caller"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3511,18 +3511,18 @@ func TestEsdt_UnsetSpecialRoleNewShouldErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleCannotRemoveRoleNotExistsShouldErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleCannotRemoveRoleNotExistsShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
 			}
@@ -3532,10 +3532,10 @@ func TestEsdt_UnsetSpecialRoleCannotRemoveRoleNotExistsShouldErr(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalBurn)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalBurn)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3544,18 +3544,18 @@ func TestEsdt_UnsetSpecialRoleCannotRemoveRoleNotExistsShouldErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleRemoveRoleTransfer(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleRemoveRoleTransfer(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
 			}
@@ -3563,15 +3563,15 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleTransfer(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTUnSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4d696e74"), input)
+			require.Equal(t, []byte("DCDTUnSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4d696e74"), input)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalMint)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalMint)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3580,18 +3580,18 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleTransfer(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleRemoveRoleSaveTokenErr(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleRemoveRoleSaveTokenErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
 			}
@@ -3599,17 +3599,17 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleSaveTokenErr(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTUnSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4d696e74"), input)
+			require.Equal(t, []byte("DCDTUnSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4d696e74"), input)
 			castedMarshalizer := args.Marshalizer.(*mock.MarshalizerMock)
 			castedMarshalizer.Fail = true
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalMint)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalMint)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3618,18 +3618,18 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleSaveTokenErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_UnsetSpecialRoleRemoveRoleShouldWork(t *testing.T) {
+func TestDcdt_UnsetSpecialRoleRemoveRoleShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
 			}
@@ -3637,20 +3637,20 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleShouldWork(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTUnSetRole@6d79546f6b656e@45534454526f6c654c6f63616c4d696e74"), input)
+			require.Equal(t, []byte("DCDTUnSetRole@6d79546f6b656e@44434454526f6c654c6f63616c4d696e74"), input)
 		},
 		SetStorageCalled: func(key []byte, value []byte) {
-			token := &ESDTDataV2{}
+			token := &DCDTDataV2{}
 			_ = args.Marshalizer.Unmarshal(token, value)
 			require.Len(t, token.SpecialRoles, 0)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("unSetSpecialRole", [][]byte{})
-	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.ESDTRoleLocalMint)}
+	vmInput.Arguments = [][]byte{[]byte("myToken"), []byte("myAddress"), []byte(core.DCDTRoleLocalMint)}
 	vmInput.CallerAddr = []byte("caller123")
 	vmInput.CallValue = big.NewInt(0)
 	vmInput.GasProvided = 50000000
@@ -3659,14 +3659,14 @@ func TestEsdt_UnsetSpecialRoleRemoveRoleShouldWork(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_StopNFTCreateForeverCheckArgumentsErr(t *testing.T) {
+func TestDcdt_StopNFTCreateForeverCheckArgumentsErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("stopNFTCreate", [][]byte{})
 	vmInput.Arguments = [][]byte{{1}, {2}}
@@ -3682,16 +3682,16 @@ func TestEsdt_StopNFTCreateForeverCheckArgumentsErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_StopNFTCreateForeverCallErrors(t *testing.T) {
+func TestDcdt_StopNFTCreateForeverCallErrors(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	token := &ESDTDataV2{
+	args := createMockArgumentsForDCDT()
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("myAddress"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 			},
 		},
 	}
@@ -3703,7 +3703,7 @@ func TestEsdt_StopNFTCreateForeverCallErrors(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("stopNFTCreate", [][]byte{[]byte("tokenID")})
 	vmInput.CallerAddr = []byte("caller2")
@@ -3716,7 +3716,7 @@ func TestEsdt_StopNFTCreateForeverCallErrors(t *testing.T) {
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	token.NFTCreateStopped = true
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
@@ -3726,16 +3726,16 @@ func TestEsdt_StopNFTCreateForeverCallErrors(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_StopNFTCreateForeverCallShouldWork(t *testing.T) {
+func TestDcdt_StopNFTCreateForeverCallShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	token := &ESDTDataV2{
+	args := createMockArgumentsForDCDT()
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("myAddress"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 			},
 		},
 	}
@@ -3745,31 +3745,31 @@ func TestEsdt_StopNFTCreateForeverCallShouldWork(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTUnSetRole@746f6b656e4944@45534454526f6c654e4654437265617465"), input)
+			require.Equal(t, []byte("DCDTUnSetRole@746f6b656e4944@44434454526f6c654e4654437265617465"), input)
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("stopNFTCreate", [][]byte{[]byte("tokenID")})
 	vmInput.CallerAddr = token.OwnerAddress
 	vmInput.CallValue = big.NewInt(0)
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	token.NFTCreateStopped = false
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_TransferNFTCreateCheckArgumentsErr(t *testing.T) {
+func TestDcdt_TransferNFTCreateCheckArgumentsErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("transferNFTCreateRole", [][]byte{})
 	vmInput.Arguments = [][]byte{{1}, {2}}
@@ -3785,16 +3785,16 @@ func TestEsdt_TransferNFTCreateCheckArgumentsErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_TransferNFTCreateCallErrors(t *testing.T) {
+func TestDcdt_TransferNFTCreateCallErrors(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	token := &ESDTDataV2{
+	args := createMockArgumentsForDCDT()
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("caller1"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 			},
 		},
 	}
@@ -3806,7 +3806,7 @@ func TestEsdt_TransferNFTCreateCallErrors(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("transferNFTCreateRole", [][]byte{[]byte("tokenID"), []byte("caller3"), []byte("caller22")})
 	vmInput.CallerAddr = []byte("caller2")
@@ -3819,12 +3819,12 @@ func TestEsdt_TransferNFTCreateCallErrors(t *testing.T) {
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	token.TokenType = []byte(core.FungibleESDT)
+	token.TokenType = []byte(core.FungibleDCDT)
 	token.CanTransferNFTCreateRole = true
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.UserError, retCode)
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	retCode = e.Execute(vmInput)
 	require.Equal(t, vmcommon.FunctionWrongSignature, retCode)
 
@@ -3837,16 +3837,16 @@ func TestEsdt_TransferNFTCreateCallErrors(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_TransferNFTCreateCallShouldWork(t *testing.T) {
+func TestDcdt_TransferNFTCreateCallShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	token := &ESDTDataV2{
+	args := createMockArgumentsForDCDT()
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("caller3"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 			},
 		},
 	}
@@ -3856,34 +3856,34 @@ func TestEsdt_TransferNFTCreateCallShouldWork(t *testing.T) {
 			return tokenBytes
 		},
 		TransferCalled: func(destination []byte, sender []byte, value *big.Int, input []byte, _ uint64) {
-			require.Equal(t, []byte("ESDTNFTCreateRoleTransfer@746f6b656e4944@63616c6c657232"), input)
+			require.Equal(t, []byte("DCDTNFTCreateRoleTransfer@746f6b656e4944@63616c6c657232"), input)
 			require.Equal(t, destination, []byte("caller3"))
 		},
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("transferNFTCreateRole", [][]byte{[]byte("tokenID"), []byte("caller3"), []byte("caller2")})
 	vmInput.CallerAddr = token.OwnerAddress
 	vmInput.CallValue = big.NewInt(0)
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	token.CanTransferNFTCreateRole = true
 	retCode := e.Execute(vmInput)
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_TransferNFTCreateCallMultiShardShouldWork(t *testing.T) {
+func TestDcdt_TransferNFTCreateCallMultiShardShouldWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
-	token := &ESDTDataV2{
+	args := createMockArgumentsForDCDT()
+	token := &DCDTDataV2{
 		OwnerAddress: []byte("caller1"),
-		SpecialRoles: []*ESDTRoles{
+		SpecialRoles: []*DCDTRoles{
 			{
 				Address: []byte("3caller"),
-				Roles:   [][]byte{[]byte(core.ESDTRoleNFTCreate)},
+				Roles:   [][]byte{[]byte(core.DCDTRoleNFTCreate)},
 			},
 		},
 	}
@@ -3895,13 +3895,13 @@ func TestEsdt_TransferNFTCreateCallMultiShardShouldWork(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("transferNFTCreateRole", [][]byte{[]byte("tokenID"), []byte("3caller"), []byte("caller2")})
 	vmInput.CallerAddr = token.OwnerAddress
 	vmInput.CallValue = big.NewInt(0)
 
-	token.TokenType = []byte(core.NonFungibleESDT)
+	token.TokenType = []byte(core.NonFungibleDCDT)
 	token.CanTransferNFTCreateRole = true
 	token.CanCreateMultiShard = true
 	retCode := e.Execute(vmInput)
@@ -3912,14 +3912,14 @@ func TestEsdt_TransferNFTCreateCallMultiShardShouldWork(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_SetNewGasCost(t *testing.T) {
+func TestDcdt_SetNewGasCost(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	e.SetNewGasCost(vm.GasCost{BuiltInCost: vm.BuiltInCost{
 		ChangeOwnerAddress: 10000,
 	}})
@@ -3927,14 +3927,14 @@ func TestEsdt_SetNewGasCost(t *testing.T) {
 	require.Equal(t, uint64(10000), e.gasCost.BuiltInCost.ChangeOwnerAddress)
 }
 
-func TestEsdt_GetAllAddressesAndRolesNoArgumentsShouldErr(t *testing.T) {
+func TestDcdt_GetAllAddressesAndRolesNoArgumentsShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("getAllAddressesAndRoles", [][]byte{})
 	vmInput.Arguments = nil
 
@@ -3942,14 +3942,14 @@ func TestEsdt_GetAllAddressesAndRolesNoArgumentsShouldErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_GetAllAddressesAndRolesCallWithValueShouldErr(t *testing.T) {
+func TestDcdt_GetAllAddressesAndRolesCallWithValueShouldErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("getAllAddressesAndRoles", [][]byte{})
 	vmInput.Arguments = [][]byte{[]byte("arg")}
 	vmInput.CallValue = big.NewInt(0)
@@ -3958,18 +3958,18 @@ func TestEsdt_GetAllAddressesAndRolesCallWithValueShouldErr(t *testing.T) {
 	require.Equal(t, vmcommon.UserError, retCode)
 }
 
-func TestEsdt_GetAllAddressesAndRolesCallGetExistingTokenErr(t *testing.T) {
+func TestDcdt_GetAllAddressesAndRolesCallGetExistingTokenErr(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{
 		GetStorageCalled: func(key []byte) []byte {
-			token := &ESDTDataV2{
+			token := &DCDTDataV2{
 				OwnerAddress: []byte("caller123"),
-				SpecialRoles: []*ESDTRoles{
+				SpecialRoles: []*DCDTRoles{
 					{
 						Address: []byte("myAddress"),
-						Roles:   [][]byte{[]byte(core.ESDTRoleLocalMint)},
+						Roles:   [][]byte{[]byte(core.DCDTRoleLocalMint)},
 					},
 				},
 			}
@@ -3979,7 +3979,7 @@ func TestEsdt_GetAllAddressesAndRolesCallGetExistingTokenErr(t *testing.T) {
 	}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("getAllAddressesAndRoles", [][]byte{})
 	vmInput.Arguments = [][]byte{[]byte("arg")}
 	vmInput.CallValue = big.NewInt(0)
@@ -3988,33 +3988,33 @@ func TestEsdt_GetAllAddressesAndRolesCallGetExistingTokenErr(t *testing.T) {
 	require.Equal(t, vmcommon.Ok, retCode)
 }
 
-func TestEsdt_CanUseContract(t *testing.T) {
-	args := createMockArgumentsForESDT()
+func TestDcdt_CanUseContract(t *testing.T) {
+	args := createMockArgumentsForDCDT()
 	eei := &mock.SystemEIStub{}
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	require.True(t, e.CanUseContract())
 }
 
-func TestEsdt_ExecuteIssueMetaESDT(t *testing.T) {
+func TestDcdt_ExecuteIssueMetaDCDT(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	enableEpochsHandler.RemoveActiveFlags(common.MetaESDTSetFlag)
-	vmInput := getDefaultVmInputForFunc("registerMetaESDT", nil)
+	enableEpochsHandler.RemoveActiveFlags(common.MetaDCDTSetFlag)
+	vmInput := getDefaultVmInputForFunc("registerMetaDCDT", nil)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "invalid method to call")
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.MetaESDTSetFlag)
+	enableEpochsHandler.AddActiveFlags(common.MetaDCDTSetFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4046,24 +4046,24 @@ func TestEsdt_ExecuteIssueMetaESDT(t *testing.T) {
 	assert.True(t, strings.Contains(string(eei.output[0]), "TICKER-"))
 }
 
-func TestEsdt_ExecuteChangeSFTToMetaESDT(t *testing.T) {
+func TestDcdt_ExecuteChangeSFTToMetaDCDT(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	enableEpochsHandler.RemoveActiveFlags(common.MetaESDTSetFlag)
-	vmInput := getDefaultVmInputForFunc("changeSFTToMetaESDT", nil)
+	enableEpochsHandler.RemoveActiveFlags(common.MetaDCDTSetFlag)
+	vmInput := getDefaultVmInputForFunc("changeSFTToMetaDCDT", nil)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "invalid method to call")
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.MetaESDTSetFlag)
+	enableEpochsHandler.AddActiveFlags(common.MetaDCDTSetFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4080,28 +4080,28 @@ func TestEsdt_ExecuteChangeSFTToMetaESDT(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "no ticker with given name"))
 
-	_ = e.saveToken(vmInput.Arguments[0], &ESDTDataV2{TokenType: []byte(core.NonFungibleESDT), OwnerAddress: vmInput.CallerAddr})
+	_ = e.saveToken(vmInput.Arguments[0], &DCDTDataV2{TokenType: []byte(core.NonFungibleDCDT), OwnerAddress: vmInput.CallerAddr})
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "change can happen to semi fungible tokens only"))
 
-	_ = e.saveToken(vmInput.Arguments[0], &ESDTDataV2{TokenType: []byte(core.SemiFungibleESDT), OwnerAddress: vmInput.CallerAddr})
+	_ = e.saveToken(vmInput.Arguments[0], &DCDTDataV2{TokenType: []byte(core.SemiFungibleDCDT), OwnerAddress: vmInput.CallerAddr})
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
 	token, _ := e.getExistingToken(vmInput.Arguments[0])
 	assert.Equal(t, token.NumDecimals, uint32(10))
-	assert.Equal(t, token.TokenType, []byte(core.MetaESDT))
+	assert.Equal(t, token.TokenType, []byte(core.MetaDCDT))
 }
 
-func TestEsdt_ExecuteIssueSFTAndChangeSFTToMetaESDT(t *testing.T) {
+func TestDcdt_ExecuteIssueSFTAndChangeSFTToMetaDCDT(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
@@ -4115,10 +4115,10 @@ func TestEsdt_ExecuteIssueSFTAndChangeSFTToMetaESDT(t *testing.T) {
 
 	token, _ := e.getExistingToken(fullTicker)
 	assert.Equal(t, token.NumDecimals, uint32(0))
-	assert.Equal(t, token.TokenType, []byte(core.SemiFungibleESDT))
+	assert.Equal(t, token.TokenType, []byte(core.SemiFungibleDCDT))
 
 	vmInput.CallValue = big.NewInt(0)
-	vmInput.Function = "changeSFTToMetaESDT"
+	vmInput.Function = "changeSFTToMetaDCDT"
 	vmInput.Arguments = [][]byte{fullTicker, big.NewInt(10).Bytes()}
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
@@ -4126,23 +4126,23 @@ func TestEsdt_ExecuteIssueSFTAndChangeSFTToMetaESDT(t *testing.T) {
 
 	token, _ = e.getExistingToken(fullTicker)
 	assert.Equal(t, token.NumDecimals, uint32(10))
-	assert.Equal(t, token.TokenType, []byte(core.MetaESDT))
+	assert.Equal(t, token.TokenType, []byte(core.MetaDCDT))
 
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "change can happen to semi fungible tokens only"))
 }
 
-func TestEsdt_ExecuteRegisterAndSetErrors(t *testing.T) {
+func TestDcdt_ExecuteRegisterAndSetErrors(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTRegisterAndSetAllRolesFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTRegisterAndSetAllRolesFlag)
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRoles", nil)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionNotFound, output)
@@ -4150,7 +4150,7 @@ func TestEsdt_ExecuteRegisterAndSetErrors(t *testing.T) {
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.ESDTRegisterAndSetAllRolesFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTRegisterAndSetAllRolesFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4181,13 +4181,13 @@ func TestEsdt_ExecuteRegisterAndSetErrors(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of decimals"))
 }
 
-func TestEsdt_ExecuteRegisterAndSetFungible(t *testing.T) {
+func TestDcdt_ExecuteRegisterAndSetFungible(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRoles", nil)
 	vmInput.CallValue = big.NewInt(0).Set(e.baseIssuingCost)
@@ -4201,16 +4201,16 @@ func TestEsdt_ExecuteRegisterAndSetFungible(t *testing.T) {
 	assert.True(t, strings.Contains(string(eei.output[0]), "TICKER-"))
 
 	token, _ := e.getExistingToken(eei.output[0])
-	assert.Equal(t, token.TokenType, []byte(core.FungibleESDT))
+	assert.Equal(t, token.TokenType, []byte(core.FungibleDCDT))
 }
 
-func TestEsdt_ExecuteRegisterAndSetNonFungible(t *testing.T) {
+func TestDcdt_ExecuteRegisterAndSetNonFungible(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRoles", nil)
 	vmInput.CallValue = big.NewInt(0).Set(e.baseIssuingCost)
@@ -4224,16 +4224,16 @@ func TestEsdt_ExecuteRegisterAndSetNonFungible(t *testing.T) {
 	assert.True(t, strings.Contains(string(eei.output[0]), "TICKER-"))
 
 	token, _ := e.getExistingToken(eei.output[0])
-	assert.Equal(t, token.TokenType, []byte(core.NonFungibleESDT))
+	assert.Equal(t, token.TokenType, []byte(core.NonFungibleDCDT))
 }
 
-func TestEsdt_ExecuteRegisterAndSetSemiFungible(t *testing.T) {
+func TestDcdt_ExecuteRegisterAndSetSemiFungible(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRoles", nil)
 	vmInput.CallValue = big.NewInt(0).Set(e.baseIssuingCost)
@@ -4247,7 +4247,7 @@ func TestEsdt_ExecuteRegisterAndSetSemiFungible(t *testing.T) {
 	assert.True(t, strings.Contains(string(eei.output[0]), "TICKER-"))
 
 	token, _ := e.getExistingToken(eei.output[0])
-	assert.Equal(t, token.TokenType, []byte(core.SemiFungibleESDT))
+	assert.Equal(t, token.TokenType, []byte(core.SemiFungibleDCDT))
 	lenOutTransfer := 0
 	for _, outAcc := range eei.outputAccounts {
 		lenOutTransfer += len(outAcc.OutputTransfers)
@@ -4255,23 +4255,23 @@ func TestEsdt_ExecuteRegisterAndSetSemiFungible(t *testing.T) {
 	assert.Equal(t, uint32(lenOutTransfer), 1+eei.blockChainHook.NumberOfShards())
 }
 
-func TestEsdt_ExecuteRegisterAndSetMetaESDTShouldSetType(t *testing.T) {
+func TestDcdt_ExecuteRegisterAndSetMetaDCDTShouldSetType(t *testing.T) {
 	t.Parallel()
 
-	registerAndSetAllRolesWithTypeCheck(t, []byte("NFT"), []byte(core.NonFungibleESDT))
-	registerAndSetAllRolesWithTypeCheck(t, []byte("SFT"), []byte(core.SemiFungibleESDT))
-	registerAndSetAllRolesWithTypeCheck(t, []byte("META"), []byte(core.MetaESDT))
-	registerAndSetAllRolesWithTypeCheck(t, []byte("FNG"), []byte(core.FungibleESDT))
+	registerAndSetAllRolesWithTypeCheck(t, []byte("NFT"), []byte(core.NonFungibleDCDT))
+	registerAndSetAllRolesWithTypeCheck(t, []byte("SFT"), []byte(core.SemiFungibleDCDT))
+	registerAndSetAllRolesWithTypeCheck(t, []byte("META"), []byte(core.MetaDCDT))
+	registerAndSetAllRolesWithTypeCheck(t, []byte("FNG"), []byte(core.FungibleDCDT))
 }
 
 func registerAndSetAllRolesWithTypeCheck(t *testing.T, typeArgument []byte, expectedType []byte) {
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRoles", nil)
 	vmInput.CallValue = big.NewInt(0).Set(e.baseIssuingCost)
 
@@ -4293,23 +4293,23 @@ func registerAndSetAllRolesWithTypeCheck(t *testing.T, typeArgument []byte, expe
 	assert.Equal(t, lenOutTransfer, 1)
 }
 
-func TestEsdt_setBurnRoleGlobally(t *testing.T) {
+func TestDcdt_setBurnRoleGlobally(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("setBurnRoleGlobally", [][]byte{})
 
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionNotFound, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid method to call"))
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of arguments, wanted 1"))
@@ -4317,7 +4317,7 @@ func TestEsdt_setBurnRoleGlobally(t *testing.T) {
 	owner := bytes.Repeat([]byte{1}, 32)
 	tokenName := []byte("TOKEN-ABABAB")
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanPause:     true,
@@ -4344,7 +4344,7 @@ func TestEsdt_setBurnRoleGlobally(t *testing.T) {
 	outputTransfer := createdAcc.OutputTransfers[0]
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
-	expectedInput := vmcommon.BuiltInFunctionESDTSetBurnRoleForAll + "@" + hex.EncodeToString(tokenName)
+	expectedInput := vmcommon.BuiltInFunctionDCDTSetBurnRoleForAll + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 
@@ -4353,23 +4353,23 @@ func TestEsdt_setBurnRoleGlobally(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot set burn role globally as it was already set"))
 }
 
-func TestEsdt_unsetBurnRoleGlobally(t *testing.T) {
+func TestDcdt_unsetBurnRoleGlobally(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 	vmInput := getDefaultVmInputForFunc("unsetBurnRoleGlobally", [][]byte{})
 
-	enableEpochsHandler.RemoveActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionNotFound, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid method to call"))
 
-	enableEpochsHandler.AddActiveFlags(common.ESDTMetadataContinuousCleanupFlag)
+	enableEpochsHandler.AddActiveFlags(common.DCDTMetadataContinuousCleanupFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "invalid number of arguments, wanted 1"))
@@ -4377,14 +4377,14 @@ func TestEsdt_unsetBurnRoleGlobally(t *testing.T) {
 	owner := bytes.Repeat([]byte{1}, 32)
 	tokenName := []byte("TOKEN-ABABAB")
 	tokensMap := map[string][]byte{}
-	token := &ESDTDataV2{
+	token := &DCDTDataV2{
 		TokenName:    tokenName,
 		OwnerAddress: owner,
 		CanPause:     true,
 		IsPaused:     true,
 	}
 
-	burnForAllRole := &ESDTRoles{Roles: [][]byte{[]byte(vmcommon.ESDTRoleBurnForAll)}, Address: []byte{}}
+	burnForAllRole := &DCDTRoles{Roles: [][]byte{[]byte(vmcommon.DCDTRoleBurnForAll)}, Address: []byte{}}
 	token.SpecialRoles = append(token.SpecialRoles, burnForAllRole)
 
 	marshalizedData, _ := args.Marshalizer.Marshal(token)
@@ -4408,7 +4408,7 @@ func TestEsdt_unsetBurnRoleGlobally(t *testing.T) {
 	outputTransfer := createdAcc.OutputTransfers[0]
 
 	assert.Equal(t, big.NewInt(0), outputTransfer.Value)
-	expectedInput := vmcommon.BuiltInFunctionESDTUnSetBurnRoleForAll + "@" + hex.EncodeToString(tokenName)
+	expectedInput := vmcommon.BuiltInFunctionDCDTUnSetBurnRoleForAll + "@" + hex.EncodeToString(tokenName)
 	assert.Equal(t, []byte(expectedInput), outputTransfer.Data)
 	assert.Equal(t, vmData.DirectCall, outputTransfer.CallType)
 
@@ -4421,27 +4421,27 @@ func TestEsdt_unsetBurnRoleGlobally(t *testing.T) {
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot unset burn role globally as it was not set"))
 }
 
-func TestEsdt_CheckRolesOnMetaESDT(t *testing.T) {
+func TestDcdt_CheckRolesOnMetaDCDT(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	err := e.checkSpecialRolesAccordingToTokenType([][]byte{[]byte("random")}, &ESDTDataV2{TokenType: []byte(core.MetaESDT)})
+	err := e.checkSpecialRolesAccordingToTokenType([][]byte{[]byte("random")}, &DCDTDataV2{TokenType: []byte(core.MetaDCDT)})
 	assert.Nil(t, err)
 
 	enableEpochsHandler.AddActiveFlags(common.ManagedCryptoAPIsFlag)
-	err = e.checkSpecialRolesAccordingToTokenType([][]byte{[]byte("random")}, &ESDTDataV2{TokenType: []byte(core.MetaESDT)})
+	err = e.checkSpecialRolesAccordingToTokenType([][]byte{[]byte("random")}, &DCDTDataV2{TokenType: []byte(core.MetaDCDT)})
 	assert.Equal(t, err, vm.ErrInvalidArgument)
 }
 
-func TestEsdt_SetNFTCreateRoleAfterStopNFTCreateShouldNotWork(t *testing.T) {
+func TestDcdt_SetNFTCreateRoleAfterStopNFTCreateShouldNotWork(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
@@ -4449,20 +4449,20 @@ func TestEsdt_SetNFTCreateRoleAfterStopNFTCreateShouldNotWork(t *testing.T) {
 	owner := bytes.Repeat([]byte{1}, 32)
 	tokenName := []byte("TOKEN-ABABAB")
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:          tokenName,
 		OwnerAddress:       owner,
 		CanPause:           true,
 		IsPaused:           true,
-		TokenType:          []byte(core.NonFungibleESDT),
+		TokenType:          []byte(core.NonFungibleDCDT),
 		CanAddSpecialRoles: true,
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.ESDTRoleNFTCreate)})
+	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.DCDTRoleNFTCreate)})
 	vmInput.CallerAddr = owner
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
@@ -4472,7 +4472,7 @@ func TestEsdt_SetNFTCreateRoleAfterStopNFTCreateShouldNotWork(t *testing.T) {
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	vmInput = getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.ESDTRoleNFTCreate)})
+	vmInput = getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.DCDTRoleNFTCreate)})
 	vmInput.CallerAddr = owner
 	enableEpochsHandler.AddActiveFlags(common.NFTStopCreateFlag)
 	output = e.Execute(vmInput)
@@ -4485,10 +4485,10 @@ func TestEsdt_SetNFTCreateRoleAfterStopNFTCreateShouldNotWork(t *testing.T) {
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_UpdateTokenType(t *testing.T) {
+func TestDcdt_UpdateTokenType(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
 	eei := createDefaultEei()
 	args.Eei = eei
@@ -4496,20 +4496,20 @@ func TestEsdt_UpdateTokenType(t *testing.T) {
 	owner := bytes.Repeat([]byte{1}, 32)
 	tokenName := []byte("TOKEN-ABABAB")
 	tokensMap := map[string][]byte{}
-	marshalizedData, _ := args.Marshalizer.Marshal(ESDTDataV2{
+	marshalizedData, _ := args.Marshalizer.Marshal(DCDTDataV2{
 		TokenName:          tokenName,
 		OwnerAddress:       owner,
 		CanPause:           true,
 		IsPaused:           true,
-		TokenType:          []byte(core.NonFungibleESDT),
+		TokenType:          []byte(core.NonFungibleDCDT),
 		CanAddSpecialRoles: true,
 	})
 	tokensMap[string(tokenName)] = marshalizedData
 	eei.storageUpdate[string(eei.scAddress)] = tokensMap
 
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
-	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.ESDTRoleNFTCreate)})
+	vmInput := getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.DCDTRoleNFTCreate)})
 	vmInput.CallerAddr = owner
 	output := e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
@@ -4519,7 +4519,7 @@ func TestEsdt_UpdateTokenType(t *testing.T) {
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	vmInput = getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.ESDTRoleNFTCreate)})
+	vmInput = getDefaultVmInputForFunc("setSpecialRole", [][]byte{tokenName, owner, []byte(core.DCDTRoleNFTCreate)})
 	vmInput.CallerAddr = owner
 	enableEpochsHandler.AddActiveFlags(common.NFTStopCreateFlag)
 	output = e.Execute(vmInput)
@@ -4532,13 +4532,13 @@ func TestEsdt_UpdateTokenType(t *testing.T) {
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ExecuteChangeToMultiShardCreate(t *testing.T) {
+func TestDcdt_ExecuteChangeToMultiShardCreate(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("changeToMultiShardCreate", nil)
 
@@ -4554,47 +4554,47 @@ func TestEsdt_ExecuteChangeToMultiShardCreate(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "no ticker with given name"))
 
-	esdtData := &ESDTDataV2{TokenType: []byte(core.NonFungibleESDT), OwnerAddress: vmInput.CallerAddr}
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData := &DCDTDataV2{TokenType: []byte(core.NonFungibleDCDT), OwnerAddress: vmInput.CallerAddr}
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "cannot add special roles"))
 
-	esdtData.CanAddSpecialRoles = true
-	esdtData.CanCreateMultiShard = true
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData.CanAddSpecialRoles = true
+	dcdtData.CanCreateMultiShard = true
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "it is already multi shard create"))
 
-	esdtData.CanCreateMultiShard = false
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData.CanCreateMultiShard = false
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "element was not found"))
 
-	esdtData.SpecialRoles = append(esdtData.SpecialRoles, &ESDTRoles{Address: vmInput.CallerAddr, Roles: [][]byte{[]byte(core.ESDTRoleNFTCreate)}})
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData.SpecialRoles = append(dcdtData.SpecialRoles, &DCDTRoles{Address: vmInput.CallerAddr, Roles: [][]byte{[]byte(core.DCDTRoleNFTCreate)}})
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_UpdateTokenID(t *testing.T) {
+func TestDcdt_UpdateTokenID(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("updateTokenID", nil)
 
-	enableEpochsHandler.RemoveActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DynamicDCDTFlag)
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
 	output := e.Execute(vmInput)
@@ -4603,7 +4603,7 @@ func TestEsdt_UpdateTokenID(t *testing.T) {
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.AddActiveFlags(common.DynamicDCDTFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.FunctionWrongSignature, output)
 	assert.Equal(t, eei.returnMessage, "invalid number of arguments, wanted 1")
@@ -4614,28 +4614,28 @@ func TestEsdt_UpdateTokenID(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "no ticker with given name"))
 
-	esdtData := &ESDTDataV2{TokenType: []byte(core.NonFungibleESDT), OwnerAddress: vmInput.CallerAddr}
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData := &DCDTDataV2{TokenType: []byte(core.NonFungibleDCDT), OwnerAddress: vmInput.CallerAddr}
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData, _ = e.getExistingToken(vmInput.Arguments[0])
-	assert.Equal(t, esdtData.TokenType, []byte(core.NonFungibleESDTv2))
+	dcdtData, _ = e.getExistingToken(vmInput.Arguments[0])
+	assert.Equal(t, dcdtData.TokenType, []byte(core.NonFungibleDCDTv2))
 }
 
-func TestEsdt_RegisterDynamic(t *testing.T) {
+func TestDcdt_RegisterDynamic(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("registerDynamic", nil)
 
-	enableEpochsHandler.RemoveActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DynamicDCDTFlag)
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
 	output := e.Execute(vmInput)
@@ -4644,7 +4644,7 @@ func TestEsdt_RegisterDynamic(t *testing.T) {
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.AddActiveFlags(common.DynamicDCDTFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4686,18 +4686,18 @@ func TestEsdt_RegisterDynamic(t *testing.T) {
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_RegisterAndSetAllRolesDynamic(t *testing.T) {
+func TestDcdt_RegisterAndSetAllRolesDynamic(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("registerAndSetAllRolesDynamic", nil)
 
-	enableEpochsHandler.RemoveActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DynamicDCDTFlag)
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
 	output := e.Execute(vmInput)
@@ -4706,7 +4706,7 @@ func TestEsdt_RegisterAndSetAllRolesDynamic(t *testing.T) {
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.AddActiveFlags(common.DynamicDCDTFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4748,18 +4748,18 @@ func TestEsdt_RegisterAndSetAllRolesDynamic(t *testing.T) {
 	assert.Equal(t, vmcommon.Ok, output)
 }
 
-func TestEsdt_ChangeToDynamic(t *testing.T) {
+func TestDcdt_ChangeToDynamic(t *testing.T) {
 	t.Parallel()
 
-	args := createMockArgumentsForESDT()
+	args := createMockArgumentsForDCDT()
 	eei := createDefaultEei()
 	args.Eei = eei
 	enableEpochsHandler, _ := args.EnableEpochsHandler.(*enableEpochsHandlerMock.EnableEpochsHandlerStub)
-	e, _ := NewESDTSmartContract(args)
+	e, _ := NewDCDTSmartContract(args)
 
 	vmInput := getDefaultVmInputForFunc("changeToDynamic", nil)
 
-	enableEpochsHandler.RemoveActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.RemoveActiveFlags(common.DynamicDCDTFlag)
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
 	output := e.Execute(vmInput)
@@ -4768,7 +4768,7 @@ func TestEsdt_ChangeToDynamic(t *testing.T) {
 
 	eei.returnMessage = ""
 	eei.gasRemaining = 9999
-	enableEpochsHandler.AddActiveFlags(common.DynamicESDTFlag)
+	enableEpochsHandler.AddActiveFlags(common.DynamicDCDTFlag)
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.Equal(t, eei.returnMessage, "not enough arguments")
@@ -4779,37 +4779,37 @@ func TestEsdt_ChangeToDynamic(t *testing.T) {
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "no ticker with given name"))
 
-	esdtData := &ESDTDataV2{TokenType: []byte(core.FungibleESDT), OwnerAddress: vmInput.CallerAddr}
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData := &DCDTDataV2{TokenType: []byte(core.FungibleDCDT), OwnerAddress: vmInput.CallerAddr}
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
-	assert.True(t, strings.Contains(eei.returnMessage, "cannot change FungibleESDT tokens to dynamic"))
+	assert.True(t, strings.Contains(eei.returnMessage, "cannot change FungibleDCDT tokens to dynamic"))
 
-	esdtData.TokenType = []byte(core.DynamicMetaESDT)
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData.TokenType = []byte(core.DynamicMetaDCDT)
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	assert.True(t, strings.Contains(eei.returnMessage, "tokenID is already dynamic"))
 
-	esdtData.TokenType = []byte(core.MetaESDT)
-	esdtData.SpecialRoles = append(esdtData.SpecialRoles, &ESDTRoles{Address: vmInput.CallerAddr, Roles: [][]byte{[]byte(core.ESDTRoleNFTCreate), []byte(core.ESDTRoleNFTUpdateAttributes)}})
-	esdtData.SpecialRoles = append(esdtData.SpecialRoles, &ESDTRoles{Address: bytes.Repeat([]byte{2}, 32), Roles: [][]byte{[]byte(core.ESDTRoleNFTUpdateAttributes)}})
+	dcdtData.TokenType = []byte(core.MetaDCDT)
+	dcdtData.SpecialRoles = append(dcdtData.SpecialRoles, &DCDTRoles{Address: vmInput.CallerAddr, Roles: [][]byte{[]byte(core.DCDTRoleNFTCreate), []byte(core.DCDTRoleNFTUpdateAttributes)}})
+	dcdtData.SpecialRoles = append(dcdtData.SpecialRoles, &DCDTRoles{Address: bytes.Repeat([]byte{2}, 32), Roles: [][]byte{[]byte(core.DCDTRoleNFTUpdateAttributes)}})
 
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.UserError, output)
 	fmt.Println(eei.returnMessage)
 	assert.True(t, strings.Contains(eei.returnMessage, vm.ErrCannotChangeToDynamic.Error()))
 
-	esdtData.SpecialRoles[1] = &ESDTRoles{Address: bytes.Repeat([]byte{2}, 32), Roles: [][]byte{[]byte(core.ESDTRoleNFTRecreate)}}
-	_ = e.saveToken(vmInput.Arguments[0], esdtData)
+	dcdtData.SpecialRoles[1] = &DCDTRoles{Address: bytes.Repeat([]byte{2}, 32), Roles: [][]byte{[]byte(core.DCDTRoleNFTRecreate)}}
+	_ = e.saveToken(vmInput.Arguments[0], dcdtData)
 	eei.returnMessage = ""
 	output = e.Execute(vmInput)
 	assert.Equal(t, vmcommon.Ok, output)
 
-	esdtData, _ = e.getExistingToken(vmInput.Arguments[0])
-	assert.True(t, strings.Contains(string(esdtData.TokenType), core.Dynamic))
+	dcdtData, _ = e.getExistingToken(vmInput.Arguments[0])
+	assert.True(t, strings.Contains(string(dcdtData.TokenType), core.Dynamic))
 }

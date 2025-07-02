@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/testscommon"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/assert"
 )
 

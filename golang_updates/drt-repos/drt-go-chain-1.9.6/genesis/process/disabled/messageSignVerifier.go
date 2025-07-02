@@ -1,9 +1,9 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/genesis"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // MessageSignVerifier represents the message verifier that accepts any message, sign, pk tuple

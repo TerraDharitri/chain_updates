@@ -9,14 +9,14 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/epochStart/notifier"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/directoryhandler"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	storageErrors "github.com/multiversx/mx-chain-storage-go/common"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	storageErrors "github.com/TerraDharitri/drt-go-chain-storage/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/directoryhandler"
 )
 
 var log = logger.GetOrCreate("storage/clean")

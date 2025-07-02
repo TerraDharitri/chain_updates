@@ -1,14 +1,14 @@
 package mock
 
-import "github.com/multiversx/mx-chain-go/state"
+import "github.com/TerraDharitri/drt-go-chain/state"
 
-// ESDTRoleHandlerStub -
-type ESDTRoleHandlerStub struct {
+// DCDTRoleHandlerStub -
+type DCDTRoleHandlerStub struct {
 	CheckAllowedToExecuteCalled func(account state.UserAccountHandler, tokenID []byte, action []byte) error
 }
 
 // CheckAllowedToExecute -
-func (e *ESDTRoleHandlerStub) CheckAllowedToExecute(account state.UserAccountHandler, tokenID []byte, action []byte) error {
+func (e *DCDTRoleHandlerStub) CheckAllowedToExecute(account state.UserAccountHandler, tokenID []byte, action []byte) error {
 	if e.CheckAllowedToExecuteCalled != nil {
 		return e.CheckAllowedToExecuteCalled(account, tokenID, action)
 	}
@@ -17,6 +17,6 @@ func (e *ESDTRoleHandlerStub) CheckAllowedToExecute(account state.UserAccountHan
 }
 
 // IsInterfaceNil -
-func (e *ESDTRoleHandlerStub) IsInterfaceNil() bool {
+func (e *DCDTRoleHandlerStub) IsInterfaceNil() bool {
 	return e == nil
 }

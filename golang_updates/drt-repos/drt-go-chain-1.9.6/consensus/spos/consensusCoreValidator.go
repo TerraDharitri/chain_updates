@@ -1,7 +1,7 @@
 package spos
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 // ValidateConsensusCore checks for nil all the container objects

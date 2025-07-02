@@ -3,8 +3,8 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/trie"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/trie"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,8 +3,8 @@ package integrationTests
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-go/sharding"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 // TestBuiltinFunction wraps a builtin function defined ad-hoc, for testing

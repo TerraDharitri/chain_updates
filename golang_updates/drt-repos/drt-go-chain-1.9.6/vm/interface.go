@@ -3,8 +3,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // SystemSmartContract interface defines the function a system smart contract should have

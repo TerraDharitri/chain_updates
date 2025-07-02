@@ -8,21 +8,21 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	scrData "github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	transactionData "github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/data"
-	"github.com/multiversx/mx-chain-go/genesis/mock"
-	"github.com/multiversx/mx-chain-go/genesis/parsing"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	scrData "github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	transactionData "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/data"
+	"github.com/TerraDharitri/drt-go-chain/genesis/mock"
+	"github.com/TerraDharitri/drt-go-chain/genesis/parsing"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -516,12 +516,12 @@ func TestAccountsParser_getShardIDs(t *testing.T) {
 }
 
 func TestAccountsParser_createMintTransaction(t *testing.T) {
-	pkConv, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
-	expectedAddr, _ := pkConv.Decode("erd17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqqkhty3")
+	pkConv, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
+	expectedAddr, _ := pkConv.Decode("drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80")
 	ap := parsing.NewTestAccountsParser(pkConv)
 	balance := int64(1)
 	ibs := []*data.InitialAccount{
-		createSimpleInitialAccount("erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx", balance),
+		createSimpleInitialAccount("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c", balance),
 	}
 
 	ap.SetEntireSupply(big.NewInt(int64(len(ibs)) * balance))
@@ -753,8 +753,8 @@ func TestAccountsParser_GenerateInitialTransactionsVerifyTxsHashes(t *testing.T)
 func TestAccountsParser_GenesisMintingAddress(t *testing.T) {
 	t.Parallel()
 
-	pkConv, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+	pkConv, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 	ap := parsing.NewTestAccountsParser(pkConv)
 	addr := ap.GenesisMintingAddress()
-	assert.Equal(t, "erd17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqqkhty3", addr)
+	assert.Equal(t, "drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80", addr)
 }

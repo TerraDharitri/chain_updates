@@ -3,10 +3,10 @@ package node
 import (
 	"io"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 
-	"github.com/multiversx/mx-chain-go/update"
+	"github.com/TerraDharitri/drt-go-chain/update"
 )
 
 // NetworkShardingCollector defines the updating methods used by the network sharding component

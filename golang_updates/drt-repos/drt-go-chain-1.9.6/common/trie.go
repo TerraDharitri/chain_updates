@@ -3,7 +3,7 @@ package common
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // EmptyTrieHash returns the value with empty trie hash

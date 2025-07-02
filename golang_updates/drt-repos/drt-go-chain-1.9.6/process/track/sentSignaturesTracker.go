@@ -3,8 +3,8 @@ package track
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 // externalPeerID is just a marker so the ResetRoundsWithoutReceivedMessages will know it is not an owned peer ID

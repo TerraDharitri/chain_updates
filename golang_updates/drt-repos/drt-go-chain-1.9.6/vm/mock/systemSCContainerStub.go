@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-go/vm"
+import "github.com/TerraDharitri/drt-go-chain/vm"
 
 // SystemSCContainerStub -
 type SystemSCContainerStub struct {

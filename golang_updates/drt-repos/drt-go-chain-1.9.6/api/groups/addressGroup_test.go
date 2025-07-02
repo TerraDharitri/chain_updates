@@ -13,13 +13,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	apiErrors "github.com/multiversx/mx-chain-go/api/errors"
-	"github.com/multiversx/mx-chain-go/api/groups"
-	"github.com/multiversx/mx-chain-go/api/mock"
-	"github.com/multiversx/mx-chain-go/api/shared"
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	apiErrors "github.com/TerraDharitri/drt-go-chain/api/errors"
+	"github.com/TerraDharitri/drt-go-chain/api/groups"
+	"github.com/TerraDharitri/drt-go-chain/api/mock"
+	"github.com/TerraDharitri/drt-go-chain/api/shared"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -190,7 +190,7 @@ func TestAddressGroup_getAccount(t *testing.T) {
 	t.Parallel()
 
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrCouldNotGetAccount, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error should error", func(t *testing.T) {
 		t.Parallel()
@@ -249,7 +249,7 @@ func TestAddressGroup_getBalance(t *testing.T) {
 		testErrorScenario("/address//balance", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetBalance, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/balance?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/balance?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetBalance, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error should error", func(t *testing.T) {
 		t.Parallel()
@@ -263,7 +263,7 @@ func TestAddressGroup_getBalance(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/balance",
+			"/address/drt1alice/balance",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -333,7 +333,7 @@ func TestAddressGroup_getAccounts(t *testing.T) {
 		require.Equal(t, shared.ReturnCodeRequestError, response.Code)
 	})
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/bulk?blockNonce=not-uint64", "POST", bytes.NewBuffer([]byte(`["erd1", "erd1"]`)),
+		testErrorScenario("/address/bulk?blockNonce=not-uint64", "POST", bytes.NewBuffer([]byte(`["drt1", "drt1"]`)),
 			formatExpectedErr(apiErrors.ErrCouldNotGetAccount, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error, should err", func(t *testing.T) {
 		t.Parallel()
@@ -347,7 +347,7 @@ func TestAddressGroup_getAccounts(t *testing.T) {
 
 		ws := startWebServer(addrGroup, "address", getAddressRoutesConfig())
 
-		req, _ := http.NewRequest("POST", "/address/bulk", bytes.NewBuffer([]byte(`["erd1", "erd1"]`)))
+		req, _ := http.NewRequest("POST", "/address/bulk", bytes.NewBuffer([]byte(`["drt1", "drt1"]`)))
 		resp := httptest.NewRecorder()
 		ws.ServeHTTP(resp, req)
 
@@ -360,8 +360,8 @@ func TestAddressGroup_getAccounts(t *testing.T) {
 		t.Parallel()
 
 		expectedAccounts := map[string]*api.AccountResponse{
-			"erd1alice": {
-				Address: "erd1alice",
+			"drt1alice": {
+				Address: "drt1alice",
 				Balance: "100000000000000",
 				Nonce:   37,
 			},
@@ -385,7 +385,7 @@ func TestAddressGroup_getAccounts(t *testing.T) {
 			facade,
 			"/address/bulk",
 			"POST",
-			bytes.NewBuffer([]byte(`["erd1", "erd1"]`)),
+			bytes.NewBuffer([]byte(`["drt1", "drt1"]`)),
 			response,
 		)
 
@@ -402,7 +402,7 @@ func TestAddressGroup_getUsername(t *testing.T) {
 		testErrorScenario("/address//username", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetUsername, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/username?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/username?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetUsername, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error should error", func(t *testing.T) {
 		t.Parallel()
@@ -416,7 +416,7 @@ func TestAddressGroup_getUsername(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/username",
+			"/address/drt1alice/username",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -437,7 +437,7 @@ func TestAddressGroup_getUsername(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/username",
+			"/address/drt1alice/username",
 			"GET",
 			nil,
 			usernameResponseObj,
@@ -453,7 +453,7 @@ func TestAddressGroup_getCodeHash(t *testing.T) {
 		testErrorScenario("/address//code-hash", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetCodeHash, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/code-hash?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/code-hash?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetCodeHash, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error should error", func(t *testing.T) {
 		t.Parallel()
@@ -467,7 +467,7 @@ func TestAddressGroup_getCodeHash(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/code-hash",
+			"/address/drt1alice/code-hash",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -489,7 +489,7 @@ func TestAddressGroup_getCodeHash(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/code-hash",
+			"/address/drt1alice/code-hash",
 			"GET",
 			nil,
 			codeHashResponseObj,
@@ -505,7 +505,7 @@ func TestAddressGroup_getValueForKey(t *testing.T) {
 		testErrorScenario("/address//key/test", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetValueForKey, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/key/test?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/key/test?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetValueForKey, apiErrors.ErrBadUrlParams)))
 	t.Run("facade error should error", func(t *testing.T) {
 		t.Parallel()
@@ -519,7 +519,7 @@ func TestAddressGroup_getValueForKey(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/key/test",
+			"/address/drt1alice/key/test",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -540,7 +540,7 @@ func TestAddressGroup_getValueForKey(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/key/test",
+			"/address/drt1alice/key/test",
 			"GET",
 			nil,
 			valueForKeyResponseObj,
@@ -556,7 +556,7 @@ func TestAddressGroup_getGuardianData(t *testing.T) {
 		testErrorScenario("/address//guardian-data", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetGuardianData, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/guardian-data?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/guardian-data?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetGuardianData, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -569,7 +569,7 @@ func TestAddressGroup_getGuardianData(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/guardian-data",
+			"/address/drt1alice/guardian-data",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -600,7 +600,7 @@ func TestAddressGroup_getGuardianData(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/guardian-data",
+			"/address/drt1alice/guardian-data",
 			"GET",
 			nil,
 			response,
@@ -616,7 +616,7 @@ func TestAddressGroup_getKeyValuePairs(t *testing.T) {
 		testErrorScenario("/address//keys", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetKeyValuePairs, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/keys?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/keys?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetKeyValuePairs, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -629,7 +629,7 @@ func TestAddressGroup_getKeyValuePairs(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/keys",
+			"/address/drt1alice/keys",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -653,7 +653,7 @@ func TestAddressGroup_getKeyValuePairs(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/keys",
+			"/address/drt1alice/keys",
 			"GET",
 			nil,
 			response,
@@ -669,7 +669,7 @@ func TestAddressGroup_getESDTBalance(t *testing.T) {
 		testErrorScenario("/address//esdt/newToken", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTBalance, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/esdt/newToken?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/esdt/newToken?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTBalance, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -682,7 +682,7 @@ func TestAddressGroup_getESDTBalance(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/esdt/newToken",
+			"/address/drt1alice/esdt/newToken",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -704,7 +704,7 @@ func TestAddressGroup_getESDTBalance(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/esdt/newToken",
+			"/address/drt1alice/esdt/newToken",
 			"GET",
 			nil,
 			esdtBalanceResponseObj,
@@ -721,7 +721,7 @@ func TestAddressGroup_getESDTsRoles(t *testing.T) {
 		testErrorScenario("/address//esdts/roles", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetRolesForAccount, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/esdts/roles?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/esdts/roles?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetRolesForAccount, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -734,7 +734,7 @@ func TestAddressGroup_getESDTsRoles(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/esdts/roles",
+			"/address/drt1alice/esdts/roles",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -758,7 +758,7 @@ func TestAddressGroup_getESDTsRoles(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/esdts/roles",
+			"/address/drt1alice/esdts/roles",
 			"GET",
 			nil,
 			response,
@@ -774,10 +774,10 @@ func TestAddressGroup_getESDTTokensWithRole(t *testing.T) {
 		testErrorScenario("/address//esdts-with-role/ESDTRoleNFTCreate", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/esdts-with-role/ESDTRoleNFTCreate?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, apiErrors.ErrBadUrlParams)))
 	t.Run("invalid role should error",
-		testErrorScenario("/address/erd1alice/esdts-with-role/invalid", "GET", nil,
+		testErrorScenario("/address/drt1alice/esdts-with-role/invalid", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, fmt.Errorf("invalid role: %s", "invalid"))))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -790,7 +790,7 @@ func TestAddressGroup_getESDTTokensWithRole(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/esdts-with-role/ESDTRoleNFTCreate",
+			"/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -811,7 +811,7 @@ func TestAddressGroup_getESDTTokensWithRole(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/esdts-with-role/ESDTRoleNFTCreate",
+			"/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate",
 			"GET",
 			nil,
 			esdtResponseObj,
@@ -827,7 +827,7 @@ func TestAddressGroup_getNFTTokenIDsRegisteredByAddress(t *testing.T) {
 		testErrorScenario("/address//registered-nfts", "GET", nil,
 			formatExpectedErr(apiErrors.ErrRegisteredNFTTokenIDs, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/registered-nfts?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/registered-nfts?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrRegisteredNFTTokenIDs, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -840,7 +840,7 @@ func TestAddressGroup_getNFTTokenIDsRegisteredByAddress(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/registered-nfts",
+			"/address/drt1alice/registered-nfts",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -861,7 +861,7 @@ func TestAddressGroup_getNFTTokenIDsRegisteredByAddress(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/registered-nfts",
+			"/address/drt1alice/registered-nfts",
 			"GET",
 			nil,
 			esdtResponseObj,
@@ -877,10 +877,10 @@ func TestAddressGroup_getESDTNFTData(t *testing.T) {
 		testErrorScenario("/address//nft/newToken/nonce/10", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/nft/newToken/nonce/10?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/nft/newToken/nonce/10?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrBadUrlParams)))
 	t.Run("invalid nonce should error",
-		testErrorScenario("/address/erd1alice/nft/newToken/nonce/not-int", "GET", nil,
+		testErrorScenario("/address/drt1alice/nft/newToken/nonce/not-int", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrNonceInvalid)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -893,7 +893,7 @@ func TestAddressGroup_getESDTNFTData(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/nft/newToken/nonce/10",
+			"/address/drt1alice/nft/newToken/nonce/10",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -920,7 +920,7 @@ func TestAddressGroup_getESDTNFTData(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/nft/newToken/nonce/10",
+			"/address/drt1alice/nft/newToken/nonce/10",
 			"GET",
 			nil,
 			esdtResponseObj,
@@ -939,7 +939,7 @@ func TestAddressGroup_getAllESDTData(t *testing.T) {
 		testErrorScenario("/address//esdt", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/erd1alice/esdt?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/esdt?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
@@ -952,7 +952,7 @@ func TestAddressGroup_getAllESDTData(t *testing.T) {
 		testAddressGroup(
 			t,
 			facade,
-			"/address/erd1alice/esdt",
+			"/address/drt1alice/esdt",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -977,7 +977,7 @@ func TestAddressGroup_getAllESDTData(t *testing.T) {
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/erd1alice/esdt",
+			"/address/drt1alice/esdt",
 			"GET",
 			nil,
 			esdtTokenResponseObj,

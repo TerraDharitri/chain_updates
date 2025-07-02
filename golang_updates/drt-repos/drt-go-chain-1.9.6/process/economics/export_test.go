@@ -3,7 +3,7 @@ package economics
 import (
 	"strconv"
 
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 // GetRewardsActiveConfig -

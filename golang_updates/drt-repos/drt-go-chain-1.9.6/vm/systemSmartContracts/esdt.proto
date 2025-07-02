@@ -7,7 +7,7 @@ option (gogoproto.stable_marshaler_all) = true;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
-message ESDTDataV1 {
+message DCDTDataV1 {
     bytes  OwnerAddress             = 1 [(gogoproto.jsontag) = "OwnerAddress"];
     bytes  TokenName                = 2 [(gogoproto.jsontag) = "TokenName"];
     bytes  TickerName               = 3 [(gogoproto.jsontag) = "TickerName"];
@@ -20,17 +20,17 @@ message ESDTDataV1 {
     bool   Upgradable               = 10 [(gogoproto.jsontag) = "CanUpgrade"];
     bool   CanChangeOwner           = 11 [(gogoproto.jsontag) = "CanChangeOwner"];
     bool   IsPaused                 = 12 [(gogoproto.jsontag) = "IsPaused"];
-    bytes  MintedValue              = 13 [(gogoproto.jsontag) = "MintedValue", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-    bytes  BurntValue               = 14 [(gogoproto.jsontag) = "BurntValue", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+    bytes  MintedValue              = 13 [(gogoproto.jsontag) = "MintedValue", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+    bytes  BurntValue               = 14 [(gogoproto.jsontag) = "BurntValue", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
     uint32 NumDecimals              = 15 [(gogoproto.jsontag) = "NumDecimals"];
     bool   CanAddSpecialRoles       = 16 [(gogoproto.jsontag) = "CanAddSpecialRoles"];
     bool   NFTCreateStopped         = 17 [(gogoproto.jsontag) = "NFTCreateStopped"];
     bool   CanTransferNFTCreateRole = 18 [(gogoproto.jsontag) = "CanTransferNFTCreateRole"];
-    repeated ESDTRoles SpecialRoles = 19 [(gogoproto.jsontag) = "SpecialRoles"];
+    repeated DCDTRoles SpecialRoles = 19 [(gogoproto.jsontag) = "SpecialRoles"];
     uint32 NumWiped                 = 20 [(gogoproto.jsontag) = "NumWiped"];
 }
 
-message ESDTDataV2 {
+message DCDTDataV2 {
     bytes  OwnerAddress             = 1 [(gogoproto.jsontag) = "OwnerAddress"];
     bytes  TokenName                = 2 [(gogoproto.jsontag) = "TokenName"];
     bytes  TickerName               = 3 [(gogoproto.jsontag) = "TickerName"];
@@ -43,25 +43,25 @@ message ESDTDataV2 {
     bool   Upgradable               = 10 [(gogoproto.jsontag) = "CanUpgrade"];
     bool   CanChangeOwner           = 11 [(gogoproto.jsontag) = "CanChangeOwner"];
     bool   IsPaused                 = 12 [(gogoproto.jsontag) = "IsPaused"];
-    bytes  MintedValue              = 13 [(gogoproto.jsontag) = "MintedValue", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-    bytes  BurntValue               = 14 [(gogoproto.jsontag) = "BurntValue", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+    bytes  MintedValue              = 13 [(gogoproto.jsontag) = "MintedValue", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+    bytes  BurntValue               = 14 [(gogoproto.jsontag) = "BurntValue", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
     uint32 NumDecimals              = 15 [(gogoproto.jsontag) = "NumDecimals"];
     bool   CanAddSpecialRoles       = 16 [(gogoproto.jsontag) = "CanAddSpecialRoles"];
     bool   NFTCreateStopped         = 17 [(gogoproto.jsontag) = "NFTCreateStopped"];
     bool   CanTransferNFTCreateRole = 18 [(gogoproto.jsontag) = "CanTransferNFTCreateRole"];
-    repeated ESDTRoles SpecialRoles = 19 [(gogoproto.jsontag) = "SpecialRoles"];
+    repeated DCDTRoles SpecialRoles = 19 [(gogoproto.jsontag) = "SpecialRoles"];
     uint32 NumWiped                 = 20 [(gogoproto.jsontag) = "NumWiped"];
     bool   CanCreateMultiShard      = 21 [(gogoproto.jsontag) = "CanCreateMultiShard"];
 }
 
-message ESDTRoles {
+message DCDTRoles {
     bytes          Address = 1 [(gogoproto.jsontag) = "Address"];
     repeated bytes Roles   = 2 [(gogoproto.jsontag) = "Roles"];
 }
 
-message ESDTConfig {
+message DCDTConfig {
     bytes OwnerAddress        = 1 [(gogoproto.jsontag) = "OwnerAddress"];
-    bytes BaseIssuingCost     = 2 [(gogoproto.jsontag) = "BaseIssuingCost", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+    bytes BaseIssuingCost     = 2 [(gogoproto.jsontag) = "BaseIssuingCost", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
     uint32 MinTokenNameLength = 3 [(gogoproto.jsontag) = "MinTokenNameLength"];
     uint32 MaxTokenNameLength = 4 [(gogoproto.jsontag) = "MaxTokenNameLength"];
 }

@@ -1,9 +1,9 @@
 package initial
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/facade"
-	"github.com/multiversx/mx-chain-go/node/external"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
 )
 
 type initialStatusMetricsProvider struct {

@@ -3,7 +3,7 @@ package p2p
 import (
 	"context"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 func newTestP2PDebugger(

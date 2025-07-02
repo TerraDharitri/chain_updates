@@ -3,17 +3,17 @@ package factory
 import (
 	"fmt"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 	"github.com/mitchellh/mapstructure"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 var log = logger.GetOrCreate("vm/factory")
@@ -209,20 +209,20 @@ func (scf *systemSCFactory) createValidatorContract() (vm.SystemSmartContract, e
 	return validatorSC, err
 }
 
-func (scf *systemSCFactory) createESDTContract() (vm.SystemSmartContract, error) {
-	argsESDT := systemSmartContracts.ArgsNewESDTSmartContract{
+func (scf *systemSCFactory) createDCDTContract() (vm.SystemSmartContract, error) {
+	argsDCDT := systemSmartContracts.ArgsNewDCDTSmartContract{
 		Eei:                    scf.systemEI,
 		GasCost:                scf.gasCost,
-		ESDTSCAddress:          vm.ESDTSCAddress,
+		DCDTSCAddress:          vm.DCDTSCAddress,
 		Marshalizer:            scf.marshalizer,
 		Hasher:                 scf.hasher,
-		ESDTSCConfig:           scf.systemSCConfig.ESDTSystemSCConfig,
+		DCDTSCConfig:           scf.systemSCConfig.DCDTSystemSCConfig,
 		AddressPubKeyConverter: scf.addressPubKeyConverter,
 		EndOfEpochSCAddress:    vm.EndOfEpochAddress,
 		EnableEpochsHandler:    scf.enableEpochsHandler,
 	}
-	esdt, err := systemSmartContracts.NewESDTSmartContract(argsESDT)
-	return esdt, err
+	dcdt, err := systemSmartContracts.NewDCDTSmartContract(argsDCDT)
+	return dcdt, err
 }
 
 func (scf *systemSCFactory) createGovernanceContract() (vm.SystemSmartContract, error) {
@@ -317,12 +317,12 @@ func (scf *systemSCFactory) CreateForGenesis() (vm.SystemSCContainer, error) {
 		return nil, err
 	}
 
-	esdt, err := scf.createESDTContract()
+	dcdt, err := scf.createDCDTContract()
 	if err != nil {
 		return nil, err
 	}
 
-	err = scf.systemSCsContainer.Add(vm.ESDTSCAddress, esdt)
+	err = scf.systemSCsContainer.Add(vm.DCDTSCAddress, dcdt)
 	if err != nil {
 		return nil, err
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 var _ StorageService = (*ChainStorer)(nil)

@@ -1,9 +1,9 @@
 package notifier
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 
-	"github.com/multiversx/mx-chain-go/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
 )
 
 var _ epochStart.ActionHandler = (*handlerStruct)(nil)

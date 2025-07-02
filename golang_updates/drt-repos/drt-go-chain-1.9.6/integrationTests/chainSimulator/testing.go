@@ -6,14 +6,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/errors"
-	chainSimulatorProcess "github.com/multiversx/mx-chain-go/node/chainSimulator/process"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/errors"
+	chainSimulatorProcess "github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreAPI "github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreAPI "github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -25,7 +25,7 @@ func CheckSetState(t *testing.T, chainSimulator ChainSimulator, nodeHandler chai
 		"02": "02",
 	}
 
-	address := "erd1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq6e5zgj"
+	address := "drt1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq89rptv"
 	err := chainSimulator.SetKeyValueForAddress(address, keyValueMap)
 	require.Nil(t, err)
 
@@ -147,7 +147,7 @@ func CheckGetAccount(t *testing.T, chainSimulator ChainSimulator) {
 	require.Nil(t, err)
 
 	address := dtos.WalletAddress{
-		Bech32: "erd1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq6e5zgj",
+		Bech32: "drt1qtc600lryvytxuy4h7vn7xmsy5tw6vuw3tskr75cwnmv4mnyjgsq89rptv",
 	}
 	address.Bytes, err = chainSimulator.GetNodeHandler(0).GetCoreComponents().AddressPubKeyConverter().Decode(address.Bech32)
 	require.Nil(t, err)

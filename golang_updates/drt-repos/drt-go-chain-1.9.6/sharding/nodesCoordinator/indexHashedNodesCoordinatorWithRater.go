@@ -1,9 +1,9 @@
 package nodesCoordinator
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 var _ NodesCoordinatorHelper = (*indexHashedNodesCoordinatorWithRater)(nil)

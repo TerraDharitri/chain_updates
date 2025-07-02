@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/esdt"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/esdt/nft"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt/nft"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {

@@ -3,15 +3,15 @@ package status_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/factory/mock"
-	statusComp "github.com/multiversx/mx-chain-go/factory/status"
-	"github.com/multiversx/mx-chain-go/p2p"
-	factoryMocks "github.com/multiversx/mx-chain-go/testscommon/factory"
-	"github.com/multiversx/mx-chain-go/testscommon/p2pmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/factory/mock"
+	statusComp "github.com/TerraDharitri/drt-go-chain/factory/status"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	factoryMocks "github.com/TerraDharitri/drt-go-chain/testscommon/factory"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
 	"github.com/stretchr/testify/require"
 )
 

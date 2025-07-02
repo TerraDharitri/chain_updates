@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/process"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 type argsMempoolHost struct {
@@ -22,7 +22,7 @@ type argsMempoolHost struct {
 type mempoolHost struct {
 	txGasHandler        txGasHandler
 	callArgumentsParser process.CallArgumentsParser
-	esdtTransferParser  vmcommon.ESDTTransferParser
+	dcdtTransferParser  vmcommon.DCDTTransferParser
 }
 
 func newMempoolHost(args argsMempoolHost) (*mempoolHost, error) {
@@ -35,7 +35,7 @@ func newMempoolHost(args argsMempoolHost) (*mempoolHost, error) {
 
 	argsParser := parsers.NewCallArgsParser()
 
-	esdtTransferParser, err := parsers.NewESDTTransferParser(args.marshalizer)
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(args.marshalizer)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func newMempoolHost(args argsMempoolHost) (*mempoolHost, error) {
 	return &mempoolHost{
 		txGasHandler:        args.txGasHandler,
 		callArgumentsParser: argsParser,
-		esdtTransferParser:  esdtTransferParser,
+		dcdtTransferParser:  dcdtTransferParser,
 	}, nil
 }
 
@@ -57,18 +57,18 @@ func (host *mempoolHost) GetTransferredValue(tx data.TransactionHandler) *big.In
 	value := tx.GetValue()
 	hasValue := value != nil && value.Sign() != 0
 	if hasValue {
-		// Early exit (optimization): a transaction can either bear a regular value or be a "MultiESDTNFTTransfer".
+		// Early exit (optimization): a transaction can either bear a regular value or be a "MultiDCDTNFTTransfer".
 		return value
 	}
 
 	data := tx.GetData()
 	hasData := len(data) > 0
 	if !hasData {
-		// Early exit (optimization): no "MultiESDTNFTTransfer" to parse.
+		// Early exit (optimization): no "MultiDCDTNFTTransfer" to parse.
 		return tx.GetValue()
 	}
 
-	maybeMultiTransfer := bytes.HasPrefix(data, []byte(core.BuiltInFunctionMultiESDTNFTTransfer))
+	maybeMultiTransfer := bytes.HasPrefix(data, []byte(core.BuiltInFunctionMultiDCDTNFTTransfer))
 	if !maybeMultiTransfer {
 		// Early exit (optimization).
 		return big.NewInt(0)
@@ -79,28 +79,28 @@ func (host *mempoolHost) GetTransferredValue(tx data.TransactionHandler) *big.In
 		return big.NewInt(0)
 	}
 
-	if function != core.BuiltInFunctionMultiESDTNFTTransfer {
+	if function != core.BuiltInFunctionMultiDCDTNFTTransfer {
 		// Early exit (optimization).
 		return big.NewInt(0)
 	}
 
-	esdtTransfers, err := host.esdtTransferParser.ParseESDTTransfers(tx.GetSndAddr(), tx.GetRcvAddr(), function, args)
+	dcdtTransfers, err := host.dcdtTransferParser.ParseDCDTTransfers(tx.GetSndAddr(), tx.GetRcvAddr(), function, args)
 	if err != nil {
 		return big.NewInt(0)
 	}
 
 	accumulatedNativeValue := big.NewInt(0)
 
-	for _, transfer := range esdtTransfers.ESDTTransfers {
-		if transfer.ESDTTokenNonce != 0 {
+	for _, transfer := range dcdtTransfers.DCDTTransfers {
+		if transfer.DCDTTokenNonce != 0 {
 			continue
 		}
-		if string(transfer.ESDTTokenName) != vmcommon.EGLDIdentifier {
+		if string(transfer.DCDTTokenName) != vmcommon.REWAIdentifier {
 			// We only care about native transfers.
 			continue
 		}
 
-		_ = accumulatedNativeValue.Add(accumulatedNativeValue, transfer.ESDTValue)
+		_ = accumulatedNativeValue.Add(accumulatedNativeValue, transfer.DCDTValue)
 	}
 
 	return accumulatedNativeValue

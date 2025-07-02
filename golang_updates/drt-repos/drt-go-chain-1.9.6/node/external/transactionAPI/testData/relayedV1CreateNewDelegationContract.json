@@ -7,8 +7,8 @@
     "round": 7,
     "epoch": 1,
     "value": "0",
-    "receiver": "erd1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wus5nlchg",
-    "sender": "erd1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsrasvn2wze",
+    "receiver": "drt1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wusf0gm5k",
+    "sender": "drt1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsras30adp8",
     "gasPrice": 1000000000,
     "gasLimit": 86229000,
     "data": "cmVsYXllZFR4QDdiMjI2ZTZmNmU2MzY1MjIzYTMwMmMyMjczNjU2ZTY0NjU3MjIyM2EyMjY3NjM2ZjM5MzYzMjdhNTI2OTU5NTg0NTM0MzQ3MzQyMzE3Mzc2NTY0ODczNDg0YTM5MzM2NDc4NDI2NTc3NjU3NjY0NjM0Yjc1MmI1Nzc5NTUzNzZiM2QyMjJjMjI3MjY1NjM2NTY5NzY2NTcyMjIzYTIyNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE1MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDE0MTQxNDUyZjJmMzgzZDIyMmMyMjc2NjE2Yzc1NjUyMjNhMzIzNTMwMzEzMDMwMzAzMDMwMzAzMDMwMzAzMDMwMzAzMDMwMzAzMDMwMzAyYzIyNjc2MTczNTA3MjY5NjM2NTIyM2EzMTMwMzAzMDMwMzAzMDMwMzAzMDJjMjI2NzYxNzM0YzY5NmQ2OTc0MjIzYTM4MzUzMDMwMzAzMDMwMzAyYzIyNjQ2MTc0NjEyMjNhMjI1OTMzNGE2YzU5NTg1MjZjNTQ2ZDU2MzM1MjQ3NTY3MzVhNTc2NDY4NjQ0NzZjNzY2MjZiNGU3NjYyNmU1Mjc5NTk1NzRlMzA1MTQ0NDE3NzUxNDQ0MTc3MjIyYzIyNzM2OTY3NmU2MTc0NzU3MjY1MjIzYTIyNTk1MTUzNTQ0MjMwMzE0ZjUwNGY0NDU5MzM0ZDU2NDQ1NDRkNWE3NzRkNzY2NjZiNzI1MDUwMzk2ZTM1NjQ1MzU4NjI3MDQ5NWE2MjcwNDM1MTQ5MzMzNDRkNTY2NzZiNzYzMzc0Njk2MTRmNGMzNjQ0NWE2NjM4NTU2NTJmNjg2Zjc5MzkzNTRiNGI2NTVhNDI2YjcwNzAzMTU1NzY3NzU5MzY0NzU3NDI3NzNkM2QyMjJjMjI2MzY4NjE2OTZlNDk0NDIyM2EyMjU5MzI2ODY4NjE1NzM0M2QyMjJjMjI3NjY1NzI3MzY5NmY2ZTIyM2EzMjdk",
@@ -31,8 +31,8 @@
             "hash": "6e71137c75ad162d97ce45502d38f0af96362c06f03378f03a4e50bec6ce31ea",
             "nonce": 1,
             "value": 299005000000000,
-            "receiver": "erd1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsrasvn2wze",
-            "sender": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6",
+            "receiver": "drt1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsras30adp8",
+            "sender": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv",
             "prevTxHash": "c825db2f9e6d17e41ed12e1aac86eecd7a828eeea0caf63a6e6a979f02a74f70",
             "originalTxHash": "94cb3bd3e2dca9920115f05549c9eee4dfc1d33e4ac3edd0741eb51165148b52",
             "gasLimit": 0,
@@ -40,10 +40,10 @@
             "callType": 0,
             "returnMessage": "gas refund for relayer",
             "logs": {
-                "address": "erd1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsrasvn2wze",
+                "address": "drt1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsras30adp8",
                 "events": [
                     {
-                        "address": "erd1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsrasvn2wze",
+                        "address": "drt1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsras30adp8",
                         "identifier": "completedTxEvent",
                         "topics": [
                             "yCXbL55tF+Qe0S4arIbuzXqCju6gyvY6bmqXnwKnT3A="
@@ -60,9 +60,9 @@
             "hash": "c825db2f9e6d17e41ed12e1aac86eecd7a828eeea0caf63a6e6a979f02a74f70",
             "nonce": 0,
             "value": 2501000000000000000000,
-            "receiver": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6",
-            "sender": "erd1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wus5nlchg",
-            "relayerAddress": "erd1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsrasvn2wze",
+            "receiver": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv",
+            "sender": "drt1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wusf0gm5k",
+            "relayerAddress": "drt1tp66n2lkhs2fm7elvh9lmzfajpg480v55sd8lf2lvu4fw92zsras30adp8",
             "relayedValue": 0,
             "data": "createNewDelegationContract@00@00",
             "prevTxHash": "94cb3bd3e2dca9920115f05549c9eee4dfc1d33e4ac3edd0741eb51165148b52",
@@ -71,10 +71,10 @@
             "gasPrice": 1000000000,
             "callType": 0,
             "logs": {
-                "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6",
+                "address": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv",
                 "events": [
                     {
-                        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6",
+                        "address": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv",
                         "identifier": "transferValueOnly",
                         "topics": [
                             "h5RY6SJT9AAA",
@@ -89,7 +89,7 @@
                         ]
                     },
                     {
-                        "address": "erd1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wus5nlchg",
+                        "address": "drt1s89rm6mv6xyct38r3vqadj74rmqunamhwyz7c84a6u9thedj2wusf0gm5k",
                         "identifier": "delegate",
                         "topics": [
                             "h5RY6SJT9AAA",
@@ -102,7 +102,7 @@
                         "additionalData": null
                     },
                     {
-                        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat",
+                        "address": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqhllllshmqrha",
                         "identifier": "transferValueOnly",
                         "topics": [
                             "h5RY6SJT9AAA",
@@ -115,7 +115,7 @@
                         ]
                     },
                     {
-                        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat",
+                        "address": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqhllllshmqrha",
                         "identifier": "SCDeploy",
                         "topics": [
                             "AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAL///8=",
@@ -126,7 +126,7 @@
                         "additionalData": null
                     },
                     {
-                        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6",
+                        "address": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv",
                         "identifier": "writeLog",
                         "topics": [
                             "gco962zRiYXE44sB1svVHsHJ93dxBewevdcKu+WyU7k="
@@ -144,7 +144,7 @@
     ],
     "status": "success",
     "receivers": [
-        "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6"
+        "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv"
     ],
     "receiversShardIDs": [
         4294967295

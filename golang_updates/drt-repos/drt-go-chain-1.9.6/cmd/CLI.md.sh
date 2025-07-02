@@ -41,7 +41,7 @@ generateForLogViewer() {
     HELP="
 # Logviewer App
 
-The **MultiversX Logviewer App** exposes the following Command Line Interface:
+The **Dharitri Logviewer App** exposes the following Command Line Interface:
 $(code)
 \$ logviewer --help
 
@@ -55,7 +55,7 @@ generateForNode() {
     HELP="
 # Node CLI
 
-The **MultiversX Node** exposes the following Command Line Interface:
+The **Dharitri Node** exposes the following Command Line Interface:
 $(code)
 \$ node --help
 
@@ -67,9 +67,9 @@ $(code)
 
 generateForSeedNode() {
     HELP="
-# MultiversX SeedNode CLI
+# Dharitri SeedNode CLI
 
-The **MultiversX SeedNode** exposes the following Command Line Interface:
+The **Dharitri SeedNode** exposes the following Command Line Interface:
 $(code)
 \$ seednode --help
 
@@ -81,9 +81,9 @@ $(code)
 
 generateForTermUi() {
     HELP="
-# MultiversX TermUI CLI
+# Dharitri TermUI CLI
 
-The **MultiversX Term UI** exposes the following Command Line Interface:
+The **Dharitri Term UI** exposes the following Command Line Interface:
 $(code)
 \$ termui --help
 

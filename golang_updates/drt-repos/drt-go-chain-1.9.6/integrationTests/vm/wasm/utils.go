@@ -14,49 +14,49 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/enablers"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/economics"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/factory/shard"
-	"github.com/multiversx/mx-chain-go/process/rewardTransaction"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/smartContract/builtInFunctions"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/processProxy"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	"github.com/multiversx/mx-chain-go/process/sync/disabled"
-	processTransaction "github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/process/transactionLog"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/storage/txcache"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	dataRetrieverMock "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/dblookupext"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	"github.com/multiversx/mx-chain-go/testscommon/guardianMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/integrationtests"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts/defaults"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/enablers"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/economics"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/shard"
+	"github.com/TerraDharitri/drt-go-chain/process/rewardTransaction"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/processProxy"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	"github.com/TerraDharitri/drt-go-chain/process/sync/disabled"
+	processTransaction "github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/process/transactionLog"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/storage/txcache"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	dataRetrieverMock "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/guardianMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/integrationtests"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts/defaults"
 	"github.com/stretchr/testify/require"
 )
 
@@ -207,7 +207,7 @@ func (context *TestContext) initFeeHandlers() {
 	maxGasLimitPerBlock := strconv.FormatUint(math.MaxUint64, 10)
 	minGasPrice := strconv.FormatUint(1, 10)
 	minGasLimit := strconv.FormatUint(1, 10)
-	testProtocolSustainabilityAddress := "erd1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797su0dlxp"
+	testProtocolSustainabilityAddress := "drt1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797spn6u9l"
 	argsNewEconomicsData := economics.ArgsNewEconomicsData{
 		Economics: &config.EconomicsConfig{
 			GlobalSettings: config.GlobalSettings{
@@ -293,7 +293,7 @@ func (context *TestContext) initVMAndBlockchainHook() {
 		Uint64Converter:       &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:      builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:     builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler: builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler: builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:              datapool,
 		CompiledSCPool:        datapool.SmartContracts(),
 		EpochNotifier:         context.EpochNotifier,
@@ -324,7 +324,7 @@ func (context *TestContext) initVMAndBlockchainHook() {
 		TransferAndExecuteByUserAddresses: []string{"3132333435363738393031323334353637383930313233343536373839303234"},
 	}
 
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(marshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(marshalizer)
 	blockChainHookImpl, _ := hooks.NewBlockChainHookImpl(args)
 	argsNewVMFactory := shard.ArgVMContainerFactory{
 		Config:              vmFactoryConfig,
@@ -335,7 +335,7 @@ func (context *TestContext) initVMAndBlockchainHook() {
 		EpochNotifier:       context.EpochNotifier,
 		EnableEpochsHandler: context.EnableEpochsHandler,
 		WasmVMChangeLocker:  context.WasmVMChangeLocker,
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		Hasher:              hasher,
 		PubKeyConverter:     pkConverter,
 	}
@@ -353,13 +353,13 @@ func (context *TestContext) initVMAndBlockchainHook() {
 }
 
 func (context *TestContext) initTxProcessorWithOneSCExecutorWithVMs() {
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(marshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(marshalizer)
 	argsTxTypeHandler := coordinator.ArgNewTxTypeHandler{
 		PubkeyConverter:     pkConverter,
 		ShardCoordinator:    oneShardCoordinator,
 		BuiltInFunctions:    context.BlockchainHook.GetBuiltinFunctionsContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: context.EnableEpochsHandler,
 	}
 

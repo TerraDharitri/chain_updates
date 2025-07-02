@@ -1,4 +1,4 @@
-//go:generate protoc -I=. -I=$GOPATH/src -I=$GOPATH/src/github.com/multiversx/protobuf/protobuf  --gogoslick_out=. miniblockMetadata.proto
+//go:generate protoc -I=. -I=$GOPATH/src -I=$GOPATH/src/github.com/TerraDharitri/protobuf/protobuf  --gogoslick_out=. miniblockMetadata.proto
 
 package dblookupext
 
@@ -6,20 +6,20 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/container"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/typeConverters"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common/logging"
-	"github.com/multiversx/mx-chain-go/dblookupext/esdtSupply"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/cache"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/container"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/typeConverters"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common/logging"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/cache"
 )
 
 var log = logger.GetOrCreate("dblookupext")
@@ -37,7 +37,7 @@ type HistoryRepositoryArguments struct {
 	EventsHashesByTxHashStorer  storage.Storer
 	Marshalizer                 marshal.Marshalizer
 	Hasher                      hashing.Hasher
-	ESDTSuppliesHandler         SuppliesHandler
+	DCDTSuppliesHandler         SuppliesHandler
 }
 
 type historyRepository struct {
@@ -50,7 +50,7 @@ type historyRepository struct {
 	eventsHashesByTxHashIndex  *eventsHashesByTxHash
 	marshalizer                marshal.Marshalizer
 	hasher                     hashing.Hasher
-	esdtSuppliesHandler        SuppliesHandler
+	dcdtSuppliesHandler        SuppliesHandler
 
 	// These maps temporarily hold notifications of "notarized at source or destination", to deal with unwanted concurrency effects
 	// The unwanted concurrency effects could be accentuated by the fast db-replay-validate mechanism.
@@ -91,8 +91,8 @@ func NewHistoryRepository(arguments HistoryRepositoryArguments) (*historyReposit
 	if check.IfNil(arguments.EventsHashesByTxHashStorer) {
 		return nil, core.ErrNilStore
 	}
-	if check.IfNil(arguments.ESDTSuppliesHandler) {
-		return nil, errNilESDTSuppliesHandler
+	if check.IfNil(arguments.DCDTSuppliesHandler) {
+		return nil, errNilDCDTSuppliesHandler
 	}
 	if check.IfNil(arguments.Uint64ByteSliceConverter) {
 		return nil, process.ErrNilUint64Converter
@@ -116,7 +116,7 @@ func NewHistoryRepository(arguments HistoryRepositoryArguments) (*historyReposit
 		pendingNotarizedAtBothNotifications:          container.NewMutexMap(),
 		deduplicationCacheForInsertMiniblockMetadata: deduplicationCacheForInsertMiniblockMetadata,
 		eventsHashesByTxHashIndex:                    eventsHashesToTxHashIndex,
-		esdtSuppliesHandler:                          arguments.ESDTSuppliesHandler,
+		dcdtSuppliesHandler:                          arguments.DCDTSuppliesHandler,
 		uint64ByteSliceConverter:                     arguments.Uint64ByteSliceConverter,
 	}, nil
 }
@@ -173,7 +173,7 @@ func (hr *historyRepository) RecordBlock(blockHeaderHash []byte,
 		return err
 	}
 
-	err = hr.esdtSuppliesHandler.ProcessLogs(blockHeader.GetNonce(), logs)
+	err = hr.dcdtSuppliesHandler.ProcessLogs(blockHeader.GetNonce(), logs)
 	if err != nil {
 		return err
 	}
@@ -480,12 +480,12 @@ func (hr *historyRepository) IsEnabled() bool {
 
 // RevertBlock will return the modification for the current block header
 func (hr *historyRepository) RevertBlock(blockHeader data.HeaderHandler, blockBody data.BodyHandler) error {
-	return hr.esdtSuppliesHandler.RevertChanges(blockHeader, blockBody)
+	return hr.dcdtSuppliesHandler.RevertChanges(blockHeader, blockBody)
 }
 
-// GetESDTSupply will return the supply from the storage for the given token
-func (hr *historyRepository) GetESDTSupply(token string) (*esdtSupply.SupplyESDT, error) {
-	return hr.esdtSuppliesHandler.GetESDTSupply(token)
+// GetDCDTSupply will return the supply from the storage for the given token
+func (hr *historyRepository) GetDCDTSupply(token string) (*dcdtSupply.SupplyDCDT, error) {
+	return hr.dcdtSuppliesHandler.GetDCDTSupply(token)
 }
 
 // IsInterfaceNil returns true if there is no value under the interface

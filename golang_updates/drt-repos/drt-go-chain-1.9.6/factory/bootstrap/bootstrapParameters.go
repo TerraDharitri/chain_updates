@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 )
 
 type bootstrapParams struct {

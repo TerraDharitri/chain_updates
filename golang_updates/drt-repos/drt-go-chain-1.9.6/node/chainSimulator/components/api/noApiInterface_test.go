@@ -3,7 +3,7 @@ package api
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/facade"
+	"github.com/TerraDharitri/drt-go-chain/facade"
 	"github.com/stretchr/testify/require"
 )
 

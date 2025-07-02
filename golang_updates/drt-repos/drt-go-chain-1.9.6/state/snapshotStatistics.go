@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/trie/statistics"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/trie/statistics"
 )
 
 type snapshotStatistics struct {

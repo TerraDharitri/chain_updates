@@ -1,8 +1,8 @@
 package containers
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/container"
-	"github.com/multiversx/mx-chain-core-go/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/core/container"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 )
 
 func (ic *interceptorsContainer) Insert(key string, value interface{}) bool {

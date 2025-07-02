@@ -2,16 +2,16 @@ package requesters
 
 import (
 	"errors"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/batch"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/mock"
-	"github.com/multiversx/mx-chain-go/dataRetriever/requestHandlers"
-	dataRetrieverStub "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/batch"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/mock"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/requestHandlers"
+	dataRetrieverStub "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
 	"github.com/stretchr/testify/assert"
 )
 

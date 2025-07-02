@@ -1,8 +1,8 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/counting"
-	"github.com/multiversx/mx-chain-go/storage"
+	"github.com/TerraDharitri/drt-go-chain-core/core/counting"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 // ShardedDataStub -

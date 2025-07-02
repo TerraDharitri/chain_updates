@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // TxDataBuilder constructs a string to be used for transaction arguments
@@ -158,13 +158,13 @@ func (builder *TxDataBuilder) BigInt(value *big.Int) *TxDataBuilder {
 	return builder.Bytes(value.Bytes())
 }
 
-// IssueESDT appends to the data string all the elements required to request an ESDT issuing.
-func (builder *TxDataBuilder) IssueESDT(token string, ticker string, supply int64, numDecimals byte) *TxDataBuilder {
+// IssueDCDT appends to the data string all the elements required to request an DCDT issuing.
+func (builder *TxDataBuilder) IssueDCDT(token string, ticker string, supply int64, numDecimals byte) *TxDataBuilder {
 	return builder.Func("issue").Str(token).Str(ticker).Int64(supply).Byte(numDecimals)
 }
 
-// IssueESDTWithAsyncArgs appends to the data string all the elements required to request an ESDT issuing.
-func (builder *TxDataBuilder) IssueESDTWithAsyncArgs(token string, ticker string, supply int64, numDecimals byte) *TxDataBuilder {
+// IssueDCDTWithAsyncArgs appends to the data string all the elements required to request an DCDT issuing.
+func (builder *TxDataBuilder) IssueDCDTWithAsyncArgs(token string, ticker string, supply int64, numDecimals byte) *TxDataBuilder {
 	return builder.Func("issue").
 		Str(token).
 		Str(ticker).
@@ -172,38 +172,38 @@ func (builder *TxDataBuilder) IssueESDTWithAsyncArgs(token string, ticker string
 		Byte(numDecimals)
 }
 
-// TransferESDT appends to the data string all the elements required to request an ESDT transfer.
-func (builder *TxDataBuilder) TransferESDT(token string, value int64) *TxDataBuilder {
-	return builder.Func(core.BuiltInFunctionESDTTransfer).Str(token).Int64(value)
+// TransferDCDT appends to the data string all the elements required to request an DCDT transfer.
+func (builder *TxDataBuilder) TransferDCDT(token string, value int64) *TxDataBuilder {
+	return builder.Func(core.BuiltInFunctionDCDTTransfer).Str(token).Int64(value)
 }
 
-// TransferESDTNFT appends to the data string all the elements required to request an ESDT NFT transfer.
-func (builder *TxDataBuilder) TransferESDTNFT(token string, nonce int, value int64) *TxDataBuilder {
-	return builder.Func(core.BuiltInFunctionESDTNFTTransfer).Str(token).Int(nonce).Int64(value)
+// TransferDCDTNFT appends to the data string all the elements required to request an DCDT NFT transfer.
+func (builder *TxDataBuilder) TransferDCDTNFT(token string, nonce int, value int64) *TxDataBuilder {
+	return builder.Func(core.BuiltInFunctionDCDTNFTTransfer).Str(token).Int(nonce).Int64(value)
 }
 
-// MultiTransferESDTNFT appends to the data string all the elements required to request an Multi ESDT NFT transfer.
-func (builder *TxDataBuilder) MultiTransferESDTNFT(destinationAddress []byte, transfers []*vmcommon.ESDTTransfer) *TxDataBuilder {
-	txBuilder := builder.Func(core.BuiltInFunctionMultiESDTNFTTransfer).Bytes(destinationAddress).Int(len(transfers))
+// MultiTransferDCDTNFT appends to the data string all the elements required to request an Multi DCDT NFT transfer.
+func (builder *TxDataBuilder) MultiTransferDCDTNFT(destinationAddress []byte, transfers []*vmcommon.DCDTTransfer) *TxDataBuilder {
+	txBuilder := builder.Func(core.BuiltInFunctionMultiDCDTNFTTransfer).Bytes(destinationAddress).Int(len(transfers))
 	for _, transfer := range transfers {
-		txBuilder.Bytes(transfer.ESDTTokenName).Int(int(transfer.ESDTTokenNonce)).BigInt(transfer.ESDTValue)
+		txBuilder.Bytes(transfer.DCDTTokenName).Int(int(transfer.DCDTTokenNonce)).BigInt(transfer.DCDTValue)
 	}
 	return txBuilder
 }
 
-// BurnESDT appends to the data string all the elements required to burn ESDT tokens.
-func (builder *TxDataBuilder) BurnESDT(token string, value int64) *TxDataBuilder {
-	return builder.Func(core.BuiltInFunctionESDTBurn).Str(token).Int64(value)
+// BurnDCDT appends to the data string all the elements required to burn DCDT tokens.
+func (builder *TxDataBuilder) BurnDCDT(token string, value int64) *TxDataBuilder {
+	return builder.Func(core.BuiltInFunctionDCDTBurn).Str(token).Int64(value)
 }
 
-// LocalBurnESDT appends to the data string all the elements required to local burn ESDT tokens.
-func (builder *TxDataBuilder) LocalBurnESDT(token string, value int64) *TxDataBuilder {
-	return builder.Func(core.BuiltInFunctionESDTLocalBurn).Str(token).Int64(value)
+// LocalBurnDCDT appends to the data string all the elements required to local burn DCDT tokens.
+func (builder *TxDataBuilder) LocalBurnDCDT(token string, value int64) *TxDataBuilder {
+	return builder.Func(core.BuiltInFunctionDCDTLocalBurn).Str(token).Int64(value)
 }
 
-// LocalMintESDT appends to the data string all the elements required to local burn ESDT tokens.
-func (builder *TxDataBuilder) LocalMintESDT(token string, value int64) *TxDataBuilder {
-	return builder.Func(core.BuiltInFunctionESDTLocalMint).Str(token).Int64(value)
+// LocalMintDCDT appends to the data string all the elements required to local burn DCDT tokens.
+func (builder *TxDataBuilder) LocalMintDCDT(token string, value int64) *TxDataBuilder {
+	return builder.Func(core.BuiltInFunctionDCDTLocalMint).Str(token).Int64(value)
 }
 
 // CanFreeze appends "canFreeze" followed by the provided boolean value.
@@ -241,9 +241,9 @@ func (builder *TxDataBuilder) CanAddSpecialRoles(prop bool) *TxDataBuilder {
 	return builder.Str("canAddSpecialRoles").Bool(prop)
 }
 
-// TransferMultiESDT appends to the data string all the elements required to request an multi ESDT transfer.
-func (builder *TxDataBuilder) TransferMultiESDT(destAddress []byte, args [][]byte) *TxDataBuilder {
-	builder.Func(core.BuiltInFunctionMultiESDTNFTTransfer)
+// TransferMultiDCDT appends to the data string all the elements required to request an multi DCDT transfer.
+func (builder *TxDataBuilder) TransferMultiDCDT(destAddress []byte, args [][]byte) *TxDataBuilder {
+	builder.Func(core.BuiltInFunctionMultiDCDTNFTTransfer)
 	builder.Bytes(destAddress)
 	builder.Int(len(args) / 3) // no of triplets
 	for a := 0; a < len(args); a++ {

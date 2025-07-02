@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/consensus/blacklist"
-	"github.com/multiversx/mx-chain-go/consensus/mock"
-	"github.com/multiversx/mx-chain-go/consensus/spos"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/consensus/blacklist"
+	"github.com/TerraDharitri/drt-go-chain/consensus/mock"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
 	"github.com/stretchr/testify/require"
 )
 

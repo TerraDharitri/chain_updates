@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-communication-go/p2p"
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/multiversx/mx-chain-go/testscommon/p2pmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
 )
 
 func TestSyncedBroadcastNetwork_BroadcastShouldWorkOn3Peers(t *testing.T) {

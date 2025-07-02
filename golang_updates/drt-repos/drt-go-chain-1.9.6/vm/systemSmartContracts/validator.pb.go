@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -32,9 +32,9 @@ type ValidatorDataV1 struct {
 	RegisterNonce   uint64        `protobuf:"varint,1,opt,name=RegisterNonce,proto3" json:"RegisterNonce"`
 	Epoch           uint32        `protobuf:"varint,2,opt,name=Epoch,proto3" json:"Epoch"`
 	RewardAddress   []byte        `protobuf:"bytes,3,opt,name=RewardAddress,proto3" json:"RewardAddress"`
-	TotalStakeValue *math_big.Int `protobuf:"bytes,4,opt,name=TotalStakeValue,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalStakeValue"`
-	LockedStake     *math_big.Int `protobuf:"bytes,5,opt,name=LockedStake,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"LockedStake"`
-	MaxStakePerNode *math_big.Int `protobuf:"bytes,6,opt,name=MaxStakePerNode,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"MaxStakePerNode"`
+	TotalStakeValue *math_big.Int `protobuf:"bytes,4,opt,name=TotalStakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalStakeValue"`
+	LockedStake     *math_big.Int `protobuf:"bytes,5,opt,name=LockedStake,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"LockedStake"`
+	MaxStakePerNode *math_big.Int `protobuf:"bytes,6,opt,name=MaxStakePerNode,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MaxStakePerNode"`
 	BlsPubKeys      [][]byte      `protobuf:"bytes,7,rep,name=BlsPubKeys,proto3" json:"BlsPubKeys"`
 	NumRegistered   uint32        `protobuf:"varint,8,opt,name=NumRegistered,proto3" json:"NumRegistered"`
 }
@@ -125,7 +125,7 @@ func (m *ValidatorDataV1) GetNumRegistered() uint32 {
 
 type UnstakedValue struct {
 	UnstakedEpoch uint32        `protobuf:"varint,1,opt,name=UnstakedEpoch,proto3" json:"UnstakedEpoch"`
-	UnstakedValue *math_big.Int `protobuf:"bytes,2,opt,name=UnstakedValue,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"UnstakedValue"`
+	UnstakedValue *math_big.Int `protobuf:"bytes,2,opt,name=UnstakedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"UnstakedValue"`
 }
 
 func (m *UnstakedValue) Reset()      { *m = UnstakedValue{} }
@@ -174,14 +174,14 @@ type ValidatorDataV2 struct {
 	RegisterNonce   uint64           `protobuf:"varint,1,opt,name=RegisterNonce,proto3" json:"RegisterNonce"`
 	Epoch           uint32           `protobuf:"varint,2,opt,name=Epoch,proto3" json:"Epoch"`
 	RewardAddress   []byte           `protobuf:"bytes,3,opt,name=RewardAddress,proto3" json:"RewardAddress"`
-	TotalStakeValue *math_big.Int    `protobuf:"bytes,4,opt,name=TotalStakeValue,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalStakeValue"`
-	LockedStake     *math_big.Int    `protobuf:"bytes,5,opt,name=LockedStake,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"LockedStake"`
-	MaxStakePerNode *math_big.Int    `protobuf:"bytes,6,opt,name=MaxStakePerNode,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"MaxStakePerNode"`
+	TotalStakeValue *math_big.Int    `protobuf:"bytes,4,opt,name=TotalStakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalStakeValue"`
+	LockedStake     *math_big.Int    `protobuf:"bytes,5,opt,name=LockedStake,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"LockedStake"`
+	MaxStakePerNode *math_big.Int    `protobuf:"bytes,6,opt,name=MaxStakePerNode,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MaxStakePerNode"`
 	BlsPubKeys      [][]byte         `protobuf:"bytes,7,rep,name=BlsPubKeys,proto3" json:"BlsPubKeys"`
 	NumRegistered   uint32           `protobuf:"varint,8,opt,name=NumRegistered,proto3" json:"NumRegistered"`
 	UnstakedInfo    []*UnstakedValue `protobuf:"bytes,9,rep,name=UnstakedInfo,proto3" json:"UnstakedInfo"`
-	TotalUnstaked   *math_big.Int    `protobuf:"bytes,10,opt,name=TotalUnstaked,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalUnstaked"`
-	TotalSlashed    *math_big.Int    `protobuf:"bytes,11,opt,name=TotalSlashed,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalSlashed"`
+	TotalUnstaked   *math_big.Int    `protobuf:"bytes,10,opt,name=TotalUnstaked,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalUnstaked"`
+	TotalSlashed    *math_big.Int    `protobuf:"bytes,11,opt,name=TotalSlashed,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalSlashed"`
 }
 
 func (m *ValidatorDataV2) Reset()      { *m = ValidatorDataV2{} }
@@ -290,11 +290,11 @@ func (m *ValidatorDataV2) GetTotalSlashed() *math_big.Int {
 }
 
 type ValidatorConfig struct {
-	MinStakeValue *math_big.Int `protobuf:"bytes,1,opt,name=MinStakeValue,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"MinStakeValue"`
-	TotalSupply   *math_big.Int `protobuf:"bytes,2,opt,name=TotalSupply,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalSupply"`
-	MinStep       *math_big.Int `protobuf:"bytes,3,opt,name=MinStep,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"MinStep"`
-	NodePrice     *math_big.Int `protobuf:"bytes,4,opt,name=NodePrice,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"NodePrice"`
-	UnJailPrice   *math_big.Int `protobuf:"bytes,5,opt,name=UnJailPrice,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"UnJailPrice"`
+	MinStakeValue *math_big.Int `protobuf:"bytes,1,opt,name=MinStakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MinStakeValue"`
+	TotalSupply   *math_big.Int `protobuf:"bytes,2,opt,name=TotalSupply,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalSupply"`
+	MinStep       *math_big.Int `protobuf:"bytes,3,opt,name=MinStep,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MinStep"`
+	NodePrice     *math_big.Int `protobuf:"bytes,4,opt,name=NodePrice,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"NodePrice"`
+	UnJailPrice   *math_big.Int `protobuf:"bytes,5,opt,name=UnJailPrice,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"UnJailPrice"`
 }
 
 func (m *ValidatorConfig) Reset()      { *m = ValidatorConfig{} }
@@ -445,19 +445,19 @@ func (this *ValidatorDataV1) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalStakeValue, that1.TotalStakeValue) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.LockedStake, that1.LockedStake) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.MaxStakePerNode, that1.MaxStakePerNode) {
 			return false
 		}
@@ -498,7 +498,7 @@ func (this *UnstakedValue) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.UnstakedValue, that1.UnstakedValue) {
 			return false
 		}
@@ -534,19 +534,19 @@ func (this *ValidatorDataV2) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalStakeValue, that1.TotalStakeValue) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.LockedStake, that1.LockedStake) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.MaxStakePerNode, that1.MaxStakePerNode) {
 			return false
 		}
@@ -571,13 +571,13 @@ func (this *ValidatorDataV2) Equal(that interface{}) bool {
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalUnstaked, that1.TotalUnstaked) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalSlashed, that1.TotalSlashed) {
 			return false
 		}
@@ -604,31 +604,31 @@ func (this *ValidatorConfig) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.MinStakeValue, that1.MinStakeValue) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalSupply, that1.TotalSupply) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.MinStep, that1.MinStep) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.NodePrice, that1.NodePrice) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.UnJailPrice, that1.UnJailPrice) {
 			return false
 		}
@@ -742,7 +742,7 @@ func (m *ValidatorDataV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.MaxStakePerNode)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MaxStakePerNode, dAtA[i:]); err != nil {
@@ -753,7 +753,7 @@ func (m *ValidatorDataV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x32
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.LockedStake)
 		i -= size
 		if _, err := __caster.MarshalTo(m.LockedStake, dAtA[i:]); err != nil {
@@ -764,7 +764,7 @@ func (m *ValidatorDataV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x2a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalStakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalStakeValue, dAtA[i:]); err != nil {
@@ -815,7 +815,7 @@ func (m *UnstakedValue) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.UnstakedValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.UnstakedValue, dAtA[i:]); err != nil {
@@ -854,7 +854,7 @@ func (m *ValidatorDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalSlashed)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalSlashed, dAtA[i:]); err != nil {
@@ -865,7 +865,7 @@ func (m *ValidatorDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x5a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalUnstaked)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalUnstaked, dAtA[i:]); err != nil {
@@ -904,7 +904,7 @@ func (m *ValidatorDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.MaxStakePerNode)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MaxStakePerNode, dAtA[i:]); err != nil {
@@ -915,7 +915,7 @@ func (m *ValidatorDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x32
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.LockedStake)
 		i -= size
 		if _, err := __caster.MarshalTo(m.LockedStake, dAtA[i:]); err != nil {
@@ -926,7 +926,7 @@ func (m *ValidatorDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x2a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalStakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalStakeValue, dAtA[i:]); err != nil {
@@ -977,7 +977,7 @@ func (m *ValidatorConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.UnJailPrice)
 		i -= size
 		if _, err := __caster.MarshalTo(m.UnJailPrice, dAtA[i:]); err != nil {
@@ -988,7 +988,7 @@ func (m *ValidatorConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x2a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.NodePrice)
 		i -= size
 		if _, err := __caster.MarshalTo(m.NodePrice, dAtA[i:]); err != nil {
@@ -999,7 +999,7 @@ func (m *ValidatorConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x22
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.MinStep)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MinStep, dAtA[i:]); err != nil {
@@ -1010,7 +1010,7 @@ func (m *ValidatorConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x1a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalSupply)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalSupply, dAtA[i:]); err != nil {
@@ -1021,7 +1021,7 @@ func (m *ValidatorConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.MinStakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MinStakeValue, dAtA[i:]); err != nil {
@@ -1062,17 +1062,17 @@ func (m *ValidatorDataV1) Size() (n int) {
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalStakeValue)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.LockedStake)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.MaxStakePerNode)
 		n += 1 + l + sovValidator(uint64(l))
 	}
@@ -1098,7 +1098,7 @@ func (m *UnstakedValue) Size() (n int) {
 		n += 1 + sovValidator(uint64(m.UnstakedEpoch))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.UnstakedValue)
 		n += 1 + l + sovValidator(uint64(l))
 	}
@@ -1122,17 +1122,17 @@ func (m *ValidatorDataV2) Size() (n int) {
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalStakeValue)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.LockedStake)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.MaxStakePerNode)
 		n += 1 + l + sovValidator(uint64(l))
 	}
@@ -1152,12 +1152,12 @@ func (m *ValidatorDataV2) Size() (n int) {
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalUnstaked)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalSlashed)
 		n += 1 + l + sovValidator(uint64(l))
 	}
@@ -1171,27 +1171,27 @@ func (m *ValidatorConfig) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.MinStakeValue)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalSupply)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.MinStep)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.NodePrice)
 		n += 1 + l + sovValidator(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.UnJailPrice)
 		n += 1 + l + sovValidator(uint64(l))
 	}
@@ -1410,7 +1410,7 @@ func (m *ValidatorDataV1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1448,7 +1448,7 @@ func (m *ValidatorDataV1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1486,7 +1486,7 @@ func (m *ValidatorDataV1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1647,7 +1647,7 @@ func (m *UnstakedValue) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1810,7 +1810,7 @@ func (m *ValidatorDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1848,7 +1848,7 @@ func (m *ValidatorDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1886,7 +1886,7 @@ func (m *ValidatorDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2009,7 +2009,7 @@ func (m *ValidatorDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2047,7 +2047,7 @@ func (m *ValidatorDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2138,7 +2138,7 @@ func (m *ValidatorConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2176,7 +2176,7 @@ func (m *ValidatorConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2214,7 +2214,7 @@ func (m *ValidatorConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2252,7 +2252,7 @@ func (m *ValidatorConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2290,7 +2290,7 @@ func (m *ValidatorConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

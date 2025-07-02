@@ -3,8 +3,8 @@ package mock
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
 )
 
 // P2PAntifloodHandlerStub -

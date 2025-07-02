@@ -1,7 +1,7 @@
 package mock
 
 import (
-	heartbeatData "github.com/multiversx/mx-chain-go/heartbeat/data"
+	heartbeatData "github.com/TerraDharitri/drt-go-chain/heartbeat/data"
 )
 
 // HeartbeatMonitorStub -

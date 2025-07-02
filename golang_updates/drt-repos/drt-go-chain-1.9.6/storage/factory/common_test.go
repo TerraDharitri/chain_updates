@@ -3,8 +3,8 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 	"github.com/stretchr/testify/assert"
 )
 

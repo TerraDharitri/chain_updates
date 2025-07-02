@@ -1,10 +1,10 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/outport/process"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts"
-	"github.com/multiversx/mx-chain-go/outport/process/transactionsfee"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/outport/process"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/transactionsfee"
 )
 
 func checkArgOutportDataProviderFactory(arg ArgOutportDataProviderFactory) error {

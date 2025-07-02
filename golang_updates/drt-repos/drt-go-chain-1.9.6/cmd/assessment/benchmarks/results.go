@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/display"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
 )
 
 const totalMarker = "TOTAL"

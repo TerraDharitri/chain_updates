@@ -11,8 +11,8 @@ var ErrNilPubKeyConverter = errors.New("nil public key converter")
 // ErrNilAccountsDB signals that a nil accounts DB has been provided
 var ErrNilAccountsDB = errors.New("nil accounts DB")
 
-// ErrNilESDTDataStorageHandler signals that a nil esdt data storage handler has been provided
-var ErrNilESDTDataStorageHandler = errors.New("nil esdt data storage handler")
+// ErrNilDCDTDataStorageHandler signals that a nil dcdt data storage handler has been provided
+var ErrNilDCDTDataStorageHandler = errors.New("nil dcdt data storage handler")
 
 // errCannotCastToUserAccountHandler signals an issue while casting to user account handler
 var errCannotCastToUserAccountHandler = errors.New("cannot cast account handler to vm common user account handler")

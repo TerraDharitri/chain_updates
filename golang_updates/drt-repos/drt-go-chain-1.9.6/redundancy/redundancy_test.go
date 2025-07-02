@@ -3,10 +3,10 @@ package redundancy_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/redundancy"
-	"github.com/multiversx/mx-chain-go/redundancy/mock"
-	"github.com/multiversx/mx-chain-go/testscommon/p2pmocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/redundancy"
+	"github.com/TerraDharitri/drt-go-chain/redundancy/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,9 +3,9 @@ package storage
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-storage-go/types"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-storage/types"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 // Cacher provides caching services

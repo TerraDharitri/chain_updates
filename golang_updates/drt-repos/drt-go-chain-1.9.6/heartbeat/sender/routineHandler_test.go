@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/heartbeat/mock"
+	"github.com/TerraDharitri/drt-go-chain/heartbeat/mock"
 	"github.com/stretchr/testify/assert"
 )
 

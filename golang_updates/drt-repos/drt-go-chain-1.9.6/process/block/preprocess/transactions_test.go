@@ -11,39 +11,39 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/txcache"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/cache"
-	commonMocks "github.com/multiversx/mx-chain-go/testscommon/common"
-	dataRetrieverMock "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/genericMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/txcache"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cache"
+	commonMocks "github.com/TerraDharitri/drt-go-chain/testscommon/common"
+	dataRetrieverMock "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genericMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 const MaxGasLimitPerBlock = uint64(100000)
@@ -1910,15 +1910,15 @@ func TestSortTransactionsBySenderAndNonceWithFrontRunningProtection_TestnetBids(
 	}
 
 	addresses := []string{
-		"erd1lr7k9z8l6lgud6709pr3lnm84mfnqqrj40rq66n4rtassfyvcl8starqtf",
-		"erd1pvr8n50q9tqvng03c450d3ac4pz5dt0gxedvvf80rj9r77s3ds0swj33ea",
-		"erd1xls5cejdna07m3jptt43trhhcw39hz5xe673d6lmfnapmcxz9a3s88ycvk",
-		"erd18ljvzsj74ehku7ej80lm35jsxdcxxrwc9t5swkgkyzayep52qe2sujv9xj",
-		"erd1qrzudpvn7xmqvx8w0sc726arp4rpuxxw5zk87rjh9yy3v09knjas9w9077",
-		"erd18dp32dj2gm626uhtd3mezkd24phzev2gmef06y9fs4f94uyy4swsllu24j",
-		"erd19rywmefgq6m0ddmwv9uc23ns7q8s236hag2qp9h8aps0cnxf9qnsnyavkx",
-		"erd1hshz86ke95z58920xl59jnakv5ppmsfarwtump6scjjcyfr9zxwsd0cy8y",
-		"erd13l5pgsz32u2t7mpanr9hyalahn2newj6ew85s8pgaln5kglm5s3s7w657h",
+		"drt1lr7k9z8l6lgud6709pr3lnm84mfnqqrj40rq66n4rtassfyvcl8skp5rgh",
+		"drt1pvr8n50q9tqvng03c450d3ac4pz5dt0gxedvvf80rj9r77s3ds0snwxj6r",
+		"drt1xls5cejdna07m3jptt43trhhcw39hz5xe673d6lmfnapmcxz9a3s6mnm0g",
+		"drt18ljvzsj74ehku7ej80lm35jsxdcxxrwc9t5swkgkyzayep52qe2spwmx9v",
+		"drt1qrzudpvn7xmqvx8w0sc726arp4rpuxxw5zk87rjh9yy3v09knjascjjvaq",
+		"drt18dp32dj2gm626uhtd3mezkd24phzev2gmef06y9fs4f94uyy4swszrtfkv",
+		"drt19rywmefgq6m0ddmwv9uc23ns7q8s236hag2qp9h8aps0cnxf9qnswc204c",
+		"drt1hshz86ke95z58920xl59jnakv5ppmsfarwtump6scjjcyfr9zxwssn08y6",
+		"drt13l5pgsz32u2t7mpanr9hyalahn2newj6ew85s8pgaln5kglm5s3srjdhaf",
 	}
 	bech32 := testscommon.RealWorldBech32PubkeyConverter
 
@@ -2026,10 +2026,10 @@ func TestTransactions_ComputeCacheIdentifier(t *testing.T) {
 			expected := "1_2"
 			assert.Equal(t, expected, result)
 		})
-		t.Run("shard 1 address with ESDT contract address", func(t *testing.T) {
+		t.Run("shard 1 address with DCDT contract address", func(t *testing.T) {
 			tx := &transaction.Transaction{
 				SndAddr: bytes.Repeat([]byte{1}, 32), // shard 1
-				RcvAddr: vm.ESDTSCAddress,            // metachain
+				RcvAddr: vm.DCDTSCAddress,            // metachain
 			}
 
 			result := txs.computeCacheIdentifier(originalStrCache, tx, block.InvalidBlock)

@@ -3,17 +3,17 @@ package parsing
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	transactionData "github.com/multiversx/mx-chain-core-go/data/transaction"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/data"
-	"github.com/multiversx/mx-chain-go/genesis/mock"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	transactionData "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/data"
+	"github.com/TerraDharitri/drt-go-chain/genesis/mock"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
 )
 
 func (ap *accountsParser) SetInitialAccounts(initialAccounts []*data.InitialAccount) {
@@ -53,7 +53,7 @@ func (ap *accountsParser) CreateMintTransaction(ia genesis.InitialAccountHandler
 }
 
 func NewTestAccountsParser(pubkeyConverter core.PubkeyConverter) *accountsParser {
-	addrBytes, _ := pubkeyConverter.Decode("erd17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqqkhty3")
+	addrBytes, _ := pubkeyConverter.Decode("drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80")
 	return &accountsParser{
 		pubkeyConverter:    pubkeyConverter,
 		initialAccounts:    make([]*data.InitialAccount, 0),

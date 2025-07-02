@@ -3,13 +3,13 @@ package transactionAPI
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/process"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 type gasUsedAndFeeProcessor struct {
@@ -45,7 +45,7 @@ func (gfp *gasUsedAndFeeProcessor) computeAndAttachGasUsedAndFee(tx *transaction
 
 	isFeeFixActive := gfp.enableEpochsHandler.IsFlagEnabledInEpoch(common.FixRelayedBaseCostFlag, tx.Epoch)
 	isRelayedBeforeFix := tx.IsRelayed && !isFeeFixActive
-	if isRelayedBeforeFix || gfp.isESDTOperationWithSCCall(tx) {
+	if isRelayedBeforeFix || gfp.isDCDTOperationWithSCCall(tx) {
 		tx.GasUsed = tx.GasLimit
 		tx.Fee = tx.InitiallyPaidFee
 	}
@@ -212,9 +212,9 @@ func (gfp *gasUsedAndFeeProcessor) setGasUsedAndFeeBaseOnRefundValue(
 	tx.Fee = fee.String()
 }
 
-func (gfp *gasUsedAndFeeProcessor) isESDTOperationWithSCCall(tx *transaction.ApiTransactionResult) bool {
-	isESDTTransferOperation := tx.Operation == core.BuiltInFunctionESDTTransfer ||
-		tx.Operation == core.BuiltInFunctionESDTNFTTransfer || tx.Operation == core.BuiltInFunctionMultiESDTNFTTransfer
+func (gfp *gasUsedAndFeeProcessor) isDCDTOperationWithSCCall(tx *transaction.ApiTransactionResult) bool {
+	isDCDTTransferOperation := tx.Operation == core.BuiltInFunctionDCDTTransfer ||
+		tx.Operation == core.BuiltInFunctionDCDTNFTTransfer || tx.Operation == core.BuiltInFunctionMultiDCDTNFTTransfer
 
 	isReceiverSC := core.IsSmartContractAddress(tx.Tx.GetRcvAddr())
 	hasFunction := tx.Function != ""
@@ -223,7 +223,7 @@ func (gfp *gasUsedAndFeeProcessor) isESDTOperationWithSCCall(tx *transaction.Api
 	}
 
 	if tx.Sender != tx.Receiver {
-		return isESDTTransferOperation && isReceiverSC && hasFunction
+		return isDCDTTransferOperation && isReceiverSC && hasFunction
 	}
 
 	if len(tx.Receivers) == 0 {
@@ -233,11 +233,11 @@ func (gfp *gasUsedAndFeeProcessor) isESDTOperationWithSCCall(tx *transaction.Api
 	receiver := tx.Receivers[0]
 	decodedReceiver, err := gfp.pubKeyConverter.Decode(receiver)
 	if err != nil {
-		log.Warn("gasUsedAndFeeProcessor.isESDTOperationWithSCCall cannot decode receiver address", "error", err.Error())
+		log.Warn("gasUsedAndFeeProcessor.isDCDTOperationWithSCCall cannot decode receiver address", "error", err.Error())
 		return false
 	}
 
 	isReceiverSC = core.IsSmartContractAddress(decodedReceiver)
 
-	return isESDTTransferOperation && isReceiverSC && hasFunction
+	return isDCDTTransferOperation && isReceiverSC && hasFunction
 }

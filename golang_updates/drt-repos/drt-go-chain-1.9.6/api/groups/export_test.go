@@ -1,6 +1,6 @@
 package groups
 
-import "github.com/multiversx/mx-chain-go/process"
+import "github.com/TerraDharitri/drt-go-chain/process"
 
 // ExecManualTrigger -
 const ExecManualTrigger = execManualTrigger

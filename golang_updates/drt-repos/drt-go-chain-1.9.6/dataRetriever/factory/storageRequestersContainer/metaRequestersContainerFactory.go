@@ -1,12 +1,12 @@
 package storagerequesterscontainer
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/containers"
-	storagerequesters "github.com/multiversx/mx-chain-go/dataRetriever/storageRequesters"
-	"github.com/multiversx/mx-chain-go/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/containers"
+	storagerequesters "github.com/TerraDharitri/drt-go-chain/dataRetriever/storageRequesters"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
 )
 
 var _ dataRetriever.RequestersContainerFactory = (*metaRequestersContainerFactory)(nil)

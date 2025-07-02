@@ -1,10 +1,10 @@
 #ifndef _TEST_UTILS_H_
 #define _TEST_UTILS_H_
 
-#include "../mxvm/context.h"
-#include "../mxvm/bigInt.h"
-#include "../mxvm/types.h"
-#include "../mxvm/bigFloat.h"
+#include "../drtvm/context.h"
+#include "../drtvm/bigInt.h"
+#include "../drtvm/types.h"
+#include "../drtvm/bigFloat.h"
 
 void intTo3String(int value, byte *string, int startPos) {
   string[startPos + 2] = (byte)('0' + value % 10);

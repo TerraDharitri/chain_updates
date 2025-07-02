@@ -9,7 +9,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -62,15 +62,15 @@ type GeneralProposal struct {
 	CommitHash     []byte        `protobuf:"bytes,2,opt,name=CommitHash,proto3" json:"CommitHash"`
 	StartVoteEpoch uint64        `protobuf:"varint,3,opt,name=StartVoteEpoch,proto3" json:"StartVoteEpoch"`
 	EndVoteEpoch   uint64        `protobuf:"varint,4,opt,name=EndVoteEpoch,proto3" json:"EndVoteEpoch"`
-	Yes            *math_big.Int `protobuf:"bytes,5,opt,name=Yes,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Yes"`
-	No             *math_big.Int `protobuf:"bytes,6,opt,name=No,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"No"`
-	Veto           *math_big.Int `protobuf:"bytes,7,opt,name=Veto,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Veto"`
-	Abstain        *math_big.Int `protobuf:"bytes,8,opt,name=Abstain,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Abstain"`
-	QuorumStake    *math_big.Int `protobuf:"bytes,9,opt,name=QuorumStake,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"QuorumStake"`
+	Yes            *math_big.Int `protobuf:"bytes,5,opt,name=Yes,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"Yes"`
+	No             *math_big.Int `protobuf:"bytes,6,opt,name=No,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"No"`
+	Veto           *math_big.Int `protobuf:"bytes,7,opt,name=Veto,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"Veto"`
+	Abstain        *math_big.Int `protobuf:"bytes,8,opt,name=Abstain,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"Abstain"`
+	QuorumStake    *math_big.Int `protobuf:"bytes,9,opt,name=QuorumStake,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"QuorumStake"`
 	Passed         bool          `protobuf:"varint,10,opt,name=Passed,proto3" json:"Passed"`
 	Closed         bool          `protobuf:"varint,11,opt,name=Closed,proto3" json:"Closed"`
 	IssuerAddress  []byte        `protobuf:"bytes,12,opt,name=IssuerAddress,proto3" json:"IssuerAddress"`
-	ProposalCost   *math_big.Int `protobuf:"bytes,13,opt,name=ProposalCost,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"ProposalCost"`
+	ProposalCost   *math_big.Int `protobuf:"bytes,13,opt,name=ProposalCost,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"ProposalCost"`
 }
 
 func (m *GeneralProposal) Reset()      { *m = GeneralProposal{} }
@@ -197,7 +197,7 @@ type GovernanceConfig struct {
 	MinQuorum        int32         `protobuf:"varint,2,opt,name=MinQuorum,proto3" json:"MinQuorum"`
 	MinPassThreshold int32         `protobuf:"varint,3,opt,name=MinPassThreshold,proto3" json:"MinPassThreshold"`
 	MinVetoThreshold int32         `protobuf:"varint,4,opt,name=MinVetoThreshold,proto3" json:"MinVetoThreshold"`
-	ProposalFee      *math_big.Int `protobuf:"bytes,5,opt,name=ProposalFee,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"ProposalFee"`
+	ProposalFee      *math_big.Int `protobuf:"bytes,5,opt,name=ProposalFee,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"ProposalFee"`
 }
 
 func (m *GovernanceConfig) Reset()      { *m = GovernanceConfig{} }
@@ -267,8 +267,8 @@ type GovernanceConfigV2 struct {
 	MinQuorum         float32       `protobuf:"fixed32,1,opt,name=MinQuorum,proto3" json:"MinQuorum"`
 	MinPassThreshold  float32       `protobuf:"fixed32,2,opt,name=MinPassThreshold,proto3" json:"MinPassThreshold"`
 	MinVetoThreshold  float32       `protobuf:"fixed32,3,opt,name=MinVetoThreshold,proto3" json:"MinVetoThreshold"`
-	ProposalFee       *math_big.Int `protobuf:"bytes,4,opt,name=ProposalFee,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"ProposalFee"`
-	LostProposalFee   *math_big.Int `protobuf:"bytes,5,opt,name=LostProposalFee,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"LostProposalFee"`
+	ProposalFee       *math_big.Int `protobuf:"bytes,4,opt,name=ProposalFee,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"ProposalFee"`
+	LostProposalFee   *math_big.Int `protobuf:"bytes,5,opt,name=LostProposalFee,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"LostProposalFee"`
 	LastProposalNonce uint64        `protobuf:"varint,6,opt,name=LastProposalNonce,proto3" json:"LastProposalNonce"`
 }
 
@@ -390,10 +390,10 @@ func (m *OngoingVotedList) GetDelegated() []uint64 {
 }
 
 type DelegatedSCVoteInfo struct {
-	TotalPower *math_big.Int `protobuf:"bytes,1,opt,name=TotalPower,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalPower"`
-	UsedPower  *math_big.Int `protobuf:"bytes,2,opt,name=UsedPower,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"UsedPower"`
-	TotalStake *math_big.Int `protobuf:"bytes,3,opt,name=TotalStake,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"TotalStake"`
-	UsedStake  *math_big.Int `protobuf:"bytes,4,opt,name=UsedStake,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"UsedStake"`
+	TotalPower *math_big.Int `protobuf:"bytes,1,opt,name=TotalPower,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalPower"`
+	UsedPower  *math_big.Int `protobuf:"bytes,2,opt,name=UsedPower,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"UsedPower"`
+	TotalStake *math_big.Int `protobuf:"bytes,3,opt,name=TotalStake,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalStake"`
+	UsedStake  *math_big.Int `protobuf:"bytes,4,opt,name=UsedStake,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"UsedStake"`
 }
 
 func (m *DelegatedSCVoteInfo) Reset()      { *m = DelegatedSCVoteInfo{} }
@@ -563,31 +563,31 @@ func (this *GeneralProposal) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.Yes, that1.Yes) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.No, that1.No) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.Veto, that1.Veto) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.Abstain, that1.Abstain) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.QuorumStake, that1.QuorumStake) {
 			return false
 		}
@@ -602,7 +602,7 @@ func (this *GeneralProposal) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.ProposalCost, that1.ProposalCost) {
 			return false
 		}
@@ -641,7 +641,7 @@ func (this *GovernanceConfig) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.ProposalFee, that1.ProposalFee) {
 			return false
 		}
@@ -677,13 +677,13 @@ func (this *GovernanceConfigV2) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.ProposalFee, that1.ProposalFee) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.LostProposalFee, that1.LostProposalFee) {
 			return false
 		}
@@ -750,25 +750,25 @@ func (this *DelegatedSCVoteInfo) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalPower, that1.TotalPower) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.UsedPower, that1.UsedPower) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalStake, that1.TotalStake) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		if !__caster.Equal(this.UsedStake, that1.UsedStake) {
 			return false
 		}
@@ -879,7 +879,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.ProposalCost)
 		i -= size
 		if _, err := __caster.MarshalTo(m.ProposalCost, dAtA[i:]); err != nil {
@@ -917,7 +917,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x50
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.QuorumStake)
 		i -= size
 		if _, err := __caster.MarshalTo(m.QuorumStake, dAtA[i:]); err != nil {
@@ -928,7 +928,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x4a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.Abstain)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Abstain, dAtA[i:]); err != nil {
@@ -939,7 +939,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x42
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.Veto)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Veto, dAtA[i:]); err != nil {
@@ -950,7 +950,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x3a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.No)
 		i -= size
 		if _, err := __caster.MarshalTo(m.No, dAtA[i:]); err != nil {
@@ -961,7 +961,7 @@ func (m *GeneralProposal) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x32
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.Yes)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Yes, dAtA[i:]); err != nil {
@@ -1017,7 +1017,7 @@ func (m *GovernanceConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.ProposalFee)
 		i -= size
 		if _, err := __caster.MarshalTo(m.ProposalFee, dAtA[i:]); err != nil {
@@ -1076,7 +1076,7 @@ func (m *GovernanceConfigV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x30
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.LostProposalFee)
 		i -= size
 		if _, err := __caster.MarshalTo(m.LostProposalFee, dAtA[i:]); err != nil {
@@ -1087,7 +1087,7 @@ func (m *GovernanceConfigV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x2a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.ProposalFee)
 		i -= size
 		if _, err := __caster.MarshalTo(m.ProposalFee, dAtA[i:]); err != nil {
@@ -1198,7 +1198,7 @@ func (m *DelegatedSCVoteInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.UsedStake)
 		i -= size
 		if _, err := __caster.MarshalTo(m.UsedStake, dAtA[i:]); err != nil {
@@ -1209,7 +1209,7 @@ func (m *DelegatedSCVoteInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x22
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalStake)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalStake, dAtA[i:]); err != nil {
@@ -1220,7 +1220,7 @@ func (m *DelegatedSCVoteInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x1a
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.UsedPower)
 		i -= size
 		if _, err := __caster.MarshalTo(m.UsedPower, dAtA[i:]); err != nil {
@@ -1231,7 +1231,7 @@ func (m *DelegatedSCVoteInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		size := __caster.Size(m.TotalPower)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalPower, dAtA[i:]); err != nil {
@@ -1275,27 +1275,27 @@ func (m *GeneralProposal) Size() (n int) {
 		n += 1 + sovGovernance(uint64(m.EndVoteEpoch))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.Yes)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.No)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.Veto)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.Abstain)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.QuorumStake)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
@@ -1310,7 +1310,7 @@ func (m *GeneralProposal) Size() (n int) {
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.ProposalCost)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
@@ -1336,7 +1336,7 @@ func (m *GovernanceConfig) Size() (n int) {
 		n += 1 + sovGovernance(uint64(m.MinVetoThreshold))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.ProposalFee)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
@@ -1359,12 +1359,12 @@ func (m *GovernanceConfigV2) Size() (n int) {
 		n += 5
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.ProposalFee)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.LostProposalFee)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
@@ -1404,22 +1404,22 @@ func (m *DelegatedSCVoteInfo) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalPower)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.UsedPower)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.TotalStake)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 		l = __caster.Size(m.UsedStake)
 		n += 1 + l + sovGovernance(uint64(l))
 	}
@@ -1665,7 +1665,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1703,7 +1703,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1741,7 +1741,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1779,7 +1779,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1817,7 +1817,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1929,7 +1929,7 @@ func (m *GeneralProposal) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2096,7 +2096,7 @@ func (m *GovernanceConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2220,7 +2220,7 @@ func (m *GovernanceConfigV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2258,7 +2258,7 @@ func (m *GovernanceConfigV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2573,7 +2573,7 @@ func (m *DelegatedSCVoteInfo) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2611,7 +2611,7 @@ func (m *DelegatedSCVoteInfo) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2649,7 +2649,7 @@ func (m *DelegatedSCVoteInfo) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2687,7 +2687,7 @@ func (m *DelegatedSCVoteInfo) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

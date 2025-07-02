@@ -8,19 +8,19 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/node/mock"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	dbLookupExtMock "github.com/multiversx/mx-chain-go/testscommon/dblookupext"
-	"github.com/multiversx/mx-chain-go/testscommon/genericMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/node/mock"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	dbLookupExtMock "github.com/TerraDharitri/drt-go-chain/testscommon/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genericMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
 	"github.com/stretchr/testify/require"
 )
 
@@ -146,16 +146,16 @@ func TestPutEventsInTransactionSmartContractResults(t *testing.T) {
 	}
 
 	logs := &transaction.ApiLogs{
-		Address: "erd1contract",
+		Address: "drt1contract",
 		Events: []*transaction.Events{
 			{
-				Address:    "erd1alice",
+				Address:    "drt1alice",
 				Identifier: "first",
 				Topics:     [][]byte{[]byte("hello")},
 				Data:       []byte("data1"),
 			},
 			{
-				Address:    "erd1bob",
+				Address:    "drt1bob",
 				Identifier: "second",
 				Topics:     [][]byte{[]byte("world")},
 				Data:       []byte("data2"),
@@ -272,16 +272,16 @@ func TestPutLogsInTransaction(t *testing.T) {
 	testTxHash := []byte("txHash")
 
 	logs := &transaction.ApiLogs{
-		Address: "erd1contract",
+		Address: "drt1contract",
 		Events: []*transaction.Events{
 			{
-				Address:    "erd1alice",
+				Address:    "drt1alice",
 				Identifier: "first",
 				Topics:     [][]byte{[]byte("hello")},
 				Data:       []byte("data1"),
 			},
 			{
-				Address:    "erd1bob",
+				Address:    "drt1bob",
 				Identifier: "second",
 				Topics:     [][]byte{[]byte("world")},
 				Data:       []byte("data2"),

@@ -7,30 +7,30 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	vmData "github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmData "github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 	"github.com/stretchr/testify/assert"
 )
 
 func createMockArguments() ArgNewTxTypeHandler {
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(&mock.MarshalizerMock{})
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(&mock.MarshalizerMock{})
 	return ArgNewTxTypeHandler{
 		PubkeyConverter:     createMockPubkeyConverter(),
 		ShardCoordinator:    mock.NewMultiShardsCoordinatorMock(3),
 		BuiltInFunctions:    builtInFunctions.NewBuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
-		EnableEpochsHandler: enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.ESDTMetadataContinuousCleanupFlag),
+		DCDTTransferParser:  dcdtTransferParser,
+		EnableEpochsHandler: enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.DCDTMetadataContinuousCleanupFlag),
 	}
 }
 
@@ -200,7 +200,7 @@ func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallNftTransfer(t *t
 
 	arg := createMockArguments()
 	arg.BuiltInFunctions = builtInFunctions.NewBuiltInFunctionContainer()
-	_ = arg.BuiltInFunctions.Add(core.BuiltInFunctionESDTNFTTransfer, &mock.BuiltInFunctionStub{})
+	_ = arg.BuiltInFunctions.Add(core.BuiltInFunctionDCDTNFTTransfer, &mock.BuiltInFunctionStub{})
 
 	tth, err := NewTxTypeHandler(arg)
 
@@ -216,7 +216,7 @@ func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallNftTransfer(t *t
 	tx.Nonce = 0
 	tx.SndAddr = addr
 	tx.RcvAddr = scAddress
-	tx.Data = []byte(core.BuiltInFunctionESDTNFTTransfer +
+	tx.Data = []byte(core.BuiltInFunctionDCDTNFTTransfer +
 		"@" + hex.EncodeToString([]byte("token")) +
 		"@" + hex.EncodeToString([]byte("rcv")) +
 		"@" + hex.EncodeToString([]byte("attr")) +
@@ -231,13 +231,13 @@ func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallNftTransfer(t *t
 	assert.False(t, isRelayedV3)
 }
 
-func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallEsdtTransfer(t *testing.T) {
+func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallDcdtTransfer(t *testing.T) {
 	t.Parallel()
 
 	arg := createMockArguments()
 
 	arg.BuiltInFunctions = builtInFunctions.NewBuiltInFunctionContainer()
-	_ = arg.BuiltInFunctions.Add(core.BuiltInFunctionESDTTransfer, &mock.BuiltInFunctionStub{})
+	_ = arg.BuiltInFunctions.Add(core.BuiltInFunctionDCDTTransfer, &mock.BuiltInFunctionStub{})
 
 	tth, err := NewTxTypeHandler(arg)
 
@@ -249,7 +249,7 @@ func TestTxTypeHandler_ComputeTransactionTypeBuiltInFunctionCallEsdtTransfer(t *
 	tx.Nonce = 0
 	tx.SndAddr = addr
 	tx.RcvAddr = addr
-	tx.Data = []byte(core.BuiltInFunctionESDTTransfer +
+	tx.Data = []byte(core.BuiltInFunctionDCDTTransfer +
 		"@" + hex.EncodeToString([]byte("token")) +
 		"@" + hex.EncodeToString([]byte("rcv")) +
 		"@" + hex.EncodeToString(big.NewInt(10).Bytes()))
@@ -400,7 +400,7 @@ func TestTxTypeHandler_ComputeTransactionTypeBuiltInFuncNotActiveSCCall(t *testi
 	tx := &transaction.Transaction{}
 	tx.Nonce = 0
 	tx.SndAddr = []byte("000")
-	tx.RcvAddr = vm.ESDTSCAddress
+	tx.RcvAddr = vm.DCDTSCAddress
 	tx.Data = []byte("builtIn")
 	tx.Value = big.NewInt(45)
 

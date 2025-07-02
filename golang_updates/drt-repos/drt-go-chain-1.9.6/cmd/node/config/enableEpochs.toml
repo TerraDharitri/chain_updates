@@ -58,8 +58,8 @@
     # DoubleKeyProtectionEnableEpoch represents the epoch when the double key protection will be enabled
     DoubleKeyProtectionEnableEpoch = 1
 
-    # ESDTEnableEpoch represents the epoch when ESDT is enabled
-    ESDTEnableEpoch = 1
+    # DCDTEnableEpoch represents the epoch when DCDT is enabled
+    DCDTEnableEpoch = 1
 
     # GovernanceEnableEpoch represents the epoch when governance is enabled
     GovernanceEnableEpoch = 1
@@ -94,14 +94,14 @@
     # is enabled. The fix is done by adding an extra increment.
     IncrementSCRNonceInMultiTransferEnableEpoch = 1
 
-    # ESDTMultiTransferEnableEpoch represents the epoch when esdt multitransfer built in function is enabled
-    ESDTMultiTransferEnableEpoch = 1
+    # DCDTMultiTransferEnableEpoch represents the epoch when dcdt multitransfer built in function is enabled
+    DCDTMultiTransferEnableEpoch = 1
 
     # GlobalMintBurnDisableEpoch represents the epoch when the global mint and burn functions are disabled
     GlobalMintBurnDisableEpoch = 1
 
-    # ESDTTransferRoleEnableEpoch represents the epoch when esdt transfer role set is enabled
-    ESDTTransferRoleEnableEpoch = 1
+    # DCDTTransferRoleEnableEpoch represents the epoch when dcdt transfer role set is enabled
+    DCDTTransferRoleEnableEpoch = 1
 
     # ComputeRewardCheckpointEnableEpoch represents the epoch when compute rewards checkpoint epoch is enabled
     ComputeRewardCheckpointEnableEpoch = 1
@@ -112,17 +112,17 @@
     # BackwardCompSaveKeyValueEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
     BackwardCompSaveKeyValueEnableEpoch = 1
 
-    # ESDTNFTCreateOnMultiShardEnableEpoch represents the epoch when esdt nft creation is enabled on multiple shards
-    ESDTNFTCreateOnMultiShardEnableEpoch = 1
+    # DCDTNFTCreateOnMultiShardEnableEpoch represents the epoch when dcdt nft creation is enabled on multiple shards
+    DCDTNFTCreateOnMultiShardEnableEpoch = 1
 
-    # MetaESDTSetEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
-    MetaESDTSetEnableEpoch = 1
+    # MetaDCDTSetEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
+    MetaDCDTSetEnableEpoch = 1
 
     # AddTokensToDelegationEnableEpoch represents the epoch when adding tokens to delegation is enabled for whitelisted address
     AddTokensToDelegationEnableEpoch = 1
 
-    # MultiESDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi esdt transfer on callback fix is enabled
-    MultiESDTTransferFixOnCallBackOnEnableEpoch = 1
+    # MultiDCDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi dcdt transfer on callback fix is enabled
+    MultiDCDTTransferFixOnCallBackOnEnableEpoch = 1
 
     # OptimizeGasUsedInCrossMiniBlocksEnableEpoch represents the epoch when gas used in cross shard mini blocks will be optimized
     OptimizeGasUsedInCrossMiniBlocksEnableEpoch = 1
@@ -160,11 +160,11 @@
     # StorageAPICostOptimizationEnableEpoch represents the epoch when new storage helper functions are enabled and cost is reduced in Wasm VM
     StorageAPICostOptimizationEnableEpoch = 1
 
-    # TransformToMultiShardCreateEnableEpoch represents the epoch when the new function on esdt system sc is enabled to transfer create role into multishard
+    # TransformToMultiShardCreateEnableEpoch represents the epoch when the new function on dcdt system sc is enabled to transfer create role into multishard
     TransformToMultiShardCreateEnableEpoch = 1
 
-    # ESDTRegisterAndSetAllRolesEnableEpoch represents the epoch when new function to register tickerID and set all roles is enabled
-    ESDTRegisterAndSetAllRolesEnableEpoch = 1
+    # DCDTRegisterAndSetAllRolesEnableEpoch represents the epoch when new function to register tickerID and set all roles is enabled
+    DCDTRegisterAndSetAllRolesEnableEpoch = 1
 
     # ScheduledMiniBlocksEnableEpoch represents the epoch when scheduled mini blocks would be created if needed
     ScheduledMiniBlocksEnableEpoch = 1
@@ -203,8 +203,8 @@
     # CheckExecuteOnReadOnlyEnableEpoch represents the epoch when the extra checks are enabled for execution on read only
     CheckExecuteOnReadOnlyEnableEpoch = 1
 
-    # ESDTMetadataContinuousCleanupEnableEpoch represents the epoch when esdt metadata is automatically deleted according to inshard liquidity
-    ESDTMetadataContinuousCleanupEnableEpoch = 1
+    # DCDTMetadataContinuousCleanupEnableEpoch represents the epoch when dcdt metadata is automatically deleted according to inshard liquidity
+    DCDTMetadataContinuousCleanupEnableEpoch = 1
 
     # MiniBlockPartialExecutionEnableEpoch represents the epoch when mini block partial execution will be enabled
     MiniBlockPartialExecutionEnableEpoch = 1
@@ -312,11 +312,11 @@
     # UseGasBoundedShouldFailExecutionEnableEpoch represents the epoch when use bounded gas function should fail execution in case of error
     UseGasBoundedShouldFailExecutionEnableEpoch = 1
 
-    # DynamicESDTEnableEpoch represents the epoch when dynamic NFT feature is enabled
-    DynamicESDTEnableEpoch = 1
+    # DynamicDCDTEnableEpoch represents the epoch when dynamic NFT feature is enabled
+    DynamicDCDTEnableEpoch = 1
 
-    # EGLDInMultiTransferEnableEpoch represents the epoch when EGLD in multitransfer is enabled
-    EGLDInMultiTransferEnableEpoch = 1
+    # REWAInMultiTransferEnableEpoch represents the epoch when REWA in multitransfer is enabled
+    REWAInMultiTransferEnableEpoch = 1
 
     # CryptoOpcodesV2EnableEpoch represents the epoch when BLSMultiSig, Secp256r1 and other opcodes are enabled
     CryptoOpcodesV2EnableEpoch = 1
@@ -327,8 +327,8 @@
     # FixRelayedBaseCostEnableEpoch represents the epoch when the fix for relayed base cost will be enabled
     FixRelayedBaseCostEnableEpoch = 1
 
-    # MultiESDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign cross chain opcodes are enabled
-    MultiESDTNFTTransferAndExecuteByUserEnableEpoch = 9999999
+    # MultiDCDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign cross chain opcodes are enabled
+    MultiDCDTNFTTransferAndExecuteByUserEnableEpoch = 9999999
 
     # FixRelayedMoveBalanceToNonPayableSCEnableEpoch represents the epoch when the fix for relayed move balance to non payable sc will be enabled
     FixRelayedMoveBalanceToNonPayableSCEnableEpoch = 1
@@ -336,8 +336,8 @@
     # RelayedTransactionsV3EnableEpoch represents the epoch when the relayed transactions v3 will be enabled
     RelayedTransactionsV3EnableEpoch = 1
 
-    # RelayedTransactionsV3FixESDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with esdt transfer will be enabled
-    RelayedTransactionsV3FixESDTTransferEnableEpoch = 1 # TODO: keep this equal to RelayedTransactionsV3EnableEpoch for mainnet
+    # RelayedTransactionsV3FixDCDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with dcdt transfer will be enabled
+    RelayedTransactionsV3FixDCDTTransferEnableEpoch = 1 # TODO: keep this equal to RelayedTransactionsV3EnableEpoch for mainnet
 
     # AndromedaEnableEpoch represents the epoch when the equivalent messages and fix order for consensus features are enabled
     AndromedaEnableEpoch = 8 # the chain simulator tests for staking v4 fail if this is set earlier, as they test the transition in epochs 4-7

@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/pelletier/go-toml"
 	"github.com/stretchr/testify/require"
 )

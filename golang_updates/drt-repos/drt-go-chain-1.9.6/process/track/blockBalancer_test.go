@@ -3,7 +3,7 @@ package track_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/process/track"
+	"github.com/TerraDharitri/drt-go-chain/process/track"
 	"github.com/stretchr/testify/assert"
 )
 

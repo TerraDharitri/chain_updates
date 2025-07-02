@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -26,8 +26,8 @@ func TestTransactionGroup(t *testing.T) {
 func testTransactionGasCostWithMissingFields(tb testing.TB, node *integrationTests.TestProcessorNodeWithTestWebServer) {
 	// this is an example found in the wild, should not add more fields in order to pass the tests
 	tx := transaction.FrontendTransaction{
-		Sender:   "erd1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awqgqky80",
-		Receiver: "erd188anxz35atlef7cucszypmvx88lhz4m7a7t7lhcwt6sfphpsqlkswfhcx2",
+		Sender:   "drt1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awq4up8y3",
+		Receiver: "drt188anxz35atlef7cucszypmvx88lhz4m7a7t7lhcwt6sfphpsqlksn4qm95",
 		Value:    "100",
 		Nonce:    0,
 		GasPrice: 100,

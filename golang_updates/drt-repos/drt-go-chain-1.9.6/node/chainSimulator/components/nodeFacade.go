@@ -6,16 +6,16 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/api/gin"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/facade"
-	apiComp "github.com/multiversx/mx-chain-go/factory/api"
-	nodePack "github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-go/node/metrics"
-	"github.com/multiversx/mx-chain-go/process/mock"
+	"github.com/TerraDharitri/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain/api/gin"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	apiComp "github.com/TerraDharitri/drt-go-chain/factory/api"
+	nodePack "github.com/TerraDharitri/drt-go-chain/node"
+	"github.com/TerraDharitri/drt-go-chain/node/metrics"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
 )
 
 func (node *testOnlyProcessingNode) createFacade(configs config.Configs, apiInterface APIConfigurator, vmQueryDelayAfterStartInMs uint64) error {
@@ -69,7 +69,7 @@ func (node *testOnlyProcessingNode) createFacade(configs config.Configs, apiInte
 		return err
 	}
 
-	log.Debug("creating multiversx node facade")
+	log.Debug("creating dharitri node facade")
 
 	flagsConfig := configs.FlagsConfig
 
@@ -93,7 +93,7 @@ func (node *testOnlyProcessingNode) createFacade(configs config.Configs, apiInte
 		nodePack.WithPublicKeySize(configs.GeneralConfig.ValidatorPubkeyConverter.Length),
 		nodePack.WithNodeStopChannel(node.CoreComponentsHolder.ChanStopNodeProcess()),
 		nodePack.WithImportMode(configs.ImportDbConfig.IsImportDBMode),
-		nodePack.WithESDTNFTStorageHandler(node.ProcessComponentsHolder.ESDTDataStorageHandlerForAPI()),
+		nodePack.WithDCDTNFTStorageHandler(node.ProcessComponentsHolder.DCDTDataStorageHandlerForAPI()),
 	)
 	if err != nil {
 		return errors.New("error creating node: " + err.Error())

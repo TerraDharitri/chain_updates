@@ -1,7 +1,7 @@
 package enablers
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
 )
 
 type roundFlag struct {

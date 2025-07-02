@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"strings"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 const disconnectMessage = -1

@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 	"github.com/stretchr/testify/assert"
 
-	errorsErd "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory/peerSignatureHandler"
-	"github.com/multiversx/mx-chain-go/testscommon/cache"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory/peerSignatureHandler"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cache"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
 )
 
 func TestNewPeerSignatureHandler_NilCacherShouldErr(t *testing.T) {
@@ -25,7 +25,7 @@ func TestNewPeerSignatureHandler_NilCacherShouldErr(t *testing.T) {
 	)
 
 	assert.True(t, check.IfNil(peerSigHandler))
-	assert.Equal(t, errorsErd.ErrNilCacher, err)
+	assert.Equal(t, errorsDrt.ErrNilCacher, err)
 }
 
 func TestNewPeerSignatureHandler_NilSingleSignerShouldErr(t *testing.T) {
@@ -38,7 +38,7 @@ func TestNewPeerSignatureHandler_NilSingleSignerShouldErr(t *testing.T) {
 	)
 
 	assert.True(t, check.IfNil(peerSigHandler))
-	assert.Equal(t, errorsErd.ErrNilSingleSigner, err)
+	assert.Equal(t, errorsDrt.ErrNilSingleSigner, err)
 }
 
 func TestNewPeerSignatureHandler_NilKeyGenShouldErr(t *testing.T) {
@@ -90,7 +90,7 @@ func TestPeerSignatureHandler_VerifyPeerSignatureInvalidPID(t *testing.T) {
 	)
 
 	err := peerSigHandler.VerifyPeerSignature([]byte("public key"), "", []byte("signature"))
-	assert.Equal(t, errorsErd.ErrInvalidPID, err)
+	assert.Equal(t, errorsDrt.ErrInvalidPID, err)
 }
 
 func TestPeerSignatureHandler_VerifyPeerSignatureInvalidSignature(t *testing.T) {
@@ -103,7 +103,7 @@ func TestPeerSignatureHandler_VerifyPeerSignatureInvalidSignature(t *testing.T) 
 	)
 
 	err := peerSigHandler.VerifyPeerSignature([]byte("public key"), "dummy peer", nil)
-	assert.Equal(t, errorsErd.ErrInvalidSignature, err)
+	assert.Equal(t, errorsDrt.ErrInvalidSignature, err)
 }
 
 func TestPeerSignatureHandler_VerifyPeerSignatureCantGetPubKeyBytes(t *testing.T) {
@@ -305,7 +305,7 @@ func TestPeerSignatureHandler_VerifyPeerSignatureDifferentPid(t *testing.T) {
 	cache.Put(pk, cacheEntry, len(pid)+len(sig))
 
 	err := peerSigHandler.VerifyPeerSignature(pk, newPid, sig)
-	assert.Equal(t, errorsErd.ErrPIDMismatch, err)
+	assert.Equal(t, errorsDrt.ErrPIDMismatch, err)
 	assert.False(t, verifyCalled)
 }
 
@@ -345,7 +345,7 @@ func TestPeerSignatureHandler_VerifyPeerSignatureDifferentSig(t *testing.T) {
 	cache.Put(pk, cacheEntry, len(pid)+len(sig))
 
 	err := peerSigHandler.VerifyPeerSignature(pk, pid, newSig)
-	assert.Equal(t, errorsErd.ErrSignatureMismatch, err)
+	assert.Equal(t, errorsDrt.ErrSignatureMismatch, err)
 	assert.False(t, verifyCalled)
 }
 

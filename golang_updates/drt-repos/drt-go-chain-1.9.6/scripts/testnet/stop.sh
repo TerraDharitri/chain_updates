@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export MULTIVERSXTESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export DHARITRITESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [ "$1" == "keep" ]; then
   KEEPOPEN=1
@@ -8,10 +8,10 @@ else
   KEEPOPEN=0
 fi
 
-source "$MULTIVERSXTESTNETSCRIPTSDIR/variables.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/validators.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/observers.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/tools.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/variables.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/validators.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/observers.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/tools.sh"
 
 if [ $USE_PROXY -eq 1 ]; then
   stopProxy
@@ -27,6 +27,6 @@ stopSeednode
 
 if [ $USETMUX -eq 1 ] && [ $KEEPOPEN -eq 0 ]
 then
-  tmux kill-session -t "multiversx-tools"
-  tmux kill-session -t "multiversx-nodes"
+  tmux kill-session -t "dharitri-tools"
+  tmux kill-session -t "dharitri-nodes"
 fi

@@ -10,7 +10,7 @@ import (
 func TestExtractTokenIDAndNonceFromTokenStorageKey(t *testing.T) {
 	t.Parallel()
 
-	t.Run("regular esdt, should work", func(t *testing.T) {
+	t.Run("regular dcdt, should work", func(t *testing.T) {
 		t.Parallel()
 
 		checkTickerAndNonceExtraction(t, "ALC-1q2w3e", "ALC-1q2w3e", 0)
@@ -52,7 +52,7 @@ func TestExtractTokenIDAndNonceFromTokenStorageKey(t *testing.T) {
 		t.Parallel()
 
 		// "-" represents nonce 45 and should not be treated as a separator
-		checkTickerAndNonceExtraction(t, "EGLDMEXF-8aa8b6-", "EGLDMEXF-8aa8b6", 45)
+		checkTickerAndNonceExtraction(t, "REWAMEXF-8aa8b6-", "REWAMEXF-8aa8b6", 45)
 	})
 }
 

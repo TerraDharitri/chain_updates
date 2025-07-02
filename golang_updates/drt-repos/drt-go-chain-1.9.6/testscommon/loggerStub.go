@@ -1,6 +1,6 @@
 package testscommon
 
-import logger "github.com/multiversx/mx-chain-logger-go"
+import logger "github.com/TerraDharitri/drt-go-chain-logger"
 
 // LoggerStub -
 type LoggerStub struct {

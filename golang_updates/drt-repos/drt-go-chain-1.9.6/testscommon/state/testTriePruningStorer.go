@@ -3,14 +3,14 @@ package state
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/common/statistics/disabled"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/database"
-	storageMock "github.com/multiversx/mx-chain-go/storage/mock"
-	"github.com/multiversx/mx-chain-go/storage/pruning"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics/disabled"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/database"
+	storageMock "github.com/TerraDharitri/drt-go-chain/storage/mock"
+	"github.com/TerraDharitri/drt-go-chain/storage/pruning"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 )
 
 // CreateTestingTriePruningStorer creates a new trie pruning storer that is used for testing

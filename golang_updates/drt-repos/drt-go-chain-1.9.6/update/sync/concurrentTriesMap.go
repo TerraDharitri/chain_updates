@@ -3,7 +3,7 @@ package sync
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 type concurrentTriesMap struct {

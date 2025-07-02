@@ -12,11 +12,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-logger/proto"
+	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/proto"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 	"github.com/urfave/cli"
 )
 
@@ -78,7 +78,7 @@ func main() {
 func initCliFlags() {
 	cliApp = cli.NewApp()
 	cli.AppHelpTemplate = nodeHelpTemplate
-	cliApp.Name = "MultiversX Logviewer Testing App"
+	cliApp.Name = "Dharitri Logviewer Testing App"
 	cliApp.Version = fmt.Sprintf("%s/%s/%s-%s", "1.0.0", runtime.Version(), runtime.GOOS, runtime.GOARCH)
 	cliApp.Usage = "Testing application for Logwiever"
 	cliApp.Flags = []cli.Flag{
@@ -86,8 +86,8 @@ func initCliFlags() {
 	}
 	cliApp.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 }

@@ -5,21 +5,21 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	vmcommonBuiltInFunctions "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	wasmConfig "github.com/multiversx/mx-chain-vm-go/config"
-	ipcNodePart1p2 "github.com/multiversx/mx-chain-vm-v1_2-go/ipc/nodepart"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	vmcommonBuiltInFunctions "github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	ipcNodePart1p2 "github.com/TerraDharitri/drt-go-chain-vm-v1/ipc/nodepart"
+	wasmConfig "github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -32,12 +32,12 @@ func makeVMConfig() config.VirtualMachineConfig {
 			{StartEpoch: 12, Version: "v1.3"},
 			{StartEpoch: 14, Version: "v1.4"},
 		},
-		TransferAndExecuteByUserAddresses: []string{"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe3"},
+		TransferAndExecuteByUserAddresses: []string{"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qkswz60"},
 	}
 }
 
 func createMockVMAccountsArguments() ArgVMContainerFactory {
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(&mock.MarshalizerMock{})
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(&mock.MarshalizerMock{})
 	return ArgVMContainerFactory{
 		Config:              makeVMConfig(),
 		BlockGasLimit:       10000,
@@ -45,7 +45,7 @@ func createMockVMAccountsArguments() ArgVMContainerFactory {
 		EpochNotifier:       &epochNotifier.EpochNotifierStub{},
 		EnableEpochsHandler: &enableEpochsHandlerMock.EnableEpochsHandlerStub{},
 		WasmVMChangeLocker:  &sync.RWMutex{},
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		BuiltInFunctions:    vmcommonBuiltInFunctions.NewBuiltInFunctionContainer(),
 		BlockChainHook:      &testscommon.BlockChainHookStub{},
 		Hasher:              &hashingMocks.HasherMock{},
@@ -64,15 +64,15 @@ func TestNewVMContainerFactory_NilGasScheduleShouldErr(t *testing.T) {
 	assert.Equal(t, process.ErrNilGasSchedule, err)
 }
 
-func TestNewVMContainerFactory_NilESDTTransferParserShouldErr(t *testing.T) {
+func TestNewVMContainerFactory_NilDCDTTransferParserShouldErr(t *testing.T) {
 	t.Parallel()
 
 	args := createMockVMAccountsArguments()
-	args.ESDTTransferParser = nil
+	args.DCDTTransferParser = nil
 	vmf, err := NewVMContainerFactory(args)
 
 	assert.Nil(t, vmf)
-	assert.Equal(t, process.ErrNilESDTTransferParser, err)
+	assert.Equal(t, process.ErrNilDCDTTransferParser, err)
 }
 
 func TestNewVMContainerFactory_NilLockerShouldErr(t *testing.T) {
@@ -206,7 +206,7 @@ func TestVmContainerFactory_Create(t *testing.T) {
 	assert.NotNil(t, acc)
 
 	assert.Equal(t, len(vmf.mapOpcodeAddressIsAllowed), 1)
-	assert.Equal(t, len(vmf.mapOpcodeAddressIsAllowed[managedMultiTransferESDTNFTExecuteByUser]), 1)
+	assert.Equal(t, len(vmf.mapOpcodeAddressIsAllowed[managedMultiTransferDCDTNFTExecuteByUser]), 1)
 }
 
 func TestVmContainerFactory_ResolveWasmVMVersion(t *testing.T) {

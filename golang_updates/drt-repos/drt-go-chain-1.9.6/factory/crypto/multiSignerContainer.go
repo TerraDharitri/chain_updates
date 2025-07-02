@@ -4,17 +4,17 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	disabledMultiSig "github.com/multiversx/mx-chain-crypto-go/signing/disabled/multisig"
-	mclMultiSig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/multisig"
-	"github.com/multiversx/mx-chain-crypto-go/signing/multisig"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/errors"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	disabledMultiSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/disabled/multisig"
+	mclMultiSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/multisig"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/multisig"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/errors"
 )
 
 const (

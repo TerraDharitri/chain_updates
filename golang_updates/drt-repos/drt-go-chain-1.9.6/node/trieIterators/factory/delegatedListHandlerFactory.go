@@ -1,10 +1,10 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/node/trieIterators"
-	"github.com/multiversx/mx-chain-go/node/trieIterators/disabled"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/node/trieIterators"
+	"github.com/TerraDharitri/drt-go-chain/node/trieIterators/disabled"
 )
 
 // CreateDelegatedListHandler will create a new instance of DirectStakedListHandler

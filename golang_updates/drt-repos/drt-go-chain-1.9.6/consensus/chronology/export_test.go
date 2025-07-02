@@ -3,9 +3,9 @@ package chronology
 import (
 	"context"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 
-	"github.com/multiversx/mx-chain-go/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
 )
 
 func (chr *chronology) StartRound() {

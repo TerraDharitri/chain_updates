@@ -1,8 +1,8 @@
 package nodesCoordinator
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 )
 
 var _ RandomSelector = (*selectorExpandedList)(nil)

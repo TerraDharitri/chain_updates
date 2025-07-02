@@ -1,7 +1,7 @@
 package v1
 
 import (
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var log = logger.GetOrCreate("consensus/spos/bls/v1")

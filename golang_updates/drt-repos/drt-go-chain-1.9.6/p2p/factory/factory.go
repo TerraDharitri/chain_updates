@@ -1,13 +1,13 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-communication-go/p2p/libp2p"
-	"github.com/multiversx/mx-chain-communication-go/p2p/libp2p/crypto"
-	"github.com/multiversx/mx-chain-communication-go/p2p/message"
-	messagecheck "github.com/multiversx/mx-chain-communication-go/p2p/messageCheck"
-	"github.com/multiversx/mx-chain-communication-go/p2p/peersHolder"
-	"github.com/multiversx/mx-chain-communication-go/p2p/rating"
-	"github.com/multiversx/mx-chain-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p/libp2p"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p/libp2p/crypto"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p/message"
+	messagecheck "github.com/TerraDharitri/drt-go-chain-communication/p2p/messageCheck"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p/peersHolder"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p/rating"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
 )
 
 // ArgsNetworkMessenger defines the options used to create a p2p wrapper

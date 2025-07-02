@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // RedundancyHandlerStub -

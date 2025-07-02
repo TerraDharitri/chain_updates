@@ -1,8 +1,8 @@
 package disabled
 
 import (
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-go/outport"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain/outport"
 )
 
 type disabledOutport struct{}

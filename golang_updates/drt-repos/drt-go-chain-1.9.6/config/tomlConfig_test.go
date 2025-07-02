@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
 )
 
 func TestTomlParser(t *testing.T) {
@@ -118,9 +118,9 @@ func TestTomlParser(t *testing.T) {
 				TimeOutForSCExecutionInMilliseconds: 10000,
 				WasmerSIGSEGVPassthrough:            true,
 				TransferAndExecuteByUserAddresses: []string{
-					"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe0",
-					"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe1",
-					"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe2"},
+					"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe0",
+					"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe1",
+					"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe2"},
 			},
 			Querying: QueryVirtualMachineConfig{
 				NumConcurrentVMs:     16,
@@ -223,9 +223,9 @@ func TestTomlParser(t *testing.T) {
             { StartEpoch = 88, Version = "v1.2" },
         ]
 		TransferAndExecuteByUserAddresses = [
-			"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe0", #shard 0
-			"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe1", #shard 1
-			"erd1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe2", #shard 2
+			"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe0", #shard 0
+			"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe1", #shard 1
+			"drt1qqqqqqqqqqqqqpgqr46jrxr6r2unaqh75ugd308dwx5vgnhwh47qtvepe2", #shard 2
 		]
 
     [VirtualMachine.Querying]
@@ -289,7 +289,7 @@ func TestTomlEconomicsParser(t *testing.T) {
 	minGasLimit := "18446744073709551615"
 	extraGasLimitGuardedTx := "50000"
 	maxGasPriceSetGuardian := "1234567"
-	protocolSustainabilityAddress := "erd1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797su0dlxp"
+	protocolSustainabilityAddress := "drt1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797spn6u9l"
 	denomination := 18
 
 	cfgEconomicsExpected := EconomicsConfig{
@@ -649,8 +649,8 @@ func TestEnableEpochConfig(t *testing.T) {
     # DoubleKeyProtectionEnableEpoch represents the epoch when the double key protection will be enabled
     DoubleKeyProtectionEnableEpoch = 19
 
-    # ESDTEnableEpoch represents the epoch when ESDT is enabled
-    ESDTEnableEpoch = 20
+    # DCDTEnableEpoch represents the epoch when DCDT is enabled
+    DCDTEnableEpoch = 20
 
     # GovernanceEnableEpoch represents the epoch when governance is enabled
     GovernanceEnableEpoch = 21
@@ -685,14 +685,14 @@ func TestEnableEpochConfig(t *testing.T) {
     # is enabled. The fix is done by adding an extra increment.
     IncrementSCRNonceInMultiTransferEnableEpoch = 31
 
-    # ESDTMultiTransferEnableEpoch represents the epoch when esdt multitransfer built in function is enabled
-    ESDTMultiTransferEnableEpoch = 32
+    # DCDTMultiTransferEnableEpoch represents the epoch when dcdt multitransfer built in function is enabled
+    DCDTMultiTransferEnableEpoch = 32
 
     # GlobalMintBurnDisableEpoch represents the epoch when the global mint and burn functions are disabled
     GlobalMintBurnDisableEpoch = 33
 
-    # ESDTTransferRoleEnableEpoch represents the epoch when esdt transfer role set is enabled
-    ESDTTransferRoleEnableEpoch = 34
+    # DCDTTransferRoleEnableEpoch represents the epoch when dcdt transfer role set is enabled
+    DCDTTransferRoleEnableEpoch = 34
 
     # ComputeRewardCheckpointEnableEpoch represents the epoch when compute rewards checkpoint epoch is enabled
     ComputeRewardCheckpointEnableEpoch = 36
@@ -703,17 +703,17 @@ func TestEnableEpochConfig(t *testing.T) {
     # BackwardCompSaveKeyValueEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
     BackwardCompSaveKeyValueEnableEpoch = 38
 
-    # ESDTNFTCreateOnMultiShardEnableEpoch represents the epoch when esdt nft creation is enabled on multiple shards
-    ESDTNFTCreateOnMultiShardEnableEpoch = 39
+    # DCDTNFTCreateOnMultiShardEnableEpoch represents the epoch when dcdt nft creation is enabled on multiple shards
+    DCDTNFTCreateOnMultiShardEnableEpoch = 39
 
-    # MetaESDTSetEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
-    MetaESDTSetEnableEpoch = 40
+    # MetaDCDTSetEnableEpoch represents the epoch when the backward compatibility for save key value error is enabled
+    MetaDCDTSetEnableEpoch = 40
 
     # AddTokensToDelegationEnableEpoch represents the epoch when adding tokens to delegation is enabled for whitelisted address
     AddTokensToDelegationEnableEpoch = 41
 
-    # MultiESDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi esdt transfer on callback fix is enabled
-    MultiESDTTransferFixOnCallBackOnEnableEpoch = 42
+    # MultiDCDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi dcdt transfer on callback fix is enabled
+    MultiDCDTTransferFixOnCallBackOnEnableEpoch = 42
 
     # OptimizeGasUsedInCrossMiniBlocksEnableEpoch represents the epoch when gas used in cross shard mini blocks will be optimized
     OptimizeGasUsedInCrossMiniBlocksEnableEpoch = 43
@@ -751,11 +751,11 @@ func TestEnableEpochConfig(t *testing.T) {
     # StorageAPICostOptimizationEnableEpoch represents the epoch when new storage helper functions are enabled and cost is reduced in Wasm VM
     StorageAPICostOptimizationEnableEpoch = 54
 
-    # TransformToMultiShardCreateEnableEpoch represents the epoch when the new function on esdt system sc is enabled to transfer create role into multishard
+    # TransformToMultiShardCreateEnableEpoch represents the epoch when the new function on dcdt system sc is enabled to transfer create role into multishard
     TransformToMultiShardCreateEnableEpoch = 55
 
-    # ESDTRegisterAndSetAllRolesEnableEpoch represents the epoch when new function to register tickerID and set all roles is enabled
-    ESDTRegisterAndSetAllRolesEnableEpoch = 56
+    # DCDTRegisterAndSetAllRolesEnableEpoch represents the epoch when new function to register tickerID and set all roles is enabled
+    DCDTRegisterAndSetAllRolesEnableEpoch = 56
 
     # ScheduledMiniBlocksEnableEpoch represents the epoch when scheduled mini blocks would be created if needed
     ScheduledMiniBlocksEnableEpoch = 57
@@ -794,8 +794,8 @@ func TestEnableEpochConfig(t *testing.T) {
     # CheckExecuteOnReadOnlyEnableEpoch represents the epoch when the extra checks are enabled for execution on read only
     CheckExecuteOnReadOnlyEnableEpoch = 68
 
-    # ESDTMetadataContinuousCleanupEnableEpoch represents the epoch when esdt metadata is automatically deleted according to inshard liquidity
-    ESDTMetadataContinuousCleanupEnableEpoch = 69
+    # DCDTMetadataContinuousCleanupEnableEpoch represents the epoch when dcdt metadata is automatically deleted according to inshard liquidity
+    DCDTMetadataContinuousCleanupEnableEpoch = 69
 
     # MiniBlockPartialExecutionEnableEpoch represents the epoch when mini block partial execution will be enabled
     MiniBlockPartialExecutionEnableEpoch = 70
@@ -884,11 +884,11 @@ func TestEnableEpochConfig(t *testing.T) {
     # UseGasBoundedShouldFailExecutionEnableEpoch represents the epoch when use bounded gas function should fail execution in case of error
     UseGasBoundedShouldFailExecutionEnableEpoch = 96
 
-    # DynamicESDTEnableEpoch represents the epoch when dynamic NFT feature is enabled
-    DynamicESDTEnableEpoch = 97
+    # DynamicDCDTEnableEpoch represents the epoch when dynamic NFT feature is enabled
+    DynamicDCDTEnableEpoch = 97
 
-    # EGLDInMultiTransferEnableEpoch represents the epoch when EGLD in MultiTransfer is enabled
-    EGLDInMultiTransferEnableEpoch = 98
+    # REWAInMultiTransferEnableEpoch represents the epoch when REWA in MultiTransfer is enabled
+    REWAInMultiTransferEnableEpoch = 98
 
     # CryptoOpcodesV2EnableEpoch represents the epoch when BLSMultiSig, Secp256r1 and other opcodes are enabled
     CryptoOpcodesV2EnableEpoch = 99
@@ -896,8 +896,8 @@ func TestEnableEpochConfig(t *testing.T) {
     # FixRelayedBaseCostEnableEpoch represents the epoch when the fix for relayed base cost will be enabled
     FixRelayedBaseCostEnableEpoch = 100
 
-    # MultiESDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign cross chain opcodes are enabled
-    MultiESDTNFTTransferAndExecuteByUserEnableEpoch = 101
+    # MultiDCDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign cross chain opcodes are enabled
+    MultiDCDTNFTTransferAndExecuteByUserEnableEpoch = 101
 
 	# FixRelayedMoveBalanceToNonPayableSCEnableEpoch represents the epoch when the fix for relayed move balance to non payable sc will be enabled
     FixRelayedMoveBalanceToNonPayableSCEnableEpoch = 102
@@ -905,8 +905,8 @@ func TestEnableEpochConfig(t *testing.T) {
 	# RelayedTransactionsV3EnableEpoch represents the epoch when the relayed transactions v3 will be enabled
     RelayedTransactionsV3EnableEpoch = 103
 
-	# RelayedTransactionsV3FixESDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with esdt transfer will be enabled
-    RelayedTransactionsV3FixESDTTransferEnableEpoch = 104
+	# RelayedTransactionsV3FixDCDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with dcdt transfer will be enabled
+    RelayedTransactionsV3FixDCDTTransferEnableEpoch = 104
 
 	# AndromedaEnableEpoch represents the epoch when the equivalent messages are enabled
 	AndromedaEnableEpoch = 105
@@ -953,7 +953,7 @@ func TestEnableEpochConfig(t *testing.T) {
 			StakeEnableEpoch:                                         17,
 			StakingV2EnableEpoch:                                     18,
 			DoubleKeyProtectionEnableEpoch:                           19,
-			ESDTEnableEpoch:                                          20,
+			DCDTEnableEpoch:                                          20,
 			GovernanceEnableEpoch:                                    21,
 			DelegationManagerEnableEpoch:                             22,
 			DelegationSmartContractEnableEpoch:                       23,
@@ -964,16 +964,16 @@ func TestEnableEpochConfig(t *testing.T) {
 			ReDelegateBelowMinCheckEnableEpoch:                       28,
 			ValidatorToDelegationEnableEpoch:                         29,
 			IncrementSCRNonceInMultiTransferEnableEpoch:              31,
-			ESDTMultiTransferEnableEpoch:                             32,
+			DCDTMultiTransferEnableEpoch:                             32,
 			GlobalMintBurnDisableEpoch:                               33,
-			ESDTTransferRoleEnableEpoch:                              34,
+			DCDTTransferRoleEnableEpoch:                              34,
 			ComputeRewardCheckpointEnableEpoch:                       36,
 			SCRSizeInvariantCheckEnableEpoch:                         37,
 			BackwardCompSaveKeyValueEnableEpoch:                      38,
-			ESDTNFTCreateOnMultiShardEnableEpoch:                     39,
-			MetaESDTSetEnableEpoch:                                   40,
+			DCDTNFTCreateOnMultiShardEnableEpoch:                     39,
+			MetaDCDTSetEnableEpoch:                                   40,
 			AddTokensToDelegationEnableEpoch:                         41,
-			MultiESDTTransferFixOnCallBackOnEnableEpoch:              42,
+			MultiDCDTTransferFixOnCallBackOnEnableEpoch:              42,
 			OptimizeGasUsedInCrossMiniBlocksEnableEpoch:              43,
 			CorrectFirstQueuedEpoch:                                  44,
 			DeleteDelegatorAfterClaimRewardsEnableEpoch:              45,
@@ -987,7 +987,7 @@ func TestEnableEpochConfig(t *testing.T) {
 			CleanUpInformativeSCRsEnableEpoch:                        53,
 			StorageAPICostOptimizationEnableEpoch:                    54,
 			TransformToMultiShardCreateEnableEpoch:                   55,
-			ESDTRegisterAndSetAllRolesEnableEpoch:                    56,
+			DCDTRegisterAndSetAllRolesEnableEpoch:                    56,
 			ScheduledMiniBlocksEnableEpoch:                           57,
 			CorrectJailedNotUnstakedEmptyQueueEpoch:                  58,
 			DoNotReturnOldBlockInBlockchainHookEnableEpoch:           59,
@@ -1000,7 +1000,7 @@ func TestEnableEpochConfig(t *testing.T) {
 			ManagedCryptoAPIsEnableEpoch:                             66,
 			CheckFunctionArgumentEnableEpoch:                         67,
 			CheckExecuteOnReadOnlyEnableEpoch:                        68,
-			ESDTMetadataContinuousCleanupEnableEpoch:                 69,
+			DCDTMetadataContinuousCleanupEnableEpoch:                 69,
 			MiniBlockPartialExecutionEnableEpoch:                     70,
 			FixAsyncCallBackArgsListEnableEpoch:                      71,
 			FixOldTokenLiquidityEnableEpoch:                          72,
@@ -1028,14 +1028,14 @@ func TestEnableEpochConfig(t *testing.T) {
 			AlwaysMergeContextsInEEIEnableEpoch:                      94,
 			CleanupAuctionOnLowWaitingListEnableEpoch:                95,
 			UseGasBoundedShouldFailExecutionEnableEpoch:              96,
-			DynamicESDTEnableEpoch:                                   97,
-			EGLDInMultiTransferEnableEpoch:                           98,
+			DynamicDCDTEnableEpoch:                                   97,
+			REWAInMultiTransferEnableEpoch:                           98,
 			CryptoOpcodesV2EnableEpoch:                               99,
 			FixRelayedBaseCostEnableEpoch:                            100,
-			MultiESDTNFTTransferAndExecuteByUserEnableEpoch:          101,
+			MultiDCDTNFTTransferAndExecuteByUserEnableEpoch:          101,
 			FixRelayedMoveBalanceToNonPayableSCEnableEpoch:           102,
 			RelayedTransactionsV3EnableEpoch:                         103,
-			RelayedTransactionsV3FixESDTTransferEnableEpoch:          104,
+			RelayedTransactionsV3FixDCDTTransferEnableEpoch:          104,
 			AndromedaEnableEpoch:                                     105,
 			CheckBuiltInCallOnTransferValueAndFailEnableRound:        106,
 			MaxNodesChangeEnableEpoch: []MaxNodesChangeConfig{

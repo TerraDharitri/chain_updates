@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
 )
 
 func TestComputeStartIndexAndNumAppearancesForValidator(t *testing.T) {

@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-crypto-go"
+import "crypto"
 
 // RedundancyHandlerStub -
 type RedundancyHandlerStub struct {

@@ -4,47 +4,47 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	debugFactory "github.com/multiversx/mx-chain-go/debug/factory"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	metachainEpochStart "github.com/multiversx/mx-chain-go/epochStart/metachain"
-	"github.com/multiversx/mx-chain-go/epochStart/notifier"
-	mainFactory "github.com/multiversx/mx-chain-go/factory"
-	factoryDisabled "github.com/multiversx/mx-chain-go/factory/disabled"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/outport"
-	processOutport "github.com/multiversx/mx-chain-go/outport/process"
-	factoryOutportProvider "github.com/multiversx/mx-chain-go/outport/process/factory"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/block"
-	"github.com/multiversx/mx-chain-go/process/block/cutoff"
-	"github.com/multiversx/mx-chain-go/process/block/postprocess"
-	"github.com/multiversx/mx-chain-go/process/block/preprocess"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/factory/metachain"
-	"github.com/multiversx/mx-chain-go/process/factory/shard"
-	"github.com/multiversx/mx-chain-go/process/rewardTransaction"
-	"github.com/multiversx/mx-chain-go/process/scToProtocol"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/smartContract/builtInFunctions"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks/counters"
-	"github.com/multiversx/mx-chain-go/process/smartContract/processProxy"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	"github.com/multiversx/mx-chain-go/process/throttle"
-	"github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	"github.com/multiversx/mx-chain-go/storage/txcache"
-	"github.com/multiversx/mx-chain-go/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	debugFactory "github.com/TerraDharitri/drt-go-chain/debug/factory"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	metachainEpochStart "github.com/TerraDharitri/drt-go-chain/epochStart/metachain"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
+	mainFactory "github.com/TerraDharitri/drt-go-chain/factory"
+	factoryDisabled "github.com/TerraDharitri/drt-go-chain/factory/disabled"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/outport"
+	processOutport "github.com/TerraDharitri/drt-go-chain/outport/process"
+	factoryOutportProvider "github.com/TerraDharitri/drt-go-chain/outport/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/block"
+	"github.com/TerraDharitri/drt-go-chain/process/block/cutoff"
+	"github.com/TerraDharitri/drt-go-chain/process/block/postprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/block/preprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/metachain"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/shard"
+	"github.com/TerraDharitri/drt-go-chain/process/rewardTransaction"
+	"github.com/TerraDharitri/drt-go-chain/process/scToProtocol"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks/counters"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/processProxy"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	"github.com/TerraDharitri/drt-go-chain/process/throttle"
+	"github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	"github.com/TerraDharitri/drt-go-chain/storage/txcache"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 type blockProcessorAndVmFactories struct {
@@ -131,7 +131,7 @@ func (pcf *processComponentsFactory) newShardBlockProcessor(
 ) (*blockProcessorAndVmFactories, error) {
 	argsParser := smartContract.NewArgumentParser()
 
-	esdtTransferParser, err := parsers.NewESDTTransferParser(pcf.coreData.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(pcf.coreData.InternalMarshalizer())
 	if err != nil {
 		return nil, err
 	}
@@ -154,11 +154,11 @@ func (pcf *processComponentsFactory) newShardBlockProcessor(
 		pcf.state.AccountsAdapter(),
 		missingTrieNodesNotifier,
 		builtInFuncFactory.BuiltInFunctionContainer(),
-		esdtTransferParser,
+		dcdtTransferParser,
 		wasmVMChangeLocker,
 		pcf.config.SmartContractsStorage,
 		builtInFuncFactory.NFTStorageHandler(),
-		builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		builtInFuncFactory.DCDTGlobalSettingsHandler(),
 	)
 	if err != nil {
 		return nil, err
@@ -221,7 +221,7 @@ func (pcf *processComponentsFactory) newShardBlockProcessor(
 		ShardCoordinator:    pcf.bootstrapComponents.ShardCoordinator(),
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: pcf.coreData.EnableEpochsHandler(),
 	}
 	txTypeHandler, err := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -496,7 +496,7 @@ func (pcf *processComponentsFactory) newMetaBlockProcessor(
 		builtInFuncFactory.BuiltInFunctionContainer(),
 		pcf.config.SmartContractsStorage,
 		builtInFuncFactory.NFTStorageHandler(),
-		builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		builtInFuncFactory.DCDTGlobalSettingsHandler(),
 	)
 	if err != nil {
 		return nil, err
@@ -539,7 +539,7 @@ func (pcf *processComponentsFactory) newMetaBlockProcessor(
 		return nil, err
 	}
 
-	esdtTransferParser, err := parsers.NewESDTTransferParser(pcf.coreData.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(pcf.coreData.InternalMarshalizer())
 	if err != nil {
 		return nil, err
 	}
@@ -549,7 +549,7 @@ func (pcf *processComponentsFactory) newMetaBlockProcessor(
 		ShardCoordinator:    pcf.bootstrapComponents.ShardCoordinator(),
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: pcf.coreData.EnableEpochsHandler(),
 	}
 	txTypeHandler, err := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -879,9 +879,9 @@ func (pcf *processComponentsFactory) newMetaBlockProcessor(
 		SentSignaturesTracker:        sentSignaturesTracker,
 	}
 
-	esdtOwnerAddress, err := pcf.coreData.AddressPubKeyConverter().Decode(pcf.systemSCConfig.ESDTSystemSCConfig.OwnerAddress)
+	dcdtOwnerAddress, err := pcf.coreData.AddressPubKeyConverter().Decode(pcf.systemSCConfig.DCDTSystemSCConfig.OwnerAddress)
 	if err != nil {
-		return nil, fmt.Errorf("%w while decoding systemSCConfig.ESDTSystemSCConfig.OwnerAddress "+
+		return nil, fmt.Errorf("%w while decoding systemSCConfig.DCDTSystemSCConfig.OwnerAddress "+
 			"in processComponentsFactory.newMetaBlockProcessor", err)
 	}
 
@@ -952,7 +952,7 @@ func (pcf *processComponentsFactory) newMetaBlockProcessor(
 		StakingDataProvider:          stakingDataProvider,
 		NodesConfigProvider:          pcf.nodesCoordinator,
 		ShardCoordinator:             pcf.bootstrapComponents.ShardCoordinator(),
-		ESDTOwnerAddressBytes:        esdtOwnerAddress,
+		DCDTOwnerAddressBytes:        dcdtOwnerAddress,
 		EnableEpochsHandler:          pcf.coreData.EnableEpochsHandler(),
 		MaxNodesChangeConfigProvider: maxNodesChangeConfigProvider,
 		AuctionListSelector:          auctionListSelector,
@@ -1024,7 +1024,7 @@ func (pcf *processComponentsFactory) createOutportDataProvider(
 		AddressConverter:       pcf.coreData.AddressPubKeyConverter(),
 		AccountsDB:             pcf.state.AccountsAdapter(),
 		Marshaller:             pcf.coreData.InternalMarshalizer(),
-		EsdtDataStorageHandler: pcf.esdtNftStorage,
+		DcdtDataStorageHandler: pcf.dcdtNftStorage,
 		TransactionsStorer:     txsStorer,
 		ShardCoordinator:       pcf.bootstrapComponents.ShardCoordinator(),
 		TxCoordinator:          txCoordinator,
@@ -1044,13 +1044,13 @@ func (pcf *processComponentsFactory) createVMFactoryShard(
 	accounts state.AccountsAdapter,
 	notifier common.MissingTrieNodesNotifier,
 	builtInFuncs vmcommon.BuiltInFunctionContainer,
-	esdtTransferParser vmcommon.ESDTTransferParser,
+	dcdtTransferParser vmcommon.DCDTTransferParser,
 	wasmVMChangeLocker common.Locker,
 	configSCStorage config.StorageConfig,
-	nftStorageHandler vmcommon.SimpleESDTNFTStorageHandler,
-	globalSettingsHandler vmcommon.ESDTGlobalSettingsHandler,
+	nftStorageHandler vmcommon.SimpleDCDTNFTStorageHandler,
+	globalSettingsHandler vmcommon.DCDTGlobalSettingsHandler,
 ) (process.VirtualMachinesContainerFactory, error) {
-	counter, err := counters.NewUsageCounter(esdtTransferParser)
+	counter, err := counters.NewUsageCounter(dcdtTransferParser)
 	if err != nil {
 		return nil, err
 	}
@@ -1092,7 +1092,7 @@ func (pcf *processComponentsFactory) createVMFactoryShard(
 		EpochNotifier:       pcf.coreData.EpochNotifier(),
 		EnableEpochsHandler: pcf.coreData.EnableEpochsHandler(),
 		WasmVMChangeLocker:  wasmVMChangeLocker,
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		Hasher:              pcf.coreData.Hasher(),
 		PubKeyConverter:     pcf.coreData.AddressPubKeyConverter(),
 	}
@@ -1104,8 +1104,8 @@ func (pcf *processComponentsFactory) createVMFactoryMeta(
 	accounts state.AccountsAdapter,
 	builtInFuncs vmcommon.BuiltInFunctionContainer,
 	configSCStorage config.StorageConfig,
-	nftStorageHandler vmcommon.SimpleESDTNFTStorageHandler,
-	globalSettingsHandler vmcommon.ESDTGlobalSettingsHandler,
+	nftStorageHandler vmcommon.SimpleDCDTNFTStorageHandler,
+	globalSettingsHandler vmcommon.DCDTGlobalSettingsHandler,
 ) (process.VirtualMachinesContainerFactory, error) {
 	argsHook := hooks.ArgBlockChainHook{
 		Accounts:                 accounts,

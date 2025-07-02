@@ -1,9 +1,9 @@
 package p2pmocks
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
 )
 
 // P2PKeyConverterStub -

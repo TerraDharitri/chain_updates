@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	proofscache "github.com/multiversx/mx-chain-go/dataRetriever/dataPool/proofsCache"
+	proofscache "github.com/TerraDharitri/drt-go-chain/dataRetriever/dataPool/proofsCache"
 )
 
 func Benchmark_AddProof_Bucket10_Pool1000(b *testing.B) {

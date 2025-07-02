@@ -6,20 +6,20 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm"
-	"github.com/multiversx/mx-chain-go/process"
-	vmFactory "github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	vmFactory "github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 type createAndSendRelayedAndUserTxFuncType = func(
@@ -43,10 +43,10 @@ func TestRelayedTransactionInMultiShardEnvironmentWithSmartContractTX(t *testing
 	t.Run("relayed v3", testRelayedTransactionInMultiShardEnvironmentWithSmartContractTX(CreateAndSendRelayedAndUserTxV3, true))
 }
 
-func TestRelayedTransactionInMultiShardEnvironmentWithESDTTX(t *testing.T) {
-	t.Run("relayed v1", testRelayedTransactionInMultiShardEnvironmentWithESDTTX(CreateAndSendRelayedAndUserTx, false))
-	t.Run("relayed v2", testRelayedTransactionInMultiShardEnvironmentWithESDTTX(CreateAndSendRelayedAndUserTxV2, false))
-	t.Run("relayed v3", testRelayedTransactionInMultiShardEnvironmentWithESDTTX(CreateAndSendRelayedAndUserTxV3, true))
+func TestRelayedTransactionInMultiShardEnvironmentWithDCDTTX(t *testing.T) {
+	t.Run("relayed v1", testRelayedTransactionInMultiShardEnvironmentWithDCDTTX(CreateAndSendRelayedAndUserTx, false))
+	t.Run("relayed v2", testRelayedTransactionInMultiShardEnvironmentWithDCDTTX(CreateAndSendRelayedAndUserTxV2, false))
+	t.Run("relayed v3", testRelayedTransactionInMultiShardEnvironmentWithDCDTTX(CreateAndSendRelayedAndUserTxV3, true))
 }
 
 func TestRelayedTransactionInMultiShardEnvironmentWithAttestationContract(t *testing.T) {
@@ -216,7 +216,7 @@ func testRelayedTransactionInMultiShardEnvironmentWithSmartContractTX(
 	}
 }
 
-func testRelayedTransactionInMultiShardEnvironmentWithESDTTX(
+func testRelayedTransactionInMultiShardEnvironmentWithDCDTTX(
 	createAndSendRelayedAndUserTxFunc createAndSendRelayedAndUserTxFuncType,
 	baseCostFixEnabled bool,
 ) func(t *testing.T) {
@@ -250,7 +250,7 @@ func testRelayedTransactionInMultiShardEnvironmentWithESDTTX(
 			"@" + hex.EncodeToString([]byte("RBT")) +
 			"@" + hex.EncodeToString(initalSupply.Bytes()) +
 			"@" + hex.EncodeToString([]byte{6})
-		integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.ESDTSCAddress, txData, core.MinMetaTxExtraGasCost)
+		integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.DCDTSCAddress, txData, core.MinMetaTxExtraGasCost)
 
 		time.Sleep(time.Second)
 		nrRoundsToPropagateMultiShard := int64(10)
@@ -266,7 +266,7 @@ func testRelayedTransactionInMultiShardEnvironmentWithESDTTX(
 
 		// ------ send tx to players
 		valueToTopUp := big.NewInt(100000000)
-		txData = core.BuiltInFunctionESDTTransfer + "@" + hex.EncodeToString([]byte(tokenIdenfitifer)) + "@" + hex.EncodeToString(valueToTopUp.Bytes())
+		txData = core.BuiltInFunctionDCDTTransfer + "@" + hex.EncodeToString([]byte(tokenIdenfitifer)) + "@" + hex.EncodeToString(valueToTopUp.Bytes())
 		for _, player := range players {
 			integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, big.NewInt(0), player.Address, txData, integrationTests.AdditionalGasLimit)
 		}
@@ -279,10 +279,10 @@ func testRelayedTransactionInMultiShardEnvironmentWithESDTTX(
 		}
 		time.Sleep(time.Second)
 
-		txData = core.BuiltInFunctionESDTTransfer + "@" + hex.EncodeToString([]byte(tokenIdenfitifer)) + "@" + hex.EncodeToString(sendValue.Bytes())
-		transferTokenESDTGas := uint64(1)
+		txData = core.BuiltInFunctionDCDTTransfer + "@" + hex.EncodeToString([]byte(tokenIdenfitifer)) + "@" + hex.EncodeToString(sendValue.Bytes())
+		transferTokenDCDTGas := uint64(1)
 		transferTokenBaseGas := tokenIssuer.EconomicsData.ComputeGasLimit(&transaction.Transaction{Data: []byte(txData)})
-		transferTokenFullGas := transferTokenBaseGas + transferTokenESDTGas + uint64(100) // use more gas to simulate gas refund
+		transferTokenFullGas := transferTokenBaseGas + transferTokenDCDTGas + uint64(100) // use more gas to simulate gas refund
 		nrRoundsToTest := int64(5)
 		for i := int64(0); i < nrRoundsToTest; i++ {
 			for _, player := range players {
@@ -466,24 +466,24 @@ func CheckAddressHasTokens(
 ) {
 	userAcc := GetUserAccount(nodes, address)
 
-	tokenKey := []byte(core.ProtectedKeyPrefix + "esdt" + tokenName)
-	esdtData, err := getESDTDataFromKey(userAcc, tokenKey)
+	tokenKey := []byte(core.ProtectedKeyPrefix + "dcdt" + tokenName)
+	dcdtData, err := getDCDTDataFromKey(userAcc, tokenKey)
 	assert.Nil(t, err)
 
-	assert.Equal(t, esdtData.Value.Cmp(value), 0)
+	assert.Equal(t, dcdtData.Value.Cmp(value), 0)
 }
 
-func getESDTDataFromKey(userAcnt state.UserAccountHandler, key []byte) (*esdt.ESDigitalToken, error) {
-	esdtData := &esdt.ESDigitalToken{Value: big.NewInt(0)}
+func getDCDTDataFromKey(userAcnt state.UserAccountHandler, key []byte) (*dcdt.DCDigitalToken, error) {
+	dcdtData := &dcdt.DCDigitalToken{Value: big.NewInt(0)}
 	marshaledData, _, err := userAcnt.RetrieveValue(key)
 	if err != nil {
-		return esdtData, nil
+		return dcdtData, nil
 	}
 
-	err = integrationTests.TestMarshalizer.Unmarshal(esdtData, marshaledData)
+	err = integrationTests.TestMarshalizer.Unmarshal(dcdtData, marshaledData)
 	if err != nil {
 		return nil, err
 	}
 
-	return esdtData, nil
+	return dcdtData, nil
 }

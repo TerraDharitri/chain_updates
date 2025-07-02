@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing/disabled/singlesig"
-	"github.com/multiversx/mx-chain-go/common"
-	cryptoCommon "github.com/multiversx/mx-chain-go/common/crypto"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/factory"
-	cryptoComp "github.com/multiversx/mx-chain-go/factory/crypto"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/disabled/singlesig"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	cryptoCommon "github.com/TerraDharitri/drt-go-chain/common/crypto"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	cryptoComp "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 // ArgsCryptoComponentsHolder holds all arguments needed to create a crypto components holder

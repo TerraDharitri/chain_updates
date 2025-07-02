@@ -7,28 +7,28 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/partitioning"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/common/ordering"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	dbLookupFactory "github.com/multiversx/mx-chain-go/dblookupext/factory"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/factory"
-	processComp "github.com/multiversx/mx-chain-go/factory/processing"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/parsing"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/interceptors"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/storage/cache"
-	"github.com/multiversx/mx-chain-go/update"
-	"github.com/multiversx/mx-chain-go/update/trigger"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/partitioning"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/common/ordering"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	dbLookupFactory "github.com/TerraDharitri/drt-go-chain/dblookupext/factory"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	processComp "github.com/TerraDharitri/drt-go-chain/factory/processing"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/parsing"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/interceptors"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/storage/cache"
+	"github.com/TerraDharitri/drt-go-chain/update"
+	"github.com/TerraDharitri/drt-go-chain/update/trigger"
 )
 
 // ArgsProcessComponentsHolder will hold the components needed for process components
@@ -96,7 +96,7 @@ type processComponentsHolder struct {
 	txsSenderHandler                 process.TxsSenderHandler
 	hardforkTrigger                  factory.HardforkTrigger
 	processedMiniBlocksTracker       process.ProcessedMiniBlocksTracker
-	esdtDataStorageHandlerForAPI     vmcommon.ESDTNFTStorageHandler
+	dcdtDataStorageHandlerForAPI     vmcommon.DCDTNFTStorageHandler
 	accountsParser                   genesis.AccountsParser
 	sentSignatureTracker             process.SentSignaturesTracker
 	epochStartSystemSCProcessor      process.EpochStartSystemSCProcessor
@@ -279,7 +279,7 @@ func CreateProcessComponents(args ArgsProcessComponentsHolder) (*processComponen
 		txsSenderHandler:                 managedProcessComponents.TxsSenderHandler(), // warning: this will be replaced
 		hardforkTrigger:                  managedProcessComponents.HardforkTrigger(),
 		processedMiniBlocksTracker:       managedProcessComponents.ProcessedMiniBlocksTracker(),
-		esdtDataStorageHandlerForAPI:     managedProcessComponents.ESDTDataStorageHandlerForAPI(),
+		dcdtDataStorageHandlerForAPI:     managedProcessComponents.DCDTDataStorageHandlerForAPI(),
 		accountsParser:                   managedProcessComponents.AccountsParser(),
 		sentSignatureTracker:             managedProcessComponents.SentSignaturesTracker(),
 		epochStartSystemSCProcessor:      managedProcessComponents.EpochSystemSCProcessor(),
@@ -503,9 +503,9 @@ func (p *processComponentsHolder) ProcessedMiniBlocksTracker() process.Processed
 	return p.processedMiniBlocksTracker
 }
 
-// ESDTDataStorageHandlerForAPI will return the esdt data storage handler for api
-func (p *processComponentsHolder) ESDTDataStorageHandlerForAPI() vmcommon.ESDTNFTStorageHandler {
-	return p.esdtDataStorageHandlerForAPI
+// DCDTDataStorageHandlerForAPI will return the dcdt data storage handler for api
+func (p *processComponentsHolder) DCDTDataStorageHandlerForAPI() vmcommon.DCDTNFTStorageHandler {
+	return p.dcdtDataStorageHandlerForAPI
 }
 
 // AccountsParser will return the accounts parser

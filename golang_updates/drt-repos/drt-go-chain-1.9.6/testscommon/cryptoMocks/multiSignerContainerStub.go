@@ -1,6 +1,6 @@
 package cryptoMocks
 
-import crypto "github.com/multiversx/mx-chain-crypto-go"
+import crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 
 // MultiSignerContainerStub -
 type MultiSignerContainerStub struct {

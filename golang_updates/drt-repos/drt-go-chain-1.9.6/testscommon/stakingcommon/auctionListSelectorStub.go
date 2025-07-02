@@ -1,6 +1,6 @@
 package stakingcommon
 
-import "github.com/multiversx/mx-chain-go/state"
+import "github.com/TerraDharitri/drt-go-chain/state"
 
 // AuctionListSelectorStub -
 type AuctionListSelectorStub struct {

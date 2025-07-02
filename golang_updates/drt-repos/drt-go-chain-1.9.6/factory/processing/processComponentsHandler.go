@@ -4,19 +4,19 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/update"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/update"
 )
 
 var _ factory.ComponentHandler = (*managedProcessComponents)(nil)
@@ -171,8 +171,8 @@ func (m *managedProcessComponents) CheckSubcomponents() error {
 	if check.IfNil(m.processComponents.processedMiniBlocksTracker) {
 		return process.ErrNilProcessedMiniBlocksTracker
 	}
-	if check.IfNil(m.processComponents.esdtDataStorageForApi) {
-		return errors.ErrNilESDTDataStorage
+	if check.IfNil(m.processComponents.dcdtDataStorageForApi) {
+		return errors.ErrNilDCDTDataStorage
 	}
 	if check.IfNil(m.processComponents.sentSignaturesTracker) {
 		return errors.ErrNilSentSignatureTracker
@@ -640,8 +640,8 @@ func (m *managedProcessComponents) ProcessedMiniBlocksTracker() process.Processe
 	return m.processComponents.processedMiniBlocksTracker
 }
 
-// ESDTDataStorageHandlerForAPI returns the esdt data storage handler to be used for API calls
-func (m *managedProcessComponents) ESDTDataStorageHandlerForAPI() vmcommon.ESDTNFTStorageHandler {
+// DCDTDataStorageHandlerForAPI returns the dcdt data storage handler to be used for API calls
+func (m *managedProcessComponents) DCDTDataStorageHandlerForAPI() vmcommon.DCDTNFTStorageHandler {
 	m.mutProcessComponents.RLock()
 	defer m.mutProcessComponents.RUnlock()
 
@@ -649,7 +649,7 @@ func (m *managedProcessComponents) ESDTDataStorageHandlerForAPI() vmcommon.ESDTN
 		return nil
 	}
 
-	return m.processComponents.esdtDataStorageForApi
+	return m.processComponents.dcdtDataStorageForApi
 }
 
 // ReceiptsRepository returns the receipts repository

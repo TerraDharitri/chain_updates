@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	storageStubs "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/update"
+	storageStubs "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/update"
 	"github.com/stretchr/testify/require"
 )
 

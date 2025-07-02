@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/multiShard/endOfEpoch"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/multiShard/endOfEpoch"
 )
 
 func TestEpochChangeWithNodesShuffling(t *testing.T) {

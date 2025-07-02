@@ -3,7 +3,7 @@ package factory
 import (
 	"path/filepath"
 
-	"github.com/multiversx/mx-chain-go/cmd/assessment/benchmarks"
+	"github.com/TerraDharitri/drt-go-chain/cmd/assessment/benchmarks"
 )
 
 // CreateBenchmarksList creates the list of benchmarks

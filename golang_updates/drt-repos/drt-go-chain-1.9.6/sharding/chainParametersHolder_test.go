@@ -5,12 +5,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/testscommon/commonmocks"
-	mock "github.com/multiversx/mx-chain-go/testscommon/epochstartmock"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/commonmocks"
+	mock "github.com/TerraDharitri/drt-go-chain/testscommon/epochstartmock"
 
 	"github.com/stretchr/testify/require"
 )

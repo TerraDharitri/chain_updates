@@ -1,6 +1,6 @@
 package disabled
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // AntifloodDebugger is a disabled instance of the antoiflood debugger
 type AntifloodDebugger struct {

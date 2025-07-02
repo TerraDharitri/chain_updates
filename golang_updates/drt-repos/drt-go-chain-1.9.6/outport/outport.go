@@ -6,11 +6,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var log = logger.GetOrCreate("outport")

@@ -5,9 +5,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/state"
-	trieMock "github.com/multiversx/mx-chain-go/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	trieMock "github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 	"github.com/stretchr/testify/assert"
 )
 

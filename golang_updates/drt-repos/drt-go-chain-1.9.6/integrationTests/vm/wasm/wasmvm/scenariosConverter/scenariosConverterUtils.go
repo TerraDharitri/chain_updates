@@ -3,14 +3,14 @@ package scenariosConverter
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/state"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-scenario-go/scenario/exporter"
-	scenmodel "github.com/multiversx/mx-chain-scenario-go/scenario/model"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-scenario/scenario/exporter"
+	scenmodel "github.com/TerraDharitri/drt-go-chain-scenario/scenario/model"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/state"
 	"github.com/stretchr/testify/require"
 )
 
@@ -65,7 +65,7 @@ func CheckTransactions(t *testing.T, transactions []*transaction.Transaction, sc
 		expectedCallValue := scenariosTransactions[i].GetCallValue()
 		expectedCallFunction := scenariosTransactions[i].GetCallFunction()
 		expectedCallArguments := scenariosTransactions[i].GetCallArguments()
-		expectedEsdtTransfers := scenariosTransactions[i].GetESDTTransfers()
+		expectedDcdtTransfers := scenariosTransactions[i].GetDCDTTransfers()
 		expectedGasLimit, expectedGasPrice := scenariosTransactions[i].GetGasLimitAndPrice()
 		expectedNonce := scenariosTransactions[i].GetNonce()
 
@@ -76,8 +76,8 @@ func CheckTransactions(t *testing.T, transactions []*transaction.Transaction, sc
 		require.Equal(t, expectedNonce, transactions[i].GetNonce())
 
 		var expectedData []byte
-		if len(expectedEsdtTransfers) != 0 {
-			expectedData = scenmodel.CreateMultiTransferData(expectedReceiver, expectedEsdtTransfers, expectedCallFunction, expectedCallArguments)
+		if len(expectedDcdtTransfers) != 0 {
+			expectedData = scenmodel.CreateMultiTransferData(expectedReceiver, expectedDcdtTransfers, expectedCallFunction, expectedCallArguments)
 			require.Equal(t, expectedSender, transactions[i].GetRcvAddr())
 		} else {
 			require.Equal(t, expectedReceiver, transactions[i].GetRcvAddr())

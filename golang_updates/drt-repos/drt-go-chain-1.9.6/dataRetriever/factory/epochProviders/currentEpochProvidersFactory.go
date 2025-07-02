@@ -1,10 +1,10 @@
 package epochProviders
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/resolvers/epochproviders"
-	"github.com/multiversx/mx-chain-go/dataRetriever/resolvers/epochproviders/disabled"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/resolvers/epochproviders"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/resolvers/epochproviders/disabled"
 )
 
 // CreateCurrentEpochProvider will create an instance of dataRetriever.CurrentNetworkEpochProviderHandler

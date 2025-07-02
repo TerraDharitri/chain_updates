@@ -5,53 +5,53 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-core-go/hashing/keccak"
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/keccak"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/stretchr/testify/require"
 
-	commonFactory "github.com/multiversx/mx-chain-go/common/factory"
-	"github.com/multiversx/mx-chain-go/common/graceperiod"
-	disabledStatistics "github.com/multiversx/mx-chain-go/common/statistics/disabled"
-	"github.com/multiversx/mx-chain-go/config"
-	retriever "github.com/multiversx/mx-chain-go/dataRetriever"
-	mockFactory "github.com/multiversx/mx-chain-go/factory/mock"
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/sharding"
-	chainStorage "github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/bootstrapMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/chainParameters"
-	"github.com/multiversx/mx-chain-go/testscommon/components"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
-	"github.com/multiversx/mx-chain-go/testscommon/factory"
-	"github.com/multiversx/mx-chain-go/testscommon/genericMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/guardianMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/mainFactoryMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/nodeTypeProviderMock"
-	"github.com/multiversx/mx-chain-go/testscommon/outport"
-	"github.com/multiversx/mx-chain-go/testscommon/p2pmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/shardingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/statusHandler"
-	"github.com/multiversx/mx-chain-go/testscommon/storage"
-	updateMocks "github.com/multiversx/mx-chain-go/update/mock"
+	commonFactory "github.com/TerraDharitri/drt-go-chain/common/factory"
+	"github.com/TerraDharitri/drt-go-chain/common/graceperiod"
+	disabledStatistics "github.com/TerraDharitri/drt-go-chain/common/statistics/disabled"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	retriever "github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	mockFactory "github.com/TerraDharitri/drt-go-chain/factory/mock"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	chainStorage "github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/bootstrapMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/chainParameters"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/factory"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genericMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/guardianMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/mainFactoryMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/nodeTypeProviderMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/outport"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	updateMocks "github.com/TerraDharitri/drt-go-chain/update/mock"
 )
 
-const testingProtocolSustainabilityAddress = "erd1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797su0dlxp"
+const testingProtocolSustainabilityAddress = "drt1932eft30w753xyvme8d49qejgkjc09n5e49w4mwdjtm0neld797spn6u9l"
 
 var (
 	addrPubKeyConv, _ = commonFactory.NewPubkeyConverter(config.PubkeyConfig{
 		Length:          32,
 		Type:            "bech32",
 		SignatureLength: 0,
-		Hrp:             "erd",
+		Hrp:             "drt",
 	})
 	valPubKeyConv, _ = commonFactory.NewPubkeyConverter(config.PubkeyConfig{
 		Length:          96,
@@ -87,7 +87,7 @@ func createArgsProcessComponentsHolder() ArgsProcessComponentsHolder {
 		SystemSCConfig: config.SystemSmartContractsConfig{
 			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
 				BaseIssuingCost: "1000",
-				OwnerAddress:    "erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c",
+				OwnerAddress:    "drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx",
 			},
 			GovernanceSystemSCConfig: config.GovernanceSystemSCConfig{
 				V1: config.GovernanceSystemSCConfigV1{
@@ -103,7 +103,7 @@ func createArgsProcessComponentsHolder() ArgsProcessComponentsHolder {
 					MinPassThreshold: 0.5,
 					MinVetoThreshold: 0.5,
 				},
-				OwnerAddress: "erd1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awqgqky80",
+				OwnerAddress: "drt1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awq4up8y3",
 			},
 			StakingSystemSCConfig: config.StakingSystemSCConfig{
 				GenesisNodePrice:                     "2500000000000000000000",
@@ -124,7 +124,7 @@ func createArgsProcessComponentsHolder() ArgsProcessComponentsHolder {
 			DelegationManagerSystemSCConfig: config.DelegationManagerSystemSCConfig{
 				MinCreationDeposit:  "100",
 				MinStakeAmount:      "100",
-				ConfigChangeAddress: "erd1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awqgqky80",
+				ConfigChangeAddress: "drt1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awq4up8y3",
 			},
 			DelegationSystemSCConfig: config.DelegationSystemSCConfig{
 				MinServiceFee: 0,
@@ -222,7 +222,7 @@ func createArgsProcessComponentsHolder() ArgsProcessComponentsHolder {
 			GlobalSettings: config.GlobalSettings{
 				GenesisTotalSupply:          "20000000000000000000000000",
 				MinimumInflation:            0,
-				GenesisMintingSenderAddress: "erd17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqqkhty3",
+				GenesisMintingSenderAddress: "drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80",
 				YearSettings: []*config.YearSetting{
 					{
 						Year:             0,

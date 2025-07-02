@@ -1,6 +1,6 @@
 package testscommon
 
-import "github.com/multiversx/mx-chain-core-go/data/endProcess"
+import "github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
 
 // ShuffleOutCloserStub -
 type ShuffleOutCloserStub struct {

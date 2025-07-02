@@ -7,23 +7,23 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/keyValStorage"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	coreEsdt "github.com/multiversx/mx-chain-go/dblookupext/esdtSupply"
-	"github.com/multiversx/mx-chain-go/state/accounts"
-	"github.com/multiversx/mx-chain-go/state/parsers"
-	"github.com/multiversx/mx-chain-go/state/trackableDataTrie"
-	chainStorage "github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/genericMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	"github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/testscommon/trie"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/keyValStorage"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	coreDcdt "github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/state/accounts"
+	"github.com/TerraDharitri/drt-go-chain/state/parsers"
+	"github.com/TerraDharitri/drt-go-chain/state/trackableDataTrie"
+	chainStorage "github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genericMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 	"github.com/stretchr/testify/require"
 )
 
@@ -171,11 +171,11 @@ func TestTokensSuppliesProcessor_HandleTrieAccountIteration(t *testing.T) {
 		userAcc.SetRootHash([]byte("rootHash"))
 		userAcc.SetDataTrie(&trie.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, keyBuilder common.KeyBuilder, leafParser common.TrieLeafParser) error {
-				esToken := &esdt.ESDigitalToken{
+				esToken := &dcdt.DCDigitalToken{
 					Value: big.NewInt(37),
 				}
 				esBytes, _ := args.Marshaller.Marshal(esToken)
-				tknKey := []byte("ELRONDesdtTKN-00aacc")
+				tknKey := []byte("NUMBATdcdtTKN-00aacc")
 				value := append(esBytes, tknKey...)
 				value = append(value, []byte("addr")...)
 				leavesChannels.LeavesChan <- keyValStorage.NewKeyValStorage(tknKey, value)
@@ -202,22 +202,22 @@ func TestTokensSuppliesProcessor_HandleTrieAccountIteration(t *testing.T) {
 		userAcc.SetRootHash([]byte("rootHash"))
 		userAcc.SetDataTrie(&trie.TrieStub{
 			GetAllLeavesOnChannelCalled: func(leavesChannels *common.TrieIteratorChannels, ctx context.Context, rootHash []byte, keyBuilder common.KeyBuilder, leafParser common.TrieLeafParser) error {
-				esToken := &esdt.ESDigitalToken{
+				esToken := &dcdt.DCDigitalToken{
 					Value: big.NewInt(37),
 				}
 				esBytes, _ := args.Marshaller.Marshal(esToken)
-				tknKey := []byte("ELRONDesdtTKN-00aacc")
+				tknKey := []byte("NUMBATdcdtTKN-00aacc")
 				value := append(esBytes, tknKey...)
 				value = append(value, []byte("addr")...)
 				leaf, err := leafParser.ParseLeaf(tknKey, value, 0)
 				require.Nil(t, err)
 				leavesChannels.LeavesChan <- leaf
 
-				sft := &esdt.ESDigitalToken{
+				sft := &dcdt.DCDigitalToken{
 					Value: big.NewInt(1),
 				}
 				sftBytes, _ := args.Marshaller.Marshal(sft)
-				sftKey := []byte("ELRONDesdtSFT-00aabb")
+				sftKey := []byte("NUMBATdcdtSFT-00aabb")
 				sftKey = append(sftKey, big.NewInt(37).Bytes()...)
 				value = append(sftBytes, sftKey...)
 				value = append(value, []byte("addr")...)
@@ -251,7 +251,7 @@ func TestTokensSuppliesProcessor_HandleTrieAccountIteration(t *testing.T) {
 func TestTokensSuppliesProcessor_SaveSupplies(t *testing.T) {
 	t.Parallel()
 
-	t.Run("cannot find esdt supplies storer", func(t *testing.T) {
+	t.Run("cannot find dcdt supplies storer", func(t *testing.T) {
 		t.Parallel()
 
 		errStorerNotFound := errors.New("storer not found")
@@ -294,7 +294,7 @@ func TestTokensSuppliesProcessor_SaveSupplies(t *testing.T) {
 		require.NoError(t, err)
 
 		checkStoredSupply := func(t *testing.T, key string, storedValue []byte, expectedSupply *big.Int) {
-			supply := coreEsdt.SupplyESDT{}
+			supply := coreDcdt.SupplyDCDT{}
 			_ = args.Marshaller.Unmarshal(&supply, storedValue)
 			require.Equal(t, expectedSupply, supply.Supply)
 		}

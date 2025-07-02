@@ -1,8 +1,8 @@
 package consensus
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/consensus"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
 )
 
 // BroadcastMessengerMock -

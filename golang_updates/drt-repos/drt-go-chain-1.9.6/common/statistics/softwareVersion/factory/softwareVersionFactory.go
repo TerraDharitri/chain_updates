@@ -1,11 +1,11 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/common/statistics/softwareVersion"
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics/softwareVersion"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 type softwareVersionFactory struct {

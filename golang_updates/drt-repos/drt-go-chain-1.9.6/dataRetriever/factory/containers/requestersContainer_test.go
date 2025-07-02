@@ -5,11 +5,11 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/containers"
-	"github.com/multiversx/mx-chain-go/process"
-	dataRetrieverTests "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	dataRetrieverTests "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
 	"github.com/stretchr/testify/assert"
 )
 

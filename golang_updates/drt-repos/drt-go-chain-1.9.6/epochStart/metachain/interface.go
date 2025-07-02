@@ -1,8 +1,8 @@
 package metachain
 
 import (
-	"github.com/multiversx/mx-chain-core-go/display"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // AuctionListDisplayHandler should be able to display auction list data during selection process

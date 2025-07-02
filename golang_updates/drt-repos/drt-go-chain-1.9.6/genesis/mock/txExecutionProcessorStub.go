@@ -3,8 +3,8 @@ package mock
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // TxExecutionProcessorStub -

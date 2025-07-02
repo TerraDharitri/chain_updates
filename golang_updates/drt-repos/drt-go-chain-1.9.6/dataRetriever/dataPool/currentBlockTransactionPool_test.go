@@ -3,8 +3,8 @@ package dataPool
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
 	"github.com/stretchr/testify/require"
 )
 

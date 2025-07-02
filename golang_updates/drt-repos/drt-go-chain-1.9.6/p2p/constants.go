@@ -1,7 +1,7 @@
 package p2p
 
 import (
-	"github.com/multiversx/mx-chain-communication-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p"
 )
 
 // NetworkType defines the type of the network a messenger is running on

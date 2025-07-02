@@ -1,19 +1,19 @@
 <div style="text-align:center">
   <img
-  src="https://raw.githubusercontent.com/multiversx/mx-chain-go/master/multiversx-logo.svg"
-  alt="MultiversX">
+  src="https://raw.githubusercontent.com/dharitri/mx-chain-go/master/dharitri-logo.svg"
+  alt="Dharitri">
 </div>
 <br>
 
-[![](https://img.shields.io/badge/made%20by-MultiversX-blue.svg)](http://multiversx.com/)
-[![](https://img.shields.io/badge/project-MultiversX%20Mainnet-blue.svg)](https://explorer.multiversx.com/)
-[![Go Report Card](https://goreportcard.com/badge/github.com/multiversx/mx-chain-go)](https://goreportcard.com/report/github.com/multiversx/mx-chain-go)
-[![codecov](https://codecov.io/gh/multiversx/mx-chain-go/branch/master/graph/badge.svg?token=MYS5EDASOJ)](https://codecov.io/gh/multiversx/mx-chain-go)
-[![Contributors](https://img.shields.io/github/contributors/multiversx/mx-chain-go)](https://github.com/multiversx/mx-chain-go/graphs/contributors)
+[![](https://img.shields.io/badge/made%20by-Dharitri-blue.svg)](http://dharitri.org/)
+[![](https://img.shields.io/badge/project-Dharitri%20Mainnet-blue.svg)](https://explorer.dharitri.org/)
+[![Go Report Card](https://goreportcard.com/badge/github.com/TerraDharitri/drt-go-chain)](https://goreportcard.com/report/github.com/TerraDharitri/drt-go-chain)
+[![codecov](https://codecov.io/gh/dharitri/mx-chain-go/branch/master/graph/badge.svg?token=MYS5EDASOJ)](https://codecov.io/gh/dharitri/mx-chain-go)
+[![Contributors](https://img.shields.io/github/contributors/dharitri/mx-chain-go)](https://github.com/TerraDharitri/drt-go-chain/graphs/contributors)
 
 # mx-chain-go
 
-The go implementation for the MultiversX protocol
+The go implementation for the Dharitri protocol
 
 ## Installation and running
 
@@ -28,26 +28,26 @@ The main branch that will be used is the master branch. Alternatively, an older 
 ```
 # set $GOPATH if not set and export to ~/.profile along with Go binary path
 $ if [[ $GOPATH=="" ]]; then GOPATH="$HOME/go" fi
-$ mkdir -p $GOPATH/src/github.com/multiversx
-$ cd $GOPATH/src/github.com/multiversx
-$ git clone https://github.com/multiversx/mx-chain-go
+$ mkdir -p $GOPATH/src/github.com/TerraDharitri
+$ cd $GOPATH/src/github.com/TerraDharitri
+$ git clone https://github.com/TerraDharitri/drt-go-chain
 $ cd mx-chain-go && git checkout master
 $ cd cmd/node && go build
 ```
 The node depends on the Wasm Virtual Machine, which is automatically managed by the node.
 
 ### Step 3: creating the node’s identity:
-In order to be registered in the MultiversX Network, a node must possess 2 types of (secret key, public key) pairs. One is used to identify the node’s credential used to generate transactions (having the sender field its account address) and the other is used in the process of the block signing. Please note that this is a preliminary mechanism, in the next releases the first (private, public key) pair will be dropped when the staking mechanism will be fully implemented. To build and run the keygenerator, the following commands will need to be run:
+In order to be registered in the Dharitri Network, a node must possess 2 types of (secret key, public key) pairs. One is used to identify the node’s credential used to generate transactions (having the sender field its account address) and the other is used in the process of the block signing. Please note that this is a preliminary mechanism, in the next releases the first (private, public key) pair will be dropped when the staking mechanism will be fully implemented. To build and run the keygenerator, the following commands will need to be run:
 
 ```
-$ cd $GOPATH/src/github.com/multiversx/mx-chain-go/cmd/keygenerator
+$ cd $GOPATH/src/github.com/TerraDharitri/drt-go-chain/cmd/keygenerator
 $ go build
 $ ./keygenerator
 ```
 
 ### Start the node 
-#### Step 4a: Join MultiversX testnet:
-Follow the steps outlined [here](https://docs.multiversx.com/validators/nodes-scripts/config-scripts/). This is because in order to join the testnet you need a specific node configuration.
+#### Step 4a: Join Dharitri testnet:
+Follow the steps outlined [here](https://docs.dharitri.org/validators/nodes-scripts/config-scripts/). This is because in order to join the testnet you need a specific node configuration.
 ______
 OR
 ______
@@ -73,7 +73,7 @@ $ go test ./...
 `sudo cp -r google /usr/include`
 3. Copy bin/protoc using <br>
 `sudo cp protoc  /usr/bin` 
-4. Fetch the repo github.com/multiversx/protobuf
+4. Fetch the repo github.com/TerraDharitri/protobuf
 5. Compile gogo slick & copy binary using
 ```
 cd protoc-gen-gogoslick
@@ -197,15 +197,15 @@ sudo docker compose -f docker-compose.base.yml -f docker-compose-linux.yml up --
 - [ ] Optimizations
   - [ ] Smart Contract 
 - [ ] Governance
-  - [ ] SC for ERD IP
-  - [ ] Enforced Upgrade mechanism for voted ERD IP
+  - [ ] SC for DRT IP
+  - [ ] Enforced Upgrade mechanism for voted DRT IP
 - [ ] Bugfixing
 
 
 ## Contribution
-Thank you for considering to help out with the source code! We welcome contributions from anyone on the internet, and are grateful for even the smallest of fixes to MultiversX!
+Thank you for considering to help out with the source code! We welcome contributions from anyone on the internet, and are grateful for even the smallest of fixes to Dharitri!
 
-If you'd like to contribute to MultiversX, please fork, fix, commit and send a pull request for the maintainers to review and merge into the main code base. If you wish to submit more complex changes though, please check up with the core developers first here on GitHub, to ensure those changes are in line with the general philosophy of the project and/or get some early feedback which can make both your efforts much lighter as well as our review and merge procedures quick and simple.
+If you'd like to contribute to Dharitri, please fork, fix, commit and send a pull request for the maintainers to review and merge into the main code base. If you wish to submit more complex changes though, please check up with the core developers first here on GitHub, to ensure those changes are in line with the general philosophy of the project and/or get some early feedback which can make both your efforts much lighter as well as our review and merge procedures quick and simple.
 
 Please make sure your contributions adhere to our coding guidelines:
 
@@ -215,5 +215,5 @@ Please make sure your contributions adhere to our coding guidelines:
  - Commit messages should be prefixed with the package(s) they modify.
     - E.g. "outport/process: fixed a typo"
 
-Please see the [documentation](https://docs.multiversx.com/) for more details on the MultiversX protocol.
+Please see the [documentation](https://docs.dharitri.org/) for more details on the Dharitri protocol.
 

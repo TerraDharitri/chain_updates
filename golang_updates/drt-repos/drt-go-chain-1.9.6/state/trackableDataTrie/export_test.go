@@ -1,6 +1,6 @@
 package trackableDataTrie
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // DirtyData -
 type DirtyData struct {

@@ -2,9 +2,9 @@ package testscommon
 
 import (
 	"bytes"
+	"crypto"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 type keysHandlerSingleSignerMock struct {

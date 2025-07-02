@@ -6,14 +6,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/errors"
-	chainSimulatorCommon "github.com/multiversx/mx-chain-go/integrationTests/chainSimulator"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/components/api"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/configs"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/errors"
+	chainSimulatorCommon "github.com/TerraDharitri/drt-go-chain/integrationTests/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/components/api"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/configs"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -264,7 +264,7 @@ func TestChainSimulator_SetEntireState(t *testing.T) {
 	defer chainSimulator.Close()
 
 	balance := "431271308732096033771131"
-	contractAddress := "erd1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3syjszx5"
+	contractAddress := "drt1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3sew8p92"
 	accountState := &dtos.AddressState{
 		Address:          contractAddress,
 		Nonce:            new(uint64),
@@ -273,7 +273,7 @@ func TestChainSimulator_SetEntireState(t *testing.T) {
 		CodeHash:         "n9EviPlHS6EV+3Xp0YqP28T0IUfeAFRFBIRC1Jw6pyU=",
 		RootHash:         "76cr5Jhn6HmBcDUMIzikEpqFgZxIrOzgNkTHNatXzC4=",
 		CodeMetadata:     "BQY=",
-		Owner:            "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		Owner:            "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		DeveloperRewards: "5401004999998",
 		Pairs: map[string]string{
 			"73756d": "0a",
@@ -312,7 +312,7 @@ func TestChainSimulator_SetEntireStateWithRemoval(t *testing.T) {
 	defer chainSimulator.Close()
 
 	balance := "431271308732096033771131"
-	contractAddress := "erd1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3syjszx5"
+	contractAddress := "drt1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3sew8p92"
 	accountState := &dtos.AddressState{
 		Address:          contractAddress,
 		Nonce:            new(uint64),
@@ -321,7 +321,7 @@ func TestChainSimulator_SetEntireStateWithRemoval(t *testing.T) {
 		CodeHash:         "n9EviPlHS6EV+3Xp0YqP28T0IUfeAFRFBIRC1Jw6pyU=",
 		RootHash:         "eqIumOaMn7G5cNSViK3XHZIW/C392ehfHxOZkHGp+Gc=", // root hash with auto balancing enabled
 		CodeMetadata:     "BQY=",
-		Owner:            "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		Owner:            "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		DeveloperRewards: "5401004999998",
 		Pairs: map[string]string{
 			"73756d": "0a",

@@ -3,7 +3,7 @@ package p2p
 import (
 	"errors"
 
-	"github.com/multiversx/mx-chain-communication-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p"
 )
 
 // ErrNilMessage signals that a nil message has been received

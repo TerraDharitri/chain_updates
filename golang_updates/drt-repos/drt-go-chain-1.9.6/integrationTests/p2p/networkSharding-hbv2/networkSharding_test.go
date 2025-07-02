@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/p2p"
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,7 +31,7 @@ func createDefaultConfig() p2pConfig.P2PConfig {
 			Type:                             "optimized",
 			RefreshIntervalInSec:             1,
 			RoutingTableRefreshIntervalInSec: 1,
-			ProtocolIDs:                      []string{"/erd/kad/1.0.0"},
+			ProtocolIDs:                      []string{"/drt/kad/1.0.0"},
 			InitialPeerList:                  nil,
 			BucketSize:                       100,
 		},

@@ -1,11 +1,11 @@
-package esdtMultiTransferToVaultSameShard
+package dcdtMultiTransferToVaultSameShard
 
 import (
 	"testing"
 
-	multitransfer "github.com/multiversx/mx-chain-go/integrationTests/vm/esdt/multi-transfer"
+	multitransfer "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt/multi-transfer"
 )
 
-func TestESDTMultiTransferToVaultSameShard(t *testing.T) {
-	multitransfer.EsdtMultiTransferToVault(t, false, "../../testdata/vaultV2.wasm")
+func TestDCDTMultiTransferToVaultSameShard(t *testing.T) {
+	multitransfer.DcdtMultiTransferToVault(t, false, "../../testdata/vaultV2.wasm")
 }

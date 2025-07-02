@@ -6,50 +6,50 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/disabled"
-	"github.com/multiversx/mx-chain-go/common/operationmodes"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/blockchain"
-	"github.com/multiversx/mx-chain-go/facade"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/node/external/blockAPI"
-	"github.com/multiversx/mx-chain-go/node/external/logs"
-	"github.com/multiversx/mx-chain-go/node/external/timemachine/fee"
-	"github.com/multiversx/mx-chain-go/node/external/transactionAPI"
-	"github.com/multiversx/mx-chain-go/node/trieIterators"
-	trieIteratorsFactory "github.com/multiversx/mx-chain-go/node/trieIterators/factory"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/factory/metachain"
-	"github.com/multiversx/mx-chain-go/process/factory/shard"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/smartContract/builtInFunctions"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks/counters"
-	"github.com/multiversx/mx-chain-go/process/txstatus"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/blockInfoProviders"
-	disabledState "github.com/multiversx/mx-chain-go/state/disabled"
-	factoryState "github.com/multiversx/mx-chain-go/state/factory"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager/evictionWaitingList"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	storageFactory "github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	trieFactory "github.com/multiversx/mx-chain-go/trie/factory"
-	"github.com/multiversx/mx-chain-go/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/disabled"
+	"github.com/TerraDharitri/drt-go-chain/common/operationmodes"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/blockchain"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/node/external/blockAPI"
+	"github.com/TerraDharitri/drt-go-chain/node/external/logs"
+	"github.com/TerraDharitri/drt-go-chain/node/external/timemachine/fee"
+	"github.com/TerraDharitri/drt-go-chain/node/external/transactionAPI"
+	"github.com/TerraDharitri/drt-go-chain/node/trieIterators"
+	trieIteratorsFactory "github.com/TerraDharitri/drt-go-chain/node/trieIterators/factory"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/metachain"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/shard"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks/counters"
+	"github.com/TerraDharitri/drt-go-chain/process/txstatus"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/blockInfoProviders"
+	disabledState "github.com/TerraDharitri/drt-go-chain/state/disabled"
+	factoryState "github.com/TerraDharitri/drt-go-chain/state/factory"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager/evictionWaitingList"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	storageFactory "github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	trieFactory "github.com/TerraDharitri/drt-go-chain/trie/factory"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 var log = logger.GetOrCreate("factory")
@@ -167,7 +167,7 @@ func CreateApiResolver(args *ApiResolverArgs) (facade.ApiResolver, error) {
 		return nil, err
 	}
 
-	esdtTransferParser, err := parsers.NewESDTTransferParser(args.CoreComponents.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(args.CoreComponents.InternalMarshalizer())
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func CreateApiResolver(args *ApiResolverArgs) (facade.ApiResolver, error) {
 		ShardCoordinator:    args.ProcessComponents.ShardCoordinator(),
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: args.CoreComponents.EnableEpochsHandler(),
 	}
 	txTypeHandler, err := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -400,7 +400,7 @@ func createScQueryElement(
 		Uint64Converter:          args.coreComponents.Uint64ByteSliceConverter(),
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 args.dataComponents.Datapool(),
 		ConfigSCStorage:          scStorage,
 		CompiledSCPool:           smartContractsCache,
@@ -510,7 +510,7 @@ func createMetaVmContainerFactory(args scQueryElementArgs, argsHook hooks.ArgBlo
 
 func createShardVmContainerFactory(args scQueryElementArgs, argsHook hooks.ArgBlockChainHook) (process.VirtualMachinesContainerFactory, error) {
 	queryVirtualMachineConfig := args.generalConfig.VirtualMachine.Querying.VirtualMachineConfig
-	esdtTransferParser, errParser := parsers.NewESDTTransferParser(args.coreComponents.InternalMarshalizer())
+	dcdtTransferParser, errParser := parsers.NewDCDTTransferParser(args.coreComponents.InternalMarshalizer())
 	if errParser != nil {
 		return nil, errParser
 	}
@@ -529,7 +529,7 @@ func createShardVmContainerFactory(args scQueryElementArgs, argsHook hooks.ArgBl
 		EpochNotifier:       args.coreComponents.EpochNotifier(),
 		EnableEpochsHandler: args.coreComponents.EnableEpochsHandler(),
 		WasmVMChangeLocker:  args.coreComponents.WasmVMChangeLocker(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		Hasher:              args.coreComponents.Hasher(),
 		PubKeyConverter:     args.coreComponents.AddressPubKeyConverter(),
 	}
@@ -709,7 +709,7 @@ func createAPIBlockProcessorArgs(args *ApiResolverArgs, apiTransactionHandler ex
 		ShardCoordinator:       args.ProcessComponents.ShardCoordinator(),
 		AddressConverter:       args.CoreComponents.AddressPubKeyConverter(),
 		AccountsDB:             args.StateComponents.AccountsAdapterAPI(),
-		EsdtDataStorageHandler: args.ProcessComponents.ESDTDataStorageHandlerForAPI(),
+		DcdtDataStorageHandler: args.ProcessComponents.DCDTDataStorageHandlerForAPI(),
 	})
 	if err != nil {
 		return nil, err

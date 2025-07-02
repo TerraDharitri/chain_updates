@@ -1,7 +1,7 @@
 package components
 
 import (
-	"github.com/multiversx/mx-chain-go/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
 )
 
 // CreateStore creates a storage service for shard nodes
@@ -22,7 +22,7 @@ func CreateStore(numOfShards uint32) dataRetriever.StorageService {
 	store.AddStorer(dataRetriever.TxLogsUnit, CreateMemUnit())
 	store.AddStorer(dataRetriever.UserAccountsUnit, CreateMemUnitForTries())
 	store.AddStorer(dataRetriever.PeerAccountsUnit, CreateMemUnitForTries())
-	store.AddStorer(dataRetriever.ESDTSuppliesUnit, CreateMemUnit())
+	store.AddStorer(dataRetriever.DCDTSuppliesUnit, CreateMemUnit())
 	store.AddStorer(dataRetriever.RoundHdrHashDataUnit, CreateMemUnit())
 	store.AddStorer(dataRetriever.MiniblocksMetadataUnit, CreateMemUnit())
 	store.AddStorer(dataRetriever.MiniblockHashByTxHashUnit, CreateMemUnit())

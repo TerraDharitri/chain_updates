@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-go/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
 )
 
 // InitialAccount provides information about one entry in the genesis file

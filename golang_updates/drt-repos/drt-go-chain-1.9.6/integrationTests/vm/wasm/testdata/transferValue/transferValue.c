@@ -11,7 +11,7 @@ byte zero32_a[32] = {0};
 byte zero32_b[32] = {0};
 byte zero32_c[32] = {0};
 
-byte oneAtomOfEGLD[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
+byte oneAtomOfREWA[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
 byte functionNameAskMoney[] = "askMoney";
 byte functionNameMyCallback[] = "myCallback";
 
@@ -50,7 +50,7 @@ void askMoney()
     byte *caller = zero32_a;
 
     getCaller(caller);
-    transferValueExecute(caller, oneAtomOfEGLD, 0, 0, 0, 0, 0, 0);
+    transferValueExecute(caller, oneAtomOfREWA, 0, 0, 0, 0, 0, 0);
 }
 
 void myCallback()

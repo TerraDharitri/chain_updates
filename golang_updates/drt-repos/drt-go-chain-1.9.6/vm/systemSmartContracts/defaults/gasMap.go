@@ -1,7 +1,7 @@
 package defaults
 
 import (
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 // FillGasMapInternal -
@@ -35,23 +35,23 @@ func FillGasMapBuiltInCosts(value uint64) map[string]uint64 {
 	gasMap["ChangeOwnerAddress"] = value
 	gasMap["SaveUserName"] = value
 	gasMap["SaveKeyValue"] = value
-	gasMap["ESDTTransfer"] = value
-	gasMap["ESDTBurn"] = value
-	gasMap["ESDTLocalMint"] = value
-	gasMap["ESDTLocalBurn"] = value
-	gasMap["ESDTNFTCreate"] = value
-	gasMap["ESDTNFTAddQuantity"] = value
-	gasMap["ESDTNFTBurn"] = value
-	gasMap["ESDTNFTTransfer"] = value
-	gasMap["ESDTNFTChangeCreateOwner"] = value
-	gasMap["ESDTNFTAddUri"] = value
-	gasMap["ESDTNFTUpdateAttributes"] = value
-	gasMap["ESDTNFTMultiTransfer"] = value
-	gasMap["ESDTModifyRoyalties"] = value
-	gasMap["ESDTModifyCreator"] = value
-	gasMap["ESDTNFTRecreate"] = value
-	gasMap["ESDTNFTUpdate"] = value
-	gasMap["ESDTNFTSetNewURIs"] = value
+	gasMap["DCDTTransfer"] = value
+	gasMap["DCDTBurn"] = value
+	gasMap["DCDTLocalMint"] = value
+	gasMap["DCDTLocalBurn"] = value
+	gasMap["DCDTNFTCreate"] = value
+	gasMap["DCDTNFTAddQuantity"] = value
+	gasMap["DCDTNFTBurn"] = value
+	gasMap["DCDTNFTTransfer"] = value
+	gasMap["DCDTNFTChangeCreateOwner"] = value
+	gasMap["DCDTNFTAddUri"] = value
+	gasMap["DCDTNFTUpdateAttributes"] = value
+	gasMap["DCDTNFTMultiTransfer"] = value
+	gasMap["DCDTModifyRoyalties"] = value
+	gasMap["DCDTModifyCreator"] = value
+	gasMap["DCDTNFTRecreate"] = value
+	gasMap["DCDTNFTUpdate"] = value
+	gasMap["DCDTNFTSetNewURIs"] = value
 	gasMap["SetGuardian"] = value
 	gasMap["GuardAccount"] = value
 	gasMap["UnGuardAccount"] = value
@@ -72,8 +72,8 @@ func FillGasMapMetaChainSystemSCsCosts(value uint64) map[string]uint64 {
 	gasMap["ChangeRewardAddress"] = value
 	gasMap["ChangeValidatorKeys"] = value
 	gasMap["UnJail"] = value
-	gasMap["ESDTIssue"] = value
-	gasMap["ESDTOperations"] = value
+	gasMap["DCDTIssue"] = value
+	gasMap["DCDTOperations"] = value
 	gasMap["Proposal"] = value
 	gasMap["Vote"] = value
 	gasMap["DelegateVote"] = value

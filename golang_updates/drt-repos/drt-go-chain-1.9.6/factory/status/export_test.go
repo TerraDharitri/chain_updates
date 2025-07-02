@@ -1,10 +1,10 @@
 package status
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	outportDriverFactory "github.com/multiversx/mx-chain-go/outport/factory"
-	"github.com/multiversx/mx-chain-go/p2p"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	outportDriverFactory "github.com/TerraDharitri/drt-go-chain/outport/factory"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
 )
 
 // EpochStartEventHandler -

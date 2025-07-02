@@ -3,10 +3,10 @@ package requesters
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	dataRetrieverTests "github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
+	dataRetrieverTests "github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
 	"github.com/stretchr/testify/assert"
 )
 

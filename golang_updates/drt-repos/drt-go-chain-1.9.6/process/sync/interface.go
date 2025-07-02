@@ -3,9 +3,9 @@ package sync
 import (
 	"context"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 
-	"github.com/multiversx/mx-chain-go/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 // blockBootstrapper is the interface needed by base sync to deal with shards and meta nodes while they bootstrap

@@ -3,8 +3,8 @@ package throttle_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/process/throttle"
+	"github.com/TerraDharitri/drt-go-chain/process/throttle"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/assert"
 )
 

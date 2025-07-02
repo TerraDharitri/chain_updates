@@ -1,7 +1,7 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-go/cmd/assessment/benchmarks"
+	"github.com/TerraDharitri/drt-go-chain/cmd/assessment/benchmarks"
 )
 
 type runner struct {

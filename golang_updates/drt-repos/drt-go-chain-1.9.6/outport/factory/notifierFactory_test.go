@@ -3,9 +3,9 @@ package factory_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/outport/factory"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/outport/factory"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
 	"github.com/stretchr/testify/require"
 )
 

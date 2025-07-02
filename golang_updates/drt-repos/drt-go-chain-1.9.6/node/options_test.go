@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-go/node/mock"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/node/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -234,33 +234,33 @@ func TestWithSignTxWithHashEpoch_EnableSignTxWithHashEpochShouldWork(t *testing.
 	assert.Nil(t, err)
 }
 
-func TestWithESDTNFTStorageHandler(t *testing.T) {
+func TestWithDCDTNFTStorageHandler(t *testing.T) {
 	t.Parallel()
 
-	t.Run("nil esdt nft storage, should error", func(t *testing.T) {
+	t.Run("nil dcdt nft storage, should error", func(t *testing.T) {
 		t.Parallel()
 
 		node, _ := NewNode()
-		opt := WithESDTNFTStorageHandler(nil)
+		opt := WithDCDTNFTStorageHandler(nil)
 		err := opt(node)
 
-		assert.Equal(t, ErrNilESDTNFTStorageHandler, err)
+		assert.Equal(t, ErrNilDCDTNFTStorageHandler, err)
 	})
 
 	t.Run("should work", func(t *testing.T) {
 		t.Parallel()
 
-		esdtStorer := &testscommon.EsdtStorageHandlerStub{
-			GetESDTNFTTokenOnDestinationCalled: func(_ vmcommon.UserAccountHandler, _ []byte, _ uint64) (*esdt.ESDigitalToken, bool, error) {
+		dcdtStorer := &testscommon.DcdtStorageHandlerStub{
+			GetDCDTNFTTokenOnDestinationCalled: func(_ vmcommon.UserAccountHandler, _ []byte, _ uint64) (*dcdt.DCDigitalToken, bool, error) {
 				return nil, true, nil
 			},
 		}
 
 		node, _ := NewNode()
-		opt := WithESDTNFTStorageHandler(esdtStorer)
+		opt := WithDCDTNFTStorageHandler(dcdtStorer)
 		err := opt(node)
 
 		assert.NoError(t, err)
-		assert.Equal(t, esdtStorer, node.esdtStorageHandler)
+		assert.Equal(t, dcdtStorer, node.dcdtStorageHandler)
 	})
 }

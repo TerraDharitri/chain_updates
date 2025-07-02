@@ -1,17 +1,17 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/update"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/update"
 )
 
 // ProcessComponentsMock -
@@ -53,7 +53,7 @@ type ProcessComponentsMock struct {
 	TxsSenderHandlerField                process.TxsSenderHandler
 	HardforkTriggerField                 factory.HardforkTrigger
 	ProcessedMiniBlocksTrackerInternal   process.ProcessedMiniBlocksTracker
-	ESDTDataStorageHandlerForAPIInternal vmcommon.ESDTNFTStorageHandler
+	DCDTDataStorageHandlerForAPIInternal vmcommon.DCDTNFTStorageHandler
 	AccountsParserInternal               genesis.AccountsParser
 	ReceiptsRepositoryInternal           factory.ReceiptsRepository
 	SentSignaturesTrackerInternal        process.SentSignaturesTracker
@@ -270,9 +270,9 @@ func (pcm *ProcessComponentsMock) ProcessedMiniBlocksTracker() process.Processed
 	return pcm.ProcessedMiniBlocksTrackerInternal
 }
 
-// ESDTDataStorageHandlerForAPI -
-func (pcm *ProcessComponentsMock) ESDTDataStorageHandlerForAPI() vmcommon.ESDTNFTStorageHandler {
-	return pcm.ESDTDataStorageHandlerForAPIInternal
+// DCDTDataStorageHandlerForAPI -
+func (pcm *ProcessComponentsMock) DCDTDataStorageHandlerForAPI() vmcommon.DCDTNFTStorageHandler {
+	return pcm.DCDTDataStorageHandlerForAPIInternal
 }
 
 // ReceiptsRepository -

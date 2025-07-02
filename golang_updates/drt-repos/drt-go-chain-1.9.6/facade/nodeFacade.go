@@ -8,28 +8,28 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/throttler"
-	chainData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	apiData "github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/debug"
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap/disabled"
-	"github.com/multiversx/mx-chain-go/heartbeat/data"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/ntp"
-	"github.com/multiversx/mx-chain-go/process"
-	txSimData "github.com/multiversx/mx-chain-go/process/transactionEvaluator/data"
-	"github.com/multiversx/mx-chain-go/state"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/throttler"
+	chainData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	apiData "github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/debug"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap/disabled"
+	"github.com/TerraDharitri/drt-go-chain/heartbeat/data"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/ntp"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	txSimData "github.com/TerraDharitri/drt-go-chain/process/transactionEvaluator/data"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // DefaultRestInterface is the default interface the rest API will start on if not specified
@@ -192,17 +192,17 @@ func (nf *nodeFacade) GetValueForKey(address string, key string, options apiData
 	return nf.node.GetValueForKey(address, key, options)
 }
 
-// GetESDTData returns the ESDT data for the given address, tokenID and nonce
-func (nf *nodeFacade) GetESDTData(address string, key string, nonce uint64, options apiData.AccountQueryOptions) (*esdt.ESDigitalToken, apiData.BlockInfo, error) {
-	return nf.node.GetESDTData(address, key, nonce, options)
+// GetDCDTData returns the DCDT data for the given address, tokenID and nonce
+func (nf *nodeFacade) GetDCDTData(address string, key string, nonce uint64, options apiData.AccountQueryOptions) (*dcdt.DCDigitalToken, apiData.BlockInfo, error) {
+	return nf.node.GetDCDTData(address, key, nonce, options)
 }
 
-// GetESDTsRoles returns all the tokens identifiers and roles for the given address
-func (nf *nodeFacade) GetESDTsRoles(address string, options apiData.AccountQueryOptions) (map[string][]string, apiData.BlockInfo, error) {
+// GetDCDTsRoles returns all the tokens identifiers and roles for the given address
+func (nf *nodeFacade) GetDCDTsRoles(address string, options apiData.AccountQueryOptions) (map[string][]string, apiData.BlockInfo, error) {
 	ctx, cancel := nf.getContextForApiTrieRangeOperations()
 	defer cancel()
 
-	return nf.node.GetESDTsRoles(address, options, ctx)
+	return nf.node.GetDCDTsRoles(address, options, ctx)
 }
 
 // GetNFTTokenIDsRegisteredByAddress returns all the token identifiers for semi or non fungible tokens registered by the address
@@ -213,12 +213,12 @@ func (nf *nodeFacade) GetNFTTokenIDsRegisteredByAddress(address string, options 
 	return nf.node.GetNFTTokenIDsRegisteredByAddress(address, options, ctx)
 }
 
-// GetESDTsWithRole returns all the tokens with the given role for the given address
-func (nf *nodeFacade) GetESDTsWithRole(address string, role string, options apiData.AccountQueryOptions) ([]string, apiData.BlockInfo, error) {
+// GetDCDTsWithRole returns all the tokens with the given role for the given address
+func (nf *nodeFacade) GetDCDTsWithRole(address string, role string, options apiData.AccountQueryOptions) ([]string, apiData.BlockInfo, error) {
 	ctx, cancel := nf.getContextForApiTrieRangeOperations()
 	defer cancel()
 
-	return nf.node.GetESDTsWithRole(address, role, options, ctx)
+	return nf.node.GetDCDTsWithRole(address, role, options, ctx)
 }
 
 // GetKeyValuePairs returns all the key-value pairs under the provided address
@@ -234,25 +234,25 @@ func (nf *nodeFacade) GetGuardianData(address string, options apiData.AccountQue
 	return nf.node.GetGuardianData(address, options)
 }
 
-// GetAllESDTTokens returns all the esdt tokens for a given address
-func (nf *nodeFacade) GetAllESDTTokens(address string, options apiData.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, apiData.BlockInfo, error) {
+// GetAllDCDTTokens returns all the dcdt tokens for a given address
+func (nf *nodeFacade) GetAllDCDTTokens(address string, options apiData.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, apiData.BlockInfo, error) {
 	ctx, cancel := nf.getContextForApiTrieRangeOperations()
 	defer cancel()
 
-	return nf.node.GetAllESDTTokens(address, options, ctx)
+	return nf.node.GetAllDCDTTokens(address, options, ctx)
 }
 
 // GetTokenSupply returns the provided token supply
-func (nf *nodeFacade) GetTokenSupply(token string) (*apiData.ESDTSupply, error) {
+func (nf *nodeFacade) GetTokenSupply(token string) (*apiData.DCDTSupply, error) {
 	return nf.node.GetTokenSupply(token)
 }
 
-// GetAllIssuedESDTs returns all the issued esdts from the esdt system smart contract
-func (nf *nodeFacade) GetAllIssuedESDTs(tokenType string) ([]string, error) {
+// GetAllIssuedDCDTs returns all the issued dcdts from the dcdt system smart contract
+func (nf *nodeFacade) GetAllIssuedDCDTs(tokenType string) ([]string, error) {
 	ctx, cancel := nf.getContextForApiTrieRangeOperations()
 	defer cancel()
 
-	return nf.node.GetAllIssuedESDTs(tokenType, ctx)
+	return nf.node.GetAllIssuedDCDTs(tokenType, ctx)
 }
 
 func (nf *nodeFacade) getContextForApiTrieRangeOperations() (context.Context, context.CancelFunc) {

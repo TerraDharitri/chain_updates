@@ -4,31 +4,31 @@ import (
 	"bytes"
 	"strconv"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/epochStart/metachain"
-	epochStartMock "github.com/multiversx/mx-chain-go/epochStart/mock"
-	"github.com/multiversx/mx-chain-go/epochStart/notifier"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/genesis/process/disabled"
-	"github.com/multiversx/mx-chain-go/process"
-	metaProcess "github.com/multiversx/mx-chain-go/process/factory/metachain"
-	"github.com/multiversx/mx-chain-go/process/peer"
-	"github.com/multiversx/mx-chain-go/process/smartContract/builtInFunctions"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks/counters"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/genesisMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/guardianMocks"
-	"github.com/multiversx/mx-chain-go/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	vmcommonMock "github.com/multiversx/mx-chain-vm-common-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	vmcommonMock "github.com/TerraDharitri/drt-go-chain-vm-common/mock"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/metachain"
+	epochStartMock "github.com/TerraDharitri/drt-go-chain/epochStart/mock"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/genesis/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	metaProcess "github.com/TerraDharitri/drt-go-chain/process/factory/metachain"
+	"github.com/TerraDharitri/drt-go-chain/process/peer"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks/counters"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genesisMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/guardianMocks"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 func createSystemSCProcessor(
@@ -83,7 +83,7 @@ func createSystemSCProcessor(
 		StakingDataProvider:          stakingDataProvider,
 		NodesConfigProvider:          nc,
 		ShardCoordinator:             shardCoordinator,
-		ESDTOwnerAddressBytes:        bytes.Repeat([]byte{1}, 32),
+		DCDTOwnerAddressBytes:        bytes.Repeat([]byte{1}, 32),
 		EnableEpochsHandler:          coreComponents.EnableEpochsHandler(),
 		MaxNodesChangeConfigProvider: maxNodesChangeConfigProvider,
 		AuctionListSelector:          auctionListSelector,
@@ -205,7 +205,7 @@ func createVMContainerFactory(
 		Hasher:              coreComponents.Hasher(),
 		Marshalizer:         coreComponents.InternalMarshalizer(),
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "aaaaaa",
 			},

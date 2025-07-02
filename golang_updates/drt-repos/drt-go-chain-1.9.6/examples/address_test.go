@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/display"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -23,13 +23,13 @@ func TestHexAddressToBech32Address(t *testing.T) {
 
 	bech32Address, err := addressEncoder.Encode(hexEncodedAddressBytes)
 	require.NoError(t, err)
-	require.Equal(t, "erd14uqxan5rgucsf6537ll4vpwyc96z7us5586xhc5euv8w96rsw95sfl6a49", bech32Address)
+	require.Equal(t, "drt14uqxan5rgucsf6537ll4vpwyc96z7us5586xhc5euv8w96rsw95s5rd7km", bech32Address)
 }
 
 func TestBech32AddressToHexAddress(t *testing.T) {
 	t.Parallel()
 
-	bech32Address := "erd14uqxan5rgucsf6537ll4vpwyc96z7us5586xhc5euv8w96rsw95sfl6a49"
+	bech32Address := "drt14uqxan5rgucsf6537ll4vpwyc96z7us5586xhc5euv8w96rsw95s5rd7km"
 
 	bech32AddressBytes, err := addressEncoder.Decode(bech32Address)
 	require.NoError(t, err)
@@ -48,10 +48,10 @@ func TestShardOfAddress(t *testing.T) {
 	shardCoordinator, err := sharding.NewMultiShardCoordinator(numberOfShards, 0)
 	require.NoError(t, err)
 
-	require.Equal(t, uint32(0), computeShardID(t, "erd1gn0y4l4rgkf2e7dg74u3nnugr7uycw5jwa44tlnqg2kxa37dr2kq60xwvg", shardCoordinator))
-	require.Equal(t, uint32(1), computeShardID(t, "erd1x23lzn8483xs2su4fak0r0dqx6w38enpmmqf2yrkylwq7mfnvyhsxqw57y", shardCoordinator))
-	require.Equal(t, uint32(2), computeShardID(t, "erd1zwkdd3k023llluhkd0963kdtfjh0xfgh8ngfwt2qj9da0l79qgpqvqluqd", shardCoordinator))
-	require.Equal(t, core.MetachainShardId, computeShardID(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u", shardCoordinator))
+	require.Equal(t, uint32(0), computeShardID(t, "drt1gn0y4l4rgkf2e7dg74u3nnugr7uycw5jwa44tlnqg2kxa37dr2kq8n3d0k", shardCoordinator))
+	require.Equal(t, uint32(1), computeShardID(t, "drt1x23lzn8483xs2su4fak0r0dqx6w38enpmmqf2yrkylwq7mfnvyhsmueha6", shardCoordinator))
+	require.Equal(t, uint32(2), computeShardID(t, "drt1zwkdd3k023llluhkd0963kdtfjh0xfgh8ngfwt2qj9da0l79qgpq3uglrn", shardCoordinator))
+	require.Equal(t, core.MetachainShardId, computeShardID(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez", shardCoordinator))
 }
 
 func computeShardID(t *testing.T, addressBech32 string, shardCoordinator sharding.Coordinator) uint32 {
@@ -111,20 +111,20 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 	table, _ := display.CreateTableString(header, lines)
 	fmt.Println(table)
 
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqllls0lczs7", stakingScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l", validatorScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u", esdtScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrlllsrujgla", governanceScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqrlllllllllllllllllllllllllsn60f0k", jailingAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqlllllllllllllllllllllllllllsr9gav8", endOfEpochAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6", delegationManagerScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq0llllsqkarq6", firstDelegationScAddress)
-	assert.Equal(t, "erd1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq6gq4hu", contractDeployScAdress)
-	assert.Equal(t, "erd17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqqkhty3", genesisMintingAddress)
-	assert.Equal(t, "erd1lllllllllllllllllllllllllllllllllllllllllllllllllllsckry7t", systemAccountAddress)
-	assert.Equal(t, "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f", esdtGlobalSettingsAddresses[0])
-	assert.Equal(t, "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqsl6e366", esdtGlobalSettingsAddresses[1])
-	assert.Equal(t, "erd1lllllllllllllllllllllllllllllllllllllllllllllllllupq9x7ny0", esdtGlobalSettingsAddresses[2])
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqlllsjr0pnq", stakingScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp", validatorScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez", esdtScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrllls7q9tur", governanceScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqrlllllllllllllllllllllllllswxc2vg", jailingAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqllllllllllllllllllllllllllls7el70e", endOfEpochAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllsz8he8y", delegationManagerScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq0llllsa22qry", firstDelegationScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq85hk5z", contractDeployScAdress)
+	assert.Equal(t, "drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80", genesisMintingAddress)
+	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllllls9258a4", systemAccountAddress)
+	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh", esdtGlobalSettingsAddresses[0])
+	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqszxwjey", esdtGlobalSettingsAddresses[1])
+	assert.Equal(t, "drt1lllllllllllllllllllllllllllllllllllllllllllllllllupqc6fs83", esdtGlobalSettingsAddresses[2])
 }
 
 func getGlobalSettingsAddresses() map[uint32]string {

@@ -1,9 +1,9 @@
 package dblookupext
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
 )
 
 // HistoryRepositoryFactory can create new instances of HistoryRepository

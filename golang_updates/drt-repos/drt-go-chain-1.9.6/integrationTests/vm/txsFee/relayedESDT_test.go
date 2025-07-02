@@ -4,25 +4,25 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/require"
 )
 
-func TestRelayedESDTTransferShouldWork(t *testing.T) {
+func TestRelayedDCDTTransferShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
-	t.Run("before relayed base cost fix", testRelayedESDTTransferShouldWork(integrationTests.UnreachableEpoch, big.NewInt(9997614), big.NewInt(2386)))
-	t.Run("after relayed base cost fix", testRelayedESDTTransferShouldWork(0, big.NewInt(9997299), big.NewInt(2701)))
+	t.Run("before relayed base cost fix", testRelayedDCDTTransferShouldWork(integrationTests.UnreachableEpoch, big.NewInt(9997614), big.NewInt(2386)))
+	t.Run("after relayed base cost fix", testRelayedDCDTTransferShouldWork(0, big.NewInt(9997299), big.NewInt(2701)))
 }
 
-func testRelayedESDTTransferShouldWork(
+func testRelayedDCDTTransferShouldWork(
 	relayedFixActivationEpoch uint32,
 	expectedRelayerBalance *big.Int,
 	expectedAccFees *big.Int,
@@ -39,13 +39,13 @@ func testRelayedESDTTransferShouldWork(
 		rcvAddr := []byte("12345678901234567890123456789022")
 
 		relayerBalance := big.NewInt(10000000)
-		localEsdtBalance := big.NewInt(100000000)
+		localDcdtBalance := big.NewInt(100000000)
 		token := []byte("miiutoken")
-		utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), token, 0, localEsdtBalance, uint32(core.Fungible))
+		utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), token, 0, localDcdtBalance, uint32(core.Fungible))
 		_, _ = vm.CreateAccount(testContext.Accounts, relayerAddr, 0, relayerBalance)
 
 		gasLimit := uint64(40)
-		innerTx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
+		innerTx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
 
 		rtxData := integrationTests.PrepareRelayedTxDataV1(innerTx)
 		rTxGasLimit := minGasLimit + gasLimit + uint64(len(rtxData))
@@ -59,13 +59,13 @@ func testRelayedESDTTransferShouldWork(
 		require.Nil(t, err)
 
 		expectedBalanceSnd := big.NewInt(99999900)
-		utils.CheckESDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
+		utils.CheckDCDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
 
 		expectedReceiverBalance := big.NewInt(100)
-		utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+		utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
-		expectedEGLDBalance := big.NewInt(0)
-		utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+		expectedREWABalance := big.NewInt(0)
+		utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 		utils.TestAccount(t, testContext.Accounts, relayerAddr, 1, expectedRelayerBalance)
 
@@ -101,13 +101,13 @@ func testRelayedESTTransferNotEnoughESTValueShouldConsumeGas(
 		rcvAddr := []byte("12345678901234567890123456789022")
 
 		relayerBalance := big.NewInt(10000000)
-		localEsdtBalance := big.NewInt(100000000)
+		localDcdtBalance := big.NewInt(100000000)
 		token := []byte("miiutoken")
-		utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), token, 0, localEsdtBalance, uint32(core.Fungible))
+		utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), token, 0, localDcdtBalance, uint32(core.Fungible))
 		_, _ = vm.CreateAccount(testContext.Accounts, relayerAddr, 0, relayerBalance)
 
 		gasLimit := uint64(42)
-		innerTx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100000001), gasPrice, gasLimit)
+		innerTx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100000001), gasPrice, gasLimit)
 
 		rtxData := integrationTests.PrepareRelayedTxDataV1(innerTx)
 		rTxGasLimit := minGasLimit + gasLimit + uint64(len(rtxData))
@@ -121,13 +121,13 @@ func testRelayedESTTransferNotEnoughESTValueShouldConsumeGas(
 		require.Nil(t, err)
 
 		expectedBalanceSnd := big.NewInt(100000000)
-		utils.CheckESDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
+		utils.CheckDCDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
 
 		expectedReceiverBalance := big.NewInt(0)
-		utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+		utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
-		expectedEGLDBalance := big.NewInt(0)
-		utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+		expectedREWABalance := big.NewInt(0)
+		utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 		utils.TestAccount(t, testContext.Accounts, relayerAddr, 1, expectedRelayerBalance)
 

@@ -8,13 +8,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 
 	"github.com/stretchr/testify/require"
 )
@@ -210,7 +210,7 @@ func TestQueries_Metachain(t *testing.T) {
 
 	_, err := network.SendTransaction(
 		alice.Address,
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		issueCost,
 		txData,
 		core.MinMetaTxExtraGasCost,
@@ -219,13 +219,13 @@ func TestQueries_Metachain(t *testing.T) {
 	require.NoError(t, err)
 	network.Continue(t, 5)
 
-	tokens, err := network.MetachainNode.Node.GetAllIssuedESDTs(core.FungibleESDT, context.Background())
+	tokens, err := network.MetachainNode.Node.GetAllIssuedDCDTs(core.FungibleDCDT, context.Background())
 	require.NoError(t, err)
 	require.Len(t, tokens, 1)
 
 	// Query token on older block (should fail)
 	vmOutput, _, err := network.MetachainNode.SCQueryService.ExecuteQuery(&process.SCQuery{
-		ScAddress:  vm.ESDTSCAddress,
+		ScAddress:  vm.DCDTSCAddress,
 		FuncName:   "getTokenProperties",
 		Arguments:  [][]byte{[]byte(tokens[0])},
 		BlockNonce: core.OptionalUint64{HasValue: true, Value: 2},
@@ -237,7 +237,7 @@ func TestQueries_Metachain(t *testing.T) {
 
 	// Query token on newer block (should succeed)
 	vmOutput, _, err = network.MetachainNode.SCQueryService.ExecuteQuery(&process.SCQuery{
-		ScAddress:  vm.ESDTSCAddress,
+		ScAddress:  vm.DCDTSCAddress,
 		FuncName:   "getTokenProperties",
 		Arguments:  [][]byte{[]byte(tokens[0])},
 		BlockNonce: core.OptionalUint64{HasValue: true, Value: 4},

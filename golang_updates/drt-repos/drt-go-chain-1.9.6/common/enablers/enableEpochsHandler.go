@@ -4,13 +4,13 @@ import (
 	"runtime/debug"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 var log = logger.GetOrCreate("common/enablers")
@@ -162,17 +162,17 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.DoubleKeyProtectionEnableEpoch,
 		},
-		common.ESDTFlag: {
+		common.DCDTFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTEnableEpoch,
 		},
-		common.ESDTFlagInSpecificEpochOnly: {
+		common.DCDTFlagInSpecificEpochOnly: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch == handler.enableEpochsConfig.ESDTEnableEpoch
+				return epoch == handler.enableEpochsConfig.DCDTEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTEnableEpoch,
 		},
 		common.GovernanceFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -252,17 +252,17 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.IncrementSCRNonceInMultiTransferEnableEpoch,
 		},
-		common.ESDTMultiTransferFlag: {
+		common.DCDTMultiTransferFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMultiTransferEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMultiTransferEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMultiTransferEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMultiTransferEnableEpoch,
 		},
-		common.ESDTNFTImprovementV1Flag: {
+		common.DCDTNFTImprovementV1Flag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMultiTransferEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMultiTransferEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMultiTransferEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMultiTransferEnableEpoch,
 		},
 		common.GlobalMintBurnFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -270,11 +270,11 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.GlobalMintBurnDisableEpoch,
 		},
-		common.ESDTTransferRoleFlag: {
+		common.DCDTTransferRoleFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTTransferRoleEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTTransferRoleEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTTransferRoleEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTTransferRoleEnableEpoch,
 		},
 		common.ComputeRewardCheckpointFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -294,17 +294,17 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.BackwardCompSaveKeyValueEnableEpoch,
 		},
-		common.ESDTNFTCreateOnMultiShardFlag: {
+		common.DCDTNFTCreateOnMultiShardFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTNFTCreateOnMultiShardEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTNFTCreateOnMultiShardEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTNFTCreateOnMultiShardEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTNFTCreateOnMultiShardEnableEpoch,
 		},
-		common.MetaESDTSetFlag: {
+		common.MetaDCDTSetFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.MetaESDTSetEnableEpoch
+				return epoch >= handler.enableEpochsConfig.MetaDCDTSetEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.MetaESDTSetEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.MetaDCDTSetEnableEpoch,
 		},
 		common.AddTokensToDelegationFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -312,11 +312,11 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.AddTokensToDelegationEnableEpoch,
 		},
-		common.MultiESDTTransferFixOnCallBackFlag: {
+		common.MultiDCDTTransferFixOnCallBackFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.MultiESDTTransferFixOnCallBackOnEnableEpoch
+				return epoch >= handler.enableEpochsConfig.MultiDCDTTransferFixOnCallBackOnEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.MultiESDTTransferFixOnCallBackOnEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.MultiDCDTTransferFixOnCallBackOnEnableEpoch,
 		},
 		common.OptimizeGasUsedInCrossMiniBlocksFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -408,11 +408,11 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.StorageAPICostOptimizationEnableEpoch,
 		},
-		common.ESDTRegisterAndSetAllRolesFlag: {
+		common.DCDTRegisterAndSetAllRolesFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTRegisterAndSetAllRolesEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTRegisterAndSetAllRolesEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTRegisterAndSetAllRolesEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTRegisterAndSetAllRolesEnableEpoch,
 		},
 		common.ScheduledMiniBlocksFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -468,29 +468,29 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.ManagedCryptoAPIsEnableEpoch,
 		},
-		common.ESDTMetadataContinuousCleanupFlag: {
+		common.DCDTMetadataContinuousCleanupFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch,
 		},
 		common.FixAsyncCallbackCheckFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch,
 		},
 		common.SendAlwaysFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch,
 		},
 		common.ChangeDelegationOwnerFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.ESDTMetadataContinuousCleanupEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DCDTMetadataContinuousCleanupEnableEpoch,
 		},
 		common.DisableExecByCallerFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -738,17 +738,17 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.UseGasBoundedShouldFailExecutionEnableEpoch,
 		},
-		common.DynamicESDTFlag: {
+		common.DynamicDCDTFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.DynamicESDTEnableEpoch
+				return epoch >= handler.enableEpochsConfig.DynamicDCDTEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.DynamicESDTEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.DynamicDCDTEnableEpoch,
 		},
-		common.EGLDInESDTMultiTransferFlag: {
+		common.REWAInDCDTMultiTransferFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.EGLDInMultiTransferEnableEpoch
+				return epoch >= handler.enableEpochsConfig.REWAInMultiTransferEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.EGLDInMultiTransferEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.REWAInMultiTransferEnableEpoch,
 		},
 		common.CryptoOpcodesV2Flag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -768,11 +768,11 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.FixRelayedBaseCostEnableEpoch,
 		},
-		common.MultiESDTNFTTransferAndExecuteByUserFlag: {
+		common.MultiDCDTNFTTransferAndExecuteByUserFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.MultiESDTNFTTransferAndExecuteByUserEnableEpoch
+				return epoch >= handler.enableEpochsConfig.MultiDCDTNFTTransferAndExecuteByUserEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.MultiESDTNFTTransferAndExecuteByUserEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.MultiDCDTNFTTransferAndExecuteByUserEnableEpoch,
 		},
 		common.FixRelayedMoveBalanceToNonPayableSCFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -786,11 +786,11 @@ func (handler *enableEpochsHandler) createAllFlagsMap() {
 			},
 			activationEpoch: handler.enableEpochsConfig.RelayedTransactionsV3EnableEpoch,
 		},
-		common.RelayedTransactionsV3FixESDTTransferFlag: {
+		common.RelayedTransactionsV3FixDCDTTransferFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
-				return epoch >= handler.enableEpochsConfig.RelayedTransactionsV3FixESDTTransferEnableEpoch
+				return epoch >= handler.enableEpochsConfig.RelayedTransactionsV3FixDCDTTransferEnableEpoch
 			},
-			activationEpoch: handler.enableEpochsConfig.RelayedTransactionsV3FixESDTTransferEnableEpoch,
+			activationEpoch: handler.enableEpochsConfig.RelayedTransactionsV3FixDCDTTransferEnableEpoch,
 		},
 		common.AndromedaFlag: {
 			isActiveInEpoch: func(epoch uint32) bool {
@@ -815,7 +815,7 @@ func (handler *enableEpochsHandler) EpochConfirmed(epoch uint32, _ uint64) {
 	handler.epochMut.Unlock()
 }
 
-// IsFlagDefined checks if a specific flag is supported by the current version of mx-chain-core-go
+// IsFlagDefined checks if a specific flag is supported by the current version of drt-go-chain-core
 func (handler *enableEpochsHandler) IsFlagDefined(flag core.EnableEpochFlag) bool {
 	_, found := handler.allFlagsDefined[flag]
 	if found {

@@ -3,7 +3,7 @@ package economics
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // TestEconomicsData extends EconomicsData and is used in integration tests as it exposes some functions

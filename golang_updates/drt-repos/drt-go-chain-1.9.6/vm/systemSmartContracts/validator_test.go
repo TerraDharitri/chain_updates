@@ -12,17 +12,17 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/mock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -3193,13 +3193,13 @@ func TestValidatorStakingSC_getBlsStatusWrongRegistrationData(t *testing.T) {
 	eei := createVmContextWithStakingSc(minStakeValue, unboundPeriod, blockChainHook)
 
 	wrongStorageEntry := make(map[string][]byte)
-	wrongStorageEntry["erdKey"] = []byte("entry val")
+	wrongStorageEntry["drtKey"] = []byte("entry val")
 	eei.storageUpdate["addr"] = wrongStorageEntry
 	args.Eei = eei
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.Arguments = append(arguments.Arguments, []byte("erdKey"))
+	arguments.Arguments = append(arguments.Arguments, []byte("drtKey"))
 	arguments.Function = "getBlsKeysStatus"
 
 	returnCode := sc.Execute(arguments)
@@ -3220,7 +3220,7 @@ func TestValidatorStakingSC_getBlsStatusNoBlsKeys(t *testing.T) {
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
 	arguments.Function = "getBlsKeysStatus"
-	arguments.Arguments = append(arguments.Arguments, []byte("erd key"))
+	arguments.Arguments = append(arguments.Arguments, []byte("drt key"))
 
 	returnCode := sc.Execute(arguments)
 	assert.Equal(t, vmcommon.UserError, returnCode)
@@ -3261,7 +3261,7 @@ func TestValidatorStakingSC_getBlsStatusShouldWork(t *testing.T) {
 	serializedRegistrationData2, _ := args.Marshalizer.Marshal(registrationData2)
 
 	storageEntry := make(map[string][]byte)
-	storageEntry["erdKey"] = serializedValidatorData
+	storageEntry["drtKey"] = serializedValidatorData
 	eei.storageUpdate["addr"] = storageEntry
 
 	stakingEntry := make(map[string][]byte)
@@ -3272,7 +3272,7 @@ func TestValidatorStakingSC_getBlsStatusShouldWork(t *testing.T) {
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.Arguments = append(arguments.Arguments, []byte("erdKey"))
+	arguments.Arguments = append(arguments.Arguments, []byte("drtKey"))
 	arguments.Function = "getBlsKeysStatus"
 
 	returnCode := sc.Execute(arguments)
@@ -3312,7 +3312,7 @@ func TestValidatorStakingSC_getBlsStatusShouldWorkEvenIfAnErrorOccursForOneOfThe
 	serializedRegistrationData, _ := args.Marshalizer.Marshal(registrationData)
 
 	storageEntry := make(map[string][]byte)
-	storageEntry["erdKey"] = serializedValidatorData
+	storageEntry["drtKey"] = serializedValidatorData
 	eei.storageUpdate["addr"] = storageEntry
 
 	stakingEntry := make(map[string][]byte)
@@ -3323,7 +3323,7 @@ func TestValidatorStakingSC_getBlsStatusShouldWorkEvenIfAnErrorOccursForOneOfThe
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.Arguments = append(arguments.Arguments, []byte("erdKey"))
+	arguments.Arguments = append(arguments.Arguments, []byte("drtKey"))
 	arguments.Function = "getBlsKeysStatus"
 
 	returnCode := sc.Execute(arguments)
@@ -5111,7 +5111,7 @@ func TestStakingValidatorSC_ChangeOwnerOfValidatorData(t *testing.T) {
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.CallerAddr = vm.ESDTSCAddress
+	arguments.CallerAddr = vm.DCDTSCAddress
 	arguments.Function = "changeOwnerOfValidatorData"
 	arguments.Arguments = [][]byte{}
 	arguments.CallValue = big.NewInt(10000000)
@@ -5211,7 +5211,7 @@ func TestStakingValidatorSC_MergeValidatorData(t *testing.T) {
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.CallerAddr = vm.ESDTSCAddress
+	arguments.CallerAddr = vm.DCDTSCAddress
 	arguments.Function = "mergeValidatorData"
 	arguments.Arguments = [][]byte{}
 	arguments.CallValue = big.NewInt(10000000)
@@ -5311,7 +5311,7 @@ func TestStakingValidatorSC_MergeValidatorDataTooMuchStake(t *testing.T) {
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.CallerAddr = vm.ESDTSCAddress
+	arguments.CallerAddr = vm.DCDTSCAddress
 	arguments.Function = "mergeValidatorData"
 	arguments.Arguments = [][]byte{}
 	arguments.CallValue = big.NewInt(0)
@@ -5361,7 +5361,7 @@ func TestStakingValidatorSC_MergeValidatorDataTooMuchNodes(t *testing.T) {
 
 	sc, _ := NewValidatorSmartContract(args)
 	arguments := CreateVmContractCallInput()
-	arguments.CallerAddr = vm.ESDTSCAddress
+	arguments.CallerAddr = vm.DCDTSCAddress
 	arguments.Function = "mergeValidatorData"
 	arguments.Arguments = [][]byte{}
 	arguments.CallValue = big.NewInt(0)

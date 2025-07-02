@@ -17,12 +17,12 @@
 				"to": "sc:pair_contract",
 				"value": "0",
 				"function": "swapTokensFixedInput",
-				"esdt": {
+				"dcdt": {
 					"tokenIdentifier": "str:MEX-abcdef",
 					"value": "100,000"
 				},
 				"arguments": [
-					"str:WEGLD-abcdef",
+					"str:WREWA-abcdef",
 					"50,000"
 				],
 				"gasLimit": "100,000,000",

@@ -13,56 +13,56 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	"github.com/TerraDharitri/drt-go-chain-core/core/throttler"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	outportCore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/google/gops/agent"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	"github.com/multiversx/mx-chain-core-go/core/throttler"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	outportCore "github.com/multiversx/mx-chain-core-go/data/outport"
-	logger "github.com/multiversx/mx-chain-logger-go"
 
-	"github.com/multiversx/mx-chain-go/api/gin"
-	"github.com/multiversx/mx-chain-go/api/shared"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/disabled"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/common/goroutines"
-	"github.com/multiversx/mx-chain-go/common/ordering"
-	"github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus/spos"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	dbLookupFactory "github.com/multiversx/mx-chain-go/dblookupext/factory"
-	"github.com/multiversx/mx-chain-go/facade"
-	"github.com/multiversx/mx-chain-go/facade/initial"
-	mainFactory "github.com/multiversx/mx-chain-go/factory"
-	apiComp "github.com/multiversx/mx-chain-go/factory/api"
-	bootstrapComp "github.com/multiversx/mx-chain-go/factory/bootstrap"
-	consensusComp "github.com/multiversx/mx-chain-go/factory/consensus"
-	coreComp "github.com/multiversx/mx-chain-go/factory/core"
-	cryptoComp "github.com/multiversx/mx-chain-go/factory/crypto"
-	dataComp "github.com/multiversx/mx-chain-go/factory/data"
-	heartbeatComp "github.com/multiversx/mx-chain-go/factory/heartbeat"
-	networkComp "github.com/multiversx/mx-chain-go/factory/network"
-	processComp "github.com/multiversx/mx-chain-go/factory/processing"
-	stateComp "github.com/multiversx/mx-chain-go/factory/state"
-	statusComp "github.com/multiversx/mx-chain-go/factory/status"
-	"github.com/multiversx/mx-chain-go/factory/statusCore"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/parsing"
-	"github.com/multiversx/mx-chain-go/health"
-	"github.com/multiversx/mx-chain-go/node/metrics"
-	"github.com/multiversx/mx-chain-go/outport"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/interceptors"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	"github.com/multiversx/mx-chain-go/storage/cache"
-	storageFactory "github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	trieStatistics "github.com/multiversx/mx-chain-go/trie/statistics"
-	"github.com/multiversx/mx-chain-go/update/trigger"
+	"github.com/TerraDharitri/drt-go-chain/api/gin"
+	"github.com/TerraDharitri/drt-go-chain/api/shared"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/disabled"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/common/goroutines"
+	"github.com/TerraDharitri/drt-go-chain/common/ordering"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	dbLookupFactory "github.com/TerraDharitri/drt-go-chain/dblookupext/factory"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	"github.com/TerraDharitri/drt-go-chain/facade/initial"
+	mainFactory "github.com/TerraDharitri/drt-go-chain/factory"
+	apiComp "github.com/TerraDharitri/drt-go-chain/factory/api"
+	bootstrapComp "github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
+	consensusComp "github.com/TerraDharitri/drt-go-chain/factory/consensus"
+	coreComp "github.com/TerraDharitri/drt-go-chain/factory/core"
+	cryptoComp "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	dataComp "github.com/TerraDharitri/drt-go-chain/factory/data"
+	heartbeatComp "github.com/TerraDharitri/drt-go-chain/factory/heartbeat"
+	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
+	processComp "github.com/TerraDharitri/drt-go-chain/factory/processing"
+	stateComp "github.com/TerraDharitri/drt-go-chain/factory/state"
+	statusComp "github.com/TerraDharitri/drt-go-chain/factory/status"
+	"github.com/TerraDharitri/drt-go-chain/factory/statusCore"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/parsing"
+	"github.com/TerraDharitri/drt-go-chain/health"
+	"github.com/TerraDharitri/drt-go-chain/node/metrics"
+	"github.com/TerraDharitri/drt-go-chain/outport"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/interceptors"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	"github.com/TerraDharitri/drt-go-chain/storage/cache"
+	storageFactory "github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	trieStatistics "github.com/TerraDharitri/drt-go-chain/trie/statistics"
+	"github.com/TerraDharitri/drt-go-chain/update/trigger"
 )
 
 type nextOperationForNode int
@@ -157,7 +157,7 @@ func printEnableEpochs(configs *config.Configs) {
 	log.Debug(readEpochFor("staking v2 epoch"), "epoch", enableEpochs.StakingV2EnableEpoch)
 	log.Debug(readEpochFor("stake"), "epoch", enableEpochs.StakeEnableEpoch)
 	log.Debug(readEpochFor("double key protection"), "epoch", enableEpochs.DoubleKeyProtectionEnableEpoch)
-	log.Debug(readEpochFor("esdt"), "epoch", enableEpochs.ESDTEnableEpoch)
+	log.Debug(readEpochFor("dcdt"), "epoch", enableEpochs.DCDTEnableEpoch)
 	log.Debug(readEpochFor("governance"), "epoch", enableEpochs.GovernanceEnableEpoch)
 	log.Debug(readEpochFor("delegation manager"), "epoch", enableEpochs.DelegationManagerEnableEpoch)
 	log.Debug(readEpochFor("delegation smart contract"), "epoch", enableEpochs.DelegationSmartContractEnableEpoch)
@@ -169,16 +169,16 @@ func printEnableEpochs(configs *config.Configs) {
 	log.Debug(readEpochFor("validator to delegation"), "epoch", enableEpochs.ValidatorToDelegationEnableEpoch)
 	log.Debug(readEpochFor("re-delegate below minimum check"), "epoch", enableEpochs.ReDelegateBelowMinCheckEnableEpoch)
 	log.Debug(readEpochFor("increment SCR nonce in multi transfer"), "epoch", enableEpochs.IncrementSCRNonceInMultiTransferEnableEpoch)
-	log.Debug(readEpochFor("esdt and NFT multi transfer"), "epoch", enableEpochs.ESDTMultiTransferEnableEpoch)
+	log.Debug(readEpochFor("dcdt and NFT multi transfer"), "epoch", enableEpochs.DCDTMultiTransferEnableEpoch)
 	log.Debug(readEpochFor("contract global mint and burn"), "epoch", enableEpochs.GlobalMintBurnDisableEpoch)
-	log.Debug(readEpochFor("contract transfer role"), "epoch", enableEpochs.ESDTTransferRoleEnableEpoch)
+	log.Debug(readEpochFor("contract transfer role"), "epoch", enableEpochs.DCDTTransferRoleEnableEpoch)
 	log.Debug(readEpochFor("compute rewards checkpoint on delegation"), "epoch", enableEpochs.ComputeRewardCheckpointEnableEpoch)
-	log.Debug(readEpochFor("esdt NFT create on multiple shards"), "epoch", enableEpochs.ESDTNFTCreateOnMultiShardEnableEpoch)
+	log.Debug(readEpochFor("dcdt NFT create on multiple shards"), "epoch", enableEpochs.DCDTNFTCreateOnMultiShardEnableEpoch)
 	log.Debug(readEpochFor("SCR size invariant check"), "epoch", enableEpochs.SCRSizeInvariantCheckEnableEpoch)
 	log.Debug(readEpochFor("backward compatibility flag for save key value"), "epoch", enableEpochs.BackwardCompSaveKeyValueEnableEpoch)
-	log.Debug(readEpochFor("meta ESDT, financial SFT"), "epoch", enableEpochs.MetaESDTSetEnableEpoch)
+	log.Debug(readEpochFor("meta DCDT, financial SFT"), "epoch", enableEpochs.MetaDCDTSetEnableEpoch)
 	log.Debug(readEpochFor("add tokens to delegation"), "epoch", enableEpochs.AddTokensToDelegationEnableEpoch)
-	log.Debug(readEpochFor("multi ESDT transfer on callback"), "epoch", enableEpochs.MultiESDTTransferFixOnCallBackOnEnableEpoch)
+	log.Debug(readEpochFor("multi DCDT transfer on callback"), "epoch", enableEpochs.MultiDCDTTransferFixOnCallBackOnEnableEpoch)
 	log.Debug(readEpochFor("optimize gas used in cross mini blocks"), "epoch", enableEpochs.OptimizeGasUsedInCrossMiniBlocksEnableEpoch)
 	log.Debug(readEpochFor("correct first queued"), "epoch", enableEpochs.CorrectFirstQueuedEpoch)
 	log.Debug(readEpochFor("fix out of gas return code"), "epoch", enableEpochs.FixOOGReturnCodeEnableEpoch)
@@ -189,8 +189,8 @@ func printEnableEpochs(configs *config.Configs) {
 	log.Debug(readEpochFor("payable by smart contract"), "epoch", enableEpochs.IsPayableBySCEnableEpoch)
 	log.Debug(readEpochFor("cleanup informative only SCRs"), "epoch", enableEpochs.CleanUpInformativeSCRsEnableEpoch)
 	log.Debug(readEpochFor("storage API cost optimization"), "epoch", enableEpochs.StorageAPICostOptimizationEnableEpoch)
-	log.Debug(readEpochFor("transform to multi shard create on esdt"), "epoch", enableEpochs.TransformToMultiShardCreateEnableEpoch)
-	log.Debug(readEpochFor("esdt: enable epoch for esdt register and set all roles function"), "epoch", enableEpochs.ESDTRegisterAndSetAllRolesEnableEpoch)
+	log.Debug(readEpochFor("transform to multi shard create on dcdt"), "epoch", enableEpochs.TransformToMultiShardCreateEnableEpoch)
+	log.Debug(readEpochFor("dcdt: enable epoch for dcdt register and set all roles function"), "epoch", enableEpochs.DCDTRegisterAndSetAllRolesEnableEpoch)
 	log.Debug(readEpochFor("scheduled mini blocks"), "epoch", enableEpochs.ScheduledMiniBlocksEnableEpoch)
 	log.Debug(readEpochFor("correct jailed not unstaked if empty queue"), "epoch", enableEpochs.CorrectJailedNotUnstakedEmptyQueueEpoch)
 	log.Debug(readEpochFor("do not return old block in blockchain hook"), "epoch", enableEpochs.DoNotReturnOldBlockInBlockchainHookEnableEpoch)
@@ -742,7 +742,7 @@ func (nr *nodeRunner) createApiFacade(
 		return nil, err
 	}
 
-	log.Debug("creating multiversx node facade")
+	log.Debug("creating dharitri node facade")
 
 	flagsConfig := configs.FlagsConfig
 

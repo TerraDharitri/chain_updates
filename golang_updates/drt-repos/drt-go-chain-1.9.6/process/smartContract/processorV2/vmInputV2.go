@@ -3,12 +3,12 @@ package processorV2
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/process"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 func (sc *scProcessor) createVMDeployInput(tx data.TransactionHandler) (*vmcommon.ContractCreateInput, []byte, error) {
@@ -157,7 +157,7 @@ func getAsyncCallGasLockFromTxData(callType vm.CallType, arguments [][]byte) ([]
 }
 
 func separateAsyncArguments(callType vm.CallType, arguments [][]byte) ([][]byte, [][]byte, error) {
-	if callType == vm.DirectCall || callType == vm.ESDTTransferAndExecute {
+	if callType == vm.DirectCall || callType == vm.DCDTTransferAndExecute {
 		return nil, arguments, nil
 	}
 

@@ -5,25 +5,25 @@ import (
 	"io"
 	"sort"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/factory/containers"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	wasmVMHost15 "github.com/multiversx/mx-chain-vm-go/vmhost/hostCore"
-	wasmvm12 "github.com/multiversx/mx-chain-vm-v1_2-go/vmhost"
-	wasmVMHost12 "github.com/multiversx/mx-chain-vm-v1_2-go/vmhost/hostCore"
-	wasmvm13 "github.com/multiversx/mx-chain-vm-v1_3-go/vmhost"
-	wasmVMHost13 "github.com/multiversx/mx-chain-vm-v1_3-go/vmhost/hostCore"
-	wasmvm14 "github.com/multiversx/mx-chain-vm-v1_4-go/vmhost"
-	wasmVMHost14 "github.com/multiversx/mx-chain-vm-v1_4-go/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	wasmvm12 "github.com/TerraDharitri/drt-go-chain-vm-v1/vmhost"
+	wasmVMHost12 "github.com/TerraDharitri/drt-go-chain-vm-v1/vmhost/hostCore"
+	wasmvm13 "github.com/TerraDharitri/drt-go-chain-vm-v2/vmhost"
+	wasmVMHost13 "github.com/TerraDharitri/drt-go-chain-vm-v2/vmhost/hostCore"
+	wasmvm14 "github.com/TerraDharitri/drt-go-chain-vm-v3/vmhost"
+	wasmVMHost14 "github.com/TerraDharitri/drt-go-chain-vm-v3/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	wasmVMHost15 "github.com/TerraDharitri/drt-go-chain-vm/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
 )
 
 var _ process.VirtualMachinesContainerFactory = (*vmContainerFactory)(nil)
@@ -42,14 +42,14 @@ type vmContainerFactory struct {
 	container           process.VirtualMachinesContainer
 	wasmVMVersions      []config.WasmVMVersionByEpoch
 	wasmVMChangeLocker  common.Locker
-	esdtTransferParser  vmcommon.ESDTTransferParser
+	dcdtTransferParser  vmcommon.DCDTTransferParser
 	hasher              hashing.Hasher
 	pubKeyConverter     core.PubkeyConverter
 
 	mapOpcodeAddressIsAllowed map[string]map[string]struct{}
 }
 
-const managedMultiTransferESDTNFTExecuteByUser = "managedMultiTransferESDTNFTExecuteByUser"
+const managedMultiTransferDCDTNFTExecuteByUser = "managedMultiTransferDCDTNFTExecuteByUser"
 
 // ArgVMContainerFactory defines the arguments needed to the new VM factory
 type ArgVMContainerFactory struct {
@@ -59,7 +59,7 @@ type ArgVMContainerFactory struct {
 	EpochNotifier       process.EpochNotifier
 	EnableEpochsHandler common.EnableEpochsHandler
 	WasmVMChangeLocker  common.Locker
-	ESDTTransferParser  vmcommon.ESDTTransferParser
+	DCDTTransferParser  vmcommon.DCDTTransferParser
 	BuiltInFunctions    vmcommon.BuiltInFunctionContainer
 	BlockChainHook      process.BlockChainHookWithAccountsAdapter
 	Hasher              hashing.Hasher
@@ -80,8 +80,8 @@ func NewVMContainerFactory(args ArgVMContainerFactory) (*vmContainerFactory, err
 	if check.IfNilReflect(args.WasmVMChangeLocker) {
 		return nil, process.ErrNilLocker
 	}
-	if check.IfNil(args.ESDTTransferParser) {
-		return nil, process.ErrNilESDTTransferParser
+	if check.IfNil(args.DCDTTransferParser) {
+		return nil, process.ErrNilDCDTTransferParser
 	}
 	if check.IfNil(args.BuiltInFunctions) {
 		return nil, process.ErrNilBuiltInFunction
@@ -109,7 +109,7 @@ func NewVMContainerFactory(args ArgVMContainerFactory) (*vmContainerFactory, err
 		enableEpochsHandler: args.EnableEpochsHandler,
 		container:           nil,
 		wasmVMChangeLocker:  args.WasmVMChangeLocker,
-		esdtTransferParser:  args.ESDTTransferParser,
+		dcdtTransferParser:  args.DCDTTransferParser,
 		hasher:              args.Hasher,
 		pubKeyConverter:     args.PubKeyConverter,
 	}
@@ -137,13 +137,13 @@ func (vmf *vmContainerFactory) createMapOpCodeAddressIsAllowed() error {
 		return process.ErrTransferAndExecuteByUserAddressesAreNil
 	}
 
-	vmf.mapOpcodeAddressIsAllowed[managedMultiTransferESDTNFTExecuteByUser] = make(map[string]struct{})
+	vmf.mapOpcodeAddressIsAllowed[managedMultiTransferDCDTNFTExecuteByUser] = make(map[string]struct{})
 	for _, address := range transferAndExecuteByUserAddresses {
 		decodedAddress, errDecode := vmf.pubKeyConverter.Decode(address)
 		if errDecode != nil {
 			return errDecode
 		}
-		vmf.mapOpcodeAddressIsAllowed[managedMultiTransferESDTNFTExecuteByUser][string(decodedAddress)] = struct{}{}
+		vmf.mapOpcodeAddressIsAllowed[managedMultiTransferDCDTNFTExecuteByUser][string(decodedAddress)] = struct{}{}
 	}
 
 	return nil
@@ -362,7 +362,7 @@ func (vmf *vmContainerFactory) createInProcessWasmVMV14() (vmcommon.VMExecutionH
 		GasSchedule:                         vmf.gasSchedule.LatestGasSchedule(),
 		BuiltInFuncContainer:                vmf.builtinFunctions,
 		ProtectedKeyPrefix:                  []byte(core.ProtectedKeyPrefix),
-		ESDTTransferParser:                  vmf.esdtTransferParser,
+		DCDTTransferParser:                  vmf.dcdtTransferParser,
 		WasmerSIGSEGVPassthrough:            vmf.config.WasmerSIGSEGVPassthrough,
 		TimeOutForSCExecutionInMilliseconds: vmf.config.TimeOutForSCExecutionInMilliseconds,
 		EpochNotifier:                       vmf.epochNotifier,
@@ -380,7 +380,7 @@ func (vmf *vmContainerFactory) createInProcessWasmVMV15() (vmcommon.VMExecutionH
 		GasSchedule:                         vmf.gasSchedule.LatestGasSchedule(),
 		BuiltInFuncContainer:                vmf.builtinFunctions,
 		ProtectedKeyPrefix:                  []byte(core.ProtectedKeyPrefix),
-		ESDTTransferParser:                  vmf.esdtTransferParser,
+		DCDTTransferParser:                  vmf.dcdtTransferParser,
 		WasmerSIGSEGVPassthrough:            vmf.config.WasmerSIGSEGVPassthrough,
 		TimeOutForSCExecutionInMilliseconds: vmf.config.TimeOutForSCExecutionInMilliseconds,
 		EpochNotifier:                       vmf.epochNotifier,

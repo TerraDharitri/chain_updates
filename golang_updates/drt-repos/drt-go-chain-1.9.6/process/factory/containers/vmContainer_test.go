@@ -4,10 +4,10 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory/containers"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
 	"github.com/stretchr/testify/assert"
 )
 

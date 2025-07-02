@@ -1,7 +1,7 @@
 package broadcast
 
 import (
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 // SetMarshalizerMeta sets the unexported marshaller

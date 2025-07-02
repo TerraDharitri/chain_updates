@@ -117,7 +117,7 @@ jobs:
       - name: Checkout mx-chain-go
         uses: actions/checkout@v4
         with:
-          repository: 'multiversx/mx-chain-go'
+          repository: 'dharitri/mx-chain-go'
           ref: ${{ github.head_ref }}
           fetch-depth: 0
           path: 'mx-chain-go'
@@ -135,7 +135,7 @@ jobs:
       - name: Checkout mx-chain-simulator-go
         uses: actions/checkout@v4
         with:
-          repository: 'multiversx/mx-chain-simulator-go'
+          repository: 'dharitri/mx-chain-simulator-go'
           ref: ${{ env.MX_CHAIN_SIMULATOR_TARGET_BRANCH || github.event.pull_request.base.ref }}
           path: 'mx-chain-simulator-go'
 
@@ -235,7 +235,7 @@ jobs:
       - name: Checkout mx-chain-testing-suite
         uses: actions/checkout@v4
         with:
-          repository: 'multiversx/mx-chain-testing-suite'
+          repository: 'dharitri/mx-chain-testing-suite'
           path: 'mx-chain-testing-suite'
           fetch-depth: 0
           ref: ${{ env.MX_CHAIN_TESTING_SUITE_TARGET_BRANCH || github.event.pull_request.base.ref }}
@@ -301,7 +301,7 @@ jobs:
             git commit -m "Deploy Test Report at $BRANCH_NAME/$TIMESTAMP"
 
             # Set remote URL with authentication token
-            git remote set-url origin https://x-access-token:${{ secrets.MVX_TESTER_GH_TOKEN }}@github.com/multiversx/mx-chain-testing-suite.git
+            git remote set-url origin https://x-access-token:${{ secrets.MVX_TESTER_GH_TOKEN }}@github.com/TerraDharitri/mx-chain-testing-suite.git
 
             # Push changes to the remote 'gh-pages' branch
             git push --force origin gh-pages
@@ -364,9 +364,9 @@ jobs:
             let message;
 
             if (timestamp && branchName && timestamp !== "" && branchName !== "") {
-              const reportUrl = `https://multiversx.github.io/mx-chain-testing-suite/reports/${branchName}/${timestamp}/index.html`;
+              const reportUrl = `https://dharitri.github.io/mx-chain-testing-suite/reports/${branchName}/${timestamp}/index.html`;
               message = `
-              📊 **MultiversX Automated Test Report:** [View Report](${reportUrl})
+              📊 **Dharitri Automated Test Report:** [View Report](${reportUrl})
             
               🔄 **Build Details:**
               - **mx-chain-go Commit Hash:** \`${commitHash}\`
@@ -378,7 +378,7 @@ jobs:
               🚀 **Environment Variables:**
             - **TIMESTAMP:** \`${timestamp}\`
             - **PYTEST_EXIT_CODE:** \`${exitCode}\`
-              🎉 **MultiversX CI/CD Workflow Complete!**
+              🎉 **Dharitri CI/CD Workflow Complete!**
               `;
             } else {
               message = "⚠️ No report was generated due to an error or cancellation of the process.\nPlease checkout gh action logs for details";

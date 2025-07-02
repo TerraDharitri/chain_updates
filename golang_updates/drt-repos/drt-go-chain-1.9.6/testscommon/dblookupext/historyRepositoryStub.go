@@ -3,10 +3,10 @@ package dblookupext
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
 )
 
 // HistoryRepositoryStub -

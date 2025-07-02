@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 	"github.com/stretchr/testify/assert"
 )
 

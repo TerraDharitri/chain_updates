@@ -3,8 +3,8 @@ package node
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 )
 
 type getRegisteredNftsFilter struct {

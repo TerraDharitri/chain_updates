@@ -6,21 +6,21 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/errChan"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/parsers"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/errChan"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/parsers"
 	"github.com/stretchr/testify/require"
 )
 
-func TestAsyncESDTCallShouldWork(t *testing.T) {
+func TestAsyncDCDTCallShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -31,33 +31,33 @@ func TestAsyncESDTCallShouldWork(t *testing.T) {
 	require.Nil(t, err)
 	defer testContext.Close()
 
-	localEgldBalance := big.NewInt(100000000)
+	localRewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("12345678901234567890123456789010")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localEgldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localRewaBalance)
 
-	// create an address with ESDT token
+	// create an address with DCDT token
 	sndAddr := []byte("12345678901234567890123456789012")
 
-	localEsdtBalance := big.NewInt(100000000)
+	localDcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, localEgldBalance, token, 0, localEsdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, localRewaBalance, token, 0, localDcdtBalance, uint32(core.Fungible))
 
 	// deploy 2 contracts
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(50000)
 
 	argsSecond := [][]byte{[]byte(hex.EncodeToString(token))}
-	secondSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
+	secondSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
 
 	args := [][]byte{[]byte(hex.EncodeToString(token)), []byte(hex.EncodeToString(secondSCAddress))}
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	firstSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
+	firstSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
 
 	testContext.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 	utils.CleanAccumulatedIntermediateTransactions(t, testContext)
 
 	gasLimit := uint64(500000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString([]byte("transferToSecondContractHalf")))
 
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
@@ -67,8 +67,8 @@ func TestAsyncESDTCallShouldWork(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, firstSCAddress, token, big.NewInt(2500))
-	utils.CheckESDTBalance(t, testContext, secondSCAddress, token, big.NewInt(2500))
+	utils.CheckDCDTBalance(t, testContext, firstSCAddress, token, big.NewInt(2500))
+	utils.CheckDCDTBalance(t, testContext, secondSCAddress, token, big.NewInt(2500))
 
 	expectedSenderBalance := big.NewInt(98223470)
 	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedSenderBalance)
@@ -78,7 +78,7 @@ func TestAsyncESDTCallShouldWork(t *testing.T) {
 	require.Equal(t, expectedAccumulatedFees, accumulatedFees)
 }
 
-func TestAsyncESDTCallSecondScRefusesPayment(t *testing.T) {
+func TestAsyncDCDTCallSecondScRefusesPayment(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -87,34 +87,34 @@ func TestAsyncESDTCallSecondScRefusesPayment(t *testing.T) {
 	require.Nil(t, err)
 	defer testContext.Close()
 
-	localEgldBalance := big.NewInt(100000000)
+	localRewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("12345678901234567890123456789010")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localEgldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localRewaBalance)
 
-	// create an address with ESDT token
+	// create an address with DCDT token
 	sndAddr := []byte("12345678901234567890123456789012")
 
-	localEsdtBalance := big.NewInt(100000000)
+	localDcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, localEgldBalance, token, 0, localEsdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, localRewaBalance, token, 0, localDcdtBalance, uint32(core.Fungible))
 
 	// deploy 2 contracts
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(50000)
 
 	argsSecond := [][]byte{[]byte(hex.EncodeToString(token))}
-	secondSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
+	secondSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
 
 	args := [][]byte{[]byte(hex.EncodeToString(token)), []byte(hex.EncodeToString(secondSCAddress))}
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	firstSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
+	firstSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
 
 	testContext.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 	utils.CleanAccumulatedIntermediateTransactions(t, testContext)
 	require.Equal(t, big.NewInt(0), testContext.TxFeeHandler.GetAccumulatedFees())
 
 	gasLimit := uint64(500000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString([]byte("transferToSecondContractRejected")))
 
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
@@ -124,8 +124,8 @@ func TestAsyncESDTCallSecondScRefusesPayment(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, firstSCAddress, token, big.NewInt(5000))
-	utils.CheckESDTBalance(t, testContext, secondSCAddress, token, big.NewInt(0))
+	utils.CheckDCDTBalance(t, testContext, firstSCAddress, token, big.NewInt(5000))
+	utils.CheckDCDTBalance(t, testContext, secondSCAddress, token, big.NewInt(0))
 
 	expectedSenderBalance := big.NewInt(95999990)
 	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedSenderBalance)
@@ -135,7 +135,7 @@ func TestAsyncESDTCallSecondScRefusesPayment(t *testing.T) {
 	require.Equal(t, expectedAccumulatedFees, accumulatedFees)
 }
 
-func TestAsyncESDTCallsOutOfGas(t *testing.T) {
+func TestAsyncDCDTCallsOutOfGas(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -144,33 +144,33 @@ func TestAsyncESDTCallsOutOfGas(t *testing.T) {
 	require.Nil(t, err)
 	defer testContext.Close()
 
-	localEgldBalance := big.NewInt(100000000)
+	localRewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("12345678901234567890123456789010")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localEgldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localRewaBalance)
 
-	// create an address with ESDT token
+	// create an address with DCDT token
 	sndAddr := []byte("12345678901234567890123456789012")
 
-	localEsdtBalance := big.NewInt(100000000)
+	localDcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, localEgldBalance, token, 0, localEsdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, localRewaBalance, token, 0, localDcdtBalance, uint32(core.Fungible))
 
 	// deploy 2 contracts
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(50000)
 
 	argsSecond := [][]byte{[]byte(hex.EncodeToString(token))}
-	secondSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
+	secondSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/second-contract.wasm", ownerAccount, gasPrice, deployGasLimit, argsSecond, big.NewInt(0))
 
 	args := [][]byte{[]byte(hex.EncodeToString(token)), []byte(hex.EncodeToString(secondSCAddress))}
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	firstSCAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
+	firstSCAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/first-contract.wasm", ownerAccount, gasPrice, deployGasLimit, args, big.NewInt(0))
 
 	testContext.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 	utils.CleanAccumulatedIntermediateTransactions(t, testContext)
 
 	gasLimit := uint64(2000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString([]byte("transferToSecondContractRejected")))
 
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
@@ -180,8 +180,8 @@ func TestAsyncESDTCallsOutOfGas(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, firstSCAddress, token, big.NewInt(0))
-	utils.CheckESDTBalance(t, testContext, secondSCAddress, token, big.NewInt(0))
+	utils.CheckDCDTBalance(t, testContext, firstSCAddress, token, big.NewInt(0))
+	utils.CheckDCDTBalance(t, testContext, secondSCAddress, token, big.NewInt(0))
 
 	expectedSenderBalance := big.NewInt(99980000)
 	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedSenderBalance)
@@ -208,8 +208,8 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 	sftBalance := big.NewInt(1000)
 	halfBalance := big.NewInt(500)
 
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
-	utils.CheckESDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
+	utils.CheckDCDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(1000000)
@@ -218,7 +218,7 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 	// deploy forwarder
 	forwarderAddr := utils.DoDeploySecond(t,
 		testContext,
-		"../esdt/testdata/forwarder-raw-0.34.0.wasm",
+		"../dcdt/testdata/forwarder-raw-0.34.0.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -230,7 +230,7 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
 	vaultAddr := utils.DoDeploySecond(t,
 		testContext,
-		"../esdt/testdata/vault-0.34.2.wasm",
+		"../dcdt/testdata/vault-0.34.2.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -240,7 +240,7 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 
 	// send the tokens to vault
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	tx := utils.CreateESDTNFTTransferTx(
+	tx := utils.CreateDCDTNFTTransferTx(
 		ownerAccount.GetNonce(),
 		ownerAddr,
 		vaultAddr,
@@ -258,7 +258,7 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTNFTBalance(t, testContext, vaultAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CheckDCDTNFTBalance(t, testContext, vaultAddr, sftTokenID, sftNonce, sftBalance)
 
 	lenSCRs := len(testContext.GetIntermediateTransactions(t))
 	// receive tokens from vault to forwarder on callback
@@ -287,7 +287,7 @@ func TestAsyncMultiTransferOnCallback(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CheckDCDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, sftNonce, sftBalance)
 }
 
 func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
@@ -305,8 +305,8 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	sftBalance := big.NewInt(1000)
 	halfBalance := big.NewInt(500)
 
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
-	utils.CheckESDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
+	utils.CheckDCDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(1000000)
@@ -315,7 +315,7 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	// deploy forwarder
 	forwarderAddr := utils.DoDeploySecond(t,
 		testContext,
-		"../esdt/testdata/forwarder-raw-0.34.0.wasm",
+		"../dcdt/testdata/forwarder-raw-0.34.0.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -327,7 +327,7 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
 	vaultAddr := utils.DoDeploySecond(t,
 		testContext,
-		"../esdt/testdata/vault-0.34.2.wasm",
+		"../dcdt/testdata/vault-0.34.2.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -336,17 +336,17 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	)
 
 	// set vault roles
-	utils.SetESDTRoles(t, testContext.Accounts, vaultAddr, sftTokenID, [][]byte{
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTBurn),
+	utils.SetDCDTRoles(t, testContext.Accounts, vaultAddr, sftTokenID, [][]byte{
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTBurn),
 	})
 	// set lastNonce for vault
 	utils.SetLastNFTNonce(t, testContext.Accounts, vaultAddr, sftTokenID, 1)
 
 	// send the tokens to forwarder
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	tx := utils.CreateESDTNFTTransferTx(
+	tx := utils.CreateDCDTNFTTransferTx(
 		ownerAccount.GetNonce(),
 		ownerAddr,
 		forwarderAddr,
@@ -364,7 +364,7 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CheckDCDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, sftNonce, sftBalance)
 
 	// send tokens to vault, vault burns and creates new ones, sending them on forwarder's callback
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
@@ -390,8 +390,8 @@ func TestAsyncMultiTransferOnCallAndOnCallback(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, 2, halfBalance)
-	utils.CheckESDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, 3, halfBalance)
+	utils.CheckDCDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, 2, halfBalance)
+	utils.CheckDCDTNFTBalance(t, testContext, forwarderAddr, sftTokenID, 3, halfBalance)
 }
 
 func TestSendNFTToContractWith0Function(t *testing.T) {
@@ -408,8 +408,8 @@ func TestSendNFTToContractWith0Function(t *testing.T) {
 	sftNonce := uint64(1)
 	sftBalance := big.NewInt(1000)
 
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
-	utils.CheckESDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
+	utils.CheckDCDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(1000000)
@@ -417,7 +417,7 @@ func TestSendNFTToContractWith0Function(t *testing.T) {
 
 	vaultAddr := utils.DoDeploySecond(t,
 		testContext,
-		"../esdt/testdata/vault-0.34.0.wasm",
+		"../dcdt/testdata/vault-0.34.0.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -427,7 +427,7 @@ func TestSendNFTToContractWith0Function(t *testing.T) {
 
 	// send the tokens to vault
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	tx := utils.CreateESDTNFTTransferTx(
+	tx := utils.CreateDCDTNFTTransferTx(
 		ownerAccount.GetNonce(),
 		ownerAddr,
 		vaultAddr,
@@ -461,8 +461,8 @@ func TestSendNFTToContractWith0FunctionNonPayable(t *testing.T) {
 	sftNonce := uint64(1)
 	sftBalance := big.NewInt(1000)
 
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
-	utils.CheckESDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, ownerAddr, big.NewInt(1000000000), sftTokenID, sftNonce, sftBalance, uint32(core.SemiFungible))
+	utils.CheckDCDTNFTBalance(t, testContext, ownerAddr, sftTokenID, sftNonce, sftBalance)
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(1000000)
@@ -470,7 +470,7 @@ func TestSendNFTToContractWith0FunctionNonPayable(t *testing.T) {
 
 	vaultAddr := utils.DoDeployWithMetadata(t,
 		testContext,
-		"../esdt/testdata/vault-0.34.0.wasm",
+		"../dcdt/testdata/vault-0.34.0.wasm",
 		ownerAccount,
 		gasPrice,
 		deployGasLimit,
@@ -481,7 +481,7 @@ func TestSendNFTToContractWith0FunctionNonPayable(t *testing.T) {
 
 	// send the tokens to vault
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
-	tx := utils.CreateESDTNFTTransferTx(
+	tx := utils.CreateDCDTNFTTransferTx(
 		ownerAccount.GetNonce(),
 		ownerAddr,
 		vaultAddr,
@@ -501,7 +501,7 @@ func TestSendNFTToContractWith0FunctionNonPayable(t *testing.T) {
 	require.Nil(t, err)
 }
 
-func TestAsyncESDTCallForThirdContractShouldWork(t *testing.T) {
+func TestAsyncDCDTCallForThirdContractShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -513,17 +513,17 @@ func TestAsyncESDTCallForThirdContractShouldWork(t *testing.T) {
 	function1 := []byte("add_queued_call")
 	function2 := []byte("forward_queued_calls")
 
-	localEgldBalance := big.NewInt(100000000)
+	localRewaBalance := big.NewInt(100000000)
 	ownerAddr := []byte("owner-78901234567890123456789000")
-	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localEgldBalance)
+	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, localRewaBalance)
 
-	// create an address with ESDT token
+	// create an address with DCDT token
 	sndAddr := []byte("sender-8901234567890123456789000")
 
-	localEsdtBalance := big.NewInt(100000000)
-	esdtTransferValue := big.NewInt(5000)
+	localDcdtBalance := big.NewInt(100000000)
+	dcdtTransferValue := big.NewInt(5000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, localEgldBalance, token, 0, localEsdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, localRewaBalance, token, 0, localDcdtBalance, uint32(core.Fungible))
 
 	// deploy contract
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
@@ -535,18 +535,18 @@ func TestAsyncESDTCallForThirdContractShouldWork(t *testing.T) {
 
 	// execute first call
 	gasLimit := uint64(500000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, scAddress, token, esdtTransferValue, gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, scAddress, token, dcdtTransferValue, gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString(function1) + "@01@" + hex.EncodeToString(scAddress) + "@" + hex.EncodeToString(function2))
 
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.UserError, retCode)
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, localEsdtBalance)
-	utils.CheckESDTBalance(t, testContext, scAddress, token, big.NewInt(0))
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, localDcdtBalance)
+	utils.CheckDCDTBalance(t, testContext, scAddress, token, big.NewInt(0))
 
 	// execute second call
-	tx = utils.CreateESDTTransferTx(1, sndAddr, scAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx = utils.CreateDCDTTransferTx(1, sndAddr, scAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString(function2))
 
 	retCode, err = testContext.TxProcessor.ProcessTransaction(tx)
@@ -556,8 +556,8 @@ func TestAsyncESDTCallForThirdContractShouldWork(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, big.NewInt(0).Sub(localEsdtBalance, esdtTransferValue))
-	utils.CheckESDTBalance(t, testContext, scAddress, token, esdtTransferValue)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, big.NewInt(0).Sub(localDcdtBalance, dcdtTransferValue))
+	utils.CheckDCDTBalance(t, testContext, scAddress, token, dcdtTransferValue)
 
 	// try to recreate the data trie
 	scAccount, err := testContext.Accounts.LoadAccount(scAddress)

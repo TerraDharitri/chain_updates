@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/database"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/database"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -3,9 +3,9 @@ package trie_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/testscommon/storageManager"
-	"github.com/multiversx/mx-chain-go/trie"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storageManager"
+	"github.com/TerraDharitri/drt-go-chain/trie"
 	"github.com/stretchr/testify/assert"
 )
 

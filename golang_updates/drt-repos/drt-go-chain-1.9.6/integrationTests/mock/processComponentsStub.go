@@ -1,17 +1,17 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/update"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/update"
 )
 
 // ProcessComponentsStub -
@@ -58,7 +58,7 @@ type ProcessComponentsStub struct {
 	HardforkTriggerField                 factory.HardforkTrigger
 	ProcessedMiniBlocksTrackerInternal   process.ProcessedMiniBlocksTracker
 	ReceiptsRepositoryInternal           factory.ReceiptsRepository
-	ESDTDataStorageHandlerForAPIInternal vmcommon.ESDTNFTStorageHandler
+	DCDTDataStorageHandlerForAPIInternal vmcommon.DCDTNFTStorageHandler
 	SentSignaturesTrackerInternal        process.SentSignaturesTracker
 	EpochSystemSCProcessorInternal       process.EpochStartSystemSCProcessor
 }
@@ -287,9 +287,9 @@ func (pcs *ProcessComponentsStub) ReceiptsRepository() factory.ReceiptsRepositor
 	return pcs.ReceiptsRepositoryInternal
 }
 
-// ESDTDataStorageHandlerForAPI -
-func (pcs *ProcessComponentsStub) ESDTDataStorageHandlerForAPI() vmcommon.ESDTNFTStorageHandler {
-	return pcs.ESDTDataStorageHandlerForAPIInternal
+// DCDTDataStorageHandlerForAPI -
+func (pcs *ProcessComponentsStub) DCDTDataStorageHandlerForAPI() vmcommon.DCDTNFTStorageHandler {
+	return pcs.DCDTDataStorageHandlerForAPIInternal
 }
 
 // SentSignaturesTracker -

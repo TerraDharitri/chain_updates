@@ -64,8 +64,8 @@ var ErrDataFieldTooBig = errors.New("data field is too big")
 // ErrNilNodeStopChannel signals that a nil channel for node process stop has been provided
 var ErrNilNodeStopChannel = errors.New("nil node stop channel")
 
-// ErrNilESDTNFTStorageHandler signals that a nil esdt and nft storage handler has been provided
-var ErrNilESDTNFTStorageHandler = errors.New("nil esdt and nft storage handler")
+// ErrNilDCDTNFTStorageHandler signals that a nil dcdt and nft storage handler has been provided
+var ErrNilDCDTNFTStorageHandler = errors.New("nil dcdt and nft storage handler")
 
 // ErrNilQueryHandler signals that a nil query handler has been provided
 var ErrNilQueryHandler = errors.New("nil query handler")
@@ -118,8 +118,8 @@ var ErrNodeCloseFailed = errors.New("node closing failed ")
 // ErrDifferentSenderShardId signals that a different shard ID was detected between the sender shard ID and the current node shard ID
 var ErrDifferentSenderShardId = errors.New("different shard ID between the transaction sender shard ID and current node shard ID")
 
-// ErrInvalidESDTRole signals that an invalid ESDT role has been provided
-var ErrInvalidESDTRole = errors.New("invalid ESDT role")
+// ErrInvalidDCDTRole signals that an invalid DCDT role has been provided
+var ErrInvalidDCDTRole = errors.New("invalid DCDT role")
 
 // ErrMetachainOnlyEndpoint signals that an endpoint was called, but it is only available for metachain nodes
 var ErrMetachainOnlyEndpoint = errors.New("the endpoint is only available on metachain nodes")

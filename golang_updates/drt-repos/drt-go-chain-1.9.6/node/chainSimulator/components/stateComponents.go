@@ -3,13 +3,13 @@ package components
 import (
 	"io"
 
-	chainData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/factory"
-	factoryState "github.com/multiversx/mx-chain-go/factory/state"
-	"github.com/multiversx/mx-chain-go/state"
+	chainData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	factoryState "github.com/TerraDharitri/drt-go-chain/factory/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // ArgsStateComponents will hold the components needed for state components

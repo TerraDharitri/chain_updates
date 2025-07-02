@@ -3,9 +3,9 @@ package lastSnapshotMarker
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/storage/storageEpochChange"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageEpochChange"
 )
 
 var log = logger.GetOrCreate("state/lastSnapshotMarker")

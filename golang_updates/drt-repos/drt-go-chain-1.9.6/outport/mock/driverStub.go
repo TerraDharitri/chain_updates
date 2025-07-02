@@ -1,9 +1,9 @@
 package mock
 
 import (
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
 )
 
 // DriverStub -

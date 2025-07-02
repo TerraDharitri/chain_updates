@@ -3,7 +3,7 @@ package mock
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 type networkShardingCollectorMock struct {

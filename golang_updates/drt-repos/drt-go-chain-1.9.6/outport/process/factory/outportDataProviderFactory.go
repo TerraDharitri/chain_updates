@@ -1,23 +1,23 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/outport"
-	"github.com/multiversx/mx-chain-go/outport/process"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts"
-	"github.com/multiversx/mx-chain-go/outport/process/disabled"
-	"github.com/multiversx/mx-chain-go/outport/process/transactionsfee"
-	processTxs "github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/storage"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/outport"
+	"github.com/TerraDharitri/drt-go-chain/outport/process"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/transactionsfee"
+	processTxs "github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 // ArgOutportDataProviderFactory holds the arguments needed for creating a new instance of outport.DataProviderOutport
@@ -27,7 +27,7 @@ type ArgOutportDataProviderFactory struct {
 	AddressConverter       core.PubkeyConverter
 	AccountsDB             state.AccountsAdapter
 	Marshaller             marshal.Marshalizer
-	EsdtDataStorageHandler vmcommon.ESDTNFTStorageHandler
+	DcdtDataStorageHandler vmcommon.DCDTNFTStorageHandler
 	TransactionsStorer     storage.Storer
 	ShardCoordinator       sharding.Coordinator
 	TxCoordinator          processTxs.TransactionCoordinator
@@ -56,7 +56,7 @@ func CreateOutportDataProvider(arg ArgOutportDataProviderFactory) (outport.DataP
 		ShardCoordinator:       arg.ShardCoordinator,
 		AddressConverter:       arg.AddressConverter,
 		AccountsDB:             arg.AccountsDB,
-		EsdtDataStorageHandler: arg.EsdtDataStorageHandler,
+		DcdtDataStorageHandler: arg.DcdtDataStorageHandler,
 	})
 	if err != nil {
 		return nil, err

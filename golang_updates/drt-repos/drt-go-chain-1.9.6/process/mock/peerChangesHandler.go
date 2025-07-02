@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-core-go/data/block"
+import "github.com/TerraDharitri/drt-go-chain-core/data/block"
 
 // PeerChangesHandler -
 type PeerChangesHandler struct {

@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/testscommon/txcachemocks"
-	"github.com/multiversx/mx-chain-storage-go/common"
+	"github.com/TerraDharitri/drt-go-chain-storage/common"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txcachemocks"
 	"github.com/stretchr/testify/assert"
 )
 

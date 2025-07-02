@@ -3,18 +3,18 @@ package disabled
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // SimpleNFTStorage implements the SimpleNFTStorage interface but does nothing as it is disabled
 type SimpleNFTStorage struct {
 }
 
-// GetESDTNFTTokenOnDestination is disabled
-func (s *SimpleNFTStorage) GetESDTNFTTokenOnDestination(_ vmcommon.UserAccountHandler, _ []byte, _ uint64) (*esdt.ESDigitalToken, bool, error) {
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, true, nil
+// GetDCDTNFTTokenOnDestination is disabled
+func (s *SimpleNFTStorage) GetDCDTNFTTokenOnDestination(_ vmcommon.UserAccountHandler, _ []byte, _ uint64) (*dcdt.DCDigitalToken, bool, error) {
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, true, nil
 }
 
 // SaveNFTMetaData is disabled

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	indexerFactory "github.com/multiversx/mx-chain-es-indexer-go/process/factory"
-	"github.com/multiversx/mx-chain-go/outport"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	indexerFactory "github.com/TerraDharitri/drt-go-chain-es-indexer/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/outport"
 )
 
 // OutportFactoryArgs holds the factory arguments of different outport drivers

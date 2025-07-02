@@ -1,7 +1,7 @@
 package blockAPI
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
 )
 
 func filterOutDuplicatedMiniblocks(miniblocks []*api.MiniBlock) []*api.MiniBlock {

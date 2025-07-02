@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/beevik/ntp"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var _ SyncTimer = (*syncTime)(nil)

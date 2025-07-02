@@ -3,12 +3,12 @@ package p2pQuota_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/statusHandler"
-	"github.com/multiversx/mx-chain-go/statusHandler/p2pQuota"
-	statusHandlerMock "github.com/multiversx/mx-chain-go/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler/p2pQuota"
+	statusHandlerMock "github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
 	"github.com/stretchr/testify/assert"
 )
 

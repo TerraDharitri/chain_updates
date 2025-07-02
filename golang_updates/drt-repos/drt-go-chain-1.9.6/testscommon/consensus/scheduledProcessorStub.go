@@ -3,7 +3,7 @@ package consensus
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // ScheduledProcessorStub -

@@ -1,6 +1,6 @@
 package containers
 
-import "github.com/multiversx/mx-chain-core-go/core/container"
+import "github.com/TerraDharitri/drt-go-chain-core/core/container"
 
 // Insert -
 func (rc *resolversContainer) Insert(key string, value interface{}) bool {

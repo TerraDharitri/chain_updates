@@ -1,6 +1,6 @@
 package components
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // SyncedBroadcastNetworkHandler defines the synced network interface
 type SyncedBroadcastNetworkHandler interface {

@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	stats "github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/common/statistics/disabled"
-	"github.com/multiversx/mx-chain-go/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	stats "github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics/disabled"
+	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/stretchr/testify/assert"
 )
 

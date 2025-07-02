@@ -3,13 +3,13 @@ package state_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/errors"
-	stateComp "github.com/multiversx/mx-chain-go/factory/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
-	"github.com/multiversx/mx-chain-go/testscommon/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain/errors"
+	stateComp "github.com/TerraDharitri/drt-go-chain/factory/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/factory"
 	"github.com/stretchr/testify/require"
 )
 

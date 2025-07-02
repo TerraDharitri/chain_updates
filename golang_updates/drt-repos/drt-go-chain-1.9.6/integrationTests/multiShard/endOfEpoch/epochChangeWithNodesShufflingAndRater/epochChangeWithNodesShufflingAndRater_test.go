@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/multiShard/endOfEpoch"
-	"github.com/multiversx/mx-chain-go/process/rating"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/multiShard/endOfEpoch"
+	"github.com/TerraDharitri/drt-go-chain/process/rating"
 )
 
 func TestEpochChangeWithNodesShufflingAndRater(t *testing.T) {

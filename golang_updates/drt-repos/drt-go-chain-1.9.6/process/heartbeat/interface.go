@@ -1,8 +1,8 @@
 package heartbeat
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // NodesCoordinator defines the behavior of a struct able to do validator selection

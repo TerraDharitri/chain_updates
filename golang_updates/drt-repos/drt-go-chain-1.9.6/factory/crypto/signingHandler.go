@@ -3,10 +3,10 @@ package crypto
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	cryptoCommon "github.com/multiversx/mx-chain-go/common/crypto"
-	"github.com/multiversx/mx-chain-go/consensus"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	cryptoCommon "github.com/TerraDharitri/drt-go-chain/common/crypto"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
 )
 
 // ArgsSigningHandler defines the arguments needed to create a new signing handler component

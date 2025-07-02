@@ -1,7 +1,7 @@
 package storageunit
 
 import (
-	"github.com/multiversx/mx-chain-storage-go/common"
+	"github.com/TerraDharitri/drt-go-chain-storage/common"
 )
 
 const (

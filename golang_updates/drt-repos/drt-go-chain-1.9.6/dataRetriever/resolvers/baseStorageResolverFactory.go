@@ -1,6 +1,6 @@
 package resolvers
 
-import "github.com/multiversx/mx-chain-go/storage"
+import "github.com/TerraDharitri/drt-go-chain/storage"
 
 func createBaseStorageResolver(
 	storer storage.Storer,

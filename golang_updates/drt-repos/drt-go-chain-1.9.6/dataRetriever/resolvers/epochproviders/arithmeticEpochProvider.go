@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 // deltaEpochActive represents how many epochs behind the current computed epoch are to be considered "active" and

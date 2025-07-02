@@ -3,7 +3,7 @@ package block
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 type lastNotarizedHeaderInfo struct {

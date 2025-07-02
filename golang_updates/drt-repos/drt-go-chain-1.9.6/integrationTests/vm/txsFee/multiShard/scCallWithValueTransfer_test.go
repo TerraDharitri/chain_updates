@@ -5,11 +5,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -53,7 +53,7 @@ func testDeployContractAndTransferValue(t *testing.T, scProcessorV2EnabledEpoch 
 	testContextDst.TxsLogsProcessor.Clean()
 
 	receiverHex := hex.EncodeToString(scAddressShardDestination)
-	tx := vm.CreateTransaction(1, big.NewInt(1000000), ownerAddress, scAddrShardSource, 10, 20000, []byte("send_egld@"+receiverHex))
+	tx := vm.CreateTransaction(1, big.NewInt(1000000), ownerAddress, scAddrShardSource, 10, 20000, []byte("send_rewa@"+receiverHex))
 	retCode, err := testContextSource.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)

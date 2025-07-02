@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	// esdtTickerNumRandChars represents the number of hex-encoded random characters sequence of a ticker
-	esdtTickerNumRandChars = 6
+	// dcdtTickerNumRandChars represents the number of hex-encoded random characters sequence of a ticker
+	dcdtTickerNumRandChars = 6
 
 	// separatorChar represents the character that separated the token ticker by the random sequence
 	separatorChar = "-"
@@ -47,12 +47,12 @@ func ExtractTokenIDAndNonceFromTokenStorageKey(tokenKey []byte) ([]byte, uint64)
 		return tokenKey, 0
 	}
 
-	if len(randomSequencePlusNonce) < esdtTickerNumRandChars+1 {
+	if len(randomSequencePlusNonce) < dcdtTickerNumRandChars+1 {
 		return tokenKey, 0
 	}
 
 	// ALC-1q2w3eX - X is the nonce
-	nonceStr := randomSequencePlusNonce[esdtTickerNumRandChars:]
+	nonceStr := randomSequencePlusNonce[dcdtTickerNumRandChars:]
 	nonceBigInt := big.NewInt(0).SetBytes([]byte(nonceStr))
 
 	numCharsSinceNonce := len(token) - len(nonceStr)

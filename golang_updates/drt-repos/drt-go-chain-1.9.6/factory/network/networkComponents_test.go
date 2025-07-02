@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	networkComp "github.com/multiversx/mx-chain-go/factory/network"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/require"
 )
 

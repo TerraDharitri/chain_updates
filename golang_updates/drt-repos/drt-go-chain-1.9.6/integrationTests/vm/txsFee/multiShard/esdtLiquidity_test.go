@@ -5,15 +5,15 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon/integrationtests"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/integrationtests"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 	"github.com/stretchr/testify/require"
 )
 
@@ -35,12 +35,12 @@ func TestSystemAccountLiquidityAfterCrossShardTransferAndBurn(t *testing.T) {
 	_, _ = vm.CreateAccount(sh1Context.Accounts, sh1Addr, 0, big.NewInt(1000000000))
 
 	// create the nft and ensure that it exists on the account's trie and the liquidity is set on the system account
-	utils.CreateAccountWithESDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID, 1, big.NewInt(1), uint32(core.NonFungible))
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
+	utils.CreateAccountWithDCDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID, 1, big.NewInt(1), uint32(core.NonFungible))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
 
 	sh0Accnt, _ := sh0Context.Accounts.LoadAccount(sh0Addr)
-	crossShardTransferTx := utils.CreateESDTNFTTransferTx(sh0Accnt.GetNonce(), sh0Addr, sh1Addr, tokenID, 1, big.NewInt(1), 10, 1000000, "")
+	crossShardTransferTx := utils.CreateDCDTNFTTransferTx(sh0Accnt.GetNonce(), sh0Addr, sh1Addr, tokenID, 1, big.NewInt(1), 10, 1000000, "")
 	retCode, err := sh0Context.TxProcessor.ProcessTransaction(crossShardTransferTx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.NoError(t, err)
@@ -49,24 +49,24 @@ func TestSystemAccountLiquidityAfterCrossShardTransferAndBurn(t *testing.T) {
 
 	// check the balances after the transfer, as well as the liquidity
 	utils.ProcessSCRResult(t, sh1Context, scrs[0], vmcommon.Ok, nil)
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, sh1Addr, tokenID, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, sh1Addr, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
 
 	// set roles and burn the NFT on shard 1
-	utils.SetESDTRoles(t, sh1Context.Accounts, sh1Addr, tokenID, [][]byte{[]byte(core.ESDTRoleNFTBurn)})
+	utils.SetDCDTRoles(t, sh1Context.Accounts, sh1Addr, tokenID, [][]byte{[]byte(core.DCDTRoleNFTBurn)})
 
-	tx := utils.CreateESDTNFTBurnTx(0, sh1Addr, sh1Addr, tokenID, 1, big.NewInt(1), 10, 100000)
+	tx := utils.CreateDCDTNFTBurnTx(0, sh1Addr, sh1Addr, tokenID, 1, big.NewInt(1), 10, 100000)
 	retCode, err = sh1Context.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
 
 	// ensure that the token is burnt from all addresses and system account liquidity
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, sh1Addr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, sh1Addr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh1Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
 }
 
 func TestSystemAccountLiquidityAfterNFTWipe(t *testing.T) {
@@ -86,11 +86,11 @@ func TestSystemAccountLiquidityAfterNFTWipe(t *testing.T) {
 	defer metaContext.Close()
 
 	// create the nft and ensure that it exists on the account's trie and the liquidity is set on the system account
-	utils.CreateAccountWithESDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(10000000000000), tokenID, 1, big.NewInt(1), uint32(core.NonFungible))
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
+	utils.CreateAccountWithDCDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(10000000000000), tokenID, 1, big.NewInt(1), uint32(core.NonFungible))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
 
-	addTokenInMeta(t, metaContext, tokenID, &systemSmartContracts.ESDTDataV2{
+	addTokenInMeta(t, metaContext, tokenID, &systemSmartContracts.DCDTDataV2{
 		OwnerAddress: sh0Addr,
 		CanFreeze:    true,
 		CanWipe:      true,
@@ -115,8 +115,8 @@ func TestSystemAccountLiquidityAfterNFTWipe(t *testing.T) {
 
 	// ensure that there is no liquidity left in the account or the system account
 
-	checkEsdtBalanceInAccountStorage(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
+	checkDcdtBalanceInAccountStorage(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
 }
 
 func TestSystemAccountLiquidityAfterSFTWipe(t *testing.T) {
@@ -136,11 +136,11 @@ func TestSystemAccountLiquidityAfterSFTWipe(t *testing.T) {
 	defer metaContext.Close()
 
 	// create the nft and ensure that it exists on the account's trie and the liquidity is set on the system account
-	utils.CreateAccountWithESDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(10000000000000), tokenID, 1, big.NewInt(10), uint32(core.SemiFungible))
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(10))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(10))
+	utils.CreateAccountWithDCDTBalance(t, sh0Context.Accounts, sh0Addr, big.NewInt(10000000000000), tokenID, 1, big.NewInt(10), uint32(core.SemiFungible))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(10))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(10))
 
-	addTokenInMeta(t, metaContext, tokenID, &systemSmartContracts.ESDTDataV2{
+	addTokenInMeta(t, metaContext, tokenID, &systemSmartContracts.DCDTDataV2{
 		OwnerAddress: sh0Addr,
 		CanFreeze:    true,
 		CanWipe:      true,
@@ -162,42 +162,42 @@ func TestSystemAccountLiquidityAfterSFTWipe(t *testing.T) {
 	utils.ProcessSCRResult(t, sh0Context, scrs[1], vmcommon.Ok, nil)
 
 	// ensure that there is no liquidity left in the account or the system account
-	checkEsdtBalanceInAccountStorage(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
+	checkDcdtBalanceInAccountStorage(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(0))
 }
 
-func addTokenInMeta(t *testing.T, metaContext *vm.VMTestContext, tokenID []byte, token *systemSmartContracts.ESDTDataV2) {
+func addTokenInMeta(t *testing.T, metaContext *vm.VMTestContext, tokenID []byte, token *systemSmartContracts.DCDTDataV2) {
 	marshaledData, err := integrationtests.TestMarshalizer.Marshal(token)
 	require.NoError(t, err)
 
-	esdtAccnt, err := metaContext.Accounts.LoadAccount(core.ESDTSCAddress)
+	dcdtAccnt, err := metaContext.Accounts.LoadAccount(core.DCDTSCAddress)
 	require.NoError(t, err)
 
-	esdtAccntUser, ok := esdtAccnt.(state.UserAccountHandler)
+	dcdtAccntUser, ok := dcdtAccnt.(state.UserAccountHandler)
 	require.True(t, ok)
 
-	err = esdtAccntUser.SaveKeyValue(tokenID, marshaledData)
+	err = dcdtAccntUser.SaveKeyValue(tokenID, marshaledData)
 	require.NoError(t, err)
 
-	err = metaContext.Accounts.SaveAccount(esdtAccntUser)
+	err = metaContext.Accounts.SaveAccount(dcdtAccntUser)
 	require.NoError(t, err)
 	_, err = metaContext.Accounts.Commit()
 	require.NoError(t, err)
 }
 
-func checkEsdtBalanceInAccountStorage(t *testing.T, context *vm.VMTestContext, address []byte, tokenID []byte, nonce uint64, expectedValue *big.Int) {
+func checkDcdtBalanceInAccountStorage(t *testing.T, context *vm.VMTestContext, address []byte, tokenID []byte, nonce uint64, expectedValue *big.Int) {
 	res, err := context.Accounts.LoadAccount(address)
 	require.NoError(t, err)
 
 	userAcc, ok := res.(state.UserAccountHandler)
 	require.True(t, ok)
 
-	esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(tokenID))
-	esdtTokenKey = append(esdtTokenKey, big.NewInt(int64(nonce)).Bytes()...)
-	tokenBytes, _, err := userAcc.RetrieveValue(esdtTokenKey)
+	dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(tokenID))
+	dcdtTokenKey = append(dcdtTokenKey, big.NewInt(int64(nonce)).Bytes()...)
+	tokenBytes, _, err := userAcc.RetrieveValue(dcdtTokenKey)
 	require.NoError(t, err)
 
-	esToken := esdt.ESDigitalToken{}
+	esToken := dcdt.DCDigitalToken{}
 	err = integrationtests.TestMarshalizer.Unmarshal(&esToken, tokenBytes)
 	require.NoError(t, err)
 

@@ -1,6 +1,6 @@
 package view
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // Presenter defines the methods that return information about node
 type Presenter interface {

@@ -1,7 +1,7 @@
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/terminal.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/terminal.sh"
 
 startObservers() {
-  setTerminalSession "multiversx-nodes"
+  setTerminalSession "dharitri-nodes"
   setTerminalLayout "tiled"
   setWorkdirForNextCommands "$TESTNETDIR/node"
   iterateOverObservers startSingleObserver

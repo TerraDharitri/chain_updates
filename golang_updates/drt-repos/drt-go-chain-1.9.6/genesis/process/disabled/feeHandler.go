@@ -4,8 +4,8 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/scheduled"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/scheduled"
 )
 
 // FeeHandler represents a disabled fee handler implementation

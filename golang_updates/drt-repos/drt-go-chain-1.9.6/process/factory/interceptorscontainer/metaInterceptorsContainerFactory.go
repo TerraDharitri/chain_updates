@@ -1,17 +1,17 @@
 package interceptorscontainer
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/throttler"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/factory/containers"
-	processInterceptors "github.com/multiversx/mx-chain-go/process/interceptors"
-	interceptorFactory "github.com/multiversx/mx-chain-go/process/interceptors/factory"
-	"github.com/multiversx/mx-chain-go/process/interceptors/processor"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/containers"
+	processInterceptors "github.com/TerraDharitri/drt-go-chain/process/interceptors"
+	interceptorFactory "github.com/TerraDharitri/drt-go-chain/process/interceptors/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/interceptors/processor"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/throttler"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 var _ process.InterceptorsContainerFactory = (*metaInterceptorsContainerFactory)(nil)

@@ -3,7 +3,7 @@ package metachain
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 type validatorList []state.ValidatorInfoHandler

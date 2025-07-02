@@ -6,38 +6,38 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	"github.com/multiversx/mx-chain-go/process"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
+	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/stretchr/testify/require"
 )
 
-func TestESDTModifyCreator(t *testing.T) {
+func TestDCDTModifyCreator(t *testing.T) {
 	tokenTypes := getDynamicTokenTypes()
 	for _, tokenType := range tokenTypes {
-		esdtType, _ := core.ConvertESDTTypeToUint32(tokenType)
-		if !core.IsDynamicESDT(esdtType) {
+		dcdtType, _ := core.ConvertDCDTTypeToUint32(tokenType)
+		if !core.IsDynamicDCDT(dcdtType) {
 			continue
 		}
-		testName := "esdtModifyCreator for " + tokenType
+		testName := "dcdtModifyCreator for " + tokenType
 		t.Run(testName, func(t *testing.T) {
-			runEsdtModifyCreatorTest(t, tokenType)
+			runDcdtModifyCreatorTest(t, tokenType)
 		})
 	}
 }
 
-func runEsdtModifyCreatorTest(t *testing.T, tokenType string) {
+func runDcdtModifyCreatorTest(t *testing.T, tokenType string) {
 	newCreator := []byte("12345678901234567890123456789012")
 	creatorAddr := []byte("12345678901234567890123456789013")
 	token := []byte("tokenId")
-	baseEsdtKeyPrefix := core.ProtectedKeyPrefix + core.ESDTKeyIdentifier
-	key := append([]byte(baseEsdtKeyPrefix), token...)
+	baseDcdtKeyPrefix := core.ProtectedKeyPrefix + core.DCDTKeyIdentifier
+	key := append([]byte(baseDcdtKeyPrefix), token...)
 
 	testContext, err := vm.CreatePreparedTxProcessorWithVMs(config.EnableEpochs{}, 1)
 	require.Nil(t, err)
@@ -46,11 +46,11 @@ func runEsdtModifyCreatorTest(t *testing.T, tokenType string) {
 
 	createAccWithBalance(t, testContext.Accounts, newCreator, big.NewInt(100000000))
 	createAccWithBalance(t, testContext.Accounts, creatorAddr, big.NewInt(100000000))
-	createAccWithBalance(t, testContext.Accounts, core.ESDTSCAddress, big.NewInt(100000000))
-	utils.SetESDTRoles(t, testContext.Accounts, creatorAddr, token, [][]byte{[]byte(core.ESDTRoleNFTCreate)})
-	utils.SetESDTRoles(t, testContext.Accounts, newCreator, token, [][]byte{[]byte(core.ESDTRoleModifyCreator)})
+	createAccWithBalance(t, testContext.Accounts, core.DCDTSCAddress, big.NewInt(100000000))
+	utils.SetDCDTRoles(t, testContext.Accounts, creatorAddr, token, [][]byte{[]byte(core.DCDTRoleNFTCreate)})
+	utils.SetDCDTRoles(t, testContext.Accounts, newCreator, token, [][]byte{[]byte(core.DCDTRoleModifyCreator)})
 
-	tx := setTokenTypeTx(core.ESDTSCAddress, 100000, token, tokenType)
+	tx := setTokenTypeTx(core.DCDTSCAddress, 100000, token, tokenType)
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
@@ -62,7 +62,7 @@ func runEsdtModifyCreatorTest(t *testing.T, tokenType string) {
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
 
-	tx = esdtModifyCreatorTx(newCreator, newCreator, 100000, defaultMetaData)
+	tx = dcdtModifyCreatorTx(newCreator, newCreator, 100000, defaultMetaData)
 	retCode, err = testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
@@ -70,8 +70,8 @@ func runEsdtModifyCreatorTest(t *testing.T, tokenType string) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	retrievedMetaData := &esdt.MetaData{}
-	if tokenType == core.DynamicNFTESDT {
+	retrievedMetaData := &dcdt.MetaData{}
+	if tokenType == core.DynamicNFTDCDT {
 		retrievedMetaData = getMetaDataFromAcc(t, testContext, newCreator, key)
 	} else {
 		retrievedMetaData = getMetaDataFromAcc(t, testContext, core.SystemAccountAddress, key)
@@ -79,7 +79,7 @@ func runEsdtModifyCreatorTest(t *testing.T, tokenType string) {
 	require.Equal(t, newCreator, retrievedMetaData.Creator)
 }
 
-func esdtModifyCreatorTx(
+func dcdtModifyCreatorTx(
 	sndAddr []byte,
 	rcvAddr []byte,
 	gasLimit uint64,
@@ -87,7 +87,7 @@ func esdtModifyCreatorTx(
 ) *transaction.Transaction {
 	txDataField := bytes.Join(
 		[][]byte{
-			[]byte(core.ESDTModifyCreator),
+			[]byte(core.DCDTModifyCreator),
 			metaData.TokenId,
 			metaData.Nonce,
 		},

@@ -1,8 +1,8 @@
 package operationmodes
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 // ProcessHistoricalBalancesMode will process the provided flags for the historical balances

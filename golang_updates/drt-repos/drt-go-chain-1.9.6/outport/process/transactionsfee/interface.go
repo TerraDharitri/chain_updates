@@ -3,9 +3,9 @@ package transactionsfee
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 )
 
 // FeesProcessorHandler defines the interface for the transaction fees processor

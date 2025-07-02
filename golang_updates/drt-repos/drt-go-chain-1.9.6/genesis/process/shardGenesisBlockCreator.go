@@ -7,42 +7,42 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/common"
-	disabledCommon "github.com/multiversx/mx-chain-go/common/disabled"
-	"github.com/multiversx/mx-chain-go/common/enablers"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/common/holders"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever/blockchain"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/process/disabled"
-	"github.com/multiversx/mx-chain-go/genesis/process/intermediate"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/block/preprocess"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/factory/shard"
-	disabledGuardian "github.com/multiversx/mx-chain-go/process/guardian/disabled"
-	"github.com/multiversx/mx-chain-go/process/receipts"
-	"github.com/multiversx/mx-chain-go/process/rewardTransaction"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/smartContract/builtInFunctions"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks/counters"
-	"github.com/multiversx/mx-chain-go/process/smartContract/processProxy"
-	"github.com/multiversx/mx-chain-go/process/smartContract/scrCommon"
-	syncDisabled "github.com/multiversx/mx-chain-go/process/sync/disabled"
-	"github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	"github.com/multiversx/mx-chain-go/storage/txcache"
-	"github.com/multiversx/mx-chain-go/update"
-	hardForkProcess "github.com/multiversx/mx-chain-go/update/process"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	disabledCommon "github.com/TerraDharitri/drt-go-chain/common/disabled"
+	"github.com/TerraDharitri/drt-go-chain/common/enablers"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/common/holders"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/blockchain"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain/genesis/process/intermediate"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/block/preprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/shard"
+	disabledGuardian "github.com/TerraDharitri/drt-go-chain/process/guardian/disabled"
+	"github.com/TerraDharitri/drt-go-chain/process/receipts"
+	"github.com/TerraDharitri/drt-go-chain/process/rewardTransaction"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks/counters"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/processProxy"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/scrCommon"
+	syncDisabled "github.com/TerraDharitri/drt-go-chain/process/sync/disabled"
+	"github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	"github.com/TerraDharitri/drt-go-chain/storage/txcache"
+	"github.com/TerraDharitri/drt-go-chain/update"
+	hardForkProcess "github.com/TerraDharitri/drt-go-chain/update/process"
 )
 
 const unreachableEpoch = ^uint32(0)
@@ -390,7 +390,7 @@ func createProcessorsForShardGenesisBlock(arg ArgsGenesisBlockCreator, enableEpo
 		Uint64Converter:          arg.Core.Uint64ByteSliceConverter(),
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 arg.Data.Datapool(),
 		CompiledSCPool:           arg.Data.Datapool().SmartContracts(),
 		EpochNotifier:            epochNotifier,
@@ -400,7 +400,7 @@ func createProcessorsForShardGenesisBlock(arg ArgsGenesisBlockCreator, enableEpo
 		Counter:                  counters.NewDisabledCounter(),
 		MissingTrieNodesNotifier: syncer.NewMissingTrieNodesNotifier(),
 	}
-	esdtTransferParser, err := parsers.NewESDTTransferParser(arg.Core.InternalMarshalizer())
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(arg.Core.InternalMarshalizer())
 	if err != nil {
 		return nil, err
 	}
@@ -418,7 +418,7 @@ func createProcessorsForShardGenesisBlock(arg ArgsGenesisBlockCreator, enableEpo
 		EpochNotifier:       epochNotifier,
 		EnableEpochsHandler: enableEpochsHandler,
 		WasmVMChangeLocker:  genesisWasmVMLocker,
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		BuiltInFunctions:    argsHook.BuiltInFunctions,
 		Hasher:              arg.Core.Hasher(),
 		PubKeyConverter:     arg.Core.AddressPubKeyConverter(),
@@ -492,7 +492,7 @@ func createProcessorsForShardGenesisBlock(arg ArgsGenesisBlockCreator, enableEpo
 		ShardCoordinator:    arg.ShardCoordinator,
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: enableEpochsHandler,
 	}
 	txTypeHandler, err := coordinator.NewTxTypeHandler(argsTxTypeHandler)

@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
 )
 
 // GetProofResponse is a struct that stores the response of a GetProof API request

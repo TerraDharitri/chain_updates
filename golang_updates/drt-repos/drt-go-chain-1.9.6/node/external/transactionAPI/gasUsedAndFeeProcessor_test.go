@@ -5,18 +5,18 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/node/external/timemachine/fee"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/economics"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/epochNotifier"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/node/external/timemachine/fee"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/economics"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/epochNotifier"
 	"github.com/stretchr/testify/require"
 )
 
@@ -34,7 +34,7 @@ func createEconomicsData(enableEpochsHandler common.EnableEpochsHandler) process
 	return economicsData
 }
 
-var pubKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+var pubKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 
 func TestComputeTransactionGasUsedAndFeeMoveBalance(t *testing.T) {
 	t.Parallel()
@@ -51,8 +51,8 @@ func TestComputeTransactionGasUsedAndFeeMoveBalance(t *testing.T) {
 		enableEpochsHandlerMock.NewEnableEpochsHandlerStub(),
 	)
 
-	sender := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
-	receiver := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
+	sender := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
+	receiver := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
 
 	moveBalanceTx := &transaction.ApiTransactionResult{
 		Tx: &transaction.Transaction{
@@ -87,8 +87,8 @@ func TestComputeTransactionGasUsedAndFeeLogWithError(t *testing.T) {
 		enableEpochsHandlerMock.NewEnableEpochsHandlerStub(),
 	)
 
-	sender := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
-	receiver := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
+	sender := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
+	receiver := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
 
 	txWithSignalErrorLog := &transaction.ApiTransactionResult{
 		Tx: &transaction.Transaction{
@@ -136,8 +136,8 @@ func TestComputeTransactionGasUsedAndFeeRelayedTxWithWriteLog(t *testing.T) {
 		enableEpochsHandlerMock.NewEnableEpochsHandlerStub(),
 	)
 
-	sender := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
-	receiver := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
+	sender := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
+	receiver := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
 
 	relayedTxWithWriteLog := &transaction.ApiTransactionResult{
 		Tx: &transaction.Transaction{
@@ -180,8 +180,8 @@ func TestComputeTransactionGasUsedAndFeeTransactionWithScrWithRefund(t *testing.
 		enableEpochsHandlerMock.NewEnableEpochsHandlerStub(),
 	)
 
-	sender := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
-	receiver := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
+	sender := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
+	receiver := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
 
 	txWithSRefundSCR := &transaction.ApiTransactionResult{
 		Tx: &transaction.Transaction{
@@ -234,8 +234,8 @@ func TestNFTTransferWithScCall(t *testing.T) {
 		enableEpochsHandlerMock.NewEnableEpochsHandlerStub(),
 	)
 
-	sender := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
-	receiver := "erd1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csq0n2y5x"
+	sender := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
+	receiver := "drt1wc3uh22g2aved3qeehkz9kzgrjwxhg9mkkxp2ee7jj7ph34p2csqj0a8hc"
 
 	tx := &transaction.ApiTransactionResult{
 		Tx: &transaction.Transaction{
@@ -246,7 +246,7 @@ func TestNFTTransferWithScCall(t *testing.T) {
 			Data:     []byte("ESDTNFTTransfer@434f572d636434363364@080c@01@00000000000000000500d3b28828d62052124f07dcd50ed31b0825f60eee1526@616363657074476c6f62616c4f66666572@c3e5q"),
 		},
 		GasLimit:  55_000_000,
-		Receivers: []string{"erd1qqqqqqqqqqqqqpgq6wegs2xkypfpync8mn2sa5cmpqjlvrhwz5nqgepyg8"},
+		Receivers: []string{"drt1qqqqqqqqqqqqqpgq6wegs2xkypfpync8mn2sa5cmpqjlvrhwz5nq49k8te"},
 		Function:  "acceptGlobalOffer",
 		Operation: "ESDTNFTTransfer",
 	}

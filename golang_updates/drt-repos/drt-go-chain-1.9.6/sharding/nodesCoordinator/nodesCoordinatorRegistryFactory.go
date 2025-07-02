@@ -3,8 +3,8 @@ package nodesCoordinator
 import (
 	"encoding/json"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 type nodesCoordinatorRegistryFactory struct {

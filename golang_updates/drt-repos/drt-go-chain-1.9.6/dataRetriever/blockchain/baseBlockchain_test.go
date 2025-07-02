@@ -3,7 +3,7 @@ package blockchain
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/data/mock"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,9 +1,9 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/testscommon/cryptoMocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cryptoMocks"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // KeysHandlerStub -

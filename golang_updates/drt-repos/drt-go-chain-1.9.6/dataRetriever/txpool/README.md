@@ -111,8 +111,8 @@ For `asymptoticScore`, the [logistic function](https://en.wikipedia.org/wiki/Log
 
 Notation:
 
- - `PPUAvg`: average gas points (fee) per processing unit, in micro ERD
- - `PPUMin`: minimum gas points (fee) per processing unit (given by economics.toml), in micro ERD
+ - `PPUAvg`: average gas points (fee) per processing unit, in micro DRT
+ - `PPUMin`: minimum gas points (fee) per processing unit (given by economics.toml), in micro DRT
  - `txCount`: number of transactions
  - `txSize`: size of transactions, in kB (1000 bytes)
 

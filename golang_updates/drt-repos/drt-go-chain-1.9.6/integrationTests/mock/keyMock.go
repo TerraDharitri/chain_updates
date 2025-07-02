@@ -3,8 +3,8 @@ package mock
 import (
 	"crypto/rand"
 
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 )
 
 // PublicKeyMock -

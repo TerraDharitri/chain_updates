@@ -3,10 +3,10 @@ package processing_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	processComp "github.com/multiversx/mx-chain-go/factory/processing"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	processComp "github.com/TerraDharitri/drt-go-chain/factory/processing"
 	"github.com/stretchr/testify/require"
 )
 

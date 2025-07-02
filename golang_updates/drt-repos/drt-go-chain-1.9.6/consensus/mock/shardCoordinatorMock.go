@@ -3,7 +3,7 @@ package mock
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // ShardCoordinatorMock -

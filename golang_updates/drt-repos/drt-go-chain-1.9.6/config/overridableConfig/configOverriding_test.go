@@ -3,8 +3,8 @@ package overridableConfig
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
 
 	"github.com/stretchr/testify/require"
 )
@@ -77,11 +77,11 @@ func TestOverrideConfigValues(t *testing.T) {
 	t.Run("should work for enableEpochs.toml", func(t *testing.T) {
 		t.Parallel()
 
-		configs := &config.Configs{EpochConfig: &config.EpochConfig{EnableEpochs: config.EnableEpochs{ESDTMetadataContinuousCleanupEnableEpoch: 5}}}
+		configs := &config.Configs{EpochConfig: &config.EpochConfig{EnableEpochs: config.EnableEpochs{DCDTMetadataContinuousCleanupEnableEpoch: 5}}}
 
-		err := OverrideConfigValues([]config.OverridableConfig{{Path: "EnableEpochs.ESDTMetadataContinuousCleanupEnableEpoch", Value: uint32(37), File: "enableEpochs.toml"}}, configs)
+		err := OverrideConfigValues([]config.OverridableConfig{{Path: "EnableEpochs.DCDTMetadataContinuousCleanupEnableEpoch", Value: uint32(37), File: "enableEpochs.toml"}}, configs)
 		require.NoError(t, err)
-		require.Equal(t, uint32(37), configs.EpochConfig.EnableEpochs.ESDTMetadataContinuousCleanupEnableEpoch)
+		require.Equal(t, uint32(37), configs.EpochConfig.EnableEpochs.DCDTMetadataContinuousCleanupEnableEpoch)
 	})
 
 	t.Run("should work for api.toml", func(t *testing.T) {

@@ -1,7 +1,7 @@
 package facade
 
 import (
-	"github.com/multiversx/mx-chain-go/ntp"
+	"github.com/TerraDharitri/drt-go-chain/ntp"
 )
 
 // GetSyncer returns the current syncer

@@ -1,8 +1,8 @@
 package spos
 
 import (
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/sharding"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 // GetConsensusTopicID will construct and return the topic ID based on shard coordinator

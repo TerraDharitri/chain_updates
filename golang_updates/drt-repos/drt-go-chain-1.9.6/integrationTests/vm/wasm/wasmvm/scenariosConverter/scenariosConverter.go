@@ -5,14 +5,14 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon/txDataBuilder"
-	"github.com/multiversx/mx-chain-scenario-go/scenario/exporter"
-	scenmodel "github.com/multiversx/mx-chain-scenario-go/scenario/model"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-scenario/scenario/exporter"
+	scenmodel "github.com/TerraDharitri/drt-go-chain-scenario/scenario/model"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
 )
 
 var errReturnCodeNotOk = errors.New("returnCode is not 0(Ok)")
@@ -66,11 +66,11 @@ func CreateTransactionsFromScenariosTxs(scenariosTxs []*exporter.Transaction) (t
 
 	for _, scenariosTx := range scenariosTxs {
 		gasLimit, gasPrice := scenariosTx.GetGasLimitAndPrice()
-		esdtTransfers := scenariosTx.GetESDTTransfers()
+		dcdtTransfers := scenariosTx.GetDCDTTransfers()
 		endpointName := scenariosTx.GetCallFunction()
 		args := scenariosTx.GetCallArguments()
-		if len(esdtTransfers) != 0 {
-			data = scenmodel.CreateMultiTransferData(scenariosTx.GetReceiverAddress(), esdtTransfers, endpointName, args)
+		if len(dcdtTransfers) != 0 {
+			data = scenmodel.CreateMultiTransferData(scenariosTx.GetReceiverAddress(), dcdtTransfers, endpointName, args)
 		} else {
 			data = createData(endpointName, args)
 		}
@@ -83,7 +83,7 @@ func CreateTransactionsFromScenariosTxs(scenariosTxs []*exporter.Transaction) (t
 			gasPrice,
 			gasLimit,
 			data)
-		if len(esdtTransfers) != 0 {
+		if len(dcdtTransfers) != 0 {
 			tx.RcvAddr = tx.SndAddr
 		}
 		transactions = append(transactions, tx)

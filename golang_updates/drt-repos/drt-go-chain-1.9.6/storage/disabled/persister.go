@@ -1,7 +1,7 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-go/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 type persister struct{}

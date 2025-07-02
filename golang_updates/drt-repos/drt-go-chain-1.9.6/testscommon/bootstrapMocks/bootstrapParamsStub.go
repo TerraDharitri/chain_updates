@@ -1,6 +1,6 @@
 package bootstrapMocks
 
-import "github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+import "github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 
 // BootstrapParamsHandlerMock -
 type BootstrapParamsHandlerMock struct {

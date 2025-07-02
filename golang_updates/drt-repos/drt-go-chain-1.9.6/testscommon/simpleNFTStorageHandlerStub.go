@@ -3,23 +3,23 @@ package testscommon
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // SimpleNFTStorageHandlerStub -
 type SimpleNFTStorageHandlerStub struct {
-	GetESDTNFTTokenOnDestinationCalled   func(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error)
+	GetDCDTNFTTokenOnDestinationCalled   func(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error)
 	SaveNFTMetaDataToSystemAccountCalled func(tx data.TransactionHandler) error
 }
 
-// GetESDTNFTTokenOnDestination -
-func (s *SimpleNFTStorageHandlerStub) GetESDTNFTTokenOnDestination(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
-	if s.GetESDTNFTTokenOnDestinationCalled != nil {
-		return s.GetESDTNFTTokenOnDestinationCalled(accnt, esdtTokenKey, nonce)
+// GetDCDTNFTTokenOnDestination -
+func (s *SimpleNFTStorageHandlerStub) GetDCDTNFTTokenOnDestination(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
+	if s.GetDCDTNFTTokenOnDestinationCalled != nil {
+		return s.GetDCDTNFTTokenOnDestinationCalled(accnt, dcdtTokenKey, nonce)
 	}
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, true, nil
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, true, nil
 }
 
 // SaveNFTMetaData -

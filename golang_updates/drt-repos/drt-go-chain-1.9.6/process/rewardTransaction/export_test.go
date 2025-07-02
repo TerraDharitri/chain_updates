@@ -1,7 +1,7 @@
 package rewardTransaction
 
 import (
-	"github.com/multiversx/mx-chain-core-go/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 )
 
 // RewardKey -

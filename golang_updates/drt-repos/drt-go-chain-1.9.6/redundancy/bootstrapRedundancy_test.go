@@ -3,8 +3,8 @@ package redundancy
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/redundancy/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/redundancy/mock"
 	"github.com/stretchr/testify/assert"
 )
 

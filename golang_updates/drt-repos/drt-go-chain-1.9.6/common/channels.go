@@ -1,6 +1,6 @@
 package common
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // GetClosedUnbufferedChannel returns an instance of a 'chan struct{}' that is already closed
 func GetClosedUnbufferedChannel() chan struct{} {

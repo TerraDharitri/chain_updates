@@ -1,6 +1,6 @@
 package config
 
-import p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
+import p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
 
 // CacheConfig will map the cache configuration
 type CacheConfig struct {
@@ -494,7 +494,7 @@ type DbLookupExtensionsConfig struct {
 	MiniblockHashByTxHashStorageConfig StorageConfig
 	EpochByHashStorageConfig           StorageConfig
 	ResultsHashesByTxHashStorageConfig StorageConfig
-	ESDTSuppliesStorageConfig          StorageConfig
+	DCDTSuppliesStorageConfig          StorageConfig
 	RoundHashStorageConfig             StorageConfig
 }
 

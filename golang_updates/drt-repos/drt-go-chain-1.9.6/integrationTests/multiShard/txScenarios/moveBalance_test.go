@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 func TestTransaction_TransactionMoveBalanceScenarios(t *testing.T) {
@@ -32,7 +32,7 @@ func TestTransaction_TransactionMoveBalanceScenarios(t *testing.T) {
 	nonce++
 
 	// shard 1
-	bechAddrShard1 := "erd1qhmhf5grwtep3n6ynkpz5u5lxw8n2s38yuq9ge8950lc0zqlwkfs3cus7a"
+	bechAddrShard1 := "drt1qhmhf5grwtep3n6ynkpz5u5lxw8n2s38yuq9ge8950lc0zqlwkfsvytnar"
 	bech32, err := pubkeyConverter.NewBech32PubkeyConverter(32, integrationTests.AddressHrp)
 	assert.Nil(t, err)
 	receiverAddress, _ := bech32.Decode(bechAddrShard1)

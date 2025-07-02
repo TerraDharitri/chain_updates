@@ -1,7 +1,7 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 type disabledBootstrapper struct {

@@ -18,41 +18,41 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	dataTx "github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	dataTx "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/errChan"
-	"github.com/multiversx/mx-chain-go/common/holders"
-	"github.com/multiversx/mx-chain-go/common/statistics"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	esdtCommon "github.com/multiversx/mx-chain-go/integrationTests/vm/esdt"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/factory"
-	"github.com/multiversx/mx-chain-go/state/iteratorChannelsProvider"
-	"github.com/multiversx/mx-chain-go/state/lastSnapshotMarker"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager/evictionWaitingList"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	stateMock "github.com/multiversx/mx-chain-go/testscommon/state"
-	testStorage "github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/trie"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/errChan"
+	"github.com/TerraDharitri/drt-go-chain/common/holders"
+	"github.com/TerraDharitri/drt-go-chain/common/statistics"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	dcdtCommon "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/factory"
+	"github.com/TerraDharitri/drt-go-chain/state/iteratorChannelsProvider"
+	"github.com/TerraDharitri/drt-go-chain/state/lastSnapshotMarker"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager/evictionWaitingList"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	stateMock "github.com/TerraDharitri/drt-go-chain/testscommon/state"
+	testStorage "github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/trie"
 )
 
 const denomination = "000000000000000000"
@@ -2262,7 +2262,7 @@ func TestTrieDBPruning_PruningOldData(t *testing.T) {
 	numIncreaseDecreaseIterations := 100
 
 	rootHashes := make([][]byte, 0)
-	rootHash, err := createDummyAccountsWith100EGLD(numAccounts, adb)
+	rootHash, err := createDummyAccountsWith100REWA(numAccounts, adb)
 	require.Nil(t, err)
 	rootHashes = append(rootHashes, rootHash)
 
@@ -2293,7 +2293,7 @@ func TestTrieDBPruning_PruningOldDataWithDataTries(t *testing.T) {
 	numAccountsChances := uint32(10)
 
 	rootHashes := make([][]byte, 0)
-	rootHash, err := createDummyAccountsWith100EGLD(numAccounts, adb)
+	rootHash, err := createDummyAccountsWith100REWA(numAccounts, adb)
 	require.Nil(t, err)
 	rootHashes = append(rootHashes, rootHash)
 	rootHash, err = addDataTriesForAccountsStartingWithIndex(10, numAccountsChances, 100, adb)
@@ -2524,7 +2524,7 @@ func startNodesAndIssueToken(
 	// send token issue
 	initialSupply := int64(10000000000)
 	ticker := "TCK"
-	esdtCommon.IssueTestTokenWithIssuerAccount(nodes, nodes[issuerShardId].OwnAccount, initialSupply, ticker)
+	dcdtCommon.IssueTestTokenWithIssuerAccount(nodes, nodes[issuerShardId].OwnAccount, initialSupply, ticker)
 
 	time.Sleep(time.Second)
 	nrRoundsToPropagate := 8
@@ -2533,7 +2533,7 @@ func startNodesAndIssueToken(
 
 	tokenIdentifier := string(integrationTests.GetTokenIdentifier(nodes, []byte(ticker)))
 
-	esdtCommon.CheckAddressHasTokens(t, nodes[issuerShardId].OwnAccount.Address, nodes, []byte(tokenIdentifier), 0, initialSupply)
+	dcdtCommon.CheckAddressHasTokens(t, nodes[issuerShardId].OwnAccount.Address, nodes, []byte(tokenIdentifier), 0, initialSupply)
 
 	return nodes, leaders, nonce, round
 }
@@ -2587,11 +2587,11 @@ func removeKeysFromAccountsStartingWithIndex(startIndex uint32,
 func increaseBalanceForAccountsStartingWithIndex(
 	startIndex uint32,
 	nbAccounts uint32,
-	egldValue uint32,
+	rewaValue uint32,
 	adb *state.AccountsDB,
 ) ([]byte, error) {
 	for i := startIndex; i < startIndex+nbAccounts; i++ {
-		increaseBalanceForAccountWithIndex(i, egldValue, adb)
+		increaseBalanceForAccountWithIndex(i, rewaValue, adb)
 	}
 	return adb.Commit()
 }
@@ -2599,47 +2599,47 @@ func increaseBalanceForAccountsStartingWithIndex(
 func decreaseBalanceForAccountsStartingWithIndex(
 	startIndex uint32,
 	nbAccounts uint32,
-	egldValue uint32,
+	rewaValue uint32,
 	adb *state.AccountsDB,
 ) ([]byte, error) {
 	for i := startIndex; i < startIndex+nbAccounts; i++ {
-		decreaseBalanceForAccountWithIndex(i, egldValue, adb)
+		decreaseBalanceForAccountWithIndex(i, rewaValue, adb)
 	}
 	return adb.Commit()
 }
 
-func checkAccountsBalances(t *testing.T, startIndex uint32, nbAccounts uint32, expectedEGLDValue uint32, adb *state.AccountsDB) {
+func checkAccountsBalances(t *testing.T, startIndex uint32, nbAccounts uint32, expectedREWAValue uint32, adb *state.AccountsDB) {
 	for i := startIndex; i < startIndex+nbAccounts; i++ {
-		checkAccountBalance(t, i, expectedEGLDValue, adb)
+		checkAccountBalance(t, i, expectedREWAValue, adb)
 	}
 }
 
-func checkAccountBalance(t *testing.T, index uint32, expectedEGLDValue uint32, adb *state.AccountsDB) {
-	expectedEGLDValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", expectedEGLDValue)+denomination, 10)
+func checkAccountBalance(t *testing.T, index uint32, expectedREWAValue uint32, adb *state.AccountsDB) {
+	expectedREWAValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", expectedREWAValue)+denomination, 10)
 
 	acc, err := adb.LoadAccount(getDummyAccountAddressFromIndex(index))
 	require.Nil(t, err)
 
 	accState := acc.(state.UserAccountHandler)
 	actualValue := accState.GetBalance()
-	require.Equal(t, expectedEGLDValueDenominated, actualValue)
+	require.Equal(t, expectedREWAValueDenominated, actualValue)
 }
 
-func decreaseBalanceForAccountWithIndex(index uint32, egldValue uint32, adb *state.AccountsDB) {
-	egldValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", egldValue)+denomination, 10)
+func decreaseBalanceForAccountWithIndex(index uint32, rewaValue uint32, adb *state.AccountsDB) {
+	rewaValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", rewaValue)+denomination, 10)
 
 	acc, _ := adb.LoadAccount(getDummyAccountAddressFromIndex(index))
 	accState := acc.(state.UserAccountHandler)
-	_ = accState.SubFromBalance(egldValueDenominated)
+	_ = accState.SubFromBalance(rewaValueDenominated)
 	_ = adb.SaveAccount(accState)
 }
 
-func increaseBalanceForAccountWithIndex(index uint32, egldValue uint32, adb *state.AccountsDB) {
-	egldValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", egldValue)+denomination, 10)
+func increaseBalanceForAccountWithIndex(index uint32, rewaValue uint32, adb *state.AccountsDB) {
+	rewaValueDenominated, _ := big.NewInt(0).SetString(fmt.Sprintf("%d", rewaValue)+denomination, 10)
 
 	acc, _ := adb.LoadAccount(getDummyAccountAddressFromIndex(index))
 	accState := acc.(state.UserAccountHandler)
-	_ = accState.AddToBalance(egldValueDenominated)
+	_ = accState.AddToBalance(rewaValueDenominated)
 	_ = adb.SaveAccount(accState)
 }
 
@@ -2700,7 +2700,7 @@ func createDummyKeyValue(index int) ([]byte, []byte) {
 	return key, value
 }
 
-func createDummyAccountsWith100EGLD(numAccounts uint32, adb *state.AccountsDB) ([]byte, error) {
+func createDummyAccountsWith100REWA(numAccounts uint32, adb *state.AccountsDB) ([]byte, error) {
 	val100Denominated, _ := big.NewInt(0).SetString("100"+denomination, 10)
 
 	for i := 0; i < int(numAccounts); i++ {

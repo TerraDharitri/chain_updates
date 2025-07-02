@@ -12,7 +12,7 @@ USAGE:
    keygenerator [global options]
    
 AUTHOR:
-   The MultiversX Team <contact@multiversx.com>
+   The Dharitri Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --num-keys value  How many keys should generate. Example: 1 (default: 1)

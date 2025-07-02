@@ -1,4 +1,4 @@
-package esdt
+package dcdt
 
 import (
 	"encoding/hex"
@@ -7,43 +7,43 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	testVm "github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm"
-	"github.com/multiversx/mx-chain-go/process"
-	vmFactory "github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/txDataBuilder"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	testVm "github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	vmFactory "github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
-// GetESDTTokenData -
-func GetESDTTokenData(
+// GetDCDTTokenData -
+func GetDCDTTokenData(
 	t *testing.T,
 	address []byte,
 	nodes []*integrationTests.TestProcessorNode,
 	tickerID []byte,
 	nonce uint64,
-) *esdt.ESDigitalToken {
+) *dcdt.DCDigitalToken {
 	accShardID := nodes[0].ShardCoordinator.ComputeId(address)
 	for _, node := range nodes {
 		if node.ShardCoordinator.SelfId() != accShardID {
 			continue
 		}
 
-		esdtData, err := node.BlockchainHook.GetESDTToken(address, tickerID, nonce)
+		dcdtData, err := node.BlockchainHook.GetDCDTToken(address, tickerID, nonce)
 		require.Nil(t, err)
-		return esdtData
+		return dcdtData
 	}
 
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}
 }
 
 // GetUserAccountWithAddress -
@@ -85,7 +85,7 @@ func SetRolesWithSenderAccount(nodes []*integrationTests.TestProcessorNode, issu
 		txData += "@" + hex.EncodeToString(role)
 	}
 
-	integrationTests.CreateAndSendTransactionWithSenderAccount(tokenIssuer, nodes, big.NewInt(0), issuerAccount, vm.ESDTSCAddress, txData, core.MinMetaTxExtraGasCost)
+	integrationTests.CreateAndSendTransactionWithSenderAccount(tokenIssuer, nodes, big.NewInt(0), issuerAccount, vm.DCDTSCAddress, txData, core.MinMetaTxExtraGasCost)
 }
 
 // DeployNonPayableSmartContract -
@@ -148,20 +148,20 @@ func CheckAddressHasTokens(
 	nonceAsBigInt := big.NewInt(nonce)
 	valueAsBigInt := big.NewInt(value)
 
-	esdtData := GetESDTTokenData(t, address, nodes, tickerID, uint64(nonce))
+	dcdtData := GetDCDTTokenData(t, address, nodes, tickerID, uint64(nonce))
 
-	if esdtData == nil {
-		esdtData = &esdt.ESDigitalToken{
+	if dcdtData == nil {
+		dcdtData = &dcdt.DCDigitalToken{
 			Value: big.NewInt(0),
 		}
 	}
-	if esdtData.Value == nil {
-		esdtData.Value = big.NewInt(0)
+	if dcdtData.Value == nil {
+		dcdtData.Value = big.NewInt(0)
 	}
 
-	if valueAsBigInt.Cmp(esdtData.Value) != 0 {
-		require.Fail(t, fmt.Sprintf("esdt NFT balance difference. Token %s, nonce %s, expected %s, but got %s",
-			tickerID, nonceAsBigInt.String(), valueAsBigInt.String(), esdtData.Value.String()))
+	if valueAsBigInt.Cmp(dcdtData.Value) != 0 {
+		require.Fail(t, fmt.Sprintf("dcdt NFT balance difference. Token %s, nonce %s, expected %s, but got %s",
+			tickerID, nonceAsBigInt.String(), valueAsBigInt.String(), dcdtData.Value.String()))
 	}
 }
 
@@ -200,7 +200,7 @@ func CreateNodesAndPrepareBalancesWithEpochsAndRoundsConfig(
 			WasmVMVersions: []config.WasmVMVersionByEpoch{
 				{StartEpoch: 0, Version: "*"},
 			},
-			TransferAndExecuteByUserAddresses: []string{"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c"},
+			TransferAndExecuteByUserAddresses: []string{"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx"},
 		},
 	)
 
@@ -215,7 +215,7 @@ func CreateNodesAndPrepareBalancesWithEpochsAndRoundsConfig(
 }
 
 // IssueNFT -
-func IssueNFT(nodes []*integrationTests.TestProcessorNode, esdtType string, ticker string) {
+func IssueNFT(nodes []*integrationTests.TestProcessorNode, dcdtType string, ticker string) {
 	tokenName := "token"
 	issuePrice := big.NewInt(1000)
 
@@ -224,13 +224,13 @@ func IssueNFT(nodes []*integrationTests.TestProcessorNode, esdtType string, tick
 	txData := txDataBuilder.NewBuilder()
 
 	issueFunc := "issueNonFungible"
-	if esdtType == core.SemiFungibleESDT {
+	if dcdtType == core.SemiFungibleDCDT {
 		issueFunc = "issueSemiFungible"
 	}
 	txData.Clear().Func(issueFunc).Str(tokenName).Str(ticker)
 	txData.CanFreeze(false).CanWipe(false).CanPause(false).CanTransferNFTCreateRole(true)
 
-	integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.ESDTSCAddress, txData.ToString(), core.MinMetaTxExtraGasCost)
+	integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.DCDTSCAddress, txData.ToString(), core.MinMetaTxExtraGasCost)
 }
 
 // IssueTestToken -
@@ -264,10 +264,10 @@ func issueTestTokenWithIssuerAccount(nodes []*integrationTests.TestProcessorNode
 
 	tokenIssuer := nodes[0]
 	txData := txDataBuilder.NewBuilder()
-	txData.Clear().IssueESDT(tokenName, ticker, initialSupply, 6)
+	txData.Clear().IssueDCDT(tokenName, ticker, initialSupply, 6)
 	txData.CanFreeze(true).CanWipe(true).CanPause(true).CanMint(true).CanBurn(true)
 
-	integrationTests.CreateAndSendTransactionWithSenderAccount(tokenIssuer, nodes, issuePrice, issuerAccount, vm.ESDTSCAddress, txData.ToString(), gas)
+	integrationTests.CreateAndSendTransactionWithSenderAccount(tokenIssuer, nodes, issuePrice, issuerAccount, vm.DCDTSCAddress, txData.ToString(), gas)
 }
 
 func issueTestTokenWithSpecialRoles(nodes []*integrationTests.TestProcessorNode, initialSupply int64, ticker string, gas uint64) {
@@ -276,10 +276,10 @@ func issueTestTokenWithSpecialRoles(nodes []*integrationTests.TestProcessorNode,
 
 	tokenIssuer := nodes[0]
 	txData := txDataBuilder.NewBuilder()
-	txData.Clear().IssueESDT(tokenName, ticker, initialSupply, 6)
+	txData.Clear().IssueDCDT(tokenName, ticker, initialSupply, 6)
 	txData.CanFreeze(true).CanWipe(true).CanPause(true).CanMint(true).CanBurn(true).CanAddSpecialRoles(true)
 
-	integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.ESDTSCAddress, txData.ToString(), gas)
+	integrationTests.CreateAndSendTransaction(tokenIssuer, nodes, issuePrice, vm.DCDTSCAddress, txData.ToString(), gas)
 }
 
 // CheckNumCallBacks -
@@ -426,7 +426,7 @@ func PrepareFungibleTokensWithLocalBurnAndMintWithIssuerAccount(
 
 	tokenIdentifier := string(integrationTests.GetTokenIdentifier(nodes, []byte("TKN")))
 
-	SetRolesWithSenderAccount(nodes, issuerAccount, addressWithRoles, []byte(tokenIdentifier), [][]byte{[]byte(core.ESDTRoleLocalMint), []byte(core.ESDTRoleLocalBurn)})
+	SetRolesWithSenderAccount(nodes, issuerAccount, addressWithRoles, []byte(tokenIdentifier), [][]byte{[]byte(core.DCDTRoleLocalMint), []byte(core.DCDTRoleLocalBurn)})
 
 	time.Sleep(time.Second)
 	nrRoundsToPropagateMultiShard = 5

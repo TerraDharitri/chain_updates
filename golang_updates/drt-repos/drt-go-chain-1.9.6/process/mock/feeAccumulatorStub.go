@@ -3,7 +3,7 @@ package mock
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/scheduled"
+	"github.com/TerraDharitri/drt-go-chain-core/data/scheduled"
 )
 
 // FeeAccumulatorStub is a stub which implements TransactionFeeHandler interface

@@ -3,10 +3,10 @@ package testscommon
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/counting"
+	"github.com/TerraDharitri/drt-go-chain-core/core/counting"
 
-	"github.com/multiversx/mx-chain-go/storage"
-	cacheMocks "github.com/multiversx/mx-chain-go/testscommon/cache"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	cacheMocks "github.com/TerraDharitri/drt-go-chain/testscommon/cache"
 )
 
 // ShardedDataCacheNotifierMock -

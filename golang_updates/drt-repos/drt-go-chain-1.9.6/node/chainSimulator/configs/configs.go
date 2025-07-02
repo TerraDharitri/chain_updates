@@ -11,27 +11,27 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/multiversx/mx-chain-go/common/factory"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/genesis/data"
-	"github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/common/factory"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/genesis/data"
+	"github.com/TerraDharitri/drt-go-chain/node"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	shardingCore "github.com/multiversx/mx-chain-core-go/core/sharding"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/ed25519"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	shardingCore "github.com/TerraDharitri/drt-go-chain-core/core/sharding"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/ed25519"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
 )
 
-var oneEgld = big.NewInt(1000000000000000000)
-var initialStakedEgldPerNode = big.NewInt(0).Mul(oneEgld, big.NewInt(2500))
-var initialSupply = big.NewInt(0).Mul(oneEgld, big.NewInt(20000000)) // 20 million EGLD
+var oneRewa = big.NewInt(1000000000000000000)
+var initialStakedRewaPerNode = big.NewInt(0).Mul(oneRewa, big.NewInt(2500))
+var initialSupply = big.NewInt(0).Mul(oneRewa, big.NewInt(20000000)) // 20 million REWA
 const (
 	// ChainID contains the chain id
 	ChainID = "chain"
@@ -227,7 +227,7 @@ func generateGenesisFile(args ArgsChainSimulatorConfigs, configs *config.Configs
 			return nil, errGenerate
 		}
 
-		stakedValue := big.NewInt(0).Set(initialStakedEgldPerNode)
+		stakedValue := big.NewInt(0).Set(initialStakedRewaPerNode)
 		addresses = append(addresses, data.InitialAccount{
 			Address:      wallet.Address.Bech32,
 			StakingValue: stakedValue,
@@ -240,7 +240,7 @@ func generateGenesisFile(args ArgsChainSimulatorConfigs, configs *config.Configs
 	// generate an address for every shard
 	initialBalance := big.NewInt(0).Set(initialSupply)
 	totalStakedValue := big.NewInt(int64(numOfNodes))
-	totalStakedValue = totalStakedValue.Mul(totalStakedValue, big.NewInt(0).Set(initialStakedEgldPerNode))
+	totalStakedValue = totalStakedValue.Mul(totalStakedValue, big.NewInt(0).Set(initialStakedRewaPerNode))
 	initialBalance = initialBalance.Sub(initialBalance, totalStakedValue)
 
 	walletBalance := big.NewInt(0).Set(initialBalance)

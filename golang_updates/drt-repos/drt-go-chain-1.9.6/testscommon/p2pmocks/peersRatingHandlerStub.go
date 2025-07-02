@@ -1,6 +1,6 @@
 package p2pmocks
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // PeersRatingHandlerStub -
 type PeersRatingHandlerStub struct {

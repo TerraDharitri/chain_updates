@@ -1,8 +1,8 @@
 package processor
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // equivalentProofsInterceptorProcessor is the processor used when intercepting equivalent proofs

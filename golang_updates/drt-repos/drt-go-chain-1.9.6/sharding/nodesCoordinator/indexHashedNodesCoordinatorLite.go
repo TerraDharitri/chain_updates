@@ -1,7 +1,7 @@
 package nodesCoordinator
 
 import (
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // SetNodesConfigFromValidatorsInfo sets epoch config based on validators list configuration

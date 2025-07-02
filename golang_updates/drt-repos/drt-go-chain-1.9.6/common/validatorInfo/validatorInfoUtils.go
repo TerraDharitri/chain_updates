@@ -1,8 +1,8 @@
 package validatorInfo
 
 import (
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // WasActiveInCurrentEpoch returns true if the node was active in current epoch

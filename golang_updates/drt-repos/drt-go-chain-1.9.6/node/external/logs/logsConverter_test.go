@@ -3,16 +3,16 @@ package logs
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
 
 func TestLogsConverter_TxLogToApiResourceShouldWork(t *testing.T) {
-	pkConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+	pkConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 	logsConverter := newLogsConverter(pkConverter)
 
-	contractAddressBech32 := "erd1qqqqqqqqqqqqqpgqxwakt2g7u9atsnr03gqcgmhcv38pt7mkd94q6shuwt"
+	contractAddressBech32 := "drt1qqqqqqqqqqqqqpgqxwakt2g7u9atsnr03gqcgmhcv38pt7mkd94q8vqld4"
 	contractAddress, _ := pkConverter.Decode(contractAddressBech32)
 
 	txLog := &transaction.Log{

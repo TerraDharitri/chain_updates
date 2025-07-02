@@ -3,7 +3,7 @@ package configs
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/integrationTests/realcomponents"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/realcomponents"
 
 	"github.com/stretchr/testify/require"
 )

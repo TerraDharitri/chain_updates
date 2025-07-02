@@ -3,9 +3,9 @@ package spos
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 
-	"github.com/multiversx/mx-chain-go/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
 )
 
 // roundConsensus defines the data needed by spos to do the consensus in each round

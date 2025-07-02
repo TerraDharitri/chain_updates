@@ -1,6 +1,6 @@
 package factory
 
-import "github.com/multiversx/mx-chain-go/cmd/assessment/benchmarks"
+import "github.com/TerraDharitri/drt-go-chain/cmd/assessment/benchmarks"
 
 type benchmarkCoordinator interface {
 	RunAllTests() *benchmarks.TestResults

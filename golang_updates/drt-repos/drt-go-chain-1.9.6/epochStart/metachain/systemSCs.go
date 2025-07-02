@@ -4,18 +4,18 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
 // ArgsNewEpochStartSystemSCProcessing defines the arguments structure for the end of epoch system sc processor
@@ -31,7 +31,7 @@ type ArgsNewEpochStartSystemSCProcessing struct {
 
 	EndOfEpochCallerAddress []byte
 	StakingSCAddress        []byte
-	ESDTOwnerAddressBytes   []byte
+	DCDTOwnerAddressBytes   []byte
 
 	GenesisNodesConfig           sharding.GenesisNodesSetupHandler
 	EpochNotifier                process.EpochNotifier
@@ -73,7 +73,7 @@ func NewSystemSCProcessor(args ArgsNewEpochStartSystemSCProcessing) (*systemSCPr
 		common.CorrectLastUnJailedFlag,
 		common.SwitchJailWaitingFlag,
 		common.StakingV2Flag,
-		common.ESDTFlagInSpecificEpochOnly,
+		common.DCDTFlagInSpecificEpochOnly,
 		common.GovernanceFlag,
 		common.SaveJailedAlwaysFlag,
 		common.StakingV4Step1Flag,

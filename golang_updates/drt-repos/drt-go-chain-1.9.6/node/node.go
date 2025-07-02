@@ -12,42 +12,42 @@ import (
 	syncGo "sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/guardians"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/validator"
-	disabledSig "github.com/multiversx/mx-chain-crypto-go/signing/disabled/singlesig"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/errChan"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/debug"
-	"github.com/multiversx/mx-chain-go/facade"
-	mainFactory "github.com/multiversx/mx-chain-go/factory"
-	heartbeatData "github.com/multiversx/mx-chain-go/heartbeat/data"
-	"github.com/multiversx/mx-chain-go/node/disabled"
-	"github.com/multiversx/mx-chain-go/node/external"
-	"github.com/multiversx/mx-chain-go/p2p"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/dataValidators"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	procTx "github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/trie"
-	"github.com/multiversx/mx-chain-go/vm"
-	"github.com/multiversx/mx-chain-go/vm/systemSmartContracts"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/guardians"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
+	disabledSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/disabled/singlesig"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/errChan"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/debug"
+	"github.com/TerraDharitri/drt-go-chain/facade"
+	mainFactory "github.com/TerraDharitri/drt-go-chain/factory"
+	heartbeatData "github.com/TerraDharitri/drt-go-chain/heartbeat/data"
+	"github.com/TerraDharitri/drt-go-chain/node/disabled"
+	"github.com/TerraDharitri/drt-go-chain/node/external"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/dataValidators"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	procTx "github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/trie"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	"github.com/TerraDharitri/drt-go-chain/vm/systemSmartContracts"
 )
 
 const (
-	// esdtTickerNumChars represents the number of hex-encoded characters of a ticker
-	esdtTickerNumChars = 6
+	// dcdtTickerNumChars represents the number of hex-encoded characters of a ticker
+	dcdtTickerNumChars = 6
 )
 
 var log = logger.GetOrCreate("node")
@@ -58,7 +58,7 @@ var _ facade.NodeHandler = (*Node)(nil)
 type Option func(*Node) error
 
 type filter interface {
-	filter(tokenIdentifier string, esdtData *systemSmartContracts.ESDTDataV2) bool
+	filter(tokenIdentifier string, dcdtData *systemSmartContracts.DCDTDataV2) bool
 }
 
 type accountInfo struct {
@@ -73,7 +73,7 @@ type Node struct {
 	roundDuration       uint64
 	genesisTime         time.Time
 	peerDenialEvaluator p2p.PeerDenialEvaluator
-	esdtStorageHandler  vmcommon.ESDTNFTStorageHandler
+	dcdtStorageHandler  vmcommon.DCDTNFTStorageHandler
 
 	consensusType       string
 	bootstrapRoundIndex uint64
@@ -203,15 +203,15 @@ func (n *Node) GetCodeHash(address string, options api.AccountQueryOptions) ([]b
 	return codeHash, blockInfo, nil
 }
 
-// GetAllIssuedESDTs returns all the issued esdt tokens, works only on metachain
-func (n *Node) GetAllIssuedESDTs(tokenType string, ctx context.Context) ([]string, error) {
+// GetAllIssuedDCDTs returns all the issued dcdt tokens, works only on metachain
+func (n *Node) GetAllIssuedDCDTs(tokenType string, ctx context.Context) ([]string, error) {
 	if n.processComponents.ShardCoordinator().SelfId() != core.MetachainShardId {
 		return nil, ErrMetachainOnlyEndpoint
 	}
 
-	userAccount, _, err := n.loadUserAccountHandlerByPubKey(vm.ESDTSCAddress, api.AccountQueryOptions{})
+	userAccount, _, err := n.loadUserAccountHandlerByPubKey(vm.DCDTSCAddress, api.AccountQueryOptions{})
 	if err != nil {
-		// don't return 0 values here - not finding the ESDT SC address is an error that should be returned
+		// don't return 0 values here - not finding the DCDT SC address is an error that should be returned
 		return nil, err
 	}
 
@@ -240,12 +240,12 @@ func (n *Node) GetAllIssuedESDTs(tokenType string, ctx context.Context) ([]strin
 			continue
 		}
 
-		esdtToken, okGet := n.getEsdtDataFromLeaf(leaf)
+		dcdtToken, okGet := n.getDcdtDataFromLeaf(leaf)
 		if !okGet {
 			continue
 		}
 
-		if tokenTypeEquals(esdtToken.TokenType, tokenType) {
+		if tokenTypeEquals(dcdtToken.TokenType, tokenType) {
 			tokens = append(tokens, tokenName)
 		}
 	}
@@ -263,28 +263,28 @@ func (n *Node) GetAllIssuedESDTs(tokenType string, ctx context.Context) ([]strin
 }
 
 func tokenTypeEquals(tokenType []byte, providedTokenType string) bool {
-	if providedTokenType == core.NonFungibleESDTv2 ||
-		providedTokenType == core.NonFungibleESDT {
-		return bytes.Equal(tokenType, []byte(core.NonFungibleESDTv2)) || bytes.Equal(tokenType, []byte(core.NonFungibleESDT)) || bytes.Equal(tokenType, []byte(core.DynamicNFTESDT))
+	if providedTokenType == core.NonFungibleDCDTv2 ||
+		providedTokenType == core.NonFungibleDCDT {
+		return bytes.Equal(tokenType, []byte(core.NonFungibleDCDTv2)) || bytes.Equal(tokenType, []byte(core.NonFungibleDCDT)) || bytes.Equal(tokenType, []byte(core.DynamicNFTDCDT))
 	}
 
-	if providedTokenType == core.SemiFungibleESDT {
-		return bytes.Equal(tokenType, []byte(core.SemiFungibleESDT)) || bytes.Equal(tokenType, []byte(core.DynamicSFTESDT))
+	if providedTokenType == core.SemiFungibleDCDT {
+		return bytes.Equal(tokenType, []byte(core.SemiFungibleDCDT)) || bytes.Equal(tokenType, []byte(core.DynamicSFTDCDT))
 	}
 
 	return bytes.Equal(tokenType, []byte(providedTokenType))
 }
 
-func (n *Node) getEsdtDataFromLeaf(leaf core.KeyValueHolder) (*systemSmartContracts.ESDTDataV2, bool) {
-	esdtToken := &systemSmartContracts.ESDTDataV2{}
+func (n *Node) getDcdtDataFromLeaf(leaf core.KeyValueHolder) (*systemSmartContracts.DCDTDataV2, bool) {
+	dcdtToken := &systemSmartContracts.DCDTDataV2{}
 
-	err := n.coreComponents.InternalMarshalizer().Unmarshal(esdtToken, leaf.Value())
+	err := n.coreComponents.InternalMarshalizer().Unmarshal(dcdtToken, leaf.Value())
 	if err != nil {
-		log.Warn("cannot unmarshal esdt data", "err", err)
+		log.Warn("cannot unmarshal dcdt data", "err", err)
 		return nil, false
 	}
 
-	return esdtToken, true
+	return dcdtToken, true
 }
 
 // GetKeyValuePairs returns all the key-value pairs under the address
@@ -414,14 +414,14 @@ func (n *Node) getPendingAndActiveGuardians(
 	return
 }
 
-// GetESDTData returns the esdt balance and properties from a given account
-func (n *Node) GetESDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
+// GetDCDTData returns the dcdt balance and properties from a given account
+func (n *Node) GetDCDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
 	// TODO: refactor here as to ensure userAccount and systemAccount are on the same root-hash
 	userAccount, _, err := n.loadUserAccountHandlerByAddress(address, options)
 	if err != nil {
 		adaptedBlockInfo, isEmptyAccount := extractBlockInfoIfNewAccount(err)
 		if isEmptyAccount {
-			return &esdt.ESDigitalToken{
+			return &dcdt.DCDigitalToken{
 				Value: big.NewInt(0),
 			}, adaptedBlockInfo, nil
 		}
@@ -439,19 +439,19 @@ func (n *Node) GetESDTData(address, tokenID string, nonce uint64, options api.Ac
 		return nil, api.BlockInfo{}, err
 	}
 
-	esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + tokenID)
-	esdtToken, _, err := n.esdtStorageHandler.GetESDTNFTTokenOnDestinationWithCustomSystemAccount(userAccountVmCommon, esdtTokenKey, nonce, systemAccount)
+	dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + tokenID)
+	dcdtToken, _, err := n.dcdtStorageHandler.GetDCDTNFTTokenOnDestinationWithCustomSystemAccount(userAccountVmCommon, dcdtTokenKey, nonce, systemAccount)
 	if err != nil {
 		return nil, api.BlockInfo{}, err
 	}
 
-	if esdtToken.TokenMetaData != nil {
-		esdtTokenCreatorAddr := n.coreComponents.AddressPubKeyConverter().SilentEncode(esdtToken.TokenMetaData.Creator, log)
+	if dcdtToken.TokenMetaData != nil {
+		dcdtTokenCreatorAddr := n.coreComponents.AddressPubKeyConverter().SilentEncode(dcdtToken.TokenMetaData.Creator, log)
 
-		esdtToken.TokenMetaData.Creator = []byte(esdtTokenCreatorAddr)
+		dcdtToken.TokenMetaData.Creator = []byte(dcdtTokenCreatorAddr)
 	}
 
-	return esdtToken, blockInfo, nil
+	return dcdtToken, blockInfo, nil
 }
 
 func (n *Node) getTokensIDsWithFilter(
@@ -463,7 +463,7 @@ func (n *Node) getTokensIDsWithFilter(
 		return nil, api.BlockInfo{}, ErrMetachainOnlyEndpoint
 	}
 
-	userAccount, blockInfo, err := n.loadUserAccountHandlerByPubKey(vm.ESDTSCAddress, options)
+	userAccount, blockInfo, err := n.loadUserAccountHandlerByPubKey(vm.DCDTSCAddress, options)
 	if err != nil {
 		return nil, api.BlockInfo{}, err
 	}
@@ -488,12 +488,12 @@ func (n *Node) getTokensIDsWithFilter(
 			continue
 		}
 
-		esdtToken, okGet := n.getEsdtDataFromLeaf(leaf)
+		dcdtToken, okGet := n.getDcdtDataFromLeaf(leaf)
 		if !okGet {
 			continue
 		}
 
-		if f.filter(tokenIdentifier, esdtToken) {
+		if f.filter(tokenIdentifier, dcdtToken) {
 			tokens = append(tokens, tokenIdentifier)
 		}
 	}
@@ -523,10 +523,10 @@ func (n *Node) GetNFTTokenIDsRegisteredByAddress(address string, options api.Acc
 	return n.getTokensIDsWithFilter(f, options, ctx)
 }
 
-// GetESDTsWithRole returns all the tokens with the given role for the given address
-func (n *Node) GetESDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error) {
-	if !core.IsValidESDTRole(role) {
-		return nil, api.BlockInfo{}, ErrInvalidESDTRole
+// GetDCDTsWithRole returns all the tokens with the given role for the given address
+func (n *Node) GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error) {
+	if !core.IsValidDCDTRole(role) {
+		return nil, api.BlockInfo{}, ErrInvalidDCDTRole
 	}
 
 	addressBytes, err := n.coreComponents.AddressPubKeyConverter().Decode(address)
@@ -541,8 +541,8 @@ func (n *Node) GetESDTsWithRole(address string, role string, options api.Account
 	return n.getTokensIDsWithFilter(f, options, ctx)
 }
 
-// GetESDTsRoles returns all the tokens identifiers and roles for the given address
-func (n *Node) GetESDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
+// GetDCDTsRoles returns all the tokens identifiers and roles for the given address
+func (n *Node) GetDCDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
 	addressBytes, err := n.coreComponents.AddressPubKeyConverter().Decode(address)
 	if err != nil {
 		return nil, api.BlockInfo{}, err
@@ -563,17 +563,17 @@ func (n *Node) GetESDTsRoles(address string, options api.AccountQueryOptions, ct
 }
 
 // GetTokenSupply returns the provided token supply from current shard
-func (n *Node) GetTokenSupply(token string) (*api.ESDTSupply, error) {
-	esdtSupply, err := n.processComponents.HistoryRepository().GetESDTSupply(token)
+func (n *Node) GetTokenSupply(token string) (*api.DCDTSupply, error) {
+	dcdtSupply, err := n.processComponents.HistoryRepository().GetDCDTSupply(token)
 	if err != nil {
 		return nil, err
 	}
 
-	return &api.ESDTSupply{
-		Supply:           bigToString(esdtSupply.Supply),
-		Burned:           bigToString(esdtSupply.Burned),
-		Minted:           bigToString(esdtSupply.Minted),
-		RecomputedSupply: esdtSupply.RecomputedSupply,
+	return &api.DCDTSupply{
+		Supply:           bigToString(dcdtSupply.Supply),
+		Burned:           bigToString(dcdtSupply.Burned),
+		Minted:           bigToString(dcdtSupply.Minted),
+		RecomputedSupply: dcdtSupply.RecomputedSupply,
 	}, nil
 }
 
@@ -584,14 +584,14 @@ func bigToString(bigValue *big.Int) string {
 	return bigValue.String()
 }
 
-// GetAllESDTTokens returns all the ESDTs that the given address interacted with
-func (n *Node) GetAllESDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
+// GetAllDCDTTokens returns all the DCDTs that the given address interacted with
+func (n *Node) GetAllDCDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
 	// TODO: refactor here as to ensure userAccount and systemAccount are on the same root-hash
 	userAccount, _, err := n.loadUserAccountHandlerByAddress(address, options)
 	if err != nil {
 		adaptedBlockInfo, isEmptyAccount := extractBlockInfoIfNewAccount(err)
 		if isEmptyAccount {
-			return make(map[string]*esdt.ESDigitalToken), adaptedBlockInfo, nil
+			return make(map[string]*dcdt.DCDigitalToken), adaptedBlockInfo, nil
 		}
 
 		return nil, api.BlockInfo{}, err
@@ -602,13 +602,13 @@ func (n *Node) GetAllESDTTokens(address string, options api.AccountQueryOptions,
 		return nil, api.BlockInfo{}, err
 	}
 
-	allESDTs := make(map[string]*esdt.ESDigitalToken)
+	allDCDTs := make(map[string]*dcdt.DCDigitalToken)
 	if check.IfNil(userAccount.DataTrie()) {
-		return allESDTs, api.BlockInfo{}, nil
+		return allDCDTs, api.BlockInfo{}, nil
 	}
 
-	esdtPrefix := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier)
-	lenESDTPrefix := len(esdtPrefix)
+	dcdtPrefix := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier)
+	lenDCDTPrefix := len(dcdtPrefix)
 
 	chLeaves := &common.TrieIteratorChannels{
 		LeavesChan: make(chan core.KeyValueHolder, common.TrieLeavesChannelDefaultCapacity),
@@ -620,13 +620,13 @@ func (n *Node) GetAllESDTTokens(address string, options api.AccountQueryOptions,
 	}
 
 	for leaf := range chLeaves.LeavesChan {
-		if !bytes.HasPrefix(leaf.Key(), esdtPrefix) {
+		if !bytes.HasPrefix(leaf.Key(), dcdtPrefix) {
 			continue
 		}
 
 		tokenKey := leaf.Key()
-		tokenName := string(tokenKey[lenESDTPrefix:])
-		esdtToken := &esdt.ESDigitalToken{Value: big.NewInt(0)}
+		tokenName := string(tokenKey[lenDCDTPrefix:])
+		dcdtToken := &dcdt.DCDigitalToken{Value: big.NewInt(0)}
 
 		userAccountVmCommon, ok := userAccount.(vmcommon.UserAccountHandler)
 		if !ok {
@@ -635,23 +635,23 @@ func (n *Node) GetAllESDTTokens(address string, options api.AccountQueryOptions,
 
 		tokenID, nonce := common.ExtractTokenIDAndNonceFromTokenStorageKey([]byte(tokenName))
 
-		esdtTokenKey := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier + string(tokenID))
-		esdtToken, _, err = n.esdtStorageHandler.GetESDTNFTTokenOnDestinationWithCustomSystemAccount(userAccountVmCommon, esdtTokenKey, nonce, systemAccount)
+		dcdtTokenKey := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier + string(tokenID))
+		dcdtToken, _, err = n.dcdtStorageHandler.GetDCDTNFTTokenOnDestinationWithCustomSystemAccount(userAccountVmCommon, dcdtTokenKey, nonce, systemAccount)
 		if err != nil {
-			log.Warn("cannot get ESDT token", "token name", tokenName, "error", err)
+			log.Warn("cannot get DCDT token", "token name", tokenName, "error", err)
 			continue
 		}
 
-		if esdtToken.TokenMetaData != nil {
-			esdtTokenCreatorAddr, errEncode := n.coreComponents.AddressPubKeyConverter().Encode(esdtToken.TokenMetaData.Creator)
+		if dcdtToken.TokenMetaData != nil {
+			dcdtTokenCreatorAddr, errEncode := n.coreComponents.AddressPubKeyConverter().Encode(dcdtToken.TokenMetaData.Creator)
 			if errEncode != nil {
 				return nil, api.BlockInfo{}, errEncode
 			}
-			esdtToken.TokenMetaData.Creator = []byte(esdtTokenCreatorAddr)
-			tokenName = adjustNftTokenIdentifier(tokenName, esdtToken.TokenMetaData.Nonce)
+			dcdtToken.TokenMetaData.Creator = []byte(dcdtTokenCreatorAddr)
+			tokenName = adjustNftTokenIdentifier(tokenName, dcdtToken.TokenMetaData.Nonce)
 		}
 
-		allESDTs[tokenName] = esdtToken
+		allDCDTs[tokenName] = dcdtToken
 	}
 
 	err = chLeaves.ErrChan.ReadFromChanNonBlocking()
@@ -663,7 +663,7 @@ func (n *Node) GetAllESDTTokens(address string, options api.AccountQueryOptions,
 		return nil, api.BlockInfo{}, ErrTrieOperationsTimeout
 	}
 
-	return allESDTs, blockInfo, nil
+	return allDCDTs, blockInfo, nil
 }
 
 func adjustNftTokenIdentifier(token string, nonce uint64) string {
@@ -672,14 +672,14 @@ func adjustNftTokenIdentifier(token string, nonce uint64) string {
 		return token
 	}
 
-	if len(splitToken[1]) < esdtTickerNumChars {
+	if len(splitToken[1]) < dcdtTickerNumChars {
 		return token
 	}
 
 	nonceBytes := big.NewInt(0).SetUint64(nonce).Bytes()
 	formattedTokenIdentifier := fmt.Sprintf("%s-%s-%s",
 		splitToken[0],
-		splitToken[1][:esdtTickerNumChars],
+		splitToken[1][:dcdtTickerNumChars],
 		hex.EncodeToString(nonceBytes))
 
 	return formattedTokenIdentifier

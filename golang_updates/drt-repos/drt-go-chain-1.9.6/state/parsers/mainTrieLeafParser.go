@@ -1,8 +1,8 @@
 package parsers
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/keyValStorage"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/keyValStorage"
 )
 
 type mainTrieLeafParser struct {

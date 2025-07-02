@@ -3,18 +3,18 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/outport/process"
-	"github.com/multiversx/mx-chain-go/outport/process/alteredaccounts"
-	"github.com/multiversx/mx-chain-go/outport/process/transactionsfee"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	commonMocks "github.com/multiversx/mx-chain-go/testscommon/common"
-	"github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/genericMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/shardingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/state"
+	"github.com/TerraDharitri/drt-go-chain/outport/process"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/alteredaccounts"
+	"github.com/TerraDharitri/drt-go-chain/outport/process/transactionsfee"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	commonMocks "github.com/TerraDharitri/drt-go-chain/testscommon/common"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/genericMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/state"
 	"github.com/stretchr/testify/require"
 )
 
@@ -24,7 +24,7 @@ func createArgOutportDataProviderFactory() ArgOutportDataProviderFactory {
 		AddressConverter:       testscommon.NewPubkeyConverterMock(32),
 		AccountsDB:             &state.AccountsStub{},
 		Marshaller:             &marshallerMock.MarshalizerMock{},
-		EsdtDataStorageHandler: &testscommon.EsdtStorageHandlerStub{},
+		DcdtDataStorageHandler: &testscommon.DcdtStorageHandlerStub{},
 		TransactionsStorer:     &genericMocks.StorerMock{},
 		ShardCoordinator:       &testscommon.ShardsCoordinatorMock{},
 		TxCoordinator:          &testscommon.TransactionCoordinatorMock{},
@@ -55,8 +55,8 @@ func TestCheckArgCreateOutportDataProvider(t *testing.T) {
 	require.Equal(t, transactionsfee.ErrNilMarshaller, checkArgOutportDataProviderFactory(arg))
 
 	arg = createArgOutportDataProviderFactory()
-	arg.EsdtDataStorageHandler = nil
-	require.Equal(t, alteredaccounts.ErrNilESDTDataStorageHandler, checkArgOutportDataProviderFactory(arg))
+	arg.DcdtDataStorageHandler = nil
+	require.Equal(t, alteredaccounts.ErrNilDCDTDataStorageHandler, checkArgOutportDataProviderFactory(arg))
 
 	arg = createArgOutportDataProviderFactory()
 	arg.TransactionsStorer = nil

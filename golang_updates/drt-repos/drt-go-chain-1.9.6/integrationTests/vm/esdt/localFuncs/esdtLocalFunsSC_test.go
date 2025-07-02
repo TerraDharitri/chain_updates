@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	esdtCommon "github.com/multiversx/mx-chain-go/integrationTests/vm/esdt"
-	"github.com/multiversx/mx-chain-go/testscommon/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	esdtCommon "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
 )
 
 func TestESDTLocalMintAndBurnFromSC(t *testing.T) {

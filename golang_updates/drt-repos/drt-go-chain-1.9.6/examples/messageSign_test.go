@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/display"
-	"github.com/multiversx/mx-chain-core-go/hashing/keccak"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/ed25519"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/keccak"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/ed25519"
 	"github.com/stretchr/testify/require"
 )
 
@@ -25,13 +25,13 @@ import (
 */
 
 // This prefix should be added when computing the hash to be signed
-const signedMessagePrefix = "\x17Elrond Signed Message:\n"
+const signedMessagePrefix = "\x17Numbat Signed Message:\n"
 
 var messageSigningHasher = keccak.NewKeccak()
 
 func TestVerifyMessageSignatureFromLedger(t *testing.T) {
-	// these field values were obtained by using MultiversX App for Ledger
-	address := "erd19pht2w242wcj0x9gq3us86dtjrrfe3wk8ffh5nhdemf0mce6hsmsupxzlq"
+	// these field values were obtained by using Dharitri App for Ledger
+	address := "drt19pht2w242wcj0x9gq3us86dtjrrfe3wk8ffh5nhdemf0mce6hsmspa3pu7"
 	message := "test message"
 	signature := "ec7a27cb4b23641ae62e3ea96d5858c8142e20d79a6e1710037d1c27b0d138d7452a98da93c036b2b47ee587d4cb4af6ae24c358f3f5f74f85580f45e072280b"
 
@@ -40,7 +40,7 @@ func TestVerifyMessageSignatureFromLedger(t *testing.T) {
 }
 
 func TestVerifyMessageSignature(t *testing.T) {
-	address := "erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th" // alice
+	address := "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf" // alice
 	message := "custom message of Alice"
 	signature := "b83647b88cdc7904895f510250cc735502bf4fd86331dd1b76e078d6409433753fd6f619fc7f8152cf8589a4669eb8318b2e735e41309ed3b60e64221d814f08"
 

@@ -3,8 +3,8 @@ package transactionsfee
 import (
 	"encoding/hex"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
 )
 
 type txHandlerWithFeeInfo interface {

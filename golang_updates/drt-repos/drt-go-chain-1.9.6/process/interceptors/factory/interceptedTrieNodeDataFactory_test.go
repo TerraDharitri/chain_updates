@@ -3,7 +3,7 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/stretchr/testify/assert"
 )
 

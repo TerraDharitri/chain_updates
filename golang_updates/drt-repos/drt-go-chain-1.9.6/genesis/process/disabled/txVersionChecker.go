@@ -1,6 +1,6 @@
 package disabled
 
-import "github.com/multiversx/mx-chain-core-go/data/transaction"
+import "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 
 // TxVersionChecker implements the TxVersionChecker interface, it does nothing as it is a disabled component
 type TxVersionChecker struct{}

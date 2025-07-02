@@ -21,8 +21,8 @@ type MetaChainSystemSCsCost struct {
 	ChangeRewardAddress   uint64
 	ChangeValidatorKeys   uint64
 	UnJail                uint64
-	ESDTIssue             uint64
-	ESDTOperations        uint64
+	DCDTIssue             uint64
+	DCDTOperations        uint64
 	Proposal              uint64
 	Vote                  uint64
 	DelegateVote          uint64
@@ -44,18 +44,18 @@ type BuiltInCost struct {
 	ClaimDeveloperRewards    uint64
 	SaveUserName             uint64
 	SaveKeyValue             uint64
-	ESDTTransfer             uint64
-	ESDTBurn                 uint64
-	ESDTLocalMint            uint64
-	ESDTLocalBurn            uint64
-	ESDTNFTCreate            uint64
-	ESDTNFTAddQuantity       uint64
-	ESDTNFTBurn              uint64
-	ESDTNFTTransfer          uint64
-	ESDTNFTChangeCreateOwner uint64
-	ESDTNFTAddUri            uint64
-	ESDTNFTUpdateAttributes  uint64
-	ESDTNFTMultiTransfer     uint64
+	DCDTTransfer             uint64
+	DCDTBurn                 uint64
+	DCDTLocalMint            uint64
+	DCDTLocalBurn            uint64
+	DCDTNFTCreate            uint64
+	DCDTNFTAddQuantity       uint64
+	DCDTNFTBurn              uint64
+	DCDTNFTTransfer          uint64
+	DCDTNFTChangeCreateOwner uint64
+	DCDTNFTAddUri            uint64
+	DCDTNFTUpdateAttributes  uint64
+	DCDTNFTMultiTransfer     uint64
 	TrieLoadPerNode          uint64
 	TrieStorePerNode         uint64
 }

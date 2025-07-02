@@ -4,17 +4,17 @@ RUN apt-get update && apt-get upgrade -y
 WORKDIR /go/mx-chain-go
 COPY . .
 RUN go mod tidy
-# Multiversx node
+# Dharitri node
 WORKDIR /go/mx-chain-go/cmd/node
 RUN go build -v -ldflags="-X main.appVersion=$(git describe --tags --long --dirty)"
 
 RUN mkdir -p /lib_amd64 /lib_arm64
 
-RUN cp /go/pkg/mod/github.com/multiversx/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-v | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer/libwasmer_linux_amd64.so /lib_amd64/
-RUN cp /go/pkg/mod/github.com/multiversx/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-go | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer2/libvmexeccapi.so /lib_amd64/
+RUN cp /go/pkg/mod/github.com/TerraDharitri/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-v | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer/libwasmer_linux_amd64.so /lib_amd64/
+RUN cp /go/pkg/mod/github.com/TerraDharitri/$(cat /go/mx-chain-go/go.mod | grep drt-go-chain-vm | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer2/libvmexeccapi.so /lib_amd64/
 
-RUN cp /go/pkg/mod/github.com/multiversx/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-v | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer/libwasmer_linux_arm64_shim.so /lib_arm64/
-RUN cp /go/pkg/mod/github.com/multiversx/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-go | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer2/libvmexeccapi_arm.so /lib_arm64/
+RUN cp /go/pkg/mod/github.com/TerraDharitri/$(cat /go/mx-chain-go/go.mod | grep mx-chain-vm-v | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer/libwasmer_linux_arm64_shim.so /lib_arm64/
+RUN cp /go/pkg/mod/github.com/TerraDharitri/$(cat /go/mx-chain-go/go.mod | grep drt-go-chain-vm | sort -n | tail -n -1 | awk -F '/' '{print$3}' | sed 's/ /@/g')/wasmer2/libvmexeccapi_arm.so /lib_arm64/
 
 # ===== SECOND STAGE ======
 FROM ubuntu:22.04

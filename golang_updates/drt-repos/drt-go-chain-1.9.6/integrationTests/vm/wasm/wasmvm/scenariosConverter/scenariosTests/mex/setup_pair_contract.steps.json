@@ -7,7 +7,7 @@
                 "sc:pair_contract": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:LPTOK-abcdef": {
                             "instances": [
                                 {
@@ -16,8 +16,8 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         },
                         "str:MEX-abcdef": {
@@ -28,10 +28,10 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalBurn"
                             ]
                         },
-                        "str:WEGLD-abcdef": {
+                        "str:WREWA-abcdef": {
                             "instances": [
                                 {
                                     "nonce": "0",
@@ -41,7 +41,7 @@
                         }
                     },
                     "storage": {
-                        "str:first_token_id": "str:WEGLD-abcdef",
+                        "str:first_token_id": "str:WREWA-abcdef",
                         "str:second_token_id": "str:MEX-abcdef",
                         "str:state": "1",
                         "str:lpTokenIdentifier": "str:LPTOK-abcdef",
@@ -55,7 +55,7 @@
                         "str:send_fee_gas_limit": "25,000,000",
                         "str:extern_swap_gas_limit": "50,000,000",
                         "str:reserve|nested:str:MEX-abcdef": "1000000000000000000000000",
-                        "str:reserve|nested:str:WEGLD-abcdef": "1000000000000000000000000",
+                        "str:reserve|nested:str:WREWA-abcdef": "1000000000000000000000000",
                         "str:generated_tokens.info": "0x00000001000000010000000100000001",
                         "str:generated_tokens.mapped|nested:str:LPTOK-abcdef": "1000000000000000000000000",
                         "str:generated_tokens.node_id|nested:str:LPTOK-abcdef": "1",

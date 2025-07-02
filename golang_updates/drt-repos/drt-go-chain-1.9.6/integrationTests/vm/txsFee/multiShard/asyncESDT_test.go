@@ -5,16 +5,16 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/require"
 )
 
-func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
+func TestAsyncDCDTTransferWithSCCallShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -45,13 +45,13 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(secondContractOwner))
 
 	token := []byte("miiutoken")
-	egldBalance := big.NewInt(10000000)
-	esdtBalance := big.NewInt(10000000)
-	utils.CreateAccountWithESDTBalance(t, testContextSender.Accounts, senderAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	rewaBalance := big.NewInt(10000000)
+	dcdtBalance := big.NewInt(10000000)
+	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	// create accounts for owners
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	// deploy contracts on shard 1 and shard 2
 	gasPrice := uint64(10)
@@ -59,12 +59,12 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 
 	secondContractOwnerAcc, _ := testContextSecondContract.Accounts.LoadAccount(secondContractOwner)
 	argsSecond := [][]byte{[]byte(hex.EncodeToString(token))}
-	secondSCAddress := utils.DoDeploySecond(t, testContextSecondContract, "../../esdt/testdata/second-contract.wasm", secondContractOwnerAcc, gasPrice, gasLimitDeploy, argsSecond, big.NewInt(0))
+	secondSCAddress := utils.DoDeploySecond(t, testContextSecondContract, "../../dcdt/testdata/second-contract.wasm", secondContractOwnerAcc, gasPrice, gasLimitDeploy, argsSecond, big.NewInt(0))
 	testContextSecondContract.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 
 	firstContractOwnerAcc, _ := testContextFirstContract.Accounts.LoadAccount(firstContractOwner)
 	args := [][]byte{[]byte(hex.EncodeToString(token)), []byte(hex.EncodeToString(secondSCAddress))}
-	firstSCAddress := utils.DoDeploySecond(t, testContextFirstContract, "../../esdt/testdata/first-contract.wasm", firstContractOwnerAcc, gasPrice, gasLimitDeploy, args, big.NewInt(0))
+	firstSCAddress := utils.DoDeploySecond(t, testContextFirstContract, "../../dcdt/testdata/first-contract.wasm", firstContractOwnerAcc, gasPrice, gasLimitDeploy, args, big.NewInt(0))
 	testContextFirstContract.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 
 	require.Equal(t, uint32(1), testContextSender.ShardCoordinator.ComputeId(firstSCAddress))
@@ -74,7 +74,7 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 	utils.CleanAccumulatedIntermediateTransactions(t, testContextSecondContract)
 
 	gasLimit := uint64(500000)
-	tx := utils.CreateESDTTransferTx(0, senderAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, senderAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString([]byte("transferToSecondContractHalf")))
 
 	// execute on the source shard
@@ -105,7 +105,7 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 	developerFees := big.NewInt(114653)
 	require.Equal(t, developerFees, testContextFirstContract.TxFeeHandler.GetDeveloperFees())
 
-	utils.CheckESDTBalance(t, testContextFirstContract, firstSCAddress, token, big.NewInt(2500))
+	utils.CheckDCDTBalance(t, testContextFirstContract, firstSCAddress, token, big.NewInt(2500))
 
 	intermediateTxs := testContextFirstContract.GetIntermediateTransactions(t)
 
@@ -114,7 +114,7 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 	require.Equal(t, scrForSecondContract.GetRcvAddr(), secondSCAddress)
 	utils.ProcessSCRResult(t, testContextSecondContract, scrForSecondContract, vmcommon.Ok, nil)
 
-	utils.CheckESDTBalance(t, testContextSecondContract, secondSCAddress, token, big.NewInt(2500))
+	utils.CheckDCDTBalance(t, testContextSecondContract, secondSCAddress, token, big.NewInt(2500))
 
 	accumulatedFee := big.NewInt(540660)
 	require.Equal(t, accumulatedFee, testContextSecondContract.TxFeeHandler.GetAccumulatedFees())
@@ -130,7 +130,7 @@ func TestAsyncESDTTransferWithSCCallShouldWork(t *testing.T) {
 	require.Equal(t, big.NewInt(4458400), testContextFirstContract.TxFeeHandler.GetAccumulatedFees())
 }
 
-func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
+func TestAsyncDCDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -161,13 +161,13 @@ func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	require.Equal(t, uint32(2), testContextSender.ShardCoordinator.ComputeId(secondContractOwner))
 
 	token := []byte("miiutoken")
-	egldBalance := big.NewInt(10000000)
-	esdtBalance := big.NewInt(10000000)
-	utils.CreateAccountWithESDTBalance(t, testContextSender.Accounts, senderAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	rewaBalance := big.NewInt(10000000)
+	dcdtBalance := big.NewInt(10000000)
+	utils.CreateAccountWithDCDTBalance(t, testContextSender.Accounts, senderAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	// create accounts for owners
-	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFirstContract.Accounts, firstContractOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextSecondContract.Accounts, secondContractOwner, 0, rewaBalance)
 
 	// deploy contracts on shard 1 and shard 2
 	gasPrice := uint64(10)
@@ -175,12 +175,12 @@ func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 
 	secondContractOwnerAcc, _ := testContextSecondContract.Accounts.LoadAccount(secondContractOwner)
 	argsSecond := [][]byte{[]byte(hex.EncodeToString(append(token, []byte("aaa")...)))}
-	secondSCAddress := utils.DoDeploySecond(t, testContextSecondContract, "../../esdt/testdata/second-contract.wasm", secondContractOwnerAcc, gasPrice, gasLimitDeploy, argsSecond, big.NewInt(0))
+	secondSCAddress := utils.DoDeploySecond(t, testContextSecondContract, "../../dcdt/testdata/second-contract.wasm", secondContractOwnerAcc, gasPrice, gasLimitDeploy, argsSecond, big.NewInt(0))
 	testContextSecondContract.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 
 	firstContractOwnerAcc, _ := testContextFirstContract.Accounts.LoadAccount(firstContractOwner)
 	args := [][]byte{[]byte(hex.EncodeToString(token)), []byte(hex.EncodeToString(secondSCAddress))}
-	firstSCAddress := utils.DoDeploySecond(t, testContextFirstContract, "../../esdt/testdata/first-contract.wasm", firstContractOwnerAcc, gasPrice, gasLimitDeploy, args, big.NewInt(0))
+	firstSCAddress := utils.DoDeploySecond(t, testContextFirstContract, "../../dcdt/testdata/first-contract.wasm", firstContractOwnerAcc, gasPrice, gasLimitDeploy, args, big.NewInt(0))
 	testContextFirstContract.TxFeeHandler.CreateBlockStarted(getZeroGasAndFees())
 
 	require.Equal(t, uint32(1), testContextSender.ShardCoordinator.ComputeId(firstSCAddress))
@@ -190,7 +190,7 @@ func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	utils.CleanAccumulatedIntermediateTransactions(t, testContextSecondContract)
 
 	gasLimit := uint64(500000)
-	tx := utils.CreateESDTTransferTx(0, senderAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, senderAddr, firstSCAddress, token, big.NewInt(5000), gasPrice, gasLimit)
 	tx.Data = []byte(string(tx.Data) + "@" + hex.EncodeToString([]byte("transferToSecondContractHalf")))
 
 	// execute on the source shard
@@ -218,7 +218,7 @@ func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	developerFees := big.NewInt(114653)
 	require.Equal(t, developerFees, testContextFirstContract.TxFeeHandler.GetDeveloperFees())
 
-	utils.CheckESDTBalance(t, testContextFirstContract, firstSCAddress, token, big.NewInt(2500))
+	utils.CheckDCDTBalance(t, testContextFirstContract, firstSCAddress, token, big.NewInt(2500))
 
 	intermediateTxs := testContextFirstContract.GetIntermediateTransactions(t)
 	scrForSecondContract := intermediateTxs[1]
@@ -226,7 +226,7 @@ func TestAsyncESDTTransferWithSCCallSecondContractAnotherToken(t *testing.T) {
 	require.Equal(t, scrForSecondContract.GetRcvAddr(), secondSCAddress)
 	utils.ProcessSCRResult(t, testContextSecondContract, scrForSecondContract, vmcommon.UserError, nil)
 
-	utils.CheckESDTBalance(t, testContextSecondContract, secondSCAddress, token, big.NewInt(0))
+	utils.CheckDCDTBalance(t, testContextSecondContract, secondSCAddress, token, big.NewInt(0))
 
 	accumulatedFee := big.NewInt(2764130)
 	require.Equal(t, accumulatedFee, testContextSecondContract.TxFeeHandler.GetAccumulatedFees())

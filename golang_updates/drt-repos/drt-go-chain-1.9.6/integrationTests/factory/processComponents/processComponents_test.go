@@ -5,15 +5,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	bootstrapComp "github.com/multiversx/mx-chain-go/factory/bootstrap"
-	"github.com/multiversx/mx-chain-go/integrationTests/factory"
-	"github.com/multiversx/mx-chain-go/node"
-	"github.com/multiversx/mx-chain-go/testscommon/goroutines"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	bootstrapComp "github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/factory"
+	"github.com/TerraDharitri/drt-go-chain/node"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/goroutines"
 )
 
 // ------------ Test TestProcessComponents --------------------

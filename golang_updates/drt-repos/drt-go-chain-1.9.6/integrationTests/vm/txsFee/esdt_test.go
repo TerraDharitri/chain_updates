@@ -6,18 +6,18 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 	"github.com/stretchr/testify/require"
 )
 
-func TestESDTTransferShouldWork(t *testing.T) {
+func TestDCDTTransferShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -29,13 +29,13 @@ func TestESDTTransferShouldWork(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(40)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
@@ -44,20 +44,20 @@ func TestESDTTransferShouldWork(t *testing.T) {
 	require.Nil(t, err)
 
 	expectedBalanceSnd := big.NewInt(99999900)
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
 
 	expectedReceiverBalance := big.NewInt(100)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
-	expectedEGLDBalance := big.NewInt(99999640)
-	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+	expectedREWABalance := big.NewInt(99999640)
+	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 	// check accumulated fees
 	accumulatedFees := testContext.TxFeeHandler.GetAccumulatedFees()
 	require.Equal(t, big.NewInt(360), accumulatedFees)
 }
 
-func TestESDTTransferShouldWorkToMuchGasShouldConsumeAllGas(t *testing.T) {
+func TestDCDTTransferShouldWorkToMuchGasShouldConsumeAllGas(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -69,13 +69,13 @@ func TestESDTTransferShouldWorkToMuchGasShouldConsumeAllGas(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(1000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100), gasPrice, gasLimit)
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.Ok, retCode)
 	require.Nil(t, err)
@@ -84,20 +84,20 @@ func TestESDTTransferShouldWorkToMuchGasShouldConsumeAllGas(t *testing.T) {
 	require.Nil(t, err)
 
 	expectedBalanceSnd := big.NewInt(99999900)
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
 
 	expectedReceiverBalance := big.NewInt(100)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
-	expectedEGLDBalance := big.NewInt(99990000)
-	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+	expectedREWABalance := big.NewInt(99990000)
+	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 	// check accumulated fees
 	accumulatedFees := testContext.TxFeeHandler.GetAccumulatedFees()
 	require.Equal(t, big.NewInt(10000), accumulatedFees)
 }
 
-func TestESDTTransferInvalidESDTValueShouldConsumeGas(t *testing.T) {
+func TestDCDTTransferInvalidDCDTValueShouldConsumeGas(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -109,13 +109,13 @@ func TestESDTTransferInvalidESDTValueShouldConsumeGas(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(1000)
-	tx := utils.CreateESDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100000000+1), gasPrice, gasLimit)
+	tx := utils.CreateDCDTTransferTx(0, sndAddr, rcvAddr, token, big.NewInt(100000000+1), gasPrice, gasLimit)
 
 	retCode, err := testContext.TxProcessor.ProcessTransaction(tx)
 	require.Equal(t, vmcommon.UserError, retCode)
@@ -124,20 +124,20 @@ func TestESDTTransferInvalidESDTValueShouldConsumeGas(t *testing.T) {
 	_, err = testContext.Accounts.Commit()
 	require.Nil(t, err)
 
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, egldBalance)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, rewaBalance)
 
 	expectedReceiverBalance := big.NewInt(0)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
-	expectedEGLDBalance := big.NewInt(99990000)
-	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+	expectedREWABalance := big.NewInt(99990000)
+	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 	// check accumulated fees
 	accumulatedFees := testContext.TxFeeHandler.GetAccumulatedFees()
 	require.Equal(t, big.NewInt(10000), accumulatedFees)
 }
 
-func TestESDTTransferCallBackOnErrorShouldNotGenerateSCRsFurther(t *testing.T) {
+func TestDCDTTransferCallBackOnErrorShouldNotGenerateSCRsFurther(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -153,14 +153,14 @@ func TestESDTTransferCallBackOnErrorShouldNotGenerateSCRsFurther(t *testing.T) {
 	rcvAddr := bytes.Repeat([]byte{0}, 32)
 	rcvAddr[12] = 1
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 
 	hexEncodedToken := hex.EncodeToString(token)
-	esdtValueEncoded := hex.EncodeToString(big.NewInt(100).Bytes())
-	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionESDTTransfer), []byte(hexEncodedToken), []byte(esdtValueEncoded), []byte(hex.EncodeToString([]byte("something")))}, []byte("@"))
+	dcdtValueEncoded := hex.EncodeToString(big.NewInt(100).Bytes())
+	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionDCDTTransfer), []byte(hexEncodedToken), []byte(dcdtValueEncoded), []byte(hex.EncodeToString([]byte("something")))}, []byte("@"))
 	scr := &smartContractResult.SmartContractResult{
 		Nonce:         0,
 		Value:         big.NewInt(0),
@@ -178,7 +178,7 @@ func TestESDTTransferCallBackOnErrorShouldNotGenerateSCRsFurther(t *testing.T) {
 	require.Nil(t, err)
 
 	expectedReceiverBalance := big.NewInt(100)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
 	// check accumulated fees
 	accumulatedFees := testContext.TxFeeHandler.GetAccumulatedFees()

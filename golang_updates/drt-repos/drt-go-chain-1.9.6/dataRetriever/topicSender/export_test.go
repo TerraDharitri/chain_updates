@@ -1,7 +1,7 @@
 package topicsender
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 func MakeDiffList(

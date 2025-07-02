@@ -1,6 +1,6 @@
 package interceptors
 
-import "github.com/multiversx/mx-chain-go/process"
+import "github.com/TerraDharitri/drt-go-chain/process"
 
 // Topic -
 func (mdi *MultiDataInterceptor) Topic() string {

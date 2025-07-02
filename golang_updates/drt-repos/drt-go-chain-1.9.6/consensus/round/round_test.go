@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/consensus/round"
-	consensusMocks "github.com/multiversx/mx-chain-go/testscommon/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus/round"
+	consensusMocks "github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
 
 	"github.com/stretchr/testify/assert"
 )

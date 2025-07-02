@@ -1,6 +1,6 @@
 package disabled
 
-import "github.com/multiversx/mx-chain-go/state"
+import "github.com/TerraDharitri/drt-go-chain/state"
 
 type auctionListSelector struct {
 }

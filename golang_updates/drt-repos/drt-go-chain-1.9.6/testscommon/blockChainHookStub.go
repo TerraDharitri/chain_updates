@@ -1,11 +1,11 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 // BlockChainHookStub -
@@ -36,7 +36,7 @@ type BlockChainHookStub struct {
 	SaveCompiledCodeCalled                  func(codeHash []byte, code []byte)
 	ClearCompiledCodesCalled                func()
 	GetCodeCalled                           func(account vmcommon.UserAccountHandler) []byte
-	GetESDTTokenCalled                      func(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error)
+	GetDCDTTokenCalled                      func(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error)
 	NumberOfShardsCalled                    func() uint32
 	GetSnapshotCalled                       func() int
 	RevertToSnapshotCalled                  func(snapshot int) error
@@ -263,13 +263,13 @@ func (stub *BlockChainHookStub) GetAllState(address []byte) (map[string][]byte, 
 	return nil, nil
 }
 
-// GetESDTToken -
-func (stub *BlockChainHookStub) GetESDTToken(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error) {
-	if stub.GetESDTTokenCalled != nil {
-		return stub.GetESDTTokenCalled(address, tokenID, nonce)
+// GetDCDTToken -
+func (stub *BlockChainHookStub) GetDCDTToken(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error) {
+	if stub.GetDCDTTokenCalled != nil {
+		return stub.GetDCDTTokenCalled(address, tokenID, nonce)
 	}
 
-	return &esdt.ESDigitalToken{}, nil
+	return &dcdt.DCDigitalToken{}, nil
 }
 
 // NumberOfShards -

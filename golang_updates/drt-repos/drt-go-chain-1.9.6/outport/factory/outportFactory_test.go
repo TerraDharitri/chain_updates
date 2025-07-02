@@ -5,14 +5,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-communication-go/websocket/data"
-	indexerFactory "github.com/multiversx/mx-chain-es-indexer-go/process/factory"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/outport"
-	"github.com/multiversx/mx-chain-go/outport/factory"
-	notifierFactory "github.com/multiversx/mx-chain-go/outport/factory"
-	"github.com/multiversx/mx-chain-go/process/mock"
-	"github.com/multiversx/mx-chain-storage-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-communication/websocket/data"
+	indexerFactory "github.com/TerraDharitri/drt-go-chain-es-indexer/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-storage/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/outport"
+	"github.com/TerraDharitri/drt-go-chain/outport/factory"
+	notifierFactory "github.com/TerraDharitri/drt-go-chain/outport/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/mock"
 	"github.com/stretchr/testify/require"
 )
 

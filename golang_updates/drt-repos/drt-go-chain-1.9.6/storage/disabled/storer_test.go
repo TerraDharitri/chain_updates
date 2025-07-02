@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-storage-go/common"
+	"github.com/TerraDharitri/drt-go-chain-storage/common"
 	"github.com/stretchr/testify/assert"
 )
 

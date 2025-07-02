@@ -3,7 +3,7 @@ package metachain
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/display"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
 )
 
 type tableDisplayer struct {

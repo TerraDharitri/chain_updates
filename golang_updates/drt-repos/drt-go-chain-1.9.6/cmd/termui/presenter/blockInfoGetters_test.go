@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/stretchr/testify/assert"
 )
 

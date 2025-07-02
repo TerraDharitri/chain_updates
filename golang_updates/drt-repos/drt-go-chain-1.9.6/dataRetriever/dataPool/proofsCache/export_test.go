@@ -1,6 +1,6 @@
 package proofscache
 
-import "github.com/multiversx/mx-chain-core-go/data"
+import "github.com/TerraDharitri/drt-go-chain-core/data"
 
 // NewProofsCache -
 func NewProofsCache(bucketSize int) *proofsCache {

@@ -3,8 +3,8 @@ package pruning
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/storage"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
 type triePersistersTracker struct {

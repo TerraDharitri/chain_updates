@@ -1,11 +1,11 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/database"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-storage-go/factory"
+	"github.com/TerraDharitri/drt-go-chain-storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/database"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 )
 
 const minNumShards = 2

@@ -3,15 +3,15 @@ package coordinator
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 var _ process.TxTypeHandler = (*txTypeHandler)(nil)
@@ -21,7 +21,7 @@ type txTypeHandler struct {
 	shardCoordinator    sharding.Coordinator
 	builtInFunctions    vmcommon.BuiltInFunctionContainer
 	argumentParser      process.CallArgumentsParser
-	esdtTransferParser  vmcommon.ESDTTransferParser
+	dcdtTransferParser  vmcommon.DCDTTransferParser
 	enableEpochsHandler common.EnableEpochsHandler
 }
 
@@ -31,7 +31,7 @@ type ArgNewTxTypeHandler struct {
 	ShardCoordinator    sharding.Coordinator
 	BuiltInFunctions    vmcommon.BuiltInFunctionContainer
 	ArgumentParser      process.CallArgumentsParser
-	ESDTTransferParser  vmcommon.ESDTTransferParser
+	DCDTTransferParser  vmcommon.DCDTTransferParser
 	EnableEpochsHandler common.EnableEpochsHandler
 }
 
@@ -51,14 +51,14 @@ func NewTxTypeHandler(
 	if check.IfNil(args.BuiltInFunctions) {
 		return nil, process.ErrNilBuiltInFunction
 	}
-	if check.IfNil(args.ESDTTransferParser) {
-		return nil, process.ErrNilESDTTransferParser
+	if check.IfNil(args.DCDTTransferParser) {
+		return nil, process.ErrNilDCDTTransferParser
 	}
 	if check.IfNil(args.EnableEpochsHandler) {
 		return nil, process.ErrNilEnableEpochsHandler
 	}
 	err := core.CheckHandlerCompatibility(args.EnableEpochsHandler, []core.EnableEpochFlag{
-		common.ESDTMetadataContinuousCleanupFlag,
+		common.DCDTMetadataContinuousCleanupFlag,
 	})
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func NewTxTypeHandler(
 		shardCoordinator:    args.ShardCoordinator,
 		argumentParser:      args.ArgumentParser,
 		builtInFunctions:    args.BuiltInFunctions,
-		esdtTransferParser:  args.ESDTTransferParser,
+		dcdtTransferParser:  args.DCDTTransferParser,
 		enableEpochsHandler: args.EnableEpochsHandler,
 	}
 
@@ -144,7 +144,7 @@ func isCallOfType(tx data.TransactionHandler, callType vm.CallType) bool {
 }
 
 func (tth *txTypeHandler) isSCCallAfterBuiltIn(function string, args [][]byte, tx data.TransactionHandler) bool {
-	isTransferAndAsyncCallbackFixFlagSet := tth.enableEpochsHandler.IsFlagEnabled(common.ESDTMetadataContinuousCleanupFlag)
+	isTransferAndAsyncCallbackFixFlagSet := tth.enableEpochsHandler.IsFlagEnabled(common.DCDTMetadataContinuousCleanupFlag)
 	if isTransferAndAsyncCallbackFixFlagSet && isCallOfType(tx, vm.AsynchronousCallBack) {
 		return true
 	}
@@ -152,7 +152,7 @@ func (tth *txTypeHandler) isSCCallAfterBuiltIn(function string, args [][]byte, t
 		return false
 	}
 
-	parsedTransfer, err := tth.esdtTransferParser.ParseESDTTransfers(tx.GetSndAddr(), tx.GetRcvAddr(), function, args)
+	parsedTransfer, err := tth.dcdtTransferParser.ParseDCDTTransfers(tx.GetSndAddr(), tx.GetRcvAddr(), function, args)
 	if err != nil {
 		return false
 	}

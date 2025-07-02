@@ -1,8 +1,8 @@
 package bls
 
 import (
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/consensus/spos"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
 )
 
 // PeerMaxMessagesPerSec defines how many messages can be propagated by a pid in a round. The value was chosen by

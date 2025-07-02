@@ -3,7 +3,7 @@ package spos_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/consensus/spos"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
 	"github.com/stretchr/testify/assert"
 )
 

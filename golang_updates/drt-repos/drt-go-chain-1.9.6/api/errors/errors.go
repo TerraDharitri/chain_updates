@@ -28,17 +28,17 @@ var ErrGetValueForKey = errors.New("get value for key error")
 // ErrGetKeyValuePairs signals an error in getting the key-value pairs of a key for an account
 var ErrGetKeyValuePairs = errors.New("get key-value pairs error")
 
-// ErrGetESDTBalance signals an error in getting esdt balance for given address
-var ErrGetESDTBalance = errors.New("get esdt balance for account error")
+// ErrGetDCDTBalance signals an error in getting dcdt balance for given address
+var ErrGetDCDTBalance = errors.New("get dcdt balance for account error")
 
 // ErrGetGuardianData signals an error in getting the guardian data for given address
 var ErrGetGuardianData = errors.New("get guardian data for account error")
 
-// ErrGetRolesForAccount signals an error in getting esdt tokens and roles for a given address
+// ErrGetRolesForAccount signals an error in getting dcdt tokens and roles for a given address
 var ErrGetRolesForAccount = errors.New("get roles for account error")
 
-// ErrGetESDTNFTData signals an error in getting esdt nft data for given address, tokenID and nonce
-var ErrGetESDTNFTData = errors.New("get esdt nft data for account error")
+// ErrGetDCDTNFTData signals an error in getting dcdt nft data for given address, tokenID and nonce
+var ErrGetDCDTNFTData = errors.New("get dcdt nft data for account error")
 
 // ErrEmptyAddress signals that an empty address was provided
 var ErrEmptyAddress = errors.New("address is empty")
@@ -160,8 +160,8 @@ var ErrFetchingNonceGapsCannotIncludeFields = errors.New("fetching nonce gaps ca
 // ErrInvalidFields signals that invalid fields were provided
 var ErrInvalidFields = errors.New("invalid fields")
 
-// ErrGetESDTTokensWithRole signals an error in getting the esdt tokens with the given role for given address
-var ErrGetESDTTokensWithRole = errors.New("getting esdt tokens with role error")
+// ErrGetDCDTTokensWithRole signals an error in getting the dcdt tokens with the given role for given address
+var ErrGetDCDTTokensWithRole = errors.New("getting dcdt tokens with role error")
 
 // ErrRegisteredNFTTokenIDs signals an error in getting the registered nft token ids by the given address
 var ErrRegisteredNFTTokenIDs = errors.New("getting registered nft token ids error")

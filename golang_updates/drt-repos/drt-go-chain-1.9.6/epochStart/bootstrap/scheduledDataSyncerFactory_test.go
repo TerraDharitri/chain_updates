@@ -3,11 +3,11 @@ package bootstrap
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap/types"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	epochStartMocks "github.com/multiversx/mx-chain-go/testscommon/bootstrapMocks/epochStart"
-	"github.com/multiversx/mx-chain-go/testscommon/syncer"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap/types"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	epochStartMocks "github.com/TerraDharitri/drt-go-chain/testscommon/bootstrapMocks/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/syncer"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,10 +7,10 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/multiversx/mx-chain-go/cmd/termui/presenter"
-	"github.com/multiversx/mx-chain-go/cmd/termui/provider"
-	"github.com/multiversx/mx-chain-go/cmd/termui/view/termuic"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/presenter"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/provider"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/view/termuic"
 	"github.com/urfave/cli"
 )
 
@@ -158,7 +158,7 @@ func startTermuiViewer(ctx *cli.Context) error {
 func initCliFlags() {
 	cliApp = cli.NewApp()
 	cli.AppHelpTemplate = nodeHelpTemplate
-	cliApp.Name = "MultiversX Terminal UI App"
+	cliApp.Name = "Dharitri Terminal UI App"
 	cliApp.Version = fmt.Sprintf("%s/%s/%s-%s", "1.0.0", runtime.Version(), runtime.GOOS, runtime.GOARCH)
 	cliApp.Usage = "Terminal UI application used to display metrics from the node"
 	cliApp.Flags = []cli.Flag{
@@ -171,8 +171,8 @@ func initCliFlags() {
 	}
 	cliApp.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 }

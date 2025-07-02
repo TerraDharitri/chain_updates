@@ -1,8 +1,8 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-go/epochStart/metachain"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/metachain"
+	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
 type auctionListDisplayer struct {

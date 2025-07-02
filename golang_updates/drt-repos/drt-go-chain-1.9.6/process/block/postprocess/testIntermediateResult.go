@@ -1,7 +1,7 @@
 package postprocess
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // TestIntermediateResProc extends intermediateResultsProcessor and is used in integration tests

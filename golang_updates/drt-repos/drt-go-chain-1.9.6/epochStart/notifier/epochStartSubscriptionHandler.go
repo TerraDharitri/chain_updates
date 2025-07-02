@@ -5,10 +5,10 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 
-	"github.com/multiversx/mx-chain-go/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
 )
 
 // EpochStartNotifier defines which actions should be done for handling new epoch's events

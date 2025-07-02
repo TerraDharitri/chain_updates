@@ -1,7 +1,7 @@
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/terminal.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/terminal.sh"
 
 startProxy() {
-  setTerminalSession "multiversx-tools"
+  setTerminalSession "dharitri-tools"
   setTerminalLayout "even-vertical"
 
   setWorkdirForNextCommands "$TESTNETDIR/proxy"
@@ -21,7 +21,7 @@ stopProxy() {
 }
 
 startTxGen_NewAccounts() {
-  setTerminalSession "multiversx-tools"
+  setTerminalSession "dharitri-tools"
   setTerminalLayout "even-vertical"
 
   setWorkdirForNextCommands "$TESTNETDIR/txgen" v
@@ -30,7 +30,7 @@ startTxGen_NewAccounts() {
 }
 
 startTxGen_ExistingAccounts() {
-  setTerminalSession "multiversx-tools"
+  setTerminalSession "dharitri-tools"
   setTerminalLayout "even-vertical"
 
   setWorkdirForNextCommands "$TESTNETDIR/txgen" v
@@ -51,7 +51,7 @@ stopTxGen() {
 }
 
 startSeednode() {
-  setTerminalSession "multiversx-tools"
+  setTerminalSession "dharitri-tools"
   setTerminalLayout "even-horizontal"
 
   setWorkdirForNextCommands "$TESTNETDIR/seednode"

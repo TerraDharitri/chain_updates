@@ -8,78 +8,78 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/partitioning"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	vmcommonBuiltInFunctions "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/partitioning"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	vmcommonBuiltInFunctions "github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
 
-	nodeFactory "github.com/multiversx/mx-chain-go/cmd/node/factory"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/errChan"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/containers"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/epochProviders"
-	requesterscontainer "github.com/multiversx/mx-chain-go/dataRetriever/factory/requestersContainer"
-	"github.com/multiversx/mx-chain-go/dataRetriever/factory/resolverscontainer"
-	disabledResolversContainer "github.com/multiversx/mx-chain-go/dataRetriever/factory/resolverscontainer/disabled"
-	storagerequesterscontainer "github.com/multiversx/mx-chain-go/dataRetriever/factory/storageRequestersContainer"
-	"github.com/multiversx/mx-chain-go/dataRetriever/requestHandlers"
-	"github.com/multiversx/mx-chain-go/dblookupext"
-	"github.com/multiversx/mx-chain-go/epochStart"
-	"github.com/multiversx/mx-chain-go/epochStart/metachain"
-	"github.com/multiversx/mx-chain-go/epochStart/notifier"
-	"github.com/multiversx/mx-chain-go/epochStart/shardchain"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	mainFactory "github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/factory/disabled"
-	"github.com/multiversx/mx-chain-go/fallback"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/checking"
-	processGenesis "github.com/multiversx/mx-chain-go/genesis/process"
-	"github.com/multiversx/mx-chain-go/p2p"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/block"
-	"github.com/multiversx/mx-chain-go/process/block/bootstrapStorage"
-	"github.com/multiversx/mx-chain-go/process/block/cutoff"
-	"github.com/multiversx/mx-chain-go/process/block/pendingMb"
-	"github.com/multiversx/mx-chain-go/process/block/poolsCleaner"
-	"github.com/multiversx/mx-chain-go/process/block/preprocess"
-	"github.com/multiversx/mx-chain-go/process/block/processedMb"
-	"github.com/multiversx/mx-chain-go/process/factory/interceptorscontainer"
-	"github.com/multiversx/mx-chain-go/process/headerCheck"
-	"github.com/multiversx/mx-chain-go/process/heartbeat/validator"
-	interceptorFactory "github.com/multiversx/mx-chain-go/process/interceptors/factory"
-	"github.com/multiversx/mx-chain-go/process/peer"
-	"github.com/multiversx/mx-chain-go/process/receipts"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	"github.com/multiversx/mx-chain-go/process/sync"
-	"github.com/multiversx/mx-chain-go/process/track"
-	"github.com/multiversx/mx-chain-go/process/transactionLog"
-	"github.com/multiversx/mx-chain-go/process/txsSender"
-	"github.com/multiversx/mx-chain-go/redundancy"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/networksharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/accounts"
-	"github.com/multiversx/mx-chain-go/state/parsers"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/cache"
-	storageFactory "github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/update"
-	updateDisabled "github.com/multiversx/mx-chain-go/update/disabled"
-	updateFactory "github.com/multiversx/mx-chain-go/update/factory"
-	"github.com/multiversx/mx-chain-go/update/trigger"
+	nodeFactory "github.com/TerraDharitri/drt-go-chain/cmd/node/factory"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/errChan"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/containers"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/epochProviders"
+	requesterscontainer "github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/requestersContainer"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/resolverscontainer"
+	disabledResolversContainer "github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/resolverscontainer/disabled"
+	storagerequesterscontainer "github.com/TerraDharitri/drt-go-chain/dataRetriever/factory/storageRequestersContainer"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/requestHandlers"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/epochStart"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/metachain"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/shardchain"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	mainFactory "github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/factory/disabled"
+	"github.com/TerraDharitri/drt-go-chain/fallback"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/checking"
+	processGenesis "github.com/TerraDharitri/drt-go-chain/genesis/process"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/block"
+	"github.com/TerraDharitri/drt-go-chain/process/block/bootstrapStorage"
+	"github.com/TerraDharitri/drt-go-chain/process/block/cutoff"
+	"github.com/TerraDharitri/drt-go-chain/process/block/pendingMb"
+	"github.com/TerraDharitri/drt-go-chain/process/block/poolsCleaner"
+	"github.com/TerraDharitri/drt-go-chain/process/block/preprocess"
+	"github.com/TerraDharitri/drt-go-chain/process/block/processedMb"
+	"github.com/TerraDharitri/drt-go-chain/process/factory/interceptorscontainer"
+	"github.com/TerraDharitri/drt-go-chain/process/headerCheck"
+	"github.com/TerraDharitri/drt-go-chain/process/heartbeat/validator"
+	interceptorFactory "github.com/TerraDharitri/drt-go-chain/process/interceptors/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/peer"
+	"github.com/TerraDharitri/drt-go-chain/process/receipts"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	"github.com/TerraDharitri/drt-go-chain/process/sync"
+	"github.com/TerraDharitri/drt-go-chain/process/track"
+	"github.com/TerraDharitri/drt-go-chain/process/transactionLog"
+	"github.com/TerraDharitri/drt-go-chain/process/txsSender"
+	"github.com/TerraDharitri/drt-go-chain/redundancy"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/networksharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/accounts"
+	"github.com/TerraDharitri/drt-go-chain/state/parsers"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/cache"
+	storageFactory "github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/update"
+	updateDisabled "github.com/TerraDharitri/drt-go-chain/update/disabled"
+	updateFactory "github.com/TerraDharitri/drt-go-chain/update/factory"
+	"github.com/TerraDharitri/drt-go-chain/update/trigger"
 )
 
 // timeSpanForBadHeaders is the expiry time for an added block header hash
@@ -129,7 +129,7 @@ type processComponents struct {
 	txsSender                        process.TxsSenderHandler
 	hardforkTrigger                  factory.HardforkTrigger
 	processedMiniBlocksTracker       process.ProcessedMiniBlocksTracker
-	esdtDataStorageForApi            vmcommon.ESDTNFTStorageHandler
+	dcdtDataStorageForApi            vmcommon.DCDTNFTStorageHandler
 	accountsParser                   genesis.AccountsParser
 	receiptsRepository               mainFactory.ReceiptsRepository
 	sentSignaturesTracker            process.SentSignaturesTracker
@@ -194,7 +194,7 @@ type processComponentsFactory struct {
 	epochNotifier          process.EpochNotifier
 	importHandler          update.ImportHandler
 	flagsConfig            config.ContextFlagsConfig
-	esdtNftStorage         vmcommon.ESDTNFTStorageHandler
+	dcdtNftStorage         vmcommon.DCDTNFTStorageHandler
 	stakingDataProviderAPI peer.StakingDataProviderAPI
 	auctionListSelectorAPI epochStart.AuctionListSelector
 
@@ -586,14 +586,14 @@ func (pcf *processComponentsFactory) Create() (*processComponents, error) {
 		return nil, err
 	}
 
-	esdtDataStorageArgs := vmcommonBuiltInFunctions.ArgsNewESDTDataStorage{
+	dcdtDataStorageArgs := vmcommonBuiltInFunctions.ArgsNewDCDTDataStorage{
 		Accounts:              pcf.state.AccountsAdapterAPI(),
 		GlobalSettingsHandler: disabled.NewDisabledGlobalSettingHandler(),
 		Marshalizer:           pcf.coreData.InternalMarshalizer(),
 		ShardCoordinator:      pcf.bootstrapComponents.ShardCoordinator(),
 		EnableEpochsHandler:   pcf.coreData.EnableEpochsHandler(),
 	}
-	pcf.esdtNftStorage, err = vmcommonBuiltInFunctions.NewESDTDataStorage(esdtDataStorageArgs)
+	pcf.dcdtNftStorage, err = vmcommonBuiltInFunctions.NewDCDTDataStorage(dcdtDataStorageArgs)
 	if err != nil {
 		return nil, err
 	}
@@ -773,7 +773,7 @@ func (pcf *processComponentsFactory) Create() (*processComponents, error) {
 		txsSender:                        txsSenderWithAccumulator,
 		hardforkTrigger:                  hardforkTrigger,
 		processedMiniBlocksTracker:       processedMiniBlocksTracker,
-		esdtDataStorageForApi:            pcf.esdtNftStorage,
+		dcdtDataStorageForApi:            pcf.dcdtNftStorage,
 		accountsParser:                   pcf.accountsParser,
 		receiptsRepository:               receiptsRepository,
 		sentSignaturesTracker:            sentSignaturesTracker,

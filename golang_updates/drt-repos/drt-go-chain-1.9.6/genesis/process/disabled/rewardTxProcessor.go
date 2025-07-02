@@ -1,7 +1,7 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
 )
 
 // RewardTxProcessor implements the RewardTransactionProcessor interface but does nothing as it is disabled

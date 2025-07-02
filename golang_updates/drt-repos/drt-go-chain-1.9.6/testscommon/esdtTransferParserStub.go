@@ -3,24 +3,24 @@ package testscommon
 import (
 	"errors"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
-// ESDTTransferParserStub -
-type ESDTTransferParserStub struct {
-	ParseESDTTransfersCalled func(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedESDTTransfers, error)
+// DCDTTransferParserStub -
+type DCDTTransferParserStub struct {
+	ParseDCDTTransfersCalled func(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedDCDTTransfers, error)
 }
 
-// ParseESDTTransfers -
-func (stub *ESDTTransferParserStub) ParseESDTTransfers(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedESDTTransfers, error) {
-	if stub.ParseESDTTransfersCalled != nil {
-		return stub.ParseESDTTransfersCalled(sndAddr, rcvAddr, function, args)
+// ParseDCDTTransfers -
+func (stub *DCDTTransferParserStub) ParseDCDTTransfers(sndAddr []byte, rcvAddr []byte, function string, args [][]byte) (*vmcommon.ParsedDCDTTransfers, error) {
+	if stub.ParseDCDTTransfersCalled != nil {
+		return stub.ParseDCDTTransfersCalled(sndAddr, rcvAddr, function, args)
 	}
 
 	return nil, errors.New("not implemented")
 }
 
 // IsInterfaceNil -
-func (stub *ESDTTransferParserStub) IsInterfaceNil() bool {
+func (stub *DCDTTransferParserStub) IsInterfaceNil() bool {
 	return stub == nil
 }

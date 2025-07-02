@@ -3,9 +3,9 @@ package localFuncs
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-go/testscommon/txDataBuilder"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	vmhooks "github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	vmhooks "github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // LocalMintMock is an exposed mock contract method

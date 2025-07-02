@@ -3,13 +3,13 @@ package data_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/config"
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	dataComp "github.com/multiversx/mx-chain-go/factory/data"
-	"github.com/multiversx/mx-chain-go/factory/mock"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	dataComp "github.com/TerraDharitri/drt-go-chain/factory/data"
+	"github.com/TerraDharitri/drt-go-chain/factory/mock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/require"
 )
 

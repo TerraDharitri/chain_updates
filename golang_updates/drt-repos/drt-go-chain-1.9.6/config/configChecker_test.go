@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/testscommon/nodesSetupMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/nodesSetupMock"
 	"github.com/stretchr/testify/require"
 )
 

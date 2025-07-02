@@ -1,9 +1,9 @@
 package process
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-go/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/vm"
+	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 type messageSigVerifier struct {

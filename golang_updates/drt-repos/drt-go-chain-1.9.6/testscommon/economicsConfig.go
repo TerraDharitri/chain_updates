@@ -1,7 +1,7 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 // GetEconomicsConfig returns the common configuration used for testing
@@ -23,7 +23,7 @@ func GetEconomicsConfig() config.EconomicsConfig {
 					LeaderPercentage:                 0.1,
 					ProtocolSustainabilityPercentage: 0.1,
 					DeveloperPercentage:              0.1,
-					ProtocolSustainabilityAddress:    "erd1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqqe2rw5",
+					ProtocolSustainabilityAddress:    "drt1j25xk97yf820rgdp3mj5scavhjkn6tjyn0t63pmv5qyjj7wxlcfqa9aqd2",
 					TopUpGradientPoint:               "100000",
 				},
 			},

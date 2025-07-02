@@ -5,9 +5,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var _ process.TopicFloodPreventer = (*topicFloodPreventer)(nil)

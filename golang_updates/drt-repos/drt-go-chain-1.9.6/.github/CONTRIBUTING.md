@@ -15,7 +15,7 @@ the PR owner to re-target it against another branch, in accordance to internal b
 **tl;dr**:
 - fork `mx-chain-go` and use `master` branch.
 - use signed commits. [docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
-- open a PR against the `master` branch of `multiversx/mx-chain-go`.
+- open a PR against the `master` branch of `dharitri/mx-chain-go`.
 
 ## Use linter
 
@@ -60,7 +60,7 @@ If the PR is:
    2.1. a small feature (a single PR is needed): targeted towards an `rc` branch.
    2.2. a big feature (more than one PR is needed): create a feature branch (`feat/...`) that is targeted towards an `rc` branch.
 
-### Satellite projects (`mx-chain-vm-common-go`, `mx-chain-core-go`, and so on)
+### Satellite projects (`drt-go-chain-vm-common`, `drt-go-chain-core`, and so on)
 If the PR is:
 1. a hotfix: it will be targeted towards `master`/`main` branch.
 2. a feature:

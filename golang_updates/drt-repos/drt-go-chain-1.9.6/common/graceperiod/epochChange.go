@@ -4,7 +4,7 @@ import (
 	"errors"
 	"sort"
 
-	"github.com/multiversx/mx-chain-go/config"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 var errEmptyGracePeriodByEpochConfig = errors.New("empty grace period by epoch config")

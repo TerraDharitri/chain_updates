@@ -8,34 +8,34 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/common/holders"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/mock"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/coordinator"
-	"github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/smartContract"
-	processTransaction "github.com/multiversx/mx-chain-go/process/transaction"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/economicsmocks"
-	"github.com/multiversx/mx-chain-go/testscommon/enableEpochsHandlerMock"
-	"github.com/multiversx/mx-chain-go/testscommon/integrationtests"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/common/holders"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/coordinator"
+	"github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract"
+	processTransaction "github.com/TerraDharitri/drt-go-chain/process/transaction"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/integrationtests"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -606,13 +606,13 @@ func TestExecuteTransactionAndTimeToProcessChange(t *testing.T) {
 	pubkeyConv, _ := pubkeyConverter.NewHexPubkeyConverter(32)
 	enableEpochsHandler := &enableEpochsHandlerMock.EnableEpochsHandlerStub{}
 	accnts := integrationtests.CreateInMemoryShardAccountsDB()
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(testMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(testMarshalizer)
 	argsTxTypeHandler := coordinator.ArgNewTxTypeHandler{
 		PubkeyConverter:     pubkeyConv,
 		ShardCoordinator:    shardCoordinator,
 		BuiltInFunctions:    builtInFunctions.NewBuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: enableEpochsHandler,
 	}
 	txTypeHandler, _ := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -842,7 +842,7 @@ func TestCommunityContract_InShard(t *testing.T) {
 	}
 
 	zero := big.NewInt(0)
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 
 	net := integrationTests.NewTestNetworkSized(t, 1, 1, 1)
 	net.Start()
@@ -871,14 +871,14 @@ func TestCommunityContract_InShard(t *testing.T) {
 	require.Equal(t, owner.Address, parentSC.GetOwnerAddress())
 
 	txData := txDataBuilder.NewBuilder().Func("register").ToBytes()
-	tx := net.CreateTx(owner, parentAddress, transferEGLD, txData)
+	tx := net.CreateTx(owner, parentAddress, transferREWA, txData)
 	tx.GasLimit = 1_000_000
 
 	_ = net.SignAndSendTx(owner, tx)
 
 	net.Steps(2)
 	funderSC = net.GetAccountHandler(funderAddress)
-	require.Equal(t, transferEGLD, funderSC.GetBalance())
+	require.Equal(t, transferREWA, funderSC.GetBalance())
 	require.Equal(t, zero, parentSC.GetBalance())
 }
 
@@ -888,7 +888,7 @@ func TestCommunityContract_CrossShard(t *testing.T) {
 	}
 
 	zero := big.NewInt(0)
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 
 	net := integrationTests.NewTestNetworkSized(t, 2, 1, 1)
 	net.Start()
@@ -918,14 +918,14 @@ func TestCommunityContract_CrossShard(t *testing.T) {
 	require.Equal(t, ownerOfParent.Address, parentSC.GetOwnerAddress())
 
 	txData := txDataBuilder.NewBuilder().Func("register").ToBytes()
-	tx := net.CreateTx(ownerOfParent, parentAddress, transferEGLD, txData)
+	tx := net.CreateTx(ownerOfParent, parentAddress, transferREWA, txData)
 	tx.GasLimit = 1_000_000
 
 	_ = net.SignAndSendTx(ownerOfParent, tx)
 
 	net.Steps(8)
 	funderSC = net.GetAccountHandler(funderAddress)
-	require.Equal(t, transferEGLD, funderSC.GetBalance())
+	require.Equal(t, transferREWA, funderSC.GetBalance())
 
 	parentSC = net.GetAccountHandler(parentAddress)
 	require.Equal(t, zero, parentSC.GetBalance())
@@ -939,11 +939,11 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 	// Scenario:
 	// 1. Deploy FunderSC on shard 0, owned by funderOwner
 	// 2. Deploy ParentSC on shard 1, owned by parentOwner; deployment needs address of FunderSC
-	// 3. parentOwner sends tx to ParentSC with method call 'register' and 42 EGLD (in-shard call, shard 1)
-	// 4. ParentSC emits a cross-shard asyncCall to FunderSC with method 'acceptFunds' and 42 EGLD
-	// 5. assert FunderSC has 42 EGLD
+	// 3. parentOwner sends tx to ParentSC with method call 'register' and 42 REWA (in-shard call, shard 1)
+	// 4. ParentSC emits a cross-shard asyncCall to FunderSC with method 'acceptFunds' and 42 REWA
+	// 5. assert FunderSC has 42 REWA
 	zero := big.NewInt(0)
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 
 	testContextFunderSC, err := vm.CreatePreparedTxProcessorWithVMsMultiShard(0, config.EnableEpochs{}, 1)
 	require.Nil(t, err)
@@ -959,10 +959,10 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 	parentOwner := []byte("12345678901234567890123456789011")
 	require.Equal(t, uint32(1), testContextParentSC.ShardCoordinator.ComputeId(parentOwner))
 
-	egldBalance := big.NewInt(1000000000000)
+	rewaBalance := big.NewInt(1000000000000)
 
-	_, _ = vm.CreateAccount(testContextFunderSC.Accounts, funderOwner, 0, egldBalance)
-	_, _ = vm.CreateAccount(testContextParentSC.Accounts, parentOwner, 0, egldBalance)
+	_, _ = vm.CreateAccount(testContextFunderSC.Accounts, funderOwner, 0, rewaBalance)
+	_, _ = vm.CreateAccount(testContextParentSC.Accounts, parentOwner, 0, rewaBalance)
 
 	gasPrice := uint64(10)
 	deployGasLimit := uint64(5000000)
@@ -1003,7 +1003,7 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 	// Prepare tx from ParentSC owner to ParentSC (same shard, 1)
 	gasLimit := uint64(5000000)
 	tx := vm.CreateTransaction(1,
-		transferEGLD,
+		transferREWA,
 		parentOwner,
 		parentAddress,
 		gasPrice,
@@ -1026,7 +1026,7 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 
 	// execute async call on the FunderSC shard (shard 0)
 	scr := intermediateTxs[0]
-	require.Equal(t, transferEGLD, scr.GetValue())
+	require.Equal(t, transferREWA, scr.GetValue())
 	require.Equal(t, parentAddress, scr.GetSndAddr())
 	require.Equal(t, funderAddress, scr.GetRcvAddr())
 	require.Equal(t, []byte("acceptFunds@168ec815aaa4dfec4de9062e611c8ccc99500101d63962305f8af2d726cc3d04@c7a233a7a0c3889270e967c77aea29871c31740769940739109605ffc4102ddc@01a5c7"), scr.GetData())
@@ -1046,7 +1046,7 @@ func TestCommunityContract_CrossShard_TxProcessor(t *testing.T) {
 	require.NotEmpty(t, intermediateTxs)
 
 	utils.TestAccount(t, testContextParentSC.Accounts, parentAddress, 0, zero)
-	utils.TestAccount(t, testContextFunderSC.Accounts, funderAddress, 0, transferEGLD)
+	utils.TestAccount(t, testContextFunderSC.Accounts, funderAddress, 0, transferREWA)
 }
 
 func TestDeployDNSV2SetDeleteUserNames(t *testing.T) {

@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/mock"
-	"github.com/multiversx/mx-chain-go/storage/pruning"
-	"github.com/multiversx/mx-chain-go/testscommon/cache"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/mock"
+	"github.com/TerraDharitri/drt-go-chain/storage/pruning"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/cache"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

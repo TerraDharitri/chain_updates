@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain/api/logs"
+	"github.com/TerraDharitri/drt-go-chain/api/mock"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 	"github.com/gorilla/websocket"
-	"github.com/multiversx/mx-chain-go/api/logs"
-	"github.com/multiversx/mx-chain-go/api/mock"
-	"github.com/multiversx/mx-chain-logger-go"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/cmd/termui/presenter"
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/presenter"
+	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/stretchr/testify/assert"
 )
 

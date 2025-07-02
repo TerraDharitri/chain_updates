@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/integrationTests/p2p/antiflood"
-	"github.com/multiversx/mx-chain-go/p2p"
-	"github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/p2p/antiflood"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 	"github.com/stretchr/testify/assert"
 )
 

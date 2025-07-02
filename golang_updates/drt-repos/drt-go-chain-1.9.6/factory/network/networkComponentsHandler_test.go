@@ -3,10 +3,10 @@ package network_test
 import (
 	"testing"
 
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	networkComp "github.com/multiversx/mx-chain-go/factory/network"
-	componentsMock "github.com/multiversx/mx-chain-go/testscommon/components"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
+	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/require"
 )
 

@@ -2,23 +2,23 @@ package state
 
 import (
 	"fmt"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	chainData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/state/disabled"
-	factoryState "github.com/multiversx/mx-chain-go/state/factory"
-	"github.com/multiversx/mx-chain-go/state/iteratorChannelsProvider"
-	"github.com/multiversx/mx-chain-go/state/lastSnapshotMarker"
-	"github.com/multiversx/mx-chain-go/state/stateMetrics"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager"
-	"github.com/multiversx/mx-chain-go/state/storagePruningManager/evictionWaitingList"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	trieFactory "github.com/multiversx/mx-chain-go/trie/factory"
+	"github.com/TerraDharitri/mx-chain-core-go/core/check"
+	chainData "github.com/TerraDharitri/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/state/disabled"
+	factoryState "github.com/TerraDharitri/drt-go-chain/state/factory"
+	"github.com/TerraDharitri/drt-go-chain/state/iteratorChannelsProvider"
+	"github.com/TerraDharitri/drt-go-chain/state/lastSnapshotMarker"
+	"github.com/TerraDharitri/drt-go-chain/state/stateMetrics"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager"
+	"github.com/TerraDharitri/drt-go-chain/state/storagePruningManager/evictionWaitingList"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	trieFactory "github.com/TerraDharitri/drt-go-chain/trie/factory"
 )
 
 // TODO: merge this with data components
@@ -44,7 +44,7 @@ type stateComponentsFactory struct {
 	chainHandler             chainData.ChainHandler
 }
 
-// stateComponents struct holds the state components of the MultiversX protocol
+// stateComponents struct holds the state components of the Dharitri protocol
 type stateComponents struct {
 	peerAccounts             state.AccountsAdapter
 	accountsAdapter          state.AccountsAdapter

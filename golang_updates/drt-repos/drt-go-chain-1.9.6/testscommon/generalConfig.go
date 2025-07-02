@@ -1,8 +1,8 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
 )
 
 // GetGeneralConfig returns the common configuration used for testing
@@ -36,7 +36,7 @@ func GetGeneralConfig() config.Config {
 			Length:          32,
 			Type:            "bech32",
 			SignatureLength: 0,
-			Hrp:             "erd",
+			Hrp:             "drt",
 		},
 		ValidatorPubkeyConverter: config.PubkeyConfig{
 			Length:          96,
@@ -404,9 +404,9 @@ func GetGeneralConfig() config.Config {
 					{StartEpoch: 0, Version: "*"},
 				},
 				TransferAndExecuteByUserAddresses: []string{
-					"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-					"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-					"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+					"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+					"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+					"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 				},
 			},
 			Querying: config.QueryVirtualMachineConfig{
@@ -416,9 +416,9 @@ func GetGeneralConfig() config.Config {
 						{StartEpoch: 0, Version: "*"},
 					},
 					TransferAndExecuteByUserAddresses: []string{
-						"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-						"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-						"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+						"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+						"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+						"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 					},
 				},
 			},
@@ -438,15 +438,15 @@ func GetGeneralConfig() config.Config {
 		},
 		BuiltInFunctions: config.BuiltInFunctionsConfig{
 			AutomaticCrawlerAddresses: []string{
-				"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-				"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-				"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+				"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+				"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+				"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 			},
 			MaxNumAddressesInTransferRole: 100,
 			DNSV2Addresses: []string{
-				"erd1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7qrf7xje", // shard 0
-				"erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c", // shard 1
-				"erd1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqnqgenp", // shard 2
+				"drt1he8wwxn4az3j82p7wwqsdk794dm7hcrwny6f8dfegkfla34udx7q74f938", // shard 0
+				"drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx", // shard 1
+				"drt1najnxxweyw6plhg8efql330nttrj6l5cf87wqsuym85s9ha0hmdqwul6sl", // shard 2
 			},
 		},
 		ResourceStats: config.ResourceStatsConfig{

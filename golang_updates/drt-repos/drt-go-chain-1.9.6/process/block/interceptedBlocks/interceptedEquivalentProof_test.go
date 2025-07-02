@@ -6,22 +6,22 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreSync "github.com/multiversx/mx-chain-core-go/core/sync"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	errErd "github.com/multiversx/mx-chain-go/errors"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreSync "github.com/TerraDharitri/drt-go-chain-core/core/sync"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	errDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/consensus/mock"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/testscommon/consensus"
-	"github.com/multiversx/mx-chain-go/testscommon/dataRetriever"
-	"github.com/multiversx/mx-chain-go/testscommon/hashingMocks"
-	"github.com/multiversx/mx-chain-go/testscommon/marshallerMock"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/consensus/mock"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
 )
 
 var (
@@ -162,7 +162,7 @@ func TestNewInterceptedEquivalentProof(t *testing.T) {
 		args := createMockArgInterceptedEquivalentProof()
 		args.ProofSizeChecker = nil
 		iep, err := NewInterceptedEquivalentProof(args)
-		require.Equal(t, errErd.ErrNilFieldsSizeChecker, err)
+		require.Equal(t, errDrt.ErrNilFieldsSizeChecker, err)
 		require.Nil(t, iep)
 	})
 	t.Run("nil KeyRWMutexHandler should error", func(t *testing.T) {

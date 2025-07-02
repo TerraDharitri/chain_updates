@@ -6,12 +6,12 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/sharding"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 const millisecondsInSecond = 1000
@@ -112,7 +112,7 @@ func InitConfigMetrics(
 	appStatusHandler.SetUInt64Value(common.MetricStakingV2EnableEpoch, uint64(enableEpochs.StakingV2EnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricStakeEnableEpoch, uint64(enableEpochs.StakeEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricDoubleKeyProtectionEnableEpoch, uint64(enableEpochs.DoubleKeyProtectionEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricEsdtEnableEpoch, uint64(enableEpochs.ESDTEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDcdtEnableEpoch, uint64(enableEpochs.DCDTEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricGovernanceEnableEpoch, uint64(enableEpochs.GovernanceEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricDelegationManagerEnableEpoch, uint64(enableEpochs.DelegationManagerEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricDelegationSmartContractEnableEpoch, uint64(enableEpochs.DelegationSmartContractEnableEpoch))
@@ -128,16 +128,16 @@ func InitConfigMetrics(
 	appStatusHandler.SetUInt64Value(common.MetricReDelegateBelowMinCheckEnableEpoch, uint64(enableEpochs.ReDelegateBelowMinCheckEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricIncrementSCRNonceInMultiTransferEnableEpoch, uint64(enableEpochs.IncrementSCRNonceInMultiTransferEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricScheduledMiniBlocksEnableEpoch, uint64(enableEpochs.ScheduledMiniBlocksEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricESDTMultiTransferEnableEpoch, uint64(enableEpochs.ESDTMultiTransferEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDCDTMultiTransferEnableEpoch, uint64(enableEpochs.DCDTMultiTransferEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricGlobalMintBurnDisableEpoch, uint64(enableEpochs.GlobalMintBurnDisableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricESDTTransferRoleEnableEpoch, uint64(enableEpochs.ESDTTransferRoleEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDCDTTransferRoleEnableEpoch, uint64(enableEpochs.DCDTTransferRoleEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricComputeRewardCheckpointEnableEpoch, uint64(enableEpochs.ComputeRewardCheckpointEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricSCRSizeInvariantCheckEnableEpoch, uint64(enableEpochs.SCRSizeInvariantCheckEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricBackwardCompSaveKeyValueEnableEpoch, uint64(enableEpochs.BackwardCompSaveKeyValueEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricESDTNFTCreateOnMultiShardEnableEpoch, uint64(enableEpochs.ESDTNFTCreateOnMultiShardEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricMetaESDTSetEnableEpoch, uint64(enableEpochs.MetaESDTSetEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDCDTNFTCreateOnMultiShardEnableEpoch, uint64(enableEpochs.DCDTNFTCreateOnMultiShardEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricMetaDCDTSetEnableEpoch, uint64(enableEpochs.MetaDCDTSetEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricAddTokensToDelegationEnableEpoch, uint64(enableEpochs.AddTokensToDelegationEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricMultiESDTTransferFixOnCallBackOnEnableEpoch, uint64(enableEpochs.MultiESDTTransferFixOnCallBackOnEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch, uint64(enableEpochs.MultiDCDTTransferFixOnCallBackOnEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch, uint64(enableEpochs.OptimizeGasUsedInCrossMiniBlocksEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCorrectFirstQueuedEpoch, uint64(enableEpochs.CorrectFirstQueuedEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCorrectJailedNotUnstakedEmptyQueueEpoch, uint64(enableEpochs.CorrectJailedNotUnstakedEmptyQueueEpoch))
@@ -151,7 +151,7 @@ func InitConfigMetrics(
 	appStatusHandler.SetUInt64Value(common.MetricIsPayableBySCEnableEpoch, uint64(enableEpochs.IsPayableBySCEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricStorageAPICostOptimizationEnableEpoch, uint64(enableEpochs.StorageAPICostOptimizationEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricTransformToMultiShardCreateEnableEpoch, uint64(enableEpochs.TransformToMultiShardCreateEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricESDTRegisterAndSetAllRolesEnableEpoch, uint64(enableEpochs.ESDTRegisterAndSetAllRolesEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDCDTRegisterAndSetAllRolesEnableEpoch, uint64(enableEpochs.DCDTRegisterAndSetAllRolesEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch, uint64(enableEpochs.DoNotReturnOldBlockInBlockchainHookEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricAddFailedRelayedTxToInvalidMBsDisableEpoch, uint64(enableEpochs.AddFailedRelayedTxToInvalidMBsDisableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricSCRSizeInvariantOnBuiltInResultEnableEpoch, uint64(enableEpochs.SCRSizeInvariantOnBuiltInResultEnableEpoch))
@@ -163,7 +163,7 @@ func InitConfigMetrics(
 	appStatusHandler.SetUInt64Value(common.MetricCheckFunctionArgumentEnableEpoch, uint64(enableEpochs.CheckFunctionArgumentEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCheckExecuteOnReadOnlyEnableEpoch, uint64(enableEpochs.CheckExecuteOnReadOnlyEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricMiniBlockPartialExecutionEnableEpoch, uint64(enableEpochs.MiniBlockPartialExecutionEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricESDTMetadataContinuousCleanupEnableEpoch, uint64(enableEpochs.ESDTMetadataContinuousCleanupEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDCDTMetadataContinuousCleanupEnableEpoch, uint64(enableEpochs.DCDTMetadataContinuousCleanupEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricFixAsyncCallBackArgsListEnableEpoch, uint64(enableEpochs.FixAsyncCallBackArgsListEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricFixOldTokenLiquidityEnableEpoch, uint64(enableEpochs.FixOldTokenLiquidityEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricRuntimeMemStoreLimitEnableEpoch, uint64(enableEpochs.RuntimeMemStoreLimitEnableEpoch))
@@ -197,13 +197,13 @@ func InitConfigMetrics(
 	appStatusHandler.SetUInt64Value(common.MetricStakingV4Step3EnableEpoch, uint64(enableEpochs.StakingV4Step3EnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCleanupAuctionOnLowWaitingListEnableEpoch, uint64(enableEpochs.CleanupAuctionOnLowWaitingListEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricAlwaysMergeContextsInEEIEnableEpoch, uint64(enableEpochs.AlwaysMergeContextsInEEIEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricDynamicESDTEnableEpoch, uint64(enableEpochs.DynamicESDTEnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricEGLDInMultiTransferEnableEpoch, uint64(enableEpochs.EGLDInMultiTransferEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricDynamicDCDTEnableEpoch, uint64(enableEpochs.DynamicDCDTEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricREWAInMultiTransferEnableEpoch, uint64(enableEpochs.REWAInMultiTransferEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCryptoOpcodesV2EnableEpoch, uint64(enableEpochs.CryptoOpcodesV2EnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch, uint64(enableEpochs.MultiESDTNFTTransferAndExecuteByUserEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch, uint64(enableEpochs.MultiDCDTNFTTransferAndExecuteByUserEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch, uint64(enableEpochs.FixRelayedMoveBalanceToNonPayableSCEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricRelayedTransactionsV3EnableEpoch, uint64(enableEpochs.RelayedTransactionsV3EnableEpoch))
-	appStatusHandler.SetUInt64Value(common.MetricRelayedTransactionsV3FixESDTTransferEnableEpoch, uint64(enableEpochs.RelayedTransactionsV3FixESDTTransferEnableEpoch))
+	appStatusHandler.SetUInt64Value(common.MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch, uint64(enableEpochs.RelayedTransactionsV3FixDCDTTransferEnableEpoch))
 	appStatusHandler.SetUInt64Value(common.MetricCheckBuiltInCallOnTransferValueAndFailEnableRound, uint64(enableEpochs.CheckBuiltInCallOnTransferValueAndFailEnableRound))
 
 	for i, nodesChangeConfig := range enableEpochs.MaxNodesChangeEnableEpoch {

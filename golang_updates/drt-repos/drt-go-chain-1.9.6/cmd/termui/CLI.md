@@ -1,18 +1,18 @@
 
-# MultiversX TermUI CLI
+# Dharitri TermUI CLI
 
-The **MultiversX Term UI** exposes the following Command Line Interface:
+The **Dharitri Term UI** exposes the following Command Line Interface:
 
 ```
 $ termui --help
 
 NAME:
-   MultiversX Terminal UI App - Terminal UI application used to display metrics from the node
+   Dharitri Terminal UI App - Terminal UI application used to display metrics from the node
 USAGE:
    termui [global options]
    
 AUTHOR:
-   The MultiversX Team <contact@multiversx.com>
+   The Dharitri Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --address value       Address and port number on which the application will try to connect to the mx-chain-go node (default: "127.0.0.1:8080")

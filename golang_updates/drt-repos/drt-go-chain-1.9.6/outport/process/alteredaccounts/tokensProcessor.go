@@ -3,11 +3,11 @@ package alteredaccounts
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
-	outportcore "github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-go/sharding"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	outportcore "github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 const (
@@ -25,24 +25,24 @@ type tokensProcessor struct {
 func newTokensProcessor(shardCoordinator sharding.Coordinator) *tokensProcessor {
 	return &tokensProcessor{
 		tokensIdentifier: map[string]struct{}{
-			core.BuiltInFunctionESDTTransfer:         {},
-			core.BuiltInFunctionESDTBurn:             {},
-			core.BuiltInFunctionESDTLocalMint:        {},
-			core.BuiltInFunctionESDTLocalBurn:        {},
-			core.BuiltInFunctionESDTWipe:             {},
-			core.BuiltInFunctionMultiESDTNFTTransfer: {},
-			core.BuiltInFunctionESDTNFTTransfer:      {},
-			core.BuiltInFunctionESDTNFTBurn:          {},
-			core.BuiltInFunctionESDTNFTAddQuantity:   {},
-			core.BuiltInFunctionESDTNFTCreate:        {},
-			core.BuiltInFunctionESDTFreeze:           {},
-			core.BuiltInFunctionESDTUnFreeze:         {},
+			core.BuiltInFunctionDCDTTransfer:         {},
+			core.BuiltInFunctionDCDTBurn:             {},
+			core.BuiltInFunctionDCDTLocalMint:        {},
+			core.BuiltInFunctionDCDTLocalBurn:        {},
+			core.BuiltInFunctionDCDTWipe:             {},
+			core.BuiltInFunctionMultiDCDTNFTTransfer: {},
+			core.BuiltInFunctionDCDTNFTTransfer:      {},
+			core.BuiltInFunctionDCDTNFTBurn:          {},
+			core.BuiltInFunctionDCDTNFTAddQuantity:   {},
+			core.BuiltInFunctionDCDTNFTCreate:        {},
+			core.BuiltInFunctionDCDTFreeze:           {},
+			core.BuiltInFunctionDCDTUnFreeze:         {},
 		},
 		shardCoordinator: shardCoordinator,
 	}
 }
 
-func (tp *tokensProcessor) extractESDTAccounts(
+func (tp *tokensProcessor) extractDCDTAccounts(
 	txPool *outportcore.TransactionPool,
 	markedAlteredAccounts map[string]*markedAlteredAccount,
 ) error {
@@ -60,8 +60,8 @@ func (tp *tokensProcessor) processEvent(
 	markedAlteredAccounts map[string]*markedAlteredAccount,
 ) {
 	eventIdentifier := string(event.GetIdentifier())
-	_, isESDT := tp.tokensIdentifier[eventIdentifier]
-	if !isESDT {
+	_, isDCDT := tp.tokensIdentifier[eventIdentifier]
+	if !isDCDT {
 		return
 	}
 
@@ -70,7 +70,7 @@ func (tp *tokensProcessor) processEvent(
 		return
 	}
 
-	isMultiTransferEvent := eventIdentifier == core.BuiltInFunctionMultiESDTNFTTransfer
+	isMultiTransferEvent := eventIdentifier == core.BuiltInFunctionMultiDCDTNFTTransfer
 	if isMultiTransferEvent {
 		tp.processMultiTransferEvent(event, markedAlteredAccounts)
 		return
@@ -78,10 +78,10 @@ func (tp *tokensProcessor) processEvent(
 
 	nonce := topics[idxTokenNonceInTopics]
 	nonceBigInt := big.NewInt(0).SetBytes(nonce)
-	tp.extractEsdtData(event, nonceBigInt, markedAlteredAccounts)
+	tp.extractDcdtData(event, nonceBigInt, markedAlteredAccounts)
 }
 
-func (tp *tokensProcessor) extractEsdtData(
+func (tp *tokensProcessor) extractDcdtData(
 	event data.EventHandler,
 	nonce *big.Int,
 	markedAlteredAccounts map[string]*markedAlteredAccount,
@@ -93,31 +93,31 @@ func (tp *tokensProcessor) extractEsdtData(
 	}
 
 	identifier := string(event.GetIdentifier())
-	isNFTCreate := identifier == core.BuiltInFunctionESDTNFTCreate
+	isNFTCreate := identifier == core.BuiltInFunctionDCDTNFTCreate
 	tokenID := topics[idxTokenIDInTopics]
-	tp.processEsdtDataForAddress(address, nonce, string(tokenID), markedAlteredAccounts, isNFTCreate)
+	tp.processDcdtDataForAddress(address, nonce, string(tokenID), markedAlteredAccounts, isNFTCreate)
 
-	// in case of esdt transfer, nft transfer, wipe or multi esdt transfers, the 3rd index of the topics contains the destination address
-	eventShouldContainReceiverAddress := identifier == core.BuiltInFunctionESDTTransfer ||
-		identifier == core.BuiltInFunctionESDTNFTTransfer ||
-		identifier == core.BuiltInFunctionESDTWipe ||
-		identifier == core.BuiltInFunctionMultiESDTNFTTransfer ||
-		identifier == core.BuiltInFunctionESDTFreeze ||
-		identifier == core.BuiltInFunctionESDTUnFreeze
+	// in case of dcdt transfer, nft transfer, wipe or multi dcdt transfers, the 3rd index of the topics contains the destination address
+	eventShouldContainReceiverAddress := identifier == core.BuiltInFunctionDCDTTransfer ||
+		identifier == core.BuiltInFunctionDCDTNFTTransfer ||
+		identifier == core.BuiltInFunctionDCDTWipe ||
+		identifier == core.BuiltInFunctionMultiDCDTNFTTransfer ||
+		identifier == core.BuiltInFunctionDCDTFreeze ||
+		identifier == core.BuiltInFunctionDCDTUnFreeze
 
 	if eventShouldContainReceiverAddress && len(topics) > idxReceiverAddressInTopics {
 		destinationAddress := topics[idxReceiverAddressInTopics]
-		tp.processEsdtDataForAddress(destinationAddress, nonce, string(tokenID), markedAlteredAccounts, false)
+		tp.processDcdtDataForAddress(destinationAddress, nonce, string(tokenID), markedAlteredAccounts, false)
 	}
 }
 
 func (tp *tokensProcessor) processMultiTransferEvent(event data.EventHandler, markedAlteredAccounts map[string]*markedAlteredAccount) {
 	topics := event.GetTopics()
-	// MultiESDTNFTTransfer event
+	// MultiDCDTNFTTransfer event
 	// N = len(topics)
 	// i := 0; i < N-1; i+=3
 	// {
-	// 		topics[i] --- token identifier or EGLD token identifier
+	// 		topics[i] --- token identifier or REWA token identifier
 	// 		topics[i+1] --- token nonce
 	// 		topics[i+2] --- transferred value
 	// }
@@ -135,20 +135,20 @@ func (tp *tokensProcessor) processMultiTransferEvent(event data.EventHandler, ma
 		tokenID := topics[i]
 		nonceBigInt := big.NewInt(0).SetBytes(topics[i+1])
 
-		if string(tokenID) == vmcommon.EGLDIdentifier {
-			tp.processNativeEGLDTransferWithMultiTransfer(destinationAddress, markedAlteredAccounts)
+		if string(tokenID) == vmcommon.REWAIdentifier {
+			tp.processNativeREWATransferWithMultiTransfer(destinationAddress, markedAlteredAccounts)
 			continue
 		}
 
 		// process event for the sender address
-		tp.processEsdtDataForAddress(address, nonceBigInt, string(tokenID), markedAlteredAccounts, false)
+		tp.processDcdtDataForAddress(address, nonceBigInt, string(tokenID), markedAlteredAccounts, false)
 
 		// process event for the destination address
-		tp.processEsdtDataForAddress(destinationAddress, nonceBigInt, string(tokenID), markedAlteredAccounts, false)
+		tp.processDcdtDataForAddress(destinationAddress, nonceBigInt, string(tokenID), markedAlteredAccounts, false)
 	}
 }
 
-func (tp *tokensProcessor) processEsdtDataForAddress(
+func (tp *tokensProcessor) processDcdtDataForAddress(
 	address []byte,
 	nonce *big.Int,
 	tokenID string,
@@ -184,7 +184,7 @@ func (tp *tokensProcessor) processEsdtDataForAddress(
 	}
 }
 
-func (tp *tokensProcessor) processNativeEGLDTransferWithMultiTransfer(address []byte, markedAlteredAccounts map[string]*markedAlteredAccount) {
+func (tp *tokensProcessor) processNativeREWATransferWithMultiTransfer(address []byte, markedAlteredAccounts map[string]*markedAlteredAccount) {
 	if !tp.isSameShard(address) {
 		return
 	}

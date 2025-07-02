@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/p2p"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
 )
 
 // WithBootstrapComponents sets up the Node bootstrap components
@@ -312,14 +312,14 @@ func WithImportMode(importMode bool) Option {
 	}
 }
 
-// WithESDTNFTStorageHandler sets the esdt nft storage handler
-func WithESDTNFTStorageHandler(storageHandler vmcommon.ESDTNFTStorageHandler) Option {
+// WithDCDTNFTStorageHandler sets the dcdt nft storage handler
+func WithDCDTNFTStorageHandler(storageHandler vmcommon.DCDTNFTStorageHandler) Option {
 	return func(node *Node) error {
 		if check.IfNil(storageHandler) {
-			return ErrNilESDTNFTStorageHandler
+			return ErrNilDCDTNFTStorageHandler
 		}
 
-		node.esdtStorageHandler = storageHandler
+		node.dcdtStorageHandler = storageHandler
 		return nil
 	}
 }

@@ -7,34 +7,34 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/common/enablers"
-	"github.com/multiversx/mx-chain-go/common/forking"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/dataRetriever/blockchain"
-	factoryBlock "github.com/multiversx/mx-chain-go/factory/block"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/process/disabled"
-	"github.com/multiversx/mx-chain-go/genesis/process/intermediate"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks"
-	"github.com/multiversx/mx-chain-go/process/smartContract/hooks/counters"
-	"github.com/multiversx/mx-chain-go/sharding"
-	factoryState "github.com/multiversx/mx-chain-go/state/factory"
-	"github.com/multiversx/mx-chain-go/state/syncer"
-	"github.com/multiversx/mx-chain-go/statusHandler"
-	"github.com/multiversx/mx-chain-go/storage"
-	"github.com/multiversx/mx-chain-go/storage/factory"
-	"github.com/multiversx/mx-chain-go/storage/storageunit"
-	"github.com/multiversx/mx-chain-go/update"
-	hardfork "github.com/multiversx/mx-chain-go/update/genesis"
-	hardForkProcess "github.com/multiversx/mx-chain-go/update/process"
-	"github.com/multiversx/mx-chain-go/update/storing"
-	vmcommonBuiltInFunctions "github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	vmcommonBuiltInFunctions "github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain/common/enablers"
+	"github.com/TerraDharitri/drt-go-chain/common/forking"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/blockchain"
+	factoryBlock "github.com/TerraDharitri/drt-go-chain/factory/block"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain/genesis/process/intermediate"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks"
+	"github.com/TerraDharitri/drt-go-chain/process/smartContract/hooks/counters"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	factoryState "github.com/TerraDharitri/drt-go-chain/state/factory"
+	"github.com/TerraDharitri/drt-go-chain/state/syncer"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/storage"
+	"github.com/TerraDharitri/drt-go-chain/storage/factory"
+	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
+	"github.com/TerraDharitri/drt-go-chain/update"
+	hardfork "github.com/TerraDharitri/drt-go-chain/update/genesis"
+	hardForkProcess "github.com/TerraDharitri/drt-go-chain/update/process"
+	"github.com/TerraDharitri/drt-go-chain/update/storing"
 )
 
 const accountStartNonce = uint64(0)
@@ -438,7 +438,7 @@ func (gbc *genesisBlockCreator) computeDNSAddresses(enableEpochsConfig config.En
 		Uint64Converter:          gbc.arg.Core.Uint64ByteSliceConverter(),
 		BuiltInFunctions:         builtInFuncs,
 		NFTStorageHandler:        &disabled.SimpleNFTStorage{},
-		GlobalSettingsHandler:    &disabled.ESDTGlobalSettingsHandler{},
+		GlobalSettingsHandler:    &disabled.DCDTGlobalSettingsHandler{},
 		DataPool:                 gbc.arg.Data.Datapool(),
 		CompiledSCPool:           gbc.arg.Data.Datapool().SmartContracts(),
 		EpochNotifier:            epochNotifier,

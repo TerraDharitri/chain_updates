@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/random"
-	trieMock "github.com/multiversx/mx-chain-go/testscommon/trie"
+	"github.com/TerraDharitri/drt-go-chain-core/core/random"
+	trieMock "github.com/TerraDharitri/drt-go-chain/testscommon/trie"
 	"github.com/stretchr/testify/require"
 )
 

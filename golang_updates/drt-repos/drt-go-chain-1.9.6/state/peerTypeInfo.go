@@ -1,6 +1,6 @@
 package state
 
-import "github.com/multiversx/mx-chain-core-go/core"
+import "github.com/TerraDharitri/drt-go-chain-core/core"
 
 // PeerTypeInfo contains information related to the peertypes needed by the peerTypeProvider
 type PeerTypeInfo struct {

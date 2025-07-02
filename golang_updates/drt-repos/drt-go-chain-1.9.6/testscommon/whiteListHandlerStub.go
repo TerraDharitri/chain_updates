@@ -1,6 +1,6 @@
 package testscommon
 
-import "github.com/multiversx/mx-chain-go/process"
+import "github.com/TerraDharitri/drt-go-chain/process"
 
 // WhiteListHandlerStub -
 type WhiteListHandlerStub struct {

@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	nodeFactory "github.com/multiversx/mx-chain-go/cmd/node/factory"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/factory"
-	bootstrapComp "github.com/multiversx/mx-chain-go/factory/bootstrap"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	nodeFactory "github.com/TerraDharitri/drt-go-chain/cmd/node/factory"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	bootstrapComp "github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 )
 
 // ArgsBootstrapComponentsHolder will hold the components needed for the bootstrap components holders

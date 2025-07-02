@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/wasm/delegation"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm/delegation"
 )
 
 // ArgDelegationBenchmark is the delegation type benchmark argument used in constructor

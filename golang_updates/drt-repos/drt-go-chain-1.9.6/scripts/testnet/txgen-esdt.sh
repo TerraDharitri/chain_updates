@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export MULTIVERSXTESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/variables.sh"
+export DHARITRITESTNETSCRIPTSDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source "$DHARITRITESTNETSCRIPTSDIR/variables.sh"
 
 DESTINATION=mixed
 if [[ -n $1 ]]; then
@@ -16,7 +16,7 @@ SLEEP_DURATION=40
 TOKEN_ISSUE_SLEEP_DURATION=90
 MINTING_TXS_SLEEP_DURATION=90
 
-echo 'Starting ESDT scenario cURL script...'
+echo 'Starting DCDT scenario cURL script...'
 echo 'Sending the token issue transaction and waiting '$TOKEN_ISSUE_SLEEP_DURATION' seconds..'
 
 for (( ; ; )); do
@@ -28,7 +28,7 @@ response=$(curl -s -d '{
      "destination": "'$DESTINATION'",
      "recallNonce": true,
      "data": "mint",
-     "scenario": "esdt"
+     "scenario": "dcdt"
    }' \
   -H "Content-Type: application/json" -X POST http://localhost:${PORT_TXGEN}/transaction/send-multiple)
 
@@ -41,7 +41,7 @@ fi
 
 if [[ $response =~ "not yet enabled" ]]
 then
-  echo 'esdt not enabled yet.'
+  echo 'dcdt not enabled yet.'
   sleep 10
 else
   break
@@ -60,14 +60,14 @@ curl -d '{
      "destination": "'$DESTINATION'",
      "recallNonce": true,
      "data": "mint",
-     "scenario": "esdt"
+     "scenario": "dcdt"
    }' \
   -H "Content-Type: application/json" -X POST http://localhost:${PORT_TXGEN}/transaction/send-multiple
 sleep $MINTING_TXS_SLEEP_DURATION
 
 echo 'Now the script will start to send regular cURLs'
 echo 'Will run a cURL with the following JSON payload each '$SLEEP_DURATION' seconds'
-echo '{"value": '$VALUE', "numOfTxs": '$NUM_TXS', "gasPrice": '$GAS_PRICE', "gasLimit": '$GAS_LIMIT', "destination": "'$DESTINATION'", "recallNonce": true, "scenario": "esdt"}'
+echo '{"value": '$VALUE', "numOfTxs": '$NUM_TXS', "gasPrice": '$GAS_PRICE', "gasLimit": '$GAS_LIMIT', "destination": "'$DESTINATION'", "recallNonce": true, "scenario": "dcdt"}'
 echo
 echo 'Starting...'
 
@@ -79,7 +79,7 @@ for (( ; ; )); do
      "gasLimit": '$GAS_LIMIT',
      "destination": "'$DESTINATION'",
      "recallNonce": true,
-     "scenario": "esdt"
+     "scenario": "dcdt"
    }' \
     -H "Content-Type: application/json" -X POST http://localhost:${PORT_TXGEN}/transaction/send-multiple
 

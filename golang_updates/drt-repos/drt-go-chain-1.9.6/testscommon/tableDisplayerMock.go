@@ -1,6 +1,6 @@
 package testscommon
 
-import "github.com/multiversx/mx-chain-core-go/display"
+import "github.com/TerraDharitri/drt-go-chain-core/display"
 
 // TableDisplayerMock -
 type TableDisplayerMock struct {

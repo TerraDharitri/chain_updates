@@ -3,7 +3,7 @@ package shardingMocks
 import (
 	"encoding/json"
 
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
 )
 
 // NodesCoordinatorRegistryFactoryMock -

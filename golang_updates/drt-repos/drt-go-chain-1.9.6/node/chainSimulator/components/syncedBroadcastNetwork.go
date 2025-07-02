@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-communication-go/p2p"
-	p2pMessage "github.com/multiversx/mx-chain-communication-go/p2p/message"
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-communication/p2p"
+	p2pMessage "github.com/TerraDharitri/drt-go-chain-communication/p2p/message"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 var (

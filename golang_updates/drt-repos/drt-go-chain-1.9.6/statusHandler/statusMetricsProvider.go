@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/multiversx/mx-chain-go/common"
+	"github.com/TerraDharitri/drt-go-chain/common"
 )
 
 // statusMetrics will handle displaying at /node/details all metrics already collected for other status handlers
@@ -290,7 +290,7 @@ func (sm *statusMetrics) EnableEpochsMetrics() (map[string]interface{}, error) {
 	enableEpochsMetrics[common.MetricStakingV2EnableEpoch] = sm.uint64Metrics[common.MetricStakingV2EnableEpoch]
 	enableEpochsMetrics[common.MetricStakeEnableEpoch] = sm.uint64Metrics[common.MetricStakeEnableEpoch]
 	enableEpochsMetrics[common.MetricDoubleKeyProtectionEnableEpoch] = sm.uint64Metrics[common.MetricDoubleKeyProtectionEnableEpoch]
-	enableEpochsMetrics[common.MetricEsdtEnableEpoch] = sm.uint64Metrics[common.MetricEsdtEnableEpoch]
+	enableEpochsMetrics[common.MetricDcdtEnableEpoch] = sm.uint64Metrics[common.MetricDcdtEnableEpoch]
 	enableEpochsMetrics[common.MetricGovernanceEnableEpoch] = sm.uint64Metrics[common.MetricGovernanceEnableEpoch]
 	enableEpochsMetrics[common.MetricDelegationManagerEnableEpoch] = sm.uint64Metrics[common.MetricDelegationManagerEnableEpoch]
 	enableEpochsMetrics[common.MetricDelegationSmartContractEnableEpoch] = sm.uint64Metrics[common.MetricDelegationSmartContractEnableEpoch]
@@ -305,16 +305,16 @@ func (sm *statusMetrics) EnableEpochsMetrics() (map[string]interface{}, error) {
 	enableEpochsMetrics[common.MetricValidatorToDelegationEnableEpoch] = sm.uint64Metrics[common.MetricValidatorToDelegationEnableEpoch]
 	enableEpochsMetrics[common.MetricReDelegateBelowMinCheckEnableEpoch] = sm.uint64Metrics[common.MetricReDelegateBelowMinCheckEnableEpoch]
 	enableEpochsMetrics[common.MetricScheduledMiniBlocksEnableEpoch] = sm.uint64Metrics[common.MetricScheduledMiniBlocksEnableEpoch]
-	enableEpochsMetrics[common.MetricESDTMultiTransferEnableEpoch] = sm.uint64Metrics[common.MetricESDTMultiTransferEnableEpoch]
+	enableEpochsMetrics[common.MetricDCDTMultiTransferEnableEpoch] = sm.uint64Metrics[common.MetricDCDTMultiTransferEnableEpoch]
 	enableEpochsMetrics[common.MetricGlobalMintBurnDisableEpoch] = sm.uint64Metrics[common.MetricGlobalMintBurnDisableEpoch]
-	enableEpochsMetrics[common.MetricESDTTransferRoleEnableEpoch] = sm.uint64Metrics[common.MetricESDTTransferRoleEnableEpoch]
+	enableEpochsMetrics[common.MetricDCDTTransferRoleEnableEpoch] = sm.uint64Metrics[common.MetricDCDTTransferRoleEnableEpoch]
 	enableEpochsMetrics[common.MetricComputeRewardCheckpointEnableEpoch] = sm.uint64Metrics[common.MetricComputeRewardCheckpointEnableEpoch]
 	enableEpochsMetrics[common.MetricSCRSizeInvariantCheckEnableEpoch] = sm.uint64Metrics[common.MetricSCRSizeInvariantCheckEnableEpoch]
 	enableEpochsMetrics[common.MetricBackwardCompSaveKeyValueEnableEpoch] = sm.uint64Metrics[common.MetricBackwardCompSaveKeyValueEnableEpoch]
-	enableEpochsMetrics[common.MetricESDTNFTCreateOnMultiShardEnableEpoch] = sm.uint64Metrics[common.MetricESDTNFTCreateOnMultiShardEnableEpoch]
-	enableEpochsMetrics[common.MetricMetaESDTSetEnableEpoch] = sm.uint64Metrics[common.MetricMetaESDTSetEnableEpoch]
+	enableEpochsMetrics[common.MetricDCDTNFTCreateOnMultiShardEnableEpoch] = sm.uint64Metrics[common.MetricDCDTNFTCreateOnMultiShardEnableEpoch]
+	enableEpochsMetrics[common.MetricMetaDCDTSetEnableEpoch] = sm.uint64Metrics[common.MetricMetaDCDTSetEnableEpoch]
 	enableEpochsMetrics[common.MetricAddTokensToDelegationEnableEpoch] = sm.uint64Metrics[common.MetricAddTokensToDelegationEnableEpoch]
-	enableEpochsMetrics[common.MetricMultiESDTTransferFixOnCallBackOnEnableEpoch] = sm.uint64Metrics[common.MetricMultiESDTTransferFixOnCallBackOnEnableEpoch]
+	enableEpochsMetrics[common.MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch] = sm.uint64Metrics[common.MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch]
 	enableEpochsMetrics[common.MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch] = sm.uint64Metrics[common.MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch]
 	enableEpochsMetrics[common.MetricCorrectFirstQueuedEpoch] = sm.uint64Metrics[common.MetricCorrectFirstQueuedEpoch]
 	enableEpochsMetrics[common.MetricCorrectJailedNotUnstakedEmptyQueueEpoch] = sm.uint64Metrics[common.MetricCorrectJailedNotUnstakedEmptyQueueEpoch]
@@ -329,7 +329,7 @@ func (sm *statusMetrics) EnableEpochsMetrics() (map[string]interface{}, error) {
 	enableEpochsMetrics[common.MetricCleanUpInformativeSCRsEnableEpoch] = sm.uint64Metrics[common.MetricCleanUpInformativeSCRsEnableEpoch]
 	enableEpochsMetrics[common.MetricStorageAPICostOptimizationEnableEpoch] = sm.uint64Metrics[common.MetricStorageAPICostOptimizationEnableEpoch]
 	enableEpochsMetrics[common.MetricTransformToMultiShardCreateEnableEpoch] = sm.uint64Metrics[common.MetricTransformToMultiShardCreateEnableEpoch]
-	enableEpochsMetrics[common.MetricESDTRegisterAndSetAllRolesEnableEpoch] = sm.uint64Metrics[common.MetricESDTRegisterAndSetAllRolesEnableEpoch]
+	enableEpochsMetrics[common.MetricDCDTRegisterAndSetAllRolesEnableEpoch] = sm.uint64Metrics[common.MetricDCDTRegisterAndSetAllRolesEnableEpoch]
 	enableEpochsMetrics[common.MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch] = sm.uint64Metrics[common.MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch]
 	enableEpochsMetrics[common.MetricAddFailedRelayedTxToInvalidMBsDisableEpoch] = sm.uint64Metrics[common.MetricAddFailedRelayedTxToInvalidMBsDisableEpoch]
 	enableEpochsMetrics[common.MetricSCRSizeInvariantOnBuiltInResultEnableEpoch] = sm.uint64Metrics[common.MetricSCRSizeInvariantOnBuiltInResultEnableEpoch]
@@ -341,7 +341,7 @@ func (sm *statusMetrics) EnableEpochsMetrics() (map[string]interface{}, error) {
 	enableEpochsMetrics[common.MetricCheckFunctionArgumentEnableEpoch] = sm.uint64Metrics[common.MetricCheckFunctionArgumentEnableEpoch]
 	enableEpochsMetrics[common.MetricCheckExecuteOnReadOnlyEnableEpoch] = sm.uint64Metrics[common.MetricCheckExecuteOnReadOnlyEnableEpoch]
 	enableEpochsMetrics[common.MetricMiniBlockPartialExecutionEnableEpoch] = sm.uint64Metrics[common.MetricMiniBlockPartialExecutionEnableEpoch]
-	enableEpochsMetrics[common.MetricESDTMetadataContinuousCleanupEnableEpoch] = sm.uint64Metrics[common.MetricESDTMetadataContinuousCleanupEnableEpoch]
+	enableEpochsMetrics[common.MetricDCDTMetadataContinuousCleanupEnableEpoch] = sm.uint64Metrics[common.MetricDCDTMetadataContinuousCleanupEnableEpoch]
 	enableEpochsMetrics[common.MetricFixAsyncCallBackArgsListEnableEpoch] = sm.uint64Metrics[common.MetricFixAsyncCallBackArgsListEnableEpoch]
 	enableEpochsMetrics[common.MetricFixOldTokenLiquidityEnableEpoch] = sm.uint64Metrics[common.MetricFixOldTokenLiquidityEnableEpoch]
 	enableEpochsMetrics[common.MetricRuntimeMemStoreLimitEnableEpoch] = sm.uint64Metrics[common.MetricRuntimeMemStoreLimitEnableEpoch]
@@ -375,13 +375,13 @@ func (sm *statusMetrics) EnableEpochsMetrics() (map[string]interface{}, error) {
 	enableEpochsMetrics[common.MetricStakingV4Step3EnableEpoch] = sm.uint64Metrics[common.MetricStakingV4Step3EnableEpoch]
 	enableEpochsMetrics[common.MetricCleanupAuctionOnLowWaitingListEnableEpoch] = sm.uint64Metrics[common.MetricCleanupAuctionOnLowWaitingListEnableEpoch]
 	enableEpochsMetrics[common.MetricAlwaysMergeContextsInEEIEnableEpoch] = sm.uint64Metrics[common.MetricAlwaysMergeContextsInEEIEnableEpoch]
-	enableEpochsMetrics[common.MetricDynamicESDTEnableEpoch] = sm.uint64Metrics[common.MetricDynamicESDTEnableEpoch]
-	enableEpochsMetrics[common.MetricEGLDInMultiTransferEnableEpoch] = sm.uint64Metrics[common.MetricEGLDInMultiTransferEnableEpoch]
+	enableEpochsMetrics[common.MetricDynamicDCDTEnableEpoch] = sm.uint64Metrics[common.MetricDynamicDCDTEnableEpoch]
+	enableEpochsMetrics[common.MetricREWAInMultiTransferEnableEpoch] = sm.uint64Metrics[common.MetricREWAInMultiTransferEnableEpoch]
 	enableEpochsMetrics[common.MetricCryptoOpcodesV2EnableEpoch] = sm.uint64Metrics[common.MetricCryptoOpcodesV2EnableEpoch]
-	enableEpochsMetrics[common.MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch] = sm.uint64Metrics[common.MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch]
+	enableEpochsMetrics[common.MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch] = sm.uint64Metrics[common.MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch]
 	enableEpochsMetrics[common.MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch] = sm.uint64Metrics[common.MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch]
 	enableEpochsMetrics[common.MetricRelayedTransactionsV3EnableEpoch] = sm.uint64Metrics[common.MetricRelayedTransactionsV3EnableEpoch]
-	enableEpochsMetrics[common.MetricRelayedTransactionsV3FixESDTTransferEnableEpoch] = sm.uint64Metrics[common.MetricRelayedTransactionsV3FixESDTTransferEnableEpoch]
+	enableEpochsMetrics[common.MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch] = sm.uint64Metrics[common.MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch]
 	enableEpochsMetrics[common.MetricCheckBuiltInCallOnTransferValueAndFailEnableRound] = sm.uint64Metrics[common.MetricCheckBuiltInCallOnTransferValueAndFailEnableRound]
 	numNodesChangeConfig := sm.uint64Metrics[common.MetricMaxNodesChangeEnableEpoch+"_count"]
 

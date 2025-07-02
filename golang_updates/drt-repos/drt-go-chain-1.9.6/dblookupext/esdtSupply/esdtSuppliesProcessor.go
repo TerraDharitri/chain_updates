@@ -1,19 +1,19 @@
-//go:generate protoc -I=proto -I=$GOPATH/src -I=$GOPATH/src/github.com/multiversx/protobuf/protobuf  --gogoslick_out=. supplyESDT.proto
+//go:generate protoc -I=proto -I=$GOPATH/src -I=$GOPATH/src/github.com/TerraDharitri/protobuf/protobuf  --gogoslick_out=. supplyDCDT.proto
 
-package esdtSupply
+package dcdtSupply
 
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/storage"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/storage"
 )
 
-var log = logger.GetOrCreate("dblookupext/esdtSupply")
+var log = logger.GetOrCreate("dblookupext/dcdtSupply")
 
 type suppliesProcessor struct {
 	logsProc *logsProcessor
@@ -78,9 +78,9 @@ func (sp *suppliesProcessor) RevertChanges(header data.HeaderHandler, body data.
 	return sp.logsProc.processLogs(header.GetNonce(), logsFromDB, true)
 }
 
-// GetESDTSupply will return the supply from the storage for the given token
-func (sp *suppliesProcessor) GetESDTSupply(token string) (*SupplyESDT, error) {
-	return sp.logsProc.getESDTSupply([]byte(token))
+// GetDCDTSupply will return the supply from the storage for the given token
+func (sp *suppliesProcessor) GetDCDTSupply(token string) (*SupplyDCDT, error) {
+	return sp.logsProc.getDCDTSupply([]byte(token))
 }
 
 // IsInterfaceNil returns true if there is no value under the interface

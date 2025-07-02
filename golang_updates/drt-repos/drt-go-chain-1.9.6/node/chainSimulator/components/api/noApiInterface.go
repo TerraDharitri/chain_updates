@@ -1,6 +1,6 @@
 package api
 
-import "github.com/multiversx/mx-chain-go/facade"
+import "github.com/TerraDharitri/drt-go-chain/facade"
 
 type noAPIInterface struct{}
 

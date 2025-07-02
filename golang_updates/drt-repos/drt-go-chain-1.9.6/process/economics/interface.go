@@ -1,7 +1,7 @@
 package economics
 
 import (
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // EpochNotifier raises epoch change events

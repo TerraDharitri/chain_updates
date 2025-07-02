@@ -4,15 +4,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/consensus"
-	"github.com/multiversx/mx-chain-go/consensus/chronology"
-	"github.com/multiversx/mx-chain-go/consensus/mock"
-	consensusMocks "github.com/multiversx/mx-chain-go/testscommon/consensus"
-	statusHandlerMock "github.com/multiversx/mx-chain-go/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/consensus"
+	"github.com/TerraDharitri/drt-go-chain/consensus/chronology"
+	"github.com/TerraDharitri/drt-go-chain/consensus/mock"
+	consensusMocks "github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
+	statusHandlerMock "github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
 )
 
 func initSubroundHandlerMock() *mock.SubroundHandlerMock {

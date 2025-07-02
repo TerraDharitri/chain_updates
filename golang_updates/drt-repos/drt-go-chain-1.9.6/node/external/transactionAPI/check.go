@@ -3,8 +3,8 @@ package transactionAPI
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-go/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
 func checkNilArgs(arg *ArgAPITransactionProcessor) error {

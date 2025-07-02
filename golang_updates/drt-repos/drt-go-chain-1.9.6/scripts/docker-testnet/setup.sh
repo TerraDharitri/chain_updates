@@ -4,12 +4,12 @@ set -eux
 
 export DOCKERTESTNETDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-MULTIVERSXTESTNETSCRIPTSDIR="$(dirname "$DOCKERTESTNETDIR")/testnet"
+DHARITRITESTNETSCRIPTSDIR="$(dirname "$DOCKERTESTNETDIR")/testnet"
 
 source "$DOCKERTESTNETDIR/variables.sh"
 source "$DOCKERTESTNETDIR/functions.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/config.sh"
-source "$MULTIVERSXTESTNETSCRIPTSDIR/include/build.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/config.sh"
+source "$DHARITRITESTNETSCRIPTSDIR/include/build.sh"
 
 cloneRepositories
 

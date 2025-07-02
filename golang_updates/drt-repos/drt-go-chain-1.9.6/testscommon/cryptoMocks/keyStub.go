@@ -1,8 +1,6 @@
 package cryptoMocks
 
-import (
-	"github.com/multiversx/mx-chain-crypto-go"
-)
+import crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 
 // PrivateKeyStub provides stubs for a PrivateKey implementation
 type PrivateKeyStub struct {

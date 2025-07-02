@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/cmd/assessment/benchmarks"
-	"github.com/multiversx/mx-chain-go/cmd/assessment/benchmarks/factory"
-	"github.com/multiversx/mx-chain-go/common/hostParameters"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/cmd/assessment/benchmarks"
+	"github.com/TerraDharitri/drt-go-chain/cmd/assessment/benchmarks/factory"
+	"github.com/TerraDharitri/drt-go-chain/common/hostParameters"
 	"github.com/urfave/cli"
 )
 
@@ -52,19 +52,19 @@ func main() {
 
 	app := cli.NewApp()
 	cli.AppHelpTemplate = nodeHelpTemplate
-	app.Name = "MultiversX Node Assessment Tool"
+	app.Name = "Dharitri Node Assessment Tool"
 	machineID := core.GetAnonymizedMachineID(app.Name)
 
 	app.Version = fmt.Sprintf("assessment-%s/%s-%s/%s", runtime.Version(), runtime.GOOS, runtime.GOARCH, machineID)
-	app.Usage = "This tool is used to measure the host's performance on some certain tasks used by a MultiversX node. It " +
+	app.Usage = "This tool is used to measure the host's performance on some certain tasks used by a Dharitri node. It " +
 		"produces anonymized host parameters along with a list of benchmarks results. More details can be found in the README.md file."
 	app.Flags = []cli.Flag{
 		outputFile,
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

@@ -1,11 +1,11 @@
-package esdtMultiTransferToVaultCrossShard
+package dcdtMultiTransferToVaultCrossShard
 
 import (
 	"testing"
 
-	multitransfer "github.com/multiversx/mx-chain-go/integrationTests/vm/esdt/multi-transfer"
+	multitransfer "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt/multi-transfer"
 )
 
-func TestESDTMultiTransferToVaultCrossShard(t *testing.T) {
-	multitransfer.EsdtMultiTransferToVault(t, true, "../../testdata/vaultV2.wasm")
+func TestDCDTMultiTransferToVaultCrossShard(t *testing.T) {
+	multitransfer.DcdtMultiTransferToVault(t, true, "../../testdata/vaultV2.wasm")
 }

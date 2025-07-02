@@ -1,6 +1,6 @@
 package processorV2
 
-import vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+import vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 
 type failureContext struct {
 	processFail   bool

@@ -1,7 +1,7 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
 )
 
 // RewardTxProcessorMock -

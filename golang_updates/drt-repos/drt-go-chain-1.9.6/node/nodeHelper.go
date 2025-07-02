@@ -4,15 +4,15 @@ import (
 	"errors"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/factory"
-	"github.com/multiversx/mx-chain-go/node/nodeDebugFactory"
-	"github.com/multiversx/mx-chain-go/p2p"
-	procFactory "github.com/multiversx/mx-chain-go/process/factory"
-	"github.com/multiversx/mx-chain-go/process/throttle/antiflood/blackList"
-	"github.com/multiversx/mx-chain-go/sharding"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	"github.com/TerraDharitri/drt-go-chain/node/nodeDebugFactory"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	procFactory "github.com/TerraDharitri/drt-go-chain/process/factory"
+	"github.com/TerraDharitri/drt-go-chain/process/throttle/antiflood/blackList"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
 )
 
 // prepareOpenTopics will set to the anti flood handler the topics for which

@@ -39,8 +39,8 @@ const (
 	ResultsHashesByTxHashUnit UnitType = 16
 	// TrieEpochRootHashUnit is the trie epoch <-> root hash storage unit identifier
 	TrieEpochRootHashUnit UnitType = 17
-	// ESDTSuppliesUnit is the ESDT supplies storage unit identifier
-	ESDTSuppliesUnit UnitType = 18
+	// DCDTSuppliesUnit is the DCDT supplies storage unit identifier
+	DCDTSuppliesUnit UnitType = 18
 	// RoundHdrHashDataUnit is the round-block header hash storage data unit identifier
 	RoundHdrHashDataUnit UnitType = 19
 	// UserAccountsUnit is the user accounts storage unit identifier
@@ -102,8 +102,8 @@ func (ut UnitType) String() string {
 		return "ResultsHashesByTxHashUnit"
 	case TrieEpochRootHashUnit:
 		return "TrieEpochRootHashUnit"
-	case ESDTSuppliesUnit:
-		return "ESDTSuppliesUnit"
+	case DCDTSuppliesUnit:
+		return "DCDTSuppliesUnit"
 	case RoundHdrHashDataUnit:
 		return "RoundHdrHashDataUnit"
 	case UserAccountsUnit:

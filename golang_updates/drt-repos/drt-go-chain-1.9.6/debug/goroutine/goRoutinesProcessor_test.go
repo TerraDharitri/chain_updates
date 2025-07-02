@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/debug"
+	"github.com/TerraDharitri/drt-go-chain/debug"
 	"github.com/stretchr/testify/assert"
 )
 

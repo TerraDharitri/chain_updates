@@ -3,7 +3,7 @@ package testscommon
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 )
 
 // FeeComputerStub -

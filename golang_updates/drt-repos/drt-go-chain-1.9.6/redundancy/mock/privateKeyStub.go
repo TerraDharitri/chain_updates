@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-crypto-go"
+import crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 
 // PrivateKeyStub -
 type PrivateKeyStub struct {

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/multiversx/mx-chain-go/common/reflectcommon"
-	"github.com/multiversx/mx-chain-go/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain/common/reflectcommon"
+	"github.com/TerraDharitri/drt-go-chain/config"
 )
 
 const (

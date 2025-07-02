@@ -2,6 +2,7 @@ package delegation
 
 import (
 	"bytes"
+	"crypto"
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
@@ -9,22 +10,21 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
-	mclsig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/singlesig"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/dataRetriever/dataPool"
-	"github.com/multiversx/mx-chain-go/integrationTests"
-	"github.com/multiversx/mx-chain-go/process"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	"github.com/multiversx/mx-chain-go/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
+	mclsig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/singlesig"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever/dataPool"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/process"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	"github.com/TerraDharitri/drt-go-chain/vm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -59,8 +59,8 @@ func TestDelegationSystemNodesOperationsTestBackwardComp(t *testing.T) {
 
 	numExpectedScrsFound := 0
 	// we expect the following 2 scrs:
-	// Delegation Manager -> Delegation Contract Address - 1000 EGLD
-	// Delegation Contract Address -> Staking Address - 1000 EGLD
+	// Delegation Manager -> Delegation Contract Address - 1000 REWA
+	// Delegation Contract Address -> Staking Address - 1000 REWA
 	for _, scr := range scrs {
 		if bytes.Equal(scr.GetSndAddr(), vm.DelegationManagerSCAddress) && bytes.Equal(scr.GetRcvAddr(), delegationScAddress) && scr.GetValue().Cmp(value) == 0 {
 			numExpectedScrsFound++
@@ -795,7 +795,7 @@ func TestDelegationSystemDelegateSameUsersAFewTimes(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, vmcommon.Ok, returnedCode)
 
-	// self delegate 1250 eGLD
+	// self delegate 1250 rEWA
 	txData = "delegate"
 	returnedCode, err = processTransaction(tpn, tpn.OwnAccount.Address, delegationScAddress, txData, big.NewInt(1250))
 	assert.Nil(t, err)

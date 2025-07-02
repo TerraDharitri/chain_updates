@@ -1,6 +1,6 @@
 package outport
 
-import "github.com/multiversx/mx-chain-communication-go/websocket"
+import "github.com/TerraDharitri/drt-go-chain-communication/websocket"
 
 // SenderHostStub -
 type SenderHostStub struct {

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"testing"
 
-	apiErrors "github.com/multiversx/mx-chain-go/api/errors"
-	"github.com/multiversx/mx-chain-go/testscommon/api"
+	apiErrors "github.com/TerraDharitri/drt-go-chain/api/errors"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/api"
 	"github.com/stretchr/testify/require"
 )
 

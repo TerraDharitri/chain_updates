@@ -34,7 +34,7 @@ static const i32 ADDRESS_LENGTH = 32;
 byte zero32_red[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 byte zero32_green[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-byte zeroEGLD[] = {
+byte zeroREWA[] = {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 byte codeMetadataUpgradeableReadable[2] = {5, 0};
@@ -71,7 +71,7 @@ void deployChild()
 
     deployFromSourceContract(
         gasLimitDeploySelf,
-        zeroEGLD,
+        zeroREWA,
         selfAddress,
         codeMetadataUpgradeableReadable,
         newAddress,
@@ -96,7 +96,7 @@ void claimDeveloperRewardsOnChild()
 
     createAsyncCall(
         childAddress,
-        zeroEGLD,
+        zeroREWA,
         functionNameClaimDeveloperRewards,
         sizeof(functionNameClaimDeveloperRewards) - 1,
         0,

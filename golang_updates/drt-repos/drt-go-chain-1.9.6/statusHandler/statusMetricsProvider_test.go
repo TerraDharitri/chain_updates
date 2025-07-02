@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/statusHandler"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -162,8 +162,8 @@ func TestStatusMetrics_StatusMetricsWithoutP2PPrometheusStringShouldComputeRound
 
 	strRes, _ := sm.StatusMetricsWithoutP2PPrometheusString()
 
-	assert.Contains(t, strRes, `erd_rounds_passed_in_current_epoch{erd_shard_id="2"} 37`)
-	assert.Contains(t, strRes, `erd_nonces_passed_in_current_epoch{erd_shard_id="2"} 38`)
+	assert.Contains(t, strRes, `drt_rounds_passed_in_current_epoch{drt_shard_id="2"} 37`)
+	assert.Contains(t, strRes, `drt_nonces_passed_in_current_epoch{drt_shard_id="2"} 38`)
 }
 
 func TestStatusMetrics_NetworkConfig(t *testing.T) {
@@ -196,29 +196,29 @@ func TestStatusMetrics_NetworkConfig(t *testing.T) {
 	sm.SetStringValue(common.MetricHysteresis, fmt.Sprintf("%f", 0.0))
 
 	expectedConfig := map[string]interface{}{
-		"erd_chain_id":                      "local-id",
-		"erd_denomination":                  uint64(18),
-		"erd_gas_per_data_byte":             uint64(1500),
-		"erd_latest_tag_software_version":   "version1.0",
-		"erd_meta_consensus_group_size":     uint64(25),
-		"erd_min_gas_limit":                 uint64(50000),
-		"erd_extra_gas_limit_guarded_tx":    uint64(50000),
-		"erd_extra_gas_limit_relayed_tx":    uint64(50000),
-		"erd_min_gas_price":                 uint64(1000),
-		"erd_min_transaction_version":       uint64(2),
-		"erd_num_metachain_nodes":           uint64(50),
-		"erd_num_nodes_in_shard":            uint64(100),
-		"erd_num_shards_without_meta":       uint64(1),
-		"erd_rewards_top_up_gradient_point": "12345",
-		"erd_round_duration":                uint64(5000),
-		"erd_shard_consensus_group_size":    uint64(20),
-		"erd_start_time":                    uint64(9999),
-		"erd_top_up_factor":                 "12.134",
-		"erd_gas_price_modifier":            "0.5",
-		"erd_rounds_per_epoch":              uint64(144),
-		"erd_max_gas_per_transaction":       uint64(15000),
-		"erd_adaptivity":                    "true",
-		"erd_hysteresis":                    "0.000000",
+		"drt_chain_id":                      "local-id",
+		"drt_denomination":                  uint64(18),
+		"drt_gas_per_data_byte":             uint64(1500),
+		"drt_latest_tag_software_version":   "version1.0",
+		"drt_meta_consensus_group_size":     uint64(25),
+		"drt_min_gas_limit":                 uint64(50000),
+		"drt_extra_gas_limit_guarded_tx":    uint64(50000),
+		"drt_extra_gas_limit_relayed_tx":    uint64(50000),
+		"drt_min_gas_price":                 uint64(1000),
+		"drt_min_transaction_version":       uint64(2),
+		"drt_num_metachain_nodes":           uint64(50),
+		"drt_num_nodes_in_shard":            uint64(100),
+		"drt_num_shards_without_meta":       uint64(1),
+		"drt_rewards_top_up_gradient_point": "12345",
+		"drt_round_duration":                uint64(5000),
+		"drt_shard_consensus_group_size":    uint64(20),
+		"drt_start_time":                    uint64(9999),
+		"drt_top_up_factor":                 "12.134",
+		"drt_gas_price_modifier":            "0.5",
+		"drt_rounds_per_epoch":              uint64(144),
+		"drt_max_gas_per_transaction":       uint64(15000),
+		"drt_adaptivity":                    "true",
+		"drt_hysteresis":                    "0.000000",
 	}
 
 	configMetrics, _ := sm.ConfigMetrics()
@@ -240,16 +240,16 @@ func TestStatusMetrics_NetworkMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricRoundsPerEpoch, 50)
 
 	expectedConfig := map[string]interface{}{
-		"erd_current_round":                  uint64(200),
-		"erd_round_at_epoch_start":           uint64(100),
-		"erd_nonce":                          uint64(180),
-		"erd_block_timestamp":                uint64(18000),
-		"erd_highest_final_nonce":            uint64(181),
-		"erd_nonce_at_epoch_start":           uint64(95),
-		"erd_epoch_number":                   uint64(1),
-		"erd_rounds_per_epoch":               uint64(50),
-		"erd_rounds_passed_in_current_epoch": uint64(100),
-		"erd_nonces_passed_in_current_epoch": uint64(85),
+		"drt_current_round":                  uint64(200),
+		"drt_round_at_epoch_start":           uint64(100),
+		"drt_nonce":                          uint64(180),
+		"drt_block_timestamp":                uint64(18000),
+		"drt_highest_final_nonce":            uint64(181),
+		"drt_nonce_at_epoch_start":           uint64(95),
+		"drt_epoch_number":                   uint64(1),
+		"drt_rounds_per_epoch":               uint64(50),
+		"drt_rounds_passed_in_current_epoch": uint64(100),
+		"drt_nonces_passed_in_current_epoch": uint64(85),
 	}
 
 	t.Run("no cross check value", func(t *testing.T) {
@@ -315,7 +315,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricStakingV2EnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricStakeEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricDoubleKeyProtectionEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricEsdtEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDcdtEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricGovernanceEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricDelegationManagerEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricDelegationSmartContractEnableEpoch, uint64(4))
@@ -330,16 +330,16 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricReDelegateBelowMinCheckEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricIncrementSCRNonceInMultiTransferEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricScheduledMiniBlocksEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricESDTMultiTransferEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDCDTMultiTransferEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricGlobalMintBurnDisableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricESDTTransferRoleEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDCDTTransferRoleEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricComputeRewardCheckpointEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricSCRSizeInvariantCheckEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricBackwardCompSaveKeyValueEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricESDTNFTCreateOnMultiShardEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricMetaESDTSetEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDCDTNFTCreateOnMultiShardEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricMetaDCDTSetEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricAddTokensToDelegationEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricMultiESDTTransferFixOnCallBackOnEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCorrectFirstQueuedEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCorrectJailedNotUnstakedEmptyQueueEpoch, uint64(4))
@@ -353,7 +353,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricIsPayableBySCEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricStorageAPICostOptimizationEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricTransformToMultiShardCreateEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricESDTRegisterAndSetAllRolesEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDCDTRegisterAndSetAllRolesEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricAddFailedRelayedTxToInvalidMBsDisableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricSCRSizeInvariantOnBuiltInResultEnableEpoch, uint64(4))
@@ -365,7 +365,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricCheckFunctionArgumentEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCheckExecuteOnReadOnlyEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricMiniBlockPartialExecutionEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricESDTMetadataContinuousCleanupEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDCDTMetadataContinuousCleanupEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricFixAsyncCallBackArgsListEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricFixOldTokenLiquidityEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricRuntimeMemStoreLimitEnableEpoch, uint64(4))
@@ -399,13 +399,13 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 	sm.SetUInt64Value(common.MetricStakingV4Step3EnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCleanupAuctionOnLowWaitingListEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricAlwaysMergeContextsInEEIEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricDynamicESDTEnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricEGLDInMultiTransferEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricDynamicDCDTEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricREWAInMultiTransferEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCryptoOpcodesV2EnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricRelayedTransactionsV3EnableEpoch, uint64(4))
-	sm.SetUInt64Value(common.MetricRelayedTransactionsV3FixESDTTransferEnableEpoch, uint64(4))
+	sm.SetUInt64Value(common.MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch, uint64(4))
 	sm.SetUInt64Value(common.MetricCheckBuiltInCallOnTransferValueAndFailEnableRound, uint64(4))
 
 	maxNodesChangeConfig := []map[string]uint64{
@@ -449,7 +449,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 		common.MetricStakingV2EnableEpoch:                                     uint64(4),
 		common.MetricStakeEnableEpoch:                                         uint64(4),
 		common.MetricDoubleKeyProtectionEnableEpoch:                           uint64(4),
-		common.MetricEsdtEnableEpoch:                                          uint64(4),
+		common.MetricDcdtEnableEpoch:                                          uint64(4),
 		common.MetricGovernanceEnableEpoch:                                    uint64(4),
 		common.MetricDelegationManagerEnableEpoch:                             uint64(4),
 		common.MetricDelegationSmartContractEnableEpoch:                       uint64(4),
@@ -464,16 +464,16 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 		common.MetricReDelegateBelowMinCheckEnableEpoch:                       uint64(4),
 		common.MetricIncrementSCRNonceInMultiTransferEnableEpoch:              uint64(4),
 		common.MetricScheduledMiniBlocksEnableEpoch:                           uint64(4),
-		common.MetricESDTMultiTransferEnableEpoch:                             uint64(4),
+		common.MetricDCDTMultiTransferEnableEpoch:                             uint64(4),
 		common.MetricGlobalMintBurnDisableEpoch:                               uint64(4),
-		common.MetricESDTTransferRoleEnableEpoch:                              uint64(4),
+		common.MetricDCDTTransferRoleEnableEpoch:                              uint64(4),
 		common.MetricComputeRewardCheckpointEnableEpoch:                       uint64(4),
 		common.MetricSCRSizeInvariantCheckEnableEpoch:                         uint64(4),
 		common.MetricBackwardCompSaveKeyValueEnableEpoch:                      uint64(4),
-		common.MetricESDTNFTCreateOnMultiShardEnableEpoch:                     uint64(4),
-		common.MetricMetaESDTSetEnableEpoch:                                   uint64(4),
+		common.MetricDCDTNFTCreateOnMultiShardEnableEpoch:                     uint64(4),
+		common.MetricMetaDCDTSetEnableEpoch:                                   uint64(4),
 		common.MetricAddTokensToDelegationEnableEpoch:                         uint64(4),
-		common.MetricMultiESDTTransferFixOnCallBackOnEnableEpoch:              uint64(4),
+		common.MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch:              uint64(4),
 		common.MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch:              uint64(4),
 		common.MetricCorrectFirstQueuedEpoch:                                  uint64(4),
 		common.MetricCorrectJailedNotUnstakedEmptyQueueEpoch:                  uint64(4),
@@ -487,7 +487,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 		common.MetricIsPayableBySCEnableEpoch:                                 uint64(4),
 		common.MetricStorageAPICostOptimizationEnableEpoch:                    uint64(4),
 		common.MetricTransformToMultiShardCreateEnableEpoch:                   uint64(4),
-		common.MetricESDTRegisterAndSetAllRolesEnableEpoch:                    uint64(4),
+		common.MetricDCDTRegisterAndSetAllRolesEnableEpoch:                    uint64(4),
 		common.MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch:           uint64(4),
 		common.MetricAddFailedRelayedTxToInvalidMBsDisableEpoch:               uint64(4),
 		common.MetricSCRSizeInvariantOnBuiltInResultEnableEpoch:               uint64(4),
@@ -499,7 +499,7 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 		common.MetricCheckFunctionArgumentEnableEpoch:                         uint64(4),
 		common.MetricCheckExecuteOnReadOnlyEnableEpoch:                        uint64(4),
 		common.MetricMiniBlockPartialExecutionEnableEpoch:                     uint64(4),
-		common.MetricESDTMetadataContinuousCleanupEnableEpoch:                 uint64(4),
+		common.MetricDCDTMetadataContinuousCleanupEnableEpoch:                 uint64(4),
 		common.MetricFixAsyncCallBackArgsListEnableEpoch:                      uint64(4),
 		common.MetricFixOldTokenLiquidityEnableEpoch:                          uint64(4),
 		common.MetricRuntimeMemStoreLimitEnableEpoch:                          uint64(4),
@@ -533,13 +533,13 @@ func TestStatusMetrics_EnableEpochMetrics(t *testing.T) {
 		common.MetricStakingV4Step3EnableEpoch:                                uint64(4),
 		common.MetricCleanupAuctionOnLowWaitingListEnableEpoch:                uint64(4),
 		common.MetricAlwaysMergeContextsInEEIEnableEpoch:                      uint64(4),
-		common.MetricDynamicESDTEnableEpoch:                                   uint64(4),
-		common.MetricEGLDInMultiTransferEnableEpoch:                           uint64(4),
+		common.MetricDynamicDCDTEnableEpoch:                                   uint64(4),
+		common.MetricREWAInMultiTransferEnableEpoch:                           uint64(4),
 		common.MetricCryptoOpcodesV2EnableEpoch:                               uint64(4),
-		common.MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch:          uint64(4),
+		common.MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch:          uint64(4),
 		common.MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch:           uint64(4),
 		common.MetricRelayedTransactionsV3EnableEpoch:                         uint64(4),
-		common.MetricRelayedTransactionsV3FixESDTTransferEnableEpoch:          uint64(4),
+		common.MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch:          uint64(4),
 		common.MetricCheckBuiltInCallOnTransferValueAndFailEnableRound:        uint64(4),
 
 		common.MetricMaxNodesChangeEnableEpoch: []map[string]interface{}{

@@ -1,6 +1,6 @@
 package pruning
 
-import "github.com/multiversx/mx-chain-go/storage"
+import "github.com/TerraDharitri/drt-go-chain/storage"
 
 type normalPersistersTracker struct {
 	oldestEpochKeep   int64

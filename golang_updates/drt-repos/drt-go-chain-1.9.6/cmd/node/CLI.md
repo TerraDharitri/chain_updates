@@ -1,18 +1,18 @@
 
 # Node CLI
 
-The **MultiversX Node** exposes the following Command Line Interface:
+The **Dharitri Node** exposes the following Command Line Interface:
 
 ```
 $ node --help
 
 NAME:
-   MultiversX Node CLI App - This is the entry point for starting a new MultiversX node - the app will start after the genesis timestamp
+   Dharitri Node CLI App - This is the entry point for starting a new Dharitri node - the app will start after the genesis timestamp
 USAGE:
    node [global options]
    
 AUTHOR:
-   The MultiversX Team <contact@multiversx.com>
+   The Dharitri Team <contact@dharitri.org>
    
 GLOBAL OPTIONS:
    --genesis-file [path]                     The [path] for the genesis file. This JSON file contains initial data to bootstrap from, such as initial balances for accounts. (default: "./config/genesis.json")

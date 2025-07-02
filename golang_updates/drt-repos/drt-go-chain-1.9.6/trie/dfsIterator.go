@@ -1,6 +1,6 @@
 package trie
 
-import "github.com/multiversx/mx-chain-go/common"
+import "github.com/TerraDharitri/drt-go-chain/common"
 
 type dfsIterator struct {
 	*baseIterator

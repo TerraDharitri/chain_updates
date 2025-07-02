@@ -7,8 +7,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/integrationTests"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests"
 	"github.com/stretchr/testify/require"
 )
 

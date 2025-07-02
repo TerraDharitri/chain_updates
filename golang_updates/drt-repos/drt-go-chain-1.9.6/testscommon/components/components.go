@@ -5,46 +5,46 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	wasmConfig "github.com/multiversx/mx-chain-vm-go/config"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	wasmConfig "github.com/TerraDharitri/drt-go-chain-vm/config"
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-go/common"
-	commonFactory "github.com/multiversx/mx-chain-go/common/factory"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/consensus/spos"
-	"github.com/multiversx/mx-chain-go/dataRetriever"
-	"github.com/multiversx/mx-chain-go/epochStart/bootstrap/disabled"
-	"github.com/multiversx/mx-chain-go/factory"
-	bootstrapComp "github.com/multiversx/mx-chain-go/factory/bootstrap"
-	consensusComp "github.com/multiversx/mx-chain-go/factory/consensus"
-	coreComp "github.com/multiversx/mx-chain-go/factory/core"
-	cryptoComp "github.com/multiversx/mx-chain-go/factory/crypto"
-	dataComp "github.com/multiversx/mx-chain-go/factory/data"
-	"github.com/multiversx/mx-chain-go/factory/mock"
-	networkComp "github.com/multiversx/mx-chain-go/factory/network"
-	processComp "github.com/multiversx/mx-chain-go/factory/processing"
-	stateComp "github.com/multiversx/mx-chain-go/factory/state"
-	statusComp "github.com/multiversx/mx-chain-go/factory/status"
-	"github.com/multiversx/mx-chain-go/factory/statusCore"
-	"github.com/multiversx/mx-chain-go/genesis"
-	"github.com/multiversx/mx-chain-go/genesis/data"
-	"github.com/multiversx/mx-chain-go/p2p"
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
-	p2pFactory "github.com/multiversx/mx-chain-go/p2p/factory"
-	"github.com/multiversx/mx-chain-go/sharding"
-	"github.com/multiversx/mx-chain-go/sharding/nodesCoordinator"
-	"github.com/multiversx/mx-chain-go/state"
-	"github.com/multiversx/mx-chain-go/testscommon"
-	commonMocks "github.com/multiversx/mx-chain-go/testscommon/common"
-	"github.com/multiversx/mx-chain-go/testscommon/dblookupext"
-	"github.com/multiversx/mx-chain-go/testscommon/shardingMocks"
-	statusHandlerMock "github.com/multiversx/mx-chain-go/testscommon/statusHandler"
-	"github.com/multiversx/mx-chain-go/testscommon/storage"
-	"github.com/multiversx/mx-chain-go/trie"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	commonFactory "github.com/TerraDharitri/drt-go-chain/common/factory"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/consensus/spos"
+	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
+	"github.com/TerraDharitri/drt-go-chain/epochStart/bootstrap/disabled"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	bootstrapComp "github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
+	consensusComp "github.com/TerraDharitri/drt-go-chain/factory/consensus"
+	coreComp "github.com/TerraDharitri/drt-go-chain/factory/core"
+	cryptoComp "github.com/TerraDharitri/drt-go-chain/factory/crypto"
+	dataComp "github.com/TerraDharitri/drt-go-chain/factory/data"
+	"github.com/TerraDharitri/drt-go-chain/factory/mock"
+	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
+	processComp "github.com/TerraDharitri/drt-go-chain/factory/processing"
+	stateComp "github.com/TerraDharitri/drt-go-chain/factory/state"
+	statusComp "github.com/TerraDharitri/drt-go-chain/factory/status"
+	"github.com/TerraDharitri/drt-go-chain/factory/statusCore"
+	"github.com/TerraDharitri/drt-go-chain/genesis"
+	"github.com/TerraDharitri/drt-go-chain/genesis/data"
+	"github.com/TerraDharitri/drt-go-chain/p2p"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
+	p2pFactory "github.com/TerraDharitri/drt-go-chain/p2p/factory"
+	"github.com/TerraDharitri/drt-go-chain/sharding"
+	"github.com/TerraDharitri/drt-go-chain/sharding/nodesCoordinator"
+	"github.com/TerraDharitri/drt-go-chain/state"
+	"github.com/TerraDharitri/drt-go-chain/testscommon"
+	commonMocks "github.com/TerraDharitri/drt-go-chain/testscommon/common"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/dblookupext"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
+	statusHandlerMock "github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
+	"github.com/TerraDharitri/drt-go-chain/testscommon/storage"
+	"github.com/TerraDharitri/drt-go-chain/trie"
 )
 
 var log = logger.GetOrCreate("componentsMock")
@@ -85,15 +85,15 @@ func GetCoreArgs() coreComp.CoreComponentsFactoryArgs {
 			InitialNodes: []*config.InitialNodeConfig{
 				{
 					PubKey:  "227a5a5ec0c58171b7f4ee9ecc304ea7b176fb626741a25c967add76d6cd361d6995929f9b60a96237381091cefb1b061225e5bb930b40494a5ac9d7524fd67dfe478e5ccd80f17b093cff5722025761fb0217c39dbd5ae45e01eb5a3113be93",
-					Address: "erd1ulhw20j7jvgfgak5p05kv667k5k9f320sgef5ayxkt9784ql0zssrzyhjp",
+					Address: "drt1ulhw20j7jvgfgak5p05kv667k5k9f320sgef5ayxkt9784ql0zss77n53l",
 				},
 				{
 					PubKey:  "ef9522d654bc08ebf2725468f41a693aa7f3cf1cb93922cff1c8c81fba78274016010916f4a7e5b0855c430a724a2d0b3acd1fe8e61e37273a17d58faa8c0d3ef6b883a33ec648950469a1e9757b978d9ae662a019068a401cff56eea059fd08",
-					Address: "erd17c4fs6mz2aa2hcvva2jfxdsrdknu4220496jmswer9njznt22eds0rxlr4",
+					Address: "drt17c4fs6mz2aa2hcvva2jfxdsrdknu4220496jmswer9njznt22edsjl3uqt",
 				},
 				{
 					PubKey:  "e91ab494cedd4da346f47aaa1a3e792bea24fb9f6cc40d3546bc4ca36749b8bfb0164e40dbad2195a76ee0fd7fb7da075ecbf1b35a2ac20638d53ea5520644f8c16952225c48304bb202867e2d71d396bff5a5971f345bcfe32c7b6b0ca34c84",
-					Address: "erd10d2gufxesrp8g409tzxljlaefhs0rsgjle3l7nq38de59txxt8csj54cd3",
+					Address: "drt10d2gufxesrp8g409tzxljlaefhs0rsgjle3l7nq38de59txxt8cs0gzmw0",
 				},
 			},
 		},
@@ -281,7 +281,7 @@ func GetNetworkFactoryArgs() networkComp.NetworkComponentsFactoryArgs {
 			Enabled:                          false,
 			Type:                             "optimized",
 			RefreshIntervalInSec:             10,
-			ProtocolIDs:                      []string{"erd/kad/1.0.0"},
+			ProtocolIDs:                      []string{"drt/kad/1.0.0"},
 			InitialPeerList:                  []string{"peer0", "peer1"},
 			BucketSize:                       10,
 			RoutingTableRefreshIntervalInSec: 5,
@@ -484,11 +484,11 @@ func GetProcessArgs(
 					Length:          32,
 					Type:            "bech32",
 					SignatureLength: 0,
-					Hrp:             "erd",
+					Hrp:             "drt",
 				})
 				balance := big.NewInt(0)
 				acc1 := data.InitialAccount{
-					Address:      "erd1ulhw20j7jvgfgak5p05kv667k5k9f320sgef5ayxkt9784ql0zssrzyhjp",
+					Address:      "drt1ulhw20j7jvgfgak5p05kv667k5k9f320sgef5ayxkt9784ql0zss77n53l",
 					Supply:       big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
 					Balance:      balance,
 					StakingValue: big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
@@ -498,7 +498,7 @@ func GetProcessArgs(
 					},
 				}
 				acc2 := data.InitialAccount{
-					Address:      "erd17c4fs6mz2aa2hcvva2jfxdsrdknu4220496jmswer9njznt22eds0rxlr4",
+					Address:      "drt17c4fs6mz2aa2hcvva2jfxdsrdknu4220496jmswer9njznt22edsjl3uqt",
 					Supply:       big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
 					Balance:      balance,
 					StakingValue: big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
@@ -508,7 +508,7 @@ func GetProcessArgs(
 					},
 				}
 				acc3 := data.InitialAccount{
-					Address:      "erd10d2gufxesrp8g409tzxljlaefhs0rsgjle3l7nq38de59txxt8csj54cd3",
+					Address:      "drt10d2gufxesrp8g409tzxljlaefhs0rsgjle3l7nq38de59txxt8cs0gzmw0",
 					Supply:       big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
 					Balance:      balance,
 					StakingValue: big.NewInt(0).Mul(big.NewInt(2500000000), big.NewInt(1000000000000)),
@@ -556,7 +556,7 @@ func GetProcessArgs(
 		SystemSCConfig: &config.SystemSmartContractsConfig{
 			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
 				BaseIssuingCost: "1000",
-				OwnerAddress:    "erd1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0swts65c",
+				OwnerAddress:    "drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx",
 			},
 			GovernanceSystemSCConfig: config.GovernanceSystemSCConfig{
 				V1: config.GovernanceSystemSCConfigV1{
@@ -573,7 +573,7 @@ func GetProcessArgs(
 					MinVetoThreshold: 0.5,
 					LostProposalFee:  "1",
 				},
-				OwnerAddress: "erd1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awqgqky80",
+				OwnerAddress: "drt1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awq4up8y3",
 			},
 			StakingSystemSCConfig: config.StakingSystemSCConfig{
 				GenesisNodePrice:                     "2500000000000000000000",
@@ -593,7 +593,7 @@ func GetProcessArgs(
 			DelegationManagerSystemSCConfig: config.DelegationManagerSystemSCConfig{
 				MinCreationDeposit:  "100",
 				MinStakeAmount:      "100",
-				ConfigChangeAddress: "erd1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awqgqky80",
+				ConfigChangeAddress: "drt1vxy22x0fj4zv6hktmydg8vpfh6euv02cz4yg0aaws6rrad5a5awq4up8y3",
 			},
 			DelegationSystemSCConfig: config.DelegationSystemSCConfig{
 				MinServiceFee: 0,

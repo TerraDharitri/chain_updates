@@ -1,16 +1,16 @@
 package examples
 
 import (
+	"crypto"
 	"encoding/hex"
 	"encoding/pem"
 	"fmt"
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
-	mclsig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/singlesig"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
+	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
+	mclsig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/singlesig"
 	"github.com/stretchr/testify/require"
 )
 

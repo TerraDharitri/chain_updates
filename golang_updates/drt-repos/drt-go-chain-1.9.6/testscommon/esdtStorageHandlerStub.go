@@ -3,35 +3,35 @@ package testscommon
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
-// EsdtStorageHandlerStub -
-type EsdtStorageHandlerStub struct {
-	SaveESDTNFTTokenCalled                                    func(senderAddress []byte, acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, esdtData *esdt.ESDigitalToken, saveArgs vmcommon.NftSaveArgs) ([]byte, error)
-	GetESDTNFTTokenOnSenderCalled                             func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, error)
-	GetESDTNFTTokenOnDestinationCalled                        func(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error)
-	GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled func(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, systemAccount vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error)
+// DcdtStorageHandlerStub -
+type DcdtStorageHandlerStub struct {
+	SaveDCDTNFTTokenCalled                                    func(senderAddress []byte, acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, dcdtData *dcdt.DCDigitalToken, saveArgs vmcommon.NftSaveArgs) ([]byte, error)
+	GetDCDTNFTTokenOnSenderCalled                             func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, error)
+	GetDCDTNFTTokenOnDestinationCalled                        func(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error)
+	GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled func(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, systemAccount vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error)
 	WasAlreadySentToDestinationShardAndUpdateStateCalled      func(tickerID []byte, nonce uint64, dstAddress []byte) (bool, error)
 	SaveNFTMetaDataCalled                                     func(tx data.TransactionHandler) error
-	AddToLiquiditySystemAccCalled                             func(esdtTokenKey []byte, tokenType uint32, nonce uint64, transferValue *big.Int, keepMetadataOnZeroLiquidity bool) error
-	SaveMetaDataToSystemAccountCalled                         func(tokenKey []byte, nonce uint64, esdtData *esdt.ESDigitalToken) error
-	GetMetaDataFromSystemAccountCalled                        func(bytes []byte, u uint64) (*esdt.ESDigitalToken, error)
+	AddToLiquiditySystemAccCalled                             func(dcdtTokenKey []byte, tokenType uint32, nonce uint64, transferValue *big.Int, keepMetadataOnZeroLiquidity bool) error
+	SaveMetaDataToSystemAccountCalled                         func(tokenKey []byte, nonce uint64, dcdtData *dcdt.DCDigitalToken) error
+	GetMetaDataFromSystemAccountCalled                        func(bytes []byte, u uint64) (*dcdt.DCDigitalToken, error)
 }
 
 // SaveMetaDataToSystemAccount -
-func (e *EsdtStorageHandlerStub) SaveMetaDataToSystemAccount(tokenKey []byte, nonce uint64, esdtData *esdt.ESDigitalToken) error {
+func (e *DcdtStorageHandlerStub) SaveMetaDataToSystemAccount(tokenKey []byte, nonce uint64, dcdtData *dcdt.DCDigitalToken) error {
 	if e.SaveMetaDataToSystemAccountCalled != nil {
-		return e.SaveMetaDataToSystemAccountCalled(tokenKey, nonce, esdtData)
+		return e.SaveMetaDataToSystemAccountCalled(tokenKey, nonce, dcdtData)
 	}
 
 	return nil
 }
 
 // GetMetaDataFromSystemAccount -
-func (e *EsdtStorageHandlerStub) GetMetaDataFromSystemAccount(bytes []byte, u uint64) (*esdt.ESDigitalToken, error) {
+func (e *DcdtStorageHandlerStub) GetMetaDataFromSystemAccount(bytes []byte, u uint64) (*dcdt.DCDigitalToken, error) {
 	if e.GetMetaDataFromSystemAccountCalled != nil {
 		return e.GetMetaDataFromSystemAccountCalled(bytes, u)
 	}
@@ -39,44 +39,44 @@ func (e *EsdtStorageHandlerStub) GetMetaDataFromSystemAccount(bytes []byte, u ui
 	return nil, nil
 }
 
-// SaveESDTNFTToken -
-func (e *EsdtStorageHandlerStub) SaveESDTNFTToken(senderAddress []byte, acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, esdtData *esdt.ESDigitalToken, saveArgs vmcommon.NftSaveArgs) ([]byte, error) {
-	if e.SaveESDTNFTTokenCalled != nil {
-		return e.SaveESDTNFTTokenCalled(senderAddress, acnt, esdtTokenKey, nonce, esdtData, saveArgs)
+// SaveDCDTNFTToken -
+func (e *DcdtStorageHandlerStub) SaveDCDTNFTToken(senderAddress []byte, acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, dcdtData *dcdt.DCDigitalToken, saveArgs vmcommon.NftSaveArgs) ([]byte, error) {
+	if e.SaveDCDTNFTTokenCalled != nil {
+		return e.SaveDCDTNFTTokenCalled(senderAddress, acnt, dcdtTokenKey, nonce, dcdtData, saveArgs)
 	}
 
 	return nil, nil
 }
 
-// GetESDTNFTTokenOnSender -
-func (e *EsdtStorageHandlerStub) GetESDTNFTTokenOnSender(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, error) {
-	if e.GetESDTNFTTokenOnSenderCalled != nil {
-		return e.GetESDTNFTTokenOnSenderCalled(acnt, esdtTokenKey, nonce)
+// GetDCDTNFTTokenOnSender -
+func (e *DcdtStorageHandlerStub) GetDCDTNFTTokenOnSender(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, error) {
+	if e.GetDCDTNFTTokenOnSenderCalled != nil {
+		return e.GetDCDTNFTTokenOnSenderCalled(acnt, dcdtTokenKey, nonce)
 	}
 
 	return nil, nil
 }
 
-// GetESDTNFTTokenOnDestination -
-func (e *EsdtStorageHandlerStub) GetESDTNFTTokenOnDestination(acnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64) (*esdt.ESDigitalToken, bool, error) {
-	if e.GetESDTNFTTokenOnDestinationCalled != nil {
-		return e.GetESDTNFTTokenOnDestinationCalled(acnt, esdtTokenKey, nonce)
+// GetDCDTNFTTokenOnDestination -
+func (e *DcdtStorageHandlerStub) GetDCDTNFTTokenOnDestination(acnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64) (*dcdt.DCDigitalToken, bool, error) {
+	if e.GetDCDTNFTTokenOnDestinationCalled != nil {
+		return e.GetDCDTNFTTokenOnDestinationCalled(acnt, dcdtTokenKey, nonce)
 	}
 
 	return nil, false, nil
 }
 
-// GetESDTNFTTokenOnDestinationWithCustomSystemAccount -
-func (e *EsdtStorageHandlerStub) GetESDTNFTTokenOnDestinationWithCustomSystemAccount(accnt vmcommon.UserAccountHandler, esdtTokenKey []byte, nonce uint64, systemAccount vmcommon.UserAccountHandler) (*esdt.ESDigitalToken, bool, error) {
-	if e.GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled != nil {
-		return e.GetESDTNFTTokenOnDestinationWithCustomSystemAccountCalled(accnt, esdtTokenKey, nonce, systemAccount)
+// GetDCDTNFTTokenOnDestinationWithCustomSystemAccount -
+func (e *DcdtStorageHandlerStub) GetDCDTNFTTokenOnDestinationWithCustomSystemAccount(accnt vmcommon.UserAccountHandler, dcdtTokenKey []byte, nonce uint64, systemAccount vmcommon.UserAccountHandler) (*dcdt.DCDigitalToken, bool, error) {
+	if e.GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled != nil {
+		return e.GetDCDTNFTTokenOnDestinationWithCustomSystemAccountCalled(accnt, dcdtTokenKey, nonce, systemAccount)
 	}
 
 	return nil, false, nil
 }
 
 // WasAlreadySentToDestinationShardAndUpdateState -
-func (e *EsdtStorageHandlerStub) WasAlreadySentToDestinationShardAndUpdateState(tickerID []byte, nonce uint64, dstAddress []byte) (bool, error) {
+func (e *DcdtStorageHandlerStub) WasAlreadySentToDestinationShardAndUpdateState(tickerID []byte, nonce uint64, dstAddress []byte) (bool, error) {
 	if e.WasAlreadySentToDestinationShardAndUpdateStateCalled != nil {
 		return e.WasAlreadySentToDestinationShardAndUpdateStateCalled(tickerID, nonce, dstAddress)
 	}
@@ -85,7 +85,7 @@ func (e *EsdtStorageHandlerStub) WasAlreadySentToDestinationShardAndUpdateState(
 }
 
 // SaveNFTMetaData -
-func (e *EsdtStorageHandlerStub) SaveNFTMetaData(tx data.TransactionHandler) error {
+func (e *DcdtStorageHandlerStub) SaveNFTMetaData(tx data.TransactionHandler) error {
 	if e.SaveNFTMetaDataCalled != nil {
 		return e.SaveNFTMetaDataCalled(tx)
 	}
@@ -94,15 +94,15 @@ func (e *EsdtStorageHandlerStub) SaveNFTMetaData(tx data.TransactionHandler) err
 }
 
 // AddToLiquiditySystemAcc -
-func (e *EsdtStorageHandlerStub) AddToLiquiditySystemAcc(esdtTokenKey []byte, tokenType uint32, nonce uint64, transferValue *big.Int, keepMetadataOnZeroLiquidity bool) error {
+func (e *DcdtStorageHandlerStub) AddToLiquiditySystemAcc(dcdtTokenKey []byte, tokenType uint32, nonce uint64, transferValue *big.Int, keepMetadataOnZeroLiquidity bool) error {
 	if e.AddToLiquiditySystemAccCalled != nil {
-		return e.AddToLiquiditySystemAccCalled(esdtTokenKey, tokenType, nonce, transferValue, keepMetadataOnZeroLiquidity)
+		return e.AddToLiquiditySystemAccCalled(dcdtTokenKey, tokenType, nonce, transferValue, keepMetadataOnZeroLiquidity)
 	}
 
 	return nil
 }
 
 // IsInterfaceNil -
-func (e *EsdtStorageHandlerStub) IsInterfaceNil() bool {
+func (e *DcdtStorageHandlerStub) IsInterfaceNil() bool {
 	return e == nil
 }

@@ -4,12 +4,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm"
-	"github.com/multiversx/mx-chain-go/integrationTests/vm/txsFee/utils"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/txsFee/utils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -27,7 +27,7 @@ func TestNFTTransferAndUpdateOnOldTypeToken(t *testing.T) {
 		ManagedCryptoAPIsEnableEpoch:                  3,
 		CheckFunctionArgumentEnableEpoch:              3,
 		CheckExecuteOnReadOnlyEnableEpoch:             3,
-		ESDTMetadataContinuousCleanupEnableEpoch:      3,
+		DCDTMetadataContinuousCleanupEnableEpoch:      3,
 		FixOldTokenLiquidityEnableEpoch:               3,
 		RuntimeMemStoreLimitEnableEpoch:               3,
 		SetSenderInEeiOutputTransferEnableEpoch:       3,
@@ -52,11 +52,11 @@ func TestNFTTransferAndUpdateOnOldTypeToken(t *testing.T) {
 
 	// create the nft and ensure that it exists on the account's trie and in the system account on shard 0
 	utils.CreateAccountWithNFT(t, sh0Context.Accounts, sh0Addr, big.NewInt(100000000), tokenID, initialAttribute)
-	utils.CheckESDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
-	utils.CheckESDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, sh0Addr, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(t, sh0Context, core.SystemAccountAddress, tokenID, 1, big.NewInt(1))
 
 	// set special roles
-	utils.SetESDTRoles(t, sh0Context.Accounts, sh0Addr, tokenID, [][]byte{[]byte(core.ESDTRoleNFTUpdateAttributes)})
+	utils.SetDCDTRoles(t, sh0Context.Accounts, sh0Addr, tokenID, [][]byte{[]byte(core.DCDTRoleNFTUpdateAttributes)})
 
 	// transfer sh0Addr -> sh1Addr
 	transferToken(t, tokenID, sh0Context, sh0Addr, sh1Context, sh1Addr)
@@ -94,7 +94,7 @@ func transferToken(
 	destinationContext.CleanIntermediateTransactions(tb)
 
 	senderAccnt, _ := senderContext.Accounts.LoadAccount(senderAddr)
-	crossShardTransferTx := utils.CreateESDTNFTTransferTx(senderAccnt.GetNonce(), senderAddr, destinationAddr, tokenID, 1, big.NewInt(1), 10, 1000000, "")
+	crossShardTransferTx := utils.CreateDCDTNFTTransferTx(senderAccnt.GetNonce(), senderAddr, destinationAddr, tokenID, 1, big.NewInt(1), 10, 1000000, "")
 	retCode, err := senderContext.TxProcessor.ProcessTransaction(crossShardTransferTx)
 	require.Equal(tb, vmcommon.Ok, retCode)
 	require.NoError(tb, err)
@@ -103,8 +103,8 @@ func transferToken(
 
 	// check the balances after the transfer, as well as the liquidity
 	utils.ProcessSCRResult(tb, destinationContext, scrs[0], vmcommon.Ok, nil)
-	utils.CheckESDTNFTBalance(tb, senderContext, senderAddr, tokenID, 1, big.NewInt(0))
-	utils.CheckESDTNFTBalance(tb, destinationContext, destinationAddr, tokenID, 1, big.NewInt(1))
+	utils.CheckDCDTNFTBalance(tb, senderContext, senderAddr, tokenID, 1, big.NewInt(0))
+	utils.CheckDCDTNFTBalance(tb, destinationContext, destinationAddr, tokenID, 1, big.NewInt(1))
 }
 
 func updateAttributes(
@@ -117,7 +117,7 @@ func updateAttributes(
 	context.CleanIntermediateTransactions(tb)
 
 	senderAccnt, _ := context.Accounts.LoadAccount(addr)
-	tx := utils.CreateESDTNFTUpdateAttributesTx(senderAccnt.GetNonce(), addr, tokenID, 1, 1000000, newAttributes)
+	tx := utils.CreateDCDTNFTUpdateAttributesTx(senderAccnt.GetNonce(), addr, tokenID, 1, 1000000, newAttributes)
 	retCode, err := context.TxProcessor.ProcessTransaction(tx)
 	require.Equal(tb, vmcommon.Ok, retCode)
 	require.NoError(tb, err)
@@ -128,7 +128,7 @@ func updateAttributes(
 }
 
 func checkAttributes(tb testing.TB, context *vm.VMTestContext, address []byte, tokenID []byte, expectedAttributes []byte) {
-	esdtData, err := context.BlockchainHook.GetESDTToken(address, tokenID, 1)
+	dcdtData, err := context.BlockchainHook.GetDCDTToken(address, tokenID, 1)
 	require.Nil(tb, err)
-	assert.Equal(tb, expectedAttributes, esdtData.TokenMetaData.Attributes)
+	assert.Equal(tb, expectedAttributes, dcdtData.TokenMetaData.Attributes)
 }

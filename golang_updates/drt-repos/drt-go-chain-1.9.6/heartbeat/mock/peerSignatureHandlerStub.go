@@ -1,8 +1,9 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-crypto-go"
+	"crypto"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // PeerSignatureHandlerStub -

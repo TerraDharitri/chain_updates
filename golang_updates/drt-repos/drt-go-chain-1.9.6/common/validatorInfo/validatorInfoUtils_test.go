@@ -3,8 +3,8 @@ package validatorInfo
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/common"
-	"github.com/multiversx/mx-chain-go/state"
+	"github.com/TerraDharitri/drt-go-chain/common"
+	"github.com/TerraDharitri/drt-go-chain/state"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

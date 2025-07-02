@@ -8,10 +8,10 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/view"
+	"github.com/TerraDharitri/drt-go-chain/cmd/termui/view/termuic/termuiRenders"
 	ui "github.com/gizak/termui/v3"
-	"github.com/multiversx/mx-chain-go/cmd/termui/view"
-	"github.com/multiversx/mx-chain-go/cmd/termui/view/termuic/termuiRenders"
-	"github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 // numOfTicksBeforeRedrawing represents the number of ticks which have to pass until a fake resize will be made

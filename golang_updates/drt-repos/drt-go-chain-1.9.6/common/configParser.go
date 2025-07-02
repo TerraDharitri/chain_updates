@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-go/config"
-	p2pConfig "github.com/multiversx/mx-chain-go/p2p/config"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain/config"
+	p2pConfig "github.com/TerraDharitri/drt-go-chain/p2p/config"
 )
 
 // LoadP2PConfig returns a P2PConfig by reading the config file provided

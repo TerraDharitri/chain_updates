@@ -3,9 +3,9 @@ package heartbeat_test
 import (
 	"testing"
 
-	errorsMx "github.com/multiversx/mx-chain-go/errors"
-	"github.com/multiversx/mx-chain-go/factory"
-	heartbeatComp "github.com/multiversx/mx-chain-go/factory/heartbeat"
+	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	"github.com/TerraDharitri/drt-go-chain/factory"
+	heartbeatComp "github.com/TerraDharitri/drt-go-chain/factory/heartbeat"
 	"github.com/stretchr/testify/assert"
 )
 

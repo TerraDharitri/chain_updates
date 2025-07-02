@@ -45,8 +45,8 @@ func TestUnitType_String(t *testing.T) {
 	require.Equal(t, "ResultsHashesByTxHashUnit", ut.String())
 	ut = TrieEpochRootHashUnit
 	require.Equal(t, "TrieEpochRootHashUnit", ut.String())
-	ut = ESDTSuppliesUnit
-	require.Equal(t, "ESDTSuppliesUnit", ut.String())
+	ut = DCDTSuppliesUnit
+	require.Equal(t, "DCDTSuppliesUnit", ut.String())
 	ut = RoundHdrHashDataUnit
 	require.Equal(t, "RoundHdrHashDataUnit", ut.String())
 	ut = UserAccountsUnit
