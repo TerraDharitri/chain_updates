@@ -3,13 +3,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "multiversx-sdk-cli"
+name = "dharitri-sdk-cli"
 version = "11.0.0"
 authors = [
-  { name="MultiversX" },
+  { name="Dharitri" },
 ]
 license = "MIT"
-description = "MultiversX Smart Contracts Tools"
+description = "Dharitri Smart Contracts Tools"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
@@ -25,20 +25,20 @@ dependencies = [
   "ledgercomm[hid]",
   "rich==13.3.4",
   "argcomplete==3.2.2",
-  "multiversx-sdk[ledger]==1.6.2"
+  "dharitri-sdk[ledger]==1.6.2"
 ]
 
 [project.scripts]
-mxpy = "multiversx_sdk_cli.cli:main"
+drtpy = "dharitri_sdk_cli.cli:main"
 
 [tool.hatch.build]
 include = [
-  "multiversx_sdk_cli/**"
+  "dharitri_sdk_cli/**"
 ]
 exclude = [
   ".github",
-  "multiversx_sdk_cli/tests/**"
+  "dharitri_sdk_cli/tests/**"
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/multiversx/mx-sdk-py-cli"
+"Homepage" = "https://github.com/TerraDharitri/drt-py-sdk-cli"

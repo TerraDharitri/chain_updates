@@ -29,6 +29,6 @@ venv.bak/
 # Typings
 typings
 
-multiversx_sdk_cli/tests/testdata-out
+dharitri_sdk_cli/tests/testdata-out
 
 .DS_store

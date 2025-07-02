@@ -2,8 +2,8 @@
 
 export PYTHONPATH=.
 
-CLI="python3 -m multiversx_sdk_cli.cli"
-CLI_ALIAS="mxpy"
+CLI="python3 -m dharitri_sdk_cli.cli"
+CLI_ALIAS="drtpy"
 
 code() {
     printf "\n\`\`\`\n" >> CLI.md
@@ -142,7 +142,7 @@ generate() {
     command "Multisig.RemoveUser" "multisig remove-user"
     command "Multisig.ChangeQuorum" "multisig change-quorum"
     command "Multisig.TransferAndExecute" "multisig transfer-and-execute"
-    command "Multisig.TransferAndExecuteEsdt" "multisig transfer-and-execute-esdt"
+    command "Multisig.TransferAndExecuteDcdt" "multisig transfer-and-execute-dcdt"
     command "Multisig.AsyncCall" "multisig async-call"
     command "Multisig.DeployFromSource" "multisig deploy-from-source"
     command "Multisig.UpgradeFromSource" "multisig upgrade-from-source"

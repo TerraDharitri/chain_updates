@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-      "multiversx_sdk"
+      "dharitri_sdk"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,

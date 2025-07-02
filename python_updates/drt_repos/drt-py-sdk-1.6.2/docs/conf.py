@@ -11,9 +11,9 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-project = "multiversx-sdk"
-copyright = "2024, MultiversX"
-author = "MultiversX"
+project = "dharitri-sdk"
+copyright = "2024, Dharitri"
+author = "Dharitri"
 release = "1.6.2"
 
 # -- General configuration ---------------------------------------------------

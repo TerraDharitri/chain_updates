@@ -1,9 +1,9 @@
-.. multiversx-sdk documentation master file, created by
+.. dharitri-sdk documentation master file, created by
    sphinx-quickstart on Wed Apr  3 14:19:32 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to multiversx-sdk's documentation!
+Welcome to dharitri-sdk's documentation!
 ==========================================
 
 .. toctree::
