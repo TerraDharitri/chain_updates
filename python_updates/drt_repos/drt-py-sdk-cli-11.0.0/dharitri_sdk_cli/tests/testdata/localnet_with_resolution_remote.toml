@@ -1,0 +1,12 @@
+[general]
+log_level = "*:DEBUG"
+rounds_per_epoch = 40
+round_duration_milliseconds = 3000
+
+[software.drt_go_chain]
+resolution = "remote"
+archive_url = "https://github.com/TerraDharitri/drt-go-chain/archive/refs/heads/master.zip"
+
+[software.drt_go_chain_proxy]
+resolution = "remote"
+archive_url = "https://github.com/TerraDharitri/drt-go-chain-proxy/archive/refs/heads/master.zip"

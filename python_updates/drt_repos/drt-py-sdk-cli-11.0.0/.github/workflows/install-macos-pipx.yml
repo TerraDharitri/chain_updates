@@ -1,4 +1,4 @@
-name: Install mxpy using pipx (MacOS)
+name: Install drtpy using pipx (MacOS)
 
 on:
   pull_request:
@@ -28,9 +28,9 @@ jobs:
         run: |
           brew install pipx
           pipx ensurepath
-      - name: Install mxpy
+      - name: Install drtpy
         run: |
-          pipx install git+https://github.com/multiversx/mx-sdk-py-cli@$BRANCH_NAME
+          pipx install git+https://github.com/TerraDharitri/drt-py-sdk-cli@$BRANCH_NAME
       - name: Smoke test
         run: |
-          mxpy --version
+          drtpy --version
