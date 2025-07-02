@@ -18,7 +18,7 @@ func LocalMintMock(instanceMock *mock.InstanceMock, config interface{}) {
 		args := host.Runtime().Arguments()
 
 		callData := txDataBuilder.NewBuilder()
-		callData.LocalMintESDT(
+		callData.LocalMintDCDT(
 			string(args[0]),
 			big.NewInt(0).SetBytes(args[1]).Int64())
 
@@ -44,7 +44,7 @@ func LocalBurnMock(instanceMock *mock.InstanceMock, config interface{}) {
 		args := host.Runtime().Arguments()
 
 		callData := txDataBuilder.NewBuilder()
-		callData.LocalBurnESDT(
+		callData.LocalBurnDCDT(
 			string(args[0]),
 			big.NewInt(0).SetBytes(args[1]).Int64())
 

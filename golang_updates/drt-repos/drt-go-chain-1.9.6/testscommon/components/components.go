@@ -438,8 +438,8 @@ func GetProcessArgs(
 	// TODO: check if these could be initialized by MakeGasMapForTests()
 	gasSchedule["BuiltInCost"]["SaveUserName"] = 1
 	gasSchedule["BuiltInCost"]["SaveKeyValue"] = 1
-	gasSchedule["BuiltInCost"]["ESDTTransfer"] = 1
-	gasSchedule["BuiltInCost"]["ESDTBurn"] = 1
+	gasSchedule["BuiltInCost"]["DCDTTransfer"] = 1
+	gasSchedule["BuiltInCost"]["DCDTBurn"] = 1
 	gasSchedule[common.MetaChainSystemSCsCost] = FillGasMapMetaChainSystemSCsCosts(1)
 
 	gasScheduleNotifier := &testscommon.GasScheduleNotifierMock{
@@ -554,7 +554,7 @@ func GetProcessArgs(
 		MaxRating:              100,
 		ImportStartHandler:     &testscommon.ImportStartHandlerStub{},
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx",
 			},
@@ -883,8 +883,8 @@ func FillGasMapMetaChainSystemSCsCosts(value uint64) map[string]uint64 {
 	gasMap["ChangeRewardAddress"] = value
 	gasMap["ChangeValidatorKeys"] = value
 	gasMap["UnJail"] = value
-	gasMap["ESDTIssue"] = value
-	gasMap["ESDTOperations"] = value
+	gasMap["DCDTIssue"] = value
+	gasMap["DCDTOperations"] = value
 	gasMap["Proposal"] = value
 	gasMap["Vote"] = value
 	gasMap["DelegateVote"] = value

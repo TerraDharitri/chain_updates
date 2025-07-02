@@ -42,12 +42,12 @@ func TestNewNetworkGroup(t *testing.T) {
 	})
 }
 
-type esdtTokensResponseData struct {
+type dcdtTokensResponseData struct {
 	Tokens []string `json:"tokens"`
 }
 
-type esdtTokensResponse struct {
-	Data  esdtTokensResponseData `json:"data"`
+type dcdtTokensResponse struct {
+	Data  dcdtTokensResponseData `json:"data"`
 	Error string                 `json:"error"`
 	Code  string                 `json:"code"`
 }
@@ -360,10 +360,10 @@ func TestEconomicsMetrics_CannotGetStakeValues(t *testing.T) {
 	assert.Equal(t, resp.Code, http.StatusInternalServerError)
 }
 
-func TestGetAllIssuedESDTs_ShouldWork(t *testing.T) {
+func TestGetAllIssuedDCDTs_ShouldWork(t *testing.T) {
 	tokens := []string{"tokenA", "tokenB"}
 	facade := mock.FacadeStub{
-		GetAllIssuedESDTsCalled: func(_ string) ([]string, error) {
+		GetAllIssuedDCDTsCalled: func(_ string) ([]string, error) {
 			return tokens, nil
 		},
 	}
@@ -373,21 +373,21 @@ func TestGetAllIssuedESDTs_ShouldWork(t *testing.T) {
 
 	ws := startWebServer(networkGroup, "network", getNetworkRoutesConfig())
 
-	req, _ := http.NewRequest("GET", "/network/esdts", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdts", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	response := esdtTokensResponse{}
+	response := dcdtTokensResponse{}
 	loadResponse(resp.Body, &response)
 	assert.Equal(t, resp.Code, http.StatusOK)
 
 	assert.Equal(t, tokens, response.Data.Tokens)
 }
 
-func TestGetAllIssuedESDTs_Error(t *testing.T) {
+func TestGetAllIssuedDCDTs_Error(t *testing.T) {
 	localErr := fmt.Errorf("%s", "local error")
 	facade := mock.FacadeStub{
-		GetAllIssuedESDTsCalled: func(_ string) ([]string, error) {
+		GetAllIssuedDCDTsCalled: func(_ string) ([]string, error) {
 			return nil, localErr
 		},
 	}
@@ -397,7 +397,7 @@ func TestGetAllIssuedESDTs_Error(t *testing.T) {
 
 	ws := startWebServer(networkGroup, "network", getNetworkRoutesConfig())
 
-	req, _ := http.NewRequest("GET", "/network/esdts", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdts", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
@@ -622,11 +622,11 @@ func TestGetEnableEpochs_ShouldWork(t *testing.T) {
 	assert.True(t, keyAndValueFoundInResponse)
 }
 
-func TestGetESDTTotalSupply_InternalError(t *testing.T) {
+func TestGetDCDTTotalSupply_InternalError(t *testing.T) {
 	t.Parallel()
 
 	facade := mock.FacadeStub{
-		GetTokenSupplyCalled: func(token string) (*api.ESDTSupply, error) {
+		GetTokenSupplyCalled: func(token string) (*api.DCDTSupply, error) {
 			return nil, expectedErr
 		},
 	}
@@ -636,7 +636,7 @@ func TestGetESDTTotalSupply_InternalError(t *testing.T) {
 
 	ws := startWebServer(networkGroup, "network", getNetworkRoutesConfig())
 
-	req, _ := http.NewRequest("GET", "/network/esdt/supply/token", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdt/supply/token", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
@@ -708,16 +708,16 @@ func TestGetNetworkRatings_ShouldWork(t *testing.T) {
 	assert.Equal(t, expectedMap, response.Data.Config)
 }
 
-func TestGetESDTTotalSupply(t *testing.T) {
+func TestGetDCDTTotalSupply(t *testing.T) {
 	t.Parallel()
 
 	type supplyResponse struct {
-		Data *api.ESDTSupply `json:"data"`
+		Data *api.DCDTSupply `json:"data"`
 	}
 
 	facade := mock.FacadeStub{
-		GetTokenSupplyCalled: func(token string) (*api.ESDTSupply, error) {
-			return &api.ESDTSupply{
+		GetTokenSupplyCalled: func(token string) (*api.DCDTSupply, error) {
+			return &api.DCDTSupply{
 				Supply: "1000",
 				Burned: "500",
 				Minted: "1500",
@@ -730,7 +730,7 @@ func TestGetESDTTotalSupply(t *testing.T) {
 
 	ws := startWebServer(networkGroup, "network", getNetworkRoutesConfig())
 
-	req, _ := http.NewRequest("GET", "/network/esdt/supply/mytoken-aabb", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdt/supply/mytoken-aabb", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
@@ -741,7 +741,7 @@ func TestGetESDTTotalSupply(t *testing.T) {
 	err = json.Unmarshal(respBytes, respSupply)
 	require.Nil(t, err)
 
-	require.Equal(t, &supplyResponse{Data: &api.ESDTSupply{
+	require.Equal(t, &supplyResponse{Data: &api.DCDTSupply{
 		Supply: "1000",
 		Burned: "500",
 		Minted: "1500",
@@ -1040,12 +1040,12 @@ func getNetworkRoutesConfig() config.ApiRoutesConfig {
 					{Name: "/config", Open: true},
 					{Name: "/status", Open: true},
 					{Name: "/economics", Open: true},
-					{Name: "/esdts", Open: true},
+					{Name: "/dcdts", Open: true},
 					{Name: "/total-staked", Open: true},
 					{Name: "/enable-epochs", Open: true},
 					{Name: "/direct-staked-info", Open: true},
 					{Name: "/delegated-info", Open: true},
-					{Name: "/esdt/supply/:token", Open: true},
+					{Name: "/dcdt/supply/:token", Open: true},
 					{Name: "/genesis-nodes", Open: true},
 					{Name: "/genesis-balances", Open: true},
 					{Name: "/ratings", Open: true},

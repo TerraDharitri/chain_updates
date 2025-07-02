@@ -7,11 +7,11 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data/metrics"
 	"github.com/TerraDharitri/drt-go-chain-core/data/typeConverters"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/statusHandler"
 	"github.com/TerraDharitri/drt-go-chain/storage"
 	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var log = logger.GetOrCreate("statusHandler/persister")

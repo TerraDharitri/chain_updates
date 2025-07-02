@@ -2,7 +2,7 @@ package mock
 
 import (
 	"github.com/TerraDharitri/drt-go-chain-core/core"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 )
 
 // RedundancyHandlerStub -

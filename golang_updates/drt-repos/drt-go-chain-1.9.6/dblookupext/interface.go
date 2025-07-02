@@ -3,7 +3,7 @@ package dblookupext
 import (
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 )
 
 // HistoryRepositoryFactory can create new instances of HistoryRepository
@@ -26,7 +26,7 @@ type HistoryRepository interface {
 	GetEpochByHash(hash []byte) (uint32, error)
 	GetResultsHashesByTxHash(txHash []byte, epoch uint32) (*ResultsHashesByTxHash, error)
 	RevertBlock(blockHeader data.HeaderHandler, blockBody data.BodyHandler) error
-	GetESDTSupply(token string) (*esdtSupply.SupplyESDT, error)
+	GetDCDTSupply(token string) (*dcdtSupply.SupplyDCDT, error)
 	IsEnabled() bool
 	IsInterfaceNil() bool
 }
@@ -44,6 +44,6 @@ type BlockTracker interface {
 type SuppliesHandler interface {
 	ProcessLogs(blockNonce uint64, logs []*data.LogData) error
 	RevertChanges(header data.HeaderHandler, body data.BodyHandler) error
-	GetESDTSupply(token string) (*esdtSupply.SupplyESDT, error)
+	GetDCDTSupply(token string) (*dcdtSupply.SupplyDCDT, error)
 	IsInterfaceNil() bool
 }

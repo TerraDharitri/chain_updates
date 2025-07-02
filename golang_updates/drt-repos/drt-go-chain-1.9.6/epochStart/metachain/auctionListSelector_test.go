@@ -705,9 +705,9 @@ func TestAuctionListSelector_calcSoftAuctionNodesConfigEdgeCases(t *testing.T) {
 	t.Run("large top up difference, would qualify more nodes than an owner has, expect correct computation", func(t *testing.T) {
 		argsLargeTopUp := createAuctionListSelectorArgs(nil)
 		argsLargeTopUp.SoftAuctionConfig = config.SoftAuctionConfig{
-			TopUpStep:             "10000000000000000000",       // 10 eGLD
-			MinTopUp:              "1000000000000000000",        // 1 eGLD
-			MaxTopUp:              "32000000000000000000000000", // 32 mil eGLD
+			TopUpStep:             "10000000000000000000",       // 10 rEWA
+			MinTopUp:              "1000000000000000000",        // 1 rEWA
+			MaxTopUp:              "32000000000000000000000000", // 32 mil rEWA
 			MaxNumberOfIterations: 10,
 		}
 		argsLargeTopUp.Denomination = 18
@@ -717,8 +717,8 @@ func TestAuctionListSelector_calcSoftAuctionNodesConfigEdgeCases(t *testing.T) {
 		v1 := &state.ValidatorInfo{PublicKey: []byte("pk1")}
 		v2 := &state.ValidatorInfo{PublicKey: []byte("pk2")}
 
-		oneEGLD, _ := big.NewInt(0).SetString("1000000000000000000", 10)
-		owner1TopUp, _ := big.NewInt(0).SetString("32000000000000000000000000", 10) // 31 mil eGLD
+		oneREWA, _ := big.NewInt(0).SetString("1000000000000000000", 10)
+		owner1TopUp, _ := big.NewInt(0).SetString("32000000000000000000000000", 10) // 31 mil rEWA
 		owner1 := "owner1"
 		owner2 := "owner2"
 		ownersData := map[string]*OwnerAuctionData{
@@ -745,7 +745,7 @@ func TestAuctionListSelector_calcSoftAuctionNodesConfigEdgeCases(t *testing.T) {
 		}
 
 		minTopUp, maxTopUp := selector.getMinMaxPossibleTopUp(ownersData)
-		require.Equal(t, oneEGLD, minTopUp)
+		require.Equal(t, oneREWA, minTopUp)
 		require.Equal(t, owner1TopUp, maxTopUp)
 
 		softAuctionConfig := selector.calcSoftAuctionNodesConfig(ownersData, 3)

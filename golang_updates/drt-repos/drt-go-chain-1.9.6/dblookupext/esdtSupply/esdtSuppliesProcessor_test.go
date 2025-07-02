@@ -1,4 +1,4 @@
-package esdtSupply
+package dcdtSupply
 
 import (
 	"errors"
@@ -59,37 +59,37 @@ func TestProcessLogsSaveSupply(t *testing.T) {
 						Identifier: []byte("something"),
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testNftCreateValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testAddQuantityValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testBurnValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testNftCreateValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testAddQuantityValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testBurnValue).Bytes(),
 						},
@@ -121,12 +121,12 @@ func TestProcessLogsSaveSupply(t *testing.T) {
 
 			isCollectionSupply := strings.Count(string(key), "-") == 1
 
-			var supplyESDT SupplyESDT
-			_ = marshalizer.Unmarshal(&supplyESDT, data)
+			var supplyDCDT SupplyDCDT
+			_ = marshalizer.Unmarshal(&supplyDCDT, data)
 			if isCollectionSupply {
-				require.Equal(t, big.NewInt(60), supplyESDT.Supply)
+				require.Equal(t, big.NewInt(60), supplyDCDT.Supply)
 			} else {
-				require.Equal(t, big.NewInt(30), supplyESDT.Supply)
+				require.Equal(t, big.NewInt(30), supplyDCDT.Supply)
 			}
 
 			putCalledNum++
@@ -156,13 +156,13 @@ func TestProcessLogsSaveSupplyShouldUpdateSupplyMintedAndBurned(t *testing.T) {
 						Identifier: []byte("something"),
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testNftCreateValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testNftCreateValue).Bytes(),
 						},
@@ -183,13 +183,13 @@ func TestProcessLogsSaveSupplyShouldUpdateSupplyMintedAndBurned(t *testing.T) {
 						Identifier: []byte("something"),
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testAddQuantityValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testAddQuantityValue).Bytes(),
 						},
@@ -211,13 +211,13 @@ func TestProcessLogsSaveSupplyShouldUpdateSupplyMintedAndBurned(t *testing.T) {
 						Identifier: []byte("something"),
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(testBurnValue).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(testBurnValue).Bytes(),
 						},
@@ -256,25 +256,25 @@ func TestProcessLogsSaveSupplyShouldUpdateSupplyMintedAndBurned(t *testing.T) {
 
 			switch numTimesCalled {
 			case 0, 1, 2:
-				supplyEsdt := getSupplyESDT(marshalizer, data)
+				supplyDcdt := getSupplyDCDT(marshalizer, data)
 				valueToCheck := int64(testNftCreateValue)
 				if isCollectionSupply {
 					valueToCheck *= 2
 				}
-				require.Equal(t, big.NewInt(valueToCheck), supplyEsdt.Supply)
-				require.Equal(t, big.NewInt(0), supplyEsdt.Burned)
-				require.Equal(t, big.NewInt(valueToCheck), supplyEsdt.Minted)
+				require.Equal(t, big.NewInt(valueToCheck), supplyDcdt.Supply)
+				require.Equal(t, big.NewInt(0), supplyDcdt.Burned)
+				require.Equal(t, big.NewInt(valueToCheck), supplyDcdt.Minted)
 			case 3, 4, 5:
-				supplyEsdt := getSupplyESDT(marshalizer, data)
+				supplyDcdt := getSupplyDCDT(marshalizer, data)
 				valueToCheck := int64(testNftCreateValue + testAddQuantityValue)
 				if isCollectionSupply {
 					valueToCheck *= 2
 				}
-				require.Equal(t, big.NewInt(valueToCheck), supplyEsdt.Supply)
-				require.Equal(t, big.NewInt(0), supplyEsdt.Burned)
-				require.Equal(t, big.NewInt(valueToCheck), supplyEsdt.Minted)
+				require.Equal(t, big.NewInt(valueToCheck), supplyDcdt.Supply)
+				require.Equal(t, big.NewInt(0), supplyDcdt.Burned)
+				require.Equal(t, big.NewInt(valueToCheck), supplyDcdt.Minted)
 			case 6, 7, 8:
-				supplyEsdt := getSupplyESDT(marshalizer, data)
+				supplyDcdt := getSupplyDCDT(marshalizer, data)
 
 				supplyValue := int64(testNftCreateValue + testAddQuantityValue - testBurnValue)
 				mintedValue := int64(testNftCreateValue + testAddQuantityValue)
@@ -284,9 +284,9 @@ func TestProcessLogsSaveSupplyShouldUpdateSupplyMintedAndBurned(t *testing.T) {
 					mintedValue *= 2
 					burnValue *= 2
 				}
-				require.Equal(t, big.NewInt(supplyValue), supplyEsdt.Supply)
-				require.Equal(t, big.NewInt(burnValue), supplyEsdt.Burned)
-				require.Equal(t, big.NewInt(mintedValue), supplyEsdt.Minted)
+				require.Equal(t, big.NewInt(supplyValue), supplyDcdt.Supply)
+				require.Equal(t, big.NewInt(burnValue), supplyDcdt.Burned)
+				require.Equal(t, big.NewInt(mintedValue), supplyDcdt.Minted)
 			}
 
 			_ = membDB.Put(key, data)
@@ -321,7 +321,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingMinting(t *testing.T) {
 			LogHandler: &transaction.Log{
 				Events: []*transaction.Event{
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 						Topics: [][]byte{
 							token, nil, big.NewInt(testFungibleTokenMint).Bytes(),
 						},
@@ -334,7 +334,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingMinting(t *testing.T) {
 			LogHandler: &transaction.Log{
 				Events: []*transaction.Event{
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 						Topics: [][]byte{
 							token, nil, big.NewInt(testFungibleTokenMint).Bytes(),
 						},
@@ -347,7 +347,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingMinting(t *testing.T) {
 	mintLogToBeReverted := &transaction.Log{
 		Events: []*transaction.Event{
 			{
-				Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+				Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 				Topics: [][]byte{
 					token, nil, big.NewInt(testFungibleTokenMint2).Bytes(),
 				},
@@ -412,7 +412,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingBurning(t *testing.T) {
 			LogHandler: &transaction.Log{
 				Events: []*transaction.Event{
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 						Topics: [][]byte{
 							token, nil, big.NewInt(testFungibleTokenMint).Bytes(),
 						},
@@ -425,7 +425,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingBurning(t *testing.T) {
 			LogHandler: &transaction.Log{
 				Events: []*transaction.Event{
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 						Topics: [][]byte{
 							token, nil, big.NewInt(testFungibleTokenMint).Bytes(),
 						},
@@ -438,7 +438,7 @@ func TestProcessLogs_RevertChangesShouldWorkForRevertingBurning(t *testing.T) {
 	mintLogToBeReverted := &transaction.Log{
 		Events: []*transaction.Event{
 			{
-				Identifier: []byte(core.BuiltInFunctionESDTLocalBurn),
+				Identifier: []byte(core.BuiltInFunctionDCDTLocalBurn),
 				Topics: [][]byte{
 					token, nil, big.NewInt(testFungibleTokenBurn).Bytes(),
 				},
@@ -505,7 +505,7 @@ func checkStoredValues(t *testing.T, suppliesStorer storage.Storer, token []byte
 	storedSupplyBytes, err := suppliesStorer.Get(token)
 	require.NoError(t, err)
 
-	var recoveredSupply SupplyESDT
+	var recoveredSupply SupplyDCDT
 	err = marshalizer.Unmarshal(&recoveredSupply, storedSupplyBytes)
 	require.NoError(t, err)
 	require.NotNil(t, recoveredSupply)
@@ -515,35 +515,35 @@ func checkStoredValues(t *testing.T, suppliesStorer storage.Storer, token []byte
 	require.Equal(t, burnt, recoveredSupply.Burned.Uint64())
 }
 
-func getSupplyESDT(marshalizer marshal.Marshalizer, data []byte) SupplyESDT {
-	var supplyESDT SupplyESDT
-	_ = marshalizer.Unmarshal(&supplyESDT, data)
+func getSupplyDCDT(marshalizer marshal.Marshalizer, data []byte) SupplyDCDT {
+	var supplyDCDT SupplyDCDT
+	_ = marshalizer.Unmarshal(&supplyDCDT, data)
 
-	makePropertiesNotNil(&supplyESDT)
-	return supplyESDT
+	makePropertiesNotNil(&supplyDCDT)
+	return supplyDCDT
 }
 
-func TestSupplyESDT_GetSupply(t *testing.T) {
+func TestSupplyDCDT_GetSupply(t *testing.T) {
 	t.Parallel()
 
 	marshalizer := &marshallerMock.MarshalizerMock{}
 	proc, _ := NewSuppliesProcessor(marshalizer, &storageStubs.StorerStub{
 		GetCalled: func(key []byte) ([]byte, error) {
 			if string(key) == "my-token" {
-				supply := &SupplyESDT{Supply: big.NewInt(123456)}
+				supply := &SupplyDCDT{Supply: big.NewInt(123456)}
 				return marshalizer.Marshal(supply)
 			}
 			return nil, errors.New("local err")
 		},
 	}, &storageStubs.StorerStub{})
 
-	res, err := proc.GetESDTSupply("my-token")
+	res, err := proc.GetDCDTSupply("my-token")
 	require.Nil(t, err)
-	expectedESDTSupply := &SupplyESDT{
+	expectedDCDTSupply := &SupplyDCDT{
 		Supply: big.NewInt(123456),
 		Burned: big.NewInt(0),
 		Minted: big.NewInt(0),
 	}
 
-	require.Equal(t, expectedESDTSupply, res)
+	require.Equal(t, expectedDCDTSupply, res)
 }

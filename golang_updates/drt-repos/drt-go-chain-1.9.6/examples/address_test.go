@@ -68,7 +68,7 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 	require.NoError(t, err)
 	validatorScAddress, err := addressEncoder.Encode(vm.ValidatorSCAddress)
 	require.NoError(t, err)
-	esdtScAddress, err := addressEncoder.Encode(vm.ESDTSCAddress)
+	dcdtScAddress, err := addressEncoder.Encode(vm.DCDTSCAddress)
 	require.NoError(t, err)
 	governanceScAddress, err := addressEncoder.Encode(vm.GovernanceSCAddress)
 	require.NoError(t, err)
@@ -88,14 +88,14 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 	systemAccountAddress, err := addressEncoder.Encode(core.SystemAccountAddress)
 	require.NoError(t, err)
 
-	esdtGlobalSettingsAddresses := getGlobalSettingsAddresses()
+	dcdtGlobalSettingsAddresses := getGlobalSettingsAddresses()
 
 	header := []string{"Smart contract/Special address", "Address"}
 	lines := []*display.LineData{
 		display.NewLineData(false, []string{"Contract deploy", contractDeployScAdress}),
 		display.NewLineData(false, []string{"Staking", stakingScAddress}),
 		display.NewLineData(false, []string{"Validator", validatorScAddress}),
-		display.NewLineData(false, []string{"ESDT", esdtScAddress}),
+		display.NewLineData(false, []string{"DCDT", dcdtScAddress}),
 		display.NewLineData(false, []string{"Governance", governanceScAddress}),
 		display.NewLineData(false, []string{"Jailing address", jailingAddress}),
 		display.NewLineData(false, []string{"End of epoch address", endOfEpochAddress}),
@@ -103,9 +103,9 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 		display.NewLineData(false, []string{"First delegation", firstDelegationScAddress}),
 		display.NewLineData(false, []string{"Genesis Minting Address", genesisMintingAddress}),
 		display.NewLineData(false, []string{"System Account Address", systemAccountAddress}),
-		display.NewLineData(false, []string{"ESDT Global Settings Shard 0", esdtGlobalSettingsAddresses[0]}),
-		display.NewLineData(false, []string{"ESDT Global Settings Shard 1", esdtGlobalSettingsAddresses[1]}),
-		display.NewLineData(false, []string{"ESDT Global Settings Shard 2", esdtGlobalSettingsAddresses[2]}),
+		display.NewLineData(false, []string{"DCDT Global Settings Shard 0", dcdtGlobalSettingsAddresses[0]}),
+		display.NewLineData(false, []string{"DCDT Global Settings Shard 1", dcdtGlobalSettingsAddresses[1]}),
+		display.NewLineData(false, []string{"DCDT Global Settings Shard 2", dcdtGlobalSettingsAddresses[2]}),
 	}
 
 	table, _ := display.CreateTableString(header, lines)
@@ -113,7 +113,7 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqlllsjr0pnq", stakingScAddress)
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp", validatorScAddress)
-	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez", esdtScAddress)
+	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez", dcdtScAddress)
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrllls7q9tur", governanceScAddress)
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqqrlllllllllllllllllllllllllswxc2vg", jailingAddress)
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqpqqqqqqqqllllllllllllllllllllllllllls7el70e", endOfEpochAddress)
@@ -122,9 +122,9 @@ func TestSystemSCsAddressesAndSpecialAddresses(t *testing.T) {
 	assert.Equal(t, "drt1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq85hk5z", contractDeployScAdress)
 	assert.Equal(t, "drt17rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rc0pu8s7rcqa2qg80", genesisMintingAddress)
 	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllllls9258a4", systemAccountAddress)
-	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh", esdtGlobalSettingsAddresses[0])
-	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqszxwjey", esdtGlobalSettingsAddresses[1])
-	assert.Equal(t, "drt1lllllllllllllllllllllllllllllllllllllllllllllllllupqc6fs83", esdtGlobalSettingsAddresses[2])
+	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh", dcdtGlobalSettingsAddresses[0])
+	assert.Equal(t, "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqszxwjey", dcdtGlobalSettingsAddresses[1])
+	assert.Equal(t, "drt1lllllllllllllllllllllllllllllllllllllllllllllllllupqc6fs83", dcdtGlobalSettingsAddresses[2])
 }
 
 func getGlobalSettingsAddresses() map[uint32]string {

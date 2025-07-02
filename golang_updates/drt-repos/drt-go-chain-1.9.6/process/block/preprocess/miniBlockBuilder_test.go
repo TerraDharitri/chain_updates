@@ -255,8 +255,8 @@ func Test_isCrossShardScCallOrSpecialTxCrossShardScCall(t *testing.T) {
 func Test_isCrossShardScCallOrSpecialTxCrossShardWithUsername(t *testing.T) {
 	t.Parallel()
 
-	sender := "aaaaaaaaaa.elrond"
-	receiver := "bbbbbbbbbb.elrond"
+	sender := "aaaaaaaaaa.numbat"
+	receiver := "bbbbbbbbbb.numbat"
 	tx := createDefaultTx(nil, nil, 50000)
 	tx.SndUserName = make([]byte, 64)
 	tx.RcvUserName = make([]byte, 64)

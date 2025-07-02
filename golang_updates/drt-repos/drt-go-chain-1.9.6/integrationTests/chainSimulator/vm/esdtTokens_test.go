@@ -18,12 +18,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type esdtTokensCompleteResponseData struct {
-	Tokens map[string]groups.ESDTNFTTokenData `json:"esdts"`
+type dcdtTokensCompleteResponseData struct {
+	Tokens map[string]groups.DCDTNFTTokenData `json:"dcdts"`
 }
 
-type esdtTokensCompleteResponse struct {
-	Data  esdtTokensCompleteResponseData `json:"data"`
+type dcdtTokensCompleteResponse struct {
+	Data  dcdtTokensCompleteResponseData `json:"data"`
 	Error string                         `json:"error"`
 	Code  string
 }
@@ -59,8 +59,8 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 		NumNodesWaitingListMeta:  0,
 		NumNodesWaitingListShard: 0,
 		AlterConfigsFunction: func(cfg *config.Configs) {
-			cfg.EpochConfig.EnableEpochs.DynamicESDTEnableEpoch = activationEpoch
-			cfg.SystemSCConfig.ESDTSystemSCConfig.BaseIssuingCost = baseIssuingCost
+			cfg.EpochConfig.EnableEpochs.DynamicDCDTEnableEpoch = activationEpoch
+			cfg.SystemSCConfig.DCDTSystemSCConfig.BaseIssuingCost = baseIssuingCost
 		},
 	})
 	require.Nil(t, err)
@@ -76,8 +76,8 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	addrs := createAddresses(t, cs, false)
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleTransfer),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleTransfer),
 	}
 
 	// issue fungible
@@ -92,7 +92,7 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	require.Equal(t, "success", txResult.Status.String())
 
 	fungibleTokenID := txResult.Logs.Events[0].Topics[0]
-	setAddressEsdtRoles(t, cs, nonce, addrs[0], fungibleTokenID, roles)
+	setAddressDcdtRoles(t, cs, nonce, addrs[0], fungibleTokenID, roles)
 	nonce++
 
 	log.Info("Issued fungible token id", "tokenID", string(fungibleTokenID))
@@ -113,7 +113,7 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	require.Equal(t, len(txResult.SmartContractResults), len(scrs))
 
 	nftTokenID := txResult.Logs.Events[0].Topics[0]
-	setAddressEsdtRoles(t, cs, nonce, addrs[0], nftTokenID, roles)
+	setAddressDcdtRoles(t, cs, nonce, addrs[0], nftTokenID, roles)
 	nonce++
 
 	log.Info("Issued NFT token id", "tokenID", string(nftTokenID))
@@ -129,7 +129,7 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	require.Equal(t, "success", txResult.Status.String())
 
 	sftTokenID := txResult.Logs.Events[0].Topics[0]
-	setAddressEsdtRoles(t, cs, nonce, addrs[0], sftTokenID, roles)
+	setAddressDcdtRoles(t, cs, nonce, addrs[0], sftTokenID, roles)
 	nonce++
 
 	log.Info("Issued SFT token id", "tokenID", string(sftTokenID))
@@ -154,7 +154,7 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	}
 
 	for i := range tokenIDs {
-		tx = esdtNftCreateTx(nonce, addrs[0].Bytes, tokenIDs[i], tokensMetadata[i], 1)
+		tx = dcdtNftCreateTx(nonce, addrs[0].Bytes, tokenIDs[i], tokensMetadata[i], 1)
 
 		txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
 		require.Nil(t, err)
@@ -173,8 +173,8 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	restAPIInterfaces := cs.GetRestAPIInterfaces()
 	require.NotNil(t, restAPIInterfaces)
 
-	url := fmt.Sprintf("http://%s/address/%s/esdt", restAPIInterfaces[shardID], addrs[0].Bech32)
-	response := &esdtTokensCompleteResponse{}
+	url := fmt.Sprintf("http://%s/address/%s/dcdt", restAPIInterfaces[shardID], addrs[0].Bech32)
+	response := &dcdtTokensCompleteResponse{}
 
 	doHTTPClientGetReq(t, url, response)
 
@@ -186,19 +186,19 @@ func TestChainSimulator_Api_TokenType(t *testing.T) {
 	tokenData, ok := allTokens[expTokenID]
 	require.True(t, ok)
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
-	require.Equal(t, core.FungibleESDT, tokenData.Type)
+	require.Equal(t, core.FungibleDCDT, tokenData.Type)
 
 	expTokenID = string(nftTokenID) + "-01"
 	tokenData, ok = allTokens[expTokenID]
 	require.True(t, ok)
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
-	require.Equal(t, core.NonFungibleESDTv2, tokenData.Type)
+	require.Equal(t, core.NonFungibleDCDTv2, tokenData.Type)
 
 	expTokenID = string(sftTokenID) + "-01"
 	tokenData, ok = allTokens[expTokenID]
 	require.True(t, ok)
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
-	require.Equal(t, core.SemiFungibleESDT, tokenData.Type)
+	require.Equal(t, core.SemiFungibleDCDT, tokenData.Type)
 }
 
 func TestChainSimulator_Api_NFTToken(t *testing.T) {
@@ -232,8 +232,8 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 		NumNodesWaitingListMeta:  0,
 		NumNodesWaitingListShard: 0,
 		AlterConfigsFunction: func(cfg *config.Configs) {
-			cfg.EpochConfig.EnableEpochs.DynamicESDTEnableEpoch = activationEpoch
-			cfg.SystemSCConfig.ESDTSystemSCConfig.BaseIssuingCost = baseIssuingCost
+			cfg.EpochConfig.EnableEpochs.DynamicDCDTEnableEpoch = activationEpoch
+			cfg.SystemSCConfig.DCDTSystemSCConfig.BaseIssuingCost = baseIssuingCost
 		},
 	})
 	require.Nil(t, err)
@@ -249,8 +249,8 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	addrs := createAddresses(t, cs, false)
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleTransfer),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleTransfer),
 	}
 
 	// issue NFT
@@ -265,7 +265,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	require.Equal(t, "success", txResult.Status.String())
 
 	nftTokenID := txResult.Logs.Events[0].Topics[0]
-	setAddressEsdtRoles(t, cs, nonce, addrs[0], nftTokenID, roles)
+	setAddressDcdtRoles(t, cs, nonce, addrs[0], nftTokenID, roles)
 	nonce++
 
 	log.Info("Issued NFT token id", "tokenID", string(nftTokenID))
@@ -273,7 +273,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	nftMetaData := txsFee.GetDefaultMetaData()
 	nftMetaData.Nonce = []byte(hex.EncodeToString(big.NewInt(1).Bytes()))
 
-	tx = esdtNftCreateTx(nonce, addrs[0].Bytes, nftTokenID, nftMetaData, 1)
+	tx = dcdtNftCreateTx(nonce, addrs[0].Bytes, nftTokenID, nftMetaData, 1)
 	nonce++
 
 	txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
@@ -290,8 +290,8 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	restAPIInterfaces := cs.GetRestAPIInterfaces()
 	require.NotNil(t, restAPIInterfaces)
 
-	url := fmt.Sprintf("http://%s/address/%s/esdt", restAPIInterfaces[shardID], addrs[0].Bech32)
-	response := &esdtTokensCompleteResponse{}
+	url := fmt.Sprintf("http://%s/address/%s/dcdt", restAPIInterfaces[shardID], addrs[0].Bech32)
+	response := &dcdtTokensCompleteResponse{}
 
 	doHTTPClientGetReq(t, url, response)
 
@@ -305,7 +305,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
 	require.Equal(t, "", tokenData.Type)
 
-	log.Info("Wait for DynamicESDTFlag activation")
+	log.Info("Wait for DynamicDCDTFlag activation")
 
 	err = cs.GenerateBlocksUntilEpochIsReached(int32(activationEpoch))
 	require.Nil(t, err)
@@ -346,14 +346,14 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 
 	log.Info("Transfer token id", "tokenID", nftTokenID)
 
-	tx = esdtNFTTransferTx(nonce, addrs[0].Bytes, addrs[1].Bytes, nftTokenID)
+	tx = dcdtNFTTransferTx(nonce, addrs[0].Bytes, addrs[1].Bytes, nftTokenID)
 	nonce++
 	txResult, err = cs.SendTxAndGenerateBlockTilTxIsExecuted(tx, maxNumOfBlockToGenerateWhenExecutingTx)
 	require.Nil(t, err)
 	require.NotNil(t, txResult)
 	require.Equal(t, "success", txResult.Status.String())
 
-	url = fmt.Sprintf("http://%s/address/%s/esdt", restAPIInterfaces[1], addrs[1].Bech32)
+	url = fmt.Sprintf("http://%s/address/%s/dcdt", restAPIInterfaces[1], addrs[1].Bech32)
 	doHTTPClientGetReq(t, url, response)
 
 	allTokens = response.Data.Tokens
@@ -364,7 +364,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	tokenData, ok = allTokens[expTokenID]
 	require.True(t, ok)
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
-	require.Equal(t, core.NonFungibleESDTv2, tokenData.Type)
+	require.Equal(t, core.NonFungibleDCDTv2, tokenData.Type)
 
 	log.Info("Change to DYNAMIC type")
 
@@ -376,7 +376,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 
 	require.Equal(t, "success", txResult.Status.String())
 
-	response = &esdtTokensCompleteResponse{}
+	response = &dcdtTokensCompleteResponse{}
 	doHTTPClientGetReq(t, url, response)
 
 	allTokens = response.Data.Tokens
@@ -387,7 +387,7 @@ func TestChainSimulator_Api_NFTToken(t *testing.T) {
 	tokenData, ok = allTokens[expTokenID]
 	require.True(t, ok)
 	require.Equal(t, expTokenID, tokenData.TokenIdentifier)
-	require.Equal(t, core.NonFungibleESDTv2, tokenData.Type)
+	require.Equal(t, core.NonFungibleDCDTv2, tokenData.Type)
 }
 
 func doHTTPClientGetReq(t *testing.T, url string, response interface{}) {

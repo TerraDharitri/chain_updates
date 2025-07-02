@@ -22,7 +22,7 @@ import (
 
 const (
 	defaultLogsPath = "logs"
-	logFilePrefix   = "mx-chain-go"
+	logFilePrefix   = "drt-go-chain"
 )
 
 var (

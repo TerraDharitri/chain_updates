@@ -442,7 +442,7 @@ func hardForkImport(
 			},
 			TrieStorageManagers: node.TrieStorageManagers,
 			SystemSCConfig: config.SystemSmartContractsConfig{
-				ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+				DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 					BaseIssuingCost: "1000",
 					OwnerAddress:    "aaaaaa",
 				},

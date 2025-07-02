@@ -21,8 +21,8 @@ func NewStatusFilters(selfShardID uint32) *statusFilters {
 	}
 }
 
-// SetStatusIfIsFailedESDTTransfer will set the status if the provided transaction if a failed ESDT transfer
-func (sf *statusFilters) SetStatusIfIsFailedESDTTransfer(tx *transaction.ApiTransactionResult) {
+// SetStatusIfIsFailedDCDTTransfer will set the status if the provided transaction if a failed DCDT transfer
+func (sf *statusFilters) SetStatusIfIsFailedDCDTTransfer(tx *transaction.ApiTransactionResult) {
 	if len(tx.SmartContractResults) < 1 {
 		return
 	}
@@ -32,7 +32,7 @@ func (sf *statusFilters) SetStatusIfIsFailedESDTTransfer(tx *transaction.ApiTran
 		return
 	}
 
-	if !isESDTTransfer(tx) {
+	if !isDCDTTransfer(tx) {
 		return
 	}
 
@@ -53,13 +53,13 @@ func (sf *statusFilters) ApplyStatusFilters(miniblocks []*api.MiniBlock) {
 			continue
 		}
 
-		iterateMiniblockTxsForESDTTransfer(mb, miniblocks)
+		iterateMiniblockTxsForDCDTTransfer(mb, miniblocks)
 	}
 }
 
-func iterateMiniblockTxsForESDTTransfer(miniblock *api.MiniBlock, miniblocks []*api.MiniBlock) {
+func iterateMiniblockTxsForDCDTTransfer(miniblock *api.MiniBlock, miniblocks []*api.MiniBlock) {
 	for _, tx := range miniblock.Transactions {
-		if !isESDTTransfer(tx) {
+		if !isDCDTTransfer(tx) {
 			continue
 		}
 
@@ -75,12 +75,12 @@ func searchUnsignedTransaction(tx *transaction.ApiTransactionResult, miniblocks 
 
 		shouldCheckTransaction := mb.DestinationShard == tx.SourceShard && mb.SourceShard == tx.DestinationShard
 		if shouldCheckTransaction {
-			tryToSetStatusOfESDTTransfer(tx, mb)
+			tryToSetStatusOfDCDTTransfer(tx, mb)
 		}
 	}
 }
 
-func tryToSetStatusOfESDTTransfer(tx *transaction.ApiTransactionResult, miniblock *api.MiniBlock) {
+func tryToSetStatusOfDCDTTransfer(tx *transaction.ApiTransactionResult, miniblock *api.MiniBlock) {
 	for _, unsignedTx := range miniblock.Transactions {
 		if unsignedTx.OriginalTransactionHash != tx.Hash {
 			continue
@@ -98,6 +98,6 @@ func setStatusBasedOnSCRDataAndNonce(tx *transaction.ApiTransactionResult, scrDa
 	}
 }
 
-func isESDTTransfer(tx *transaction.ApiTransactionResult) bool {
-	return strings.HasPrefix(string(tx.Data), core.BuiltInFunctionESDTTransfer)
+func isDCDTTransfer(tx *transaction.ApiTransactionResult) bool {
+	return strings.HasPrefix(string(tx.Data), core.BuiltInFunctionDCDTTransfer)
 }

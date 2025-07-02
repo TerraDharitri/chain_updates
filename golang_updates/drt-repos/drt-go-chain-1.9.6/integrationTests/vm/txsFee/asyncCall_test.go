@@ -103,7 +103,7 @@ func TestMinterContractWithAsyncCalls(t *testing.T) {
 	_, _ = vm.CreateAccount(testContext.Accounts, ownerAddr, 0, balance)
 
 	token := []byte("miiutoken")
-	roles := [][]byte{[]byte(core.ESDTRoleNFTCreate)}
+	roles := [][]byte{[]byte(core.DCDTRoleNFTCreate)}
 
 	ownerAccount, _ := testContext.Accounts.LoadAccount(ownerAddr)
 	deployGasLimit := uint64(500000)
@@ -113,8 +113,8 @@ func TestMinterContractWithAsyncCalls(t *testing.T) {
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
 	secondContractAddress := utils.DoDeploySecond(t, testContext, pathToContract, ownerAccount, gasPrice, deployGasLimit, nil, big.NewInt(0))
 
-	utils.SetESDTRoles(t, testContext.Accounts, firstScAddress, token, roles)
-	utils.SetESDTRoles(t, testContext.Accounts, secondContractAddress, token, roles)
+	utils.SetDCDTRoles(t, testContext.Accounts, firstScAddress, token, roles)
+	utils.SetDCDTRoles(t, testContext.Accounts, secondContractAddress, token, roles)
 
 	// DO call
 	ownerAccount, _ = testContext.Accounts.LoadAccount(ownerAddr)
@@ -249,7 +249,7 @@ func testAsyncCallsOnInitFunctionOnUpgrade(
 		upgradeContractFunction,
 		newScCode,
 		wasm.VMTypeHex,
-		hex.EncodeToString(core.ESDTSCAddress),
+		hex.EncodeToString(core.DCDTSCAddress),
 		hex.EncodeToString([]byte("nonExistentFunction")),
 		hex.EncodeToString([]byte("dummyArg")),
 	}, "@")
@@ -392,7 +392,7 @@ func testAsyncCallsOnInitFunctionOnDeploy(t *testing.T,
 		big.NewInt(100000000000),
 		10000000,
 		[]string{
-			hex.EncodeToString(core.ESDTSCAddress),
+			hex.EncodeToString(core.DCDTSCAddress),
 			hex.EncodeToString([]byte("nonExistentFunction")),
 			hex.EncodeToString([]byte("dummyArg")),
 		},

@@ -840,7 +840,7 @@
     FolderPath = "health-records"
 
 [SoftwareVersionConfig]
-    StableTagLocation = "https://api.github.com/repos/dharitri/mx-chain-go/releases/latest"
+    StableTagLocation = "https://api.github.com/repos/dharitri/drt-go-chain/releases/latest"
     PollingIntervalInMinutes = 65
 
 [GatewayMetricsConfig]

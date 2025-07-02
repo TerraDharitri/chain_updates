@@ -474,8 +474,8 @@ const (
 	// MetricDoubleKeyProtectionEnableEpoch represents the epoch when double key protection is enabled
 	MetricDoubleKeyProtectionEnableEpoch = "drt_double_key_protection_enable_epoch"
 
-	// MetricEsdtEnableEpoch represents the epoch when ESDT is enabled
-	MetricEsdtEnableEpoch = "drt_esdt_enable_epoch"
+	// MetricDcdtEnableEpoch represents the epoch when DCDT is enabled
+	MetricDcdtEnableEpoch = "drt_dcdt_enable_epoch"
 
 	// MetricGovernanceEnableEpoch  represents the epoch when governance is enabled
 	MetricGovernanceEnableEpoch = "drt_governance_enable_epoch"
@@ -522,14 +522,14 @@ const (
 	// MetricScheduledMiniBlocksEnableEpoch represents the epoch when the scheduled miniblocks feature is enabled
 	MetricScheduledMiniBlocksEnableEpoch = "drt_scheduled_miniblocks_enable_epoch"
 
-	// MetricESDTMultiTransferEnableEpoch represents the epoch when the ESDT multi transfer feature is enabled
-	MetricESDTMultiTransferEnableEpoch = "drt_esdt_multi_transfer_enable_epoch"
+	// MetricDCDTMultiTransferEnableEpoch represents the epoch when the DCDT multi transfer feature is enabled
+	MetricDCDTMultiTransferEnableEpoch = "drt_dcdt_multi_transfer_enable_epoch"
 
 	// MetricGlobalMintBurnDisableEpoch represents the epoch when the global mint and burn feature is disabled
 	MetricGlobalMintBurnDisableEpoch = "drt_global_mint_burn_disable_epoch"
 
-	// MetricESDTTransferRoleEnableEpoch represents the epoch when the ESDT transfer role feature is enabled
-	MetricESDTTransferRoleEnableEpoch = "drt_esdt_transfer_role_enable_epoch"
+	// MetricDCDTTransferRoleEnableEpoch represents the epoch when the DCDT transfer role feature is enabled
+	MetricDCDTTransferRoleEnableEpoch = "drt_dcdt_transfer_role_enable_epoch"
 
 	// MetricComputeRewardCheckpointEnableEpoch represents the epoch when compute reward checkpoint feature is enabled
 	MetricComputeRewardCheckpointEnableEpoch = "drt_compute_reward_checkpoint_enable_epoch"
@@ -540,17 +540,17 @@ const (
 	// MetricBackwardCompSaveKeyValueEnableEpoch represents the epoch when backward compatibility save key valu is enabled
 	MetricBackwardCompSaveKeyValueEnableEpoch = "drt_backward_comp_save_keyvalue_enable_epoch"
 
-	// MetricESDTNFTCreateOnMultiShardEnableEpoch represents the epoch when esdt nft create on multi shard is enabled
-	MetricESDTNFTCreateOnMultiShardEnableEpoch = "drt_esdt_nft_create_on_multi_shard_enable_epoch"
+	// MetricDCDTNFTCreateOnMultiShardEnableEpoch represents the epoch when dcdt nft create on multi shard is enabled
+	MetricDCDTNFTCreateOnMultiShardEnableEpoch = "drt_dcdt_nft_create_on_multi_shard_enable_epoch"
 
-	// MetricMetaESDTSetEnableEpoch represents the epoch when meta esdt set is enabled
-	MetricMetaESDTSetEnableEpoch = "drt_meta_esdt_set_enable_epoch"
+	// MetricMetaDCDTSetEnableEpoch represents the epoch when meta dcdt set is enabled
+	MetricMetaDCDTSetEnableEpoch = "drt_meta_dcdt_set_enable_epoch"
 
 	// MetricAddTokensToDelegationEnableEpoch represents the epoch when add tokens to delegation
 	MetricAddTokensToDelegationEnableEpoch = "drt_add_tokens_to_delegation_enable_epoch"
 
-	// MetricMultiESDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi esdt transfer fix on callback on is enabled
-	MetricMultiESDTTransferFixOnCallBackOnEnableEpoch = "drt_multi_esdt_transfer_fix_on_callback_enable_epoch"
+	// MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch represents the epoch when multi dcdt transfer fix on callback on is enabled
+	MetricMultiDCDTTransferFixOnCallBackOnEnableEpoch = "drt_multi_dcdt_transfer_fix_on_callback_enable_epoch"
 
 	// MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch represents the epoch when optimize gas used in cross miniblocks is enabled
 	MetricOptimizeGasUsedInCrossMiniBlocksEnableEpoch = "drt_optimize_gas_used_in_cross_miniblocks_enable_epoch"
@@ -593,8 +593,8 @@ const (
 	// MetricTransformToMultiShardCreateEnableEpoch represents the epoch when transform to multi shard create functionality is enabled
 	MetricTransformToMultiShardCreateEnableEpoch = "drt_transform_to_multi_shard_create_enable_epoch"
 
-	// MetricESDTRegisterAndSetAllRolesEnableEpoch represents the epoch when esdt register and set all roles functionality is enabled
-	MetricESDTRegisterAndSetAllRolesEnableEpoch = "drt_esdt_register_and_set_all_roles_enable_epoch"
+	// MetricDCDTRegisterAndSetAllRolesEnableEpoch represents the epoch when dcdt register and set all roles functionality is enabled
+	MetricDCDTRegisterAndSetAllRolesEnableEpoch = "drt_dcdt_register_and_set_all_roles_enable_epoch"
 
 	// MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch represents the epoch when do not return old block in blockchain hook fix is enabled
 	MetricDoNotReturnOldBlockInBlockchainHookEnableEpoch = "drt_do_not_returns_old_block_in_blockchain_hook_enable_epoch"
@@ -629,8 +629,8 @@ const (
 	// MetricMiniBlockPartialExecutionEnableEpoch represents the epoch when miniblock partial execution feature is enabled
 	MetricMiniBlockPartialExecutionEnableEpoch = "drt_miniblock_partial_execution_enable_epoch"
 
-	// MetricESDTMetadataContinuousCleanupEnableEpoch represents the epoch when esdt metadata continuous clenaup functionality is enabled
-	MetricESDTMetadataContinuousCleanupEnableEpoch = "drt_esdt_metadata_continuous_cleanup_enable_epoch"
+	// MetricDCDTMetadataContinuousCleanupEnableEpoch represents the epoch when dcdt metadata continuous clenaup functionality is enabled
+	MetricDCDTMetadataContinuousCleanupEnableEpoch = "drt_dcdt_metadata_continuous_cleanup_enable_epoch"
 
 	// MetricFixAsyncCallBackArgsListEnableEpoch represents the epoch when fix async callback args list is enabled
 	MetricFixAsyncCallBackArgsListEnableEpoch = "drt_fix_async_callback_args_list_enable_epoch"
@@ -728,17 +728,17 @@ const (
 	// MetricAlwaysMergeContextsInEEIEnableEpoch represents the epoch when always merge contexts in EEI fix is enabled
 	MetricAlwaysMergeContextsInEEIEnableEpoch = "drt_always_merge_contexts_in_eei_enable_epoch"
 
-	// MetricDynamicESDTEnableEpoch represents the epoch when dynamic ESDT feature is enabled
-	MetricDynamicESDTEnableEpoch = "drt_dynamic_esdt_enable_epoch"
+	// MetricDynamicDCDTEnableEpoch represents the epoch when dynamic DCDT feature is enabled
+	MetricDynamicDCDTEnableEpoch = "drt_dynamic_dcdt_enable_epoch"
 
-	// MetricEGLDInMultiTransferEnableEpoch represents the epoch when EGLD in multi transfer feature is enabled
-	MetricEGLDInMultiTransferEnableEpoch = "drt_egld_in_multi_transfer_enable_epoch"
+	// MetricREWAInMultiTransferEnableEpoch represents the epoch when REWA in multi transfer feature is enabled
+	MetricREWAInMultiTransferEnableEpoch = "drt_rewa_in_multi_transfer_enable_epoch"
 
 	// MetricCheckBuiltInCallOnTransferValueAndFailEnableRound represents the round when check builtincall on transfer value and fail is enabled
 	MetricCheckBuiltInCallOnTransferValueAndFailEnableRound = "drt_checkbuiltincall_ontransfervalueandfail_enable_round"
 
-	// MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign opcodes are enabled
-	MetricMultiESDTNFTTransferAndExecuteByUserEnableEpoch = "drt_multi_esdt_transfer_execute_by_user_enable_epoch"
+	// MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch represents the epoch when enshrined sovereign opcodes are enabled
+	MetricMultiDCDTNFTTransferAndExecuteByUserEnableEpoch = "drt_multi_dcdt_transfer_execute_by_user_enable_epoch"
 
 	// MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch represents the epoch when the fix for relayed move balance to non-payable sc is enabled
 	MetricFixRelayedMoveBalanceToNonPayableSCEnableEpoch = "drt_fix_relayed_move_balance_to_non_payable_sc_enable_epoch"
@@ -746,8 +746,8 @@ const (
 	// MetricRelayedTransactionsV3EnableEpoch represents the epoch when the relayed transactions v3 are enabled
 	MetricRelayedTransactionsV3EnableEpoch = "drt_relayed_transactions_v3_enable_epoch"
 
-	// MetricRelayedTransactionsV3FixESDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with esdt transfer are enabled
-	MetricRelayedTransactionsV3FixESDTTransferEnableEpoch = "drt_relayed_transactions_v3_fix_esdt_transfer_enable_epoch"
+	// MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch represents the epoch when the fix for relayed transactions v3 with dcdt transfer are enabled
+	MetricRelayedTransactionsV3FixDCDTTransferEnableEpoch = "drt_relayed_transactions_v3_fix_dcdt_transfer_enable_epoch"
 
 	// MetricMaxNodesChangeEnableEpoch holds configuration for changing the maximum number of nodes and the enabling epoch
 	MetricMaxNodesChangeEnableEpoch = "drt_max_nodes_change_enable_epoch"
@@ -1150,8 +1150,8 @@ const (
 	StakingV2OwnerFlagInSpecificEpochOnly               core.EnableEpochFlag = "StakingV2OwnerFlagInSpecificEpochOnly"
 	StakingV2FlagAfterEpoch                             core.EnableEpochFlag = "StakingV2FlagAfterEpoch"
 	DoubleKeyProtectionFlag                             core.EnableEpochFlag = "DoubleKeyProtectionFlag"
-	ESDTFlag                                            core.EnableEpochFlag = "ESDTFlag"
-	ESDTFlagInSpecificEpochOnly                         core.EnableEpochFlag = "ESDTFlagInSpecificEpochOnly"
+	DCDTFlag                                            core.EnableEpochFlag = "DCDTFlag"
+	DCDTFlagInSpecificEpochOnly                         core.EnableEpochFlag = "DCDTFlagInSpecificEpochOnly"
 	GovernanceFlag                                      core.EnableEpochFlag = "GovernanceFlag"
 	GovernanceFlagInSpecificEpochOnly                   core.EnableEpochFlag = "GovernanceFlagInSpecificEpochOnly"
 	DelegationManagerFlag                               core.EnableEpochFlag = "DelegationManagerFlag"
@@ -1165,16 +1165,16 @@ const (
 	ReDelegateBelowMinCheckFlag                         core.EnableEpochFlag = "ReDelegateBelowMinCheckFlag"
 	ValidatorToDelegationFlag                           core.EnableEpochFlag = "ValidatorToDelegationFlag"
 	IncrementSCRNonceInMultiTransferFlag                core.EnableEpochFlag = "IncrementSCRNonceInMultiTransferFlag"
-	ESDTMultiTransferFlag                               core.EnableEpochFlag = "ESDTMultiTransferFlag"
+	DCDTMultiTransferFlag                               core.EnableEpochFlag = "DCDTMultiTransferFlag"
 	GlobalMintBurnFlag                                  core.EnableEpochFlag = "GlobalMintBurnFlag"
-	ESDTTransferRoleFlag                                core.EnableEpochFlag = "ESDTTransferRoleFlag"
+	DCDTTransferRoleFlag                                core.EnableEpochFlag = "DCDTTransferRoleFlag"
 	ComputeRewardCheckpointFlag                         core.EnableEpochFlag = "ComputeRewardCheckpointFlag"
 	SCRSizeInvariantCheckFlag                           core.EnableEpochFlag = "SCRSizeInvariantCheckFlag"
 	BackwardCompSaveKeyValueFlag                        core.EnableEpochFlag = "BackwardCompSaveKeyValueFlag"
-	ESDTNFTCreateOnMultiShardFlag                       core.EnableEpochFlag = "ESDTNFTCreateOnMultiShardFlag"
-	MetaESDTSetFlag                                     core.EnableEpochFlag = "MetaESDTSetFlag"
+	DCDTNFTCreateOnMultiShardFlag                       core.EnableEpochFlag = "DCDTNFTCreateOnMultiShardFlag"
+	MetaDCDTSetFlag                                     core.EnableEpochFlag = "MetaDCDTSetFlag"
 	AddTokensToDelegationFlag                           core.EnableEpochFlag = "AddTokensToDelegationFlag"
-	MultiESDTTransferFixOnCallBackFlag                  core.EnableEpochFlag = "MultiESDTTransferFixOnCallBackFlag"
+	MultiDCDTTransferFixOnCallBackFlag                  core.EnableEpochFlag = "MultiDCDTTransferFixOnCallBackFlag"
 	OptimizeGasUsedInCrossMiniBlocksFlag                core.EnableEpochFlag = "OptimizeGasUsedInCrossMiniBlocksFlag"
 	CorrectFirstQueuedFlag                              core.EnableEpochFlag = "CorrectFirstQueuedFlag"
 	DeleteDelegatorAfterClaimRewardsFlag                core.EnableEpochFlag = "DeleteDelegatorAfterClaimRewardsFlag"
@@ -1186,7 +1186,7 @@ const (
 	PayableBySCFlag                                     core.EnableEpochFlag = "PayableBySCFlag"
 	CleanUpInformativeSCRsFlag                          core.EnableEpochFlag = "CleanUpInformativeSCRsFlag"
 	StorageAPICostOptimizationFlag                      core.EnableEpochFlag = "StorageAPICostOptimizationFlag"
-	ESDTRegisterAndSetAllRolesFlag                      core.EnableEpochFlag = "ESDTRegisterAndSetAllRolesFlag"
+	DCDTRegisterAndSetAllRolesFlag                      core.EnableEpochFlag = "DCDTRegisterAndSetAllRolesFlag"
 	ScheduledMiniBlocksFlag                             core.EnableEpochFlag = "ScheduledMiniBlocksFlag"
 	CorrectJailedNotUnStakedEmptyQueueFlag              core.EnableEpochFlag = "CorrectJailedNotUnStakedEmptyQueueFlag"
 	DoNotReturnOldBlockInBlockchainHookFlag             core.EnableEpochFlag = "DoNotReturnOldBlockInBlockchainHookFlag"
@@ -1196,7 +1196,7 @@ const (
 	FailExecutionOnEveryAPIErrorFlag                    core.EnableEpochFlag = "FailExecutionOnEveryAPIErrorFlag"
 	MiniBlockPartialExecutionFlag                       core.EnableEpochFlag = "MiniBlockPartialExecutionFlag"
 	ManagedCryptoAPIsFlag                               core.EnableEpochFlag = "ManagedCryptoAPIsFlag"
-	ESDTMetadataContinuousCleanupFlag                   core.EnableEpochFlag = "ESDTMetadataContinuousCleanupFlag"
+	DCDTMetadataContinuousCleanupFlag                   core.EnableEpochFlag = "DCDTMetadataContinuousCleanupFlag"
 	DisableExecByCallerFlag                             core.EnableEpochFlag = "DisableExecByCallerFlag"
 	RefactorContextFlag                                 core.EnableEpochFlag = "RefactorContextFlag"
 	CheckFunctionArgumentFlag                           core.EnableEpochFlag = "CheckFunctionArgumentFlag"
@@ -1208,7 +1208,7 @@ const (
 	SendAlwaysFlag                                      core.EnableEpochFlag = "SendAlwaysFlag"
 	ValueLengthCheckFlag                                core.EnableEpochFlag = "ValueLengthCheckFlag"
 	CheckTransferFlag                                   core.EnableEpochFlag = "CheckTransferFlag"
-	ESDTNFTImprovementV1Flag                            core.EnableEpochFlag = "ESDTNFTImprovementV1Flag"
+	DCDTNFTImprovementV1Flag                            core.EnableEpochFlag = "DCDTNFTImprovementV1Flag"
 	ChangeDelegationOwnerFlag                           core.EnableEpochFlag = "ChangeDelegationOwnerFlag"
 	RefactorPeersMiniBlocksFlag                         core.EnableEpochFlag = "RefactorPeersMiniBlocksFlag"
 	SCProcessorV2Flag                                   core.EnableEpochFlag = "SCProcessorV2Flag"
@@ -1246,15 +1246,15 @@ const (
 	StakingV4StartedFlag                                core.EnableEpochFlag = "StakingV4StartedFlag"
 	AlwaysMergeContextsInEEIFlag                        core.EnableEpochFlag = "AlwaysMergeContextsInEEIFlag"
 	UseGasBoundedShouldFailExecutionFlag                core.EnableEpochFlag = "UseGasBoundedShouldFailExecutionFlag"
-	DynamicESDTFlag                                     core.EnableEpochFlag = "DynamicEsdtFlag"
-	EGLDInESDTMultiTransferFlag                         core.EnableEpochFlag = "EGLDInESDTMultiTransferFlag"
+	DynamicDCDTFlag                                     core.EnableEpochFlag = "DynamicDcdtFlag"
+	REWAInDCDTMultiTransferFlag                         core.EnableEpochFlag = "REWAInDCDTMultiTransferFlag"
 	CryptoOpcodesV2Flag                                 core.EnableEpochFlag = "CryptoOpcodesV2Flag"
 	UnJailCleanupFlag                                   core.EnableEpochFlag = "UnJailCleanupFlag"
 	FixRelayedBaseCostFlag                              core.EnableEpochFlag = "FixRelayedBaseCostFlag"
-	MultiESDTNFTTransferAndExecuteByUserFlag            core.EnableEpochFlag = "MultiESDTNFTTransferAndExecuteByUserFlag"
+	MultiDCDTNFTTransferAndExecuteByUserFlag            core.EnableEpochFlag = "MultiDCDTNFTTransferAndExecuteByUserFlag"
 	FixRelayedMoveBalanceToNonPayableSCFlag             core.EnableEpochFlag = "FixRelayedMoveBalanceToNonPayableSCFlag"
 	RelayedTransactionsV3Flag                           core.EnableEpochFlag = "RelayedTransactionsV3Flag"
-	RelayedTransactionsV3FixESDTTransferFlag            core.EnableEpochFlag = "RelayedTransactionsV3FixESDTTransferFlag"
+	RelayedTransactionsV3FixDCDTTransferFlag            core.EnableEpochFlag = "RelayedTransactionsV3FixDCDTTransferFlag"
 	AndromedaFlag                                       core.EnableEpochFlag = "AndromedaFlag"
 	CheckBuiltInCallOnTransferValueAndFailExecutionFlag core.EnableEpochFlag = "CheckBuiltInCallOnTransferValueAndFailExecutionFlag"
 	// all new flags must be added to createAllFlagsMap method, as part of enableEpochsHandler allFlagsDefined

@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	worldmock "github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
 	"github.com/TerraDharitri/drt-go-chain/process"
@@ -31,11 +31,11 @@ var MockInitialBalance = big.NewInt(10_000_000)
 // WalletAddressPrefix is the prefix of any smart contract address used for testing.
 var WalletAddressPrefix = []byte("..........")
 
-// InitialEsdt is the initial amount minted for esdt
-var InitialEsdt = uint64(100)
+// InitialDcdt is the initial amount minted for dcdt
+var InitialDcdt = uint64(100)
 
-// EsdtTokenIdentifier is the token identifier in tests
-var EsdtTokenIdentifier = []byte("TTT-010101")
+// DcdtTokenIdentifier is the token identifier in tests
+var DcdtTokenIdentifier = []byte("TTT-010101")
 
 // InitializeMockContracts -
 func InitializeMockContracts(
@@ -93,8 +93,8 @@ func GetAddressForNewAccountOnWalletAndNodeWithVM(
 	node *integrationTests.TestProcessorNode,
 	vmType []byte,
 ) ([]byte, state.UserAccountHandler) {
-	esdtValue := big.NewInt(int64(InitialEsdt))
-	esdtNonce := uint64(0)
+	dcdtValue := big.NewInt(int64(InitialDcdt))
+	dcdtNonce := uint64(0)
 	pubKey := []byte("12345678901234567890123456789012")
 
 	walletAccount, err := node.AccntState.GetExistingAccount(wallet.Address)
@@ -118,29 +118,29 @@ func GetAddressForNewAccountOnWalletAndNodeWithVM(
 	userAccount.SetCode(address)
 	userAccount.SetCodeHash(address)
 
-	esdtData := &esdt.ESDigitalToken{
-		Value:      esdtValue,
+	dcdtData := &dcdt.DCDigitalToken{
+		Value:      dcdtValue,
 		Properties: []byte{},
 	}
-	if esdtNonce > 0 {
-		esdtData.TokenMetaData = &esdt.MetaData{
-			Name:    []byte(fmt.Sprintf("Token %d", esdtNonce)),
-			URIs:    [][]byte{[]byte(fmt.Sprintf("URI for token %d", esdtNonce))},
+	if dcdtNonce > 0 {
+		dcdtData.TokenMetaData = &dcdt.MetaData{
+			Name:    []byte(fmt.Sprintf("Token %d", dcdtNonce)),
+			URIs:    [][]byte{[]byte(fmt.Sprintf("URI for token %d", dcdtNonce))},
 			Creator: pubKey,
-			Nonce:   esdtNonce,
+			Nonce:   dcdtNonce,
 		}
 	}
 
-	esdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(esdtData)
+	dcdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(dcdtData)
 	require.Nil(t, err)
 
-	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.ESDTKeyIdentifier)...)
-	key = append(key, EsdtTokenIdentifier...)
-	if esdtNonce > 0 {
-		key = append(key, big.NewInt(0).SetUint64(esdtNonce).Bytes()...)
+	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.DCDTKeyIdentifier)...)
+	key = append(key, DcdtTokenIdentifier...)
+	if dcdtNonce > 0 {
+		key = append(key, big.NewInt(0).SetUint64(dcdtNonce).Bytes()...)
 	}
 
-	err = userAccount.SaveKeyValue(key, esdtDataBytes)
+	err = userAccount.SaveKeyValue(key, dcdtDataBytes)
 	require.Nil(t, err)
 
 	err = node.AccntState.SaveAccount(userAccount)
@@ -244,7 +244,7 @@ func CreateHostAndInstanceBuilder(t *testing.T,
 }
 
 // RegisterAsyncCallForMockContract is resued also in some tests before async context serialization
-func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, destinationAddress []byte, egldValue []byte, callData *txDataBuilder.TxDataBuilder) error {
+func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, destinationAddress []byte, rewaValue []byte, callData *txDataBuilder.TxDataBuilder) error {
 	testConfig := config.(*testcommon.TestConfig)
 
 	async := host.Async()
@@ -253,7 +253,7 @@ func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, de
 			Status:          vmhost.AsyncCallPending,
 			Destination:     destinationAddress,
 			Data:            callData.ToBytes(),
-			ValueBytes:      egldValue,
+			ValueBytes:      rewaValue,
 			SuccessCallback: testConfig.SuccessCallback,
 			ErrorCallback:   testConfig.ErrorCallback,
 			GasLimit:        testConfig.GasProvidedToChild,
@@ -265,6 +265,6 @@ func RegisterAsyncCallForMockContract(host vmhost.VMHost, config interface{}, de
 		}
 		return nil
 	} else {
-		return async.RegisterLegacyAsyncCall(destinationAddress, callData.ToBytes(), egldValue)
+		return async.RegisterLegacyAsyncCall(destinationAddress, callData.ToBytes(), rewaValue)
 	}
 }

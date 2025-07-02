@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/TerraDharitri/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain/api/gin"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/common/forking"

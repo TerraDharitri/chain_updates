@@ -9,7 +9,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/TerraDharitri/drt-go-chain/common"
-	mxErrors "github.com/TerraDharitri/drt-go-chain/errors"
+	drtErrors "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/state/dataTrieValue"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/enableEpochsHandlerMock"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
@@ -25,7 +25,7 @@ func TestNewDataTrieLeafParser(t *testing.T) {
 
 		tlp, err := NewDataTrieLeafParser([]byte("address"), nil, &enableEpochsHandlerMock.EnableEpochsHandlerStub{})
 		assert.True(t, check.IfNil(tlp))
-		assert.Equal(t, mxErrors.ErrNilMarshalizer, err)
+		assert.Equal(t, drtErrors.ErrNilMarshalizer, err)
 	})
 
 	t.Run("nil enableEpochsHandler", func(t *testing.T) {
@@ -33,7 +33,7 @@ func TestNewDataTrieLeafParser(t *testing.T) {
 
 		tlp, err := NewDataTrieLeafParser([]byte("address"), &marshallerMock.MarshalizerMock{}, nil)
 		assert.True(t, check.IfNil(tlp))
-		assert.Equal(t, mxErrors.ErrNilEnableEpochsHandler, err)
+		assert.Equal(t, drtErrors.ErrNilEnableEpochsHandler, err)
 	})
 
 	t.Run("invalid enableEpochsHandler", func(t *testing.T) {

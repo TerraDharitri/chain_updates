@@ -9,7 +9,7 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {}
@@ -19,7 +19,7 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {}
@@ -29,7 +29,7 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {}
@@ -52,12 +52,12 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {
 						"``NUMBATdcdtWREWA-abcdef": "0x120600012a05f2001a020000220e120c5745474c442d616263646566",
-						"``NUMBATdcdtMEX-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
+						"``NUMBATdcdtMOA-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
 						"``NUMBATdcdtBLC-abcdef": "0x120600012a05f2001a020000220c120a424c432d616263646566"
 					}
 				},
@@ -66,12 +66,12 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {
 						"``NUMBATdcdtWREWA-abcdef": "0x120600012a05f2001a020000220e120c5745474c442d616263646566",
-						"``NUMBATdcdtMEX-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
+						"``NUMBATdcdtMOA-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
 						"``NUMBATdcdtBLC-abcdef": "0x120600012a05f2001a020000220c120a424c432d616263646566"
 					}
 				},
@@ -80,12 +80,12 @@
 					"balance": "1,000,000,000,000,000,000,000,000,000,000",
 					"dcdt": {
 						"str:WREWA-abcdef": "5,000,000,000",
-						"str:MEX-abcdef": "5,000,000,000",
+						"str:MOA-abcdef": "5,000,000,000",
 						"str:BLC-abcdef": "5,000,000,000"
 					},
 					"storage": {
 						"``NUMBATdcdtWREWA-abcdef": "0x120600012a05f2001a020000220e120c5745474c442d616263646566",
-						"``NUMBATdcdtMEX-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
+						"``NUMBATdcdtMOA-abcdef": "0x120600012a05f2001a020000220c120a414c432d616263646566",
 						"``NUMBATdcdtBLC-abcdef": "0x120600012a05f2001a020000220c120a424c432d616263646566"
 					}
 				},

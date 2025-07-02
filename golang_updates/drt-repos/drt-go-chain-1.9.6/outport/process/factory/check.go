@@ -17,8 +17,8 @@ func checkArgOutportDataProviderFactory(arg ArgOutportDataProviderFactory) error
 	if check.IfNil(arg.Marshaller) {
 		return transactionsfee.ErrNilMarshaller
 	}
-	if check.IfNil(arg.EsdtDataStorageHandler) {
-		return alteredaccounts.ErrNilESDTDataStorageHandler
+	if check.IfNil(arg.DcdtDataStorageHandler) {
+		return alteredaccounts.ErrNilDCDTDataStorageHandler
 	}
 	if check.IfNil(arg.TransactionsStorer) {
 		return transactionsfee.ErrNilStorage

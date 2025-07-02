@@ -179,7 +179,7 @@ func CheckGetAccount(t *testing.T, chainSimulator ChainSimulator) {
 
 // CheckGenerateTransactions -
 func CheckGenerateTransactions(t *testing.T, chainSimulator ChainSimulator) {
-	transferValue := big.NewInt(0).Mul(OneEGLD, big.NewInt(5))
+	transferValue := big.NewInt(0).Mul(OneREWA, big.NewInt(5))
 
 	wallet0, err := chainSimulator.GenerateAndMintWalletAddress(0, InitialAmount)
 	require.Nil(t, err)

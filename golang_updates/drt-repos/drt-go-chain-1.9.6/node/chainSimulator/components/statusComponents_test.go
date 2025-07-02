@@ -8,7 +8,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/config"
-	mxErrors "github.com/TerraDharitri/drt-go-chain/errors"
+	drtErrors "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
 	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/statusHandler"
@@ -99,7 +99,7 @@ func TestStatusComponentsHolder_StartPolling(t *testing.T) {
 		require.NoError(t, err)
 
 		err = comp.StartPolling()
-		require.Equal(t, mxErrors.ErrStatusPollingInit, err)
+		require.Equal(t, drtErrors.ErrStatusPollingInit, err)
 	})
 	t.Run("should work", func(t *testing.T) {
 		t.Parallel()

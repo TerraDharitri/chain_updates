@@ -22,11 +22,11 @@ const (
 	getStatusPath          = "/status"
 	economicsPath          = "/economics"
 	enableEpochsPath       = "/enable-epochs"
-	getESDTsPath           = "/esdts"
-	getFFTsPath            = "/esdt/fungible-tokens"
-	getSFTsPath            = "/esdt/semi-fungible-tokens"
-	getNFTsPath            = "/esdt/non-fungible-tokens"
-	getESDTSupplyPath      = "/esdt/supply/:token"
+	getDCDTsPath           = "/dcdts"
+	getFFTsPath            = "/dcdt/fungible-tokens"
+	getSFTsPath            = "/dcdt/semi-fungible-tokens"
+	getNFTsPath            = "/dcdt/non-fungible-tokens"
+	getDCDTSupplyPath      = "/dcdt/supply/:token"
 	directStakedInfoPath   = "/direct-staked-info"
 	delegatedInfoPath      = "/delegated-info"
 	ratingsPath            = "/ratings"
@@ -41,8 +41,8 @@ type networkFacadeHandler interface {
 	GetDirectStakedList() ([]*api.DirectStakedValue, error)
 	GetDelegatorsList() ([]*api.Delegator, error)
 	StatusMetrics() external.StatusMetricsHandler
-	GetAllIssuedESDTs(tokenType string) ([]string, error)
-	GetTokenSupply(token string) (*api.ESDTSupply, error)
+	GetAllIssuedDCDTs(tokenType string) ([]string, error)
+	GetTokenSupply(token string) (*api.DCDTSupply, error)
 	GetGenesisNodesPubKeys() (map[uint32][]string, map[uint32][]string, error)
 	GetGenesisBalances() ([]*common.InitialAccountAPI, error)
 	GetGasConfigs() (map[string]map[string]uint64, error)
@@ -100,24 +100,24 @@ func NewNetworkGroup(facade networkFacadeHandler) (*networkGroup, error) {
 			Handler: ng.getEnableEpochs,
 		},
 		{
-			Path:    getESDTsPath,
+			Path:    getDCDTsPath,
 			Method:  http.MethodGet,
-			Handler: ng.getHandlerFuncForEsdt(""),
+			Handler: ng.getHandlerFuncForDcdt(""),
 		},
 		{
 			Path:    getFFTsPath,
 			Method:  http.MethodGet,
-			Handler: ng.getHandlerFuncForEsdt(core.FungibleESDT),
+			Handler: ng.getHandlerFuncForDcdt(core.FungibleDCDT),
 		},
 		{
 			Path:    getSFTsPath,
 			Method:  http.MethodGet,
-			Handler: ng.getHandlerFuncForEsdt(core.SemiFungibleESDT),
+			Handler: ng.getHandlerFuncForDcdt(core.SemiFungibleDCDT),
 		},
 		{
 			Path:    getNFTsPath,
 			Method:  http.MethodGet,
-			Handler: ng.getHandlerFuncForEsdt(core.NonFungibleESDTv2),
+			Handler: ng.getHandlerFuncForDcdt(core.NonFungibleDCDTv2),
 		},
 		{
 			Path:    directStakedInfoPath,
@@ -130,9 +130,9 @@ func NewNetworkGroup(facade networkFacadeHandler) (*networkGroup, error) {
 			Handler: ng.delegatedInfo,
 		},
 		{
-			Path:    getESDTSupplyPath,
+			Path:    getDCDTSupplyPath,
 			Method:  http.MethodGet,
-			Handler: ng.getESDTTokenSupply,
+			Handler: ng.getDCDTTokenSupply,
 		},
 		{
 			Path:    ratingsPath,
@@ -276,9 +276,9 @@ func (ng *networkGroup) economicsMetrics(c *gin.Context) {
 	)
 }
 
-func (ng *networkGroup) getHandlerFuncForEsdt(tokenType string) func(c *gin.Context) {
+func (ng *networkGroup) getHandlerFuncForDcdt(tokenType string) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		tokens, err := ng.getFacade().GetAllIssuedESDTs(tokenType)
+		tokens, err := ng.getFacade().GetAllIssuedDCDTs(tokenType)
 		if err != nil {
 			c.JSON(
 				http.StatusInternalServerError,
@@ -352,7 +352,7 @@ func (ng *networkGroup) delegatedInfo(c *gin.Context) {
 	)
 }
 
-func (ng *networkGroup) getESDTTokenSupply(c *gin.Context) {
+func (ng *networkGroup) getDCDTTokenSupply(c *gin.Context) {
 	token := c.Param("token")
 	if token == "" {
 		shared.RespondWithValidationError(c, errors.ErrValidation, errors.ErrBadUrlParams)

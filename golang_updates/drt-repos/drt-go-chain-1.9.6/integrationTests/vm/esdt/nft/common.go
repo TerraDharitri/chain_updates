@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
 )
 
 // NftArguments -
@@ -27,7 +27,7 @@ type NftArguments struct {
 // CreateNFT -
 func CreateNFT(tokenIdentifier []byte, issuer *integrationTests.TestProcessorNode, nodes []*integrationTests.TestProcessorNode, args *NftArguments) {
 	txData := fmt.Sprintf("%s@%s@%s@%s@%s@%s@%s@%s@",
-		core.BuiltInFunctionESDTNFTCreate,
+		core.BuiltInFunctionDCDTNFTCreate,
 		hex.EncodeToString(tokenIdentifier),
 		hex.EncodeToString(big.NewInt(args.Quantity).Bytes()),
 		hex.EncodeToString(args.Name),
@@ -50,21 +50,21 @@ func CheckNftData(
 	args *NftArguments,
 	nonce uint64,
 ) {
-	esdtData := esdt.GetESDTTokenData(t, address, nodes, tickerID, nonce)
+	dcdtData := dcdt.GetDCDTTokenData(t, address, nodes, tickerID, nonce)
 
 	if args.Quantity == 0 {
-		require.Nil(t, esdtData.TokenMetaData)
+		require.Nil(t, dcdtData.TokenMetaData)
 		return
 	}
 
-	require.NotNil(t, esdtData.TokenMetaData)
-	require.Equal(t, creator, esdtData.TokenMetaData.Creator)
-	require.Equal(t, args.URI[0], esdtData.TokenMetaData.URIs[0])
-	require.Equal(t, args.Attributes, esdtData.TokenMetaData.Attributes)
-	require.Equal(t, args.Name, esdtData.TokenMetaData.Name)
-	require.Equal(t, args.Hash, esdtData.TokenMetaData.Hash)
-	require.Equal(t, uint32(args.Royalties), esdtData.TokenMetaData.Royalties)
-	require.Equal(t, big.NewInt(args.Quantity).Bytes(), esdtData.Value.Bytes())
+	require.NotNil(t, dcdtData.TokenMetaData)
+	require.Equal(t, creator, dcdtData.TokenMetaData.Creator)
+	require.Equal(t, args.URI[0], dcdtData.TokenMetaData.URIs[0])
+	require.Equal(t, args.Attributes, dcdtData.TokenMetaData.Attributes)
+	require.Equal(t, args.Name, dcdtData.TokenMetaData.Name)
+	require.Equal(t, args.Hash, dcdtData.TokenMetaData.Hash)
+	require.Equal(t, uint32(args.Royalties), dcdtData.TokenMetaData.Royalties)
+	require.Equal(t, big.NewInt(args.Quantity).Bytes(), dcdtData.Value.Bytes())
 }
 
 // PrepareNFTWithRoles -
@@ -75,11 +75,11 @@ func PrepareNFTWithRoles(
 	nftCreator *integrationTests.TestProcessorNode,
 	round *uint64,
 	nonce *uint64,
-	esdtType string,
+	dcdtType string,
 	quantity int64,
 	roles [][]byte,
 ) (string, *NftArguments) {
-	esdt.IssueNFT(nodes, esdtType, "SFT")
+	dcdt.IssueNFT(nodes, dcdtType, "SFT")
 
 	time.Sleep(time.Second)
 	nrRoundsToPropagateMultiShard := 10
@@ -89,7 +89,7 @@ func PrepareNFTWithRoles(
 	tokenIdentifier := string(integrationTests.GetTokenIdentifier(nodes, []byte("SFT")))
 
 	// ----- set special roles
-	esdt.SetRoles(nodes, nftCreator.OwnAccount.Address, []byte(tokenIdentifier), roles)
+	dcdt.SetRoles(nodes, nftCreator.OwnAccount.Address, []byte(tokenIdentifier), roles)
 
 	time.Sleep(time.Second)
 	*nonce, *round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, *nonce, *round)

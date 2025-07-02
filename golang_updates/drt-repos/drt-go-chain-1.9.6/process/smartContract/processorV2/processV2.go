@@ -69,9 +69,9 @@ type scProcessor struct {
 	shardCoordinator   sharding.Coordinator
 	vmContainer        process.VirtualMachinesContainer
 	argsParser         process.ArgumentsParser
-	esdtTransferParser vmcommon.ESDTTransferParser
+	dcdtTransferParser vmcommon.DCDTTransferParser
 	builtInFunctions   vmcommon.BuiltInFunctionContainer
-	arwenChangeLocker  common.Locker
+	andesChangeLocker  common.Locker
 
 	enableEpochsHandler common.EnableEpochsHandler
 	badTxForwarder      process.IntermediateTransactionHandler
@@ -96,7 +96,7 @@ type scProcessor struct {
 type sameShardExecutionDataAfterBuiltIn struct {
 	isSCCallSelfShard    bool
 	callType             vmData.CallType
-	parsedTransfer       *vmcommon.ParsedESDTTransfers
+	parsedTransfer       *vmcommon.ParsedDCDTTransfers
 	scExecuteOutTransfer *vmcommon.OutputTransfer
 }
 
@@ -202,7 +202,7 @@ func NewSmartContractProcessorV2(args scrCommon.ArgsNewSmartContractProcessor) (
 		badTxForwarder:      args.BadTxForwarder,
 		builtInFunctions:    args.BuiltInFunctions,
 		isGenesisProcessing: args.IsGenesisProcessing,
-		arwenChangeLocker:   args.WasmVMChangeLocker,
+		andesChangeLocker:   args.WasmVMChangeLocker,
 		vmOutputCacher:      args.VMOutputCacher,
 		enableEpochsHandler: args.EnableEpochsHandler,
 		storePerByte:        baseOperationCost["StorePerByte"],
@@ -210,7 +210,7 @@ func NewSmartContractProcessorV2(args scrCommon.ArgsNewSmartContractProcessor) (
 		executableCheckers:  scrCommon.CreateExecutableCheckersMap(args.BuiltInFunctions),
 	}
 
-	sc.esdtTransferParser, err = parsers.NewESDTTransferParser(args.Marshalizer)
+	sc.dcdtTransferParser, err = parsers.NewDCDTTransferParser(args.Marshalizer)
 	if err != nil {
 		return nil, err
 	}
@@ -405,14 +405,14 @@ func (sc *scProcessor) executeSmartContractCall(
 		return nil, process.ErrNilSCDestAccount
 	}
 
-	sc.arwenChangeLocker.RLock()
+	sc.andesChangeLocker.RLock()
 
 	userErrorVmOutput := &vmcommon.VMOutput{
 		ReturnCode: vmcommon.UserError,
 	}
 	vmExec, _, err := scrCommon.FindVMByScAddress(sc.vmContainer, vmInput.RecipientAddr)
 	if err != nil {
-		sc.arwenChangeLocker.RUnlock()
+		sc.andesChangeLocker.RUnlock()
 		returnMessage := "cannot get vm from address"
 		log.Trace("get vm from address error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(returnMessage))
@@ -425,7 +425,7 @@ func (sc *scProcessor) executeSmartContractCall(
 	var vmOutput *vmcommon.VMOutput
 	vmOutput, err = vmExec.RunSmartContractCall(vmInput)
 
-	sc.arwenChangeLocker.RUnlock()
+	sc.andesChangeLocker.RUnlock()
 	if err != nil {
 		log.Debug("run smart contract call error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))
@@ -655,7 +655,7 @@ func (sc *scProcessor) gasConsumedChecks(
 	vmOutput *vmcommon.VMOutput,
 ) error {
 	if tx.GetGasLimit() == 0 && sc.shardCoordinator.ComputeId(tx.GetSndAddr()) == core.MetachainShardId {
-		// special case for issuing and minting ESDT tokens for normal users
+		// special case for issuing and minting DCDT tokens for normal users
 		return nil
 	}
 
@@ -793,7 +793,7 @@ func (sc *scProcessor) deleteSCRsWithValueZeroGoingToMeta(scrs []data.Transactio
 	for _, scr := range scrs {
 		shardID := sc.shardCoordinator.ComputeId(scr.GetRcvAddr())
 		if shardID == core.MetachainShardId && scr.GetGasLimit() == 0 && scr.GetValue().Cmp(zero) == 0 {
-			_, err := sc.getESDTParsedTransfers(scr.GetSndAddr(), scr.GetRcvAddr(), scr.GetData())
+			_, err := sc.getDCDTParsedTransfers(scr.GetSndAddr(), scr.GetRcvAddr(), scr.GetData())
 			if err != nil {
 				continue
 			}
@@ -1126,10 +1126,10 @@ func (sc *scProcessor) extractAsyncCallParamsFromTxData(data string) (*vmcommon.
 	return asyncArgs, []byte(dataAsString), nil
 }
 
-func (sc *scProcessor) reAppendAsyncParamsToTxCallbackData(data string, isCrossShardESDTCall bool, asyncArgs *vmcommon.AsyncArguments) (string, error) {
+func (sc *scProcessor) reAppendAsyncParamsToTxCallbackData(data string, isCrossShardDCDTCall bool, asyncArgs *vmcommon.AsyncArguments) (string, error) {
 	newAsyncParams := contexts.CreateCallbackAsyncParams(hooks.NewVMCryptoHook(), asyncArgs)
 	var newArgs [][]byte
-	if isCrossShardESDTCall {
+	if isCrossShardDCDTCall {
 		function, args, err := sc.argsParser.ParseCallData(data)
 		if err != nil {
 			log.Trace("scProcessor.createSCRsWhenError()", "error parsing args", data)
@@ -1199,7 +1199,7 @@ func (sc *scProcessor) isSameShardSCExecutionAfterBuiltInFunc(
 		return noExecutionDTO, nil
 	}
 
-	parsedTransfer, err := sc.esdtTransferParser.ParseESDTTransfers(vmInput.CallerAddr, vmInput.RecipientAddr, vmInput.Function, vmInput.Arguments)
+	parsedTransfer, err := sc.dcdtTransferParser.ParseDCDTTransfers(vmInput.CallerAddr, vmInput.RecipientAddr, vmInput.Function, vmInput.Arguments)
 	if err != nil {
 		return noExecutionDTO, nil
 	}
@@ -1246,7 +1246,7 @@ type inputDataAfterBuiltInCall struct {
 	callType             vmData.CallType
 	vmInput              *vmcommon.ContractCallInput
 	vmOutput             *vmcommon.VMOutput
-	parsedTransfer       *vmcommon.ParsedESDTTransfers
+	parsedTransfer       *vmcommon.ParsedDCDTTransfers
 	scExecuteOutTransfer *vmcommon.OutputTransfer
 	tx                   data.TransactionHandler
 	acntSnd              state.UserAccountHandler
@@ -1278,7 +1278,7 @@ func (sc *scProcessor) prepareExecutionAfterBuiltInFunc(
 			Function:          in.parsedTransfer.CallFunction,
 			AllowInitFunction: false,
 		}
-		newVMInput.ESDTTransfers = in.parsedTransfer.ESDTTransfers
+		newVMInput.DCDTTransfers = in.parsedTransfer.DCDTTransfers
 	}
 
 	newDestSC, err := sc.getAccountFromAddress(in.vmInput.RecipientAddr)
@@ -1299,7 +1299,7 @@ func (sc *scProcessor) prepareExecutionAfterBuiltInFunc(
 func (sc *scProcessor) createVMInputWithAsyncCallBackAfterBuiltIn(
 	vmInput *vmcommon.ContractCallInput,
 	vmOutput *vmcommon.VMOutput,
-	parsedTransfer *vmcommon.ParsedESDTTransfers,
+	parsedTransfer *vmcommon.ParsedDCDTTransfers,
 ) *vmcommon.ContractCallInput {
 	arguments := [][]byte{contexts.ReturnCodeToBytes(vmOutput.ReturnCode)}
 	gasLimit := vmOutput.GasRemaining
@@ -1333,13 +1333,13 @@ func (sc *scProcessor) createVMInputWithAsyncCallBackAfterBuiltIn(
 		Function:          "callBack",
 		AllowInitFunction: false,
 	}
-	newVMInput.ESDTTransfers = parsedTransfer.ESDTTransfers
+	newVMInput.DCDTTransfers = parsedTransfer.DCDTTransfers
 
 	return newVMInput
 }
 
-// isCrossShardESDTTransfer is called when return is created out of the esdt transfer as of failed transaction
-func (sc *scProcessor) isCrossShardESDTTransfer(sender []byte, receiver []byte, data []byte) (string, bool) {
+// isCrossShardDCDTTransfer is called when return is created out of the dcdt transfer as of failed transaction
+func (sc *scProcessor) isCrossShardDCDTTransfer(sender []byte, receiver []byte, data []byte) (string, bool) {
 	sndShardID := sc.shardCoordinator.ComputeId(sender)
 	if sndShardID == sc.shardCoordinator.SelfId() {
 		return "", false
@@ -1359,7 +1359,7 @@ func (sc *scProcessor) isCrossShardESDTTransfer(sender []byte, receiver []byte, 
 		return "", false
 	}
 
-	parsedTransfer, err := sc.esdtTransferParser.ParseESDTTransfers(sender, receiver, function, args)
+	parsedTransfer, err := sc.dcdtTransferParser.ParseDCDTTransfers(sender, receiver, function, args)
 	if err != nil {
 		return "", false
 	}
@@ -1367,14 +1367,14 @@ func (sc *scProcessor) isCrossShardESDTTransfer(sender []byte, receiver []byte, 
 	returnData := ""
 	returnData += function + "@"
 
-	if function == core.BuiltInFunctionESDTTransfer {
+	if function == core.BuiltInFunctionDCDTTransfer {
 		returnData += hex.EncodeToString(args[0]) + "@"
 		returnData += hex.EncodeToString(args[1])
 
 		return returnData, true
 	}
 
-	if function == core.BuiltInFunctionESDTNFTTransfer {
+	if function == core.BuiltInFunctionDCDTNFTTransfer {
 		if len(args) < 4 {
 			return "", false
 		}
@@ -1387,7 +1387,7 @@ func (sc *scProcessor) isCrossShardESDTTransfer(sender []byte, receiver []byte, 
 		return returnData, true
 	}
 
-	if function == core.BuiltInFunctionMultiESDTNFTTransfer {
+	if function == core.BuiltInFunctionMultiDCDTNFTTransfer {
 		numTransferArgs := len(args)
 		if len(parsedTransfer.CallFunction) > 0 {
 			numTransferArgs -= len(parsedTransfer.CallArgs) + 1
@@ -1825,17 +1825,17 @@ func (sc *scProcessor) doDeploySmartContract(
 
 	failureContext.setGasLocked(vmInput.GasLocked)
 
-	sc.arwenChangeLocker.RLock()
+	sc.andesChangeLocker.RLock()
 	vmExec, err := sc.vmContainer.Get(vmType)
 	if err != nil {
-		sc.arwenChangeLocker.RUnlock()
+		sc.andesChangeLocker.RUnlock()
 		log.Trace("VM not found", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))
 		return vmcommon.UserError, nil
 	}
 
 	vmOutput, err = vmExec.RunSmartContractCreate(vmInput)
-	sc.arwenChangeLocker.RUnlock()
+	sc.andesChangeLocker.RUnlock()
 	if err != nil {
 		log.Debug("VM error", "error", err.Error())
 		failureContext.setMessages(err.Error(), []byte(""))
@@ -1987,7 +1987,7 @@ func (sc *scProcessor) getFeePayer(
 	}
 
 	relayerIsReceiver := bytes.Equal(relayedTx.GetRelayerAddr(), tx.GetRcvAddr())
-	isFixActive := sc.enableEpochsHandler.IsFlagEnabled(common.RelayedTransactionsV3FixESDTTransferFlag)
+	isFixActive := sc.enableEpochsHandler.IsFlagEnabled(common.RelayedTransactionsV3FixDCDTTransferFlag)
 	if relayerIsReceiver && isFixActive {
 		return acntDst, nil // do not load the same account twice
 	}
@@ -2231,9 +2231,9 @@ func (sc *scProcessor) createSCRsWhenError(
 	}
 
 	accumulatedSCRData := ""
-	esdtReturnData, isCrossShardESDTCall := sc.isCrossShardESDTTransfer(tx.GetSndAddr(), tx.GetRcvAddr(), txData)
-	if callType != vmData.AsynchronousCallBack && isCrossShardESDTCall {
-		accumulatedSCRData += esdtReturnData
+	dcdtReturnData, isCrossShardDCDTCall := sc.isCrossShardDCDTTransfer(tx.GetSndAddr(), tx.GetRcvAddr(), txData)
+	if callType != vmData.AsynchronousCallBack && isCrossShardDCDTCall {
+		accumulatedSCRData += dcdtReturnData
 	}
 
 	consumedFee := sc.economicsFee.ComputeTxFee(tx)
@@ -2250,7 +2250,7 @@ func (sc *scProcessor) createSCRsWhenError(
 		accumulatedSCRData += "@" + hex.EncodeToString(returnMessage)
 
 		var err error
-		accumulatedSCRData, err = sc.reAppendAsyncParamsToTxCallbackData(accumulatedSCRData, isCrossShardESDTCall, asyncArgs)
+		accumulatedSCRData, err = sc.reAppendAsyncParamsToTxCallbackData(accumulatedSCRData, isCrossShardDCDTCall, asyncArgs)
 		if err != nil {
 			return nil, nil
 		}
@@ -2550,7 +2550,7 @@ func (sc *scProcessor) prependAsyncParamsToData(asyncParams [][]byte, data []byt
 
 	// These nested conditions ensure that prependAsyncParamsToData() can handle
 	// data strings with or without a function as the first token in the string.
-	// The string "ESDTTransfer@...@..." requires ParseCallData().
+	// The string "DCDTTransfer@...@..." requires ParseCallData().
 	// The string "@...@..." requires ParseArguments() instead.
 	function, args, err := sc.argsParser.ParseCallData(string(data))
 	if err == nil {
@@ -2575,14 +2575,14 @@ func (sc *scProcessor) prependAsyncParamsToData(asyncParams [][]byte, data []byt
 	return callData, nil
 }
 
-func (sc *scProcessor) getESDTParsedTransfers(sndAddr []byte, dstAddr []byte, data []byte,
-) (*vmcommon.ParsedESDTTransfers, error) {
+func (sc *scProcessor) getDCDTParsedTransfers(sndAddr []byte, dstAddr []byte, data []byte,
+) (*vmcommon.ParsedDCDTTransfers, error) {
 	function, args, err := sc.argsParser.ParseCallData(string(data))
 	if err != nil {
 		return nil, err
 	}
 
-	parsedTransfer, err := sc.esdtTransferParser.ParseESDTTransfers(sndAddr, dstAddr, function, args)
+	parsedTransfer, err := sc.dcdtTransferParser.ParseDCDTTransfers(sndAddr, dstAddr, function, args)
 	if err != nil {
 		return nil, err
 	}
@@ -2595,7 +2595,7 @@ func (sc *scProcessor) isTransferWithNoAdditionalData(sndAddr []byte, dstAddr []
 		return true
 	}
 
-	parsedTransfer, err := sc.getESDTParsedTransfers(sndAddr, dstAddr, data)
+	parsedTransfer, err := sc.getDCDTParsedTransfers(sndAddr, dstAddr, data)
 	if err != nil {
 		return false
 	}

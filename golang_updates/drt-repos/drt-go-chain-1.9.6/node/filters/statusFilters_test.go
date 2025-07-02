@@ -14,19 +14,19 @@ func TestStatusFilters_ApplyStatusFilters(t *testing.T) {
 
 	sf := NewStatusFilters(0)
 
-	esdtTransferTx := &transaction.ApiTransactionResult{
+	dcdtTransferTx := &transaction.ApiTransactionResult{
 		Hash:             "myHash",
 		Nonce:            1,
 		SourceShard:      1,
 		DestinationShard: 0,
-		Data:             []byte("ESDTTransfer@42524f2d343663663439@a688906bd8b00000"),
+		Data:             []byte("DCDTTransfer@42524f2d343663663439@a688906bd8b00000"),
 	}
 	mbs := []*api.MiniBlock{
 		{
 			SourceShard:      1,
 			DestinationShard: 0,
 			Transactions: []*transaction.ApiTransactionResult{
-				esdtTransferTx,
+				dcdtTransferTx,
 				{},
 			},
 			Type: block.TxBlock.String(),
@@ -45,7 +45,7 @@ func TestStatusFilters_ApplyStatusFilters(t *testing.T) {
 					Nonce:                   1,
 					SourceShard:             1,
 					DestinationShard:        0,
-					Data:                    []byte("ESDTTransfer@42524f2d343663663439@a688906bd8b00000@75736572206572726f72"),
+					Data:                    []byte("DCDTTransfer@42524f2d343663663439@a688906bd8b00000@75736572206572726f72"),
 				},
 			},
 		},
@@ -54,37 +54,37 @@ func TestStatusFilters_ApplyStatusFilters(t *testing.T) {
 		},
 	}
 	sf.ApplyStatusFilters(mbs)
-	require.Equal(t, transaction.TxStatusFail, esdtTransferTx.Status)
+	require.Equal(t, transaction.TxStatusFail, dcdtTransferTx.Status)
 }
 
-func TestStatusFilters_SetStatusIfIsFailedESDTTransfer(t *testing.T) {
+func TestStatusFilters_SetStatusIfIsFailedDCDTTransfer(t *testing.T) {
 	t.Parallel()
 
 	sf := NewStatusFilters(0)
-	// ESDT transfer fail
+	// DCDT transfer fail
 	tx1 := &transaction.ApiTransactionResult{
 		Nonce:            1,
 		Hash:             "myHash",
 		SourceShard:      1,
 		DestinationShard: 0,
-		Data:             []byte("ESDTTransfer@42524f2d343663663439@a688906bd8b00000"),
+		Data:             []byte("DCDTTransfer@42524f2d343663663439@a688906bd8b00000"),
 		SmartContractResults: []*transaction.ApiSmartContractResult{
 			{
 				OriginalTxHash: "myHash",
 				Nonce:          1,
-				Data:           "ESDTTransfer@42524f2d343663663439@a688906bd8b00000@75736572206572726f72",
+				Data:           "DCDTTransfer@42524f2d343663663439@a688906bd8b00000@75736572206572726f72",
 			},
 		},
 	}
 
-	sf.SetStatusIfIsFailedESDTTransfer(tx1)
+	sf.SetStatusIfIsFailedDCDTTransfer(tx1)
 	require.Equal(t, transaction.TxStatusFail, tx1.Status)
 
 	// transaction with no SCR should be ignored
 	tx2 := &transaction.ApiTransactionResult{
 		Status: transaction.TxStatusSuccess,
 	}
-	sf.SetStatusIfIsFailedESDTTransfer(tx2)
+	sf.SetStatusIfIsFailedDCDTTransfer(tx2)
 	require.Equal(t, transaction.TxStatusSuccess, tx2.Status)
 
 	// intra shard transaction should be ignored
@@ -95,10 +95,10 @@ func TestStatusFilters_SetStatusIfIsFailedESDTTransfer(t *testing.T) {
 			{},
 		},
 	}
-	sf.SetStatusIfIsFailedESDTTransfer(tx3)
+	sf.SetStatusIfIsFailedDCDTTransfer(tx3)
 	require.Equal(t, transaction.TxStatusSuccess, tx3.Status)
 
-	// no ESDT transfer should be ignored
+	// no DCDT transfer should be ignored
 	tx4 := &transaction.ApiTransactionResult{
 		Status:           transaction.TxStatusSuccess,
 		SourceShard:      1,
@@ -108,6 +108,6 @@ func TestStatusFilters_SetStatusIfIsFailedESDTTransfer(t *testing.T) {
 			{},
 		},
 	}
-	sf.SetStatusIfIsFailedESDTTransfer(tx4)
+	sf.SetStatusIfIsFailedDCDTTransfer(tx4)
 	require.Equal(t, transaction.TxStatusSuccess, tx4.Status)
 }

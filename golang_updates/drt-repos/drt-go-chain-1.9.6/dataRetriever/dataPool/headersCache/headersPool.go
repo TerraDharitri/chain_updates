@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/TerraDharitri/drt-go-chain-core/data"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
 	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"

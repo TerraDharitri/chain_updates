@@ -9,7 +9,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/scheduled"
 	"github.com/stretchr/testify/require"
 )
@@ -69,7 +69,7 @@ func TestBlockTracker(t *testing.T) {
 	require.False(t, handler.IsInterfaceNil())
 }
 
-func TestESDTGlobalSettingsHandler(t *testing.T) {
+func TestDCDTGlobalSettingsHandler(t *testing.T) {
 	t.Parallel()
 
 	defer func() {
@@ -79,7 +79,7 @@ func TestESDTGlobalSettingsHandler(t *testing.T) {
 		}
 	}()
 
-	handler := &ESDTGlobalSettingsHandler{}
+	handler := &DCDTGlobalSettingsHandler{}
 	require.False(t, handler.IsPaused([]byte("addr")))
 	require.False(t, handler.IsLimitedTransfer([]byte("addr")))
 	require.False(t, handler.IsInterfaceNil())
@@ -290,8 +290,8 @@ func TestSimpleNFTStorage(t *testing.T) {
 	}()
 
 	handler := &SimpleNFTStorage{}
-	token, ok, err := handler.GetESDTNFTTokenOnDestination(nil, []byte{}, 0)
-	require.Equal(t, &esdt.ESDigitalToken{Value: big.NewInt(0)}, token)
+	token, ok, err := handler.GetDCDTNFTTokenOnDestination(nil, []byte{}, 0)
+	require.Equal(t, &dcdt.DCDigitalToken{Value: big.NewInt(0)}, token)
 	require.True(t, ok)
 	require.Nil(t, err)
 	require.Nil(t, handler.SaveNFTMetaData(nil))

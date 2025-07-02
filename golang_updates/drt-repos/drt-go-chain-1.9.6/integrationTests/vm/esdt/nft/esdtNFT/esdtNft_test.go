@@ -1,4 +1,4 @@
-package esdtNFT
+package dcdtNFT
 
 import (
 	"bytes"
@@ -10,12 +10,12 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt/nft"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt/nft"
 	"github.com/TerraDharitri/drt-go-chain/vm"
 )
 
-func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {
+func TestDCDTNonFungibleTokenCreateAndBurn(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -53,8 +53,8 @@ func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 
 	tokenIdentifier, nftMetaData := nft.PrepareNFTWithRoles(
@@ -64,7 +64,7 @@ func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {
 		nodes[1],
 		&round,
 		&nonce,
-		core.NonFungibleESDT,
+		core.NonFungibleDCDT,
 		1,
 		roles,
 	)
@@ -73,7 +73,7 @@ func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToBurn := int64(1)
 	quantityToBurnArg := hex.EncodeToString(big.NewInt(quantityToBurn).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTBurn + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTBurn + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToBurnArg)
 	integrationTests.CreateAndSendTransaction(
 		nodes[1],
@@ -102,7 +102,7 @@ func TestESDTNonFungibleTokenCreateAndBurn(t *testing.T) {
 	)
 }
 
-func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
+func TestDCDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -140,9 +140,9 @@ func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 
 	initialQuantity := int64(5)
@@ -153,7 +153,7 @@ func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 		nodes[1],
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -162,7 +162,7 @@ func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToAdd := int64(4)
 	quantityToAddArg := hex.EncodeToString(big.NewInt(quantityToAdd).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToAddArg)
 	integrationTests.CreateAndSendTransaction(
 		nodes[1],
@@ -207,7 +207,7 @@ func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 	// burn quantity
 	quantityToBurn := int64(4)
 	quantityToBurnArg := hex.EncodeToString(big.NewInt(quantityToBurn).Bytes())
-	txData = []byte(core.BuiltInFunctionESDTNFTBurn + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData = []byte(core.BuiltInFunctionDCDTNFTBurn + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToBurnArg)
 	integrationTests.CreateAndSendTransaction(
 		nodes[1],
@@ -235,7 +235,7 @@ func TestESDTSemiFungibleTokenCreateAddAndBurn(t *testing.T) {
 	)
 }
 
-func TestESDTNonFungibleTokenTransferSelfShard(t *testing.T) {
+func TestDCDTNonFungibleTokenTransferSelfShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -273,8 +273,8 @@ func TestESDTNonFungibleTokenTransferSelfShard(t *testing.T) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 	tokenIdentifier, nftMetaData := nft.PrepareNFTWithRoles(
 		t,
@@ -283,7 +283,7 @@ func TestESDTNonFungibleTokenTransferSelfShard(t *testing.T) {
 		nodes[1],
 		&round,
 		&nonce,
-		core.NonFungibleESDT,
+		core.NonFungibleDCDT,
 		1,
 		roles,
 	)
@@ -303,7 +303,7 @@ func TestESDTNonFungibleTokenTransferSelfShard(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToTransfer := int64(1)
 	quantityToTransferArg := hex.EncodeToString(big.NewInt(quantityToTransfer).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(nodeInSameShard.OwnAccount.Address))
 	integrationTests.CreateAndSendTransaction(
 		nodes[1],
@@ -343,7 +343,7 @@ func TestESDTNonFungibleTokenTransferSelfShard(t *testing.T) {
 	)
 }
 
-func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
+func TestDCDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -390,9 +390,9 @@ func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 	}
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 
 	initialQuantity := int64(5)
@@ -403,7 +403,7 @@ func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 		nodeInDifferentShard,
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -412,7 +412,7 @@ func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToAdd := int64(4)
 	quantityToAddArg := hex.EncodeToString(big.NewInt(quantityToAdd).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToAddArg)
 	integrationTests.CreateAndSendTransaction(
 		nodeInDifferentShard,
@@ -457,7 +457,7 @@ func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 	// transfer
 	quantityToTransfer := int64(4)
 	quantityToTransferArg := hex.EncodeToString(big.NewInt(quantityToTransfer).Bytes())
-	txData = []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData = []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(nodes[0].OwnAccount.Address))
 	integrationTests.CreateAndSendTransaction(
 		nodeInDifferentShard,
@@ -496,7 +496,7 @@ func TestESDTSemiFungibleTokenTransferCrossShard(t *testing.T) {
 	)
 }
 
-func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *testing.T) {
+func TestDCDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -534,9 +534,9 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 
 	initialQuantity := int64(5)
@@ -547,7 +547,7 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 		nodes[0],
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -556,7 +556,7 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToAdd := int64(4)
 	quantityToAddArg := hex.EncodeToString(big.NewInt(quantityToAdd).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToAddArg)
 	integrationTests.CreateAndSendTransaction(
 		nodes[0],
@@ -601,8 +601,8 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 	// transfer
 	quantityToTransfer := int64(4)
 	quantityToTransferArg := hex.EncodeToString(big.NewInt(quantityToTransfer).Bytes())
-	txData = []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
-		"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(vm.ESDTSCAddress))
+	txData = []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+		"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(vm.DCDTSCAddress))
 	integrationTests.CreateAndSendTransaction(
 		nodes[0],
 		nodes,
@@ -617,11 +617,11 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
 	time.Sleep(time.Second)
 
-	nftMetaData.Quantity = 0 // make sure that the ESDT SC address didn't receive the token
+	nftMetaData.Quantity = 0 // make sure that the DCDT SC address didn't receive the token
 	nft.CheckNftData(
 		t,
 		nodes[0].OwnAccount.Address,
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		nodes,
 		[]byte(tokenIdentifier),
 		nftMetaData,
@@ -641,7 +641,7 @@ func TestESDTSemiFungibleTokenTransferToSystemScAddressShouldReceiveBack(t *test
 }
 
 func testNFTSendCreateRole(t *testing.T, numOfShards int) {
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(numOfShards)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(numOfShards)
 
 	defer func() {
 		for _, n := range nodes {
@@ -658,7 +658,7 @@ func testNFTSendCreateRole(t *testing.T, numOfShards int) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTCreate),
 	}
 
 	nftCreator := nodes[0]
@@ -670,7 +670,7 @@ func testNFTSendCreateRole(t *testing.T, numOfShards int) {
 		nftCreator,
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -692,7 +692,7 @@ func testNFTSendCreateRole(t *testing.T, numOfShards int) {
 		nftCreator,
 		nodes,
 		big.NewInt(0),
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		string(txData),
 		integrationTests.AdditionalGasLimit+core.MinMetaTxExtraGasCost,
 	)
@@ -725,7 +725,7 @@ func testNFTSendCreateRole(t *testing.T, numOfShards int) {
 	)
 }
 
-func TestESDTNFTSendCreateRoleInShard(t *testing.T) {
+func TestDCDTNFTSendCreateRoleInShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -733,7 +733,7 @@ func TestESDTNFTSendCreateRoleInShard(t *testing.T) {
 	testNFTSendCreateRole(t, 1)
 }
 
-func TestESDTNFTSendCreateRoleInCrossShard(t *testing.T) {
+func TestDCDTNFTSendCreateRoleInCrossShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -741,23 +741,23 @@ func TestESDTNFTSendCreateRoleInCrossShard(t *testing.T) {
 	testNFTSendCreateRole(t, 2)
 }
 
-func TestESDTSemiFungibleWithTransferRoleIntraShard(t *testing.T) {
+func TestDCDTSemiFungibleWithTransferRoleIntraShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
-	testESDTSemiFungibleTokenTransferRole(t, 1)
+	testDCDTSemiFungibleTokenTransferRole(t, 1)
 }
 
-func TestESDTSemiFungibleWithTransferRoleCrossShard(t *testing.T) {
+func TestDCDTSemiFungibleWithTransferRoleCrossShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
-	testESDTSemiFungibleTokenTransferRole(t, 2)
+	testDCDTSemiFungibleTokenTransferRole(t, 2)
 }
 
-func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
+func testDCDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 	nodesPerShard := 2
 	numMetachainNodes := 2
 
@@ -799,10 +799,10 @@ func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 	}
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTBurn),
-		[]byte(core.ESDTRoleTransfer),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTBurn),
+		[]byte(core.DCDTRoleTransfer),
 	}
 
 	initialQuantity := int64(5)
@@ -813,7 +813,7 @@ func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 		nodeInDifferentShard,
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -822,7 +822,7 @@ func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToAdd := int64(4)
 	quantityToAddArg := hex.EncodeToString(big.NewInt(quantityToAdd).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToAddArg)
 	integrationTests.CreateAndSendTransaction(
 		nodeInDifferentShard,
@@ -867,7 +867,7 @@ func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 	// transfer
 	quantityToTransfer := int64(4)
 	quantityToTransferArg := hex.EncodeToString(big.NewInt(quantityToTransfer).Bytes())
-	txData = []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData = []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(nodes[0].OwnAccount.Address))
 	integrationTests.CreateAndSendTransaction(
 		nodeInDifferentShard,
@@ -906,7 +906,7 @@ func testESDTSemiFungibleTokenTransferRole(t *testing.T, numOfShards int) {
 	)
 }
 
-func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
+func TestDCDTSFTWithEnhancedTransferRole(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -944,10 +944,10 @@ func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTAddQuantity),
-		[]byte(core.ESDTRoleNFTBurn),
-		[]byte(core.ESDTRoleTransfer),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTAddQuantity),
+		[]byte(core.DCDTRoleNFTBurn),
+		[]byte(core.DCDTRoleTransfer),
 	}
 
 	tokenIssuer := nodes[0]
@@ -959,7 +959,7 @@ func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
 		tokenIssuer,
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -968,7 +968,7 @@ func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToAdd := int64(100)
 	quantityToAddArg := hex.EncodeToString(big.NewInt(quantityToAdd).Bytes())
-	txData := []byte(core.BuiltInFunctionESDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := []byte(core.BuiltInFunctionDCDTNFTAddQuantity + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToAddArg)
 	integrationTests.CreateAndSendTransaction(
 		tokenIssuer,
@@ -1000,7 +1000,7 @@ func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
 	quantityToTransferArg := hex.EncodeToString(big.NewInt(quantityToTransfer).Bytes())
 
 	for _, node := range nodes[1:] {
-		txData = []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+		txData = []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 			"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(node.OwnAccount.Address))
 		integrationTests.CreateAndSendTransaction(
 			tokenIssuer,
@@ -1043,7 +1043,7 @@ func TestESDTSFTWithEnhancedTransferRole(t *testing.T) {
 
 	// every account will send back the tokens
 	for _, node := range nodes[1:] {
-		txData = []byte(core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+		txData = []byte(core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 			"@" + nonceArg + "@" + quantityToTransferArg + "@" + hex.EncodeToString(tokenIssuer.OwnAccount.Address))
 		integrationTests.CreateAndSendTransaction(
 			node,
@@ -1102,7 +1102,7 @@ func TestNFTTransferCreateAndSetRolesCrossShard(t *testing.T) {
 }
 
 func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(numOfShards)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(numOfShards)
 
 	defer func() {
 		for _, n := range nodes {
@@ -1119,7 +1119,7 @@ func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTCreate),
 	}
 
 	nftCreator := nodes[0]
@@ -1131,7 +1131,7 @@ func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
 		nftCreator,
 		&round,
 		&nonce,
-		core.SemiFungibleESDT,
+		core.SemiFungibleDCDT,
 		initialQuantity,
 		roles,
 	)
@@ -1153,7 +1153,7 @@ func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
 		nftCreator,
 		nodes,
 		big.NewInt(0),
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		string(txData),
 		integrationTests.AdditionalGasLimit+core.MinMetaTxExtraGasCost,
 	)
@@ -1168,7 +1168,7 @@ func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
 		nftCreator,
 		nodes,
 		big.NewInt(0),
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		string(txData),
 		integrationTests.AdditionalGasLimit+core.MinMetaTxExtraGasCost,
 	)
@@ -1180,12 +1180,12 @@ func testNFTTransferCreateRoleAndStop(t *testing.T, numOfShards int) {
 	// setCreateRole
 	txData = []byte("setSpecialRole" + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + hex.EncodeToString(nftCreator.OwnAccount.Address) +
-		"@" + hex.EncodeToString([]byte(core.ESDTRoleNFTCreate)))
+		"@" + hex.EncodeToString([]byte(core.DCDTRoleNFTCreate)))
 	integrationTests.CreateAndSendTransaction(
 		nftCreator,
 		nodes,
 		big.NewInt(0),
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		string(txData),
 		integrationTests.AdditionalGasLimit+core.MinMetaTxExtraGasCost,
 	)

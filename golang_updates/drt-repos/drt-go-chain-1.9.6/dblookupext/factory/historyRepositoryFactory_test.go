@@ -80,7 +80,7 @@ func TestHistoryRepositoryFactory_CreateShouldCreateRegularRepository(t *testing
 func TestHistoryRepositoryFactory_CreateMissingStorersReturnsError(t *testing.T) {
 	t.Parallel()
 
-	t.Run("missing ESDTSuppliesUnit", testWithMissingStorer(dataRetriever.ESDTSuppliesUnit))
+	t.Run("missing DCDTSuppliesUnit", testWithMissingStorer(dataRetriever.DCDTSuppliesUnit))
 	t.Run("missing TxLogsUnit", testWithMissingStorer(dataRetriever.TxLogsUnit))
 	t.Run("missing RoundHdrHashDataUnit", testWithMissingStorer(dataRetriever.RoundHdrHashDataUnit))
 	t.Run("missing MiniblocksMetadataUnit", testWithMissingStorer(dataRetriever.MiniblocksMetadataUnit))

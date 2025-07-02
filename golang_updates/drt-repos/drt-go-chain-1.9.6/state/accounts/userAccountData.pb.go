@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -30,11 +30,11 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type UserAccountData struct {
 	Nonce           uint64        `protobuf:"varint,1,opt,name=Nonce,proto3" json:"nonce"`
-	Balance         *math_big.Int `protobuf:"bytes,2,opt,name=Balance,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"balance,omitempty"`
+	Balance         *math_big.Int `protobuf:"bytes,2,opt,name=Balance,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"balance,omitempty"`
 	CodeHash        []byte        `protobuf:"bytes,3,opt,name=CodeHash,proto3" json:"codeHash,omitempty"`
 	RootHash        []byte        `protobuf:"bytes,4,opt,name=RootHash,proto3" json:"rootHash,omitempty"`
 	Address         []byte        `protobuf:"bytes,5,opt,name=Address,proto3" json:"address,omitempty"`
-	DeveloperReward *math_big.Int `protobuf:"bytes,6,opt,name=DeveloperReward,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"developerReward,omitempty"`
+	DeveloperReward *math_big.Int `protobuf:"bytes,6,opt,name=DeveloperReward,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"developerReward,omitempty"`
 	OwnerAddress    []byte        `protobuf:"bytes,7,opt,name=OwnerAddress,proto3" json:"ownerAddress,omitempty"`
 	UserName        []byte        `protobuf:"bytes,8,opt,name=UserName,proto3" json:"userName,omitempty"`
 	CodeMetadata    []byte        `protobuf:"bytes,9,opt,name=CodeMetadata,proto3" json:"codeMetadata,omitempty"`
@@ -193,7 +193,7 @@ func (this *UserAccountData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Balance, that1.Balance) {
 			return false
 		}
@@ -208,7 +208,7 @@ func (this *UserAccountData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.DeveloperReward, that1.DeveloperReward) {
 			return false
 		}
@@ -292,7 +292,7 @@ func (m *UserAccountData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x3a
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.DeveloperReward)
 		i -= size
 		if _, err := __caster.MarshalTo(m.DeveloperReward, dAtA[i:]); err != nil {
@@ -324,7 +324,7 @@ func (m *UserAccountData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Balance)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Balance, dAtA[i:]); err != nil {
@@ -363,7 +363,7 @@ func (m *UserAccountData) Size() (n int) {
 		n += 1 + sovUserAccountData(uint64(m.Nonce))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Balance)
 		n += 1 + l + sovUserAccountData(uint64(l))
 	}
@@ -380,7 +380,7 @@ func (m *UserAccountData) Size() (n int) {
 		n += 1 + l + sovUserAccountData(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.DeveloperReward)
 		n += 1 + l + sovUserAccountData(uint64(l))
 	}
@@ -509,7 +509,7 @@ func (m *UserAccountData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -649,7 +649,7 @@ func (m *UserAccountData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

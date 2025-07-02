@@ -36,7 +36,7 @@ func createVmContainerMockArgument(gasSchedule core.GasScheduleNotifier) ArgsNew
 		Hasher:              &hashingMocks.HasherMock{},
 		Marshalizer:         &mock.MarshalizerMock{},
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "100000000",
 				OwnerAddress:    "aaaaaa",
 			},
@@ -338,7 +338,7 @@ func TestVmContainerFactory_Create(t *testing.T) {
 		Hasher:              &hashingMocks.HasherMock{},
 		Marshalizer:         &mock.MarshalizerMock{},
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "100000000",
 				OwnerAddress:    "aaaaaa",
 			},
@@ -452,8 +452,8 @@ func FillGasMapMetaChainSystemSCsCosts(value uint64) map[string]uint64 {
 	gasMap["ChangeRewardAddress"] = value
 	gasMap["ChangeValidatorKeys"] = value
 	gasMap["UnJail"] = value
-	gasMap["ESDTIssue"] = value
-	gasMap["ESDTOperations"] = value
+	gasMap["DCDTIssue"] = value
+	gasMap["DCDTOperations"] = value
 	gasMap["Proposal"] = value
 	gasMap["Vote"] = value
 	gasMap["DelegateVote"] = value

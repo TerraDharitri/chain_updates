@@ -10,7 +10,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
 	"github.com/TerraDharitri/drt-go-chain-core/display"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/consensus"

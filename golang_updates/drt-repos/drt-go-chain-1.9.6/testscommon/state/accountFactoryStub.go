@@ -1,6 +1,6 @@
 package state
 
-import vmcommon "github.com/TerraDharitri/mx-chain-vm-common-go"
+import vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 
 // TODO: move all the mocks from the mock package to testscommon
 

@@ -39,7 +39,7 @@ const (
 
 var (
 	//InitialDelegationValue the variable for the initial delegation value
-	InitialDelegationValue = big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(1250))
+	InitialDelegationValue = big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(1250))
 )
 
 // GetNonce will return the nonce of the provided address

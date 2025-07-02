@@ -38,7 +38,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/update/trigger"
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
@@ -496,49 +496,49 @@ func (pr *ProcessorRunner) GetUserAccount(tb testing.TB, address []byte) state.U
 	return userAccount
 }
 
-// SetESDTForAccount will set the provided ESDT balance to the account
-func (pr *ProcessorRunner) SetESDTForAccount(
+// SetDCDTForAccount will set the provided DCDT balance to the account
+func (pr *ProcessorRunner) SetDCDTForAccount(
 	tb testing.TB,
 	address []byte,
 	tokenIdentifier string,
-	esdtNonce uint64,
-	esdtValue *big.Int,
+	dcdtNonce uint64,
+	dcdtValue *big.Int,
 ) {
 	userAccount := pr.GetUserAccount(tb, address)
 
-	esdtData := &esdt.ESDigitalToken{
-		Value:      esdtValue,
+	dcdtData := &dcdt.DCDigitalToken{
+		Value:      dcdtValue,
 		Properties: []byte{},
 	}
 
-	esdtDataBytes, err := pr.CoreComponents.InternalMarshalizer().Marshal(esdtData)
+	dcdtDataBytes, err := pr.CoreComponents.InternalMarshalizer().Marshal(dcdtData)
 	require.Nil(tb, err)
 
-	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.ESDTKeyIdentifier)...)
+	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.DCDTKeyIdentifier)...)
 	key = append(key, tokenIdentifier...)
-	if esdtNonce > 0 {
-		key = append(key, big.NewInt(0).SetUint64(esdtNonce).Bytes()...)
+	if dcdtNonce > 0 {
+		key = append(key, big.NewInt(0).SetUint64(dcdtNonce).Bytes()...)
 	}
 
-	err = userAccount.SaveKeyValue(key, esdtDataBytes)
+	err = userAccount.SaveKeyValue(key, dcdtDataBytes)
 	require.Nil(tb, err)
 
 	err = pr.StateComponents.AccountsAdapter().SaveAccount(userAccount)
 	require.Nil(tb, err)
 
-	pr.saveNewTokenOnSystemAccount(tb, key, esdtData)
+	pr.saveNewTokenOnSystemAccount(tb, key, dcdtData)
 
 	_, err = pr.StateComponents.AccountsAdapter().Commit()
 	require.Nil(tb, err)
 }
 
-func (pr *ProcessorRunner) saveNewTokenOnSystemAccount(tb testing.TB, tokenKey []byte, esdtData *esdt.ESDigitalToken) {
-	esdtDataOnSystemAcc := esdtData
-	esdtDataOnSystemAcc.Properties = nil
-	esdtDataOnSystemAcc.Reserved = []byte{1}
-	esdtDataOnSystemAcc.Value.Set(esdtData.Value)
+func (pr *ProcessorRunner) saveNewTokenOnSystemAccount(tb testing.TB, tokenKey []byte, dcdtData *dcdt.DCDigitalToken) {
+	dcdtDataOnSystemAcc := dcdtData
+	dcdtDataOnSystemAcc.Properties = nil
+	dcdtDataOnSystemAcc.Reserved = []byte{1}
+	dcdtDataOnSystemAcc.Value.Set(dcdtData.Value)
 
-	esdtDataBytes, err := pr.CoreComponents.InternalMarshalizer().Marshal(esdtData)
+	dcdtDataBytes, err := pr.CoreComponents.InternalMarshalizer().Marshal(dcdtData)
 	require.Nil(tb, err)
 
 	sysAccount, err := pr.StateComponents.AccountsAdapter().LoadAccount(core.SystemAccountAddress)
@@ -547,7 +547,7 @@ func (pr *ProcessorRunner) saveNewTokenOnSystemAccount(tb testing.TB, tokenKey [
 	sysUserAccount, ok := sysAccount.(state.UserAccountHandler)
 	require.True(tb, ok)
 
-	err = sysUserAccount.SaveKeyValue(tokenKey, esdtDataBytes)
+	err = sysUserAccount.SaveKeyValue(tokenKey, dcdtDataBytes)
 	require.Nil(tb, err)
 
 	err = pr.StateComponents.AccountsAdapter().SaveAccount(sysAccount)

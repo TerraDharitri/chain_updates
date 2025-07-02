@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/node"
 	"github.com/gorilla/websocket"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var formatter = logger.PlainFormatter{}

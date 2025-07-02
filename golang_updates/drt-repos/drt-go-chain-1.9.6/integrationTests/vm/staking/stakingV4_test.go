@@ -476,7 +476,7 @@ func TestStakingV4_UnStakeNodesWithNotEnoughFunds(t *testing.T) {
 	require.Len(t, getAllPubKeys(currNodesConfig.leaving), 1)
 	requireSliceContainsNumOfElements(t, getAllPubKeys(currNodesConfig.leaving), getAllPubKeys(owner2Stats.WaitingBlsKeys), 1)
 
-	// Owner1 will unStake some EGLD => at the end of next epoch, he should not be able to reStake all the nodes
+	// Owner1 will unStake some REWA => at the end of next epoch, he should not be able to reStake all the nodes
 	unStake(t, []byte(owner1), node.AccountsAdapter, node.Marshaller, big.NewInt(0.1*nodePrice))
 
 	// 3. ReStake the nodes that were in the queue
@@ -506,9 +506,9 @@ func TestStakingV4_UnStakeNodesWithNotEnoughFunds(t *testing.T) {
 	// There are no more unStaked nodes left from owner1 because of insufficient funds
 	requireSliceContainsNumOfElements(t, getAllPubKeysFromConfig(currNodesConfig), owner1StakingQueue, 0)
 
-	// Owner3 will unStake EGLD => he will have negative top-up at the selection time => one of his nodes will be unStaked.
+	// Owner3 will unStake REWA => he will have negative top-up at the selection time => one of his nodes will be unStaked.
 	// His other node should not have been selected => remains in auction.
-	// Meanwhile, owner4 had never unStaked EGLD => his node from auction list will be distributed to waiting
+	// Meanwhile, owner4 had never unStaked REWA => his node from auction list will be distributed to waiting
 	unStake(t, []byte(owner3), node.AccountsAdapter, node.Marshaller, big.NewInt(2*nodePrice))
 
 	// 5. Check config in epoch = staking v4 step3

@@ -7,7 +7,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -29,9 +29,9 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // SupplyDCDT is used to store information a shard dcdt token supply
 type SupplyDCDT struct {
-	Supply           *math_big.Int `protobuf:"bytes,1,opt,name=Supply,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"value"`
-	Burned           *math_big.Int `protobuf:"bytes,2,opt,name=Burned,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"burned"`
-	Minted           *math_big.Int `protobuf:"bytes,3,opt,name=Minted,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"minted"`
+	Supply           *math_big.Int `protobuf:"bytes,1,opt,name=Supply,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"value"`
+	Burned           *math_big.Int `protobuf:"bytes,2,opt,name=Burned,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"burned"`
+	Minted           *math_big.Int `protobuf:"bytes,3,opt,name=Minted,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"minted"`
 	RecomputedSupply bool          `protobuf:"varint,4,opt,name=RecomputedSupply,proto3" json:"recomputedSupply"`
 }
 
@@ -142,19 +142,19 @@ func (this *SupplyDCDT) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Supply, that1.Supply) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Burned, that1.Burned) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Minted, that1.Minted) {
 			return false
 		}
@@ -216,7 +216,7 @@ func (m *SupplyDCDT) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x20
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Minted)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Minted, dAtA[i:]); err != nil {
@@ -227,7 +227,7 @@ func (m *SupplyDCDT) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x1a
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Burned)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Burned, dAtA[i:]); err != nil {
@@ -238,7 +238,7 @@ func (m *SupplyDCDT) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Supply)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Supply, dAtA[i:]); err != nil {
@@ -269,17 +269,17 @@ func (m *SupplyDCDT) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Supply)
 		n += 1 + l + sovSupplyDCDT(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Burned)
 		n += 1 + l + sovSupplyDCDT(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Minted)
 		n += 1 + l + sovSupplyDCDT(uint64(l))
 	}
@@ -375,7 +375,7 @@ func (m *SupplyDCDT) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -413,7 +413,7 @@ func (m *SupplyDCDT) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -451,7 +451,7 @@ func (m *SupplyDCDT) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

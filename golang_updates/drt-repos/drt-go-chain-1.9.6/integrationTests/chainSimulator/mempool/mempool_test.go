@@ -37,7 +37,7 @@ func TestMempoolWithChainSimulator_Selection(t *testing.T) {
 		for j := 0; j < numTransactionsPerSender; j++ {
 			tx := &transaction.Transaction{
 				Nonce:     noncesTracker.getThenIncrementNonce(sender),
-				Value:     oneQuarterOfEGLD,
+				Value:     oneQuarterOfREWA,
 				SndAddr:   sender.Bytes,
 				RcvAddr:   receiver.Bytes,
 				Data:      []byte{},
@@ -82,7 +82,7 @@ func TestMempoolWithChainSimulator_Selection_WhenUsersHaveZeroBalance_WithRelaye
 	err := simulator.GenerateBlocksUntilEpochIsReached(2)
 	require.NoError(t, err)
 
-	relayer, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneEGLD)
+	relayer, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneREWA)
 	require.NoError(t, err)
 
 	receiver, err := simulator.GenerateAndMintWalletAddress(uint32(shard), big.NewInt(0))
@@ -103,7 +103,7 @@ func TestMempoolWithChainSimulator_Selection_WhenUsersHaveZeroBalance_WithRelaye
 	// Transfer (executable, invalid) from Alice (relayed)
 	transactions = append(transactions, &transaction.Transaction{
 		Nonce:            noncesTracker.getThenIncrementNonce(alice),
-		Value:            oneQuarterOfEGLD,
+		Value:            oneQuarterOfREWA,
 		SndAddr:          alice.Bytes,
 		RcvAddr:          receiver.Bytes,
 		RelayerAddr:      relayer.Bytes,
@@ -195,7 +195,7 @@ func TestMempoolWithChainSimulator_Selection_WhenInsufficientBalanceForFee_WithR
 	// Transfer from Alice (relayed)
 	transactions = append(transactions, &transaction.Transaction{
 		Nonce:            noncesTracker.getThenIncrementNonce(alice),
-		Value:            oneQuarterOfEGLD,
+		Value:            oneQuarterOfREWA,
 		SndAddr:          alice.Bytes,
 		RcvAddr:          receiver.Bytes,
 		RelayerAddr:      relayer.Bytes,
@@ -211,7 +211,7 @@ func TestMempoolWithChainSimulator_Selection_WhenInsufficientBalanceForFee_WithR
 	// Transfer from Bob (relayed)
 	transactions = append(transactions, &transaction.Transaction{
 		Nonce:            noncesTracker.getThenIncrementNonce(bob),
-		Value:            oneQuarterOfEGLD,
+		Value:            oneQuarterOfREWA,
 		SndAddr:          bob.Bytes,
 		RcvAddr:          receiver.Bytes,
 		RelayerAddr:      relayer.Bytes,
@@ -227,7 +227,7 @@ func TestMempoolWithChainSimulator_Selection_WhenInsufficientBalanceForFee_WithR
 	// Transfer from Carol (relayed) - this one should not be selected due to insufficient balance (of the relayer)
 	transactions = append(transactions, &transaction.Transaction{
 		Nonce:            noncesTracker.getThenIncrementNonce(carol),
-		Value:            oneQuarterOfEGLD,
+		Value:            oneQuarterOfREWA,
 		SndAddr:          carol.Bytes,
 		RcvAddr:          receiver.Bytes,
 		RelayerAddr:      relayer.Bytes,
@@ -275,7 +275,7 @@ func TestMempoolWithChainSimulator_Eviction(t *testing.T) {
 		for j := 0; j < numTransactionsPerSender; j++ {
 			tx := &transaction.Transaction{
 				Nonce:     noncesTracker.getThenIncrementNonce(sender),
-				Value:     oneQuarterOfEGLD,
+				Value:     oneQuarterOfREWA,
 				SndAddr:   sender.Bytes,
 				RcvAddr:   receiver.Bytes,
 				Data:      []byte{},
@@ -297,7 +297,7 @@ func TestMempoolWithChainSimulator_Eviction(t *testing.T) {
 	// Send one more transaction (fill up the mempool)
 	sendTransaction(t, simulator, &transaction.Transaction{
 		Nonce:     42,
-		Value:     oneEGLD,
+		Value:     oneREWA,
 		SndAddr:   participants.sendersByShard[shard][7].Bytes,
 		RcvAddr:   participants.receiverByShard[shard].Bytes,
 		Data:      []byte{},
@@ -314,7 +314,7 @@ func TestMempoolWithChainSimulator_Eviction(t *testing.T) {
 	// Send one more transaction to trigger eviction
 	sendTransaction(t, simulator, &transaction.Transaction{
 		Nonce:     42,
-		Value:     oneEGLD,
+		Value:     oneREWA,
 		SndAddr:   participants.sendersByShard[shard][7].Bytes,
 		RcvAddr:   participants.receiverByShard[shard].Bytes,
 		Data:      []byte{},

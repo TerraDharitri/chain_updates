@@ -6,11 +6,11 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl"
 	llsig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/multisig"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing/multisig"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 	"github.com/stretchr/testify/assert"
 )
 

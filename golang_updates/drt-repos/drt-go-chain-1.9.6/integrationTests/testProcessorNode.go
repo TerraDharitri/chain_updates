@@ -911,7 +911,7 @@ func (tpn *TestProcessorNode) createFullSCQueryService(gasMap map[string]map[str
 		Uint64Converter:          TestUint64Converter,
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 tpn.DataPool,
 		CompiledSCPool:           smartContractsCache,
 		EpochNotifier:            tpn.EpochNotifier,
@@ -941,7 +941,7 @@ func (tpn *TestProcessorNode) createFullSCQueryService(gasMap map[string]map[str
 			Hasher:              TestHasher,
 			Marshalizer:         TestMarshalizer,
 			SystemSCConfig: &config.SystemSmartContractsConfig{
-				ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+				DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 					BaseIssuingCost: "1000",
 					OwnerAddress:    "aaaaaa",
 				},
@@ -1009,7 +1009,7 @@ func (tpn *TestProcessorNode) createFullSCQueryService(gasMap map[string]map[str
 		apiBlockchain, _ = blockchain.NewBlockChain(statusHandlerMock.NewAppStatusHandlerMock())
 		argsHook.BlockChain = apiBlockchain
 
-		esdtTransferParser, _ := parsers.NewESDTTransferParser(TestMarshalizer)
+		dcdtTransferParser, _ := parsers.NewDCDTTransferParser(TestMarshalizer)
 		blockChainHookImpl, _ := hooks.NewBlockChainHookImpl(argsHook)
 		argsNewVMFactory := shard.ArgVMContainerFactory{
 			Config:              *vmConfig,
@@ -1020,7 +1020,7 @@ func (tpn *TestProcessorNode) createFullSCQueryService(gasMap map[string]map[str
 			EpochNotifier:       tpn.EpochNotifier,
 			EnableEpochsHandler: tpn.EnableEpochsHandler,
 			WasmVMChangeLocker:  tpn.WasmVMChangeLocker,
-			ESDTTransferParser:  esdtTransferParser,
+			DCDTTransferParser:  dcdtTransferParser,
 			Hasher:              TestHasher,
 			PubKeyConverter:     TestAddressPubkeyConverter,
 		}
@@ -1660,8 +1660,8 @@ func (tpn *TestProcessorNode) initInnerProcessors(gasMap map[string]map[string]u
 		log.LogIfError(err)
 	}
 
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(TestMarshalizer)
-	counter, err := counters.NewUsageCounter(esdtTransferParser)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(TestMarshalizer)
+	counter, err := counters.NewUsageCounter(dcdtTransferParser)
 	log.LogIfError(err)
 
 	argsHook := hooks.ArgBlockChainHook{
@@ -1674,7 +1674,7 @@ func (tpn *TestProcessorNode) initInnerProcessors(gasMap map[string]map[string]u
 		Uint64Converter:          TestUint64Converter,
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 tpn.DataPool,
 		CompiledSCPool:           tpn.DataPool.SmartContracts(),
 		EpochNotifier:            tpn.EpochNotifier,
@@ -1697,7 +1697,7 @@ func (tpn *TestProcessorNode) initInnerProcessors(gasMap map[string]map[string]u
 		EpochNotifier:       tpn.EpochNotifier,
 		EnableEpochsHandler: tpn.EnableEpochsHandler,
 		WasmVMChangeLocker:  tpn.WasmVMChangeLocker,
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		Hasher:              TestHasher,
 		PubKeyConverter:     TestAddressPubkeyConverter,
 	}
@@ -1724,7 +1724,7 @@ func (tpn *TestProcessorNode) initInnerProcessors(gasMap map[string]map[string]u
 		ShardCoordinator:    tpn.ShardCoordinator,
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: tpn.EnableEpochsHandler,
 	}
 	txTypeHandler, _ := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -1905,7 +1905,7 @@ func (tpn *TestProcessorNode) initMetaInnerProcessors(gasMap map[string]map[stri
 		Uint64Converter:          TestUint64Converter,
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 tpn.DataPool,
 		CompiledSCPool:           tpn.DataPool.SmartContracts(),
 		EpochNotifier:            tpn.EpochNotifier,
@@ -1936,7 +1936,7 @@ func (tpn *TestProcessorNode) initMetaInnerProcessors(gasMap map[string]map[stri
 		Hasher:              TestHasher,
 		Marshalizer:         TestMarshalizer,
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "aaaaaa",
 			},
@@ -2002,13 +2002,13 @@ func (tpn *TestProcessorNode) initMetaInnerProcessors(gasMap map[string]map[stri
 
 	tpn.FeeAccumulator = postprocess.NewFeeAccumulator()
 	tpn.ArgsParser = smartContract.NewArgumentParser()
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(TestMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(TestMarshalizer)
 	argsTxTypeHandler := coordinator.ArgNewTxTypeHandler{
 		PubkeyConverter:     TestAddressPubkeyConverter,
 		ShardCoordinator:    tpn.ShardCoordinator,
 		BuiltInFunctions:    builtInFuncFactory.BuiltInFunctionContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: tpn.EnableEpochsHandler,
 	}
 	txTypeHandler, _ := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -2434,7 +2434,7 @@ func (tpn *TestProcessorNode) initBlockProcessor() {
 			StakingDataProvider:          stakingDataProvider,
 			NodesConfigProvider:          tpn.NodesCoordinator,
 			ShardCoordinator:             tpn.ShardCoordinator,
-			ESDTOwnerAddressBytes:        vm.EndOfEpochAddress,
+			DCDTOwnerAddressBytes:        vm.EndOfEpochAddress,
 			EnableEpochsHandler:          tpn.EnableEpochsHandler,
 			AuctionListSelector:          auctionListSelector,
 			MaxNodesChangeConfigProvider: maxNodesChangeConfigProvider,
@@ -3322,7 +3322,7 @@ func CreateEnableEpochsConfig() config.EnableEpochs {
 		StakingV2EnableEpoch:                              UnreachableEpoch,
 		StakeEnableEpoch:                                  0,
 		DoubleKeyProtectionEnableEpoch:                    0,
-		ESDTEnableEpoch:                                   UnreachableEpoch,
+		DCDTEnableEpoch:                                   UnreachableEpoch,
 		GovernanceEnableEpoch:                             UnreachableEpoch,
 		DelegationManagerEnableEpoch:                      UnreachableEpoch,
 		DelegationSmartContractEnableEpoch:                UnreachableEpoch,
@@ -3336,16 +3336,16 @@ func CreateEnableEpochsConfig() config.EnableEpochs {
 		ValidatorToDelegationEnableEpoch:                  UnreachableEpoch,
 		ReDelegateBelowMinCheckEnableEpoch:                UnreachableEpoch,
 		IncrementSCRNonceInMultiTransferEnableEpoch:       UnreachableEpoch,
-		ESDTMultiTransferEnableEpoch:                      UnreachableEpoch,
+		DCDTMultiTransferEnableEpoch:                      UnreachableEpoch,
 		GlobalMintBurnDisableEpoch:                        UnreachableEpoch,
-		ESDTTransferRoleEnableEpoch:                       UnreachableEpoch,
+		DCDTTransferRoleEnableEpoch:                       UnreachableEpoch,
 		ComputeRewardCheckpointEnableEpoch:                UnreachableEpoch,
 		SCRSizeInvariantCheckEnableEpoch:                  UnreachableEpoch,
 		BackwardCompSaveKeyValueEnableEpoch:               UnreachableEpoch,
-		ESDTNFTCreateOnMultiShardEnableEpoch:              UnreachableEpoch,
-		MetaESDTSetEnableEpoch:                            UnreachableEpoch,
+		DCDTNFTCreateOnMultiShardEnableEpoch:              UnreachableEpoch,
+		MetaDCDTSetEnableEpoch:                            UnreachableEpoch,
 		AddTokensToDelegationEnableEpoch:                  UnreachableEpoch,
-		MultiESDTTransferFixOnCallBackOnEnableEpoch:       UnreachableEpoch,
+		MultiDCDTTransferFixOnCallBackOnEnableEpoch:       UnreachableEpoch,
 		OptimizeGasUsedInCrossMiniBlocksEnableEpoch:       UnreachableEpoch,
 		CorrectFirstQueuedEpoch:                           UnreachableEpoch,
 		CorrectJailedNotUnstakedEmptyQueueEpoch:           UnreachableEpoch,
@@ -3360,7 +3360,7 @@ func CreateEnableEpochsConfig() config.EnableEpochs {
 		CleanUpInformativeSCRsEnableEpoch:                 UnreachableEpoch,
 		StorageAPICostOptimizationEnableEpoch:             UnreachableEpoch,
 		TransformToMultiShardCreateEnableEpoch:            UnreachableEpoch,
-		ESDTRegisterAndSetAllRolesEnableEpoch:             UnreachableEpoch,
+		DCDTRegisterAndSetAllRolesEnableEpoch:             UnreachableEpoch,
 		ScheduledMiniBlocksEnableEpoch:                    UnreachableEpoch,
 		FailExecutionOnEveryAPIErrorEnableEpoch:           UnreachableEpoch,
 		AddFailedRelayedTxToInvalidMBsDisableEpoch:        UnreachableEpoch,
@@ -3572,7 +3572,7 @@ func GetTokenIdentifier(nodes []*TestProcessorNode, ticker []byte) []byte {
 			continue
 		}
 
-		acc, _ := n.AccntState.LoadAccount(vm.ESDTSCAddress)
+		acc, _ := n.AccntState.LoadAccount(vm.DCDTSCAddress)
 		userAcc, _ := acc.(state.UserAccountHandler)
 
 		chLeaves := &common.TrieIteratorChannels{

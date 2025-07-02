@@ -20,7 +20,7 @@
                                 "DCDTRoleLocalBurn"
                             ]
                         },
-                        "str:MEX-abcdef": {
+                        "str:MOA-abcdef": {
                             "instances": [
                                 {
                                     "nonce": "0",
@@ -42,7 +42,7 @@
                     },
                     "storage": {
                         "str:first_token_id": "str:WREWA-abcdef",
-                        "str:second_token_id": "str:MEX-abcdef",
+                        "str:second_token_id": "str:MOA-abcdef",
                         "str:state": "1",
                         "str:lpTokenIdentifier": "str:LPTOK-abcdef",
                         "str:router_address": "address:owner",
@@ -54,7 +54,7 @@
                         "str:mint_tokens_gas_limit": "500000",
                         "str:send_fee_gas_limit": "25,000,000",
                         "str:extern_swap_gas_limit": "50,000,000",
-                        "str:reserve|nested:str:MEX-abcdef": "1000000000000000000000000",
+                        "str:reserve|nested:str:MOA-abcdef": "1000000000000000000000000",
                         "str:reserve|nested:str:WREWA-abcdef": "1000000000000000000000000",
                         "str:generated_tokens.info": "0x00000001000000010000000100000001",
                         "str:generated_tokens.mapped|nested:str:LPTOK-abcdef": "1000000000000000000000000",

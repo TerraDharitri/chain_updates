@@ -65,20 +65,20 @@ func TestMempoolHost_GetTransferredValue(t *testing.T) {
 		require.Equal(t, big.NewInt(1000000000000000000), value)
 	})
 
-	t.Run("native transfer within MultiESDTNFTTransfer", func(t *testing.T) {
+	t.Run("native transfer within MultiDCDTNFTTransfer", func(t *testing.T) {
 		value := host.GetTransferredValue(&transaction.Transaction{
 			SndAddr: testscommon.TestPubKeyAlice,
 			RcvAddr: testscommon.TestPubKeyAlice,
-			Data:    []byte("MultiESDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@03@4e46542d313233343536@0a@01@544553542d393837363534@01@01@45474c442d303030303030@@0de0b6b3a7640000"),
+			Data:    []byte("MultiDCDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@03@4e46542d313233343536@0a@01@544553542d393837363534@01@01@45474c442d303030303030@@0de0b6b3a7640000"),
 		})
 		require.Equal(t, big.NewInt(1000000000000000000), value)
 	})
 
-	t.Run("native transfer within MultiESDTNFTTransfer; transfer & execute", func(t *testing.T) {
+	t.Run("native transfer within MultiDCDTNFTTransfer; transfer & execute", func(t *testing.T) {
 		value := host.GetTransferredValue(&transaction.Transaction{
 			SndAddr: testscommon.TestPubKeyAlice,
 			RcvAddr: testscommon.TestPubKeyAlice,
-			Data:    []byte("MultiESDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@03@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@45474c442d303030303030@@0de0b6b3a7640000@64756d6d79@07"),
+			Data:    []byte("MultiDCDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@03@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@45474c442d303030303030@@0de0b6b3a7640000@64756d6d79@07"),
 		})
 		require.Equal(t, big.NewInt(1000000000000000000), value)
 	})
@@ -98,7 +98,7 @@ func TestBenchmarkMempoolHost_GetTransferredValue(t *testing.T) {
 
 	t.Run("numTransactions = 5_000", func(t *testing.T) {
 		numTransactions := 5_000
-		transactions := createMultiESDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
+		transactions := createMultiDCDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
 
 		sw.Start(t.Name())
 
@@ -113,7 +113,7 @@ func TestBenchmarkMempoolHost_GetTransferredValue(t *testing.T) {
 
 	t.Run("numTransactions = 10_000", func(t *testing.T) {
 		numTransactions := 10_000
-		transactions := createMultiESDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
+		transactions := createMultiDCDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
 
 		sw.Start(t.Name())
 
@@ -128,7 +128,7 @@ func TestBenchmarkMempoolHost_GetTransferredValue(t *testing.T) {
 
 	t.Run("numTransactions = 20_000", func(t *testing.T) {
 		numTransactions := 20_000
-		transactions := createMultiESDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
+		transactions := createMultiDCDTNFTTransfersWithNativeTransfer(numTransactions, valueMultiplier)
 
 		sw.Start(t.Name())
 
@@ -159,13 +159,13 @@ func TestBenchmarkMempoolHost_GetTransferredValue(t *testing.T) {
 	// 0.048808s (TestBenchmarkMempoolHost_GetTransferredValue/numTransactions_=_20_000)
 }
 
-func createMultiESDTNFTTransfersWithNativeTransfer(numTransactions int, valueMultiplier int64) []*transaction.Transaction {
+func createMultiDCDTNFTTransfersWithNativeTransfer(numTransactions int, valueMultiplier int64) []*transaction.Transaction {
 	transactions := make([]*transaction.Transaction, 0, numTransactions)
 
 	for i := 0; i < numTransactions; i++ {
 		nativeValue := big.NewInt(int64(i) * valueMultiplier)
 		data := fmt.Sprintf(
-			"MultiESDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@03@4e46542d313233343536@0a@01@544553542d393837363534@01@01@45474c442d303030303030@@%s",
+			"MultiDCDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@03@4e46542d313233343536@0a@01@544553542d393837363534@01@01@45474c442d303030303030@@%s",
 			hex.EncodeToString(nativeValue.Bytes()),
 		)
 

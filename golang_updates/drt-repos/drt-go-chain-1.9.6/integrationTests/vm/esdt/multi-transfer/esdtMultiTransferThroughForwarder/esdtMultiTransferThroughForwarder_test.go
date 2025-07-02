@@ -1,16 +1,16 @@
-package esdtMultiTransferThroughForwarder
+package dcdtMultiTransferThroughForwarder
 
 import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
-	multitransfer "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt/multi-transfer"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
+	multitransfer "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt/multi-transfer"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
-func TestESDTMultiTransferThroughForwarder(t *testing.T) {
+func TestDCDTMultiTransferThroughForwarder(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -31,7 +31,7 @@ func TestESDTMultiTransferThroughForwarder(t *testing.T) {
 	vault := net.DeployNonpayableSC(owner, "../../testdata/vaultV2.wasm")
 	vaultOtherShard := net.DeployNonpayableSC(net.NodesSharded[1][0].OwnAccount, "../../testdata/vaultV2.wasm")
 
-	ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
+	DCDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		t,
 		net,
 		senderNode,
@@ -43,7 +43,7 @@ func TestESDTMultiTransferThroughForwarder(t *testing.T) {
 	)
 }
 
-func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
+func DCDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 	t *testing.T,
 	net *integrationTests.TestNetwork,
 	ownerShard1Node *integrationTests.TestProcessorNode,
@@ -63,7 +63,7 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 
 	// Send the tokens to the forwarder SC
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionMultiESDTNFTTransfer)
+	txData.Func(core.BuiltInFunctionMultiDCDTNFTTransfer)
 	txData.Bytes(forwarder).Int(2)
 	txData.Str(tokenID).Int(0).Int64(supply)
 	txData.Str(sftID).Int(1).Int64(supply)
@@ -73,11 +73,11 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 	_ = net.SignAndSendTx(ownerWallet, tx)
 	net.Steps(4)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, supply)
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, supply)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, supply)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, supply)
 
 	// transfer to a user from another shard
-	transfers := []*multitransfer.EsdtTransfer{
+	transfers := []*multitransfer.DcdtTransfer{
 		{
 			TokenIdentifier: tokenID,
 			Nonce:           0,
@@ -92,8 +92,8 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		transfers,
 		ownerShard2Wallet.Address)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 900)
-	esdt.CheckAddressHasTokens(t, ownerShard2Wallet.Address, net.Nodes, []byte(tokenID), 0, 100)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 900)
+	dcdt.CheckAddressHasTokens(t, ownerShard2Wallet.Address, net.Nodes, []byte(tokenID), 0, 100)
 
 	// transfer to vault, same shard
 	multiTransferThroughForwarder(
@@ -104,12 +104,12 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		transfers,
 		vaultShard1)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 800)
-	esdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(tokenID), 0, 100)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 800)
+	dcdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(tokenID), 0, 100)
 
 	// transfer fungible and non-fungible
 	// transfer to vault, same shard
-	transfers = []*multitransfer.EsdtTransfer{
+	transfers = []*multitransfer.DcdtTransfer{
 		{
 			TokenIdentifier: tokenID,
 			Nonce:           0,
@@ -129,15 +129,15 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		transfers,
 		vaultShard1)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 700)
-	esdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(tokenID), 0, 200)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 700)
+	dcdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(tokenID), 0, 200)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 900)
-	esdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(sftID), 1, 100)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 900)
+	dcdt.CheckAddressHasTokens(t, vaultShard1, net.Nodes, []byte(sftID), 1, 100)
 
 	// transfer fungible and non-fungible
 	// transfer to vault, cross shard via transfer and execute
-	transfers = []*multitransfer.EsdtTransfer{
+	transfers = []*multitransfer.DcdtTransfer{
 		{
 			TokenIdentifier: tokenID,
 			Nonce:           0,
@@ -157,14 +157,14 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		transfers,
 		vaultShard2)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 600)
-	esdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(tokenID), 0, 100)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 600)
+	dcdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(tokenID), 0, 100)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 800)
-	esdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 100)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 800)
+	dcdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 100)
 
 	// transfer to vault, cross shard, via async call
-	transfers = []*multitransfer.EsdtTransfer{
+	transfers = []*multitransfer.DcdtTransfer{
 		{
 			TokenIdentifier: tokenID,
 			Nonce:           0,
@@ -184,11 +184,11 @@ func ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(
 		transfers,
 		vaultShard2)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 500)
-	esdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(tokenID), 0, 200)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 500)
+	dcdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(tokenID), 0, 200)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 700)
-	esdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 200)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 700)
+	dcdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 200)
 }
 
 func multiTransferThroughForwarder(
@@ -196,7 +196,7 @@ func multiTransferThroughForwarder(
 	ownerWallet *integrationTests.TestWalletAccount,
 	forwarderAddress []byte,
 	function string,
-	transfers []*multitransfer.EsdtTransfer,
+	transfers []*multitransfer.DcdtTransfer,
 	destAddress []byte) {
 
 	txData := txDataBuilder.NewBuilder()
@@ -212,7 +212,7 @@ func multiTransferThroughForwarder(
 	net.Steps(10)
 }
 
-func TestESDTMultiTransferWithWrongArgumentsSFT(t *testing.T) {
+func TestDCDTMultiTransferWithWrongArgumentsSFT(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -230,10 +230,10 @@ func TestESDTMultiTransferWithWrongArgumentsSFT(t *testing.T) {
 	forwarder := net.DeployNonpayableSC(owner, "../../testdata/execute/output/execute.wasm")
 	vaultOtherShard := net.DeployNonpayableSC(net.NodesSharded[1][0].OwnAccount, "../../testdata/vault.wasm")
 
-	ESDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(t, net, senderNode, senderNode.OwnAccount, forwarder, vaultOtherShard)
+	DCDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(t, net, senderNode, senderNode.OwnAccount, forwarder, vaultOtherShard)
 }
 
-func ESDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(
+func DCDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(
 	t *testing.T,
 	net *integrationTests.TestNetwork,
 	ownerShard1Node *integrationTests.TestProcessorNode,
@@ -247,21 +247,21 @@ func ESDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(
 
 	// Send the tokens to the forwarder SC
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionMultiESDTNFTTransfer)
+	txData.Func(core.BuiltInFunctionMultiDCDTNFTTransfer)
 	txData.Bytes(forwarder).Int(1)
 	txData.Str(sftID).Int(1).Int64(10).Str("doAsyncCall").Bytes(forwarder)
-	txData.Bytes([]byte{}).Str(core.BuiltInFunctionMultiESDTNFTTransfer).Int(6).Bytes(vaultShard2).Int(1).Str(sftID).Int(1).Int(1).Bytes([]byte{})
+	txData.Bytes([]byte{}).Str(core.BuiltInFunctionMultiDCDTNFTTransfer).Int(6).Bytes(vaultShard2).Int(1).Str(sftID).Int(1).Int(1).Bytes([]byte{})
 	tx := net.CreateTxUint64(ownerWallet, ownerWallet.Address, 0, txData.ToBytes())
 	tx.GasLimit = net.MaxGasLimit / 2
 	_ = net.SignAndSendTx(ownerWallet, tx)
 	net.Steps(12)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 10)
-	esdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 0)
-	esdt.CheckAddressHasTokens(t, ownerWallet.Address, net.Nodes, []byte(sftID), 1, supply-10)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(sftID), 1, 10)
+	dcdt.CheckAddressHasTokens(t, vaultShard2, net.Nodes, []byte(sftID), 1, 0)
+	dcdt.CheckAddressHasTokens(t, ownerWallet.Address, net.Nodes, []byte(sftID), 1, supply-10)
 }
 
-func TestESDTMultiTransferWithWrongArgumentsFungible(t *testing.T) {
+func TestDCDTMultiTransferWithWrongArgumentsFungible(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -279,10 +279,10 @@ func TestESDTMultiTransferWithWrongArgumentsFungible(t *testing.T) {
 	forwarder := net.DeployNonpayableSC(owner, "../../testdata/execute/output/execute.wasm")
 	vaultOtherShard := net.DeploySCWithInitArgs(net.NodesSharded[1][0].OwnAccount, "../../testdata/contract.wasm", false, []byte{10})
 
-	ESDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(t, net, senderNode, senderNode.OwnAccount, forwarder, vaultOtherShard)
+	DCDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(t, net, senderNode, senderNode.OwnAccount, forwarder, vaultOtherShard)
 }
 
-func ESDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(
+func DCDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(
 	t *testing.T,
 	net *integrationTests.TestNetwork,
 	senderNode *integrationTests.TestProcessorNode,
@@ -294,16 +294,16 @@ func ESDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(
 
 	// Send the tokens to the forwarder SC
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionMultiESDTNFTTransfer)
+	txData.Func(core.BuiltInFunctionMultiDCDTNFTTransfer)
 	txData.Bytes(forwarder).Int(1)
 	txData.Str(tokenID).Int(0).Int64(80).Str("doAsyncCall").Bytes(forwarder)
-	txData.Bytes([]byte{}).Str(core.BuiltInFunctionMultiESDTNFTTransfer).Int(6).Bytes(vaultOtherShard).Int(1).Str(tokenID).Int(0).Int(42).Bytes([]byte{})
+	txData.Bytes([]byte{}).Str(core.BuiltInFunctionMultiDCDTNFTTransfer).Int(6).Bytes(vaultOtherShard).Int(1).Str(tokenID).Int(0).Int(42).Bytes([]byte{})
 	tx := net.CreateTxUint64(ownerWallet, ownerWallet.Address, 0, txData.ToBytes())
 	tx.GasLimit = 104000
 	_ = net.SignAndSendTx(ownerWallet, tx)
 	net.Steps(12)
 
-	esdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 80)
-	esdt.CheckAddressHasTokens(t, vaultOtherShard, net.Nodes, []byte(tokenID), 0, 0)
-	esdt.CheckAddressHasTokens(t, ownerWallet.Address, net.Nodes, []byte(tokenID), 0, supply-80)
+	dcdt.CheckAddressHasTokens(t, forwarder, net.Nodes, []byte(tokenID), 0, 80)
+	dcdt.CheckAddressHasTokens(t, vaultOtherShard, net.Nodes, []byte(tokenID), 0, 0)
+	dcdt.CheckAddressHasTokens(t, ownerWallet.Address, net.Nodes, []byte(tokenID), 0, supply-80)
 }

@@ -90,7 +90,7 @@ func CreateNode(
 		WithPublicKeySize(config.ValidatorPubkeyConverter.Length),
 		WithNodeStopChannel(coreComponents.ChanStopNodeProcess()),
 		WithImportMode(isInImportMode),
-		WithESDTNFTStorageHandler(processComponents.ESDTDataStorageHandlerForAPI()),
+		WithDCDTNFTStorageHandler(processComponents.DCDTDataStorageHandlerForAPI()),
 	)
 	if err != nil {
 		return nil, errors.New("error creating node: " + err.Error())

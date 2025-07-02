@@ -147,11 +147,11 @@ func TestFeeComputer_ComputeTransactionFeeShouldWorkForDifferentEpochs(t *testin
 	checkComputedFee(t, "57500000000000", computer, 0, 1000000, 1000000000, "hello", contract)
 	checkComputedFee(t, "80000000000000", computer, 124, 80000, 1000000000, "", nil)
 	checkComputedFee(t, "1000000000000000", computer, 124, 1000000, 1000000000, "hello", contract)
-	checkComputedFee(t, "404000000000000", computer, 124, 404000, 1000000000, "ESDTTransfer@464f4f2d653962643235@0a", contract)
+	checkComputedFee(t, "404000000000000", computer, 124, 404000, 1000000000, "DCDTTransfer@464f4f2d653962643235@0a", contract)
 	checkComputedFee(t, "57500010000000", computer, 180, 57501, 1000000000, "hello", contract)
 	checkComputedFee(t, "66925000000000", computer, 180, 1000000, 1000000000, "hello", contract)
 	checkComputedFee(t, "66925000000000", computer, 180, 1000000, 1000000000, "hello", contract)
-	checkComputedFee(t, "107000000000000", computer, 180, 404000, 1000000000, "ESDTTransfer@464f4f2d653962643235@0a", contract)
+	checkComputedFee(t, "107000000000000", computer, 180, 404000, 1000000000, "DCDTTransfer@464f4f2d653962643235@0a", contract)
 	// TODO: Add tests for guarded transactions, when enabled.
 }
 

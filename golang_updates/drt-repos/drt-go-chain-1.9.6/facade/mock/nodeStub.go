@@ -7,7 +7,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/data/api"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
 	"github.com/TerraDharitri/drt-go-chain/common"
@@ -43,17 +43,17 @@ type NodeStub struct {
 	GetEpochStartDataAPICalled                     func(epoch uint32) (*common.EpochStartDataAPI, error)
 	GetUsernameCalled                              func(address string, options api.AccountQueryOptions) (string, api.BlockInfo, error)
 	GetCodeHashCalled                              func(address string, options api.AccountQueryOptions) ([]byte, api.BlockInfo, error)
-	GetESDTDataCalled                              func(address string, key string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error)
-	GetAllESDTTokensCalled                         func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error)
+	GetDCDTDataCalled                              func(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error)
+	GetAllDCDTTokensCalled                         func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error)
 	GetNFTTokenIDsRegisteredByAddressCalled        func(address string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
-	GetESDTsWithRoleCalled                         func(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
-	GetESDTsRolesCalled                            func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error)
+	GetDCDTsWithRoleCalled                         func(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error)
+	GetDCDTsRolesCalled                            func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error)
 	GetKeyValuePairsCalled                         func(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]string, api.BlockInfo, error)
-	GetAllIssuedESDTsCalled                        func(tokenType string, ctx context.Context) ([]string, error)
+	GetAllIssuedDCDTsCalled                        func(tokenType string, ctx context.Context) ([]string, error)
 	GetProofCalled                                 func(rootHash string, key string) (*common.GetProofResponse, error)
 	GetProofDataTrieCalled                         func(rootHash string, address string, key string) (*common.GetProofResponse, *common.GetProofResponse, error)
 	VerifyProofCalled                              func(rootHash string, address string, proof [][]byte) (bool, error)
-	GetTokenSupplyCalled                           func(token string) (*api.ESDTSupply, error)
+	GetTokenSupplyCalled                           func(token string) (*api.DCDTSupply, error)
 	IsDataTrieMigratedCalled                       func(address string, options api.AccountQueryOptions) (bool, error)
 	AuctionListApiCalled                           func() ([]*common.AuctionListValidatorAPIResponse, error)
 }
@@ -289,54 +289,54 @@ func (ns *NodeStub) GetEpochStartDataAPI(epoch uint32) (*common.EpochStartDataAP
 	return &common.EpochStartDataAPI{}, nil
 }
 
-// GetESDTData -
-func (ns *NodeStub) GetESDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
-	if ns.GetESDTDataCalled != nil {
-		return ns.GetESDTDataCalled(address, tokenID, nonce, options)
+// GetDCDTData -
+func (ns *NodeStub) GetDCDTData(address, tokenID string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
+	if ns.GetDCDTDataCalled != nil {
+		return ns.GetDCDTDataCalled(address, tokenID, nonce, options)
 	}
 
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, api.BlockInfo{}, nil
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, api.BlockInfo{}, nil
 }
 
-// GetESDTsRoles -
-func (ns *NodeStub) GetESDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
-	if ns.GetESDTsRolesCalled != nil {
-		return ns.GetESDTsRolesCalled(address, options, ctx)
+// GetDCDTsRoles -
+func (ns *NodeStub) GetDCDTsRoles(address string, options api.AccountQueryOptions, ctx context.Context) (map[string][]string, api.BlockInfo, error) {
+	if ns.GetDCDTsRolesCalled != nil {
+		return ns.GetDCDTsRolesCalled(address, options, ctx)
 	}
 
 	return map[string][]string{}, api.BlockInfo{}, nil
 }
 
-// GetESDTsWithRole -
-func (ns *NodeStub) GetESDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error) {
-	if ns.GetESDTsWithRoleCalled != nil {
-		return ns.GetESDTsWithRoleCalled(address, role, options, ctx)
+// GetDCDTsWithRole -
+func (ns *NodeStub) GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions, ctx context.Context) ([]string, api.BlockInfo, error) {
+	if ns.GetDCDTsWithRoleCalled != nil {
+		return ns.GetDCDTsWithRoleCalled(address, role, options, ctx)
 	}
 
 	return make([]string, 0), api.BlockInfo{}, nil
 }
 
-// GetAllESDTTokens -
-func (ns *NodeStub) GetAllESDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
-	if ns.GetAllESDTTokensCalled != nil {
-		return ns.GetAllESDTTokensCalled(address, options, ctx)
+// GetAllDCDTTokens -
+func (ns *NodeStub) GetAllDCDTTokens(address string, options api.AccountQueryOptions, ctx context.Context) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
+	if ns.GetAllDCDTTokensCalled != nil {
+		return ns.GetAllDCDTTokensCalled(address, options, ctx)
 	}
 
-	return make(map[string]*esdt.ESDigitalToken), api.BlockInfo{}, nil
+	return make(map[string]*dcdt.DCDigitalToken), api.BlockInfo{}, nil
 }
 
 // GetTokenSupply -
-func (ns *NodeStub) GetTokenSupply(token string) (*api.ESDTSupply, error) {
+func (ns *NodeStub) GetTokenSupply(token string) (*api.DCDTSupply, error) {
 	if ns.GetTokenSupplyCalled != nil {
 		return ns.GetTokenSupplyCalled(token)
 	}
 	return nil, nil
 }
 
-// GetAllIssuedESDTs -
-func (ns *NodeStub) GetAllIssuedESDTs(tokenType string, ctx context.Context) ([]string, error) {
-	if ns.GetAllIssuedESDTsCalled != nil {
-		return ns.GetAllIssuedESDTsCalled(tokenType, ctx)
+// GetAllIssuedDCDTs -
+func (ns *NodeStub) GetAllIssuedDCDTs(tokenType string, ctx context.Context) ([]string, error) {
+	if ns.GetAllIssuedDCDTsCalled != nil {
+		return ns.GetAllIssuedDCDTsCalled(tokenType, ctx)
 	}
 	return make([]string, 0), nil
 }

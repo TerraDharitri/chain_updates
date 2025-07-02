@@ -6,8 +6,8 @@ import (
 	"sync"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/process"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var _ process.TopicFloodPreventer = (*topicFloodPreventer)(nil)

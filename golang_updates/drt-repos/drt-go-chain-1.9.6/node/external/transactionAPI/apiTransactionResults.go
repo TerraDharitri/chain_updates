@@ -111,7 +111,7 @@ func (arp *apiTransactionResultsProcessor) putSmartContractResultsInTransaction(
 	}
 
 	statusFilters := filters.NewStatusFilters(arp.shardCoordinator.SelfId())
-	statusFilters.SetStatusIfIsFailedESDTTransfer(tx)
+	statusFilters.SetStatusIfIsFailedDCDTTransfer(tx)
 	return nil
 }
 
@@ -204,7 +204,7 @@ func (arp *apiTransactionResultsProcessor) adaptSmartContractResult(scrHash []by
 	res := arp.dataFieldParser.Parse(scr.Data, scr.GetSndAddr(), scr.GetRcvAddr(), arp.shardCoordinator.NumberOfShards())
 	apiSCR.Operation = res.Operation
 	apiSCR.Function = res.Function
-	apiSCR.ESDTValues = res.ESDTValues
+	apiSCR.DCDTValues = res.DCDTValues
 	apiSCR.Tokens = res.Tokens
 
 	var err error

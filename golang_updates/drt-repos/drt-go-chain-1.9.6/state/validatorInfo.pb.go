@@ -9,7 +9,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -45,7 +45,7 @@ type ValidatorInfo struct {
 	ValidatorFailure                uint32        `protobuf:"varint,12,opt,name=ValidatorFailure,proto3" json:"validatorFailure"`
 	ValidatorIgnoredSignatures      uint32        `protobuf:"varint,13,opt,name=ValidatorIgnoredSignatures,proto3" json:"validatorIgnoredSignatures"`
 	NumSelectedInSuccessBlocks      uint32        `protobuf:"varint,14,opt,name=NumSelectedInSuccessBlocks,proto3" json:"numSelectedInSuccessBlocks"`
-	AccumulatedFees                 *math_big.Int `protobuf:"bytes,15,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"accumulatedFees,omitempty"`
+	AccumulatedFees                 *math_big.Int `protobuf:"bytes,15,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"accumulatedFees,omitempty"`
 	TotalLeaderSuccess              uint32        `protobuf:"varint,16,opt,name=TotalLeaderSuccess,proto3" json:"totalLeaderSuccess"`
 	TotalLeaderFailure              uint32        `protobuf:"varint,17,opt,name=TotalLeaderFailure,proto3" json:"totalLeaderFailure"`
 	TotalValidatorSuccess           uint32        `protobuf:"varint,18,opt,name=TotalValidatorSuccess,proto3" json:"totalValidatorSuccess"`
@@ -447,7 +447,7 @@ func (this *ValidatorInfo) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.AccumulatedFees, that1.AccumulatedFees) {
 			return false
 		}
@@ -644,7 +644,7 @@ func (m *ValidatorInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x80
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.AccumulatedFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.AccumulatedFees, dAtA[i:]); err != nil {
@@ -861,7 +861,7 @@ func (m *ValidatorInfo) Size() (n int) {
 		n += 1 + sovValidatorInfo(uint64(m.NumSelectedInSuccessBlocks))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.AccumulatedFees)
 		n += 1 + l + sovValidatorInfo(uint64(l))
 	}
@@ -1344,7 +1344,7 @@ func (m *ValidatorInfo) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

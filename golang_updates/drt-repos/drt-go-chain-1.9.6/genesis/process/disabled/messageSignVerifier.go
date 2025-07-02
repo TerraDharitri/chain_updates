@@ -2,8 +2,8 @@ package disabled
 
 import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain/genesis"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // MessageSignVerifier represents the message verifier that accepts any message, sign, pk tuple

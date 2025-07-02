@@ -6,7 +6,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain/dblookupext"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 )
 
 var errorDisabledHistoryRepository = errors.New("history repository is disabled")
@@ -48,8 +48,8 @@ func (nhr *nilHistoryRepository) RevertBlock(_ data.HeaderHandler, _ data.BodyHa
 	return nil
 }
 
-// GetESDTSupply -
-func (nhr *nilHistoryRepository) GetESDTSupply(_ string) (*esdtSupply.SupplyESDT, error) {
+// GetDCDTSupply -
+func (nhr *nilHistoryRepository) GetDCDTSupply(_ string) (*dcdtSupply.SupplyDCDT, error) {
 	return nil, errorDisabledHistoryRepository
 }
 

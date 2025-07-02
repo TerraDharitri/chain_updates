@@ -1,4 +1,4 @@
-package esdt
+package dcdt
 
 import (
 	"math/big"
@@ -23,14 +23,14 @@ func MultiTransferViaAsyncMock(instanceMock *mock.InstanceMock, config interface
 
 		scAddress := host.Runtime().GetContextAddress()
 
-		// destAddress + ESDT transfer tripplets (TokenIdentifier + Nonce + Amount)
+		// destAddress + DCDT transfer tripplets (TokenIdentifier + Nonce + Amount)
 		args := host.Runtime().Arguments()
 		destAddress := args[0]
 		transfers := args[1:]
 
 		callData := txDataBuilder.NewBuilder()
 		callData.
-			TransferMultiESDT(destAddress, transfers).
+			TransferMultiDCDT(destAddress, transfers).
 			Str("accept_multi_funds_echo")
 
 		value := big.NewInt(testConfig.TransferFromParentToChild).Bytes()
@@ -53,14 +53,14 @@ func SyncMultiTransferMock(instanceMock *mock.InstanceMock, config interface{}) 
 
 		scAddress := host.Runtime().GetContextAddress()
 
-		// destAddress + ESDT transfer tripplets (TokenIdentifier + Nonce + Amount)
+		// destAddress + DCDT transfer tripplets (TokenIdentifier + Nonce + Amount)
 		args := host.Runtime().Arguments()
 		destAddress := args[0]
 		transfers := args[1:]
 
 		callData := txDataBuilder.NewBuilder()
 		callData.
-			TransferMultiESDT(destAddress, transfers).
+			TransferMultiDCDT(destAddress, transfers).
 			Str("accept_funds_echo")
 
 		vmhooks.ExecuteOnDestContextWithTypedArgs(
@@ -81,19 +81,19 @@ func MultiTransferExecuteMock(instanceMock *mock.InstanceMock, config interface{
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
 
-		// destAddress + ESDT transfer tripplets (TokenIdentifier + Nonce + Amount)
+		// destAddress + DCDT transfer tripplets (TokenIdentifier + Nonce + Amount)
 		args := host.Runtime().Arguments()
 		destAddress := args[0]
 		numOfTransfers := (len(args) - 1) / 3
 
-		transfers := make([]*vmcommon.ESDTTransfer, numOfTransfers)
+		transfers := make([]*vmcommon.DCDTTransfer, numOfTransfers)
 		for i := 0; i < numOfTransfers; i++ {
 			tokenStartIndex := 1 + i*parsers.ArgsPerTransfer
-			transfer := createEsdtTransferFromArgs(args, tokenStartIndex)
+			transfer := createDcdtTransferFromArgs(args, tokenStartIndex)
 			transfers[i] = transfer
 		}
 
-		vmhooks.TransferESDTNFTExecuteWithTypedArgs(
+		vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
 			host,
 			destAddress,
 			transfers,
@@ -105,15 +105,15 @@ func MultiTransferExecuteMock(instanceMock *mock.InstanceMock, config interface{
 	})
 }
 
-func createEsdtTransferFromArgs(args [][]byte, transferTripletStartIndex int) *vmcommon.ESDTTransfer {
-	transfer := &vmcommon.ESDTTransfer{
-		ESDTTokenName:  args[transferTripletStartIndex],
-		ESDTTokenNonce: big.NewInt(0).SetBytes(args[transferTripletStartIndex+1]).Uint64(),
-		ESDTValue:      big.NewInt(0).SetBytes(args[transferTripletStartIndex+2]),
-		ESDTTokenType:  uint32(core.Fungible),
+func createDcdtTransferFromArgs(args [][]byte, transferTripletStartIndex int) *vmcommon.DCDTTransfer {
+	transfer := &vmcommon.DCDTTransfer{
+		DCDTTokenName:  args[transferTripletStartIndex],
+		DCDTTokenNonce: big.NewInt(0).SetBytes(args[transferTripletStartIndex+1]).Uint64(),
+		DCDTValue:      big.NewInt(0).SetBytes(args[transferTripletStartIndex+2]),
+		DCDTTokenType:  uint32(core.Fungible),
 	}
-	if transfer.ESDTTokenNonce > 0 {
-		transfer.ESDTTokenType = uint32(core.NonFungible)
+	if transfer.DCDTTokenNonce > 0 {
+		transfer.DCDTTokenType = uint32(core.NonFungible)
 	}
 	return transfer
 }
@@ -153,7 +153,7 @@ func DoAsyncCallMock(instanceMock *mock.InstanceMock, config interface{}) {
 
 		args := host.Runtime().Arguments()
 		destAddress := args[0]
-		egldValue := args[1]
+		rewaValue := args[1]
 		function := string(args[2])
 
 		callData := txDataBuilder.NewBuilder()
@@ -162,7 +162,7 @@ func DoAsyncCallMock(instanceMock *mock.InstanceMock, config interface{}) {
 			callData.Bytes(args[a])
 		}
 
-		err := wasmvm.RegisterAsyncCallForMockContract(host, config, destAddress, egldValue, callData)
+		err := wasmvm.RegisterAsyncCallForMockContract(host, config, destAddress, rewaValue, callData)
 		if err != nil {
 			host.Runtime().SignalUserError(err.Error())
 			return instance

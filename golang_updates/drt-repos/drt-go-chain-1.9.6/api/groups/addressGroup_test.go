@@ -14,7 +14,7 @@ import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain-core/data/api"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	apiErrors "github.com/TerraDharitri/drt-go-chain/api/errors"
 	"github.com/TerraDharitri/drt-go-chain/api/groups"
 	"github.com/TerraDharitri/drt-go-chain/api/mock"
@@ -46,13 +46,13 @@ type valueForKeyResponse struct {
 	Code  string                  `json:"code"`
 }
 
-type esdtTokenData struct {
+type dcdtTokenData struct {
 	TokenIdentifier string `json:"tokenIdentifier"`
 	Balance         string `json:"balance"`
 	Properties      string `json:"properties"`
 }
 
-type esdtNFTTokenData struct {
+type dcdtNFTTokenData struct {
 	TokenIdentifier string   `json:"tokenIdentifier"`
 	Balance         string   `json:"balance"`
 	Properties      string   `json:"properties"`
@@ -65,26 +65,26 @@ type esdtNFTTokenData struct {
 	Attributes      []byte   `json:"attributes"`
 }
 
-type esdtNFTResponseData struct {
-	esdtNFTTokenData `json:"tokenData"`
+type dcdtNFTResponseData struct {
+	dcdtNFTTokenData `json:"tokenData"`
 }
 
-type esdtTokenResponseData struct {
-	esdtTokenData `json:"tokenData"`
+type dcdtTokenResponseData struct {
+	dcdtTokenData `json:"tokenData"`
 }
 
-type esdtsWithRoleResponseData struct {
+type dcdtsWithRoleResponseData struct {
 	Tokens []string `json:"tokens"`
 }
 
-type esdtsWithRoleResponse struct {
-	Data  esdtsWithRoleResponseData `json:"data"`
+type dcdtsWithRoleResponse struct {
+	Data  dcdtsWithRoleResponseData `json:"data"`
 	Error string                    `json:"error"`
 	Code  string                    `json:"code"`
 }
 
-type esdtTokenResponse struct {
-	Data  esdtTokenResponseData `json:"data"`
+type dcdtTokenResponse struct {
+	Data  dcdtTokenResponseData `json:"data"`
 	Error string                `json:"error"`
 	Code  string                `json:"code"`
 }
@@ -99,18 +99,18 @@ type guardianDataResponse struct {
 	Code  string                   `json:"code"`
 }
 
-type esdtNFTResponse struct {
-	Data  esdtNFTResponseData `json:"data"`
+type dcdtNFTResponse struct {
+	Data  dcdtNFTResponseData `json:"data"`
 	Error string              `json:"error"`
 	Code  string              `json:"code"`
 }
 
-type esdtTokensCompleteResponseData struct {
-	Tokens map[string]esdtNFTTokenData `json:"esdts"`
+type dcdtTokensCompleteResponseData struct {
+	Tokens map[string]dcdtNFTTokenData `json:"dcdts"`
 }
 
-type esdtTokensCompleteResponse struct {
-	Data  esdtTokensCompleteResponseData `json:"data"`
+type dcdtTokensCompleteResponse struct {
+	Data  dcdtTokensCompleteResponseData `json:"data"`
 	Error string                         `json:"error"`
 	Code  string
 }
@@ -125,12 +125,12 @@ type keyValuePairsResponse struct {
 	Code  string
 }
 
-type esdtRolesResponseData struct {
+type dcdtRolesResponseData struct {
 	Roles map[string][]string `json:"roles"`
 }
 
-type esdtRolesResponse struct {
-	Data  esdtRolesResponseData `json:"data"`
+type dcdtRolesResponse struct {
+	Data  dcdtRolesResponseData `json:"data"`
 	Error string                `json:"error"`
 	Code  string
 }
@@ -662,31 +662,31 @@ func TestAddressGroup_getKeyValuePairs(t *testing.T) {
 	})
 }
 
-func TestAddressGroup_getESDTBalance(t *testing.T) {
+func TestAddressGroup_getDCDTBalance(t *testing.T) {
 	t.Parallel()
 
 	t.Run("empty address should error",
-		testErrorScenario("/address//esdt/newToken", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTBalance, apiErrors.ErrEmptyAddress)))
+		testErrorScenario("/address//dcdt/newToken", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTBalance, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/drt1alice/esdt/newToken?blockNonce=not-uint64", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTBalance, apiErrors.ErrBadUrlParams)))
+		testErrorScenario("/address/drt1alice/dcdt/newToken?blockNonce=not-uint64", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTBalance, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
 
 		facade := &mock.FacadeStub{
-			GetESDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
-				return &esdt.ESDigitalToken{}, api.BlockInfo{}, expectedErr
+			GetDCDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
+				return &dcdt.DCDigitalToken{}, api.BlockInfo{}, expectedErr
 			},
 		}
 		testAddressGroup(
 			t,
 			facade,
-			"/address/drt1alice/esdt/newToken",
+			"/address/drt1alice/dcdt/newToken",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
-			formatExpectedErr(apiErrors.ErrGetESDTBalance, expectedErr),
+			formatExpectedErr(apiErrors.ErrGetDCDTBalance, expectedErr),
 		)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -695,46 +695,46 @@ func TestAddressGroup_getESDTBalance(t *testing.T) {
 		testValue := big.NewInt(100).String()
 		testProperties := []byte{byte(0), byte(1), byte(0)}
 		facade := &mock.FacadeStub{
-			GetESDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
-				return &esdt.ESDigitalToken{Value: big.NewInt(100), Properties: testProperties}, api.BlockInfo{}, nil
+			GetDCDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
+				return &dcdt.DCDigitalToken{Value: big.NewInt(100), Properties: testProperties}, api.BlockInfo{}, nil
 			},
 		}
 
-		esdtBalanceResponseObj := &esdtTokenResponse{}
+		dcdtBalanceResponseObj := &dcdtTokenResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/drt1alice/esdt/newToken",
+			"/address/drt1alice/dcdt/newToken",
 			"GET",
 			nil,
-			esdtBalanceResponseObj,
+			dcdtBalanceResponseObj,
 		)
-		assert.Equal(t, testValue, esdtBalanceResponseObj.Data.Balance)
-		assert.Equal(t, "000100", esdtBalanceResponseObj.Data.Properties)
+		assert.Equal(t, testValue, dcdtBalanceResponseObj.Data.Balance)
+		assert.Equal(t, "000100", dcdtBalanceResponseObj.Data.Properties)
 	})
 }
 
-func TestAddressGroup_getESDTsRoles(t *testing.T) {
+func TestAddressGroup_getDCDTsRoles(t *testing.T) {
 	t.Parallel()
 
 	t.Run("empty address should error",
-		testErrorScenario("/address//esdts/roles", "GET", nil,
+		testErrorScenario("/address//dcdts/roles", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetRolesForAccount, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/drt1alice/esdts/roles?blockNonce=not-uint64", "GET", nil,
+		testErrorScenario("/address/drt1alice/dcdts/roles?blockNonce=not-uint64", "GET", nil,
 			formatExpectedErr(apiErrors.ErrGetRolesForAccount, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
 
 		facade := &mock.FacadeStub{
-			GetESDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+			GetDCDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
 				return nil, api.BlockInfo{}, expectedErr
 			},
 		}
 		testAddressGroup(
 			t,
 			facade,
-			"/address/drt1alice/esdts/roles",
+			"/address/drt1alice/dcdts/roles",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
@@ -749,16 +749,16 @@ func TestAddressGroup_getESDTsRoles(t *testing.T) {
 			"token1": {"role3", "role1"},
 		}
 		facade := &mock.FacadeStub{
-			GetESDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+			GetDCDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
 				return roles, api.BlockInfo{}, nil
 			},
 		}
 
-		response := &esdtRolesResponse{}
+		response := &dcdtRolesResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/drt1alice/esdts/roles",
+			"/address/drt1alice/dcdts/roles",
 			"GET",
 			nil,
 			response,
@@ -767,34 +767,34 @@ func TestAddressGroup_getESDTsRoles(t *testing.T) {
 	})
 }
 
-func TestAddressGroup_getESDTTokensWithRole(t *testing.T) {
+func TestAddressGroup_getDCDTTokensWithRole(t *testing.T) {
 	t.Parallel()
 
 	t.Run("empty address should error",
-		testErrorScenario("/address//esdts-with-role/ESDTRoleNFTCreate", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, apiErrors.ErrEmptyAddress)))
+		testErrorScenario("/address//dcdts-with-role/DCDTRoleNFTCreate", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTTokensWithRole, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate?blockNonce=not-uint64", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, apiErrors.ErrBadUrlParams)))
+		testErrorScenario("/address/drt1alice/dcdts-with-role/DCDTRoleNFTCreate?blockNonce=not-uint64", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTTokensWithRole, apiErrors.ErrBadUrlParams)))
 	t.Run("invalid role should error",
-		testErrorScenario("/address/drt1alice/esdts-with-role/invalid", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, fmt.Errorf("invalid role: %s", "invalid"))))
+		testErrorScenario("/address/drt1alice/dcdts-with-role/invalid", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTTokensWithRole, fmt.Errorf("invalid role: %s", "invalid"))))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
 
 		facade := &mock.FacadeStub{
-			GetESDTsWithRoleCalled: func(_ string, _ string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
+			GetDCDTsWithRoleCalled: func(_ string, _ string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
 				return nil, api.BlockInfo{}, expectedErr
 			},
 		}
 		testAddressGroup(
 			t,
 			facade,
-			"/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate",
+			"/address/drt1alice/dcdts-with-role/DCDTRoleNFTCreate",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
-			formatExpectedErr(apiErrors.ErrGetESDTTokensWithRole, expectedErr),
+			formatExpectedErr(apiErrors.ErrGetDCDTTokensWithRole, expectedErr),
 		)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -802,21 +802,21 @@ func TestAddressGroup_getESDTTokensWithRole(t *testing.T) {
 
 		expectedTokens := []string{"ABC-0o9i8u", "XYZ-r5y7i9"}
 		facade := &mock.FacadeStub{
-			GetESDTsWithRoleCalled: func(address string, role string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
+			GetDCDTsWithRoleCalled: func(address string, role string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
 				return expectedTokens, api.BlockInfo{}, nil
 			},
 		}
 
-		esdtResponseObj := &esdtsWithRoleResponse{}
+		dcdtResponseObj := &dcdtsWithRoleResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/drt1alice/esdts-with-role/ESDTRoleNFTCreate",
+			"/address/drt1alice/dcdts-with-role/DCDTRoleNFTCreate",
 			"GET",
 			nil,
-			esdtResponseObj,
+			dcdtResponseObj,
 		)
-		assert.Equal(t, expectedTokens, esdtResponseObj.Data.Tokens)
+		assert.Equal(t, expectedTokens, dcdtResponseObj.Data.Tokens)
 	})
 }
 
@@ -857,36 +857,36 @@ func TestAddressGroup_getNFTTokenIDsRegisteredByAddress(t *testing.T) {
 			},
 		}
 
-		esdtResponseObj := &esdtsWithRoleResponse{}
+		dcdtResponseObj := &dcdtsWithRoleResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
 			"/address/drt1alice/registered-nfts",
 			"GET",
 			nil,
-			esdtResponseObj,
+			dcdtResponseObj,
 		)
-		assert.Equal(t, expectedTokens, esdtResponseObj.Data.Tokens)
+		assert.Equal(t, expectedTokens, dcdtResponseObj.Data.Tokens)
 	})
 }
 
-func TestAddressGroup_getESDTNFTData(t *testing.T) {
+func TestAddressGroup_getDCDTNFTData(t *testing.T) {
 	t.Parallel()
 
 	t.Run("empty address should error",
 		testErrorScenario("/address//nft/newToken/nonce/10", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrEmptyAddress)))
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
 		testErrorScenario("/address/drt1alice/nft/newToken/nonce/10?blockNonce=not-uint64", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrBadUrlParams)))
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, apiErrors.ErrBadUrlParams)))
 	t.Run("invalid nonce should error",
 		testErrorScenario("/address/drt1alice/nft/newToken/nonce/not-int", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrNonceInvalid)))
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, apiErrors.ErrNonceInvalid)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
 
 		facade := &mock.FacadeStub{
-			GetESDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
+			GetDCDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
 				return nil, api.BlockInfo{}, expectedErr
 			},
 		}
@@ -897,7 +897,7 @@ func TestAddressGroup_getESDTNFTData(t *testing.T) {
 			"GET",
 			nil,
 			http.StatusInternalServerError,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, expectedErr),
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, expectedErr),
 		)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -908,55 +908,55 @@ func TestAddressGroup_getESDTNFTData(t *testing.T) {
 		testNonce := uint64(37)
 		testProperties := []byte{byte(1), byte(0), byte(0)}
 		facade := &mock.FacadeStub{
-			GetESDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
-				return &esdt.ESDigitalToken{
+			GetDCDTDataCalled: func(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
+				return &dcdt.DCDigitalToken{
 					Value:         big.NewInt(100),
 					Properties:    testProperties,
-					TokenMetaData: &esdt.MetaData{Nonce: testNonce, Creator: []byte(testAddress)}}, api.BlockInfo{}, nil
+					TokenMetaData: &dcdt.MetaData{Nonce: testNonce, Creator: []byte(testAddress)}}, api.BlockInfo{}, nil
 			},
 		}
 
-		esdtResponseObj := &esdtNFTResponse{}
+		dcdtResponseObj := &dcdtNFTResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
 			"/address/drt1alice/nft/newToken/nonce/10",
 			"GET",
 			nil,
-			esdtResponseObj,
+			dcdtResponseObj,
 		)
-		assert.Equal(t, testValue, esdtResponseObj.Data.Balance)
-		assert.Equal(t, "010000", esdtResponseObj.Data.Properties)
-		assert.Equal(t, testAddress, esdtResponseObj.Data.Creator)
-		assert.Equal(t, testNonce, esdtResponseObj.Data.Nonce)
+		assert.Equal(t, testValue, dcdtResponseObj.Data.Balance)
+		assert.Equal(t, "010000", dcdtResponseObj.Data.Properties)
+		assert.Equal(t, testAddress, dcdtResponseObj.Data.Creator)
+		assert.Equal(t, testNonce, dcdtResponseObj.Data.Nonce)
 	})
 }
 
-func TestAddressGroup_getAllESDTData(t *testing.T) {
+func TestAddressGroup_getAllDCDTData(t *testing.T) {
 	t.Parallel()
 
 	t.Run("empty address should error",
-		testErrorScenario("/address//esdt", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrEmptyAddress)))
+		testErrorScenario("/address//dcdt", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, apiErrors.ErrEmptyAddress)))
 	t.Run("invalid query options should error",
-		testErrorScenario("/address/drt1alice/esdt?blockNonce=not-uint64", "GET", nil,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, apiErrors.ErrBadUrlParams)))
+		testErrorScenario("/address/drt1alice/dcdt?blockNonce=not-uint64", "GET", nil,
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, apiErrors.ErrBadUrlParams)))
 	t.Run("with node fail should err", func(t *testing.T) {
 		t.Parallel()
 
 		facade := &mock.FacadeStub{
-			GetAllESDTTokensCalled: func(address string, options api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
+			GetAllDCDTTokensCalled: func(address string, options api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
 				return nil, api.BlockInfo{}, expectedErr
 			},
 		}
 		testAddressGroup(
 			t,
 			facade,
-			"/address/drt1alice/esdt",
+			"/address/drt1alice/dcdt",
 			"GET",
 			nil,
 			http.StatusInternalServerError,
-			formatExpectedErr(apiErrors.ErrGetESDTNFTData, expectedErr),
+			formatExpectedErr(apiErrors.ErrGetDCDTNFTData, expectedErr),
 		)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -965,24 +965,24 @@ func TestAddressGroup_getAllESDTData(t *testing.T) {
 		testValue1 := "token1"
 		testValue2 := "token2"
 		facade := &mock.FacadeStub{
-			GetAllESDTTokensCalled: func(address string, _ api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
-				tokens := make(map[string]*esdt.ESDigitalToken)
-				tokens[testValue1] = &esdt.ESDigitalToken{Value: big.NewInt(10)}
-				tokens[testValue2] = &esdt.ESDigitalToken{Value: big.NewInt(100)}
+			GetAllDCDTTokensCalled: func(address string, _ api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
+				tokens := make(map[string]*dcdt.DCDigitalToken)
+				tokens[testValue1] = &dcdt.DCDigitalToken{Value: big.NewInt(10)}
+				tokens[testValue2] = &dcdt.DCDigitalToken{Value: big.NewInt(100)}
 				return tokens, api.BlockInfo{}, nil
 			},
 		}
 
-		esdtTokenResponseObj := &esdtTokensCompleteResponse{}
+		dcdtTokenResponseObj := &dcdtTokensCompleteResponse{}
 		loadAddressGroupResponse(
 			t,
 			facade,
-			"/address/drt1alice/esdt",
+			"/address/drt1alice/dcdt",
 			"GET",
 			nil,
-			esdtTokenResponseObj,
+			dcdtTokenResponseObj,
 		)
-		assert.Equal(t, 2, len(esdtTokenResponseObj.Data.Tokens))
+		assert.Equal(t, 2, len(dcdtTokenResponseObj.Data.Tokens))
 	})
 }
 
@@ -1016,7 +1016,7 @@ func TestAddressGroup_UpdateFacade(t *testing.T) {
 		}
 		testAddress := "address"
 		facade := mock.FacadeStub{
-			GetESDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+			GetDCDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
 				return roles, api.BlockInfo{}, nil
 			},
 		}
@@ -1026,29 +1026,29 @@ func TestAddressGroup_UpdateFacade(t *testing.T) {
 
 		ws := startWebServer(addrGroup, "address", getAddressRoutesConfig())
 
-		req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts/roles", testAddress), nil)
+		req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts/roles", testAddress), nil)
 		resp := httptest.NewRecorder()
 		ws.ServeHTTP(resp, req)
 
-		response := esdtRolesResponse{}
+		response := dcdtRolesResponse{}
 		loadResponse(resp.Body, &response)
 		assert.Equal(t, http.StatusOK, resp.Code)
 		assert.Equal(t, roles, response.Data.Roles)
 
 		newErr := errors.New("new error")
 		newFacade := mock.FacadeStub{
-			GetESDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+			GetDCDTsRolesCalled: func(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
 				return nil, api.BlockInfo{}, newErr
 			},
 		}
 		err = addrGroup.UpdateFacade(&newFacade)
 		require.NoError(t, err)
 
-		req, _ = http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts/roles", testAddress), nil)
+		req, _ = http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts/roles", testAddress), nil)
 		resp = httptest.NewRecorder()
 		ws.ServeHTTP(resp, req)
 
-		response = esdtRolesResponse{}
+		response = dcdtRolesResponse{}
 		loadResponse(resp.Body, &response)
 		assert.Equal(t, http.StatusInternalServerError, resp.Code)
 		assert.True(t, strings.Contains(response.Error, newErr.Error()))
@@ -1144,11 +1144,11 @@ func getAddressRoutesConfig() config.ApiRoutesConfig {
 					{Name: "/:address/code-hash", Open: true},
 					{Name: "/:address/keys", Open: true},
 					{Name: "/:address/key/:key", Open: true},
-					{Name: "/:address/esdt", Open: true},
-					{Name: "/:address/esdts/roles", Open: true},
-					{Name: "/:address/esdt/:tokenIdentifier", Open: true},
+					{Name: "/:address/dcdt", Open: true},
+					{Name: "/:address/dcdts/roles", Open: true},
+					{Name: "/:address/dcdt/:tokenIdentifier", Open: true},
 					{Name: "/:address/nft/:tokenIdentifier/nonce/:nonce", Open: true},
-					{Name: "/:address/esdts-with-role/:role", Open: true},
+					{Name: "/:address/dcdts-with-role/:role", Open: true},
 					{Name: "/:address/registered-nfts", Open: true},
 					{Name: "/:address/is-data-trie-migrated", Open: true},
 				},

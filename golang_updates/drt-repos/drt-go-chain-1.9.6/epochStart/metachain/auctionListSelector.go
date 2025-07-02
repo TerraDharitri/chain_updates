@@ -326,7 +326,7 @@ func computeActuallyNumLeaving(shardID uint32, epochStats epochStart.ValidatorSt
 	return actuallyLeaving, forcedToStay
 }
 
-// TODO: Move this in elrond-go-core
+// TODO: Move this in numbat-go-core
 func safeSub(a, b uint32) (uint32, error) {
 	if a < b {
 		return 0, epochStart.ErrUint32SubtractionOverflow

@@ -8,7 +8,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
 	"github.com/TerraDharitri/drt-go-chain-core/data/api"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
 	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
@@ -116,13 +116,13 @@ func (inf *initialNodeFacade) GetValueForKey(_ string, _ string, _ api.AccountQu
 	return emptyString, api.BlockInfo{}, errNodeStarting
 }
 
-// GetESDTBalance returns empty strings and error
-func (inf *initialNodeFacade) GetESDTBalance(_ string, _ string, _ api.AccountQueryOptions) (string, string, api.BlockInfo, error) {
+// GetDCDTBalance returns empty strings and error
+func (inf *initialNodeFacade) GetDCDTBalance(_ string, _ string, _ api.AccountQueryOptions) (string, string, api.BlockInfo, error) {
 	return emptyString, emptyString, api.BlockInfo{}, errNodeStarting
 }
 
-// GetAllESDTTokens returns nil and error
-func (inf *initialNodeFacade) GetAllESDTTokens(_ string, _ api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
+// GetAllDCDTTokens returns nil and error
+func (inf *initialNodeFacade) GetAllDCDTTokens(_ string, _ api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
 	return nil, api.BlockInfo{}, errNodeStarting
 }
 
@@ -131,8 +131,8 @@ func (inf *initialNodeFacade) GetNFTTokenIDsRegisteredByAddress(_ string, _ api.
 	return nil, api.BlockInfo{}, errNodeStarting
 }
 
-// GetESDTsWithRole returns nil and error
-func (inf *initialNodeFacade) GetESDTsWithRole(_ string, _ string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
+// GetDCDTsWithRole returns nil and error
+func (inf *initialNodeFacade) GetDCDTsWithRole(_ string, _ string, _ api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
 	return nil, api.BlockInfo{}, errNodeStarting
 }
 
@@ -361,23 +361,23 @@ func (inf *initialNodeFacade) GetDelegatorsList() ([]*api.Delegator, error) {
 	return nil, errNodeStarting
 }
 
-// GetESDTData returns nil and error
-func (inf *initialNodeFacade) GetESDTData(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
+// GetDCDTData returns nil and error
+func (inf *initialNodeFacade) GetDCDTData(_ string, _ string, _ uint64, _ api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
 	return nil, api.BlockInfo{}, errNodeStarting
 }
 
-// GetESDTsRoles return nil and error
-func (inf *initialNodeFacade) GetESDTsRoles(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+// GetDCDTsRoles return nil and error
+func (inf *initialNodeFacade) GetDCDTsRoles(_ string, _ api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
 	return nil, api.BlockInfo{}, errNodeStarting
 }
 
-// GetAllIssuedESDTs returns nil and error
-func (inf *initialNodeFacade) GetAllIssuedESDTs(_ string) ([]string, error) {
+// GetAllIssuedDCDTs returns nil and error
+func (inf *initialNodeFacade) GetAllIssuedDCDTs(_ string) ([]string, error) {
 	return nil, errNodeStarting
 }
 
 // GetTokenSupply returns nil and error
-func (inf *initialNodeFacade) GetTokenSupply(_ string) (*api.ESDTSupply, error) {
+func (inf *initialNodeFacade) GetTokenSupply(_ string) (*api.DCDTSupply, error) {
 	return nil, errNodeStarting
 }
 

@@ -85,7 +85,7 @@ func createArgsProcessComponentsHolder() ArgsProcessComponentsHolder {
 		},
 		NodesCoordinator: &shardingMocks.NodesCoordinatorStub{},
 		SystemSCConfig: config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx",
 			},
@@ -311,7 +311,7 @@ func TestCreateProcessComponents(t *testing.T) {
 		require.True(t, ok)
 		dataMock.Store = &storage.ChainStorerStub{
 			GetStorerCalled: func(unitType retriever.UnitType) (chainStorage.Storer, error) {
-				if unitType == retriever.ESDTSuppliesUnit {
+				if unitType == retriever.DCDTSuppliesUnit {
 					return nil, expectedErr
 				}
 				return &storage.StorerStub{}, nil
@@ -411,7 +411,7 @@ func TestProcessComponentsHolder_Getters(t *testing.T) {
 	require.NotNil(t, comp.TxsSenderHandler())
 	require.NotNil(t, comp.HardforkTrigger())
 	require.NotNil(t, comp.ProcessedMiniBlocksTracker())
-	require.NotNil(t, comp.ESDTDataStorageHandlerForAPI())
+	require.NotNil(t, comp.DCDTDataStorageHandlerForAPI())
 	require.NotNil(t, comp.AccountsParser())
 	require.NotNil(t, comp.ReceiptsRepository())
 	require.NotNil(t, comp.EpochSystemSCProcessor())

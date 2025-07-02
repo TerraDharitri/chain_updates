@@ -10,15 +10,15 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	esdtCommon "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	dcdtCommon "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
 )
 
-func TestESDTLocalMintAndBurnFromSC(t *testing.T) {
+func TestDCDTLocalMintAndBurnFromSC(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdtCommon.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdtCommon.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -34,12 +34,12 @@ func TestESDTLocalMintAndBurnFromSC(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddress := esdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/local-esdt-and-nft.wasm")
+	scAddress := dcdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/local-dcdt-and-nft.wasm")
 
-	esdtLocalMintAndBurnFromSCRunTestsAndAsserts(t, nodes, nodes[0].OwnAccount, scAddress, leaders, nonce, round)
+	dcdtLocalMintAndBurnFromSCRunTestsAndAsserts(t, nodes, nodes[0].OwnAccount, scAddress, leaders, nonce, round)
 }
 
-func esdtLocalMintAndBurnFromSCRunTestsAndAsserts(
+func dcdtLocalMintAndBurnFromSCRunTestsAndAsserts(
 	t *testing.T,
 	nodes []*integrationTests.TestProcessorNode,
 	ownerWallet *integrationTests.TestWalletAccount,
@@ -48,7 +48,7 @@ func esdtLocalMintAndBurnFromSCRunTestsAndAsserts(
 	nonce uint64,
 	round uint64,
 ) {
-	tokenIdentifier := esdtCommon.PrepareFungibleTokensWithLocalBurnAndMintWithIssuerAccount(t, nodes, ownerWallet, scAddress, leaders, &nonce, &round)
+	tokenIdentifier := dcdtCommon.PrepareFungibleTokensWithLocalBurnAndMintWithIssuerAccount(t, nodes, ownerWallet, scAddress, leaders, &nonce, &round)
 
 	txData := []byte("localMint" + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + hex.EncodeToString(big.NewInt(100).Bytes()))
@@ -76,7 +76,7 @@ func esdtLocalMintAndBurnFromSCRunTestsAndAsserts(
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 200)
+	dcdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 200)
 
 	txData = []byte("localBurn" + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + hex.EncodeToString(big.NewInt(50).Bytes()))
@@ -103,14 +103,14 @@ func esdtLocalMintAndBurnFromSCRunTestsAndAsserts(
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 100)
+	dcdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 100)
 }
 
-func TestESDTSetRolesAndLocalMintAndBurnFromSC(t *testing.T) {
+func TestDCDTSetRolesAndLocalMintAndBurnFromSC(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdtCommon.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdtCommon.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -126,7 +126,7 @@ func TestESDTSetRolesAndLocalMintAndBurnFromSC(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddress := esdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/local-esdt-and-nft.wasm")
+	scAddress := dcdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/local-dcdt-and-nft.wasm")
 
 	issuePrice := big.NewInt(1000)
 	txData := []byte("issueFungibleToken" + "@" + hex.EncodeToString([]byte("TOKEN")) +
@@ -184,7 +184,7 @@ func TestESDTSetRolesAndLocalMintAndBurnFromSC(t *testing.T) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 2, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 201)
+	dcdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 201)
 
 	txData = []byte("localBurn" + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + hex.EncodeToString(big.NewInt(50).Bytes()))
@@ -209,14 +209,14 @@ func TestESDTSetRolesAndLocalMintAndBurnFromSC(t *testing.T) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 101)
+	dcdtCommon.CheckAddressHasTokens(t, scAddress, nodes, []byte(tokenIdentifier), 0, 101)
 }
 
-func TestESDTSetTransferRoles(t *testing.T) {
+func TestDCDTSetTransferRoles(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdtCommon.CreateNodesAndPrepareBalances(2)
+	nodes, leaders := dcdtCommon.CreateNodesAndPrepareBalances(2)
 
 	defer func() {
 		for _, n := range nodes {
@@ -232,11 +232,11 @@ func TestESDTSetTransferRoles(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddress := esdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/use-module.wasm")
+	scAddress := dcdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/use-module.wasm")
 	nrRoundsToPropagateMultiShard := 12
-	tokenIdentifier := esdtCommon.PrepareFungibleTokensWithLocalBurnAndMint(t, nodes, scAddress, leaders, &nonce, &round)
+	tokenIdentifier := dcdtCommon.PrepareFungibleTokensWithLocalBurnAndMint(t, nodes, scAddress, leaders, &nonce, &round)
 
-	esdtCommon.SetRoles(nodes, scAddress, []byte(tokenIdentifier), [][]byte{[]byte(core.ESDTRoleTransfer)})
+	dcdtCommon.SetRoles(nodes, scAddress, []byte(tokenIdentifier), [][]byte{[]byte(core.DCDTRoleTransfer)})
 
 	time.Sleep(time.Second)
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
@@ -246,7 +246,7 @@ func TestESDTSetTransferRoles(t *testing.T) {
 
 	amount := int64(100)
 	txData := txDataBuilder.NewBuilder()
-	txData.Clear().TransferESDT(tokenIdentifier, amount).Str("forwardPayments").Bytes(destAddress).Str("fund")
+	txData.Clear().TransferDCDT(tokenIdentifier, amount).Str("forwardPayments").Bytes(destAddress).Str("fund")
 
 	integrationTests.CreateAndSendTransaction(
 		nodes[0],
@@ -260,27 +260,27 @@ func TestESDTSetTransferRoles(t *testing.T) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 10, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, destAddress, nodes, []byte(tokenIdentifier), 0, amount)
+	dcdtCommon.CheckAddressHasTokens(t, destAddress, nodes, []byte(tokenIdentifier), 0, amount)
 }
 
-func TestESDTSetTransferRolesForwardAsyncCallFailsIntra(t *testing.T) {
+func TestDCDTSetTransferRolesForwardAsyncCallFailsIntra(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
-	testESDTWithTransferRoleAndForwarder(t, 1)
+	testDCDTWithTransferRoleAndForwarder(t, 1)
 }
 
-func TestESDTSetTransferRolesForwardAsyncCallFailsCross(t *testing.T) {
+func TestDCDTSetTransferRolesForwardAsyncCallFailsCross(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
-	testESDTWithTransferRoleAndForwarder(t, 2)
+	testDCDTWithTransferRoleAndForwarder(t, 2)
 }
 
-func testESDTWithTransferRoleAndForwarder(t *testing.T, numShards int) {
-	nodes, leaders := esdtCommon.CreateNodesAndPrepareBalances(numShards)
+func testDCDTWithTransferRoleAndForwarder(t *testing.T, numShards int) {
+	nodes, leaders := dcdtCommon.CreateNodesAndPrepareBalances(numShards)
 
 	defer func() {
 		for _, n := range nodes {
@@ -296,12 +296,12 @@ func testESDTWithTransferRoleAndForwarder(t *testing.T, numShards int) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddressA := esdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/use-module.wasm")
-	scAddressB := esdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 1, leaders, &nonce, &round, "../testdata/use-module.wasm")
+	scAddressA := dcdtCommon.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../testdata/use-module.wasm")
+	scAddressB := dcdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 1, leaders, &nonce, &round, "../testdata/use-module.wasm")
 	nrRoundsToPropagateMultiShard := 12
-	tokenIdentifier := esdtCommon.PrepareFungibleTokensWithLocalBurnAndMint(t, nodes, scAddressA, leaders, &nonce, &round)
+	tokenIdentifier := dcdtCommon.PrepareFungibleTokensWithLocalBurnAndMint(t, nodes, scAddressA, leaders, &nonce, &round)
 
-	esdtCommon.SetRoles(nodes, scAddressA, []byte(tokenIdentifier), [][]byte{[]byte(core.ESDTRoleTransfer)})
+	dcdtCommon.SetRoles(nodes, scAddressA, []byte(tokenIdentifier), [][]byte{[]byte(core.DCDTRoleTransfer)})
 
 	time.Sleep(time.Second)
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, nrRoundsToPropagateMultiShard, nonce, round)
@@ -309,7 +309,7 @@ func testESDTWithTransferRoleAndForwarder(t *testing.T, numShards int) {
 
 	amount := int64(100)
 	txData := txDataBuilder.NewBuilder()
-	txData.Clear().TransferESDT(tokenIdentifier, amount).Str("forwardPayments").Bytes(scAddressB).Str("depositTokensForAction").Str("fund")
+	txData.Clear().TransferDCDT(tokenIdentifier, amount).Str("forwardPayments").Bytes(scAddressB).Str("depositTokensForAction").Str("fund")
 
 	integrationTests.CreateAndSendTransaction(
 		nodes[0],
@@ -323,9 +323,9 @@ func testESDTWithTransferRoleAndForwarder(t *testing.T, numShards int) {
 	nonce, round = integrationTests.WaitOperationToBeDone(t, leaders, nodes, 15, nonce, round)
 	time.Sleep(time.Second)
 
-	esdtCommon.CheckAddressHasTokens(t, scAddressB, nodes, []byte(tokenIdentifier), 0, 0)
-	esdtCommon.CheckAddressHasTokens(t, scAddressA, nodes, []byte(tokenIdentifier), 0, 0)
-	esdtCommon.CheckAddressHasTokens(t, nodes[0].OwnAccount.Address, nodes, []byte(tokenIdentifier), 0, amount)
+	dcdtCommon.CheckAddressHasTokens(t, scAddressB, nodes, []byte(tokenIdentifier), 0, 0)
+	dcdtCommon.CheckAddressHasTokens(t, scAddressA, nodes, []byte(tokenIdentifier), 0, 0)
+	dcdtCommon.CheckAddressHasTokens(t, nodes[0].OwnAccount.Address, nodes, []byte(tokenIdentifier), 0, amount)
 }
 
 func TestAsyncCallsAndCallBacksArgumentsIntra(t *testing.T) {
@@ -345,7 +345,7 @@ func TestAsyncCallsAndCallBacksArgumentsCross(t *testing.T) {
 }
 
 func testAsyncCallAndCallBacksArguments(t *testing.T, numShards int) {
-	nodes, leaders := esdtCommon.CreateNodesAndPrepareBalances(numShards)
+	nodes, leaders := dcdtCommon.CreateNodesAndPrepareBalances(numShards)
 	defer func() {
 		for _, n := range nodes {
 			n.Close()
@@ -360,8 +360,8 @@ func testAsyncCallAndCallBacksArguments(t *testing.T, numShards int) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	scAddressA := esdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 0, leaders, &nonce, &round, "forwarder.wasm")
-	scAddressB := esdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 1, leaders, &nonce, &round, "vault.wasm")
+	scAddressA := dcdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 0, leaders, &nonce, &round, "forwarder.wasm")
+	scAddressB := dcdtCommon.DeployNonPayableSmartContractFromNode(t, nodes, 1, leaders, &nonce, &round, "vault.wasm")
 
 	txData := txDataBuilder.NewBuilder()
 	txData.Clear().Func("echo_args_async").Bytes(scAddressB).Str("AA").Str("BB")
@@ -405,7 +405,7 @@ func checkDataFromAccountAndKey(
 	key []byte,
 	expectedData []byte,
 ) {
-	userAcc := esdtCommon.GetUserAccountWithAddress(t, address, nodes)
+	userAcc := dcdtCommon.GetUserAccountWithAddress(t, address, nodes)
 	val, _, _ := userAcc.RetrieveValue(key)
 	assert.Equal(t, expectedData, val)
 }

@@ -4,9 +4,9 @@ import (
 	"errors"
 	"sync"
 
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	cryptoCommon "github.com/TerraDharitri/drt-go-chain/common/crypto"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // CryptoComponentsMock -

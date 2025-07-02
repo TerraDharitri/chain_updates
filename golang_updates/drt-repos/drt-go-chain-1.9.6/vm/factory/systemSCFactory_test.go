@@ -38,7 +38,7 @@ func createMockNewSystemScFactoryArgs() ArgsNewSystemSCFactory {
 		Marshalizer:         &mock.MarshalizerMock{},
 		Hasher:              &hashingMocks.HasherMock{},
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "100000000",
 				OwnerAddress:    "aaaaaa",
 			},

@@ -197,7 +197,7 @@ func TestCreateApiResolver(t *testing.T) {
 		require.True(t, strings.Contains(strings.ToLower(err.Error()), "marshalizer"))
 		require.True(t, check.IfNil(apiResolver))
 	})
-	t.Run("NewESDTTransferParser fails should error", func(t *testing.T) {
+	t.Run("NewDCDTTransferParser fails should error", func(t *testing.T) {
 		failingStepsInstance.reset()
 		failingStepsInstance.marshallerFailingStep = 5
 		apiResolver, err := api.CreateApiResolver(failingArgs)

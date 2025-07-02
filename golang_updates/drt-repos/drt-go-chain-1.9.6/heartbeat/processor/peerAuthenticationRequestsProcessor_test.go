@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	mxAtomic "github.com/TerraDharitri/drt-go-chain-core/core/atomic"
+	drtAtomic "github.com/TerraDharitri/drt-go-chain-core/core/atomic"
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/core/random"
 	"github.com/stretchr/testify/assert"
@@ -324,7 +324,7 @@ func TestPeerAuthenticationRequestsProcessor_goRoutineIsWorkingAndCloseShouldSto
 			}, nil
 		},
 	}
-	keysCalled := &mxAtomic.Flag{}
+	keysCalled := &drtAtomic.Flag{}
 	args.PeerAuthenticationPool = &cache.CacherStub{
 		KeysCalled: func() [][]byte {
 			keysCalled.SetValue(true)

@@ -8,8 +8,8 @@ IP_HOST_BYTE=3
 cloneRepositories() {
   cd $(dirname $DHARITRIDIR)
 
-  git clone git@github.com:dharitri/mx-chain-deploy-go.git || true
-  git clone git@github.com:dharitri/mx-chain-proxy-go.git || true
+  git clone git@github.com:dharitri/drt-go-chain-deploy.git || true
+  git clone git@github.com:dharitri/drt-go-chain-proxy.git || true
 }
 
 buildNodeImages() {
@@ -36,7 +36,7 @@ startSeedNode() {
   fi
 
   docker run -d --name seednode \
-      -v ${TESTNETDIR}/seednode/config:/go/mx-chain-go/cmd/seednode/config \
+      -v ${TESTNETDIR}/seednode/config:/go/drt-go-chain/cmd/seednode/config \
       --network ${DOCKER_NETWORK_NAME} \
       $publishPortArgs \
       seednode:dev \
@@ -58,7 +58,7 @@ startObservers() {
       fi
 
       docker run -d --name "observer${observerIdx}-${NETWORK_ADDRESS}.${IP_HOST_BYTE}-10200-shard${i}" \
-          -v $TESTNETDIR/node/config:/go/mx-chain-go/cmd/node/config \
+          -v $TESTNETDIR/node/config:/go/drt-go-chain/cmd/node/config \
           --network ${DOCKER_NETWORK_NAME} \
           $publishPortArgs \
           node:dev \
@@ -83,7 +83,7 @@ startObservers() {
      fi
 
      docker run -d --name "observer${observerIdx}-${NETWORK_ADDRESS}.${IP_HOST_BYTE}-10200-metachain" \
-         -v $TESTNETDIR/node/config:/go/mx-chain-go/cmd/node/config \
+         -v $TESTNETDIR/node/config:/go/drt-go-chain/cmd/node/config \
          --network ${DOCKER_NETWORK_NAME} \
          $publishPortArgs \
          node:dev \
@@ -111,7 +111,7 @@ startValidators() {
       fi
 
       docker run -d --name "validator${validatorIdx}-${NETWORK_ADDRESS}.${IP_HOST_BYTE}-10200-shard${i}" \
-          -v $TESTNETDIR/node/config:/go/mx-chain-go/cmd/node/config \
+          -v $TESTNETDIR/node/config:/go/drt-go-chain/cmd/node/config \
           --network ${DOCKER_NETWORK_NAME} \
           $publishPortArgs \
           node:dev \
@@ -132,7 +132,7 @@ startValidators() {
     fi
 
     docker run -d --name "validator${validatorIdx}-${NETWORK_ADDRESS}.${IP_HOST_BYTE}-10200-metachain" \
-         -v $TESTNETDIR/node/config:/go/mx-chain-go/cmd/node/config \
+         -v $TESTNETDIR/node/config:/go/drt-go-chain/cmd/node/config \
          --network ${DOCKER_NETWORK_NAME} \
          $publishPortArgs \
          node:dev \
@@ -224,7 +224,7 @@ buildProxyImage() {
 
 startProxyDocker() {
   docker run -d --name "proxy" \
-      -v $TESTNETDIR/proxy/config:/mx-chain-proxy-go/cmd/proxy/config \
+      -v $TESTNETDIR/proxy/config:/drt-go-chain-proxy/cmd/proxy/config \
       --network ${DOCKER_NETWORK_NAME} \
       -p $PORT_PROXY:8080 \
       proxy:dev

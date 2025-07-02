@@ -7,7 +7,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
 	"github.com/TerraDharitri/drt-go-chain-core/data/api"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/TerraDharitri/drt-go-chain-core/data/validator"
 	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
@@ -50,10 +50,10 @@ type FacadeStub struct {
 	GetCodeHashCalled                           func(address string, options api.AccountQueryOptions) ([]byte, api.BlockInfo, error)
 	GetKeyValuePairsCalled                      func(address string, options api.AccountQueryOptions) (map[string]string, api.BlockInfo, error)
 	SimulateTransactionExecutionHandler         func(tx *transaction.Transaction) (*txSimData.SimulationResultsWithVMOutput, error)
-	GetESDTDataCalled                           func(address string, key string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error)
-	GetAllESDTTokensCalled                      func(address string, options api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error)
-	GetESDTsWithRoleCalled                      func(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
-	GetESDTsRolesCalled                         func(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error)
+	GetDCDTDataCalled                           func(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error)
+	GetAllDCDTTokensCalled                      func(address string, options api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error)
+	GetDCDTsWithRoleCalled                      func(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
+	GetDCDTsRolesCalled                         func(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error)
 	GetNFTTokenIDsRegisteredByAddressCalled     func(address string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
 	GetBlockByHashCalled                        func(hash string, options api.BlockQueryOptions) (*api.Block, error)
 	GetBlockByNonceCalled                       func(nonce uint64, options api.BlockQueryOptions) (*api.Block, error)
@@ -69,14 +69,14 @@ type FacadeStub struct {
 	GetInternalStartOfEpochValidatorsInfoCalled func(epoch uint32) ([]*state.ShardValidatorInfo, error)
 	GetInternalMiniBlockByHashCalled            func(format common.ApiOutputFormat, txHash string, epoch uint32) (interface{}, error)
 	GetTotalStakedValueHandler                  func() (*api.StakeValues, error)
-	GetAllIssuedESDTsCalled                     func(tokenType string) ([]string, error)
+	GetAllIssuedDCDTsCalled                     func(tokenType string) ([]string, error)
 	GetDirectStakedListHandler                  func() ([]*api.DirectStakedValue, error)
 	GetDelegatorsListHandler                    func() ([]*api.Delegator, error)
 	GetProofCalled                              func(string, string) (*common.GetProofResponse, error)
 	GetProofCurrentRootHashCalled               func(string) (*common.GetProofResponse, error)
 	GetProofDataTrieCalled                      func(string, string, string) (*common.GetProofResponse, *common.GetProofResponse, error)
 	VerifyProofCalled                           func(string, string, [][]byte) (bool, error)
-	GetTokenSupplyCalled                        func(token string) (*api.ESDTSupply, error)
+	GetTokenSupplyCalled                        func(token string) (*api.DCDTSupply, error)
 	GetGenesisNodesPubKeysCalled                func() (map[uint32][]string, map[uint32][]string, error)
 	GetGenesisBalancesCalled                    func() ([]*common.InitialAccountAPI, error)
 	GetTransactionsPoolCalled                   func(fields string) (*common.TransactionsPoolAPIResponse, error)
@@ -110,7 +110,7 @@ func (f *FacadeStub) GetSCRsByTxHash(txHash string, scrHash string) ([]*transact
 }
 
 // GetTokenSupply -
-func (f *FacadeStub) GetTokenSupply(token string) (*api.ESDTSupply, error) {
+func (f *FacadeStub) GetTokenSupply(token string) (*api.DCDTSupply, error) {
 	if f.GetTokenSupplyCalled != nil {
 		return f.GetTokenSupplyCalled(token)
 	}
@@ -249,31 +249,31 @@ func (f *FacadeStub) GetGuardianData(address string, options api.AccountQueryOpt
 	return api.GuardianData{}, api.BlockInfo{}, nil
 }
 
-// GetESDTData -
-func (f *FacadeStub) GetESDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*esdt.ESDigitalToken, api.BlockInfo, error) {
-	if f.GetESDTDataCalled != nil {
-		return f.GetESDTDataCalled(address, key, nonce, options)
+// GetDCDTData -
+func (f *FacadeStub) GetDCDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error) {
+	if f.GetDCDTDataCalled != nil {
+		return f.GetDCDTDataCalled(address, key, nonce, options)
 	}
 
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, api.BlockInfo{}, nil
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, api.BlockInfo{}, nil
 }
 
-// GetESDTsRoles -
-func (f *FacadeStub) GetESDTsRoles(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
-	if f.GetESDTsRolesCalled != nil {
-		return f.GetESDTsRolesCalled(address, options)
+// GetDCDTsRoles -
+func (f *FacadeStub) GetDCDTsRoles(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error) {
+	if f.GetDCDTsRolesCalled != nil {
+		return f.GetDCDTsRolesCalled(address, options)
 	}
 
 	return map[string][]string{}, api.BlockInfo{}, nil
 }
 
-// GetAllESDTTokens -
-func (f *FacadeStub) GetAllESDTTokens(address string, options api.AccountQueryOptions) (map[string]*esdt.ESDigitalToken, api.BlockInfo, error) {
-	if f.GetAllESDTTokensCalled != nil {
-		return f.GetAllESDTTokensCalled(address, options)
+// GetAllDCDTTokens -
+func (f *FacadeStub) GetAllDCDTTokens(address string, options api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error) {
+	if f.GetAllDCDTTokensCalled != nil {
+		return f.GetAllDCDTTokensCalled(address, options)
 	}
 
-	return make(map[string]*esdt.ESDigitalToken), api.BlockInfo{}, nil
+	return make(map[string]*dcdt.DCDigitalToken), api.BlockInfo{}, nil
 }
 
 // GetNFTTokenIDsRegisteredByAddress -
@@ -285,19 +285,19 @@ func (f *FacadeStub) GetNFTTokenIDsRegisteredByAddress(address string, options a
 	return make([]string, 0), api.BlockInfo{}, nil
 }
 
-// GetESDTsWithRole -
-func (f *FacadeStub) GetESDTsWithRole(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
-	if f.GetESDTsWithRoleCalled != nil {
-		return f.GetESDTsWithRoleCalled(address, role, options)
+// GetDCDTsWithRole -
+func (f *FacadeStub) GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error) {
+	if f.GetDCDTsWithRoleCalled != nil {
+		return f.GetDCDTsWithRoleCalled(address, role, options)
 	}
 
 	return make([]string, 0), api.BlockInfo{}, nil
 }
 
-// GetAllIssuedESDTs -
-func (f *FacadeStub) GetAllIssuedESDTs(tokenType string) ([]string, error) {
-	if f.GetAllIssuedESDTsCalled != nil {
-		return f.GetAllIssuedESDTsCalled(tokenType)
+// GetAllIssuedDCDTs -
+func (f *FacadeStub) GetAllIssuedDCDTs(tokenType string) ([]string, error) {
+	if f.GetAllIssuedDCDTsCalled != nil {
+		return f.GetAllIssuedDCDTsCalled(tokenType)
 	}
 
 	return make([]string, 0), nil

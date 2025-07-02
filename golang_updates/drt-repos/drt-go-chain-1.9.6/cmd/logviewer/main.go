@@ -13,9 +13,9 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/gorilla/websocket"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 	"github.com/urfave/cli"
 )
 
@@ -55,7 +55,7 @@ VERSION:
 	// address defines a flag for setting the address and port on which the node will listen for connections
 	address = cli.StringFlag{
 		Name:        "address",
-		Usage:       "Address and port number on which the application will try to connect to the mx-chain-go node",
+		Usage:       "Address and port number on which the application will try to connect to the drt-go-chain node",
 		Value:       "127.0.0.1:8080",
 		Destination: &argsConfig.address,
 	}
@@ -131,7 +131,7 @@ func initCliFlags() {
 	cli.AppHelpTemplate = nodeHelpTemplate
 	cliApp.Name = "Dharitri Logviewer App"
 	cliApp.Version = fmt.Sprintf("%s/%s/%s-%s", "1.0.0", runtime.Version(), runtime.GOOS, runtime.GOARCH)
-	cliApp.Usage = "Logviewer application used to communicate with mx-chain-go node to log the message lines"
+	cliApp.Usage = "Logviewer application used to communicate with drt-go-chain node to log the message lines"
 	cliApp.Flags = []cli.Flag{
 		address,
 		logLevel,
@@ -209,7 +209,7 @@ func startLogViewer(ctx *cli.Context) error {
 		}
 	}()
 
-	// set this log's level to the lowest desired log level that matches received logs from mx-chain-go
+	// set this log's level to the lowest desired log level that matches received logs from drt-go-chain
 	lowestLogLevel := getLowestLogLevel(logLevels)
 	log.SetLevel(lowestLogLevel)
 

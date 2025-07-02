@@ -120,7 +120,7 @@ func createMockProcessComponentsFactoryArgs() processComp.ProcessComponentsFacto
 		WhiteListerVerifiedTxs: &testscommon.WhiteListHandlerStub{},
 		MaxRating:              100,
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "drt1fpkcgel4gcmh8zqqdt043yfcn5tyx8373kg6q2qmkxzu4dqamc0snh8ehx",
 			},

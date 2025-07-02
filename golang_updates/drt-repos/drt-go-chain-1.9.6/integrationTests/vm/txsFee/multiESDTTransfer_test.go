@@ -15,7 +15,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestMultiESDTTransferShouldWork(t *testing.T) {
+func TestMultiDCDTTransferShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -27,18 +27,18 @@ func TestMultiESDTTransferShouldWork(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 	secondToken := []byte("second")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(4000)
-	tx := utils.CreateMultiTransferTX(0, sndAddr, rcvAddr, gasPrice, gasLimit, &utils.TransferESDTData{
+	tx := utils.CreateMultiTransferTX(0, sndAddr, rcvAddr, gasPrice, gasLimit, &utils.TransferDCDTData{
 		Token: token,
 		Value: big.NewInt(100),
-	}, &utils.TransferESDTData{
+	}, &utils.TransferDCDTData{
 		Token: secondToken,
 		Value: big.NewInt(200),
 	})
@@ -51,19 +51,19 @@ func TestMultiESDTTransferShouldWork(t *testing.T) {
 	require.Nil(t, err)
 
 	expectedBalanceSnd := big.NewInt(99999900)
-	utils.CheckESDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, token, expectedBalanceSnd)
 
 	expectedReceiverBalance := big.NewInt(100)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, token, expectedReceiverBalance)
 
 	expectedBalanceSndSecondToken := big.NewInt(99999800)
-	utils.CheckESDTBalance(t, testContext, sndAddr, secondToken, expectedBalanceSndSecondToken)
+	utils.CheckDCDTBalance(t, testContext, sndAddr, secondToken, expectedBalanceSndSecondToken)
 
 	expectedReceiverBalanceSecondToken := big.NewInt(200)
-	utils.CheckESDTBalance(t, testContext, rcvAddr, secondToken, expectedReceiverBalanceSecondToken)
+	utils.CheckDCDTBalance(t, testContext, rcvAddr, secondToken, expectedReceiverBalanceSecondToken)
 
-	expectedEGLDBalance := big.NewInt(99960000)
-	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedEGLDBalance)
+	expectedREWABalance := big.NewInt(99960000)
+	utils.TestAccount(t, testContext.Accounts, sndAddr, 1, expectedREWABalance)
 
 	// check accumulated fees
 	accumulatedFees := testContext.TxFeeHandler.GetAccumulatedFees()
@@ -73,7 +73,7 @@ func TestMultiESDTTransferShouldWork(t *testing.T) {
 	require.NotNil(t, allLogs)
 }
 
-func TestMultiESDTTransferFailsBecauseOfMaxLimit(t *testing.T) {
+func TestMultiDCDTTransferFailsBecauseOfMaxLimit(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -88,18 +88,18 @@ func TestMultiESDTTransferFailsBecauseOfMaxLimit(t *testing.T) {
 	sndAddr := []byte("12345678901234567890123456789012")
 	rcvAddr := []byte("12345678901234567890123456789022")
 
-	egldBalance := big.NewInt(100000000)
-	esdtBalance := big.NewInt(100000000)
+	rewaBalance := big.NewInt(100000000)
+	dcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, egldBalance, token, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, rewaBalance, token, 0, dcdtBalance, uint32(core.Fungible))
 	secondToken := []byte("second")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, esdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, big.NewInt(0), secondToken, 0, dcdtBalance, uint32(core.Fungible))
 
 	gasLimit := uint64(4000)
-	tx := utils.CreateMultiTransferTX(0, sndAddr, rcvAddr, gasPrice, gasLimit, &utils.TransferESDTData{
+	tx := utils.CreateMultiTransferTX(0, sndAddr, rcvAddr, gasPrice, gasLimit, &utils.TransferDCDTData{
 		Token: token,
 		Value: big.NewInt(100),
-	}, &utils.TransferESDTData{
+	}, &utils.TransferDCDTData{
 		Token: secondToken,
 		Value: big.NewInt(200),
 	})

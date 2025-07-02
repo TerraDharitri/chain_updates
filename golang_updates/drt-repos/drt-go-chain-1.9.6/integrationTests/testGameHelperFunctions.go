@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"time"
 
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 )
 
 // ScCallTxWithParams creates and sends a SC tx call or deploy with all major parameters provided

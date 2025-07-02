@@ -3,8 +3,8 @@ package processedMb
 import (
 	"sync"
 
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/process/block/bootstrapStorage"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var log = logger.GetOrCreate("process/processedMb")

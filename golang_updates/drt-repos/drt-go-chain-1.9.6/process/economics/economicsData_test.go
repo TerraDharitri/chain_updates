@@ -1269,7 +1269,7 @@ func TestEconomicsData_ComputeGasUsedAndFeeBasedOnRefundValueSpecialBuiltIn_ToMu
 	tx := &transaction.Transaction{
 		GasPrice: 1000000000,
 		GasLimit: 1200000,
-		Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+		Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 	}
 
 	expectedGasUsed := uint64(1200000)
@@ -1313,7 +1313,7 @@ func TestEconomicsData_ComputeGasUsedAndFeeBasedOnRefundValueSpecialBuiltIn(t *t
 	tx := &transaction.Transaction{
 		GasPrice: 1000000000,
 		GasLimit: 104009,
-		Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+		Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 	}
 
 	expectedGasUsed := uint64(104009)
@@ -1333,7 +1333,7 @@ func TestEconomicsData_ComputeGasUsedAndFeeBasedOnRefundValueSpecialBuiltInTooMu
 	tx := &transaction.Transaction{
 		GasPrice: 1000000000,
 		GasLimit: 104011,
-		Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+		Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 	}
 
 	expectedGasUsed := uint64(104011)

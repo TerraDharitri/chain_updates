@@ -18,7 +18,7 @@
 				"value": "0",
 				"function": "swapTokensFixedInput",
 				"dcdt": {
-					"tokenIdentifier": "str:MEX-abcdef",
+					"tokenIdentifier": "str:MOA-abcdef",
 					"value": "100,000"
 				},
 				"arguments": [

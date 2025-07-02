@@ -5,9 +5,9 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/redundancy/common"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 var log = logger.GetOrCreate("redundancy")

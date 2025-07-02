@@ -6,7 +6,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain/dblookupext"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 )
 
 // HistoryRepositoryStub -
@@ -16,7 +16,7 @@ type HistoryRepositoryStub struct {
 	GetMiniblockMetadataByTxHashCalled func(hash []byte) (*dblookupext.MiniblockMetadata, error)
 	GetEpochByHashCalled               func(hash []byte) (uint32, error)
 	GetEventsHashesByTxHashCalled      func(hash []byte, epoch uint32) (*dblookupext.ResultsHashesByTxHash, error)
-	GetESDTSupplyCalled                func(token string) (*esdtSupply.SupplyESDT, error)
+	GetDCDTSupplyCalled                func(token string) (*dcdtSupply.SupplyDCDT, error)
 	IsEnabledCalled                    func() bool
 }
 
@@ -80,10 +80,10 @@ func (hp *HistoryRepositoryStub) RevertBlock(_ data.HeaderHandler, _ data.BodyHa
 	return nil
 }
 
-// GetESDTSupply -
-func (hp *HistoryRepositoryStub) GetESDTSupply(token string) (*esdtSupply.SupplyESDT, error) {
-	if hp.GetESDTSupplyCalled != nil {
-		return hp.GetESDTSupplyCalled(token)
+// GetDCDTSupply -
+func (hp *HistoryRepositoryStub) GetDCDTSupply(token string) (*dcdtSupply.SupplyDCDT, error) {
+	if hp.GetDCDTSupplyCalled != nil {
+		return hp.GetDCDTSupplyCalled(token)
 	}
 
 	return nil, nil

@@ -407,7 +407,7 @@ func CreateTxProcessorWithOneSCExecutorMockVM(
 		Uint64Converter:          &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:         builtInFuncs,
 		NFTStorageHandler:        &testscommon.SimpleNFTStorageHandlerStub{},
-		GlobalSettingsHandler:    &testscommon.ESDTGlobalSettingsHandlerStub{},
+		GlobalSettingsHandler:    &testscommon.DCDTGlobalSettingsHandlerStub{},
 		DataPool:                 datapool,
 		CompiledSCPool:           datapool.SmartContracts(),
 		NilCompiledSCStore:       true,
@@ -428,13 +428,13 @@ func CreateTxProcessorWithOneSCExecutorMockVM(
 			return vm, nil
 		}}
 
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(integrationtests.TestMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(integrationtests.TestMarshalizer)
 	argsTxTypeHandler := coordinator.ArgNewTxTypeHandler{
 		PubkeyConverter:     pubkeyConv,
 		ShardCoordinator:    mock.NewMultiShardsCoordinatorMock(2),
 		BuiltInFunctions:    builtInFuncs,
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: enableEpochsHandler,
 	}
 	txTypeHandler, _ := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -515,7 +515,7 @@ func CreateOneSCExecutorMockVM(accnts state.AccountsAdapter) vmcommon.VMExecutio
 		Uint64Converter:          &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:         vmcommonBuiltInFunctions.NewBuiltInFunctionContainer(),
 		NFTStorageHandler:        &testscommon.SimpleNFTStorageHandlerStub{},
-		GlobalSettingsHandler:    &testscommon.ESDTGlobalSettingsHandlerStub{},
+		GlobalSettingsHandler:    &testscommon.DCDTGlobalSettingsHandlerStub{},
 		DataPool:                 datapool,
 		CompiledSCPool:           datapool.SmartContracts(),
 		NilCompiledSCStore:       true,
@@ -572,8 +572,8 @@ func CreateVMAndBlockchainHookAndDataPool(
 	argsBuiltIn.AutomaticCrawlerAddresses = integrationTests.GenerateOneAddressPerShard(argsBuiltIn.ShardCoordinator)
 	builtInFuncFactory, _ := builtInFunctions.CreateBuiltInFunctionsFactory(argsBuiltIn)
 
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(integrationtests.TestMarshalizer)
-	counter, _ := counters.NewUsageCounter(esdtTransferParser)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(integrationtests.TestMarshalizer)
+	counter, _ := counters.NewUsageCounter(dcdtTransferParser)
 
 	datapool := dataRetrieverMock.NewPoolsHolderMock()
 	args := hooks.ArgBlockChainHook{
@@ -586,7 +586,7 @@ func CreateVMAndBlockchainHookAndDataPool(
 		Uint64Converter:          &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 datapool,
 		CompiledSCPool:           datapool.SmartContracts(),
 		NilCompiledSCStore:       true,
@@ -609,7 +609,7 @@ func CreateVMAndBlockchainHookAndDataPool(
 		EpochNotifier:       epochNotifierInstance,
 		EnableEpochsHandler: enableEpochsHandler,
 		WasmVMChangeLocker:  wasmVMChangeLocker,
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		Hasher:              integrationtests.TestHasher,
 		PubKeyConverter:     pubkeyConv,
 	}
@@ -678,7 +678,7 @@ func CreateVMAndBlockchainHookMeta(
 		Uint64Converter:          &mock.Uint64ByteSliceConverterMock{},
 		BuiltInFunctions:         builtInFuncFactory.BuiltInFunctionContainer(),
 		NFTStorageHandler:        builtInFuncFactory.NFTStorageHandler(),
-		GlobalSettingsHandler:    builtInFuncFactory.ESDTGlobalSettingsHandler(),
+		GlobalSettingsHandler:    builtInFuncFactory.DCDTGlobalSettingsHandler(),
 		DataPool:                 datapool,
 		CompiledSCPool:           datapool.SmartContracts(),
 		NilCompiledSCStore:       true,
@@ -731,7 +731,7 @@ func CreateVMAndBlockchainHookMeta(
 
 func createSystemSCConfig() *config.SystemSmartContractsConfig {
 	return &config.SystemSmartContractsConfig{
-		ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+		DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 			BaseIssuingCost: "5000000000000000000",
 			OwnerAddress:    "3132333435363738393031323334353637383930313233343536373839303233",
 		},
@@ -839,13 +839,13 @@ func CreateTxProcessorWithOneSCExecutorWithVMs(
 
 	enableRoundsHandler, _ := enablers.NewEnableRoundsHandler(roundsConfig, roundNotifierInstance)
 
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(integrationtests.TestMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(integrationtests.TestMarshalizer)
 	argsTxTypeHandler := coordinator.ArgNewTxTypeHandler{
 		PubkeyConverter:     pubkeyConv,
 		ShardCoordinator:    shardCoordinator,
 		BuiltInFunctions:    blockChainHook.GetBuiltinFunctionsContainer(),
 		ArgumentParser:      parsers.NewCallArgsParser(),
-		ESDTTransferParser:  esdtTransferParser,
+		DCDTTransferParser:  dcdtTransferParser,
 		EnableEpochsHandler: enableEpochsHandler,
 	}
 	txTypeHandler, _ := coordinator.NewTxTypeHandler(argsTxTypeHandler)
@@ -1348,7 +1348,7 @@ func CreateTxProcessorWasmVMWithGasSchedule(
 	gasScheduleMap map[string]map[string]uint64,
 	enableEpochsConfig config.EnableEpochs,
 ) (*VMTestContext, error) {
-	return CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig(
+	return CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig(
 		senderNonce,
 		senderAddressBytes,
 		senderBalance,
@@ -1358,8 +1358,8 @@ func CreateTxProcessorWasmVMWithGasSchedule(
 	)
 }
 
-// CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig -
-func CreateTxProcessorArwenVMWithGasScheduleAndRoundConfig(
+// CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig -
+func CreateTxProcessorAndesVMWithGasScheduleAndRoundConfig(
 	senderNonce uint64,
 	senderAddressBytes []byte,
 	senderBalance *big.Int,
@@ -1438,7 +1438,7 @@ func CreateTxProcessorWasmVMWithVMConfig(
 	vmConfig *config.VirtualMachineConfig,
 	gasSchedule map[string]map[string]uint64,
 ) (*VMTestContext, error) {
-	return CreateTxProcessorArwenWithVMConfigAndRoundConfig(
+	return CreateTxProcessorAndesWithVMConfigAndRoundConfig(
 		enableEpochsConfig,
 		testscommon.GetDefaultRoundsConfig(),
 		vmConfig,
@@ -1446,8 +1446,8 @@ func CreateTxProcessorWasmVMWithVMConfig(
 	)
 }
 
-// CreateTxProcessorArwenWithVMConfigAndRoundConfig -
-func CreateTxProcessorArwenWithVMConfigAndRoundConfig(
+// CreateTxProcessorAndesWithVMConfigAndRoundConfig -
+func CreateTxProcessorAndesWithVMConfigAndRoundConfig(
 	enableEpochsConfig config.EnableEpochs,
 	roundsConfig config.RoundConfig,
 	vmConfig *config.VirtualMachineConfig,

@@ -17,7 +17,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/epochStart"
 	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
 	"github.com/TerraDharitri/drt-go-chain/epochStart/shardchain"
-	mxFactory "github.com/TerraDharitri/drt-go-chain/factory"
+	drtFactory "github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/genesis/process/disabled"
 	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/TerraDharitri/drt-go-chain/sharding"
@@ -41,7 +41,7 @@ type ArgsExporter struct {
 	CoreComponents                   process.CoreComponentsHolder
 	CryptoComponents                 process.CryptoComponentsHolder
 	StatusCoreComponents             process.StatusCoreComponentsHolder
-	NetworkComponents                mxFactory.NetworkComponentsHolder
+	NetworkComponents                drtFactory.NetworkComponentsHolder
 	HeaderValidator                  epochStart.HeaderValidator
 	DataPool                         dataRetriever.PoolsHolder
 	StorageService                   dataRetriever.StorageService
@@ -77,7 +77,7 @@ type exportHandlerFactory struct {
 	coreComponents                   process.CoreComponentsHolder
 	cryptoComponents                 process.CryptoComponentsHolder
 	statusCoreComponents             process.StatusCoreComponentsHolder
-	networkComponents                mxFactory.NetworkComponentsHolder
+	networkComponents                drtFactory.NetworkComponentsHolder
 	headerValidator                  epochStart.HeaderValidator
 	dataPool                         dataRetriever.PoolsHolder
 	storageService                   dataRetriever.StorageService

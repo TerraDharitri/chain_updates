@@ -243,12 +243,12 @@ func TestNFTTransferWithScCall(t *testing.T) {
 			GasPrice: 1000000000,
 			SndAddr:  silentDecodeAddress(sender),
 			RcvAddr:  silentDecodeAddress(receiver),
-			Data:     []byte("ESDTNFTTransfer@434f572d636434363364@080c@01@00000000000000000500d3b28828d62052124f07dcd50ed31b0825f60eee1526@616363657074476c6f62616c4f66666572@c3e5q"),
+			Data:     []byte("DCDTNFTTransfer@434f572d636434363364@080c@01@00000000000000000500d3b28828d62052124f07dcd50ed31b0825f60eee1526@616363657074476c6f62616c4f66666572@c3e5q"),
 		},
 		GasLimit:  55_000_000,
 		Receivers: []string{"drt1qqqqqqqqqqqqqpgq6wegs2xkypfpync8mn2sa5cmpqjlvrhwz5nq49k8te"},
 		Function:  "acceptGlobalOffer",
-		Operation: "ESDTNFTTransfer",
+		Operation: "DCDTNFTTransfer",
 	}
 	tx.InitiallyPaidFee = feeComp.ComputeTransactionFee(tx).String()
 

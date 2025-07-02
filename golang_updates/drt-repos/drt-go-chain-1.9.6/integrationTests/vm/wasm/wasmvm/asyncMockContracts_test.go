@@ -25,7 +25,7 @@ func TestMockContract_AsyncLegacy_InShard(t *testing.T) {
 		GasUsedByParent: 400,
 	}
 
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 
 	net := integrationTests.NewTestNetworkSized(t, 1, 1, 1)
 	net.Start()
@@ -45,7 +45,7 @@ func TestMockContract_AsyncLegacy_InShard(t *testing.T) {
 	)
 
 	txData := txDataBuilder.NewBuilder().Func("wasteGas").ToBytes()
-	tx := net.CreateTx(owner, parentAddress, transferEGLD, txData)
+	tx := net.CreateTx(owner, parentAddress, transferREWA, txData)
 	tx.GasLimit = testConfig.GasProvided
 
 	_ = net.SignAndSendTx(owner, tx)
@@ -53,9 +53,9 @@ func TestMockContract_AsyncLegacy_InShard(t *testing.T) {
 	net.Steps(2)
 
 	parentHandler := net.GetAccountHandler(parentAddress)
-	expectedEgld := big.NewInt(0)
-	expectedEgld.Add(MockInitialBalance, transferEGLD)
-	require.Equal(t, expectedEgld, parentHandler.GetBalance())
+	expectedRewa := big.NewInt(0)
+	expectedRewa.Add(MockInitialBalance, transferREWA)
+	require.Equal(t, expectedRewa, parentHandler.GetBalance())
 }
 
 func TestMockContract_AsyncLegacy_CrossShard(t *testing.T) {
@@ -75,7 +75,7 @@ func TestMockContract_NewAsync_CrossShard(t *testing.T) {
 }
 
 func testMockContract_CrossShard(t *testing.T, asyncCallType []byte) {
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 
 	numberOfShards := 2
 	net := integrationTests.NewTestNetworkSized(t, numberOfShards, 1, 1)
@@ -129,7 +129,7 @@ func testMockContract_CrossShard(t *testing.T, asyncCallType []byte) {
 		Bytes([]byte{0}).
 		Bytes(asyncCallType).
 		ToBytes()
-	tx := net.CreateTx(ownerOfParent, parentAddress, transferEGLD, txData)
+	tx := net.CreateTx(ownerOfParent, parentAddress, transferREWA, txData)
 	tx.GasLimit = testConfig.GasProvided
 
 	_ = net.SignAndSendTx(ownerOfParent, tx)
@@ -181,7 +181,7 @@ func TestMockContract_NewAsync_BackTransfer_CrossShard(t *testing.T) {
 	net.Start()
 	net.Step()
 
-	transferEGLD := big.NewInt(42)
+	transferREWA := big.NewInt(42)
 	net.CreateWallets(3)
 	net.MintWalletsUint64(100000000000)
 	ownerOfParent := net.Wallets[0]
@@ -211,7 +211,7 @@ func TestMockContract_NewAsync_BackTransfer_CrossShard(t *testing.T) {
 		SuccessCallback: "myCallback",
 		ErrorCallback:   "myCallback",
 
-		ESDTTokensToTransfer: 5,
+		DCDTTokensToTransfer: 5,
 	}
 
 	InitializeMockContracts(
@@ -238,7 +238,7 @@ func TestMockContract_NewAsync_BackTransfer_CrossShard(t *testing.T) {
 		NewBuilder().
 		Func("callChild").
 		ToBytes()
-	tx := net.CreateTx(ownerOfParent, parentAddress, transferEGLD, txData)
+	tx := net.CreateTx(ownerOfParent, parentAddress, transferREWA, txData)
 	tx.GasLimit = testConfig.GasProvided
 
 	_ = net.SignAndSendTx(ownerOfParent, tx)
@@ -248,11 +248,11 @@ func TestMockContract_NewAsync_BackTransfer_CrossShard(t *testing.T) {
 	parentHandler, err := net.NodesSharded[0][0].BlockchainHook.GetUserAccount(parentAddress)
 	require.Nil(t, err)
 
-	expectedEgld := big.NewInt(0)
-	expectedEgld.Add(MockInitialBalance, big.NewInt(testConfig.TransferFromChildToParent))
-	require.True(t, parentHandler.GetBalance().Cmp(expectedEgld) > 0)
+	expectedRewa := big.NewInt(0)
+	expectedRewa.Add(MockInitialBalance, big.NewInt(testConfig.TransferFromChildToParent))
+	require.True(t, parentHandler.GetBalance().Cmp(expectedRewa) > 0)
 
-	esdtData, err := net.NodesSharded[0][0].BlockchainHook.GetESDTToken(parentAddress, EsdtTokenIdentifier, 0)
+	dcdtData, err := net.NodesSharded[0][0].BlockchainHook.GetDCDTToken(parentAddress, DcdtTokenIdentifier, 0)
 	require.Nil(t, err)
-	require.Equal(t, big.NewInt(int64(InitialEsdt+testConfig.ESDTTokensToTransfer)), esdtData.Value)
+	require.Equal(t, big.NewInt(int64(InitialDcdt+testConfig.DCDTTokensToTransfer)), dcdtData.Value)
 }

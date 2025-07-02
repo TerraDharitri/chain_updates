@@ -8,7 +8,7 @@ import (
 	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 )
 
-func TestESDTLocalMintAndBurnFromSC_MockContracts(t *testing.T) {
+func TestDCDTLocalMintAndBurnFromSC_MockContracts(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -42,5 +42,5 @@ func TestESDTLocalMintAndBurnFromSC_MockContracts(t *testing.T) {
 				LocalBurnMock),
 	)
 
-	esdtLocalMintAndBurnFromSCRunTestsAndAsserts(t, net.Nodes, ownerWallet, scAddress, net.Proposers, nonce, round)
+	dcdtLocalMintAndBurnFromSCRunTestsAndAsserts(t, net.Nodes, ownerWallet, scAddress, net.Proposers, nonce, round)
 }

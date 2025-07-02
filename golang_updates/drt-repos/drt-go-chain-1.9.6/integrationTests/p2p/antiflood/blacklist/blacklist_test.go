@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/p2p/antiflood"
@@ -15,7 +16,6 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/process/throttle/antiflood/floodPreventers"
 	"github.com/TerraDharitri/drt-go-chain/storage/cache"
 	"github.com/TerraDharitri/drt-go-chain/testscommon"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -5,11 +5,11 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/TerraDharitri/drt-go-chain/process/transaction"
 	"github.com/TerraDharitri/drt-go-chain/sharding"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 var _ process.InterceptedDataFactory = (*interceptedTxDataFactory)(nil)

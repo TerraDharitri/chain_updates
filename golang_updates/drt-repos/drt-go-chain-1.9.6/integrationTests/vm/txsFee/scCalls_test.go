@@ -328,7 +328,7 @@ func TestScCallAndGasChangeShouldWork(t *testing.T) {
 	}
 }
 
-func TestESDTScCallAndGasChangeShouldWork(t *testing.T) {
+func TestDCDTScCallAndGasChangeShouldWork(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -343,20 +343,20 @@ func TestESDTScCallAndGasChangeShouldWork(t *testing.T) {
 
 	_, _ = vm.CreateAccount(testContext.Accounts, owner, 0, senderBalance)
 	ownerAccount, _ := testContext.Accounts.LoadAccount(owner)
-	scAddress := utils.DoDeploySecond(t, testContext, "../esdt/testdata/forwarder-raw.wasm", ownerAccount, gasPrice, gasLimit, nil, big.NewInt(0))
+	scAddress := utils.DoDeploySecond(t, testContext, "../dcdt/testdata/forwarder-raw.wasm", ownerAccount, gasPrice, gasLimit, nil, big.NewInt(0))
 	utils.CleanAccumulatedIntermediateTransactions(t, testContext)
 
 	sndAddr := []byte("12345678901234567890123456789112")
 	senderBalance = big.NewInt(10000000)
 	gasLimit = uint64(30000)
 
-	localEsdtBalance := big.NewInt(100000000)
+	localDcdtBalance := big.NewInt(100000000)
 	token := []byte("miiutoken")
-	utils.CreateAccountWithESDTBalance(t, testContext.Accounts, sndAddr, senderBalance, token, 0, localEsdtBalance, uint32(core.Fungible))
+	utils.CreateAccountWithDCDTBalance(t, testContext.Accounts, sndAddr, senderBalance, token, 0, localDcdtBalance, uint32(core.Fungible))
 
 	txData := txDataBuilder.NewBuilder()
 	valueToSendToSc := int64(1000)
-	txData.TransferESDT(string(token), valueToSendToSc).Str("forward_direct_esdt_via_transf_exec").Bytes(sndAddr)
+	txData.TransferDCDT(string(token), valueToSendToSc).Str("forward_direct_dcdt_via_transf_exec").Bytes(sndAddr)
 	numIterations := uint64(10)
 	for idx := uint64(0); idx < numIterations; idx++ {
 		tx := vm.CreateTransaction(idx, big.NewInt(0), sndAddr, scAddress, gasPrice, gasLimit, txData.ToBytes())
@@ -372,7 +372,7 @@ func TestESDTScCallAndGasChangeShouldWork(t *testing.T) {
 	mockGasSchedule := testContext.GasSchedule.(*mock.GasScheduleNotifierMock)
 	testGasSchedule := wasmConfig.MakeGasMapForTests()
 	newGasSchedule := defaults.FillGasMapInternal(testGasSchedule, 1)
-	newGasSchedule["BuiltInCost"][core.BuiltInFunctionESDTTransfer] = 2
+	newGasSchedule["BuiltInCost"][core.BuiltInFunctionDCDTTransfer] = 2
 	newGasSchedule[common.BaseOpsAPICost]["TransferValue"] = 2
 	mockGasSchedule.ChangeGasSchedule(newGasSchedule)
 
@@ -403,7 +403,7 @@ func prepareTestContextForEpoch460(tb testing.TB) (*vm.VMTestContext, []byte) {
 		CleanUpInformativeSCRsEnableEpoch:                 unreachableEpoch,
 		StorageAPICostOptimizationEnableEpoch:             unreachableEpoch,
 		TransformToMultiShardCreateEnableEpoch:            unreachableEpoch,
-		ESDTRegisterAndSetAllRolesEnableEpoch:             unreachableEpoch,
+		DCDTRegisterAndSetAllRolesEnableEpoch:             unreachableEpoch,
 		DoNotReturnOldBlockInBlockchainHookEnableEpoch:    unreachableEpoch,
 		AddFailedRelayedTxToInvalidMBsDisableEpoch:        unreachableEpoch,
 		SCRSizeInvariantOnBuiltInResultEnableEpoch:        unreachableEpoch,
@@ -415,7 +415,7 @@ func prepareTestContextForEpoch460(tb testing.TB) (*vm.VMTestContext, []byte) {
 		CheckFunctionArgumentEnableEpoch:                  unreachableEpoch,
 		CheckExecuteOnReadOnlyEnableEpoch:                 unreachableEpoch,
 		MiniBlockPartialExecutionEnableEpoch:              unreachableEpoch,
-		ESDTMetadataContinuousCleanupEnableEpoch:          unreachableEpoch,
+		DCDTMetadataContinuousCleanupEnableEpoch:          unreachableEpoch,
 		FixAsyncCallBackArgsListEnableEpoch:               unreachableEpoch,
 		FixOldTokenLiquidityEnableEpoch:                   unreachableEpoch,
 		SetSenderInEeiOutputTransferEnableEpoch:           unreachableEpoch,

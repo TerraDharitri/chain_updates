@@ -9,12 +9,12 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/common/errChan"
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 	"github.com/TerraDharitri/drt-go-chain/state"
 )
 
@@ -74,23 +74,23 @@ func (t *tokensSuppliesProcessor) HandleTrieAccountIteration(userAccount state.U
 	}
 
 	log.Trace("extractTokensSupplies - parsing account", "address", userAccount.AddressBytes())
-	esdtPrefix := []byte(core.ProtectedKeyPrefix + core.ESDTKeyIdentifier)
+	dcdtPrefix := []byte(core.ProtectedKeyPrefix + core.DCDTKeyIdentifier)
 	for userLeaf := range dataTrieChan.LeavesChan {
-		if !bytes.HasPrefix(userLeaf.Key(), esdtPrefix) {
+		if !bytes.HasPrefix(userLeaf.Key(), dcdtPrefix) {
 			continue
 		}
 
 		tokenKey := userLeaf.Key()
-		lenESDTPrefix := len(esdtPrefix)
+		lenDCDTPrefix := len(dcdtPrefix)
 		value := userLeaf.Value()
 
-		var esToken esdt.ESDigitalToken
+		var esToken dcdt.DCDigitalToken
 		err := t.marshaller.Unmarshal(&esToken, value)
 		if err != nil {
 			return fmt.Errorf("%w while unmarshaling the token with key %s", err, hex.EncodeToString(tokenKey))
 		}
 
-		tokenName := string(tokenKey)[lenESDTPrefix:]
+		tokenName := string(tokenKey)[lenDCDTPrefix:]
 		tokenID, nonce := common.ExtractTokenIDAndNonceFromTokenStorageKey([]byte(tokenName))
 		t.addToBalance(tokenID, nonce, esToken.Value)
 	}
@@ -128,14 +128,14 @@ func (t *tokensSuppliesProcessor) putInSuppliesMap(id string, value *big.Int) {
 // SaveSupplies will store the recomputed tokens supplies into the database
 // note that this function is not concurrent safe
 func (t *tokensSuppliesProcessor) SaveSupplies() error {
-	suppliesStorer, err := t.storageService.GetStorer(dataRetriever.ESDTSuppliesUnit)
+	suppliesStorer, err := t.storageService.GetStorer(dataRetriever.DCDTSuppliesUnit)
 	if err != nil {
 		return err
 	}
 
 	for tokenName, supply := range t.tokensSupplies {
 		log.Trace("repopulate tokens supplies", "token", tokenName, "supply", supply.String())
-		supplyObj := &esdtSupply.SupplyESDT{
+		supplyObj := &dcdtSupply.SupplyDCDT{
 			Supply:           supply,
 			RecomputedSupply: true,
 		}

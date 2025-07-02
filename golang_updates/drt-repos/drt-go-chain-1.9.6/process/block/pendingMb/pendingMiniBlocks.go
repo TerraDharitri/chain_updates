@@ -7,8 +7,8 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/data"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/process"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 var _ process.PendingMiniBlocksHandler = (*pendingMiniBlocks)(nil)

@@ -90,7 +90,7 @@ func createMockSmartContractProcessorArguments() scrCommon.ArgsNewSmartContractP
 	gasSchedule[common.BaseOpsAPICost][common.AsyncCallStepField] = 1000
 	gasSchedule[common.BaseOpsAPICost][common.AsyncCallbackGasLockField] = 3000
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 2000
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 2000
 
 	return scrCommon.ArgsNewSmartContractProcessor{
 		VmContainer: &mock.VMContainerMock{},
@@ -401,12 +401,12 @@ func TestGasScheduleChangeNoApiCostShouldNotChange(t *testing.T) {
 	gasSchedule[common.BuiltInCost] = nil
 
 	sc.GasScheduleChange(gasSchedule)
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTNFTTransfer], uint64(0))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTNFTTransfer], uint64(0))
 
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 2000
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 2000
 	sc.GasScheduleChange(gasSchedule)
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTTransfer], uint64(2000))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTTransfer], uint64(2000))
 }
 
 func TestGasScheduleChangeShouldWork(t *testing.T) {
@@ -417,11 +417,11 @@ func TestGasScheduleChangeShouldWork(t *testing.T) {
 
 	gasSchedule := make(map[string]map[string]uint64)
 	gasSchedule[common.BuiltInCost] = make(map[string]uint64)
-	gasSchedule[common.BuiltInCost][core.BuiltInFunctionESDTTransfer] = 20
+	gasSchedule[common.BuiltInCost][core.BuiltInFunctionDCDTTransfer] = 20
 
 	sc.GasScheduleChange(gasSchedule)
 
-	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionESDTTransfer], uint64(20))
+	require.Equal(t, sc.builtInGasCosts[core.BuiltInFunctionDCDTTransfer], uint64(20))
 }
 
 // ===================== TestDeploySmartContract =====================
@@ -740,22 +740,22 @@ func TestScProcessor_ExecuteBuiltInFunction(t *testing.T) {
 	require.Nil(t, err)
 }
 
-func TestScProcessor_ExecuteBuiltInESDTTransfer(t *testing.T) {
+func TestScProcessor_ExecuteBuiltInDCDTTransfer(t *testing.T) {
 	rcvAddr := bytes.Repeat([]byte{0}, core.NumInitCharactersForScAddress+1)
 
 	tx := &transaction.Transaction{}
-	funcName := core.BuiltInFunctionESDTTransfer
+	funcName := core.BuiltInFunctionDCDTTransfer
 	tx.Nonce = 0
 	tx.SndAddr = []byte("SRC")
 	tx.RcvAddr = rcvAddr
 	tx.Value = big.NewInt(0)
 	tx.GasLimit = 10
 	tx.Data = []byte(funcName + "@0500@0000@" + hex.EncodeToString([]byte("testFunc")))
-	executeBuiltInESDTTransfer(t, tx)
+	executeBuiltInDCDTTransfer(t, tx)
 }
 
-func TestScProcessor_ExecuteBuiltInESDTTransfer_InCallback(t *testing.T) {
-	funcName := core.BuiltInFunctionESDTTransfer
+func TestScProcessor_ExecuteBuiltInDCDTTransfer_InCallback(t *testing.T) {
+	funcName := core.BuiltInFunctionDCDTTransfer
 	rcvAddr := bytes.Repeat([]byte{0}, core.NumInitCharactersForScAddress+1)
 
 	tx := &smartContractResult.SmartContractResult{}
@@ -766,10 +766,10 @@ func TestScProcessor_ExecuteBuiltInESDTTransfer_InCallback(t *testing.T) {
 	tx.Value = big.NewInt(0)
 	tx.GasLimit = 10
 	tx.Data = []byte(funcName + "@00@00@00@00@0500@0000@" + hex.EncodeToString([]byte("testFunc")))
-	executeBuiltInESDTTransfer(t, tx)
+	executeBuiltInDCDTTransfer(t, tx)
 }
 
-func executeBuiltInESDTTransfer(t *testing.T, tx data.TransactionHandler) {
+func executeBuiltInDCDTTransfer(t *testing.T, tx data.TransactionHandler) {
 	t.Parallel()
 
 	vmContainer := &mock.VMContainerMock{}
@@ -2425,7 +2425,7 @@ func TestScProcessor_ProcessSCPaymentWithFeePayer(t *testing.T) {
 	acntRel := createAccount(rel)
 
 	arguments := createMockSmartContractProcessorArguments()
-	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.RelayedTransactionsV3FixESDTTransferFlag)
+	arguments.EnableEpochsHandler = enableEpochsHandlerMock.NewEnableEpochsHandlerStub(common.RelayedTransactionsV3FixDCDTTransferFlag)
 	loadAccountCnt := 0
 	arguments.AccountsDB = &stateMock.AccountsStub{
 		LoadAccountCalled: func(address []byte) (handler vmcommon.AccountHandler, e error) {

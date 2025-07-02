@@ -1,5 +1,5 @@
 
-# Contributing to mx-chain-go
+# Contributing to drt-go-chain
 
 If you are unfamiliar with the workflow of contributing to GitHub, you can refer to [this article](https://github.com/firstcontributions/first-contributions/blob/master/README.md)
 
@@ -13,9 +13,9 @@ For external contributors, the PRs should be targeted towards the `master` branc
 the PR owner to re-target it against another branch, in accordance to internal branches management.
 
 **tl;dr**:
-- fork `mx-chain-go` and use `master` branch.
+- fork `drt-go-chain` and use `master` branch.
 - use signed commits. [docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
-- open a PR against the `master` branch of `dharitri/mx-chain-go`.
+- open a PR against the `master` branch of `dharitri/drt-go-chain`.
 
 ## Use linter
 
@@ -53,7 +53,7 @@ Depending on the PR type, there are multiple ways of manual testing the new code
 
 Internal Branches/Releases Management (to be checked by both the code owner and the reviewers)
 
-### `mx-chain-go`
+### `drt-go-chain`
 If the PR is:
 1. a hotfix: it will be targeted towards `master` branch.
 2. a feature:
@@ -64,7 +64,7 @@ If the PR is:
 If the PR is:
 1. a hotfix: it will be targeted towards `master`/`main` branch.
 2. a feature:
-   2.1. a small feature (a single PR is needed): targeted towards an `rc` branch and create a new tag&release after merging, and reference it in `mx-chain-go` (if needed).
+   2.1. a small feature (a single PR is needed): targeted towards an `rc` branch and create a new tag&release after merging, and reference it in `drt-go-chain` (if needed).
    2.2. a big feature:
-   2.2.1. a small satellite PR: targeted towards an `rc` branch. For each change, reference just the commit hash on `mx-chain-go` and create a tag&pre-release when the `mx-chain-go` PR is to be merged.
-   2.2.2. a big satellite PR: create a feature branch (`feat/...`) targeted towards an `rc` branch. For each change, reference just the commit hash on `mx-chain-go` and create a tag&pre-release when the `feat` branch is merged
+   2.2.1. a small satellite PR: targeted towards an `rc` branch. For each change, reference just the commit hash on `drt-go-chain` and create a tag&pre-release when the `drt-go-chain` PR is to be merged.
+   2.2.2. a big satellite PR: create a feature branch (`feat/...`) targeted towards an `rc` branch. For each change, reference just the commit hash on `drt-go-chain` and create a tag&pre-release when the `feat` branch is merged

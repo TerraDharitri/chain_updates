@@ -35,7 +35,7 @@ const defaultBlocksPerShard = uint32(14400)
 // SetupRewardsResult -
 type SetupRewardsResult struct {
 	RewardsCreatorArgsV2
-	smallestDivisionEGLD  *big.Int
+	smallestDivisionREWA  *big.Int
 	totalRewardsFirstYear *big.Int
 	epochsInYear          *big.Int
 	rewardsForBlocks      *big.Int
@@ -800,15 +800,15 @@ func TestNewRewardsCreatorV2_computeAverageRewardsPer2169Nodes(t *testing.T) {
 			expectedROI: 36.007,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			expectedROI: 30.01,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			expectedROI: 22.51,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			expectedROI: 18.00,
 		},
 	}
@@ -842,19 +842,19 @@ func TestNewRewardsCreatorV2_computeAverageRewardsPer1920Nodes(t *testing.T) {
 		expectedROI float64
 	}{
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionEGLD, big.NewInt(100))),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionREWA, big.NewInt(100))),
 			expectedROI: 40.67,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			expectedROI: 33.89,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			expectedROI: 25.41,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			expectedROI: 20.33,
 		},
 	}
@@ -888,27 +888,27 @@ func TestNewRewardsCreatorV2_computeAverageRewardsPer3200Nodes(t *testing.T) {
 		expectedROI float64
 	}{
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionEGLD, big.NewInt(100))),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionREWA, big.NewInt(100))),
 			expectedROI: 24.40,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			expectedROI: 20.33,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			expectedROI: 15.25,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			expectedROI: 12.20,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionREWA),
 			expectedROI: 8.13,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionREWA),
 			expectedROI: 6.10,
 		},
 	}
@@ -942,27 +942,27 @@ func TestNewRewardsCreatorV35_computeAverageRewardsPer3200Nodes(t *testing.T) {
 		expectedROI float64
 	}{
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionEGLD, big.NewInt(100))),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionREWA, big.NewInt(100))),
 			expectedROI: 24.40,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			expectedROI: 20.33,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			expectedROI: 15.25,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			expectedROI: 12.20,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionREWA),
 			expectedROI: 8.13,
 		},
 		{
-			topupStake:  big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionEGLD),
+			topupStake:  big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionREWA),
 			expectedROI: 6.10,
 		},
 	}
@@ -992,8 +992,8 @@ func TestNewRewardsCreatorV35_computeRewardsPer3200NodesWithDifferentTopups(t *t
 	args := getRewardsCreatorV35Arguments()
 	setupResult := setUpRewards(args)
 
-	baseStakePerNode := big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD)
-	topupStakePerNode := big.NewInt(0).Mul(big.NewInt(750), setupResult.smallestDivisionEGLD)
+	baseStakePerNode := big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA)
+	topupStakePerNode := big.NewInt(0).Mul(big.NewInt(750), setupResult.smallestDivisionREWA)
 
 	baseEligibleStake := big.NewInt(0).Mul(big.NewInt(1600), baseStakePerNode)
 	topupEligibleStake := big.NewInt(0).Mul(big.NewInt(1600), topupStakePerNode)
@@ -1006,27 +1006,27 @@ func TestNewRewardsCreatorV35_computeRewardsPer3200NodesWithDifferentTopups(t *t
 		validatorExpectedFullROI float64
 	}{
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionEGLD, big.NewInt(100))),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionREWA, big.NewInt(100))),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*0.25) / 2500.25,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*500) / 3000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*1500) / 4000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*2500) / 5000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*5000) / 7500,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*7500) / 10000,
 		},
 	}
@@ -1100,8 +1100,8 @@ func TestNewRewardsCreatorV2_computeRewardsPer3200NodesWithDifferentTopups(t *te
 	args := getRewardsCreatorV2Arguments()
 	setupResult := setUpRewards(args)
 
-	baseStakePerNode := big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD)
-	topupStakePerNode := big.NewInt(0).Mul(big.NewInt(750), setupResult.smallestDivisionEGLD)
+	baseStakePerNode := big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA)
+	topupStakePerNode := big.NewInt(0).Mul(big.NewInt(750), setupResult.smallestDivisionREWA)
 
 	baseEligibleStake := big.NewInt(0).Mul(big.NewInt(1600), baseStakePerNode)
 	topupEligibleStake := big.NewInt(0).Mul(big.NewInt(1600), topupStakePerNode)
@@ -1114,27 +1114,27 @@ func TestNewRewardsCreatorV2_computeRewardsPer3200NodesWithDifferentTopups(t *te
 		validatorExpectedFullROI float64
 	}{
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionEGLD, big.NewInt(100))),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(25), big.NewInt(0).Div(setupResult.smallestDivisionREWA, big.NewInt(100))),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*0.25) / 2500.25,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*500) / 3000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(1500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*1500) / 4000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*2500) / 5000,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(2*2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*5000) / 7500,
 		},
 		{
-			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionEGLD),
+			validatorTopupStake:      big.NewInt(0).Mul(big.NewInt(3*2500), setupResult.smallestDivisionREWA),
 			validatorExpectedFullROI: (baseAPR*2500 + topupAPR*7500) / 10000,
 		},
 	}

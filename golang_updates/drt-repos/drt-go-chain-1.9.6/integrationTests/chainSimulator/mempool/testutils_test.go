@@ -22,8 +22,8 @@ import (
 )
 
 var (
-	oneEGLD                   = big.NewInt(1000000000000000000)
-	oneQuarterOfEGLD          = big.NewInt(250000000000000000)
+	oneREWA                   = big.NewInt(1000000000000000000)
+	oneQuarterOfREWA          = big.NewInt(250000000000000000)
 	durationWaitAfterSendMany = 3000 * time.Millisecond
 	durationWaitAfterSendSome = 300 * time.Millisecond
 )
@@ -78,13 +78,13 @@ func createParticipants(t *testing.T, simulator testsChainSimulator.ChainSimulat
 		senders := make([]dtos.WalletAddress, 0, numSendersPerShard)
 
 		for i := 0; i < numSendersPerShard; i++ {
-			sender, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneEGLD)
+			sender, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneREWA)
 			require.NoError(t, err)
 
 			senders = append(senders, sender)
 		}
 
-		relayer, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneEGLD)
+		relayer, err := simulator.GenerateAndMintWalletAddress(uint32(shard), oneREWA)
 		require.NoError(t, err)
 
 		receiver, err := simulator.GenerateAndMintWalletAddress(uint32(shard), big.NewInt(0))

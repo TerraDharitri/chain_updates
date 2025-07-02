@@ -13,21 +13,21 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/state"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
 	"github.com/TerraDharitri/drt-go-chain-core/core"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
 
-// CreateAccountWithESDTBalance -
-func CreateAccountWithESDTBalance(
+// CreateAccountWithDCDTBalance -
+func CreateAccountWithDCDTBalance(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
-	esdtNonce uint64,
-	esdtValue *big.Int,
-	esdtType uint32,
+	dcdtNonce uint64,
+	dcdtValue *big.Int,
+	dcdtType uint32,
 ) {
 	account, err := accnts.LoadAccount(pubKey)
 	require.Nil(t, err)
@@ -36,39 +36,39 @@ func CreateAccountWithESDTBalance(
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
-	esdtData := &esdt.ESDigitalToken{
-		Type:       esdtType,
-		Value:      esdtValue,
+	dcdtData := &dcdt.DCDigitalToken{
+		Type:       dcdtType,
+		Value:      dcdtValue,
 		Properties: []byte{},
 	}
-	if esdtNonce > 0 {
-		esdtData.TokenMetaData = &esdt.MetaData{
-			Name:    []byte(fmt.Sprintf("Token %d", esdtNonce)),
-			URIs:    [][]byte{[]byte(fmt.Sprintf("URI for token %d", esdtNonce))},
+	if dcdtNonce > 0 {
+		dcdtData.TokenMetaData = &dcdt.MetaData{
+			Name:    []byte(fmt.Sprintf("Token %d", dcdtNonce)),
+			URIs:    [][]byte{[]byte(fmt.Sprintf("URI for token %d", dcdtNonce))},
 			Creator: pubKey,
-			Nonce:   esdtNonce,
+			Nonce:   dcdtNonce,
 		}
 	}
 
-	esdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(esdtData)
+	dcdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(dcdtData)
 	require.Nil(t, err)
 
-	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.ESDTKeyIdentifier)...)
+	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.DCDTKeyIdentifier)...)
 	key = append(key, tokenIdentifier...)
-	if esdtNonce > 0 {
-		key = append(key, big.NewInt(0).SetUint64(esdtNonce).Bytes()...)
+	if dcdtNonce > 0 {
+		key = append(key, big.NewInt(0).SetUint64(dcdtNonce).Bytes()...)
 	}
 
-	err = userAccount.SaveKeyValue(key, esdtDataBytes)
+	err = userAccount.SaveKeyValue(key, dcdtDataBytes)
 	require.Nil(t, err)
 
 	err = accnts.SaveAccount(account)
 	require.Nil(t, err)
 
-	saveNewTokenOnSystemAccount(t, accnts, key, esdtData)
+	saveNewTokenOnSystemAccount(t, accnts, key, dcdtData)
 
 	_, err = accnts.Commit()
 	require.Nil(t, err)
@@ -79,7 +79,7 @@ func CreateAccountWithNFT(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
 	attributes []byte,
 ) {
@@ -90,45 +90,45 @@ func CreateAccountWithNFT(
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
-	esdtData := &esdt.ESDigitalToken{
+	dcdtData := &dcdt.DCDigitalToken{
 		Type:       uint32(core.NonFungible),
 		Value:      big.NewInt(1),
 		Properties: []byte{},
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Nonce:      1,
 			Attributes: attributes,
 		},
 	}
 
-	esdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(esdtData)
+	dcdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(dcdtData)
 	require.Nil(t, err)
 
-	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.ESDTKeyIdentifier)...)
+	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.DCDTKeyIdentifier)...)
 	key = append(key, tokenIdentifier...)
 	key = append(key, big.NewInt(0).SetUint64(1).Bytes()...)
 
-	err = userAccount.SaveKeyValue(key, esdtDataBytes)
+	err = userAccount.SaveKeyValue(key, dcdtDataBytes)
 	require.Nil(t, err)
 
 	err = accnts.SaveAccount(account)
 	require.Nil(t, err)
 
-	saveNewTokenOnSystemAccount(t, accnts, key, esdtData)
+	saveNewTokenOnSystemAccount(t, accnts, key, dcdtData)
 
 	_, err = accnts.Commit()
 	require.Nil(t, err)
 }
 
-func saveNewTokenOnSystemAccount(t *testing.T, accnts state.AccountsAdapter, tokenKey []byte, esdtData *esdt.ESDigitalToken) {
-	esdtDataOnSystemAcc := esdtData
-	esdtDataOnSystemAcc.Properties = nil
-	esdtDataOnSystemAcc.Reserved = []byte{1}
-	esdtDataOnSystemAcc.Value.Set(esdtData.Value)
+func saveNewTokenOnSystemAccount(t *testing.T, accnts state.AccountsAdapter, tokenKey []byte, dcdtData *dcdt.DCDigitalToken) {
+	dcdtDataOnSystemAcc := dcdtData
+	dcdtDataOnSystemAcc.Properties = nil
+	dcdtDataOnSystemAcc.Reserved = []byte{1}
+	dcdtDataOnSystemAcc.Value.Set(dcdtData.Value)
 
-	esdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(esdtData)
+	dcdtDataBytes, err := integrationTests.TestMarshalizer.Marshal(dcdtData)
 	require.Nil(t, err)
 
 	sysAccount, err := accnts.LoadAccount(core.SystemAccountAddress)
@@ -137,30 +137,30 @@ func saveNewTokenOnSystemAccount(t *testing.T, accnts state.AccountsAdapter, tok
 	sysUserAccount, ok := sysAccount.(state.UserAccountHandler)
 	require.True(t, ok)
 
-	err = sysUserAccount.SaveKeyValue(tokenKey, esdtDataBytes)
+	err = sysUserAccount.SaveKeyValue(tokenKey, dcdtDataBytes)
 	require.Nil(t, err)
 
 	err = accnts.SaveAccount(sysAccount)
 	require.Nil(t, err)
 }
 
-// CreateAccountWithESDTBalanceAndRoles -
-func CreateAccountWithESDTBalanceAndRoles(
+// CreateAccountWithDCDTBalanceAndRoles -
+func CreateAccountWithDCDTBalanceAndRoles(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
-	egldValue *big.Int,
+	rewaValue *big.Int,
 	tokenIdentifier []byte,
-	esdtNonce uint64,
-	esdtValue *big.Int,
+	dcdtNonce uint64,
+	dcdtValue *big.Int,
 	roles [][]byte,
 ) {
-	CreateAccountWithESDTBalance(t, accnts, pubKey, egldValue, tokenIdentifier, esdtNonce, esdtValue, uint32(core.Fungible))
-	SetESDTRoles(t, accnts, pubKey, tokenIdentifier, roles)
+	CreateAccountWithDCDTBalance(t, accnts, pubKey, rewaValue, tokenIdentifier, dcdtNonce, dcdtValue, uint32(core.Fungible))
+	SetDCDTRoles(t, accnts, pubKey, tokenIdentifier, roles)
 }
 
-// SetESDTRoles -
-func SetESDTRoles(
+// SetDCDTRoles -
+func SetDCDTRoles(
 	t *testing.T,
 	accnts state.AccountsAdapter,
 	pubKey []byte,
@@ -173,7 +173,7 @@ func SetESDTRoles(
 	userAccount, ok := account.(state.UserAccountHandler)
 	require.True(t, ok)
 
-	key := append([]byte(core.ProtectedKeyPrefix), append([]byte(core.ESDTRoleIdentifier), []byte(core.ESDTKeyIdentifier)...)...)
+	key := append([]byte(core.ProtectedKeyPrefix), append([]byte(core.DCDTRoleIdentifier), []byte(core.DCDTKeyIdentifier)...)...)
 	key = append(key, tokenIdentifier...)
 
 	if len(roles) == 0 {
@@ -183,7 +183,7 @@ func SetESDTRoles(
 		return
 	}
 
-	rolesData := &esdt.ESDTRoles{
+	rolesData := &dcdt.DCDTRoles{
 		Roles: roles,
 	}
 
@@ -214,7 +214,7 @@ func SetLastNFTNonce(
 	userAccount, ok := account.(state.UserAccountHandler)
 	require.True(t, ok)
 
-	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.ESDTNFTLatestNonceIdentifier)...)
+	key := append([]byte(core.ProtectedKeyPrefix), []byte(core.DCDTNFTLatestNonceIdentifier)...)
 	key = append(key, tokenIdentifier...)
 
 	err = userAccount.SaveKeyValue(key, big.NewInt(int64(lastNonce)).Bytes())
@@ -227,11 +227,11 @@ func SetLastNFTNonce(
 	require.Nil(t, err)
 }
 
-// CreateESDTTransferTx -
-func CreateESDTTransferTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, esdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
+// CreateDCDTTransferTx -
+func CreateDCDTTransferTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, dcdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
 	hexEncodedToken := hex.EncodeToString(tokenIdentifier)
-	esdtValueEncoded := hex.EncodeToString(esdtValue.Bytes())
-	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionESDTTransfer), []byte(hexEncodedToken), []byte(esdtValueEncoded)}, []byte("@"))
+	dcdtValueEncoded := hex.EncodeToString(dcdtValue.Bytes())
+	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionDCDTTransfer), []byte(hexEncodedToken), []byte(dcdtValueEncoded)}, []byte("@"))
 
 	return &transaction.Transaction{
 		Nonce:    nonce,
@@ -244,29 +244,29 @@ func CreateESDTTransferTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier
 	}
 }
 
-// TransferESDTData -
-type TransferESDTData struct {
+// TransferDCDTData -
+type TransferDCDTData struct {
 	Token []byte
 	Nonce uint64
 	Value *big.Int
 }
 
 // CreateMultiTransferTX -
-func CreateMultiTransferTX(nonce uint64, sender, dest []byte, gasPrice, gasLimit uint64, tds ...*TransferESDTData) *transaction.Transaction {
+func CreateMultiTransferTX(nonce uint64, sender, dest []byte, gasPrice, gasLimit uint64, tds ...*TransferDCDTData) *transaction.Transaction {
 	numTransfers := len(tds)
 	encodedReceiver := hex.EncodeToString(dest)
 	hexEncodedNumTransfers := hex.EncodeToString(big.NewInt(int64(numTransfers)).Bytes())
 
-	txDataField := []byte(strings.Join([]string{core.BuiltInFunctionMultiESDTNFTTransfer, encodedReceiver, hexEncodedNumTransfers}, "@"))
+	txDataField := []byte(strings.Join([]string{core.BuiltInFunctionMultiDCDTNFTTransfer, encodedReceiver, hexEncodedNumTransfers}, "@"))
 	for _, td := range tds {
 		hexEncodedToken := hex.EncodeToString(td.Token)
-		esdtValueEncoded := hex.EncodeToString(td.Value.Bytes())
+		dcdtValueEncoded := hex.EncodeToString(td.Value.Bytes())
 		hexEncodedNonce := "00"
 		if td.Nonce != 0 {
 			hexEncodedNonce = hex.EncodeToString(big.NewInt(int64(td.Nonce)).Bytes())
 		}
 
-		txDataField = []byte(strings.Join([]string{string(txDataField), hexEncodedToken, hexEncodedNonce, esdtValueEncoded}, "@"))
+		txDataField = []byte(strings.Join([]string{string(txDataField), hexEncodedToken, hexEncodedNonce, dcdtValueEncoded}, "@"))
 	}
 
 	return &transaction.Transaction{
@@ -280,24 +280,24 @@ func CreateMultiTransferTX(nonce uint64, sender, dest []byte, gasPrice, gasLimit
 	}
 }
 
-// CreateESDTNFTTransferTx -
-func CreateESDTNFTTransferTx(
+// CreateDCDTNFTTransferTx -
+func CreateDCDTNFTTransferTx(
 	nonce uint64,
 	sndAddr []byte,
 	rcvAddr []byte,
 	tokenIdentifier []byte,
-	esdtNonce uint64,
-	esdtValue *big.Int,
+	dcdtNonce uint64,
+	dcdtValue *big.Int,
 	gasPrice uint64,
 	gasLimit uint64,
 	endpointName string,
 	arguments ...[]byte) *transaction.Transaction {
 
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionESDTNFTTransfer)
+	txData.Func(core.BuiltInFunctionDCDTNFTTransfer)
 	txData.Bytes(tokenIdentifier)
-	txData.Int64(int64(esdtNonce))
-	txData.BigInt(esdtValue)
+	txData.Int64(int64(dcdtNonce))
+	txData.BigInt(dcdtValue)
 	txData.Bytes(rcvAddr)
 
 	if len(endpointName) > 0 {
@@ -311,7 +311,7 @@ func CreateESDTNFTTransferTx(
 	return &transaction.Transaction{
 		Nonce:    nonce,
 		SndAddr:  sndAddr,
-		RcvAddr:  sndAddr, // receiver = sender for ESDTNFTTransfer
+		RcvAddr:  sndAddr, // receiver = sender for DCDTNFTTransfer
 		GasLimit: gasLimit,
 		GasPrice: gasPrice,
 		Data:     txData.ToBytes(),
@@ -319,21 +319,21 @@ func CreateESDTNFTTransferTx(
 	}
 }
 
-// CheckESDTBalance -
-func CheckESDTBalance(t *testing.T, testContext *vm.VMTestContext, addr []byte, tokenIdentifier []byte, expectedBalance *big.Int) {
-	checkEsdtBalance(t, testContext, addr, tokenIdentifier, 0, expectedBalance)
+// CheckDCDTBalance -
+func CheckDCDTBalance(t *testing.T, testContext *vm.VMTestContext, addr []byte, tokenIdentifier []byte, expectedBalance *big.Int) {
+	checkDcdtBalance(t, testContext, addr, tokenIdentifier, 0, expectedBalance)
 }
 
-// CheckESDTNFTBalance -
-func CheckESDTNFTBalance(tb testing.TB, testContext *vm.VMTestContext, addr []byte, tokenIdentifier []byte, esdtNonce uint64, expectedBalance *big.Int) {
-	checkEsdtBalance(tb, testContext, addr, tokenIdentifier, esdtNonce, expectedBalance)
+// CheckDCDTNFTBalance -
+func CheckDCDTNFTBalance(tb testing.TB, testContext *vm.VMTestContext, addr []byte, tokenIdentifier []byte, dcdtNonce uint64, expectedBalance *big.Int) {
+	checkDcdtBalance(tb, testContext, addr, tokenIdentifier, dcdtNonce, expectedBalance)
 }
 
-// CreateESDTLocalBurnTx -
-func CreateESDTLocalBurnTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, esdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
+// CreateDCDTLocalBurnTx -
+func CreateDCDTLocalBurnTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, dcdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
 	hexEncodedToken := hex.EncodeToString(tokenIdentifier)
-	esdtValueEncoded := hex.EncodeToString(esdtValue.Bytes())
-	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionESDTLocalBurn), []byte(hexEncodedToken), []byte(esdtValueEncoded)}, []byte("@"))
+	dcdtValueEncoded := hex.EncodeToString(dcdtValue.Bytes())
+	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionDCDTLocalBurn), []byte(hexEncodedToken), []byte(dcdtValueEncoded)}, []byte("@"))
 
 	return &transaction.Transaction{
 		Nonce:    nonce,
@@ -346,11 +346,11 @@ func CreateESDTLocalBurnTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifie
 	}
 }
 
-// CreateESDTLocalMintTx -
-func CreateESDTLocalMintTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, esdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
+// CreateDCDTLocalMintTx -
+func CreateDCDTLocalMintTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, dcdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
 	hexEncodedToken := hex.EncodeToString(tokenIdentifier)
-	esdtValueEncoded := hex.EncodeToString(esdtValue.Bytes())
-	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionESDTLocalMint), []byte(hexEncodedToken), []byte(esdtValueEncoded)}, []byte("@"))
+	dcdtValueEncoded := hex.EncodeToString(dcdtValue.Bytes())
+	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionDCDTLocalMint), []byte(hexEncodedToken), []byte(dcdtValueEncoded)}, []byte("@"))
 
 	return &transaction.Transaction{
 		Nonce:    nonce,
@@ -363,12 +363,12 @@ func CreateESDTLocalMintTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifie
 	}
 }
 
-// CreateESDTNFTBurnTx -
-func CreateESDTNFTBurnTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, tokenNonce uint64, esdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
+// CreateDCDTNFTBurnTx -
+func CreateDCDTNFTBurnTx(nonce uint64, sndAddr, rcvAddr []byte, tokenIdentifier []byte, tokenNonce uint64, dcdtValue *big.Int, gasPrice, gasLimit uint64) *transaction.Transaction {
 	hexEncodedToken := hex.EncodeToString(tokenIdentifier)
 	hexEncodedNonce := hex.EncodeToString(big.NewInt(int64(tokenNonce)).Bytes())
-	esdtValueEncoded := hex.EncodeToString(esdtValue.Bytes())
-	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionESDTNFTBurn), []byte(hexEncodedToken), []byte(hexEncodedNonce), []byte(esdtValueEncoded)}, []byte("@"))
+	dcdtValueEncoded := hex.EncodeToString(dcdtValue.Bytes())
+	txDataField := bytes.Join([][]byte{[]byte(core.BuiltInFunctionDCDTNFTBurn), []byte(hexEncodedToken), []byte(hexEncodedNonce), []byte(dcdtValueEncoded)}, []byte("@"))
 
 	return &transaction.Transaction{
 		Nonce:    nonce,
@@ -391,7 +391,7 @@ func CreateNFTSingleFreezeAndWipeTxs(nonce uint64, tokenManager, addressToFreeze
 	freezeTx := &transaction.Transaction{
 		Nonce:    nonce,
 		SndAddr:  tokenManager,
-		RcvAddr:  core.ESDTSCAddress,
+		RcvAddr:  core.DCDTSCAddress,
 		GasLimit: gasLimit,
 		GasPrice: gasPrice,
 		Data:     txDataField,
@@ -402,7 +402,7 @@ func CreateNFTSingleFreezeAndWipeTxs(nonce uint64, tokenManager, addressToFreeze
 	wipeTx := &transaction.Transaction{
 		Nonce:    nonce + 1,
 		SndAddr:  tokenManager,
-		RcvAddr:  core.ESDTSCAddress,
+		RcvAddr:  core.DCDTSCAddress,
 		GasLimit: gasLimit,
 		GasPrice: gasPrice,
 		Data:     txDataField,
@@ -412,21 +412,21 @@ func CreateNFTSingleFreezeAndWipeTxs(nonce uint64, tokenManager, addressToFreeze
 	return freezeTx, wipeTx
 }
 
-func checkEsdtBalance(
+func checkDcdtBalance(
 	tb testing.TB,
 	testContext *vm.VMTestContext,
 	addr []byte,
 	tokenIdentifier []byte,
-	esdtNonce uint64,
+	dcdtNonce uint64,
 	expectedBalance *big.Int,
 ) {
-	esdtData, err := testContext.BlockchainHook.GetESDTToken(addr, tokenIdentifier, esdtNonce)
+	dcdtData, err := testContext.BlockchainHook.GetDCDTToken(addr, tokenIdentifier, dcdtNonce)
 	require.Nil(tb, err)
-	require.Equal(tb, expectedBalance, esdtData.Value)
+	require.Equal(tb, expectedBalance, dcdtData.Value)
 }
 
-// CreateESDTNFTUpdateAttributesTx -
-func CreateESDTNFTUpdateAttributesTx(
+// CreateDCDTNFTUpdateAttributesTx -
+func CreateDCDTNFTUpdateAttributesTx(
 	nonce uint64,
 	sndAddr []byte,
 	tokenIdentifier []byte,
@@ -436,7 +436,7 @@ func CreateESDTNFTUpdateAttributesTx(
 ) *transaction.Transaction {
 
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionESDTNFTUpdateAttributes)
+	txData.Func(core.BuiltInFunctionDCDTNFTUpdateAttributes)
 	txData.Bytes(tokenIdentifier)
 	txData.Int64(1)
 	txData.Bytes(newAttributes)
@@ -444,7 +444,7 @@ func CreateESDTNFTUpdateAttributesTx(
 	return &transaction.Transaction{
 		Nonce:    nonce,
 		SndAddr:  sndAddr,
-		RcvAddr:  sndAddr, // receiver = sender for ESDTNFTUpdateAttributes
+		RcvAddr:  sndAddr, // receiver = sender for DCDTNFTUpdateAttributes
 		GasLimit: gasLimit,
 		GasPrice: gasPrice,
 		Data:     txData.ToBytes(),

@@ -14,8 +14,8 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/core/versioning"
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	dataTransaction "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	logger "github.com/TerraDharitri/drt-go-chain-logger"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 

@@ -1,4 +1,4 @@
-package esdtSupply
+package dcdtSupply
 
 import (
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"

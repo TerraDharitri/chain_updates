@@ -9,7 +9,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain/common/mock"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 	epochStartMocks "github.com/TerraDharitri/drt-go-chain/epochStart/mock"
 	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/TerraDharitri/drt-go-chain/storage"
@@ -21,7 +21,7 @@ import (
 )
 
 func createMockHistoryRepoArgs(epoch uint32) HistoryRepositoryArguments {
-	sp, _ := esdtSupply.NewSuppliesProcessor(&mock.MarshalizerMock{}, &storageStubs.StorerStub{
+	sp, _ := dcdtSupply.NewSuppliesProcessor(&mock.MarshalizerMock{}, &storageStubs.StorerStub{
 		GetCalled: func(key []byte) ([]byte, error) {
 			return nil, storage.ErrKeyNotFound
 		},
@@ -36,7 +36,7 @@ func createMockHistoryRepoArgs(epoch uint32) HistoryRepositoryArguments {
 		BlockHashByRound:            genericMocks.NewStorerMockWithEpoch(epoch),
 		Marshalizer:                 &mock.MarshalizerMock{},
 		Hasher:                      &hashingMocks.HasherMock{},
-		ESDTSuppliesHandler:         sp,
+		DCDTSuppliesHandler:         sp,
 		Uint64ByteSliceConverter:    &epochStartMocks.Uint64ByteSliceConverterMock{},
 	}
 

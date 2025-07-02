@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"math/big"
 
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain/factory/peerSignatureHandler"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
 	"github.com/TerraDharitri/drt-go-chain/sharding"
 	"github.com/TerraDharitri/drt-go-chain/storage/storageunit"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 )
 
 // TestWalletAccount creates and account with balance and crypto necessary to sign transactions

@@ -1,6 +1,6 @@
 //go:generate protoc -I=proto -I=$GOPATH/src -I=$GOPATH/src/github.com/TerraDharitri/protobuf/protobuf  --gogoslick_out=. processedBlockNonce.proto
 
-package esdtSupply
+package dcdtSupply
 
 import (
 	"bytes"
@@ -33,12 +33,12 @@ func newLogsProcessor(
 		marshalizer:    marshalizer,
 		suppliesStorer: suppliesStorer,
 		fungibleOperations: map[string]struct{}{
-			core.BuiltInFunctionESDTLocalBurn:      {},
-			core.BuiltInFunctionESDTLocalMint:      {},
-			core.BuiltInFunctionESDTWipe:           {},
-			core.BuiltInFunctionESDTNFTCreate:      {},
-			core.BuiltInFunctionESDTNFTAddQuantity: {},
-			core.BuiltInFunctionESDTNFTBurn:        {},
+			core.BuiltInFunctionDCDTLocalBurn:      {},
+			core.BuiltInFunctionDCDTLocalMint:      {},
+			core.BuiltInFunctionDCDTWipe:           {},
+			core.BuiltInFunctionDCDTNFTCreate:      {},
+			core.BuiltInFunctionDCDTNFTAddQuantity: {},
+			core.BuiltInFunctionDCDTNFTBurn:        {},
 		},
 	}
 }
@@ -52,7 +52,7 @@ func (lp *logsProcessor) processLogs(blockNonce uint64, logs map[string]*data.Lo
 		return nil
 	}
 
-	supplies := make(map[string]*SupplyESDT)
+	supplies := make(map[string]*SupplyDCDT)
 	for _, logHandler := range logs {
 		if logHandler == nil || check.IfNil(logHandler.LogHandler) {
 			continue
@@ -72,7 +72,7 @@ func (lp *logsProcessor) processLogs(blockNonce uint64, logs map[string]*data.Lo
 	return lp.nonceProc.saveNonceInStorage(blockNonce)
 }
 
-func (lp *logsProcessor) processLog(txLog data.LogHandler, supplies map[string]*SupplyESDT, isRevert bool) error {
+func (lp *logsProcessor) processLog(txLog data.LogHandler, supplies map[string]*SupplyDCDT, isRevert bool) error {
 	for _, entryHandler := range txLog.GetLogEvents() {
 		if check.IfNil(entryHandler) {
 			continue
@@ -96,14 +96,14 @@ func (lp *logsProcessor) processLog(txLog data.LogHandler, supplies map[string]*
 	return nil
 }
 
-func (lp *logsProcessor) saveSupplies(supplies map[string]*SupplyESDT) error {
-	for identifier, supplyESDT := range supplies {
-		supplyESDTBytes, err := lp.marshalizer.Marshal(supplyESDT)
+func (lp *logsProcessor) saveSupplies(supplies map[string]*SupplyDCDT) error {
+	for identifier, supplyDCDT := range supplies {
+		supplyDCDTBytes, err := lp.marshalizer.Marshal(supplyDCDT)
 		if err != nil {
 			return err
 		}
 
-		err = lp.suppliesStorer.Put([]byte(identifier), supplyESDTBytes)
+		err = lp.suppliesStorer.Put([]byte(identifier), supplyDCDTBytes)
 		if err != nil {
 			return err
 		}
@@ -112,15 +112,15 @@ func (lp *logsProcessor) saveSupplies(supplies map[string]*SupplyESDT) error {
 	return nil
 }
 
-func (lp *logsProcessor) processEvent(txLog *transaction.Event, supplies map[string]*SupplyESDT, isRevert bool) error {
+func (lp *logsProcessor) processEvent(txLog *transaction.Event, supplies map[string]*SupplyDCDT, isRevert bool) error {
 	if len(txLog.Topics) < 3 {
 		return nil
 	}
 
 	tokenIdentifier := txLog.Topics[0]
-	isESDTFungible := true
+	isDCDTFungible := true
 	if len(txLog.Topics[1]) != 0 {
-		isESDTFungible = false
+		isDCDTFungible = false
 		nonceBytes := txLog.Topics[1]
 		nonceHexStr := hex.EncodeToString(nonceBytes)
 
@@ -134,7 +134,7 @@ func (lp *logsProcessor) processEvent(txLog *transaction.Event, supplies map[str
 		return err
 	}
 
-	if isESDTFungible {
+	if isDCDTFungible {
 		return nil
 	}
 
@@ -147,7 +147,7 @@ func (lp *logsProcessor) processEvent(txLog *transaction.Event, supplies map[str
 	return nil
 }
 
-func (lp *logsProcessor) updateOrCreateTokenSupply(identifier []byte, valueFromEvent *big.Int, eventIdentifier string, supplies map[string]*SupplyESDT, isRevert bool) error {
+func (lp *logsProcessor) updateOrCreateTokenSupply(identifier []byte, valueFromEvent *big.Int, eventIdentifier string, supplies map[string]*SupplyDCDT, isRevert bool) error {
 	identifierStr := string(identifier)
 	tokenSupply, found := supplies[identifierStr]
 	if found {
@@ -155,7 +155,7 @@ func (lp *logsProcessor) updateOrCreateTokenSupply(identifier []byte, valueFromE
 		return nil
 	}
 
-	supply, err := lp.getESDTSupply(identifier)
+	supply, err := lp.getDCDTSupply(identifier)
 	if err != nil {
 		return err
 	}
@@ -166,11 +166,11 @@ func (lp *logsProcessor) updateOrCreateTokenSupply(identifier []byte, valueFromE
 	return nil
 }
 
-func (lp *logsProcessor) updateTokenSupply(tokenSupply *SupplyESDT, valueFromEvent *big.Int, eventIdentifier string, isRevert bool) {
-	isBurnOp := eventIdentifier == core.BuiltInFunctionESDTLocalBurn || eventIdentifier == core.BuiltInFunctionESDTNFTBurn ||
-		eventIdentifier == core.BuiltInFunctionESDTWipe
-	isMintOp := eventIdentifier == core.BuiltInFunctionESDTNFTAddQuantity || eventIdentifier == core.BuiltInFunctionESDTLocalMint ||
-		eventIdentifier == core.BuiltInFunctionESDTNFTCreate
+func (lp *logsProcessor) updateTokenSupply(tokenSupply *SupplyDCDT, valueFromEvent *big.Int, eventIdentifier string, isRevert bool) {
+	isBurnOp := eventIdentifier == core.BuiltInFunctionDCDTLocalBurn || eventIdentifier == core.BuiltInFunctionDCDTNFTBurn ||
+		eventIdentifier == core.BuiltInFunctionDCDTWipe
+	isMintOp := eventIdentifier == core.BuiltInFunctionDCDTNFTAddQuantity || eventIdentifier == core.BuiltInFunctionDCDTLocalMint ||
+		eventIdentifier == core.BuiltInFunctionDCDTNFTCreate
 
 	negativeValueFromEvent := big.NewInt(0).Neg(valueFromEvent)
 
@@ -194,17 +194,17 @@ func (lp *logsProcessor) updateTokenSupply(tokenSupply *SupplyESDT, valueFromEve
 	}
 }
 
-func (lp *logsProcessor) getESDTSupply(tokenIdentifier []byte) (*SupplyESDT, error) {
+func (lp *logsProcessor) getDCDTSupply(tokenIdentifier []byte) (*SupplyDCDT, error) {
 	supplyFromStorageBytes, err := lp.suppliesStorer.Get(tokenIdentifier)
 	if err != nil {
 		if err == storage.ErrKeyNotFound {
-			return newSupplyESDTZero(), nil
+			return newSupplyDCDTZero(), nil
 		}
 
 		return nil, err
 	}
 
-	supplyFromStorage := &SupplyESDT{}
+	supplyFromStorage := &SupplyDCDT{}
 	err = lp.marshalizer.Unmarshal(supplyFromStorage, supplyFromStorageBytes)
 	if err != nil {
 		return nil, err
@@ -220,22 +220,22 @@ func (lp *logsProcessor) shouldIgnoreEvent(event *transaction.Event) bool {
 	return !found
 }
 
-func newSupplyESDTZero() *SupplyESDT {
-	return &SupplyESDT{
+func newSupplyDCDTZero() *SupplyDCDT {
+	return &SupplyDCDT{
 		Burned: big.NewInt(0),
 		Minted: big.NewInt(0),
 		Supply: big.NewInt(0),
 	}
 }
 
-func makePropertiesNotNil(supplyESDT *SupplyESDT) {
-	if supplyESDT.Supply == nil {
-		supplyESDT.Supply = big.NewInt(0)
+func makePropertiesNotNil(supplyDCDT *SupplyDCDT) {
+	if supplyDCDT.Supply == nil {
+		supplyDCDT.Supply = big.NewInt(0)
 	}
-	if supplyESDT.Minted == nil {
-		supplyESDT.Minted = big.NewInt(0)
+	if supplyDCDT.Minted == nil {
+		supplyDCDT.Minted = big.NewInt(0)
 	}
-	if supplyESDT.Burned == nil {
-		supplyESDT.Burned = big.NewInt(0)
+	if supplyDCDT.Burned == nil {
+		supplyDCDT.Burned = big.NewInt(0)
 	}
 }

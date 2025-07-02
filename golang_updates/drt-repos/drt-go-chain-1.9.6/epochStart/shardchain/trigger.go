@@ -19,7 +19,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/display"
 	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"

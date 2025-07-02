@@ -55,7 +55,7 @@ func createMockArgument(t *testing.T) StorageServiceFactoryArgs {
 				MiniblockHashByTxHashStorageConfig: createMockStorageConfig("MiniblockHashByTxHashStorage"),
 				EpochByHashStorageConfig:           createMockStorageConfig("EpochByHashStorage"),
 				ResultsHashesByTxHashStorageConfig: createMockStorageConfig("ResultsHashesByTxHashStorage"),
-				ESDTSuppliesStorageConfig:          createMockStorageConfig("ESDTSuppliesStorage"),
+				DCDTSuppliesStorageConfig:          createMockStorageConfig("DCDTSuppliesStorage"),
 				RoundHashStorageConfig:             createMockStorageConfig("RoundHashStorage"),
 			},
 			LogsAndEvents: config.LogsAndEventsConfig{
@@ -370,14 +370,14 @@ func TestStorageServiceFactory_CreateForShard(t *testing.T) {
 		assert.Equal(t, expectedErrForCacheString+" for DbLookupExtensions.ResultsHashesByTxHashStorageConfig", err.Error())
 		assert.True(t, check.IfNil(storageService))
 	})
-	t.Run("wrong config for DbLookupExtensions.ESDTSuppliesStorageConfig should error", func(t *testing.T) {
+	t.Run("wrong config for DbLookupExtensions.DCDTSuppliesStorageConfig should error", func(t *testing.T) {
 		t.Parallel()
 
 		args := createMockArgument(t)
-		args.Config.DbLookupExtensions.ESDTSuppliesStorageConfig.Cache.Type = ""
+		args.Config.DbLookupExtensions.DCDTSuppliesStorageConfig.Cache.Type = ""
 		storageServiceFactory, _ := NewStorageServiceFactory(args)
 		storageService, err := storageServiceFactory.CreateForShard()
-		assert.Equal(t, expectedErrForCacheString+" for DbLookupExtensions.ESDTSuppliesStorageConfig", err.Error())
+		assert.Equal(t, expectedErrForCacheString+" for DbLookupExtensions.DCDTSuppliesStorageConfig", err.Error())
 		assert.True(t, check.IfNil(storageService))
 	})
 	t.Run("wrong config for DbLookupExtensions.RoundHashStorageConfig should error", func(t *testing.T) {

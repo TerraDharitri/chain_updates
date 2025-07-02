@@ -10,6 +10,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/data/batch"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing/ed25519"
 	ed25519SingleSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/ed25519/singlesig"
@@ -23,7 +24,6 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/p2pmocks"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/shardingMocks"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
 	"github.com/stretchr/testify/assert"
 )
 

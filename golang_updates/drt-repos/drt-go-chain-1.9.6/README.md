@@ -1,6 +1,6 @@
 <div style="text-align:center">
   <img
-  src="https://raw.githubusercontent.com/dharitri/mx-chain-go/master/dharitri-logo.svg"
+  src="https://raw.githubusercontent.com/dharitri/drt-go-chain/master/dharitri-logo.svg"
   alt="Dharitri">
 </div>
 <br>
@@ -8,10 +8,10 @@
 [![](https://img.shields.io/badge/made%20by-Dharitri-blue.svg)](http://dharitri.org/)
 [![](https://img.shields.io/badge/project-Dharitri%20Mainnet-blue.svg)](https://explorer.dharitri.org/)
 [![Go Report Card](https://goreportcard.com/badge/github.com/TerraDharitri/drt-go-chain)](https://goreportcard.com/report/github.com/TerraDharitri/drt-go-chain)
-[![codecov](https://codecov.io/gh/dharitri/mx-chain-go/branch/master/graph/badge.svg?token=MYS5EDASOJ)](https://codecov.io/gh/dharitri/mx-chain-go)
-[![Contributors](https://img.shields.io/github/contributors/dharitri/mx-chain-go)](https://github.com/TerraDharitri/drt-go-chain/graphs/contributors)
+[![codecov](https://codecov.io/gh/dharitri/drt-go-chain/branch/master/graph/badge.svg?token=MYS5EDASOJ)](https://codecov.io/gh/dharitri/drt-go-chain)
+[![Contributors](https://img.shields.io/github/contributors/dharitri/drt-go-chain)](https://github.com/TerraDharitri/drt-go-chain/graphs/contributors)
 
-# mx-chain-go
+# drt-go-chain
 
 The go implementation for the Dharitri protocol
 
@@ -31,7 +31,7 @@ $ if [[ $GOPATH=="" ]]; then GOPATH="$HOME/go" fi
 $ mkdir -p $GOPATH/src/github.com/TerraDharitri
 $ cd $GOPATH/src/github.com/TerraDharitri
 $ git clone https://github.com/TerraDharitri/drt-go-chain
-$ cd mx-chain-go && git checkout master
+$ cd drt-go-chain && git checkout master
 $ cd cmd/node && go build
 ```
 The node depends on the Wasm Virtual Machine, which is automatically managed by the node.

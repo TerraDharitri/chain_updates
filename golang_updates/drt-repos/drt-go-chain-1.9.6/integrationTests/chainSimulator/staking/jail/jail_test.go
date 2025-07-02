@@ -95,7 +95,7 @@ func testChainSimulatorJailAndUnJail(t *testing.T, targetEpoch int32, nodeStatus
 	_, blsKeys, err := chainSimulator.GenerateBlsPrivateKeys(1)
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(3000))
+	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(3000))
 	walletAddress, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
 
@@ -202,7 +202,7 @@ func TestChainSimulator_FromQueueToAuctionList(t *testing.T) {
 	err = cs.AddValidatorKeys([][]byte{privateKeys[1]})
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(6000))
+	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(6000))
 	walletAddress, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
 
@@ -295,7 +295,7 @@ func TestJailNodes(t *testing.T) {
 	_, blsKeys, err := chainSimulator.GenerateBlsPrivateKeys(1)
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(6000))
+	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(6000))
 	walletAddress, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
 

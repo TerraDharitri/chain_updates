@@ -54,12 +54,12 @@ fi
 
 
 cd $(dirname $DHARITRIDIR)
-git clone git@github.com:dharitri/mx-chain-deploy-go.git
-git clone git@github.com:dharitri/mx-chain-proxy-go.git
+git clone git@github.com:dharitri/drt-go-chain-deploy.git
+git clone git@github.com:dharitri/drt-go-chain-proxy.git
 
 
 if [[ $PRIVATE_REPOS -eq 1 ]]; then
-  git clone git@github.com:dharitri/mx-chain-txgen-go.git
-  cd mx-chain-txgen-go
+  git clone git@github.com:dharitri/drt-go-chain-txgen.git
+  cd drt-go-chain-txgen
   git checkout master
 fi

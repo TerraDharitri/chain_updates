@@ -61,7 +61,7 @@ func TestInitialNodeFacade_AllMethodsShouldNotPanic(t *testing.T) {
 	assert.False(t, b)
 	s1 := inf.RestApiInterface()
 	assert.Equal(t, apiInterface, s1)
-	s1, s2, _, err := inf.GetESDTBalance("", "", api.AccountQueryOptions{})
+	s1, s2, _, err := inf.GetDCDTBalance("", "", api.AccountQueryOptions{})
 	assert.Equal(t, emptyString, s1+s2)
 	assert.Equal(t, errNodeStarting, err)
 	v, _, err := inf.GetBalance("", api.AccountQueryOptions{})
@@ -76,7 +76,7 @@ func TestInitialNodeFacade_AllMethodsShouldNotPanic(t *testing.T) {
 	assert.Equal(t, emptyString, s1)
 	assert.Equal(t, errNodeStarting, err)
 
-	s3, _, err := inf.GetAllESDTTokens("", api.AccountQueryOptions{})
+	s3, _, err := inf.GetAllDCDTTokens("", api.AccountQueryOptions{})
 	assert.Nil(t, s3)
 	assert.Equal(t, errNodeStarting, err)
 
@@ -193,7 +193,7 @@ func TestInitialNodeFacade_AllMethodsShouldNotPanic(t *testing.T) {
 	assert.Nil(t, sa)
 	assert.Equal(t, errNodeStarting, err)
 
-	sa, _, err = inf.GetESDTsWithRole("", "", api.AccountQueryOptions{})
+	sa, _, err = inf.GetDCDTsWithRole("", "", api.AccountQueryOptions{})
 	assert.Nil(t, sa)
 	assert.Equal(t, errNodeStarting, err)
 
@@ -212,11 +212,11 @@ func TestInitialNodeFacade_AllMethodsShouldNotPanic(t *testing.T) {
 	assert.Nil(t, ds)
 	assert.Equal(t, errNodeStarting, err)
 
-	mssa, _, err := inf.GetESDTsRoles("", api.AccountQueryOptions{})
+	mssa, _, err := inf.GetDCDTsRoles("", api.AccountQueryOptions{})
 	assert.Nil(t, mssa)
 	assert.Equal(t, errNodeStarting, err)
 
-	sa, err = inf.GetAllIssuedESDTs("")
+	sa, err = inf.GetAllIssuedDCDTs("")
 	assert.Nil(t, sa)
 	assert.Equal(t, errNodeStarting, err)
 
@@ -320,8 +320,8 @@ func TestInitialNodeFacade_AllMethodsShouldNotPanic(t *testing.T) {
 	assert.Nil(t, block)
 	assert.Equal(t, errNodeStarting, err)
 
-	esdtData, blockInfo, err := inf.GetESDTData("", "", 0, api.AccountQueryOptions{})
-	assert.Nil(t, esdtData)
+	dcdtData, blockInfo, err := inf.GetDCDTData("", "", 0, api.AccountQueryOptions{})
+	assert.Nil(t, dcdtData)
 	assert.Equal(t, api.BlockInfo{}, blockInfo)
 	assert.Equal(t, errNodeStarting, err)
 

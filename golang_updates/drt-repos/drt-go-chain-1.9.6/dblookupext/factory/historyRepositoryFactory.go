@@ -10,7 +10,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
 	"github.com/TerraDharitri/drt-go-chain/dblookupext"
 	"github.com/TerraDharitri/drt-go-chain/dblookupext/disabled"
-	"github.com/TerraDharitri/drt-go-chain/dblookupext/esdtSupply"
+	"github.com/TerraDharitri/drt-go-chain/dblookupext/dcdtSupply"
 	"github.com/TerraDharitri/drt-go-chain/process"
 )
 
@@ -65,7 +65,7 @@ func (hpf *historyRepositoryFactory) Create() (dblookupext.HistoryRepository, er
 		return disabled.NewNilHistoryRepository()
 	}
 
-	esdtSuppliesStorer, err := hpf.store.GetStorer(dataRetriever.ESDTSuppliesUnit)
+	dcdtSuppliesStorer, err := hpf.store.GetStorer(dataRetriever.DCDTSuppliesUnit)
 	if err != nil {
 		return nil, err
 	}
@@ -75,9 +75,9 @@ func (hpf *historyRepositoryFactory) Create() (dblookupext.HistoryRepository, er
 		return nil, err
 	}
 
-	esdtSuppliesHandler, err := esdtSupply.NewSuppliesProcessor(
+	dcdtSuppliesHandler, err := dcdtSupply.NewSuppliesProcessor(
 		hpf.marshalizer,
-		esdtSuppliesStorer,
+		dcdtSuppliesStorer,
 		txLogsStorer,
 	)
 	if err != nil {
@@ -119,7 +119,7 @@ func (hpf *historyRepositoryFactory) Create() (dblookupext.HistoryRepository, er
 		EpochByHashStorer:           epochByHashStorer,
 		MiniblockHashByTxHashStorer: miniblockHashByTxHashStorer,
 		EventsHashesByTxHashStorer:  resultsHashesByTxHashStorer,
-		ESDTSuppliesHandler:         esdtSuppliesHandler,
+		DCDTSuppliesHandler:         dcdtSuppliesHandler,
 	}
 	return dblookupext.NewHistoryRepository(historyRepArgs)
 }

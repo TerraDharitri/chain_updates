@@ -994,7 +994,7 @@ func (tpn *TestFullNode) initBlockProcessor(
 			StakingDataProvider:          stakingDataProvider,
 			NodesConfigProvider:          tpn.NodesCoordinator,
 			ShardCoordinator:             tpn.ShardCoordinator,
-			ESDTOwnerAddressBytes:        vm.EndOfEpochAddress,
+			DCDTOwnerAddressBytes:        vm.EndOfEpochAddress,
 			EnableEpochsHandler:          tpn.EnableEpochsHandler,
 			AuctionListSelector:          auctionListSelector,
 			MaxNodesChangeConfigProvider: maxNodesChangeConfigProvider,

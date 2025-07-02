@@ -86,7 +86,7 @@ func testChainSimulatorSimpleStake(t *testing.T, targetEpoch int32, nodesStatus 
 	require.NotNil(t, cs)
 	defer cs.Close()
 
-	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneEGLD, big.NewInt(3000))
+	mintValue := big.NewInt(0).Mul(chainSimulatorIntegrationTests.OneREWA, big.NewInt(3000))
 	wallet1, err := cs.GenerateAndMintWalletAddress(0, mintValue)
 	require.Nil(t, err)
 	wallet2, err := cs.GenerateAndMintWalletAddress(0, mintValue)
@@ -104,14 +104,14 @@ func testChainSimulatorSimpleStake(t *testing.T, targetEpoch int32, nodesStatus 
 	require.Nil(t, err)
 
 	dataFieldTx1 := fmt.Sprintf("stake@01@%s@%s", blsKeys[0], staking.MockBLSSignature)
-	tx1Value := big.NewInt(0).Mul(big.NewInt(2499), chainSimulatorIntegrationTests.OneEGLD)
+	tx1Value := big.NewInt(0).Mul(big.NewInt(2499), chainSimulatorIntegrationTests.OneREWA)
 	tx1 := chainSimulatorIntegrationTests.GenerateTransaction(wallet1.Bytes, 0, vm.ValidatorSCAddress, tx1Value, dataFieldTx1, staking.GasLimitForStakeOperation)
 
 	dataFieldTx2 := fmt.Sprintf("stake@01@%s@%s", blsKeys[1], staking.MockBLSSignature)
 	tx2 := chainSimulatorIntegrationTests.GenerateTransaction(wallet3.Bytes, 0, vm.ValidatorSCAddress, chainSimulatorIntegrationTests.MinimumStakeValue, dataFieldTx2, staking.GasLimitForStakeOperation)
 
 	dataFieldTx3 := fmt.Sprintf("stake@01@%s@%s", blsKeys[2], staking.MockBLSSignature)
-	tx3Value := big.NewInt(0).Mul(big.NewInt(2501), chainSimulatorIntegrationTests.OneEGLD)
+	tx3Value := big.NewInt(0).Mul(big.NewInt(2501), chainSimulatorIntegrationTests.OneREWA)
 	tx3 := chainSimulatorIntegrationTests.GenerateTransaction(wallet2.Bytes, 0, vm.ValidatorSCAddress, tx3Value, dataFieldTx3, staking.GasLimitForStakeOperation)
 
 	results, err := cs.SendTxsAndGenerateBlocksTilAreExecuted([]*transaction.Transaction{tx1, tx2, tx3}, staking.MaxNumOfBlockToGenerateWhenExecutingTx)
@@ -200,7 +200,7 @@ func TestChainSimulator_StakingV4Step2APICalls(t *testing.T) {
 	err = cs.AddValidatorKeys(privateKey)
 	require.Nil(t, err)
 
-	mintValue := big.NewInt(0).Add(chainSimulatorIntegrationTests.MinimumStakeValue, chainSimulatorIntegrationTests.OneEGLD)
+	mintValue := big.NewInt(0).Add(chainSimulatorIntegrationTests.MinimumStakeValue, chainSimulatorIntegrationTests.OneREWA)
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(core.AllShardId, mintValue)
 	require.Nil(t, err)
 

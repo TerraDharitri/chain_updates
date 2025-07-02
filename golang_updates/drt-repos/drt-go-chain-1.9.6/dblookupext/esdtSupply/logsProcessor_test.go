@@ -1,4 +1,4 @@
-package esdtSupply
+package dcdtSupply
 
 import (
 	"math/big"
@@ -27,37 +27,37 @@ func TestProcessLogsSaveSupplyNothingInStorage(t *testing.T) {
 						Identifier: []byte("something"),
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(10).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(50).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(1).Bytes(), big.NewInt(30).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(10).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTAddQuantity),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTAddQuantity),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(50).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 						Topics: [][]byte{
 							token, big.NewInt(2).Bytes(), big.NewInt(30).Bytes(),
 						},
@@ -85,9 +85,9 @@ func TestProcessLogsSaveSupplyNothingInStorage(t *testing.T) {
 			if isCollectionSupply {
 				supplyValue *= 2
 			}
-			var supplyESDT SupplyESDT
-			_ = marshalizer.Unmarshal(&supplyESDT, data)
-			require.Equal(t, big.NewInt(supplyValue), supplyESDT.Supply)
+			var supplyDCDT SupplyDCDT
+			_ = marshalizer.Unmarshal(&supplyDCDT, data)
+			require.Equal(t, big.NewInt(supplyValue), supplyDCDT.Supply)
 
 			putCalledNum++
 			return nil
@@ -104,20 +104,20 @@ func TestProcessLogsSaveSupplyNothingInStorage(t *testing.T) {
 func TestTestProcessLogsSaveSupplyExistsInStorage(t *testing.T) {
 	t.Parallel()
 
-	token := []byte("esdt-miiu")
+	token := []byte("dcdt-miiu")
 
 	logs := map[string]*data.LogData{
 		"txLog": {
 			LogHandler: &transaction.Log{
 				Events: []*transaction.Event{
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalBurn),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalBurn),
 						Topics: [][]byte{
 							token, big.NewInt(0).Bytes(), big.NewInt(20).Bytes(),
 						},
 					},
 					{
-						Identifier: []byte(core.BuiltInFunctionESDTLocalMint),
+						Identifier: []byte(core.BuiltInFunctionDCDTLocalMint),
 						Topics: [][]byte{
 							token, big.NewInt(0).Bytes(), big.NewInt(25).Bytes(),
 						},
@@ -131,10 +131,10 @@ func TestTestProcessLogsSaveSupplyExistsInStorage(t *testing.T) {
 	marshalizer := marshallerMock.MarshalizerMock{}
 	storer := &storageStubs.StorerStub{
 		GetCalled: func(key []byte) ([]byte, error) {
-			supplyESDT := &SupplyESDT{
+			supplyDCDT := &SupplyDCDT{
 				Supply: big.NewInt(1000),
 			}
-			return marshalizer.Marshal(supplyESDT)
+			return marshalizer.Marshal(supplyDCDT)
 		},
 		PutCalled: func(key, data []byte) error {
 			if string(key) == processedBlockKey {
@@ -144,9 +144,9 @@ func TestTestProcessLogsSaveSupplyExistsInStorage(t *testing.T) {
 			supplyKey := string(token)
 			require.Equal(t, supplyKey, string(key))
 
-			var supplyESDT SupplyESDT
-			_ = marshalizer.Unmarshal(&supplyESDT, data)
-			require.Equal(t, big.NewInt(1005), supplyESDT.Supply)
+			var supplyDCDT SupplyDCDT
+			_ = marshalizer.Unmarshal(&supplyDCDT, data)
+			require.Equal(t, big.NewInt(1005), supplyDCDT.Supply)
 
 			return nil
 		},
@@ -164,12 +164,12 @@ func TestMakePropertiesNotNil(t *testing.T) {
 	t.Run("supply is nil", func(t *testing.T) {
 		t.Parallel()
 
-		provided := SupplyESDT{
+		provided := SupplyDCDT{
 			Supply: nil,
 			Burned: big.NewInt(1),
 			Minted: big.NewInt(2),
 		}
-		expected := SupplyESDT{
+		expected := SupplyDCDT{
 			Supply: big.NewInt(0),
 			Burned: big.NewInt(1),
 			Minted: big.NewInt(2),
@@ -180,12 +180,12 @@ func TestMakePropertiesNotNil(t *testing.T) {
 	t.Run("burned is nil", func(t *testing.T) {
 		t.Parallel()
 
-		provided := SupplyESDT{
+		provided := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: nil,
 			Minted: big.NewInt(2),
 		}
-		expected := SupplyESDT{
+		expected := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: big.NewInt(0),
 			Minted: big.NewInt(2),
@@ -196,12 +196,12 @@ func TestMakePropertiesNotNil(t *testing.T) {
 	t.Run("minted is nil", func(t *testing.T) {
 		t.Parallel()
 
-		provided := SupplyESDT{
+		provided := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: big.NewInt(2),
 			Minted: nil,
 		}
-		expected := SupplyESDT{
+		expected := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: big.NewInt(2),
 			Minted: big.NewInt(0),
@@ -212,8 +212,8 @@ func TestMakePropertiesNotNil(t *testing.T) {
 	t.Run("all are nil", func(t *testing.T) {
 		t.Parallel()
 
-		provided := SupplyESDT{}
-		expected := SupplyESDT{
+		provided := SupplyDCDT{}
+		expected := SupplyDCDT{
 			Supply: big.NewInt(0),
 			Burned: big.NewInt(0),
 			Minted: big.NewInt(0),
@@ -224,12 +224,12 @@ func TestMakePropertiesNotNil(t *testing.T) {
 	t.Run("none is nil", func(t *testing.T) {
 		t.Parallel()
 
-		provided := SupplyESDT{
+		provided := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: big.NewInt(2),
 			Minted: big.NewInt(3),
 		}
-		expected := SupplyESDT{
+		expected := SupplyDCDT{
 			Supply: big.NewInt(1),
 			Burned: big.NewInt(2),
 			Minted: big.NewInt(3),

@@ -1145,8 +1145,8 @@ func computeRewardsPerBlock(
 func TestComputeEndOfEpochEconomicsV2(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1157,14 +1157,14 @@ func TestComputeEndOfEpochEconomicsV2(t *testing.T) {
 	roundsPerEpoch := uint64(epochDuration / roundDuration)
 
 	testInputs := []testInput{
-		{blockPerEpochOneShard: roundsPerEpoch, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 2, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 4, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 8, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 16, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 32, accumulatedFeesInEpoch: intToEgld(1000), devFeesInEpoch: intToEgld(300)},
-		{blockPerEpochOneShard: roundsPerEpoch / 64, accumulatedFeesInEpoch: intToEgld(10000000), devFeesInEpoch: intToEgld(100000)},
-		{blockPerEpochOneShard: roundsPerEpoch, accumulatedFeesInEpoch: intToEgld(10000000), devFeesInEpoch: intToEgld(300000)},
+		{blockPerEpochOneShard: roundsPerEpoch, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 2, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 4, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 8, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 16, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 32, accumulatedFeesInEpoch: intToRewa(1000), devFeesInEpoch: intToRewa(300)},
+		{blockPerEpochOneShard: roundsPerEpoch / 64, accumulatedFeesInEpoch: intToRewa(10000000), devFeesInEpoch: intToRewa(100000)},
+		{blockPerEpochOneShard: roundsPerEpoch, accumulatedFeesInEpoch: intToRewa(10000000), devFeesInEpoch: intToRewa(300000)},
 	}
 
 	var rewardsPerBlock *big.Int
@@ -1204,8 +1204,8 @@ func TestComputeEndOfEpochEconomicsV2(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsV1ReturnsOK(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(10)
@@ -1227,8 +1227,8 @@ func TestEconomics_checkEconomicsInvariantsV1ReturnsOK(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsInflationOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1265,8 +1265,8 @@ func TestEconomics_checkEconomicsInvariantsInflationOutOfRange(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsAccumulatedFeesOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1309,8 +1309,8 @@ func TestEconomics_checkEconomicsInvariantsAccumulatedFeesOutOfRange(t *testing.
 func TestEconomics_checkEconomicsInvariantsRewardsForProtocolSustainabilityOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1353,8 +1353,8 @@ func TestEconomics_checkEconomicsInvariantsRewardsForProtocolSustainabilityOutOf
 func TestEconomics_checkEconomicsInvariantsMintedOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1397,8 +1397,8 @@ func TestEconomics_checkEconomicsInvariantsMintedOutOfRange(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsTotalToDistributeOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1441,8 +1441,8 @@ func TestEconomics_checkEconomicsInvariantsTotalToDistributeOutOfRange(t *testin
 func TestEconomics_checkEconomicsInvariantsSumRewardsOutOfRange(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1485,8 +1485,8 @@ func TestEconomics_checkEconomicsInvariantsSumRewardsOutOfRange(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsV2ReturnsOK(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1511,8 +1511,8 @@ func TestEconomics_checkEconomicsInvariantsV2ReturnsOK(t *testing.T) {
 func TestEconomics_checkEconomicsInvariantsV2ExtraBlocksNotarized(t *testing.T) {
 	t.Parallel()
 
-	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million EGLD
-	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 EGLD
+	totalSupply, _ := big.NewInt(0).SetString("20000000000000000000000000", 10) // 20 Million REWA
+	nodePrice, _ := big.NewInt(0).SetString("1000000000000000000000", 10)       // 1000 REWA
 	roundDuration := 4
 
 	stakingV2EnableEpoch := uint32(0)
@@ -1693,13 +1693,13 @@ func verifyEconomicsBlock(
 
 func printEconomicsData(eb *block.Economics, hitRate float64, numBlocksTotal int64) {
 	fmt.Printf("Hit rate per shard %.4f%%, Total block produced: %d \n", hitRate, numBlocksTotal)
-	fmt.Printf("Total supply: %vEGLD, TotalToDistribute %vEGLD, "+
-		"TotalNewlyMinted %vEGLD, RewardsPerBlock %vEGLD, RewardsForProtocolSustainability %vEGLD, NodePrice: %vEGLD\n",
+	fmt.Printf("Total supply: %vREWA, TotalToDistribute %vREWA, "+
+		"TotalNewlyMinted %vREWA, RewardsPerBlock %vREWA, RewardsForProtocolSustainability %vREWA, NodePrice: %vREWA\n",
 		denomination(eb.TotalSupply), denomination(eb.TotalToDistribute), denomination(eb.TotalNewlyMinted),
 		denomination(eb.RewardsPerBlock), denomination(eb.RewardsForProtocolSustainability), denomination(eb.NodePrice))
 }
 
-func intToEgld(value int) *big.Int {
+func intToRewa(value int) *big.Int {
 	denom, _ := big.NewInt(0).SetString("1000000000000000000", 10)
 
 	return big.NewInt(0).Mul(denom, big.NewInt(int64(value)))

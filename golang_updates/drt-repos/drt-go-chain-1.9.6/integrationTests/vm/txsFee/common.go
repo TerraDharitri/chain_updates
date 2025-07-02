@@ -10,7 +10,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
 	"github.com/TerraDharitri/drt-go-chain/state"
 	"github.com/TerraDharitri/drt-go-chain-core/core"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
@@ -45,20 +45,20 @@ func GetDefaultMetaData() *MetaData {
 	}
 }
 
-func getMetaDataFromAcc(t *testing.T, testContext *vm.VMTestContext, accWithMetaData []byte, token []byte) *esdt.MetaData {
+func getMetaDataFromAcc(t *testing.T, testContext *vm.VMTestContext, accWithMetaData []byte, token []byte) *dcdt.MetaData {
 	account, err := testContext.Accounts.LoadAccount(accWithMetaData)
 	require.Nil(t, err)
 	userAccount, ok := account.(state.UserAccountHandler)
 	require.True(t, ok)
 
 	key := append(token, big.NewInt(0).SetUint64(1).Bytes()...)
-	esdtDataBytes, _, err := userAccount.RetrieveValue(key)
+	dcdtDataBytes, _, err := userAccount.RetrieveValue(key)
 	require.Nil(t, err)
-	esdtData := &esdt.ESDigitalToken{}
-	err = testContext.Marshalizer.Unmarshal(esdtData, esdtDataBytes)
+	dcdtData := &dcdt.DCDigitalToken{}
+	err = testContext.Marshalizer.Unmarshal(dcdtData, dcdtDataBytes)
 	require.Nil(t, err)
 
-	return esdtData.TokenMetaData
+	return dcdtData.TokenMetaData
 }
 
 func checkMetaData(t *testing.T, testContext *vm.VMTestContext, accWithMetaData []byte, token []byte, expectedMetaData *MetaData) {
@@ -76,9 +76,9 @@ func checkMetaData(t *testing.T, testContext *vm.VMTestContext, accWithMetaData 
 
 func getDynamicTokenTypes() []string {
 	return []string{
-		core.DynamicNFTESDT,
-		core.DynamicSFTESDT,
-		core.DynamicMetaESDT,
+		core.DynamicNFTDCDT,
+		core.DynamicSFTDCDT,
+		core.DynamicMetaDCDT,
 	}
 }
 
@@ -91,7 +91,7 @@ func createTokenTx(
 ) *transaction.Transaction {
 	txDataField := bytes.Join(
 		[][]byte{
-			[]byte(core.BuiltInFunctionESDTNFTCreate),
+			[]byte(core.BuiltInFunctionDCDTNFTCreate),
 			metaData.TokenId,
 			[]byte(hex.EncodeToString(big.NewInt(quantity).Bytes())), // quantity
 			metaData.Name,
@@ -122,7 +122,7 @@ func setTokenTypeTx(
 ) *transaction.Transaction {
 	txDataField := bytes.Join(
 		[][]byte{
-			[]byte(core.ESDTSetTokenType),
+			[]byte(core.DCDTSetTokenType),
 			[]byte(hex.EncodeToString(tokenId)),
 			[]byte(hex.EncodeToString([]byte(tokenType))),
 		},
@@ -158,7 +158,7 @@ func getAccountDataTrie(tb testing.TB, testContext *vm.VMTestContext, address []
 	return dataTrieInstance
 }
 
-func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []byte, egldValue *big.Int) {
+func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []byte, rewaValue *big.Int) {
 	account, err := accnts.LoadAccount(pubKey)
 	require.Nil(t, err)
 
@@ -166,7 +166,7 @@ func createAccWithBalance(t *testing.T, accnts state.AccountsAdapter, pubKey []b
 	require.True(t, ok)
 
 	userAccount.IncreaseNonce(0)
-	err = userAccount.AddToBalance(egldValue)
+	err = userAccount.AddToBalance(rewaValue)
 	require.Nil(t, err)
 
 	err = accnts.SaveAccount(userAccount)

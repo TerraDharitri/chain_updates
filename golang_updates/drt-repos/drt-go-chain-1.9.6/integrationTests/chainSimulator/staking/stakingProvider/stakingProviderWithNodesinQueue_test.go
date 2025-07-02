@@ -72,7 +72,7 @@ func testStakingProviderWithNodesReStakeUnStaked(t *testing.T, stakingV4Activati
 	require.NotNil(t, cs)
 	defer cs.Close()
 
-	mintValue := big.NewInt(0).Mul(big.NewInt(5000), chainSimulatorIntegrationTests.OneEGLD)
+	mintValue := big.NewInt(0).Mul(big.NewInt(5000), chainSimulatorIntegrationTests.OneREWA)
 	validatorOwner, err := cs.GenerateAndMintWalletAddress(0, mintValue)
 	require.Nil(t, err)
 

@@ -49,11 +49,11 @@ type addressFacadeHandler interface {
 	GetValueForKey(address string, key string, options api.AccountQueryOptions) (string, api.BlockInfo, error)
 	GetAccount(address string, options api.AccountQueryOptions) (api.AccountResponse, api.BlockInfo, error)
 	GetAccounts(addresses []string, options api.AccountQueryOptions) (map[string]*api.AccountResponse, api.BlockInfo, error)
-	GetDCDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.ESDigitalToken, api.BlockInfo, error)
+	GetDCDTData(address string, key string, nonce uint64, options api.AccountQueryOptions) (*dcdt.DCDigitalToken, api.BlockInfo, error)
 	GetDCDTsRoles(address string, options api.AccountQueryOptions) (map[string][]string, api.BlockInfo, error)
 	GetNFTTokenIDsRegisteredByAddress(address string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
 	GetDCDTsWithRole(address string, role string, options api.AccountQueryOptions) ([]string, api.BlockInfo, error)
-	GetAllDCDTTokens(address string, options api.AccountQueryOptions) (map[string]*dcdt.ESDigitalToken, api.BlockInfo, error)
+	GetAllDCDTTokens(address string, options api.AccountQueryOptions) (map[string]*dcdt.DCDigitalToken, api.BlockInfo, error)
 	GetKeyValuePairs(address string, options api.AccountQueryOptions) (map[string]string, api.BlockInfo, error)
 	GetGuardianData(address string, options api.AccountQueryOptions) (api.GuardianData, api.BlockInfo, error)
 	IsDataTrieMigrated(address string, options api.AccountQueryOptions) (bool, error)
@@ -483,7 +483,7 @@ func (ag *addressGroup) isDataTrieMigrated(c *gin.Context) {
 	shared.RespondWithSuccess(c, gin.H{"isMigrated": isMigrated})
 }
 
-func buildTokenDataApiResponse(tokenIdentifier string, dcdtData *dcdt.ESDigitalToken) *DCDTNFTTokenData {
+func buildTokenDataApiResponse(tokenIdentifier string, dcdtData *dcdt.DCDigitalToken) *DCDTNFTTokenData {
 	tokenData := &DCDTNFTTokenData{
 		TokenIdentifier: tokenIdentifier,
 		Balance:         dcdtData.Value.String(),

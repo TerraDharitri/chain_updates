@@ -20,12 +20,12 @@ const (
 var (
 	// ZeroValue the variable for the zero big int
 	ZeroValue = big.NewInt(0)
-	// OneEGLD the variable for one egld value
-	OneEGLD = big.NewInt(1000000000000000000)
+	// OneREWA the variable for one rewa value
+	OneREWA = big.NewInt(1000000000000000000)
 	// MinimumStakeValue the variable for the minimum stake value
-	MinimumStakeValue = big.NewInt(0).Mul(OneEGLD, big.NewInt(2500))
+	MinimumStakeValue = big.NewInt(0).Mul(OneREWA, big.NewInt(2500))
 	// InitialAmount the variable for initial minting amount in account
-	InitialAmount = big.NewInt(0).Mul(OneEGLD, big.NewInt(100))
+	InitialAmount = big.NewInt(0).Mul(OneREWA, big.NewInt(100))
 )
 
 // GenerateTransaction will generate a transaction based on input data

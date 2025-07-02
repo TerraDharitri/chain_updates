@@ -113,7 +113,7 @@ func createMockArgsForSystemSCProcessor() ArgsNewEpochStartSystemSCProcessing {
 		ShardCoordinator:             &testscommon.ShardsCoordinatorMock{},
 		EndOfEpochCallerAddress:      vm.EndOfEpochAddress,
 		StakingSCAddress:             vm.StakingSCAddress,
-		ESDTOwnerAddressBytes:        vm.ESDTSCAddress,
+		DCDTOwnerAddressBytes:        vm.DCDTSCAddress,
 		GenesisNodesConfig:           &genesisMocks.NodesSetupStub{},
 		EpochNotifier:                &epochNotifier.EpochNotifierStub{},
 		NodesConfigProvider:          &shardingMocks.NodesCoordinatorStub{},
@@ -833,7 +833,7 @@ func createFullArgumentsForSystemSCProcessing(enableEpochsConfig config.EnableEp
 		NFTStorageHandler:        &testscommon.SimpleNFTStorageHandlerStub{},
 		BuiltInFunctions:         vmcommonBuiltInFunctions.NewBuiltInFunctionContainer(),
 		DataPool:                 testDataPool,
-		GlobalSettingsHandler:    &testscommon.ESDTGlobalSettingsHandlerStub{},
+		GlobalSettingsHandler:    &testscommon.DCDTGlobalSettingsHandlerStub{},
 		CompiledSCPool:           testDataPool.SmartContracts(),
 		EpochNotifier:            en,
 		EnableEpochsHandler:      enableEpochsHandler,
@@ -856,7 +856,7 @@ func createFullArgumentsForSystemSCProcessing(enableEpochsConfig config.EnableEp
 		Hasher:              hasher,
 		Marshalizer:         marshalizer,
 		SystemSCConfig: &config.SystemSmartContractsConfig{
-			ESDTSystemSCConfig: config.ESDTSystemSCConfig{
+			DCDTSystemSCConfig: config.DCDTSystemSCConfig{
 				BaseIssuingCost: "1000",
 				OwnerAddress:    "aaaaaa",
 			},
@@ -971,7 +971,7 @@ func createFullArgumentsForSystemSCProcessing(enableEpochsConfig config.EnableEp
 			},
 		},
 		ShardCoordinator:             shardCoordinator,
-		ESDTOwnerAddressBytes:        bytes.Repeat([]byte{1}, 32),
+		DCDTOwnerAddressBytes:        bytes.Repeat([]byte{1}, 32),
 		MaxNodesChangeConfigProvider: nodesConfigProvider,
 		EnableEpochsHandler:          enableEpochsHandler,
 	}
@@ -996,7 +996,7 @@ func TestSystemSCProcessor_ProcessSystemSmartContractInitDelegationMgr(t *testin
 					flag == common.CorrectLastUnJailedFlag ||
 					flag == common.SwitchJailWaitingFlag ||
 					flag == common.StakingV2Flag ||
-					flag == common.ESDTFlagInSpecificEpochOnly {
+					flag == common.DCDTFlagInSpecificEpochOnly {
 
 					return false
 				}
@@ -1084,7 +1084,7 @@ func TestSystemSCProcessor_ProcessSystemSmartContractInitGovernance(t *testing.T
 					flag == common.CorrectLastUnJailedFlag ||
 					flag == common.SwitchJailWaitingFlag ||
 					flag == common.StakingV2Flag ||
-					flag == common.ESDTFlagInSpecificEpochOnly {
+					flag == common.DCDTFlagInSpecificEpochOnly {
 
 					return false
 				}
@@ -1366,11 +1366,11 @@ func TestSystemSCProcessor_ProcessSystemSmartContractMaxNodesStakedFromQueueOwne
 	assert.Equal(t, peerAcc.GetList(), string(common.NewList))
 }
 
-func TestSystemSCProcessor_ESDTInitShouldWork(t *testing.T) {
+func TestSystemSCProcessor_DCDTInitShouldWork(t *testing.T) {
 	t.Parallel()
 
 	args, _ := createFullArgumentsForSystemSCProcessing(config.EnableEpochs{
-		ESDTEnableEpoch:              1,
+		DCDTEnableEpoch:              1,
 		SwitchJailWaitingEnableEpoch: 1,
 	}, testscommon.CreateMemUnit())
 	hdr := &block.MetaBlock{
@@ -1379,7 +1379,7 @@ func TestSystemSCProcessor_ESDTInitShouldWork(t *testing.T) {
 	args.EpochNotifier.CheckEpoch(hdr)
 	s, _ := NewSystemSCProcessor(args)
 
-	initialContractConfig, err := s.extractConfigFromESDTContract()
+	initialContractConfig, err := s.extractConfigFromDCDTContract()
 	require.Nil(t, err)
 	require.Equal(t, 4, len(initialContractConfig))
 	require.Equal(t, []byte("aaaaaa"), initialContractConfig[0])
@@ -1388,10 +1388,10 @@ func TestSystemSCProcessor_ESDTInitShouldWork(t *testing.T) {
 
 	require.Nil(t, err)
 
-	updatedContractConfig, err := s.extractConfigFromESDTContract()
+	updatedContractConfig, err := s.extractConfigFromDCDTContract()
 	require.Nil(t, err)
 	require.Equal(t, 4, len(updatedContractConfig))
-	require.Equal(t, args.ESDTOwnerAddressBytes, updatedContractConfig[0])
+	require.Equal(t, args.DCDTOwnerAddressBytes, updatedContractConfig[0])
 	// the other config values should be unchanged
 	for i := 1; i < len(initialContractConfig); i++ {
 		assert.Equal(t, initialContractConfig[i], updatedContractConfig[i])

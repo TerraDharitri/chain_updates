@@ -52,7 +52,7 @@ func TestExtractTokenIDAndNonceFromTokenStorageKey(t *testing.T) {
 		t.Parallel()
 
 		// "-" represents nonce 45 and should not be treated as a separator
-		checkTickerAndNonceExtraction(t, "REWAMEXF-8aa8b6-", "REWAMEXF-8aa8b6", 45)
+		checkTickerAndNonceExtraction(t, "REWAMOAF-8aa8b6-", "REWAMOAF-8aa8b6", 45)
 	})
 }
 

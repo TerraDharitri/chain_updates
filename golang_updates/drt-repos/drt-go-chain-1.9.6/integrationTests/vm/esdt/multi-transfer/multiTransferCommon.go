@@ -8,7 +8,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
 	testVm "github.com/TerraDharitri/drt-go-chain/integrationTests/vm"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm"
 	vmFactory "github.com/TerraDharitri/drt-go-chain/process/factory"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/txDataBuilder"
@@ -20,8 +20,8 @@ import (
 const numRoundsCrossShard = 15
 const numRoundsSameShard = 1
 
-// EsdtTransfer -
-type EsdtTransfer struct {
+// DcdtTransfer -
+type DcdtTransfer struct {
 	TokenIdentifier string
 	Nonce           int64
 	Amount          int64
@@ -50,7 +50,7 @@ func IssueFungibleTokenWithIssuerAddress(
 	tokenName := "token"
 	issuePrice := big.NewInt(1000)
 	txData := txDataBuilder.NewBuilder()
-	txData.IssueESDT(tokenName, ticker, initialSupply, 6)
+	txData.IssueDCDT(tokenName, ticker, initialSupply, 6)
 	txData.CanFreeze(true).CanWipe(true).CanPause(true).CanMint(true).CanBurn(true)
 
 	integrationTests.CreateAndSendTransactionWithSenderAccount(
@@ -58,13 +58,13 @@ func IssueFungibleTokenWithIssuerAddress(
 		net.Nodes,
 		issuePrice,
 		issuerAccount,
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		txData.ToString(), core.MinMetaTxExtraGasCost)
 	WaitForOperationCompletion(net, numRoundsCrossShard)
 
 	tokenIdentifier := integrationTests.GetTokenIdentifier(net.Nodes, []byte(ticker))
 
-	esdt.CheckAddressHasTokens(t, issuerAccount.Address, net.Nodes,
+	dcdt.CheckAddressHasTokens(t, issuerAccount.Address, net.Nodes,
 		tokenIdentifier, 0, initialSupply)
 
 	return string(tokenIdentifier)
@@ -107,7 +107,7 @@ func IssueNftWithIssuerAddress(
 		net.Nodes,
 		issuePrice,
 		issuerAccount,
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		txData.ToString(),
 		core.MinMetaTxExtraGasCost)
 	WaitForOperationCompletion(net, numRoundsCrossShard)
@@ -115,10 +115,10 @@ func IssueNftWithIssuerAddress(
 	tokenIdentifier := string(integrationTests.GetTokenIdentifier(net.Nodes, []byte(ticker)))
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTCreate),
 	}
 	if semiFungible {
-		roles = append(roles, []byte(core.ESDTRoleNFTAddQuantity))
+		roles = append(roles, []byte(core.DCDTRoleNFTAddQuantity))
 	}
 
 	SetLocalRoles(net, issuerNode, issuerAccount, tokenIdentifier, roles)
@@ -147,7 +147,7 @@ func SetLocalRoles(
 		net.Nodes,
 		big.NewInt(0),
 		issuerAccount,
-		vm.ESDTSCAddress,
+		vm.DCDTSCAddress,
 		txData,
 		core.MinMetaTxExtraGasCost)
 	WaitForOperationCompletion(net, numRoundsCrossShard)
@@ -170,7 +170,7 @@ func CreateSFT(
 	uri := "www.my-cool-nfts.com"
 
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionESDTNFTCreate)
+	txData.Func(core.BuiltInFunctionDCDTNFTCreate)
 	txData.Str(tokenIdentifier)
 	txData.Int64(initialSupply)
 	txData.Str(tokenName)
@@ -189,7 +189,7 @@ func CreateSFT(
 		integrationTests.AdditionalGasLimit)
 	WaitForOperationCompletion(net, numRoundsSameShard)
 
-	esdt.CheckAddressHasTokens(t, issuerAccount.Address, net.Nodes,
+	dcdt.CheckAddressHasTokens(t, issuerAccount.Address, net.Nodes,
 		[]byte(tokenIdentifier), createdTokenNonce, initialSupply)
 }
 
@@ -206,10 +206,10 @@ func CreateNFT(
 	CreateSFT(t, net, issuerNode, issuerAccount, tokenIdentifier, createdTokenNonce, 1)
 }
 
-// BuildEsdtMultiTransferTxData -
-func BuildEsdtMultiTransferTxData(
+// BuildDcdtMultiTransferTxData -
+func BuildDcdtMultiTransferTxData(
 	receiverAddress []byte,
-	transfers []*EsdtTransfer,
+	transfers []*DcdtTransfer,
 	endpointName string,
 	arguments ...[]byte,
 ) string {
@@ -217,7 +217,7 @@ func BuildEsdtMultiTransferTxData(
 	nrTransfers := len(transfers)
 
 	txData := txDataBuilder.NewBuilder()
-	txData.Func(core.BuiltInFunctionMultiESDTNFTTransfer)
+	txData.Func(core.BuiltInFunctionMultiDCDTNFTTransfer)
 	txData.Bytes(receiverAddress)
 	txData.Int(nrTransfers)
 
@@ -250,7 +250,7 @@ func MultiTransferToVault(
 	net *integrationTests.TestNetwork,
 	senderNode *integrationTests.TestProcessorNode,
 	vaultScAddress []byte,
-	transfers []*EsdtTransfer,
+	transfers []*DcdtTransfer,
 	nrRoundsToWait int,
 	userBalances map[string]map[int64]int64,
 	scBalances map[string]map[int64]int64,
@@ -259,7 +259,7 @@ func MultiTransferToVault(
 	acceptMultiTransferEndpointName := "accept_funds_multi_transfer"
 	senderAddress := senderNode.OwnAccount.Address
 
-	txData := BuildEsdtMultiTransferTxData(vaultScAddress,
+	txData := BuildDcdtMultiTransferTxData(vaultScAddress,
 		transfers,
 		acceptMultiTransferEndpointName,
 	)
@@ -285,9 +285,9 @@ func MultiTransferToVault(
 		expectedUserBalance := userBalances[transfer.TokenIdentifier][transfer.Nonce]
 		expectedScBalance := scBalances[transfer.TokenIdentifier][transfer.Nonce]
 
-		esdt.CheckAddressHasTokens(t, senderAddress, net.Nodes,
+		dcdt.CheckAddressHasTokens(t, senderAddress, net.Nodes,
 			[]byte(transfer.TokenIdentifier), transfer.Nonce, expectedUserBalance)
-		esdt.CheckAddressHasTokens(t, vaultScAddress, net.Nodes,
+		dcdt.CheckAddressHasTokens(t, vaultScAddress, net.Nodes,
 			[]byte(transfer.TokenIdentifier), transfer.Nonce, expectedScBalance)
 	}
 }
@@ -321,8 +321,8 @@ func DeployNonPayableSmartContract(
 	return scAddress
 }
 
-// EsdtMultiTransferToVault -
-func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename string) {
+// DcdtMultiTransferToVault -
+func DcdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename string) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
@@ -402,8 +402,8 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 		expectedIssuerBalance[semiFungibleTokenIdentifier2][i] = 1000
 	}
 
-	// send a single ESDT with multi-transfer
-	transfers := []*EsdtTransfer{
+	// send a single DCDT with multi-transfer
+	transfers := []*DcdtTransfer{
 		{
 			TokenIdentifier: fungibleTokenIdentifier1,
 			Nonce:           0,
@@ -415,7 +415,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two identical transfers with multi-transfer
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: fungibleTokenIdentifier1,
 			Nonce:           0,
@@ -432,7 +432,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two different transfers amounts, same token
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: fungibleTokenIdentifier1,
 			Nonce:           0,
@@ -449,7 +449,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two different tokens, same amount
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: fungibleTokenIdentifier1,
 			Nonce:           0,
@@ -466,7 +466,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send single NFT
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: nonFungibleTokenIdentifier1,
 			Nonce:           1,
@@ -478,7 +478,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two NFTs, same token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: nonFungibleTokenIdentifier1,
 			Nonce:           2,
@@ -495,7 +495,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two NFTs, different token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: nonFungibleTokenIdentifier1,
 			Nonce:           4,
@@ -512,7 +512,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send fours NFTs, two of each different token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: nonFungibleTokenIdentifier1,
 			Nonce:           5,
@@ -539,7 +539,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send single SFT
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: semiFungibleTokenIdentifier1,
 			Nonce:           1,
@@ -551,7 +551,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two SFTs, same token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: semiFungibleTokenIdentifier1,
 			Nonce:           1,
@@ -568,7 +568,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send two SFTs, different token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: semiFungibleTokenIdentifier1,
 			Nonce:           1,
@@ -585,7 +585,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// send fours SFTs, two of each different token ID
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: semiFungibleTokenIdentifier1,
 			Nonce:           1,
@@ -612,7 +612,7 @@ func EsdtMultiTransferToVault(t *testing.T, crossShard bool, scCodeFilename stri
 	)
 
 	// transfer all 3 types
-	transfers = []*EsdtTransfer{
+	transfers = []*DcdtTransfer{
 		{
 			TokenIdentifier: fungibleTokenIdentifier1,
 			Nonce:           0,

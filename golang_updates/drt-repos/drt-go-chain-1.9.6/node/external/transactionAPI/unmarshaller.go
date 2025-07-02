@@ -93,7 +93,7 @@ func (tu *txUnmarshaller) unmarshalTransaction(txBytes []byte, txType transactio
 	res := tu.dataFieldParser.Parse(apiTx.Data, apiTx.Tx.GetSndAddr(), apiTx.Tx.GetRcvAddr(), tu.shardCoordinator.NumberOfShards())
 	apiTx.Operation = res.Operation
 	apiTx.Function = res.Function
-	apiTx.ESDTValues = res.ESDTValues
+	apiTx.DCDTValues = res.DCDTValues
 	apiTx.Tokens = res.Tokens
 	apiTx.Receivers, err = tu.addressPubKeyConverter.EncodeSlice(res.Receivers)
 	if err != nil {

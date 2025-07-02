@@ -6,7 +6,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
-	crypto "github.com/TerraDharitri/mx-chain-crypto-go"
+	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
 	"github.com/stretchr/testify/assert"
 
 	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"

@@ -1,33 +1,33 @@
-package esdtMultiTransferThroughForwarder
+package dcdtMultiTransferThroughForwarder
 
 import (
 	"testing"
 
 	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
 	wasmvm "github.com/TerraDharitri/drt-go-chain/integrationTests/vm/wasm/wasmvm"
 	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 )
 
-func TestESDTMultiTransferThroughForwarder_LegacyAsync_MockContracts(t *testing.T) {
-	ESDTMultiTransferThroughForwarder_MockContracts(t, true)
+func TestDCDTMultiTransferThroughForwarder_LegacyAsync_MockContracts(t *testing.T) {
+	DCDTMultiTransferThroughForwarder_MockContracts(t, true)
 }
 
-func TestESDTMultiTransferThroughForwarder_NewAsync_MockContracts(t *testing.T) {
-	ESDTMultiTransferThroughForwarder_MockContracts(t, false)
+func TestDCDTMultiTransferThroughForwarder_NewAsync_MockContracts(t *testing.T) {
+	DCDTMultiTransferThroughForwarder_MockContracts(t, false)
 }
 
-func ESDTMultiTransferThroughForwarder_MockContracts(t *testing.T, legacyAsync bool) {
+func DCDTMultiTransferThroughForwarder_MockContracts(t *testing.T, legacyAsync bool) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
 	net, ownerShard1, ownerShard2, senderNode, forwarder, vaultShard1, vaultShard2 :=
-		ESDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
+		DCDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
 	defer net.Close()
 
-	ESDTMultiTransferThroughForwarder_MockContracts_Deploy(t,
+	DCDTMultiTransferThroughForwarder_MockContracts_Deploy(t,
 		legacyAsync,
 		net,
 		ownerShard1,
@@ -36,7 +36,7 @@ func ESDTMultiTransferThroughForwarder_MockContracts(t *testing.T, legacyAsync b
 		vaultShard1,
 		vaultShard2)
 
-	ESDTMultiTransferThroughForwarder_RunStepsAndAsserts(t,
+	DCDTMultiTransferThroughForwarder_RunStepsAndAsserts(t,
 		net,
 		senderNode,
 		ownerShard1,
@@ -47,7 +47,7 @@ func ESDTMultiTransferThroughForwarder_MockContracts(t *testing.T, legacyAsync b
 	)
 }
 
-func ESDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t *testing.T) (*integrationTests.TestNetwork, *integrationTests.TestWalletAccount, *integrationTests.TestWalletAccount, *integrationTests.TestProcessorNode, []byte, []byte, []byte) {
+func DCDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t *testing.T) (*integrationTests.TestNetwork, *integrationTests.TestWalletAccount, *integrationTests.TestWalletAccount, *integrationTests.TestProcessorNode, []byte, []byte, []byte) {
 	net := integrationTests.NewTestNetworkSized(t, 2, 1, 1)
 	net.Start().Step()
 
@@ -72,7 +72,7 @@ func ESDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t *testing.T) 
 	return net, owner, owner2, node0shard0, forwarder, vaultShard1, vaultShard2
 }
 
-func ESDTMultiTransferThroughForwarder_MockContracts_Deploy(t *testing.T, legacyAsync bool, net *integrationTests.TestNetwork, ownerShard1 *integrationTests.TestWalletAccount, ownerShard2 *integrationTests.TestWalletAccount, forwarder []byte, vaultShard1 []byte, vaultShard2 []byte) {
+func DCDTMultiTransferThroughForwarder_MockContracts_Deploy(t *testing.T, legacyAsync bool, net *integrationTests.TestNetwork, ownerShard1 *integrationTests.TestWalletAccount, ownerShard2 *integrationTests.TestWalletAccount, forwarder []byte, vaultShard1 []byte, vaultShard2 []byte) {
 	testConfig := &test.TestConfig{
 		IsLegacyAsync: legacyAsync,
 		// used for new async
@@ -89,50 +89,50 @@ func ESDTMultiTransferThroughForwarder_MockContracts_Deploy(t *testing.T, legacy
 			WithOwnerAddress(ownerShard1.Address).
 			WithConfig(testConfig).
 			WithMethods(
-				esdt.MultiTransferViaAsyncMock,
-				esdt.SyncMultiTransferMock,
-				esdt.MultiTransferExecuteMock,
-				esdt.EmptyCallbackMock),
+				dcdt.MultiTransferViaAsyncMock,
+				dcdt.SyncMultiTransferMock,
+				dcdt.MultiTransferExecuteMock,
+				dcdt.EmptyCallbackMock),
 		test.CreateMockContractOnShard(vaultShard1, 0).
 			WithOwnerAddress(ownerShard1.Address).
 			WithConfig(testConfig).
-			WithMethods(esdt.AcceptFundsEchoMock),
+			WithMethods(dcdt.AcceptFundsEchoMock),
 		test.CreateMockContractOnShard(vaultShard2, 1).
 			WithOwnerAddress(ownerShard2.Address).
 			WithConfig(testConfig).
-			WithMethods(esdt.AcceptMultiFundsEchoMock),
+			WithMethods(dcdt.AcceptMultiFundsEchoMock),
 	)
 }
 
-func TestESDTMultiTransferWithWrongArgumentsSFT_MockContracts(t *testing.T) {
+func TestDCDTMultiTransferWithWrongArgumentsSFT_MockContracts(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
 	net, ownerShard1, ownerShard2, senderNode, forwarder, _, vaultShard2 :=
-		ESDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
+		DCDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
 	defer net.Close()
 
-	ESDTMultiTransferWithWrongArguments_MockContracts_Deploy(t, net, ownerShard1, forwarder, vaultShard2, ownerShard2)
+	DCDTMultiTransferWithWrongArguments_MockContracts_Deploy(t, net, ownerShard1, forwarder, vaultShard2, ownerShard2)
 
-	ESDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(t, net, senderNode, ownerShard1, forwarder, vaultShard2)
+	DCDTMultiTransferWithWrongArgumentsSFT_RunStepsAndAsserts(t, net, senderNode, ownerShard1, forwarder, vaultShard2)
 }
 
-func TestESDTMultiTransferWithWrongArgumentsFungible_MockContracts(t *testing.T) {
+func TestDCDTMultiTransferWithWrongArgumentsFungible_MockContracts(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
 
 	net, ownerShard1, ownerShard2, senderNode, forwarder, _, vaultShard2 :=
-		ESDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
+		DCDTMultiTransferThroughForwarder_MockContracts_SetupNetwork(t)
 	defer net.Close()
 
-	ESDTMultiTransferWithWrongArguments_MockContracts_Deploy(t, net, ownerShard1, forwarder, vaultShard2, ownerShard2)
+	DCDTMultiTransferWithWrongArguments_MockContracts_Deploy(t, net, ownerShard1, forwarder, vaultShard2, ownerShard2)
 
-	ESDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(t, net, senderNode, ownerShard1, forwarder, vaultShard2)
+	DCDTMultiTransferWithWrongArgumentsFungible_RunStepsAndAsserts(t, net, senderNode, ownerShard1, forwarder, vaultShard2)
 }
 
-func ESDTMultiTransferWithWrongArguments_MockContracts_Deploy(t *testing.T, net *integrationTests.TestNetwork, ownerShard1 *integrationTests.TestWalletAccount, forwarder []byte, vaultShard2 []byte, ownerShard2 *integrationTests.TestWalletAccount) {
+func DCDTMultiTransferWithWrongArguments_MockContracts_Deploy(t *testing.T, net *integrationTests.TestNetwork, ownerShard1 *integrationTests.TestWalletAccount, forwarder []byte, vaultShard2 []byte, ownerShard2 *integrationTests.TestWalletAccount) {
 	testConfig := &test.TestConfig{
 		IsLegacyAsync: true,
 	}
@@ -143,10 +143,10 @@ func ESDTMultiTransferWithWrongArguments_MockContracts_Deploy(t *testing.T, net 
 		test.CreateMockContractOnShard(forwarder, 0).
 			WithOwnerAddress(ownerShard1.Address).
 			WithConfig(testConfig).
-			WithMethods(esdt.DoAsyncCallMock),
+			WithMethods(dcdt.DoAsyncCallMock),
 		test.CreateMockContractOnShard(vaultShard2, 1).
 			WithOwnerAddress(ownerShard2.Address).
 			WithConfig(testConfig).
-			WithMethods(esdt.AcceptFundsEchoMock),
+			WithMethods(dcdt.AcceptFundsEchoMock),
 	)
 }

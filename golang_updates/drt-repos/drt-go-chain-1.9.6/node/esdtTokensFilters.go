@@ -11,8 +11,8 @@ type getRegisteredNftsFilter struct {
 	addressBytes []byte
 }
 
-func (f *getRegisteredNftsFilter) filter(_ string, esdtData *systemSmartContracts.ESDTDataV2) bool {
-	return !bytes.Equal(esdtData.TokenType, []byte(core.FungibleESDT)) && bytes.Equal(esdtData.OwnerAddress, f.addressBytes)
+func (f *getRegisteredNftsFilter) filter(_ string, dcdtData *systemSmartContracts.DCDTDataV2) bool {
+	return !bytes.Equal(dcdtData.TokenType, []byte(core.FungibleDCDT)) && bytes.Equal(dcdtData.OwnerAddress, f.addressBytes)
 }
 
 type getTokensWithRoleFilter struct {
@@ -20,13 +20,13 @@ type getTokensWithRoleFilter struct {
 	role         string
 }
 
-func (f *getTokensWithRoleFilter) filter(_ string, esdtData *systemSmartContracts.ESDTDataV2) bool {
-	for _, esdtRoles := range esdtData.SpecialRoles {
-		if !bytes.Equal(esdtRoles.Address, f.addressBytes) {
+func (f *getTokensWithRoleFilter) filter(_ string, dcdtData *systemSmartContracts.DCDTDataV2) bool {
+	for _, dcdtRoles := range dcdtData.SpecialRoles {
+		if !bytes.Equal(dcdtRoles.Address, f.addressBytes) {
 			continue
 		}
 
-		for _, specialRole := range esdtRoles.Roles {
+		for _, specialRole := range dcdtRoles.Roles {
 			if bytes.Equal(specialRole, []byte(f.role)) {
 				return true
 			}
@@ -41,14 +41,14 @@ type getAllTokensRolesFilter struct {
 	outputRoles  map[string][]string
 }
 
-func (f *getAllTokensRolesFilter) filter(tokenIdentifier string, esdtData *systemSmartContracts.ESDTDataV2) bool {
-	for _, esdtRoles := range esdtData.SpecialRoles {
-		if !bytes.Equal(esdtRoles.Address, f.addressBytes) {
+func (f *getAllTokensRolesFilter) filter(tokenIdentifier string, dcdtData *systemSmartContracts.DCDTDataV2) bool {
+	for _, dcdtRoles := range dcdtData.SpecialRoles {
+		if !bytes.Equal(dcdtRoles.Address, f.addressBytes) {
 			continue
 		}
 
-		rolesStr := make([]string, 0, len(esdtRoles.Roles))
-		for _, roleBytes := range esdtRoles.Roles {
+		rolesStr := make([]string, 0, len(dcdtRoles.Roles))
+		for _, roleBytes := range dcdtRoles.Roles {
 			rolesStr = append(rolesStr, string(roleBytes))
 		}
 

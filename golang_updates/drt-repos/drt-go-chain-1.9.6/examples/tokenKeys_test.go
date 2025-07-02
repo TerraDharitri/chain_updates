@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
-	"github.com/TerraDharitri/drt-go-chain-core/data/esdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/stretchr/testify/require"
 )
@@ -14,9 +14,9 @@ import (
 func TestComputeTokenStorageKey(t *testing.T) {
 	t.Parallel()
 
-	prefix := "ELROND"
-	require.Equal(t, hex.EncodeToString([]byte(prefix+"esdtWEGLD-bd4d79")), computeStorageKey("WEGLD-bd4d79", 0))
-	require.Equal(t, hex.EncodeToString([]byte(prefix+"esdtMYNFT-aaabbbF")), computeStorageKey("MYNFT-aaabbb", 70))
+	prefix := "NUMBAT"
+	require.Equal(t, hex.EncodeToString([]byte(prefix+"dcdtWREWA-bd4d79")), computeStorageKey("WREWA-bd4d79", 0))
+	require.Equal(t, hex.EncodeToString([]byte(prefix+"dcdtMYNFT-aaabbbF")), computeStorageKey("MYNFT-aaabbb", 70))
 }
 
 func TestDecodeTokenFromProtoBytes(t *testing.T) {
@@ -27,15 +27,15 @@ func TestDecodeTokenFromProtoBytes(t *testing.T) {
 	require.NoError(t, err)
 
 	marshaller := marshal.GogoProtoMarshalizer{}
-	recoveredToken := esdt.ESDigitalToken{}
+	recoveredToken := dcdt.DCDigitalToken{}
 
 	err = marshaller.Unmarshal(&recoveredToken, valueBytes)
 	require.NoError(t, err)
 
-	expectedToken := esdt.ESDigitalToken{
+	expectedToken := dcdt.DCDigitalToken{
 		Type:  uint32(core.NonFungible),
 		Value: big.NewInt(1),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Name:       []byte("myNFT"),
 			Nonce:      70,
 			URIs:       [][]byte{[]byte("https://myNFT.com")},
@@ -46,7 +46,7 @@ func TestDecodeTokenFromProtoBytes(t *testing.T) {
 
 func computeStorageKey(tokenIdentifier string, tokenNonce uint64) string {
 	key := []byte(core.ProtectedKeyPrefix)
-	key = append(key, core.ESDTKeyIdentifier...)
+	key = append(key, core.DCDTKeyIdentifier...)
 	key = append(key, []byte(tokenIdentifier)...)
 
 	if tokenNonce > 0 {

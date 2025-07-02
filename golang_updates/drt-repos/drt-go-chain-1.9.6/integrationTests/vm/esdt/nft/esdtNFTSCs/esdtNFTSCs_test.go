@@ -1,4 +1,4 @@
-package esdtNFTSCs
+package dcdtNFTSCs
 
 import (
 	"encoding/hex"
@@ -10,15 +10,15 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt"
-	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/esdt/nft"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt"
+	"github.com/TerraDharitri/drt-go-chain/integrationTests/vm/dcdt/nft"
 )
 
-func TestESDTNFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
+func TestDCDTNFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -133,11 +133,11 @@ func TestESDTNFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
 	checkAddressHasNft(t, scAddress, scAddress, nodes, []byte(tokenIdentifier), 3, big.NewInt(0))
 }
 
-func TestESDTSemiFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
+func TestDCDTSemiFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -242,11 +242,11 @@ func TestESDTSemiFTIssueCreateBurnSendViaAsyncViaExecuteOnSC(t *testing.T) {
 	checkAddressHasNft(t, scAddress, scAddress, nodes, []byte(tokenIdentifier), 1, big.NewInt(0))
 }
 
-func TestESDTTransferNFTBetweenContractsAcceptAndNotAcceptWithRevert(t *testing.T) {
+func TestDCDTTransferNFTBetweenContractsAcceptAndNotAcceptWithRevert(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -292,7 +292,7 @@ func TestESDTTransferNFTBetweenContractsAcceptAndNotAcceptWithRevert(t *testing.
 	checkAddressHasNft(t, scAddress, scAddress, nodes, []byte(tokenIdentifier), 2, big.NewInt(1))
 	checkAddressHasNft(t, scAddress, scAddress, nodes, []byte(tokenIdentifier), 1, big.NewInt(1))
 
-	destinationSCAddress := esdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
+	destinationSCAddress := dcdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
 	txData = []byte("transferNftViaAsyncCall" + "@" + hex.EncodeToString(destinationSCAddress) +
 		"@" + hex.EncodeToString([]byte(tokenIdentifier)) + "@" + hex.EncodeToString(big.NewInt(1).Bytes()) +
 		"@" + hex.EncodeToString(big.NewInt(1).Bytes()) + "@" + hex.EncodeToString([]byte("wrongFunctionToCall")))
@@ -358,11 +358,11 @@ func TestESDTTransferNFTBetweenContractsAcceptAndNotAcceptWithRevert(t *testing.
 	checkAddressHasNft(t, scAddress, scAddress, nodes, []byte(tokenIdentifier), 2, big.NewInt(0))
 }
 
-func TestESDTTransferNFTToSCIntraShard(t *testing.T) {
+func TestDCDTTransferNFTToSCIntraShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(1)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(1)
 
 	defer func() {
 		for _, n := range nodes {
@@ -379,8 +379,8 @@ func TestESDTTransferNFTToSCIntraShard(t *testing.T) {
 	nonce++
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 	tokenIdentifier, _ := nft.PrepareNFTWithRoles(
 		t,
@@ -389,15 +389,15 @@ func TestESDTTransferNFTToSCIntraShard(t *testing.T) {
 		nodes[0],
 		&round,
 		&nonce,
-		core.NonFungibleESDT,
+		core.NonFungibleDCDT,
 		1,
 		roles,
 	)
 
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToTransfer := hex.EncodeToString(big.NewInt(1).Bytes())
-	destinationSCAddress := esdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
-	txData := core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	destinationSCAddress := dcdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
+	txData := core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransfer + "@" + hex.EncodeToString(destinationSCAddress) + "@" + hex.EncodeToString([]byte("acceptAndReturnCallData"))
 	integrationTests.CreateAndSendTransaction(
 		nodes[0],
@@ -415,11 +415,11 @@ func TestESDTTransferNFTToSCIntraShard(t *testing.T) {
 	checkAddressHasNft(t, nodes[0].OwnAccount.Address, destinationSCAddress, nodes, []byte(tokenIdentifier), 1, big.NewInt(1))
 }
 
-func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
+func TestDCDTTransferNFTToSCCrossShard(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
 	}
-	nodes, leaders := esdt.CreateNodesAndPrepareBalances(2)
+	nodes, leaders := dcdt.CreateNodesAndPrepareBalances(2)
 
 	defer func() {
 		for _, n := range nodes {
@@ -435,7 +435,7 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 	round = integrationTests.IncrementAndPrintRound(round)
 	nonce++
 
-	destinationSCAddress := esdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
+	destinationSCAddress := dcdt.DeployNonPayableSmartContract(t, nodes, leaders, &nonce, &round, "../../testdata/nft-receiver.wasm")
 
 	destinationSCShardID := nodes[0].ShardCoordinator.ComputeId(destinationSCAddress)
 
@@ -449,8 +449,8 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 	}
 
 	roles := [][]byte{
-		[]byte(core.ESDTRoleNFTCreate),
-		[]byte(core.ESDTRoleNFTBurn),
+		[]byte(core.DCDTRoleNFTCreate),
+		[]byte(core.DCDTRoleNFTBurn),
 	}
 	tokenIdentifier, _ := nft.PrepareNFTWithRoles(
 		t,
@@ -459,7 +459,7 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 		nodeFromOtherShard,
 		&round,
 		&nonce,
-		core.NonFungibleESDT,
+		core.NonFungibleDCDT,
 		1,
 		roles,
 	)
@@ -467,7 +467,7 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 	nonceArg := hex.EncodeToString(big.NewInt(0).SetUint64(1).Bytes())
 	quantityToTransfer := hex.EncodeToString(big.NewInt(1).Bytes())
 
-	txData := core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData := core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransfer + "@" + hex.EncodeToString(destinationSCAddress) + "@" + hex.EncodeToString([]byte("acceptAndReturnCallData"))
 	integrationTests.CreateAndSendTransaction(
 		nodeFromOtherShard,
@@ -484,7 +484,7 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 
 	checkAddressHasNft(t, nodeFromOtherShard.OwnAccount.Address, destinationSCAddress, nodes, []byte(tokenIdentifier), 1, big.NewInt(1))
 
-	txData = core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData = core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransfer + "@" + hex.EncodeToString(destinationSCAddress) + "@" + hex.EncodeToString([]byte("wrongFunction"))
 	integrationTests.CreateAndSendTransaction(
 		nodeFromOtherShard,
@@ -501,7 +501,7 @@ func TestESDTTransferNFTToSCCrossShard(t *testing.T) {
 
 	checkAddressHasNft(t, nodeFromOtherShard.OwnAccount.Address, destinationSCAddress, nodes, []byte(tokenIdentifier), 1, big.NewInt(1))
 
-	txData = core.BuiltInFunctionESDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
+	txData = core.BuiltInFunctionDCDTNFTTransfer + "@" + hex.EncodeToString([]byte(tokenIdentifier)) +
 		"@" + nonceArg + "@" + quantityToTransfer + "@" + hex.EncodeToString(destinationSCAddress)
 	integrationTests.CreateAndSendTransaction(
 		nodeFromOtherShard,
@@ -528,7 +528,7 @@ func deployAndIssueNFTSFTThroughSC(
 	issueFunc string,
 	rolesEncoded string,
 ) ([]byte, string) {
-	scAddress := esdt.DeployNonPayableSmartContract(t, nodes, leaders, nonce, round, "../../testdata/local-esdt-and-nft.wasm")
+	scAddress := dcdt.DeployNonPayableSmartContract(t, nodes, leaders, nonce, round, "../../testdata/local-dcdt-and-nft.wasm")
 
 	issuePrice := big.NewInt(1000)
 	txData := []byte(issueFunc + "@" + hex.EncodeToString([]byte("TOKEN")) +
@@ -575,14 +575,14 @@ func checkAddressHasNft(
 	nonce uint64,
 	quantity *big.Int,
 ) {
-	esdtData := esdt.GetESDTTokenData(t, address, nodes, tickerID, nonce)
+	dcdtData := dcdt.GetDCDTTokenData(t, address, nodes, tickerID, nonce)
 
 	if quantity.Cmp(big.NewInt(0)) == 0 {
-		require.Nil(t, esdtData.TokenMetaData)
+		require.Nil(t, dcdtData.TokenMetaData)
 		return
 	}
 
-	require.NotNil(t, esdtData.TokenMetaData)
-	require.Equal(t, creator, esdtData.TokenMetaData.Creator)
-	require.Equal(t, quantity.Bytes(), esdtData.Value.Bytes())
+	require.NotNil(t, dcdtData.TokenMetaData)
+	require.Equal(t, creator, dcdtData.TokenMetaData.Creator)
+	require.Equal(t, quantity.Bytes(), dcdtData.Value.Bytes())
 }

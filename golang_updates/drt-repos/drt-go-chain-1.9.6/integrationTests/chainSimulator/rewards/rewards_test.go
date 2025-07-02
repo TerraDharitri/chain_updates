@@ -149,12 +149,12 @@ func getRewardTxForAddress(block *apiCore.Block, address string) *transaction.Ap
 
 func generateMoveBalance(t *testing.T, cs chainSimulator.ChainSimulator, numTxs int, senderShardID, receiverShardID uint32) []*transaction.Transaction {
 	numSenders := (numTxs + common.MaxTxNonceDeltaAllowed - 1) / common.MaxTxNonceDeltaAllowed
-	tenEGLD := big.NewInt(0).Mul(csUtils.OneEGLD, big.NewInt(10))
+	tenREWA := big.NewInt(0).Mul(csUtils.OneREWA, big.NewInt(10))
 
 	senders := make([]dtos.WalletAddress, 0, numSenders)
 	for i := 0; i < numSenders; i++ {
 
-		sender, err := cs.GenerateAndMintWalletAddress(senderShardID, tenEGLD)
+		sender, err := cs.GenerateAndMintWalletAddress(senderShardID, tenREWA)
 		require.Nil(t, err)
 
 		senders = append(senders, sender)

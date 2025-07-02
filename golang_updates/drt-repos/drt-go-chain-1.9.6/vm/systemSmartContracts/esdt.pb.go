@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -41,8 +41,8 @@ type DCDTDataV1 struct {
 	Upgradable               bool          `protobuf:"varint,10,opt,name=Upgradable,proto3" json:"CanUpgrade"`
 	CanChangeOwner           bool          `protobuf:"varint,11,opt,name=CanChangeOwner,proto3" json:"CanChangeOwner"`
 	IsPaused                 bool          `protobuf:"varint,12,opt,name=IsPaused,proto3" json:"IsPaused"`
-	MintedValue              *math_big.Int `protobuf:"bytes,13,opt,name=MintedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MintedValue"`
-	BurntValue               *math_big.Int `protobuf:"bytes,14,opt,name=BurntValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"BurntValue"`
+	MintedValue              *math_big.Int `protobuf:"bytes,13,opt,name=MintedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"MintedValue"`
+	BurntValue               *math_big.Int `protobuf:"bytes,14,opt,name=BurntValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"BurntValue"`
 	NumDecimals              uint32        `protobuf:"varint,15,opt,name=NumDecimals,proto3" json:"NumDecimals"`
 	CanAddSpecialRoles       bool          `protobuf:"varint,16,opt,name=CanAddSpecialRoles,proto3" json:"CanAddSpecialRoles"`
 	NFTCreateStopped         bool          `protobuf:"varint,17,opt,name=NFTCreateStopped,proto3" json:"NFTCreateStopped"`
@@ -232,8 +232,8 @@ type DCDTDataV2 struct {
 	Upgradable               bool          `protobuf:"varint,10,opt,name=Upgradable,proto3" json:"CanUpgrade"`
 	CanChangeOwner           bool          `protobuf:"varint,11,opt,name=CanChangeOwner,proto3" json:"CanChangeOwner"`
 	IsPaused                 bool          `protobuf:"varint,12,opt,name=IsPaused,proto3" json:"IsPaused"`
-	MintedValue              *math_big.Int `protobuf:"bytes,13,opt,name=MintedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MintedValue"`
-	BurntValue               *math_big.Int `protobuf:"bytes,14,opt,name=BurntValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"BurntValue"`
+	MintedValue              *math_big.Int `protobuf:"bytes,13,opt,name=MintedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"MintedValue"`
+	BurntValue               *math_big.Int `protobuf:"bytes,14,opt,name=BurntValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"BurntValue"`
 	NumDecimals              uint32        `protobuf:"varint,15,opt,name=NumDecimals,proto3" json:"NumDecimals"`
 	CanAddSpecialRoles       bool          `protobuf:"varint,16,opt,name=CanAddSpecialRoles,proto3" json:"CanAddSpecialRoles"`
 	NFTCreateStopped         bool          `protobuf:"varint,17,opt,name=NFTCreateStopped,proto3" json:"NFTCreateStopped"`
@@ -467,7 +467,7 @@ func (m *DCDTRoles) GetRoles() [][]byte {
 
 type DCDTConfig struct {
 	OwnerAddress       []byte        `protobuf:"bytes,1,opt,name=OwnerAddress,proto3" json:"OwnerAddress"`
-	BaseIssuingCost    *math_big.Int `protobuf:"bytes,2,opt,name=BaseIssuingCost,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"BaseIssuingCost"`
+	BaseIssuingCost    *math_big.Int `protobuf:"bytes,2,opt,name=BaseIssuingCost,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"BaseIssuingCost"`
 	MinTokenNameLength uint32        `protobuf:"varint,3,opt,name=MinTokenNameLength,proto3" json:"MinTokenNameLength"`
 	MaxTokenNameLength uint32        `protobuf:"varint,4,opt,name=MaxTokenNameLength,proto3" json:"MaxTokenNameLength"`
 }
@@ -651,13 +651,13 @@ func (this *DCDTDataV1) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.MintedValue, that1.MintedValue) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.BurntValue, that1.BurntValue) {
 			return false
 		}
@@ -743,13 +743,13 @@ func (this *DCDTDataV2) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.MintedValue, that1.MintedValue) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.BurntValue, that1.BurntValue) {
 			return false
 		}
@@ -837,7 +837,7 @@ func (this *DCDTConfig) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.BaseIssuingCost, that1.BaseIssuingCost) {
 			return false
 		}
@@ -1030,7 +1030,7 @@ func (m *DCDTDataV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x78
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.BurntValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.BurntValue, dAtA[i:]); err != nil {
@@ -1041,7 +1041,7 @@ func (m *DCDTDataV1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x72
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.MintedValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MintedValue, dAtA[i:]); err != nil {
@@ -1259,7 +1259,7 @@ func (m *DCDTDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x78
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.BurntValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.BurntValue, dAtA[i:]); err != nil {
@@ -1270,7 +1270,7 @@ func (m *DCDTDataV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x72
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.MintedValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MintedValue, dAtA[i:]); err != nil {
@@ -1461,7 +1461,7 @@ func (m *DCDTConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x18
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.BaseIssuingCost)
 		i -= size
 		if _, err := __caster.MarshalTo(m.BaseIssuingCost, dAtA[i:]); err != nil {
@@ -1539,12 +1539,12 @@ func (m *DCDTDataV1) Size() (n int) {
 		n += 2
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.MintedValue)
 		n += 1 + l + sovDcdt(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.BurntValue)
 		n += 1 + l + sovDcdt(uint64(l))
 	}
@@ -1619,12 +1619,12 @@ func (m *DCDTDataV2) Size() (n int) {
 		n += 2
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.MintedValue)
 		n += 1 + l + sovDcdt(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.BurntValue)
 		n += 1 + l + sovDcdt(uint64(l))
 	}
@@ -1685,7 +1685,7 @@ func (m *DCDTConfig) Size() (n int) {
 		n += 1 + l + sovDcdt(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.BaseIssuingCost)
 		n += 1 + l + sovDcdt(uint64(l))
 	}
@@ -2160,7 +2160,7 @@ func (m *DCDTDataV1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2198,7 +2198,7 @@ func (m *DCDTDataV1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2717,7 +2717,7 @@ func (m *DCDTDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2755,7 +2755,7 @@ func (m *DCDTDataV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3151,7 +3151,7 @@ func (m *DCDTConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

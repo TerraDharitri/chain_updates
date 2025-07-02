@@ -10,8 +10,8 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
 	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests"
-	logger "github.com/TerraDharitri/mx-chain-logger-go"
 )
 
 // Log -

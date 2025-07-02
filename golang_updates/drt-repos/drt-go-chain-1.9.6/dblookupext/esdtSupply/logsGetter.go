@@ -1,4 +1,4 @@
-package esdtSupply
+package dcdtSupply
 
 import (
 	"encoding/hex"
