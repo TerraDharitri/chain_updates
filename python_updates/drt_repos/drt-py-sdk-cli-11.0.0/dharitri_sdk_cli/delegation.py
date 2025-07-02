@@ -13,7 +13,7 @@ from dharitri_sdk_cli.errors import BadUsage
 from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
 from dharitri_sdk_cli.interfaces import IAccount
 
-DELEGATION_MANAGER_SC_ADDRESS_HEX = "000000000000000000010000000000000000000000000000000000000004ffff"
+DELEGATION_MANAGER_SC_ADDRESS_HEX = "233300000000000000000000000000000002333000000000000000000004ffff"
 
 
 class DelegationOperations(BaseTransactionsController):
