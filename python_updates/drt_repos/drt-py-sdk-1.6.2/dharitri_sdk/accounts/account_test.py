@@ -56,7 +56,7 @@ def test_account_nonce_holder():
 
 def test_sign_transaction():
     """
-    Also see: https://github.com/TerraDharitri/drt-go-chain/blob/master/examples/construction_test.go
+    Also see: https://github.com/TerraDharitri/drt-go-chain/blob/main/examples/construction_test.go
     """
 
     tx = Transaction(
