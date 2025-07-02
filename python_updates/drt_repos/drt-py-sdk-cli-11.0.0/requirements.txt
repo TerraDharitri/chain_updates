@@ -1,0 +1,9 @@
+toml>=0.10.2
+types-toml
+requests>=2.32.0,<3.0.0
+types-requests
+ledgercomm[hid]
+rich==13.3.4
+argcomplete==3.2.2
+
+multiversx-sdk[ledger]==1.6.2
