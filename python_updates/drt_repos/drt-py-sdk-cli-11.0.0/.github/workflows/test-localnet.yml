@@ -63,8 +63,8 @@ jobs:
           mkdir -p ~/dharitri-sdk/sandbox
           export PYTHONPATH=.
 
-          git clone https://github.com/TerraDharitri/drt-go-chain --branch=master --single-branch ~/dharitri-sdk/sandbox/drt-go-chain
-          git clone https://github.com/TerraDharitri/drt-go-chain-proxy --branch=master --single-branch ~/dharitri-sdk/sandbox/drt-go-chain-proxy
+          git clone https://github.com/TerraDharitri/drt-go-chain --branch=main --single-branch ~/dharitri-sdk/sandbox/drt-go-chain
+          git clone https://github.com/TerraDharitri/drt-go-chain-proxy --branch=main --single-branch ~/dharitri-sdk/sandbox/drt-go-chain-proxy
 
           python3 -m dharitri_sdk_cli.cli localnet prerequisites --configfile=./dharitri_sdk_cli/tests/testdata/localnet_with_resolution_local.toml
           python3 -m dharitri_sdk_cli.cli localnet build --configfile=./dharitri_sdk_cli/tests/testdata/localnet_with_resolution_local.toml
