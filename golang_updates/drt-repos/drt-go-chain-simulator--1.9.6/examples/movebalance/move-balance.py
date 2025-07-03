@@ -14,7 +14,7 @@ def main():
     provider = ProxyNetworkProvider(SIMULATOR_URL)
 
     key = UserSecretKey.generate()
-    address = key.generate_public_key().to_address("erd")
+    address = key.generate_public_key().to_address("drt")
     print(f"working with the generated address: {address.to_bech32()}")
 
     # call proxy faucet

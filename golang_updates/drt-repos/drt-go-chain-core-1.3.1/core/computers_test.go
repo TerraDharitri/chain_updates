@@ -487,7 +487,7 @@ func TestIsValidDCDTRole(t *testing.T) {
 			output: true,
 		},
 		{
-			input:  "esdtRoleLocalMint",
+			input:  "dcdtRoleLocalMint",
 			output: false,
 		},
 		{

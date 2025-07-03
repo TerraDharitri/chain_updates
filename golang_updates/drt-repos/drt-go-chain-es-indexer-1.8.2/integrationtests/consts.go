@@ -6,5 +6,5 @@ const (
 	//nolint
 	esURL = "http://localhost:9200"
 	//nolint
-	addressPrefix = "erd"
+	addressPrefix = "drt"
 )

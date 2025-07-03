@@ -20,7 +20,7 @@ def main():
 
     network_status = provider.get_network_status()  # will default to metachain
 
-    epoch_number = network_status.raw.get("erd_epoch_number", 0)
+    epoch_number = network_status.raw.get("drt_epoch_number", 0)
     if epoch_number < target_epoch:
         sys.exit(f"epoch {target_epoch} not reached")
 

@@ -8,7 +8,7 @@ import (
 
 	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
-	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	indexdrtata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -36,7 +36,7 @@ func TestIndexMiniBlocksOnSourceAndDestination(t *testing.T) {
 	mbHash := "11a1bb4065e16a2e93b2b5ac5957b7b69f1cfba7579b170b24f30dab2d3162e0"
 	ids := []string{mbHash}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.MiniblocksIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.MiniblocksIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/miniblocks/cross-miniblock-on-source.json"), string(genericResponse.Docs[0].Source))
 
@@ -60,7 +60,7 @@ func TestIndexMiniBlocksOnSourceAndDestination(t *testing.T) {
 	err = esProc.SaveMiniblocks(header, miniBlocks)
 	require.Nil(t, err)
 
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.MiniblocksIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.MiniblocksIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/miniblocks/cross-miniblock-on-destination.json"), string(genericResponse.Docs[0].Source))
 }
@@ -101,7 +101,7 @@ func TestIndexMiniBlockFirstOnDestinationAndAfterSource(t *testing.T) {
 	genericResponse := &GenericResponse{}
 
 	ids := []string{"2f3ee0ff3b6426916df3b123a10f425b7e2027e2ae8d231229d27b12aa522ade"}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.MiniblocksIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.MiniblocksIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/miniblocks/cross-miniblock-on-destination-first.json"), string(genericResponse.Docs[0].Source))
 
@@ -118,7 +118,7 @@ func TestIndexMiniBlockFirstOnDestinationAndAfterSource(t *testing.T) {
 	}
 	err = esProc.SaveMiniblocks(header, miniBlocks)
 	require.Nil(t, err)
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.MiniblocksIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.MiniblocksIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/miniblocks/cross-miniblock-on-source-second.json"), string(genericResponse.Docs[0].Source))
 }

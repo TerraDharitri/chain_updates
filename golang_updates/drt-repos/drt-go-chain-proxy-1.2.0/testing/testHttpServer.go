@@ -269,12 +269,12 @@ func (ths *TestHttpServer) processRequestValidatorStatistics(rw http.ResponseWri
 
 func (ths *TestHttpServer) processRequestGetNetworkMetrics(rw http.ResponseWriter, _ *http.Request) {
 	responseStatus := map[string]interface{}{
-		"erd_nonce":                          90,
-		"erd_current_round":                  120,
-		"erd_epoch_number":                   4,
-		"erd_round_at_epoch_start":           90,
-		"erd_rounds_passed_in_current_epoch": 30,
-		"erd_rounds_per_epoch":               30,
+		"drt_nonce":                          90,
+		"drt_current_round":                  120,
+		"drt_epoch_number":                   4,
+		"drt_round_at_epoch_start":           90,
+		"drt_rounds_passed_in_current_epoch": 30,
+		"drt_rounds_per_epoch":               30,
 	}
 	resp := data.GenericAPIResponse{Data: gin.H{"status": responseStatus}, Code: data.ReturnCodeSuccess}
 	responseBuff, _ := json.Marshal(&resp)
@@ -284,11 +284,11 @@ func (ths *TestHttpServer) processRequestGetNetworkMetrics(rw http.ResponseWrite
 
 func (ths *TestHttpServer) processRequestGetEconomicsMetrics(rw http.ResponseWriter, _ *http.Request) {
 	responseStatus := map[string]interface{}{
-		"erd_dev_rewards":              "0",
-		"erd_inflation":                "120",
-		"erd_epoch_number":             4,
-		"erd_total_fees":               "3500000000",
-		"erd_epoch_for_economics_data": 30,
+		"drt_dev_rewards":              "0",
+		"drt_inflation":                "120",
+		"drt_epoch_number":             4,
+		"drt_total_fees":               "3500000000",
+		"drt_epoch_for_economics_data": 30,
 	}
 	type metricsResp struct {
 		Metrics map[string]interface{} `json:"metrics"`
@@ -309,18 +309,18 @@ func (ths *TestHttpServer) processRequestGetEconomicsMetrics(rw http.ResponseWri
 
 func (ths *TestHttpServer) processRequestGetConfigMetrics(rw http.ResponseWriter, _ *http.Request) {
 	responseStatus := map[string]interface{}{
-		"erd_chain_id":                   "testnet",
-		"erd_gas_per_data_byte":          4,
-		"erd_meta_consensus_group_size":  5,
-		"erd_min_gas_limit":              5,
-		"erd_min_gas_price":              5,
-		"erd_num_metachain_nodes":        30,
-		"erd_num_nodes_in_shard":         30,
-		"erd_num_shards_without_meta":    30,
-		"erd_round_duration":             30,
-		"erd_shard_consensus_group_size": 30,
-		"erd_start_time":                 30,
-		"erd_min_transaction_version":    1,
+		"drt_chain_id":                   "testnet",
+		"drt_gas_per_data_byte":          4,
+		"drt_meta_consensus_group_size":  5,
+		"drt_min_gas_limit":              5,
+		"drt_min_gas_price":              5,
+		"drt_num_metachain_nodes":        30,
+		"drt_num_nodes_in_shard":         30,
+		"drt_num_shards_without_meta":    30,
+		"drt_round_duration":             30,
+		"drt_shard_consensus_group_size": 30,
+		"drt_start_time":                 30,
+		"drt_min_transaction_version":    1,
 	}
 	resp := data.GenericAPIResponse{Data: gin.H{"config": responseStatus}, Code: data.ReturnCodeSuccess}
 	responseBuff, _ := json.Marshal(&resp)

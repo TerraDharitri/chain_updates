@@ -64,13 +64,13 @@ func TestFuzzDex_v0_1(t *testing.T) {
 	err := pfe.init(
 		&fuzzDexExecutorInitArgs{
 			wrewaTokenId:            "WREWA-abcdef",
-			mexTokenId:              "MEX-abcdef",
+			mexTokenId:              "MOA-abcdef",
 			busdTokenId:             "BUSD-abcdef",
 			wemeLpTokenId:           "WEMELP-abcdef",
 			webuLpTokenId:           "WEBULP-abcdef",
 			wemeFarmTokenId:         "WEMEFARM-abcdef",
 			webuFarmTokenId:         "WEBUFARM-abcdef",
-			mexFarmTokenId:          "MEXFARM-abcdef",
+			mexFarmTokenId:          "MOAFARM-abcdef",
 			numUsers:                10,
 			numEvents:               500,
 			removeLiquidityProb:     5,

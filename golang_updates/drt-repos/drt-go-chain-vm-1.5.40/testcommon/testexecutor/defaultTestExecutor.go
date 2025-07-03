@@ -11,18 +11,18 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 )
 
-// EnvVMEXECUTOR is the name of the environment variable that controls the default test executor
-var EnvVMEXECUTOR = "VMEXECUTOR"
+// EnvVMOAECUTOR is the name of the environment variable that controls the default test executor
+var EnvVMOAECUTOR = "VMOAECUTOR"
 
-// ExecWasmer1 is the value of the EnvVMEXECUTOR variable which selects Wasmer 1
+// ExecWasmer1 is the value of the EnvVMOAECUTOR variable which selects Wasmer 1
 var ExecWasmer1 = "wasmer1"
 
-// ExecWasmer2 is the value of the EnvVMEXECUTOR variable which selects Wasmer 2
+// ExecWasmer2 is the value of the EnvVMOAECUTOR variable which selects Wasmer 2
 var ExecWasmer2 = "wasmer2"
 
 var defaultExecutorString = ExecWasmer2
 
-// NewDefaultTestExecutorFactory instantiates an executor factory based on the $VMEXECUTOR environment variable
+// NewDefaultTestExecutorFactory instantiates an executor factory based on the $VMOAECUTOR environment variable
 func NewDefaultTestExecutorFactory(tb testing.TB) executor.ExecutorAbstractFactory {
 	execStr := getVMExecutorString()
 
@@ -49,7 +49,7 @@ func IsWasmer1Allowed() bool {
 }
 
 func getVMExecutorString() string {
-	execStr := os.Getenv(EnvVMEXECUTOR)
+	execStr := os.Getenv(EnvVMOAECUTOR)
 
 	if len(execStr) == 0 {
 		execStr = defaultExecutorString

@@ -80,7 +80,7 @@ func (sf *simulatorFacade) SetStateMultiple(stateSlice []*dtos.AddressState, noG
 // SetStateMultipleOverwrite will set the entire state for the provided address and cleanup the old state of the provided addresses
 func (sf *simulatorFacade) SetStateMultipleOverwrite(stateSlice []*dtos.AddressState, noGenerate bool) error {
 	for _, state := range stateSlice {
-		// TODO MX-15414
+		// TODO DRT-15414
 		err := sf.simulator.RemoveAccounts([]string{state.Address})
 		shouldReturnErr := err != nil && !strings.Contains(err.Error(), errMsgAccountNotFound)
 		if shouldReturnErr {

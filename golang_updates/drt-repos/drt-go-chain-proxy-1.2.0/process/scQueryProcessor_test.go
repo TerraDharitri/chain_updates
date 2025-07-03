@@ -15,7 +15,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var testPubKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+var testPubKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 var dummyScAddress = "drt1l453hd0gt5gzdp7czpuall8ggt2dcv5zwmfdf3sd3lguxseux2fsxvluwu"
 
 func TestNewSCQueryProcessor_NilCoreProcessorShouldErr(t *testing.T) {

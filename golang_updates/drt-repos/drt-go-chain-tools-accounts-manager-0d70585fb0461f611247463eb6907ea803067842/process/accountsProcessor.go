@@ -43,7 +43,7 @@ func (ap *accountsProcessor) GetAllAccountsWithStake(currentEpoch uint32) (*data
 		return nil, err
 	}
 
-	lkMexAccountsWithStake, err := ap.GetLKMOAStakeAccounts()
+	lkMoaAccountsWithStake, err := ap.GetLKMOAStakeAccounts()
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (ap *accountsProcessor) GetAllAccountsWithStake(currentEpoch uint32) (*data
 		return nil, err
 	}
 
-	allAccounts, allAddresses := ap.mergeAccounts(legacyDelegators, validators, delegators, lkMexAccountsWithStake, accountsWithEnergy)
+	allAccounts, allAddresses := ap.mergeAccounts(legacyDelegators, validators, delegators, lkMoaAccountsWithStake, accountsWithEnergy)
 
 	calculateTotalStakeForAccountsAndTotalUnDelegated(allAccounts)
 
@@ -90,7 +90,7 @@ func calculateTotalStakeForAccountsAndTotalUnDelegated(accounts map[string]*data
 }
 
 func (ap *accountsProcessor) mergeAccounts(
-	legacyDelegators, validators, delegators, lkMexAccountsWithStake, accountsWithEnergy map[string]*data.AccountInfoWithStakeValues,
+	legacyDelegators, validators, delegators, lkMoaAccountsWithStake, accountsWithEnergy map[string]*data.AccountInfoWithStakeValues,
 ) (map[string]*data.AccountInfoWithStakeValues, []string) {
 	allAddresses := make([]string, 0)
 	mergedAccounts := make(map[string]*data.AccountInfoWithStakeValues)
@@ -135,17 +135,17 @@ func (ap *accountsProcessor) mergeAccounts(
 		mergedAccounts[address].UnDelegateDelegationNum = stakedDelegators.UnDelegateDelegationNum
 	}
 
-	for address, lkMexAccount := range lkMexAccountsWithStake {
+	for address, lkMoaAccount := range lkMoaAccountsWithStake {
 		_, ok := mergedAccounts[address]
 		if !ok {
-			mergedAccounts[address] = lkMexAccount
+			mergedAccounts[address] = lkMoaAccount
 
 			allAddresses = append(allAddresses, address)
 			continue
 		}
 
-		mergedAccounts[address].LKMOAStake = lkMexAccount.LKMOAStake
-		mergedAccounts[address].LKMOAStakeNum = lkMexAccount.LKMOAStakeNum
+		mergedAccounts[address].LKMOAStake = lkMoaAccount.LKMOAStake
+		mergedAccounts[address].LKMOAStakeNum = lkMoaAccount.LKMOAStakeNum
 	}
 
 	for address, energyAccount := range accountsWithEnergy {
@@ -183,7 +183,7 @@ func (ap *accountsProcessor) GetCurrentEpoch() (uint32, error) {
 		return 0, fmt.Errorf("cannot compute accounts index %s", genericAPIResponse.Error)
 	}
 
-	epoch := gjson.Get(string(genericAPIResponse.Data), "status.erd_epoch_number")
+	epoch := gjson.Get(string(genericAPIResponse.Data), "status.drt_epoch_number")
 	return uint32(epoch.Num), nil
 }
 

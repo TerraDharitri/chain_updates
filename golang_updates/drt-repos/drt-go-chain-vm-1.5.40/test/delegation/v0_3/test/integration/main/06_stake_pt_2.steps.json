@@ -5,7 +5,7 @@
             "step": "transfer",
             "id": "supply delegator 1 again",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator_1___________________s1",
                 "rewaValue": "100,000,000,000,000"
             }
@@ -14,7 +14,7 @@
             "step": "transfer",
             "id": "supply owner for stake",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''node_address__________________s1",
                 "rewaValue": "011,000,000,000,000"
             }

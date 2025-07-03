@@ -22,6 +22,6 @@ func (pfe *fuzzDexExecutor) getTokens(address string, toktik string) (*big.Int, 
 	return pfe.world.BuiltinFuncs.GetTokenBalance(pfe.interpretExpr(address), []byte(toktik), 0)
 }
 
-func (pfe *fuzzDexExecutor) getTokenData(address string, toktik string, nonce int) (*dcdt.ESDigitalToken, error) {
+func (pfe *fuzzDexExecutor) getTokenData(address string, toktik string, nonce int) (*dcdt.DCDigitalToken, error) {
 	return pfe.world.BuiltinFuncs.GetTokenData(pfe.interpretExpr(address), []byte(toktik), uint64(nonce))
 }

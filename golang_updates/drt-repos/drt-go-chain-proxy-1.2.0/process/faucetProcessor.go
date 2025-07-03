@@ -156,7 +156,7 @@ func (fp *FaucetProcessor) getSignedTx(tx *data.Transaction, privKey crypto.Priv
 }
 
 func (fp *FaucetProcessor) marshalTxForSigning(tx *data.Transaction) ([]byte, error) {
-	erdTx := erdTransaction{
+	drtTx := drtTransaction{
 		Nonce:    tx.Nonce,
 		Value:    tx.Value,
 		RcvAddr:  tx.Receiver,
@@ -168,7 +168,7 @@ func (fp *FaucetProcessor) marshalTxForSigning(tx *data.Transaction) ([]byte, er
 		Version:  tx.Version,
 	}
 
-	return json.Marshal(erdTx)
+	return json.Marshal(drtTx)
 }
 
 func (fp *FaucetProcessor) getPrivKeyFromShard(shardID uint32) (crypto.PrivateKey, error) {

@@ -6,13 +6,13 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/TerraDharitri/drt-go-chain/process"
 	"github.com/TerraDharitri/drt-go-chain/testscommon"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/economicsmocks"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/hashingMocks"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/marshallerMock"
-	"github.com/TerraDharitri/drt-go-chain-core/data"
-	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
 
@@ -260,7 +260,7 @@ func Test_computeGasProvidedByTxGasHandlerComputeGasErrors(t *testing.T) {
 	tx := createDefaultTx(sndAddr, rcvAddr, gasLimit)
 	tx.Data = []byte("tx invoking data")
 
-	expectedError := errors.New("expecterd error")
+	expectedError := errors.New("expectdrt error")
 	gt.gasHandler = &testscommon.GasHandlerStub{
 		ComputeGasProvidedByTxCalled: func(txSenderShardId uint32, txReceiverSharedId uint32, txHandler data.TransactionHandler) (uint64, uint64, error) {
 			return 0, 0, expectedError
@@ -349,7 +349,7 @@ func Test_computeGasProvidedWithErrorForGasConsumedForTx(t *testing.T) {
 	tx := createDefaultTx(sndAddr, rcvAddr, gasLimit)
 	tx.Data = []byte("tx invoking data")
 
-	expectedError := errors.New("expecterd error")
+	expectedError := errors.New("expectdrt error")
 	gt.gasHandler = &testscommon.GasHandlerStub{
 		ComputeGasProvidedByTxCalled: func(txSenderShardId uint32, txReceiverSharedId uint32, txHandler data.TransactionHandler) (uint64, uint64, error) {
 			return 0, 0, expectedError

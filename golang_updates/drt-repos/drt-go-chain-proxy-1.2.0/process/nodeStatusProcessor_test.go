@@ -202,13 +202,13 @@ func TestNodeStatusProcessor_GetLatestBlockNonce(t *testing.T) {
 			if address == "address1" {
 				localMap = map[string]interface{}{
 					"metrics": map[string]interface{}{
-						"erd_cross_check_block_height": "meta 123",
+						"drt_cross_check_block_height": "meta 123",
 					},
 				}
 			} else {
 				localMap = map[string]interface{}{
 					"metrics": map[string]interface{}{
-						"erd_nonce": 122,
+						"drt_nonce": 122,
 					},
 				}
 			}
@@ -725,7 +725,7 @@ func TestNodeStatusProcessor_GetTriesStatistics(t *testing.T) {
 			CallGetRestEndPointCalled: func(address string, path string, value interface{}) (int, error) {
 				localMap := map[string]interface{}{
 					"metrics": map[string]interface{}{
-						"erd_accounts_snapshot_num_nodes": providedNumNodes,
+						"drt_accounts_snapshot_num_nodes": providedNumNodes,
 					},
 				}
 

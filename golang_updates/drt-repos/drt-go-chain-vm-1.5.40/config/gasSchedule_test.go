@@ -50,11 +50,11 @@ func TestDecode_VMGas(t *testing.T) {
 
 	fmt.Printf("%+v\n", bigFloatOp)
 
-	erdOp := &BaseOpsAPICost{}
-	err = mapstructure.Decode(gasMap, erdOp)
+	drtOp := &BaseOpsAPICost{}
+	err = mapstructure.Decode(gasMap, drtOp)
 	assert.Nil(t, err)
 
-	fmt.Printf("%+v\n", erdOp)
+	fmt.Printf("%+v\n", drtOp)
 }
 
 func TestDecode_ZeroGasCostError(t *testing.T) {

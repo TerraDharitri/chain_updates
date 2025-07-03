@@ -48,7 +48,7 @@
             "step": "transfer",
             "id": "supply owner",
             "tx": {
-                "from": "address:endless_sack_of_erd",
+                "from": "address:endless_sack_of_drt",
                 "to": "address:node_address",
                 "rewaValue": "100,000,000,000,000"
             }

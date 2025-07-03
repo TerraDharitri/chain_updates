@@ -5,7 +5,7 @@
             "step": "transfer",
             "id": "slip some ERD directly into the contract",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "sc:delegation",
                 "rewaValue": "1,234,567,000,000"
             }
@@ -90,7 +90,7 @@
             "id": "owner is nice and transfers back; we also no longer need to keep track of this sum",
             "tx": {
                 "from": "''node_address__________________s1",
-                "to": "''endless_sack_of_erd___________s1",
+                "to": "''endless_sack_of_drt___________s1",
                 "rewaValue": "1,234,567,000,000"
             }
         }

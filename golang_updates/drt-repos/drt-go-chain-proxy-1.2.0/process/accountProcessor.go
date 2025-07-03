@@ -228,7 +228,7 @@ func (ap *AccountProcessor) GetDCDTsWithRole(address string, role string, option
 
 	apiResponse := data.GenericAPIResponse{}
 	for _, observer := range observers {
-		apiPath := addressPath + address + "/esdts-with-role/" + role
+		apiPath := addressPath + address + "/dcdts-with-role/" + role
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, err := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if err == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
@@ -261,7 +261,7 @@ func (ap *AccountProcessor) GetDCDTsRoles(address string, options common.Account
 
 	apiResponse := data.GenericAPIResponse{}
 	for _, observer := range observers {
-		apiPath := addressPath + address + "/esdts/roles"
+		apiPath := addressPath + address + "/dcdts/roles"
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, errGet := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if errGet == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {

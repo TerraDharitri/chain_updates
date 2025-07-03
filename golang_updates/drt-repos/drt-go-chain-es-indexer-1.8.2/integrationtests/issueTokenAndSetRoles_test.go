@@ -13,7 +13,7 @@ import (
 	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
-	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	indexdrtata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -64,7 +64,7 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 
 	ids := []string{"TOK-abcd"}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-issue-ok.json"), string(genericResponse.Docs[0].Source))
 
@@ -94,7 +94,7 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 
 	ids = []string{"TOK-abcd"}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-set-role.json"), string(genericResponse.Docs[0].Source))
 
@@ -128,7 +128,7 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 
 	ids = []string{"TOK-abcd"}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-transfer-role.json"), string(genericResponse.Docs[0].Source))
 
@@ -158,7 +158,7 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 
 	ids = []string{"TOK-abcd"}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-unset-role.json"), string(genericResponse.Docs[0].Source))
 }
@@ -206,7 +206,7 @@ func TestIssueSetRolesEventAndAfterTokenIssue(t *testing.T) {
 
 	ids := []string{"TTT-abcd"}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-set-roles-first.json"), string(genericResponse.Docs[0].Source))
 
@@ -235,7 +235,7 @@ func TestIssueSetRolesEventAndAfterTokenIssue(t *testing.T) {
 
 	ids = []string{"TTT-abcd"}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueTokenAndSetRoles/token-after-set-roles-and-issue.json"), string(genericResponse.Docs[0].Source))
 }

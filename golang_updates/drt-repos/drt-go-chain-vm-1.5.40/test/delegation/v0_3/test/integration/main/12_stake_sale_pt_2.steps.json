@@ -79,7 +79,7 @@
             "step": "transfer",
             "id": "supply owner, owner will buy some",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''node_address__________________s1",
                 "rewaValue": "1,000,000,000,000"
             }

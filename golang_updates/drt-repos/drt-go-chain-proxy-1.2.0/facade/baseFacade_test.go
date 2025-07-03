@@ -24,7 +24,7 @@ type testStruct struct {
 	Hash  string
 }
 
-var publicKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+var publicKeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 
 func TestNewProxyFacade_NilActionsProcShouldErr(t *testing.T) {
 	t.Parallel()
@@ -539,8 +539,8 @@ func TestProxyFacade_SendUserFunds(t *testing.T) {
 				return &data.GenericAPIResponse{
 					Data: map[string]interface{}{
 						"config": map[string]interface{}{
-							"erd_chain_id":                "chainID",
-							"erd_min_transaction_version": 1.0,
+							"drt_chain_id":                "chainID",
+							"drt_min_transaction_version": 1.0,
 						},
 					},
 				}, nil

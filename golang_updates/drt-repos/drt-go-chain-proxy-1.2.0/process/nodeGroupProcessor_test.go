@@ -625,8 +625,8 @@ func TestNodeGroupProcessor_IsOldStorageForToken(t *testing.T) {
 func TestComputeTokenStorageKey(t *testing.T) {
 	t.Parallel()
 
-	require.Equal(t, "454c524f4e4465736474746f6b656e25", process.ComputeTokenStorageKey("token", 37))
-	require.Equal(t, "454c524f4e4465736474455254574f2d3364313934340284", process.ComputeTokenStorageKey("ERTWO-3d1944", 644))
+	require.Equal(t, "4e554d42415464636474746f6b656e25", process.ComputeTokenStorageKey("token", 37))
+	require.Equal(t, "4e554d42415464636474455254574f2d3364313934340284", process.ComputeTokenStorageKey("ERTWO-3d1944", 644))
 
 	testTokenID, testNonce := "TESTTKN", uint64(89)
 	expectedKey := append(append([]byte(core.ProtectedKeyPrefix+"dcdt"), []byte(testTokenID)...), big.NewInt(int64(testNonce)).Bytes()...)

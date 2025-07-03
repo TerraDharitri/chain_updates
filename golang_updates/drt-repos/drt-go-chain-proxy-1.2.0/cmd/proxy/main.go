@@ -38,7 +38,7 @@ const (
 	logFilePrefix        = "drt-go-chain-proxy"
 	logFileLifeSpanInSec = 86400
 	logFileMaxSizeInMB   = 1024
-	addressHRP           = "erd"
+	addressHRP           = "drt"
 )
 
 // commitID and appVersion should be populated at build time using ldflags

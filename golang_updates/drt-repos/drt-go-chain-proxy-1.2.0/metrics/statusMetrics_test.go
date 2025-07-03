@@ -76,7 +76,7 @@ func testWhenMultipleEntriesForMultipleEndpoints(t *testing.T) {
 
 	sm := NewStatusMetrics()
 
-	testEndpoint0, testEndpoint1 := "/network/config", "/network/esdts"
+	testEndpoint0, testEndpoint1 := "/network/config", "/network/dcdts"
 
 	testDuration0End0, testDuration1End0 := time.Second, 5*time.Second
 	testDuration0End1, testDuration1End1 := time.Hour, 4*time.Hour

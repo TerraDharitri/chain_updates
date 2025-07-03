@@ -117,8 +117,8 @@ type StakeInfo struct {
 	TotalStake                 string  `json:"totalStake,omitempty"`
 	TotalStakeNum              float64 `json:"totalStakeNum,omitempty"`
 
-	LKMOAStake    string         `json:"lkMexStake,omitempty"`
-	LKMOAStakeNum float64        `json:"lkMexStakeNum,omitempty"`
+	LKMOAStake    string         `json:"lkMoaStake,omitempty"`
+	LKMOAStakeNum float64        `json:"lkMoaStakeNum,omitempty"`
 	Energy        string         `json:"energy,omitempty"`
 	EnergyNum     float64        `json:"energyNum,omitempty"`
 	EnergyDetails *EnergyDetails `json:"energyDetails,omitempty"`

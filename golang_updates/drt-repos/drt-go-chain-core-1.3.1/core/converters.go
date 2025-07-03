@@ -179,8 +179,8 @@ func ConvertToEvenHexBigInt(value *big.Int) string {
 }
 
 // ConvertDCDTTypeToUint32 converts the dcdt type to uint32
-func ConvertDCDTTypeToUint32(esdtType string) (uint32, error) {
-	switch esdtType {
+func ConvertDCDTTypeToUint32(dcdtType string) (uint32, error) {
+	switch dcdtType {
 	case FungibleDCDT:
 		return uint32(Fungible), nil
 	case NonFungibleDCDT:
@@ -198,11 +198,11 @@ func ConvertDCDTTypeToUint32(esdtType string) (uint32, error) {
 	case DynamicMetaDCDT:
 		return uint32(DynamicMeta), nil
 	default:
-		return math.MaxUint32, fmt.Errorf("invalid dcdt type: %s", esdtType)
+		return math.MaxUint32, fmt.Errorf("invalid dcdt type: %s", dcdtType)
 	}
 }
 
 // IsDynamicDCDT returns true if the dcdt type is dynamic
-func IsDynamicDCDT(esdtType uint32) bool {
-	return esdtType == uint32(DynamicNFT) || esdtType == uint32(DynamicSFT) || esdtType == uint32(DynamicMeta)
+func IsDynamicDCDT(dcdtType uint32) bool {
+	return dcdtType == uint32(DynamicNFT) || dcdtType == uint32(DynamicSFT) || dcdtType == uint32(DynamicMeta)
 }

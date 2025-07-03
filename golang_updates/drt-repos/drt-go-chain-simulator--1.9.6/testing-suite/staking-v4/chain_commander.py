@@ -8,9 +8,9 @@ import time
 from core.validatorKey import ValidatorKey
 
 
-def send_rewa_to_address(rewa_amount, erd_address):
+def send_rewa_to_address(rewa_amount, drt_address):
     details = {
-        'address': f'{erd_address}',
+        'address': f'{drt_address}',
         'balance': f'{rewa_amount}'
     }
 
@@ -34,7 +34,7 @@ def get_block() -> int:
 
     general_data = parsed.get("data")
     general_status = general_data.get("status")
-    nonce = general_status.get("erd_nonce")
+    nonce = general_status.get("drt_nonce")
     return nonce
 
 
@@ -114,7 +114,7 @@ def add_blocks_until_last_block_of_current_epoch() -> str:
 
     general_data = parsed.get("data")
     status = general_data.get("status")
-    passed_nonces = status.get("erd_nonces_passed_in_current_epoch")
+    passed_nonces = status.get("drt_nonces_passed_in_current_epoch")
 
     blocks_to_be_added = rounds_per_epoch - passed_nonces
     response_from_add_blocks = add_blocks(blocks_to_be_added)

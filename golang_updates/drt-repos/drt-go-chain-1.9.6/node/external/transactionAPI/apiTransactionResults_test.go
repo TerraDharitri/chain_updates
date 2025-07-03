@@ -36,7 +36,7 @@ func TestPutEventsInTransactionReceipt(t *testing.T) {
 		SndAddr: []byte("sndAddr"),
 	}
 
-	marshalizerdMock := &mock.MarshalizerFake{}
+	marshalizdrtMock := &mock.MarshalizerFake{}
 	dataStore := &storageStubs.ChainStorerStub{
 		GetStorerCalled: func(unitType dataRetriever.UnitType) (storage.Storer, error) {
 			return &storageStubs.StorerStub{
@@ -63,8 +63,8 @@ func TestPutEventsInTransactionReceipt(t *testing.T) {
 		},
 	}
 	shardCoordinator := mock.NewOneShardCoordinatorMock()
-	txUnmarshalerAndPreparer := newTransactionUnmarshaller(marshalizerdMock, pubKeyConverter, dataFieldParser, shardCoordinator)
-	n := newAPITransactionResultProcessor(pubKeyConverter, historyRepo, dataStore, marshalizerdMock, txUnmarshalerAndPreparer, logsFacade, shardCoordinator, dataFieldParser)
+	txUnmarshalerAndPreparer := newTransactionUnmarshaller(marshalizdrtMock, pubKeyConverter, dataFieldParser, shardCoordinator)
+	n := newAPITransactionResultProcessor(pubKeyConverter, historyRepo, dataStore, marshalizdrtMock, txUnmarshalerAndPreparer, logsFacade, shardCoordinator, dataFieldParser)
 
 	epoch := uint32(0)
 
@@ -163,7 +163,7 @@ func TestPutEventsInTransactionSmartContractResults(t *testing.T) {
 		},
 	}
 
-	marshalizerdMock := &mock.MarshalizerFake{}
+	marshalizdrtMock := &mock.MarshalizerFake{}
 	dataStore := &storageStubs.ChainStorerStub{
 		GetStorerCalled: func(unitType dataRetriever.UnitType) (storage.Storer, error) {
 			switch unitType {
@@ -172,9 +172,9 @@ func TestPutEventsInTransactionSmartContractResults(t *testing.T) {
 					GetFromEpochCalled: func(key []byte, epoch uint32) ([]byte, error) {
 						switch {
 						case bytes.Equal(key, scrHash1):
-							return marshalizerdMock.Marshal(scr1)
+							return marshalizdrtMock.Marshal(scr1)
 						case bytes.Equal(key, scrHash2):
-							return marshalizerdMock.Marshal(scr2)
+							return marshalizdrtMock.Marshal(scr2)
 						default:
 							return nil, nil
 						}
@@ -217,8 +217,8 @@ func TestPutEventsInTransactionSmartContractResults(t *testing.T) {
 	}
 	shardCoordinator := mock.NewOneShardCoordinatorMock()
 	pubKeyConverter := testscommon.NewPubkeyConverterMock(3)
-	txUnmarshalerAndPreparer := newTransactionUnmarshaller(marshalizerdMock, pubKeyConverter, dataFieldParser, shardCoordinator)
-	n := newAPITransactionResultProcessor(pubKeyConverter, historyRepo, dataStore, marshalizerdMock, txUnmarshalerAndPreparer, logsFacade, shardCoordinator, dataFieldParser)
+	txUnmarshalerAndPreparer := newTransactionUnmarshaller(marshalizdrtMock, pubKeyConverter, dataFieldParser, shardCoordinator)
+	n := newAPITransactionResultProcessor(pubKeyConverter, historyRepo, dataStore, marshalizdrtMock, txUnmarshalerAndPreparer, logsFacade, shardCoordinator, dataFieldParser)
 
 	encodedSndAddr, err := pubKeyConverter.Encode(scr1.SndAddr)
 	require.Nil(t, err)

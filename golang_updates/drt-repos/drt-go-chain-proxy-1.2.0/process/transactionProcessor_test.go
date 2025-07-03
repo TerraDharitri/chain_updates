@@ -36,7 +36,7 @@ var funcNewTxCostHandler = func() (process.TransactionCostHandler, error) {
 }
 
 var logsMerger, _ = logsevents.NewLogsMerger(hasher, &marshal.JsonMarshalizer{})
-var testPubkeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+var testPubkeyConverter, _ = pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 var testLogger = logger.GetOrCreate("process_test")
 
 type scenarioData struct {
@@ -1644,7 +1644,7 @@ func TestTransactionProcessor_GetTransactionPool(t *testing.T) {
 	// GetTransactionsPoolForSender + GetLastPoolNonceForSender + GetTransactionsPoolNonceGapsForSender
 	t.Run("no txs in pool", func(t *testing.T) {
 		t.Parallel()
-		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 		providedShardId := uint32(0)
 		providedSenderStr := "drt1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugqv5uj8x"
 		addrObs0 := "observer0"
@@ -1694,7 +1694,7 @@ func TestTransactionProcessor_GetTransactionPool(t *testing.T) {
 	t.Run("txs in pool, with gaps", func(t *testing.T) {
 		t.Parallel()
 
-		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
+		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "drt")
 		providedShardId := uint32(0)
 		providedSenderStr := "drt1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugqv5uj8x"
 		addrObs0 := "observer0"

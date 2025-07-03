@@ -38,7 +38,7 @@ type ProxyFacade struct {
 	blockProc        BlockProcessor
 	blocksProc       BlocksProcessor
 	proofProc        ProofProcessor
-	esdtSuppliesProc DCDTSupplyProcessor
+	dcdtSuppliesProc DCDTSupplyProcessor
 	statusProc       StatusProcessor
 
 	pubKeyConverter core.PubkeyConverter
@@ -59,7 +59,7 @@ func NewProxyFacade(
 	blocksProc BlocksProcessor,
 	proofProc ProofProcessor,
 	pubKeyConverter core.PubkeyConverter,
-	esdtSuppliesProc DCDTSupplyProcessor,
+	dcdtSuppliesProc DCDTSupplyProcessor,
 	statusProc StatusProcessor,
 	aboutInfoProc AboutInfoProcessor,
 ) (*ProxyFacade, error) {
@@ -96,7 +96,7 @@ func NewProxyFacade(
 	if proofProc == nil {
 		return nil, ErrNilProofProcessor
 	}
-	if esdtSuppliesProc == nil {
+	if dcdtSuppliesProc == nil {
 		return nil, ErrNilDCDTSuppliesProcessor
 	}
 	if statusProc == nil {
@@ -119,7 +119,7 @@ func NewProxyFacade(
 		blocksProc:       blocksProc,
 		proofProc:        proofProc,
 		pubKeyConverter:  pubKeyConverter,
-		esdtSuppliesProc: esdtSuppliesProc,
+		dcdtSuppliesProc: dcdtSuppliesProc,
 		statusProc:       statusProc,
 		aboutInfoProc:    aboutInfoProc,
 	}, nil
@@ -317,7 +317,7 @@ func (pf *ProxyFacade) GetNetworkStatusMetrics(shardID uint32) (*data.GenericAPI
 
 // GetDCDTSupply retrieves the supply for the provided token
 func (pf *ProxyFacade) GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error) {
-	return pf.esdtSuppliesProc.GetDCDTSupply(token)
+	return pf.dcdtSuppliesProc.GetDCDTSupply(token)
 }
 
 // GetEconomicsDataMetrics retrieves the node's network metrics for a given shard

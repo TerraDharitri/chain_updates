@@ -18,7 +18,7 @@
                     },
                     "code": "file:../../auction-mock/output/auction-mock.wasm"
                 },
-                "''endless_sack_of_erd___________s1": {
+                "''endless_sack_of_drt___________s1": {
                     "nonce": "0",
                     "balance": "1,000,000,000,000,000,000,000,000,000,000"
                 },
@@ -297,7 +297,7 @@
             "step": "transfer",
             "id": "8",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     8               s1",
                 "rewaValue": "801366117"
             }
@@ -322,7 +322,7 @@
             "id": "10",
             "tx": {
                 "from": "''delegator     8               s1",
-                "to": "''endless_sack_of_erd___________s1",
+                "to": "''endless_sack_of_drt___________s1",
                 "rewaValue": "801366117"
             }
         },
@@ -367,7 +367,7 @@
             "step": "transfer",
             "id": "13",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     7               s1",
                 "rewaValue": "1006682239"
             }
@@ -396,7 +396,7 @@
             "step": "transfer",
             "id": "15",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     5               s1",
                 "rewaValue": "251653161"
             }
@@ -557,7 +557,7 @@
             "step": "transfer",
             "id": "27",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     6               s1",
                 "rewaValue": "459004534"
             }
@@ -609,7 +609,7 @@
             "step": "transfer",
             "id": "30",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "1433501913"
             }
@@ -634,7 +634,7 @@
             "id": "32",
             "tx": {
                 "from": "''delegator     2               s1",
-                "to": "''endless_sack_of_erd___________s1",
+                "to": "''endless_sack_of_drt___________s1",
                 "rewaValue": "1433501913"
             }
         },
@@ -642,7 +642,7 @@
             "step": "transfer",
             "id": "33",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     6               s1",
                 "rewaValue": "550528740"
             }
@@ -685,7 +685,7 @@
             "step": "transfer",
             "id": "36",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     4               s1",
                 "rewaValue": "1714387956"
             }
@@ -710,7 +710,7 @@
             "id": "38",
             "tx": {
                 "from": "''delegator     4               s1",
-                "to": "''endless_sack_of_erd___________s1",
+                "to": "''endless_sack_of_drt___________s1",
                 "rewaValue": "1714387956"
             }
         },
@@ -740,7 +740,7 @@
             "step": "transfer",
             "id": "40",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "1780760936"
             }
@@ -810,7 +810,7 @@
             "step": "transfer",
             "id": "44",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     3               s1",
                 "rewaValue": "583881787"
             }
@@ -890,7 +890,7 @@
             "step": "transfer",
             "id": "50",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     8               s1",
                 "rewaValue": "760064160"
             }
@@ -919,7 +919,7 @@
             "step": "transfer",
             "id": "52",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "1298592533"
             }
@@ -1053,7 +1053,7 @@
             "step": "transfer",
             "id": "60",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     8               s1",
                 "rewaValue": "176934035"
             }
@@ -1090,7 +1090,7 @@
             "step": "transfer",
             "id": "63",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     5               s1",
                 "rewaValue": "840198516"
             }
@@ -1119,7 +1119,7 @@
             "step": "transfer",
             "id": "65",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     4               s1",
                 "rewaValue": "1037093802"
             }
@@ -1381,7 +1381,7 @@
             "step": "transfer",
             "id": "79",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     4               s1",
                 "rewaValue": "1002502394"
             }
@@ -1432,7 +1432,7 @@
             "step": "transfer",
             "id": "83",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "325665785"
             }
@@ -1480,7 +1480,7 @@
             "step": "transfer",
             "id": "86",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     3               s1",
                 "rewaValue": "567752448"
             }
@@ -1602,7 +1602,7 @@
             "step": "transfer",
             "id": "93",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
                 "rewaValue": "1907783229"
             }
@@ -1631,7 +1631,7 @@
             "step": "transfer",
             "id": "95",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     3               s1",
                 "rewaValue": "611682727"
             }
@@ -1733,7 +1733,7 @@
             "step": "transfer",
             "id": "101",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "1106015394"
             }
@@ -1972,7 +1972,7 @@
             "step": "transfer",
             "id": "115",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
                 "rewaValue": "453255881"
             }
@@ -2159,7 +2159,7 @@
             "step": "transfer",
             "id": "125",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
                 "rewaValue": "355908774"
             }
@@ -2202,7 +2202,7 @@
             "step": "transfer",
             "id": "128",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "''delegator     2               s1",
                 "rewaValue": "747048514"
             }

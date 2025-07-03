@@ -7,7 +7,7 @@
     [config.address-converter]
         length = 32
         type = "bech32"
-        prefix = "erd"
+        prefix = "drt"
     [config.validator-keys-converter]
         length = 96
         type = "hex"

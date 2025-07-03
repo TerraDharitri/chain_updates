@@ -64,7 +64,7 @@ def get_owner(public_validator_key: list[str]) -> str:
     address = address_list[0]
 
     address = base64_to_hex(address)
-    address = Address.from_hex(address, "erd").to_bech32()
+    address = Address.from_hex(address, "drt").to_bech32()
 
     return address
 

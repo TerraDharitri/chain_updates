@@ -20,7 +20,7 @@ func getSCCode(fileName string) []byte {
 }
 
 func TestFunctionsGuard_Arity(t *testing.T) {
-	if os.Getenv("VMEXECUTOR") != "wasmer1" {
+	if os.Getenv("VMOAECUTOR") != "wasmer1" {
 		t.Skip("run exclusively with wasmer1")
 	}
 

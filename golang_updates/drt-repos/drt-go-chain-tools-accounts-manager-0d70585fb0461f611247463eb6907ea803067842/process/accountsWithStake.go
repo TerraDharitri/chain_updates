@@ -19,7 +19,7 @@ const (
 	pathValidatorsStake = "/network/direct-staked-info"
 	pathDelegatorStake  = "/network/delegated-info"
 	pathVMValues        = "/vm-values/query"
-	lkMexSnapShot       = "getSnapshot"
+	lkMoaSnapShot       = "getSnapshot"
 	pathAccountKeys     = "/address/%s/keys"
 )
 
@@ -31,7 +31,7 @@ type accountsGetter struct {
 	mutex               sync.Mutex
 
 	delegationContractAddress string
-	lkMexContractAddress      string
+	lkMoaContractAddress      string
 	energyContractAddress     string
 	validatorsContract        string
 }
@@ -49,7 +49,7 @@ func NewAccountsGetter(
 		restClient:                restClient,
 		pubKeyConverter:           pubKeyConverter,
 		authenticationData:        authenticationData,
-		lkMexContractAddress:      generalConfig.LKMOAStakingContractAddress,
+		lkMoaContractAddress:      generalConfig.LKMOAStakingContractAddress,
 		energyContractAddress:     generalConfig.EnergyContractAddress,
 		delegationContractAddress: generalConfig.DelegationLegacyContractAddress,
 		validatorsContract:        generalConfig.ValidatorsContract,
@@ -170,16 +170,16 @@ func (ag *accountsGetter) GetDelegatorsAccounts() (map[string]*data.AccountInfoW
 // GetLKMOAStakeAccounts will fetch all accounts that have stake lkmoa tokens
 func (ag *accountsGetter) GetLKMOAStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error) {
 	accountsMap := make(map[string]*data.AccountInfoWithStakeValues)
-	if ag.lkMexContractAddress == "" {
+	if ag.lkMoaContractAddress == "" {
 		return accountsMap, nil
 	}
 
 	defer logExecutionTime(time.Now(), "Fetched accounts from lkmoa staking contract")
 
 	vmRequest := &data.VmValueRequest{
-		Address:    ag.lkMexContractAddress,
-		FuncName:   lkMexSnapShot,
-		CallerAddr: ag.lkMexContractAddress,
+		Address:    ag.lkMoaContractAddress,
+		FuncName:   lkMoaSnapShot,
+		CallerAddr: ag.lkMoaContractAddress,
 	}
 
 	responseVmValue := &data.ResponseVmValue{}

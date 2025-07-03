@@ -30,7 +30,7 @@
             "step": "transfer",
             "id": "supply delegator 1",
             "tx": {
-                "from": "address:endless_sack_of_erd",
+                "from": "address:endless_sack_of_drt",
                 "to": "address:delegator1",
                 "rewaValue": "5,000,000,000"
             }

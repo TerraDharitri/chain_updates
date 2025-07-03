@@ -24,7 +24,7 @@
             "step": "scCall",
             "id": "attempt to stake while paused",
             "tx": {
-                "from": "''endless_sack_of_erd___________s1",
+                "from": "''endless_sack_of_drt___________s1",
                 "to": "sc:delegation",
                 "rewaValue": "1234567890",
                 "function": "stake",

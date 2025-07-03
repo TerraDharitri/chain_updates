@@ -18,6 +18,6 @@ def get_delegation_contract_address_from_tx(tx_hash):
     delegation_contract_address = topics[1]
 
     delegation_contract_address = base64_to_hex(delegation_contract_address)
-    delegation_contract_address = Address.from_hex(delegation_contract_address, "erd").to_bech32()
+    delegation_contract_address = Address.from_hex(delegation_contract_address, "drt").to_bech32()
 
     return delegation_contract_address

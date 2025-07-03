@@ -16,7 +16,7 @@ func (pfe *fuzzDelegationExecutor) init(args *fuzzDelegationExecutorInitArgs) er
 	pfe.ownerAddress = "address:fuzz-owner"
 	pfe.delegationContractAddress = "sc:fuzz-delegation"
 	pfe.auctionMockAddress = "sc:fuzz-auction-mock"
-	pfe.faucetAddress = "address:endless-sack-of-erd"
+	pfe.faucetAddress = "address:endless-sack-of-drt"
 	pfe.withdrawTargetAddress = "address:withdraw-target"
 	pfe.stakePurchaseForwardAddress = "address:stake-purchase-forwarded"
 

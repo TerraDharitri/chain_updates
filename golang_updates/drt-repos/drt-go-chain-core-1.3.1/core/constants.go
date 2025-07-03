@@ -355,7 +355,7 @@ const GasRefundForRelayerMessage = "gas refund for relayer"
 const InitialVersionOfTransaction = uint32(1)
 
 // DefaultAddressPrefix is the default hrp of Dharitri/Numbat
-const DefaultAddressPrefix = "erd"
+const DefaultAddressPrefix = "drt"
 
 // TopicRequestSuffix represents the topic name suffix for requests
 const TopicRequestSuffix = "_REQUEST"

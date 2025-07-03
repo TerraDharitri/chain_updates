@@ -13,7 +13,7 @@ import (
 	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
-	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	indexdrtata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -75,7 +75,7 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 
 	ids := []string{logID}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.LogsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.LogsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t,
 		readExpectedResult("./testdata/logsCrossShard/log-at-source.json"),
@@ -84,7 +84,7 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 
 	event1ID := logID + "-0-0"
 	ids = []string{event1ID}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.EventsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.EventsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t,
 		readExpectedResult("./testdata/logsCrossShard/event-transfer-source-first.json"),
@@ -131,7 +131,7 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 	require.Nil(t, err)
 
 	ids = []string{logID}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.LogsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.LogsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t,
 		readExpectedResult("./testdata/logsCrossShard/log-at-destination.json"),
@@ -140,7 +140,7 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 
 	event2ID, event3ID := logID+"-1-0", logID+"-1-1"
 	ids = []string{event2ID, event3ID}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.EventsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.EventsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t,
 		readExpectedResult("./testdata/logsCrossShard/event-transfer-destination.json"),
@@ -184,7 +184,7 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 	require.Nil(t, err)
 
 	ids = []string{logID}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.LogsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.LogsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t,
 		readExpectedResult("./testdata/logsCrossShard/log-at-destination.json"),
@@ -211,13 +211,13 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 	err = esProc.RemoveTransactions(header, body)
 	require.Nil(t, err)
 
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.LogsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.LogsIndex, true, genericResponse)
 	require.Nil(t, err)
 
 	require.False(t, genericResponse.Docs[0].Found)
 
 	ids = []string{event2ID, event3ID}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.EventsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.EventsIndex, true, genericResponse)
 	require.Nil(t, err)
 
 	require.False(t, genericResponse.Docs[0].Found)

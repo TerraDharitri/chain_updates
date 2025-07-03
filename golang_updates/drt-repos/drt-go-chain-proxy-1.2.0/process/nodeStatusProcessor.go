@@ -24,10 +24,10 @@ const (
 	NodeStatusPath = "/node/status"
 
 	// AllIssuedDCDTsPath represents the path where an observer exposes all the issued DCDTs
-	AllIssuedDCDTsPath = "/network/esdts"
+	AllIssuedDCDTsPath = "/network/dcdts"
 
-	// NetworkEsdtTokensPrefix represents the prefix for the path where an observer exposes DCDT tokens of a kind
-	NetworkEsdtTokensPrefix = "/network/dcdt"
+	// NetworkDcdtTokensPrefix represents the prefix for the path where an observer exposes DCDT tokens of a kind
+	NetworkDcdtTokensPrefix = "/network/dcdt"
 
 	// DelegatedInfoPath represents the path where an observer exposes his network delegated info
 	DelegatedInfoPath = "/network/delegated-info"
@@ -48,13 +48,13 @@ const (
 	EnableEpochsPath = "/network/enable-epochs"
 
 	// MetricCrossCheckBlockHeight is the metric that stores cross block height
-	MetricCrossCheckBlockHeight = "erd_cross_check_block_height"
+	MetricCrossCheckBlockHeight = "drt_cross_check_block_height"
 
 	// MetricAccountsSnapshotNumNodes is the metric that outputs the number of trie nodes written for accounts after snapshot
-	MetricAccountsSnapshotNumNodes = "erd_accounts_snapshot_num_nodes"
+	MetricAccountsSnapshotNumNodes = "drt_accounts_snapshot_num_nodes"
 
 	// MetricNonce is the metric for monitoring the nonce of a node
-	MetricNonce = "erd_nonce"
+	MetricNonce = "drt_nonce"
 )
 
 // NodeStatusProcessor handles the action needed for fetching data related to status metrics from nodes
@@ -161,7 +161,7 @@ func (nsp *NodeStatusProcessor) GetEnableEpochsMetrics() (*data.GenericAPIRespon
 
 // GetAllIssuedDCDTs will forward the issued DCDTs based on the provided type
 func (nsp *NodeStatusProcessor) GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error) {
-	if !data.IsValidEsdtPath(tokenType) && tokenType != "" {
+	if !data.IsValidDcdtPath(tokenType) && tokenType != "" {
 		return nil, ErrInvalidTokenType
 	}
 
@@ -175,15 +175,15 @@ func (nsp *NodeStatusProcessor) GetAllIssuedDCDTs(tokenType string) (*data.Gener
 
 		path := AllIssuedDCDTsPath
 		if tokenType != "" {
-			path = fmt.Sprintf("%s/%s", NetworkEsdtTokensPrefix, tokenType)
+			path = fmt.Sprintf("%s/%s", NetworkDcdtTokensPrefix, tokenType)
 		}
 		_, err := nsp.proc.CallGetRestEndPoint(observer.Address, path, &responseAllIssuedDCDTs)
 		if err != nil {
-			log.Error("all issued esdts request", "observer", observer.Address, "error", err.Error())
+			log.Error("all issued dcdts request", "observer", observer.Address, "error", err.Error())
 			continue
 		}
 
-		log.Info("all issued esdts request", "shard ID", observer.ShardId, "observer", observer.Address)
+		log.Info("all issued dcdts request", "shard ID", observer.ShardId, "observer", observer.Address)
 		return &responseAllIssuedDCDTs, nil
 
 	}

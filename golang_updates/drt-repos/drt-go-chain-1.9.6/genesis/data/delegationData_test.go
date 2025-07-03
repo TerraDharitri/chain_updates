@@ -89,9 +89,9 @@ func TestDelegationData_AddressBytes(t *testing.T) {
 	dd := &DelegationData{}
 	addrBytes := []byte("address bytes")
 	dd.SetAddressBytes(addrBytes)
-	recoverdAddrBytes := dd.AddressBytes()
+	recovdrtAddrBytes := dd.AddressBytes()
 
-	assert.Equal(t, addrBytes, recoverdAddrBytes)
+	assert.Equal(t, addrBytes, recovdrtAddrBytes)
 }
 
 func TestDelegationData_Clone(t *testing.T) {

@@ -141,7 +141,7 @@ func TestGetNetworkConfigData_FacadeErrShouldErr(t *testing.T) {
 func TestGetNetworkConfigData_OkRequestShouldWork(t *testing.T) {
 	t.Parallel()
 
-	key := "erd_min_gas_limit"
+	key := "drt_min_gas_limit"
 	value := float64(37)
 	facade := &mock.FacadeStub{
 		GetConfigMetricsHandler: func() (*data.GenericAPIResponse, error) {
@@ -197,7 +197,7 @@ func TestGetEconomicsData_ShouldErr(t *testing.T) {
 func TestGetEconomicsData_ShouldWork(t *testing.T) {
 	t.Parallel()
 
-	expectedResp := data.GenericAPIResponse{Data: map[string]interface{}{"erd_total_supply": "12345"}}
+	expectedResp := data.GenericAPIResponse{Data: map[string]interface{}{"drt_total_supply": "12345"}}
 	facade := &mock.FacadeStub{
 		GetEconomicsDataMetricsHandler: func() (*data.GenericAPIResponse, error) {
 			return &expectedResp, nil

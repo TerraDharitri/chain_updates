@@ -361,7 +361,7 @@ func (s *simulator) ForceChangeOfEpoch() error {
 
 func (s *simulator) allNodesCreateBlocks() error {
 	for _, node := range s.handlers {
-		// TODO MX-15150 remove this when we remove all goroutines
+		// TODO DRT-15150 remove this when we remove all goroutines
 		time.Sleep(2 * time.Millisecond)
 
 		err := node.CreateNewBlock()

@@ -12,7 +12,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
 	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
-	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	indexdrtata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -75,7 +75,7 @@ func TestRelayedV3TransactionWithMultipleRefunds(t *testing.T) {
 
 	ids := []string{hex.EncodeToString(txHash)}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TransactionsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TransactionsIndex, true, genericResponse)
 	require.Nil(t, err)
 
 	require.JSONEq(t,
@@ -102,7 +102,7 @@ func TestRelayedV3TransactionWithMultipleRefunds(t *testing.T) {
 
 	ids = []string{hex.EncodeToString(txHash)}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TransactionsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TransactionsIndex, true, genericResponse)
 	require.Nil(t, err)
 
 	require.JSONEq(t,
@@ -129,7 +129,7 @@ func TestRelayedV3TransactionWithMultipleRefunds(t *testing.T) {
 
 	ids = []string{hex.EncodeToString(txHash)}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TransactionsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexdrtata.TransactionsIndex, true, genericResponse)
 	require.Nil(t, err)
 
 	require.JSONEq(t,
