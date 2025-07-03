@@ -1,0 +1,179 @@
+{
+    "name": "paymaster",
+    "comment": "add then check",
+    "gasSchedule": "v3",
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "address:user": {
+                    "nonce": "1",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:FEE-123456": "100,000,000",
+                        "str:WREWA-123456": "100,000,000"
+                    }
+                },
+                "address:owner": {
+                    "nonce": "1"
+                },
+                "address:relayer": {
+                    "nonce": "1",
+                    "balance": "0"
+                },
+                "sc:wrewa": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:WREWA-123456": {
+                            "instances": [
+                                {
+                                    "nonce": "",
+                                    "balance": "0"
+                                }
+                            ],
+                            "roles": [
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:wrappedRewaTokenId": "str:WREWA-123456"
+                    },
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
+                }
+            },
+            "newAddresses": [
+                {
+                    "creatorAddress": "address:owner",
+                    "creatorNonce": "1",
+                    "newAddress": "sc:paymaster"
+                }
+            ]
+        },
+        {
+            "step": "scDeploy",
+            "id": "",
+            "tx": {
+                "from": "address:owner",
+                "contractCode": "file:../output/paymaster.wasm",
+                "arguments": [],
+                "gasLimit": "5,000,000",
+                "gasPrice": ""
+            },
+            "expect": {
+                "out": [],
+                "status": "0"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:user": {
+                    "dcdt": {
+                        "str:FEE-123456": "100,000,000",
+                        "str:WREWA-123456": "100,000,000"
+                    },
+                    "storage": "*",
+                    "code": "*",
+                    "owner": "*",
+                    "nonce": "*",
+                    "balance": "0"
+                },
+                "+": ""
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "paymaster-forward-execution",
+            "tx": {
+                "from": "address:user",
+                "to": "sc:paymaster",
+                "dcdtValue": [
+                    {
+                        "tokenIdentifier": "str:FEE-123456",
+                        "value": "20,000"
+                    },
+                    {
+                        "tokenIdentifier": "str:WREWA-123456",
+                        "value": "100,000,000"
+                    }
+                ],
+                "function": "forwardExecution",
+                "arguments": [
+                    "address:relayer",
+                    "sc:wrewa",
+                    "str:unwrapRewa"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": ""
+            },
+            "expect": {
+                "out": [],
+                "status": "0",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:relayer": {
+                    "dcdt": {
+                        "str:FEE-123456": "20,000",
+                        "str:WREWA-123456": "0"
+                    },
+                    "storage": "*",
+                    "code": "*",
+                    "owner": "*",
+                    "nonce": "1"
+                },
+                "address:user": {
+                    "dcdt": {
+                        "str:FEE-123456": "99,980,000"
+                    },
+                    "balance": "100,000,000",
+                    "storage": "*",
+                    "code": "*",
+                    "owner": "*",
+                    "nonce": "2"
+                },
+                "sc:paymaster": {
+                    "dcdt": {
+                        "str:FEE-123456": "0",
+                        "str:WREWA-123456": "0"
+                    },
+                    "balance": "0",
+                    "storage": "*",
+                    "code": "*",
+                    "owner": "address:owner",
+                    "nonce": "0"
+                },
+                "sc:wrewa": {
+                    "dcdt": {
+                        "str:FEE-123456": "0",
+                        "str:WREWA-123456": {
+                            "instances": [
+                                {
+                                    "nonce": "",
+                                    "balance": "0"
+                                }
+                            ],
+                            "roles": [
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
+                            ]
+                        }
+                    },
+                    "balance": "0",
+                    "storage": "*",
+                    "owner": "*",
+                    "nonce": "0",
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
+                },
+                "+": ""
+            }
+        }
+    ]
+}

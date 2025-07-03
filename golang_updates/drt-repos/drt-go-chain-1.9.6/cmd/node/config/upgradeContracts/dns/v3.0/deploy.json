@@ -1,0 +1,8 @@
+{
+  "owner": "drt188anxz35atlef7cucszypmvx88lhz4m7a7t7lhcwt6sfphpsqlksn4qm95",
+  "filename": "./config/genesisContracts/dns.wasm",
+  "vm-type": "0500",
+  "init-parameters": "00",
+  "type": "dns",
+  "version": "0.3.*"
+}

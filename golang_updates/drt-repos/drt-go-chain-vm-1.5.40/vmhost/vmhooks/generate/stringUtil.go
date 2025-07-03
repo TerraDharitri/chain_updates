@@ -1,0 +1,66 @@
+package vmhooksgenerate
+
+import (
+	"strings"
+	"unicode"
+)
+
+func lowerInitial(name string) string {
+	return strings.ToLower(name[0:1]) + name[1:]
+}
+
+func upperInitial(name string) string {
+	return strings.ToUpper(name[0:1]) + name[1:]
+}
+
+var knownAcronyms = []string{"dcdt", "nft", "id", "uri", "sc"}
+
+func snakeCase(camelCase string) string {
+	// replace known acronyms,
+	// because they are given in all-caps, which makes it impossible to detect their boundaries
+	// e.g. "createDCDTNFT" becomes "createDcdtNft" in this step, so that the underscores can inserted properly
+	for _, knownAcronym := range knownAcronyms {
+		camelCase = strings.Replace(camelCase, strings.ToUpper(knownAcronym), upperInitial(knownAcronym), -1)
+	}
+
+	// abcDef -> abc_def
+	var sb strings.Builder
+	previousRuneUpper := true
+	for _, r := range camelCase {
+		currentRuneUpper := unicode.IsUpper(r)
+		if currentRuneUpper {
+			if !previousRuneUpper {
+				sb.WriteRune('_')
+			}
+			sb.WriteRune(unicode.ToLower(r))
+		} else {
+			sb.WriteRune(r)
+		}
+		previousRuneUpper = currentRuneUpper
+	}
+	return sb.String()
+}
+
+// Helps align code to the right.
+func longestFuncNameLengthCamel(eiMetadata *EIMetadata) int {
+	maxNameLength := 0
+	for _, funcMetadata := range eiMetadata.AllFunctions {
+		l := len(funcMetadata.Name)
+		if l > maxNameLength {
+			maxNameLength = l
+		}
+	}
+	return maxNameLength
+}
+
+// Helps align code to the right.
+func longestFuncNameLengthSnake(eiMetadata *EIMetadata) int {
+	maxNameLength := 0
+	for _, funcMetadata := range eiMetadata.AllFunctions {
+		l := len(snakeCase(funcMetadata.Name))
+		if l > maxNameLength {
+			maxNameLength = l
+		}
+	}
+	return maxNameLength
+}

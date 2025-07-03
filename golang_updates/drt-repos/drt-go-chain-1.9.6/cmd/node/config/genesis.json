@@ -1,0 +1,497 @@
+[
+  {
+    "info": "delegator1 for legacy delegation",
+    "address": "drt1z48u9l275l2uy4augfytpp2355wvdnc4gwc9ms9gdhdqru3fz9eqfjh6j8",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator2 for legacy delegation",
+    "address": "drt1qm5erxm0va3hcw9jfxtp2gl3u9q9p4k242pk9xx3vezefkgj2vhsjjpymc",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator3 for legacy delegation",
+    "address": "drt1rqwt9vpfn072tahtcvup2dxz4nvqfs3n5p9eh0jnypkppxmdheaquyh2pu",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator4 for legacy delegation",
+    "address": "drt17uygg7qq05mjhectgymj6fwq59ysr4p92cy0yz3jrxxj6253p40s0zfdqy",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator5 for legacy delegation",
+    "address": "drt1qslr87nj5gkv2396js3fa2za5kqgwugqnz4j4qqh22mxpnse2lws6v5nry",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator6 for legacy delegation",
+    "address": "drt17pjlqg55c6v3fjvpqec8peefk74g8neygr84ymw7cqzudmzaw7lqwryanu",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator7 for legacy delegation",
+    "address": "drt19ztfuew6ejrwq5mpax4xztjwh5j63u9vge4dum9vlyy7hg3pc86q48ues9",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator8 for legacy delegation",
+    "address": "drt1age5t5qfrke4vm47vaq9a4yewllh6227qm4fcy3rc7g5ktmzyats44zdms",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator9 for legacy delegation",
+    "address": "drt1jt0vv29trqs3nddzkxsf950xx0t5uvyncmuamwryneh9wsee5wps4qwxen",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "delegator10 for legacy delegation",
+    "address": "drt1c83rmk3n8ys4g9dkg3q70thx3v787qtpfmk23epu4xsadpyd3dnsyw7fqq",
+    "supply": "1001000000000000000000",
+    "balance": "1000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "drt1qqqqqqqqqqqqqpgqrchxzx5uu8sv3ceg8nx8cxc0gesezure5awqwfdtgn",
+      "value": "1000000000000000000000"
+    }
+  },
+  {
+    "info": "wallet1 2500*8 staked + 10000 initial balance",
+    "address": "drt19ptzdk7zvs3csjjf8u04j5kxzn5jck409sefdyx6x9afkjg4wuns5jfq3q",
+    "supply": "30000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "20000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet2 2500*6 staked + 10000 initial balance",
+    "address": "drt1qz9gp38g4238r3077wq4tpc0jxaq0f87c0t2n2hr3x6fef85t3ls2ua63g",
+    "supply": "25000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "15000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet3 2500*4 staked + 10000 initial balance",
+    "address": "drt1tp2af4jvdh7p79myu5h6srtchh42p5e3pchqre3ejyyn9mqhwa3s2al3j2",
+    "supply": "20000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "10000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet4 2500*4 staked + 10000 initial balance",
+    "address": "drt1e2ftj4hj43lkduwps9xdmtgjnmugkh9mndph4n2cxfmf6ufvn4ksj7tgyt",
+    "supply": "20000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "10000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet5 2500*3 staked + 10000 initial balance",
+    "address": "drt1dzjes5c6a8ru45clgla3q0k3ezm06svefjz7vzs8pjfnrqa8tcaszf9y5w",
+    "supply": "17500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "7500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet6 2500*3 staked + 10000 initial balance",
+    "address": "drt14gg3v6j4505ucx7t2wtl98tgupmyp748aq92jefmp5ha6e3pccgqcygd6m",
+    "supply": "17500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "7500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet7 2500*2 staked + 10000 initial balance",
+    "address": "drt1xdfc44mk4ut5cv6l3mq0py6h88cty9ykacskm8xv3tvrp893kmxqua062k",
+    "supply": "15000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "5000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet8 2500*2 staked + 10000 initial balance",
+    "address": "drt1997jfwzrum4rrk59ar5supcyge9rpa73xgv2p45h3unt880v399s3hsmxk",
+    "supply": "15000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "5000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet9 2500 staked + 10000 initial balance",
+    "address": "drt1e9cg9ys8fh77n9eaxpg47sxaes4fe9g2nvy6a65qpxykcx8grg9s3frunw",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet10 2500 staked + 10000 initial balance",
+    "address": "drt1xdrltsygywhmtxzsmrgjlsxsxrf4y2ayv0z50y666dgsp66trxwqlp94xy",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet11 2500 staked + 10000 initial balance",
+    "address": "drt1lytewufjflpwl6gtf0faazjr59nd2fhfwlk7ew72hkpgdkmunl8q5lk8dk",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet12 2500 staked + 10000 initial balance",
+    "address": "drt1s8tqztm4u4gw23489lps97qxe8vck8eln3a424y9c6yujsc96nasjrjeyn",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet13 2500 staked + 10000 initial balance",
+    "address": "drt1p7p0f3n8dxtj08hsp9hccqg932pd4f94rq3adg6g55etx8g4z8tsx5r6vk",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet14 2500 staked + 10000 initial balance",
+    "address": "drt1uyeel03ea837dphrx2ak77hdvlhjdcqdwgyg6k99gqn602ymsn7quhv6wv",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet15 2500 staked + 10000 initial balance",
+    "address": "drt1ftyzkdhl7rl782mrzrdc2jck3egydp0ydzhcjm9gc8s2jym5egrqq3gk5y",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet16 2500*3 staked + 10000 initial balance",
+    "address": "drt1rsl2sj5g87ltfq0hvrmgm35mlg4lzfs29p4gzxh0lh4vj2e8ykuq2xju5r",
+    "supply": "17500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "7500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet17 2500*2 staked + 10000 initial balance",
+    "address": "drt19yrjty2l4ytl6d3jynp5mqfekq4uf2x93akz60w7l3cp6qzny3psw4n6qs",
+    "supply": "15000000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "5000000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet18 2500 staked + 10000 initial balance",
+    "address": "drt148lq42zdzz34y0yr8avldsy7gw0rmuvj4lmstzug77v08z3q0ncsl4pydm",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet19 2500 staked + 10000 initial balance",
+    "address": "drt1k2v4h3805gnxf78c22g7lfe4pgq2lmr4ezmkk2rqkej6yjd7g5sspms2c8",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet20 2500 staked + 10000 initial balance",
+    "address": "drt1nzjyj2ykpway04pczl42fgrlza2f0eaf97fxgnuuw39vyee36xlq9y0jru",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet21 2500 staked + 10000 initial balance",
+    "address": "drt1yp0nvml5c45us3qzreqxkjxaakxn744t3gdva9s8xndcakzawutsk9kcc2",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet22 2500 staked + 10000 initial balance",
+    "address": "drt1qyg80tr4rd65ur3hedm9h4yv3fcwmm6vnyrypnm972nd80889hxqs4ldqx",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet23 2500 staked + 10000 initial balance",
+    "address": "drt14x6d48q59zjh5p909fyw7e46czftgdawyf734cnmgk5e63ghrvvsaaahk4",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet24 2500 staked + 10000 initial balance",
+    "address": "drt1wyxylus33e476h5kta7e0caeqvgvcgrxh0az33e7szya6g7mh2wsj0aanr",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet25 2500 staked + 10000 initial balance",
+    "address": "drt1v3ylw7t6vzjzs06xjf6ccmf576ud38g2ws45tjkjg48s38jefpzqzjvnxs",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet26 2500 staked + 10000 initial balance",
+    "address": "drt1twel4azu6uptw878y063p93mjr84y5m4kpsww2aeqj4pg5jeplgsknzq5k",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet27 2500 staked + 10000 initial balance",
+    "address": "drt1q2se75ucl9as9j7e48v00jrnj6hvtk5vqxa4a3ag5729vctsdkasxkcm8x",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet28 2500 staked + 10000 initial balance",
+    "address": "drt18cc6cm35xhv7kzwsm79l4ma6jpz3ee5l0yjxuc66kh6rcgtawtuq8r4zxh",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet29 2500 staked + 10000 initial balance",
+    "address": "drt1psux99h4jljyt3nkw8pruv3spw5r0unqe4wk8837mm9my88gl28q0xvcu2",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet30 2500 staked + 10000 initial balance",
+    "address": "drt1vgm89ngmv2ghzsyq8xjtt45crekkxnhsq30yxzlq86uc3ra3r57qqdvdfl",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet31 2500 staked + 10000 initial balance",
+    "address": "drt1k767vmmn8vg8xvuny32ppwr4dxrlgmpykn0u7nm92evlag3wkukqs582hz",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet32 2500 staked + 10000 initial balance",
+    "address": "drt1hwe8lskmzsdpuy3f6hldamvn0zrhzldec8m4tt8hupq58d7gyreqpcsdnl",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet33 2500 staked + 10000 initial balance",
+    "address": "drt125eyrjk99zadr04gm9z2p4nckmnegexs5nyk7ek85rut2665t75sarxdye",
+    "supply": "12500000000000000000000",
+    "balance": "10000000000000000000000",
+    "stakingvalue": "2500000000000000000000",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet34 no staking, initial funds - 10 million REWA",
+    "address": "drt17ndrqg38lqf2zjgeqvle90rsn9ejrd9upx8evkyvh8e0m5xlph5s9sjued",
+    "supply": "10000000000000000000000000",
+    "balance": "10000000000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  },
+  {
+    "info": "wallet35 no staking, initial funds - 9509990 REWA",
+    "address": "drt1zed89c8226rs7f59zh2xea39qk9ym9tsmt4s0sg2uw7u9nvtzt3q6463f8",
+    "supply": "9509990000000000000000000",
+    "balance": "9509990000000000000000000",
+    "stakingvalue": "0",
+    "delegation": {
+      "address": "",
+      "value": "0"
+    }
+  }
+]
