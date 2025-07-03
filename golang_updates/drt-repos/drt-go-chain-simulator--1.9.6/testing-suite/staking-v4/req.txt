@@ -1,0 +1,6 @@
+dharitri_sdk_core
+dharitri_sdk_wallet
+dharitri_sdk_network_providers
+pytest
+requests
+bech32

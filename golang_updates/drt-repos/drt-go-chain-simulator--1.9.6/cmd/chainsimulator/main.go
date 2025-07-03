@@ -1,0 +1,385 @@
+package main
+
+import (
+	"errors"
+	"fmt"
+	"os"
+	"os/signal"
+	"runtime/debug"
+	"strconv"
+	"strings"
+	"syscall"
+	"time"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
+	"github.com/TerraDharitri/drt-go-chain-simulator/config"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/facade"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/factory"
+	endpoints "github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/api"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/configs"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/configs/git"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/creator"
+	nodeConfig "github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/config/overridableConfig"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/components/api"
+	"github.com/urfave/cli"
+)
+
+const timeToAllowProxyToStart = time.Millisecond * 10
+const overrideConfigFilesSeparator = ","
+
+var (
+	log          = logger.GetOrCreate("chainsimulator")
+	helpTemplate = `NAME:
+   {{.Name}} - {{.Usage}}
+USAGE:
+   {{.HelpName}} {{if .VisibleFlags}}[global options]{{end}}
+   {{if len .Authors}}
+AUTHOR:
+   {{range .Authors}}{{ . }}{{end}}
+   {{end}}{{if .Commands}}
+GLOBAL OPTIONS:
+   {{range .VisibleFlags}}{{.}}
+   {{end}}
+VERSION:
+   {{.Version}}
+   {{end}}
+`
+)
+
+func main() {
+	app := cli.NewApp()
+	cli.AppHelpTemplate = helpTemplate
+	app.Name = "Chain Simulator"
+	app.Usage = ""
+	app.Flags = []cli.Flag{
+		configurationFile,
+		nodeOverrideConfigurationFile,
+		logLevel,
+		logSaveFile,
+		disableAnsiColor,
+		pathToNodeConfigs,
+		pathToProxyConfigs,
+		startTime,
+		roundsPerEpoch,
+		numOfShards,
+		serverPort,
+		roundDurationInMs,
+		bypassTransactionsSignature,
+		numValidatorsPerShard,
+		numWaitingValidatorsPerShard,
+		numValidatorsMeta,
+		numWaitingValidatorsMeta,
+		initialRound,
+		initialNonce,
+		initialEpoch,
+		autoGenerateBlocks,
+		blockTimeInMs,
+		skipConfigsDownload,
+		fetchConfigsAndClose,
+		pathWhereToSaveLogs,
+	}
+
+	app.Authors = []cli.Author{
+		{
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
+		},
+	}
+
+	app.Action = startChainSimulator
+
+	err := app.Run(os.Args)
+	if err != nil {
+		log.Error(err.Error())
+		os.Exit(1)
+	}
+}
+
+func startChainSimulator(ctx *cli.Context) error {
+	cfg, err := loadMainConfig(ctx.GlobalString(configurationFile.Name))
+	if err != nil {
+		return fmt.Errorf("%w while loading the config file", err)
+	}
+
+	overrideConfigsHandler := config.NewOverrideConfigsHandler()
+	overrideFiles := determineOverrideConfigFiles(ctx)
+	log.Info("using the override config files", "files", overrideFiles)
+	overrideCfg, err := overrideConfigsHandler.ReadAll(overrideFiles...)
+	if err != nil {
+		return fmt.Errorf("%w while loading the node override config files", err)
+	}
+
+	applyFlags(ctx, &cfg)
+
+	fileLogging, err := initializeLogger(ctx, cfg)
+	if err != nil {
+		return fmt.Errorf("%w while initializing the logger", err)
+	}
+
+	skipDownload := ctx.GlobalBool(skipConfigsDownload.Name)
+	nodeConfigs := ctx.GlobalString(pathToNodeConfigs.Name)
+	proxyConfigs := ctx.GlobalString(pathToProxyConfigs.Name)
+	fetchConfigsAndCloseBool := ctx.GlobalBool(fetchConfigsAndClose.Name)
+	err = fetchConfigs(skipDownload, cfg, nodeConfigs, proxyConfigs)
+	if err != nil {
+		return fmt.Errorf("%w while fetching configs", err)
+	}
+	if fetchConfigsAndCloseBool {
+		return nil
+	}
+
+	bypassTxsSignature := ctx.GlobalBool(bypassTransactionsSignature.Name)
+	log.Warn("signature", "bypass", bypassTxsSignature)
+	roundDurationInMillis := uint64(cfg.Config.Simulator.RoundDurationInMs)
+	rounds := core.OptionalUint64{
+		HasValue: true,
+		Value:    uint64(cfg.Config.Simulator.RoundsPerEpoch),
+	}
+
+	numValidatorsShard := ctx.GlobalInt(numValidatorsPerShard.Name)
+	if numValidatorsShard < 1 {
+		return errors.New("invalid value for the number of validators per shard")
+	}
+	numWaitingValidatorsShard := ctx.GlobalInt(numWaitingValidatorsPerShard.Name)
+	if numWaitingValidatorsShard < 0 {
+		return errors.New("invalid value for the number of waiting validators per shard")
+	}
+
+	numValidatorsMetaShard := ctx.GlobalInt(numValidatorsMeta.Name)
+	if numValidatorsMetaShard < 1 {
+		return errors.New("invalid value for the number of validators for metachain")
+	}
+	numWaitingValidatorsMetaShard := ctx.GlobalInt(numWaitingValidatorsMeta.Name)
+	if numWaitingValidatorsMetaShard < 0 {
+		return errors.New("invalid value for the number of waiting validators for metachain")
+	}
+
+	localRestApiInterface := "localhost"
+	apiConfigurator := api.NewFreePortAPIConfigurator(localRestApiInterface)
+	startTimeUnix := ctx.GlobalInt64(startTime.Name)
+
+	tempDir, err := os.MkdirTemp(os.TempDir(), "")
+	if err != nil {
+		return err
+	}
+
+	var alterConfigsError error
+	argsChainSimulator := chainSimulator.ArgsChainSimulator{
+		BypassTxSignatureCheck:   bypassTxsSignature,
+		TempDir:                  tempDir,
+		PathToInitialConfig:      nodeConfigs,
+		NumOfShards:              uint32(cfg.Config.Simulator.NumOfShards),
+		GenesisTimestamp:         startTimeUnix,
+		RoundDurationInMillis:    roundDurationInMillis,
+		RoundsPerEpoch:           rounds,
+		ApiInterface:             apiConfigurator,
+		MinNodesPerShard:         uint32(numValidatorsShard),
+		NumNodesWaitingListShard: uint32(numWaitingValidatorsShard),
+		MetaChainMinNodes:        uint32(numValidatorsMetaShard),
+		NumNodesWaitingListMeta:  uint32(numWaitingValidatorsMetaShard),
+		InitialRound:             cfg.Config.Simulator.InitialRound,
+		InitialNonce:             cfg.Config.Simulator.InitialNonce,
+		InitialEpoch:             cfg.Config.Simulator.InitialEpoch,
+		AlterConfigsFunction: func(cfg *nodeConfig.Configs) {
+			alterConfigsError = overridableConfig.OverrideConfigValues(overrideCfg.OverridableConfigTomlValues, cfg)
+		},
+		VmQueryDelayAfterStartInMs: 0,
+	}
+	simulator, err := chainSimulator.NewChainSimulator(argsChainSimulator)
+	if err != nil {
+		return err
+	}
+
+	if alterConfigsError != nil {
+		return alterConfigsError
+	}
+
+	log.Info("simulators were initialized")
+
+	err = simulator.GenerateBlocks(1)
+	if err != nil {
+		return err
+	}
+
+	generator, err := factory.CreateBlocksGenerator(simulator, cfg.Config.BlocksGenerator)
+	if err != nil {
+		return err
+	}
+
+	metaNode := simulator.GetNodeHandler(core.MetachainShardId)
+	restApiInterfaces := simulator.GetRestAPIInterfaces()
+	outputProxyConfigs, err := configs.CreateProxyConfigs(configs.ArgsProxyConfigs{
+		TemDir:            tempDir,
+		PathToProxyConfig: proxyConfigs,
+		RestApiInterfaces: restApiInterfaces,
+		InitialWallets:    simulator.GetInitialWalletKeys().BalanceWallets,
+	})
+	if err != nil {
+		return err
+	}
+
+	proxyPort := cfg.Config.Simulator.ServerPort
+	proxyURL := fmt.Sprintf("%s:%d", localRestApiInterface, proxyPort)
+	if proxyPort == 0 {
+		proxyURL = apiConfigurator.RestApiInterface(0)
+		portString := proxyURL[len(localRestApiInterface)+1:]
+		port, errConvert := strconv.Atoi(portString)
+		if errConvert != nil {
+			return fmt.Errorf("internal error while searching a free port for the proxy component: %w", errConvert)
+		}
+		proxyPort = port
+	}
+
+	outputProxyConfigs.Config.GeneralSettings.ServerPort = proxyPort
+	outputProxy, err := creator.CreateProxy(creator.ArgsProxy{
+		Config:         outputProxyConfigs.Config,
+		NodeHandler:    metaNode,
+		PathToConfig:   outputProxyConfigs.PathToTempConfig,
+		PathToPemFile:  outputProxyConfigs.PathToPemFile,
+		NumberOfShards: uint32(cfg.Config.Simulator.NumOfShards),
+	})
+	if err != nil {
+		return err
+	}
+
+	proxyInstance := outputProxy.ProxyHandler
+
+	simulatorFacade, err := facade.NewSimulatorFacade(simulator, outputProxy.ProxyTransactionHandler)
+	if err != nil {
+		return err
+	}
+
+	endpointsProc, err := endpoints.NewEndpointsProcessor(simulatorFacade)
+	if err != nil {
+		return err
+	}
+
+	err = endpointsProc.ExtendProxyServer(proxyInstance.GetHttpServer())
+	if err != nil {
+		return err
+	}
+
+	proxyInstance.Start()
+
+	time.Sleep(timeToAllowProxyToStart)
+	log.Info(fmt.Sprintf("chain simulator's is accessible through the URL %s", proxyURL))
+
+	interrupt := make(chan os.Signal, 1)
+	signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)
+	<-interrupt
+
+	log.Info("close")
+
+	generator.Close()
+
+	simulator.Close()
+	proxyInstance.Close()
+
+	if !check.IfNilReflect(fileLogging) {
+		err = fileLogging.Close()
+		log.LogIfError(err)
+	}
+
+	return nil
+}
+
+func initializeLogger(ctx *cli.Context, cfg config.Config) (closing.Closer, error) {
+	logLevelFlagValue := ctx.GlobalString(logLevel.Name)
+	err := logger.SetLogLevel(logLevelFlagValue)
+	if err != nil {
+		return nil, err
+	}
+
+	withLogFile := ctx.GlobalBool(logSaveFile.Name)
+	if !withLogFile {
+		return nil, nil
+	}
+
+	pathLogsSave := ctx.GlobalString(pathWhereToSaveLogs.Name)
+	fileLogging, err := file.NewFileLogging(file.ArgsFileLogging{
+		WorkingDir:      pathLogsSave,
+		DefaultLogsPath: cfg.Config.Logs.LogsPath,
+		LogFilePrefix:   cfg.Config.Logs.LogFilePrefix,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("%w creating a log file", err)
+	}
+
+	err = fileLogging.ChangeFileLifeSpan(
+		time.Second*time.Duration(cfg.Config.Logs.LogFileLifeSpanInSec),
+		uint64(cfg.Config.Logs.LogFileLifeSpanInMB),
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	disableAnsi := ctx.GlobalBool(disableAnsiColor.Name)
+	err = removeANSIColorsForLoggerIfNeeded(disableAnsi)
+	if err != nil {
+		return nil, err
+	}
+
+	return fileLogging, nil
+}
+
+func fetchConfigs(skipDownload bool, cfg config.Config, nodeConfigs, proxyConfigs string) error {
+	buildInfo, ok := debug.ReadBuildInfo()
+	if !ok {
+		return errors.New("cannot read build info")
+	}
+	if skipDownload {
+		log.Warn(`flag "skip-configs-download" has been provided, if the configs are missing, then simulator will not start`)
+		return nil
+	}
+
+	gitFetcher := git.NewGitFetcher()
+	configsFetcher, err := configs.NewConfigsFetcher(cfg.Config.Simulator.MxChainRepo, cfg.Config.Simulator.MxProxyRepo, gitFetcher)
+	if err != nil {
+		return err
+	}
+
+	err = configsFetcher.FetchNodeConfigs(buildInfo, nodeConfigs)
+	if err != nil {
+		return err
+	}
+
+	return configsFetcher.FetchProxyConfigs(buildInfo, proxyConfigs)
+}
+
+func loadMainConfig(filepath string) (config.Config, error) {
+	cfg := config.Config{}
+	err := core.LoadTomlFile(&cfg, filepath)
+
+	return cfg, err
+}
+
+func determineOverrideConfigFiles(ctx *cli.Context) []string {
+	overrideFiles := strings.Split(ctx.GlobalString(nodeOverrideConfigurationFile.Name), overrideConfigFilesSeparator)
+
+	for _, filename := range overrideFiles {
+		if strings.Contains(filename, nodeOverrideDefaultFilename) {
+			return overrideFiles
+		}
+	}
+
+	return append([]string{nodeOverrideDefaultPath}, overrideFiles...)
+}
+
+func removeANSIColorsForLoggerIfNeeded(disableAnsi bool) error {
+	if !disableAnsi {
+		return nil
+	}
+
+	err := logger.RemoveLogObserver(os.Stdout)
+	if err != nil {
+		return err
+	}
+
+	return logger.AddLogObserver(os.Stdout, &logger.PlainFormatter{})
+}

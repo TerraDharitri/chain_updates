@@ -1,0 +1,148 @@
+{
+    "name": "register, ok",
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "address:cool_address": {
+                    "nonce": "0",
+                    "balance": "246,000"
+                }
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "check-hash",
+            "tx": {
+                "from": "address:viewer",
+                "to": "sc:dns#00",
+                "function": "nameHash",
+                "arguments": [
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
+                ],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "keccak256:0x636f6f6c6e616d65303030312e6e756d626174"
+                ],
+                "status": "",
+                "logs": "*",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "check-shard",
+            "tx": {
+                "from": "address:viewer",
+                "to": "sc:dns#00",
+                "function": "nameShard",
+                "arguments": [
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
+                ],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "0x87"
+                ],
+                "status": "",
+                "logs": "*",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "register-coolname0001",
+            "tx": {
+                "from": "address:cool_address",
+                "to": "sc:dns#87",
+                "rewaValue": "123,000",
+                "function": "register",
+                "arguments": [
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
+                ],
+                "gasLimit": "40,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "address:cool_address",
+                        "endpoint": "str:SetUserName",
+                        "topics": [                            
+                            ""
+                        ],
+                        "data": []
+                    },
+                    {
+                        "address": "address:cool_address",
+                        "endpoint": "str:transferValueOnly",
+                        "topics": [
+                            "",
+                            "sc:dns#87"
+                        ],
+                        "data": [
+                            "str:AsyncCallback",
+                            "str:callBack",
+                            "0x00"
+                        ]
+                    }
+                ],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "resolve-coolname0001",
+            "tx": {
+                "from": "address:viewer",
+                "to": "sc:dns#87",
+                "function": "resolve",
+                "arguments": [
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
+                ],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "address:cool_address"
+                ],
+                "status": "",
+                "logs": "*",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:cool_address": {
+                    "nonce": "*",
+                    "balance": "123,000",
+                    "username": "0x636f6f6c6e616d65303030312e6e756d626174"
+                },
+                "sc:dns#87": {
+                    "nonce": "*",
+                    "balance": "123,000",
+                    "storage": {
+                        "str:registration_cost": "123,000",
+                        "str:feat:register": "1",
+                        "str:value_state|keccak256:0x636f6f6c6e616d65303030312e6e756d626174": "u8:2|address:cool_address"
+                    },
+                    "code": "file:../output/dns.wasm"
+                },
+                "+": ""
+            }
+        }
+    ]
+}
