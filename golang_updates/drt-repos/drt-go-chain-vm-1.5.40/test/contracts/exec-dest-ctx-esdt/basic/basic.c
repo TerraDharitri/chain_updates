@@ -1,26 +1,26 @@
-#include "../../mxvm/context.h"
-#include "../../mxvm/test_utils.h"
-#include "../../mxvm/args.h"
+#include "../../drtvm/context.h"
+#include "../../drtvm/test_utils.h"
+#include "../../drtvm/args.h"
 
 byte executeValue[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 byte self[32] = "\0\0\0\0\0\0\0\0\x0f\x0f" "parentSC..............";
 byte vaultSC[] = "\0\0\0\0\0\0\0\0\x0F\x0F" "vaultSC...............";
-byte ESDTTransfer[] = "ESDTTransfer";
+byte DCDTTransfer[] = "DCDTTransfer";
 
 void basic_transfer() {
 	byte tokenName[265] = {0};
-	int tokenNameLen = getESDTTokenName(tokenName);
+	int tokenNameLen = getDCDTTokenName(tokenName);
 
-	byte esdtValue[32] = {0};
-	int esdtValueLen = getESDTValue(esdtValue);
+	byte dcdtValue[32] = {0};
+	int dcdtValueLen = getDCDTValue(dcdtValue);
 
-	esdtValue[31] -= 1;
+	dcdtValue[31] -= 1;
 
 	BinaryArgs args = NewBinaryArgs();
 
 	int lastArg = 0;
 	lastArg = AddBinaryArg(&args, tokenName, tokenNameLen);
-	lastArg = AddBinaryArg(&args, esdtValue, esdtValueLen);
+	lastArg = AddBinaryArg(&args, dcdtValue, dcdtValueLen);
 	TrimLeftZeros(&args, lastArg);
 
 	byte arguments[100];
@@ -30,8 +30,8 @@ void basic_transfer() {
 			1000000,
 			self,
 			executeValue,
-			ESDTTransfer,
-			sizeof ESDTTransfer - 1,
+			DCDTTransfer,
+			sizeof DCDTTransfer - 1,
 			args.numArgs,
 		  (byte*)args.lengthsAsI32,
 			args.serialized

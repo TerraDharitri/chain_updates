@@ -1,6 +1,6 @@
 package data
 
-import "github.com/multiversx/mx-chain-core-go/data/api"
+import "github.com/TerraDharitri/drt-go-chain-core/data/api"
 
 // BlocksApiResponse is a response holding(possibly) multiple block
 type BlocksApiResponse struct {

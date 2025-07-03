@@ -11,7 +11,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [
@@ -30,12 +30,12 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 }
             }
         },
@@ -66,7 +66,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:MultiESDTNFTTransfer",
+                        "endpoint": "str:MultiDCDTNFTTransfer",
                         "topics": [
                             "str:FWD-TOKEN",
                             "0",
@@ -78,7 +78,7 @@
                         ],
                         "data": [
                             "str:TransferAndExecute",
-                            "str:MultiESDTNFTTransfer",
+                            "str:MultiDCDTNFTTransfer",
                             "sc:vault",
                             "2",
                             "str:FWD-TOKEN",
@@ -122,18 +122,18 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "300"
                     },
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "700",
                         "str:NFT-123456": {
                             "instances": [
@@ -153,7 +153,7 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -200,7 +200,7 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "800",
                         "str:NFT-123456": {
                             "instances": [
@@ -222,12 +222,12 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "2"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "200",
                         "str:SFT-456789": {
                             "instances": [
@@ -239,7 +239,7 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

@@ -3,12 +3,12 @@ package miniblocks
 import (
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,10 +1,10 @@
-# mx-chain-proxy-go
+# drt-go-chain-proxy
 
-The **MultiversX Proxy** acts as an entry point into the MultiversX Network. 
+The **Dharitri Proxy** acts as an entry point into the Dharitri Network. 
 
-![MultiversX Proxy - Architectural Overview](assets/overview.png "MultiversX Proxy - Architectural Overview")
+![Dharitri Proxy - Architectural Overview](assets/overview.png "Dharitri Proxy - Architectural Overview")
 
-For more details, go [here](https://docs.multiversx.com/sdk-and-tools/proxy/).
+For more details, go [here](https://docs.dharitri.org/sdk-and-tools/proxy/).
 
 ## Rest API endpoints
 
@@ -18,12 +18,12 @@ For more details, go [here](https://docs.multiversx.com/sdk-and-tools/proxy/).
 - `/v1.0/address/:address/shard`   (GET) --> returns the shard of an :address based on current proxy's configuration.
 - `/v1.0/address/:address/keys `   (GET) --> returns the key-value pairs of an :address.
 - `/v1.0/address/:address/storage/:key`   (GET) --> returns the value for a given key for an account.
-- `/v1.0/address/:address/esdt` (GET) --> returns the account's ESDT tokens list for the given :address.
-- `/v1.0/address/:address/esdt/:tokenIdentifier` (GET) --> returns the token data for a given :address and ESDT token, such as balance and properties.
-- `/v1.0/address/:address/esdts-with-role/:role` (GET) --> returns the token identifiers for a given :address and the provided role.
-- `/v1.0/address/:address/esdts/roles` (GET) --> returns the token identifiers and roles for a given :address
+- `/v1.0/address/:address/dcdt` (GET) --> returns the account's DCDT tokens list for the given :address.
+- `/v1.0/address/:address/dcdt/:tokenIdentifier` (GET) --> returns the token data for a given :address and DCDT token, such as balance and properties.
+- `/v1.0/address/:address/dcdts-with-role/:role` (GET) --> returns the token identifiers for a given :address and the provided role.
+- `/v1.0/address/:address/dcdts/roles` (GET) --> returns the token identifiers and roles for a given :address
 - `/v1.0/address/:address/registered-nfts` (GET) --> returns the token identifiers of the NFTs registered by the given :address.
-- `/v1.0/address/:address/esdtnft/:tokenIdentifier/nonce/:nonce` (GET) --> returns the NFT token data for a given address, token identifier and nonce.
+- `/v1.0/address/:address/dcdtnft/:tokenIdentifier/nonce/:nonce` (GET) --> returns the NFT token data for a given address, token identifier and nonce.
 
 ### transaction
 
@@ -52,7 +52,7 @@ For more details, go [here](https://docs.multiversx.com/sdk-and-tools/proxy/).
 - `/v1.0/network/status/:shard`      (GET) --> returns the status metrics from an observer in the given shard
 - `/v1.0/network/config`             (GET) --> returns the configuration of the network from any observer
 - `/v1.0/network/economics`          (GET) --> returns the economics data metric from the last epoch
-- `/v1.0/network/esdts`              (GET) --> returns the names of all the issued ESDTs
+- `/v1.0/network/dcdts`              (GET) --> returns the names of all the issued DCDTs
 - `/v1.0/network/direct-staked-info` (GET) --> returns the list of direct staked values
 - `/v1.0/network/delegated-info`     (GET) --> returns the list of delegated values
 - `/v1.0/network/enable-epochs`      (GET) --> returns the activation epochs metric

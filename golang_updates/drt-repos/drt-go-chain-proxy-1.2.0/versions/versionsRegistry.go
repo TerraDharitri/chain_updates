@@ -3,7 +3,7 @@ package versions
 import (
 	"sync"
 
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 type versionsRegistry struct {

@@ -9,8 +9,8 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_sortkeys "github.com/gogo/protobuf/sortkeys"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
-	vmhost "github.com/multiversx/mx-chain-vm-go/vmhost"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
+	vmhost "github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -37,21 +37,21 @@ const (
 	DirectCall             SerializableCallType = 0
 	AsynchronousCall       SerializableCallType = 1
 	AsynchronousCallBack   SerializableCallType = 2
-	ESDTTransferAndExecute SerializableCallType = 3
+	DCDTTransferAndExecute SerializableCallType = 3
 )
 
 var SerializableCallType_name = map[int32]string{
 	0: "DirectCall",
 	1: "AsynchronousCall",
 	2: "AsynchronousCallBack",
-	3: "ESDTTransferAndExecute",
+	3: "DCDTTransferAndExecute",
 }
 
 var SerializableCallType_value = map[string]int32{
 	"DirectCall":             0,
 	"AsynchronousCall":       1,
 	"AsynchronousCallBack":   2,
-	"ESDTTransferAndExecute": 3,
+	"DCDTTransferAndExecute": 3,
 }
 
 func (SerializableCallType) EnumDescriptor() ([]byte, []int) {
@@ -63,7 +63,7 @@ type SerializableVMOutput struct {
 	ReturnCode      uint64                                `protobuf:"varint,2,opt,name=ReturnCode,proto3" json:"ReturnCode,omitempty"`
 	ReturnMessage   string                                `protobuf:"bytes,3,opt,name=ReturnMessage,proto3" json:"ReturnMessage,omitempty"`
 	GasRemaining    uint64                                `protobuf:"varint,4,opt,name=GasRemaining,proto3" json:"GasRemaining,omitempty"`
-	GasRefund       *math_big.Int                         `protobuf:"bytes,5,opt,name=GasRefund,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Value"`
+	GasRefund       *math_big.Int                         `protobuf:"bytes,5,opt,name=GasRefund,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"Value"`
 	OutputAccounts  map[string]*SerializableOutputAccount `protobuf:"bytes,6,rep,name=OutputAccounts,proto3" json:"OutputAccounts,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	DeletedAccounts [][]byte                              `protobuf:"bytes,7,rep,name=DeletedAccounts,proto3" json:"DeletedAccounts,omitempty"`
 	TouchedAccounts [][]byte                              `protobuf:"bytes,8,rep,name=TouchedAccounts,proto3" json:"TouchedAccounts,omitempty"`
@@ -162,7 +162,7 @@ func (m *SerializableVMOutput) GetLogs() *SerializableLogEntry {
 }
 
 type SerializableOutputTransfer struct {
-	Value         *math_big.Int        `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Value"`
+	Value         *math_big.Int        `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"Value"`
 	GasLimit      uint64               `protobuf:"varint,2,opt,name=GasLimit,proto3" json:"GasLimit,omitempty"`
 	GasLocked     uint64               `protobuf:"varint,3,opt,name=GasLocked,proto3" json:"GasLocked,omitempty"`
 	Data          []byte               `protobuf:"bytes,4,opt,name=Data,proto3" json:"Data,omitempty"`
@@ -298,12 +298,12 @@ func (m *SerializableStorageUpdate) GetWritten() bool {
 type SerializableOutputAccount struct {
 	Address             []byte                                `protobuf:"bytes,1,opt,name=Address,proto3" json:"Address,omitempty"`
 	Nonce               uint64                                `protobuf:"varint,2,opt,name=Nonce,proto3" json:"Nonce,omitempty"`
-	Balance             *math_big.Int                         `protobuf:"bytes,3,opt,name=Balance,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"Balance"`
+	Balance             *math_big.Int                         `protobuf:"bytes,3,opt,name=Balance,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"Balance"`
 	StorageUpdates      map[string]*SerializableStorageUpdate `protobuf:"bytes,4,rep,name=StorageUpdates,proto3" json:"StorageUpdates,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	Code                []byte                                `protobuf:"bytes,5,opt,name=Code,proto3" json:"Code,omitempty"`
 	CodeMetadata        []byte                                `protobuf:"bytes,6,opt,name=CodeMetadata,proto3" json:"CodeMetadata,omitempty"`
 	CodeDeployerAddress []byte                                `protobuf:"bytes,7,opt,name=CodeDeployerAddress,proto3" json:"CodeDeployerAddress,omitempty"`
-	BalanceDelta        *math_big.Int                         `protobuf:"bytes,8,opt,name=BalanceDelta,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"BalanceDelta"`
+	BalanceDelta        *math_big.Int                         `protobuf:"bytes,8,opt,name=BalanceDelta,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"BalanceDelta"`
 	OutputTransfers     []*SerializableOutputTransfer         `protobuf:"bytes,9,rep,name=OutputTransfers,proto3" json:"OutputTransfers,omitempty"`
 	GasUsed             uint64                                `protobuf:"varint,10,opt,name=GasUsed,proto3" json:"GasUsed,omitempty"`
 }
@@ -753,7 +753,7 @@ func (this *SerializableVMOutput) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.GasRefund, that1.GasRefund) {
 			return false
 		}
@@ -807,7 +807,7 @@ func (this *SerializableOutputTransfer) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Value, that1.Value) {
 			return false
 		}
@@ -885,7 +885,7 @@ func (this *SerializableOutputAccount) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Balance, that1.Balance) {
 			return false
 		}
@@ -908,7 +908,7 @@ func (this *SerializableOutputAccount) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.BalanceDelta, that1.BalanceDelta) {
 			return false
 		}
@@ -1258,7 +1258,7 @@ func (m *SerializableVMOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.GasRefund)
 		i -= size
 		if _, err := __caster.MarshalTo(m.GasRefund, dAtA[i:]); err != nil {
@@ -1347,7 +1347,7 @@ func (m *SerializableOutputTransfer) MarshalToSizedBuffer(dAtA []byte) (int, err
 		dAtA[i] = 0x10
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Value)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Value, dAtA[i:]); err != nil {
@@ -1447,7 +1447,7 @@ func (m *SerializableOutputAccount) MarshalToSizedBuffer(dAtA []byte) (int, erro
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.BalanceDelta)
 		i -= size
 		if _, err := __caster.MarshalTo(m.BalanceDelta, dAtA[i:]); err != nil {
@@ -1510,7 +1510,7 @@ func (m *SerializableOutputAccount) MarshalToSizedBuffer(dAtA []byte) (int, erro
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Balance)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Balance, dAtA[i:]); err != nil {
@@ -1754,7 +1754,7 @@ func (m *SerializableVMOutput) Size() (n int) {
 		n += 1 + sovAsync(uint64(m.GasRemaining))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.GasRefund)
 		n += 1 + l + sovAsync(uint64(l))
 	}
@@ -1797,7 +1797,7 @@ func (m *SerializableOutputTransfer) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Value)
 		n += 1 + l + sovAsync(uint64(l))
 	}
@@ -1855,7 +1855,7 @@ func (m *SerializableOutputAccount) Size() (n int) {
 		n += 1 + sovAsync(uint64(m.Nonce))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Balance)
 		n += 1 + l + sovAsync(uint64(l))
 	}
@@ -1885,7 +1885,7 @@ func (m *SerializableOutputAccount) Size() (n int) {
 		n += 1 + l + sovAsync(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.BalanceDelta)
 		n += 1 + l + sovAsync(uint64(l))
 	}
@@ -2301,7 +2301,7 @@ func (m *SerializableVMOutput) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2621,7 +2621,7 @@ func (m *SerializableOutputTransfer) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3031,7 +3031,7 @@ func (m *SerializableOutputAccount) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3300,7 +3300,7 @@ func (m *SerializableOutputAccount) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/consensus/mock"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/testscommon/consensus"
 
 	"github.com/stretchr/testify/require"
@@ -18,14 +18,14 @@ func TestNewInstantBroadcastMessenger(t *testing.T) {
 		t.Parallel()
 
 		mes, err := NewInstantBroadcastMessenger(nil, nil)
-		require.Equal(t, errorsMx.ErrNilBroadcastMessenger, err)
+		require.Equal(t, errorsDrt.ErrNilBroadcastMessenger, err)
 		require.Nil(t, mes)
 	})
 	t.Run("nil shardCoordinator should error", func(t *testing.T) {
 		t.Parallel()
 
 		mes, err := NewInstantBroadcastMessenger(&consensus.BroadcastMessengerMock{}, nil)
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 		require.Nil(t, mes)
 	})
 	t.Run("should work", func(t *testing.T) {

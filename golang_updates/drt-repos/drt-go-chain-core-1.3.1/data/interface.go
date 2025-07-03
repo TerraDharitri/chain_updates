@@ -3,7 +3,7 @@ package data
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/headerVersionData"
+	"github.com/TerraDharitri/drt-go-chain-core/data/headerVersionData"
 )
 
 // TriggerRegistryHandler defines getters and setters for the trigger registry

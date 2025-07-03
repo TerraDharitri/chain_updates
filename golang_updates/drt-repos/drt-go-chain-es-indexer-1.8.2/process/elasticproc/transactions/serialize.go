@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 // SerializeScResults will serialize the provided smart contract results in a way that ElasticSearch expects a bulk request
@@ -193,7 +193,7 @@ func prepareSerializedDataForATransaction(
 	}
 
 	if isCrossShardOnSourceShard(tx, selfShardID) {
-		if isSimpleESDTTransfer(tx) {
+		if isSimpleDCDTTransfer(tx) {
 			codeToExecute := `
 				if ('create' == ctx.op) {
 					ctx._source = params.tx;
@@ -215,7 +215,7 @@ func prepareSerializedDataForATransaction(
 	}
 
 	if isNFTTransferOrMultiTransfer(tx) {
-		serializedData, errPrep := prepareNFTESDTTransferOrMultiESDTTransfer(marshaledTx)
+		serializedData, errPrep := prepareNFTDCDTTransferOrMultiDCDTTransfer(marshaledTx)
 		if errPrep != nil {
 			return nil, nil, err
 		}
@@ -223,8 +223,8 @@ func prepareSerializedDataForATransaction(
 		return metaData, serializedData, nil
 	}
 
-	if isSimpleESDTTransferCrossShardOnDestination(tx, selfShardID) {
-		return metaData, prepareSerializedDataForESDTTransferOnDestination(marshaledTx), nil
+	if isSimpleDCDTTransferCrossShardOnDestination(tx, selfShardID) {
+		return metaData, prepareSerializedDataForDCDTTransferOnDestination(marshaledTx), nil
 	}
 
 	// transaction is intra-shard, invalid or cross-shard destination me
@@ -233,7 +233,7 @@ func prepareSerializedDataForATransaction(
 	return meta, marshaledTx, nil
 }
 
-func prepareSerializedDataForESDTTransferOnDestination(marshaledTx []byte) []byte {
+func prepareSerializedDataForDCDTTransferOnDestination(marshaledTx []byte) []byte {
 	codeToExecute := `
 		if ('create' == ctx.op) {
 			ctx._source = params.tx;
@@ -251,7 +251,7 @@ func prepareSerializedDataForESDTTransferOnDestination(marshaledTx []byte) []byt
 		converters.FormatPainlessSource(codeToExecute), string(marshaledTx)))
 }
 
-func prepareNFTESDTTransferOrMultiESDTTransfer(marshaledTx []byte) ([]byte, error) {
+func prepareNFTDCDTTransferOrMultiDCDTTransfer(marshaledTx []byte) ([]byte, error) {
 	codeToExecute := `
 		if ('create' == ctx.op) {
 			ctx._source = params.tx;
@@ -288,15 +288,15 @@ func isNFTTransferOrMultiTransfer(tx *data.Transaction) bool {
 		return false
 	}
 
-	return splitData[0] == core.BuiltInFunctionESDTNFTTransfer || splitData[0] == core.BuiltInFunctionMultiESDTNFTTransfer
+	return splitData[0] == core.BuiltInFunctionDCDTNFTTransfer || splitData[0] == core.BuiltInFunctionMultiDCDTNFTTransfer
 }
 
-func isSimpleESDTTransferCrossShardOnDestination(tx *data.Transaction, selfShard uint32) bool {
+func isSimpleDCDTTransferCrossShardOnDestination(tx *data.Transaction, selfShard uint32) bool {
 	isCrossOnDestination := tx.SenderShard != tx.ReceiverShard && tx.ReceiverShard == selfShard
 
-	return isSimpleESDTTransfer(tx) && isCrossOnDestination
+	return isSimpleDCDTTransfer(tx) && isCrossOnDestination
 }
 
-func isSimpleESDTTransfer(tx *data.Transaction) bool {
-	return tx.Operation == core.BuiltInFunctionESDTTransfer && tx.Function == ""
+func isSimpleDCDTTransfer(tx *data.Transaction) bool {
+	return tx.Operation == core.BuiltInFunctionDCDTTransfer && tx.Function == ""
 }

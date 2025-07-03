@@ -6,19 +6,19 @@
                 "address:a_user": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-TOKENA": "1000"
                     }
                 },
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../promises-features/output/promises-features.mxsc.json"
+                    "code": "drtsc:../promises-features/output/promises-features.drtsc.json"
                 }
             }
         },
@@ -28,7 +28,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:TEST-TOKENA",
                         "value": "1000"
@@ -47,7 +47,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTTransfer",
+                        "endpoint": "str:DCDTTransfer",
                         "topics": [
                             "str:TEST-TOKENA",
                             "0",
@@ -56,7 +56,7 @@
                         ],
                         "data": [
                             "str:AsyncCall",
-                            "str:ESDTTransfer",
+                            "str:DCDTTransfer",
                             "str:TEST-TOKENA",
                             "1000",
                             "str:accept_funds"
@@ -87,7 +87,7 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-TOKENA": "0"
                     },
                     "storage": {},
@@ -96,19 +96,19 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-TOKENA": "1000"
                     },
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../promises-features/output/promises-features.mxsc.json"
+                    "code": "drtsc:../promises-features/output/promises-features.drtsc.json"
                 }
             }
         }

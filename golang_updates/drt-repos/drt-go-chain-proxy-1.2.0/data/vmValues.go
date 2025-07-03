@@ -1,8 +1,8 @@
 package data
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 )
 
 // VmValuesResponseData follows the format of the data field in an API response for a VM values query

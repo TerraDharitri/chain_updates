@@ -7,18 +7,18 @@
                     "nonce": "0",
                     "balance": "100"
                 },
-                "sc:esdt": {
+                "sc:dcdt": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../output/esdt-system-sc-mock.mxsc.json"
+                    "code": "drtsc:../output/dcdt-system-sc-mock.drtsc.json"
                 }
             }
         },
@@ -27,8 +27,8 @@
             "id": "issue-invalid-token",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
                 "function": "issue",
                 "arguments": [
                     "str:display",
@@ -52,8 +52,8 @@
             "id": "issue-fungible-non-zero-supply",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
                 "function": "issue",
                 "arguments": [
                     "str:display",
@@ -78,25 +78,25 @@
                 "address:user": {
                     "nonce": "0",
                     "balance": "95",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": "1000"
                     }
                 },
-                "sc:esdt": {
+                "sc:dcdt": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {
                         "str:nrIssuedTokens": "1"
                     },
-                    "code": "mxsc:../output/esdt-system-sc-mock.mxsc.json"
+                    "code": "drtsc:../output/dcdt-system-sc-mock.drtsc.json"
                 }
             }
         },
@@ -105,8 +105,8 @@
             "id": "issue-fungible-zero-supply",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
                 "function": "issue",
                 "arguments": [
                     "str:display",
@@ -132,8 +132,8 @@
             "id": "issue-non-fungible",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
                 "function": "issueNonFungible",
                 "arguments": [
                     "str:display",
@@ -157,8 +157,8 @@
             "id": "issue-semi-fungible",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
                 "function": "issueSemiFungible",
                 "arguments": [
                     "str:display",
@@ -179,12 +179,12 @@
         },
         {
             "step": "scCall",
-            "id": "issue-meta-esdt",
+            "id": "issue-meta-dcdt",
             "tx": {
                 "from": "address:user",
-                "to": "sc:esdt",
-                "egldValue": "5",
-                "function": "registerMetaESDT",
+                "to": "sc:dcdt",
+                "rewaValue": "5",
+                "function": "registerMetaDCDT",
                 "arguments": [
                     "str:display",
                     "str:META",

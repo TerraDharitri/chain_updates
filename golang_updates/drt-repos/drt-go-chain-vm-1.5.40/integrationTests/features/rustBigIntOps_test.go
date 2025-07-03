@@ -7,11 +7,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	fr "github.com/multiversx/mx-chain-scenario-go/scenario/expression/fileresolver"
-	mei "github.com/multiversx/mx-chain-scenario-go/scenario/expression/interpreter"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	twos "github.com/multiversx/mx-components-big-int/twos-complement"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
+	fr "github.com/TerraDharitri/drt-go-chain-scenario/scenario/expression/fileresolver"
+	mei "github.com/TerraDharitri/drt-go-chain-scenario/scenario/expression/interpreter"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,7 +28,7 @@ func getFeaturesContractCode() []byte {
 	ei := mei.ExprInterpreter{
 		FileResolver: fr.NewDefaultFileResolver().WithContext(getTestRoot()),
 	}
-	result, err := ei.InterpretString("mxsc:test/features/basic-features/output/basic-features.mxsc.json")
+	result, err := ei.InterpretString("drtsc:test/features/basic-features/output/basic-features.drtsc.json")
 	if err != nil {
 		panic(err)
 	}

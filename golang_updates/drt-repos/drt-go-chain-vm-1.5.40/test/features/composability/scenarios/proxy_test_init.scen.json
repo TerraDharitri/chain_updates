@@ -11,7 +11,7 @@
                 "sc:proxy-first": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../proxy-test-first/output/proxy-test-first.mxsc.json"
+                    "code": "drtsc:../proxy-test-first/output/proxy-test-first.drtsc.json"
                 }
             },
             "newAddresses": [
@@ -28,10 +28,10 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:proxy-first",
-                "egldValue": "100",
+                "rewaValue": "100",
                 "function": "deploySecondContract",
                 "arguments": [
-                    "mxsc:../proxy-test-second/output/proxy-test-second.mxsc.json"
+                    "drtsc:../proxy-test-second/output/proxy-test-second.drtsc.json"
                 ],
                 "gasLimit": "1,000,000,000,000",
                 "gasPrice": "0"
@@ -61,7 +61,7 @@
                     "storage": {
                         "str:other_contract": "sc:proxy-second"
                     },
-                    "code": "mxsc:../proxy-test-first/output/proxy-test-first.mxsc.json"
+                    "code": "drtsc:../proxy-test-first/output/proxy-test-first.drtsc.json"
                 },
                 "sc:proxy-second": {
                     "nonce": "0",
@@ -70,7 +70,7 @@
                         "str:init_arg": "123",
                         "str:last_payment": "100"
                     },
-                    "code": "mxsc:../proxy-test-second/output/proxy-test-second.mxsc.json"
+                    "code": "drtsc:../proxy-test-second/output/proxy-test-second.drtsc.json"
                 }
             }
         }

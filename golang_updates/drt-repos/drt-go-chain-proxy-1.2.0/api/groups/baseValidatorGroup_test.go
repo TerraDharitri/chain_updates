@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

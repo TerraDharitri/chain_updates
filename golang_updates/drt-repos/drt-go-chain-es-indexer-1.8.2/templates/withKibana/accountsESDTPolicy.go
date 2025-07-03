@@ -1,9 +1,9 @@
 package withKibana
 
-// AccountsESDTPolicy will hold the configuration for the accountsesdt index policy
-var AccountsESDTPolicy = Object{
+// AccountsDCDTPolicy will hold the configuration for the accountsdcdt index policy
+var AccountsDCDTPolicy = Object{
 	"policy": Object{
-		"description":   "Open distro policy for the accountsesdt elastic index.",
+		"description":   "Open distro policy for the accountsdcdt elastic index.",
 		"default_state": "hot",
 		"states": Array{
 			Object{
@@ -37,7 +37,7 @@ var AccountsESDTPolicy = Object{
 			},
 		},
 		"ism_template": Object{
-			"index_patterns": Array{"accountsesdt-*"},
+			"index_patterns": Array{"accountsdcdt-*"},
 			"priority":       100,
 		},
 	},

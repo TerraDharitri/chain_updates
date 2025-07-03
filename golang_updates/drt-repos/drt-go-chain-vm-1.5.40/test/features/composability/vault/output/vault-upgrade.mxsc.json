@@ -12,7 +12,7 @@
             "version": "0.0.0"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.54.4"
         }
     },
@@ -50,12 +50,12 @@
                 "identifier": "accept_funds",
                 "inputs": [
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
                     {
-                        "name": "multi_esdt",
+                        "name": "multi_dcdt",
                         "type": "variadic<multi<TokenIdentifier,u64,BigUint>>",
                         "indexed": true
                     }
@@ -65,12 +65,12 @@
                 "identifier": "reject_funds",
                 "inputs": [
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
                     {
-                        "name": "multi_esdt",
+                        "name": "multi_dcdt",
                         "type": "variadic<multi<TokenIdentifier,u64,BigUint>>",
                         "indexed": true
                     }
@@ -81,7 +81,7 @@
                 "inputs": [
                     {
                         "name": "token",
-                        "type": "EgldOrEsdtTokenIdentifier",
+                        "type": "RewaOrDcdtTokenIdentifier",
                         "indexed": true
                     },
                     {
@@ -97,7 +97,7 @@
                 ]
             }
         ],
-        "esdtAttributes": [],
+        "dcdtAttributes": [],
         "hasCallback": false,
         "types": {}
     },

@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/require"
 )
 

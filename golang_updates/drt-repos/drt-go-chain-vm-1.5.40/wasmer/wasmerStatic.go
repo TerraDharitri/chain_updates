@@ -1,6 +1,6 @@
 package wasmer
 
-import "github.com/multiversx/mx-chain-vm-go/executor"
+import "github.com/TerraDharitri/drt-go-chain-vm/executor"
 
 // SetRkyvSerializationEnabled enables or disables RKYV serialization of instances in Wasmer.
 func SetRkyvSerializationEnabled(enabled bool) {

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"runtime/debug"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/btcsuite/btcd/btcutil/bech32"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
 )
 
 type config struct {

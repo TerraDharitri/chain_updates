@@ -754,7 +754,7 @@ func TestAndCatchTrieError(t *testing.T) {
 
 	numAccounts := 100
 	testAddresses := createTestAddresses(uint64(numAccounts))
-	// ERD Minting
+	// DRT Minting
 	for _, testAddress := range testAddresses {
 		_, _ = vm.CreateAccount(testContext.Accounts, testAddress, 0, big.NewInt(0).Mul(big.NewInt(math.MaxUint64/2), big.NewInt(math.MaxUint64/2)))
 	}

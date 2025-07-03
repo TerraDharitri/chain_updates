@@ -3,7 +3,7 @@ package utils
 import (
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 func LogExecutionTime(log logger.Logger, start time.Time, message string) {

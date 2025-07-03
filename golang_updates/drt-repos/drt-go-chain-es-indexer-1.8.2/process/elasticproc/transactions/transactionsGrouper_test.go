@@ -4,13 +4,13 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 	"github.com/stretchr/testify/require"
 )
 

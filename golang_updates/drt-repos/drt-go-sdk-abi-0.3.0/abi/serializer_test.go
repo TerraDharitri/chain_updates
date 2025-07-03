@@ -411,7 +411,7 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 	oneQuintillion := big.NewInt(0).SetUint64(1_000_000_000_000_000_000)
 
 	t.Run("real-world (1): serialize input of multisig.proposeBatch(variadic<Action>), ", func(t *testing.T) {
-		createEsdtTokenPayment := func(tokenIdentifier string, tokenNonce uint64, amount *big.Int) *StructValue {
+		createDcdtTokenPayment := func(tokenIdentifier string, tokenNonce uint64, amount *big.Int) *StructValue {
 			return &StructValue{
 				Fields: []Field{
 					{
@@ -430,7 +430,7 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 			}
 		}
 
-		// First action: SendTransferExecuteEgld
+		// First action: SendTransferExecuteRewa
 		firstAction := &EnumValue{
 			Discriminant: 5,
 			// CallActionData
@@ -440,7 +440,7 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 					Value: &AddressValue{Value: alicePubKey},
 				},
 				{
-					Name:  "egld_amount",
+					Name:  "rewa_amount",
 					Value: &BigUIntValue{Value: oneQuintillion},
 				},
 				{
@@ -465,10 +465,10 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 			},
 		}
 
-		// Second action: SendTransferExecuteEsdt
+		// Second action: SendTransferExecuteDcdt
 		secondAction := &EnumValue{
 			Discriminant: 6,
-			// EsdtTransferExecuteData
+			// DcdtTransferExecuteData
 			Fields: []Field{
 				{
 					Name:  "to",
@@ -478,8 +478,8 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 					Name: "tokens",
 					Value: &ListValue{
 						Items: []SingleValue{
-							createEsdtTokenPayment("beer", 0, oneQuintillion),
-							createEsdtTokenPayment("chocolate", 0, oneQuintillion),
+							createDcdtTokenPayment("beer", 0, oneQuintillion),
+							createDcdtTokenPayment("chocolate", 0, oneQuintillion),
 						},
 					},
 				},
@@ -539,7 +539,7 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 		groupId := &U32Value{}
 
 		actionTo := &AddressValue{}
-		actionEgldAmount := &BigUIntValue{}
+		actionRewaAmount := &BigUIntValue{}
 		actionGasLimit := &U64Value{}
 		actionEndpointName := &BytesValue{}
 		actionArguments := &ListValue{
@@ -557,8 +557,8 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 							Value: actionTo,
 						},
 						{
-							Name:  "egld_amount",
-							Value: actionEgldAmount,
+							Name:  "rewa_amount",
+							Value: actionRewaAmount,
 						},
 						{
 							Name: "opt_gas_limit",
@@ -623,7 +623,7 @@ func TestSerializer_InRealWorldScenarios(t *testing.T) {
 		// result[0].action_data
 		require.Equal(t, uint8(5), action.Discriminant)
 		require.Equal(t, alicePubKey, actionTo.Value)
-		require.Equal(t, oneQuintillion, actionEgldAmount.Value)
+		require.Equal(t, oneQuintillion, actionRewaAmount.Value)
 		require.Equal(t, uint64(15000000), actionGasLimit.Value)
 		require.Equal(t, []byte("example"), actionEndpointName.Value)
 		require.Len(t, actionArguments.Items, 2)

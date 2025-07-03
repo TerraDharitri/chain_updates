@@ -8,10 +8,10 @@ import (
 	"math/big"
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerData "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerData "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -41,8 +41,8 @@ func TestElasticIndexerSaveTransactions(t *testing.T) {
 	}
 	tx := &transaction.Transaction{
 		Nonce:    1,
-		SndAddr:  decodeAddress("erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7"),
-		RcvAddr:  decodeAddress("erd1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9q2hgxww"),
+		SndAddr:  decodeAddress("drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q"),
+		RcvAddr:  decodeAddress("drt1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9qhtl9ds"),
 		GasLimit: 70000,
 		GasPrice: 1000000000,
 		Data:     []byte("transfer"),

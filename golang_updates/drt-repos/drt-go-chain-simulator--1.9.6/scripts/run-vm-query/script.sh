@@ -21,7 +21,7 @@ ADDRESS=$(curl -s ''${SIMULATOR_URL}'/simulator/initial-wallets' | jq -r '.data.
 RET_CODE=$(curl --location ''${SIMULATOR_URL}'/vm-values/query' \
 --header 'Content-Type: application/json' \
 --data '{
-  "scAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l",
+  "scAddress": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp",
   "funcName": "getTotalStaked",
   "caller":"'"$ADDRESS"'"
 }' | jq -r '.data.data.returnCode')

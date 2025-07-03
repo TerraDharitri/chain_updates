@@ -1,9 +1,9 @@
 package block
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 // GetHeaderFromBytes will unmarshal the header bytes based on the header type

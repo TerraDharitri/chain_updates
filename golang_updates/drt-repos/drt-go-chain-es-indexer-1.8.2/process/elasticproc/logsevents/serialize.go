@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tokeninfo"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tokeninfo"
 )
 
 // SerializeEvents will serialize the provided events in a way that Elasticsearch expects a bulk request
@@ -284,7 +284,7 @@ func serializeTokenTransferOwnership(tokenData *data.TokenInfo, index string) ([
 // SerializeSupplyData will serialize the provided supply data
 func (lep *logsAndEventsProcessor) SerializeSupplyData(tokensSupply data.TokensHandler, buffSlice *data.BufferSlice, index string) error {
 	for _, supplyData := range tokensSupply.GetAll() {
-		shouldSkip := supplyData.Type != core.NonFungibleESDT && supplyData.Type != core.NonFungibleESDTv2 && supplyData.Type != core.DynamicNFTESDT
+		shouldSkip := supplyData.Type != core.NonFungibleDCDT && supplyData.Type != core.NonFungibleDCDTv2 && supplyData.Type != core.DynamicNFTDCDT
 		if shouldSkip {
 			continue
 		}

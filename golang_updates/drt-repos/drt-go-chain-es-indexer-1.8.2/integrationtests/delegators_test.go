@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -37,7 +37,7 @@ func TestDelegateUnDelegateAndWithdraw(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsqx0h5j"
+	address1 := "drt1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsa6c5hv"
 
 	// delegate
 	delegatedValue, _ := big.NewInt(0).SetString("200000000000000000000", 10)
@@ -46,7 +46,7 @@ func TestDelegateUnDelegateAndWithdraw(t *testing.T) {
 			{
 				TxHash: hex.EncodeToString([]byte("h1")),
 				Log: &transaction.Log{
-					Address: decodeAddress("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat"),
+					Address: decodeAddress("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsqw3p74"),
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
@@ -77,7 +77,7 @@ func TestDelegateUnDelegateAndWithdraw(t *testing.T) {
 			{
 				TxHash: hex.EncodeToString([]byte("h2")),
 				Log: &transaction.Log{
-					Address: decodeAddress("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat"),
+					Address: decodeAddress("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsqw3p74"),
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
@@ -107,7 +107,7 @@ func TestDelegateUnDelegateAndWithdraw(t *testing.T) {
 			{
 				TxHash: hex.EncodeToString([]byte("h3")),
 				Log: &transaction.Log{
-					Address: decodeAddress("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat"),
+					Address: decodeAddress("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsqw3p74"),
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
@@ -147,7 +147,7 @@ func TestDelegateUnDelegateAndWithdraw(t *testing.T) {
 			{
 				TxHash: hex.EncodeToString([]byte("h4")),
 				Log: &transaction.Log{
-					Address: decodeAddress("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat"),
+					Address: decodeAddress("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsqw3p74"),
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),

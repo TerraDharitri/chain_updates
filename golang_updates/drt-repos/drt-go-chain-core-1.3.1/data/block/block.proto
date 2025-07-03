@@ -83,8 +83,8 @@ message Header  {
   bytes                    ReceiptsHash = 19 [(gogoproto.jsontag) = "receiptsHash,omitempty"];
   bytes                    ChainID = 20 [(gogoproto.jsontag) = "chainID,omitempty"];
   bytes                    SoftwareVersion = 21 [(gogoproto.jsontag) = "softwareVersion,omitempty"];
-  bytes                    AccumulatedFees = 22 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-  bytes                    DeveloperFees = 23 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+  bytes                    AccumulatedFees = 22 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+  bytes                    DeveloperFees = 23 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
   bytes                    Reserved = 24 [(gogoproto.jsontag) = "reserved,omitempty"];
 }
 

@@ -1,9 +1,9 @@
 package api
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // apiHandler will handle the groups specific to an API version

@@ -2,6 +2,6 @@
     "language": "clang",
     "source_files": [
         "deployer-parent.c",
-		"../mxvm/args.c"
+		"../drtvm/args.c"
     ]
 }

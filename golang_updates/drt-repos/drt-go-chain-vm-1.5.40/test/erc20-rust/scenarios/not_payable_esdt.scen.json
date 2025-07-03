@@ -1,5 +1,5 @@
 {
-    "name": "not_payable_esdt",
+    "name": "not_payable_dcdt",
     "gasSchedule": "dummy",
     "steps": [
         {
@@ -8,7 +8,7 @@
                 "address:account_1": {
                     "nonce": "0",
                     "balance": "0x10000000",
-                    "esdt": {
+                    "dcdt": {
                         "str:ANY-TOKENA": "1000"
                     }
                 },
@@ -19,7 +19,7 @@
                         "str:balance|address:account_1": "0x2710",
                         "str:totalSupply": "0x2710"
                     },
-                    "code": "mxsc:../output/erc20.mxsc.json"
+                    "code": "drtsc:../output/erc20.drtsc.json"
                 }
             }
         },
@@ -29,7 +29,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -43,7 +43,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -55,7 +55,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -71,7 +71,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -83,7 +83,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -100,7 +100,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -112,7 +112,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -129,7 +129,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -141,7 +141,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -158,7 +158,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -170,7 +170,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:ANY-TOKENA",
                         "value": "1"
@@ -188,7 +188,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -200,7 +200,7 @@
                 "address:account_1": {
                     "nonce": "6",
                     "balance": "0xfa00000",
-                    "esdt": {
+                    "dcdt": {
                         "str:ANY-TOKENA": "1000"
                     },
                     "storage": {},
@@ -213,7 +213,7 @@
                         "str:balance|address:account_1": "0x2710",
                         "str:totalSupply": "0x2710"
                     },
-                    "code": "mxsc:../output/erc20.mxsc.json"
+                    "code": "drtsc:../output/erc20.drtsc.json"
                 }
             }
         }

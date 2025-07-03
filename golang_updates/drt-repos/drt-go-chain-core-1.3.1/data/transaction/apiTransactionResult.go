@@ -3,8 +3,8 @@ package transaction
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 )
 
 // ApiTransactionResult is the data transfer object which will be returned on the get transaction by hash endpoint
@@ -52,7 +52,7 @@ type ApiTransactionResult struct {
 	Logs                              *ApiLogs                  `json:"logs,omitempty"`
 	Status                            TxStatus                  `json:"status,omitempty"`
 	Tokens                            []string                  `json:"tokens,omitempty"`
-	ESDTValues                        []string                  `json:"esdtValues,omitempty"`
+	DCDTValues                        []string                  `json:"esdtValues,omitempty"`
 	Receivers                         []string                  `json:"receivers,omitempty"`
 	ReceiversShardIDs                 []uint32                  `json:"receiversShardIDs,omitempty"`
 	Operation                         string                    `json:"operation,omitempty"`
@@ -93,7 +93,7 @@ type ApiSmartContractResult struct {
 	OriginalSender    string      `json:"originalSender,omitempty"`
 	Logs              *ApiLogs    `json:"logs,omitempty"`
 	Tokens            []string    `json:"tokens,omitempty"`
-	ESDTValues        []string    `json:"esdtValues,omitempty"`
+	DCDTValues        []string    `json:"esdtValues,omitempty"`
 	Receivers         []string    `json:"receivers,omitempty"`
 	ReceiversShardIDs []uint32    `json:"receiversShardIDs,omitempty"`
 	Operation         string      `json:"operation,omitempty"`

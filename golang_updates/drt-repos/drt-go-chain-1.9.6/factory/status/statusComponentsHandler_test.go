@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain/common"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/factory/mock"
 	statusComp "github.com/TerraDharitri/drt-go-chain/factory/status"
@@ -20,7 +20,7 @@ func TestNewManagedStatusComponents(t *testing.T) {
 
 	t.Run("nil factory should error", func(t *testing.T) {
 		managedStatusComponents, err := statusComp.NewManagedStatusComponents(nil)
-		require.Equal(t, errorsMx.ErrNilStatusComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilStatusComponentsFactory, err)
 		require.Nil(t, managedStatusComponents)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -94,7 +94,7 @@ func TestManagedStatusComponents_CheckSubcomponents(t *testing.T) {
 	managedStatusComponents, _ := statusComp.NewManagedStatusComponents(scf)
 
 	err := managedStatusComponents.CheckSubcomponents()
-	require.Equal(t, errorsMx.ErrNilStatusComponents, err)
+	require.Equal(t, errorsDrt.ErrNilStatusComponents, err)
 
 	err = managedStatusComponents.Create()
 	require.NoError(t, err)
@@ -112,7 +112,7 @@ func TestManagedStatusComponents_SetForkDetector(t *testing.T) {
 	require.NoError(t, err)
 
 	err = managedStatusComponents.SetForkDetector(nil)
-	require.Equal(t, errorsMx.ErrNilForkDetector, err)
+	require.Equal(t, errorsDrt.ErrNilForkDetector, err)
 	err = managedStatusComponents.SetForkDetector(&mock.ForkDetectorMock{})
 	require.NoError(t, err)
 }
@@ -129,7 +129,7 @@ func TestManagedStatusComponents_StartPolling(t *testing.T) {
 		require.NoError(t, err)
 
 		err = managedStatusComponents.StartPolling()
-		require.Equal(t, errorsMx.ErrStatusPollingInit, err)
+		require.Equal(t, errorsDrt.ErrStatusPollingInit, err)
 	})
 	t.Run("RegisterPollingFunc fails should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
@@ -140,7 +140,7 @@ func TestManagedStatusComponents_StartPolling(t *testing.T) {
 		require.NoError(t, err)
 
 		err = managedStatusComponents.StartPolling()
-		require.Equal(t, errorsMx.ErrStatusPollingInit, err)
+		require.Equal(t, errorsDrt.ErrStatusPollingInit, err)
 	})
 	t.Run("should work", func(t *testing.T) {
 		scf, _ := statusComp.NewStatusComponentsFactory(createMockStatusComponentsFactoryArgs())

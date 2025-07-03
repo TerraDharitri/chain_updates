@@ -1,9 +1,9 @@
 package withKibana
 
-// AccountsESDT will hold the configuration for the accountsesdt index
-var AccountsESDT = Object{
+// AccountsDCDT will hold the configuration for the accountsdcdt index
+var AccountsDCDT = Object{
 	"index_patterns": Array{
-		"accountsesdt-*",
+		"accountsdcdt-*",
 	},
 	"settings": Object{
 		"number_of_shards":   3,

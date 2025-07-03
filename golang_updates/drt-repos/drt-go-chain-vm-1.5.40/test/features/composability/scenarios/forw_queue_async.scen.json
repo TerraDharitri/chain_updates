@@ -10,12 +10,12 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder-queue": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder-queue/output/forwarder-queue.mxsc.json"
+                    "code": "drtsc:../forwarder-queue/output/forwarder-queue.drtsc.json"
                 }
             }
         },
@@ -25,7 +25,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder-queue",
-                "egldValue": "1000",
+                "rewaValue": "1000",
                 "function": "add_queued_call_legacy_async",
                 "arguments": [
                     "sc:vault",
@@ -58,7 +58,7 @@
                         "address": "sc:forwarder-queue",
                         "endpoint": "str:forward_queued_calls",
                         "topics": [
-                            "str:forward_queued_call_egld",
+                            "str:forward_queued_call_rewa",
                             "1",
                             "sc:vault",
                             "str:accept_funds",
@@ -117,12 +117,12 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder-queue": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder-queue/output/forwarder-queue.mxsc.json"
+                    "code": "drtsc:../forwarder-queue/output/forwarder-queue.drtsc.json"
                 }
             }
         }

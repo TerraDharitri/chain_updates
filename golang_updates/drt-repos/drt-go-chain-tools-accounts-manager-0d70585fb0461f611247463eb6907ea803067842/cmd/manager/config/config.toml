@@ -1,8 +1,8 @@
 [GeneralConfig]
-    DelegationLegacyContractAddress = "erd1qqqqqqqqqqqqqpgqxwakt2g7u9atsnr03gqcgmhcv38pt7mkd94q6shuwt"
-    LKMEXStakingContractAddress     = "erd1qqqqqqqqqqqqqpgqt7tyyswqvplpcqnhwe20xqrj7q7ap27d2jps7zczse"
-    EnergyContractAddress           = "erd1qqqqqqqqqqqqqpgqnyuph46rqr29qv5gqhyxh429zcta8r0ppr9s048rjw"
-    ValidatorsContract              = "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l"
+    DelegationLegacyContractAddress = "drt1qqqqqqqqqqqqqpgqxwakt2g7u9atsnr03gqcgmhcv38pt7mkd94q8vqld4"
+    LKMOAStakingContractAddress     = "drt1qqqqqqqqqqqqqpgqt7tyyswqvplpcqnhwe20xqrj7q7ap27d2jpsr70pn8"
+    EnergyContractAddress           = "drt1qqqqqqqqqqqqqpgqnyuph46rqr29qv5gqhyxh429zcta8r0ppr9sjfsq3s"
+    ValidatorsContract              = "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf"
 
 
 [AddressPubkeyConverter]

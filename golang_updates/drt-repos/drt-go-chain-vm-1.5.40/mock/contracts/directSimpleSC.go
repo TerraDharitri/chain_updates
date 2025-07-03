@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"math/big"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // WasteGasChildMock is an exposed mock contract method
@@ -47,8 +47,8 @@ func FailChildMock(instanceMock *mock.InstanceMock, _ interface{}) {
 	})
 }
 
-// FailChildAndBurnESDTMock is an exposed mock contract method
-func FailChildAndBurnESDTMock(instanceMock *mock.InstanceMock, _ interface{}) {
+// FailChildAndBurnDCDTMock is an exposed mock contract method
+func FailChildAndBurnDCDTMock(instanceMock *mock.InstanceMock, _ interface{}) {
 	instanceMock.AddMockMethod("failAndBurn", func() *mock.InstanceMock {
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
@@ -59,11 +59,11 @@ func FailChildAndBurnESDTMock(instanceMock *mock.InstanceMock, _ interface{}) {
 		input.CallerAddr = runtime.GetContextAddress()
 		input.GasProvided = runtime.GetVMInput().GasProvided / 2
 		input.Arguments = [][]byte{
-			test.ESDTTestTokenName,
+			test.DCDTTestTokenName,
 			runtime.Arguments()[0],
 		}
 		input.RecipientAddr = host.Runtime().GetContextAddress()
-		input.Function = "ESDTLocalBurn"
+		input.Function = "DCDTLocalBurn"
 
 		returnValue := ExecuteOnDestContextInMockContracts(host, input)
 		if returnValue != 0 {
@@ -247,54 +247,54 @@ func UpgradeFunctionMock(instanceMock *mock.InstanceMock, config interface{}) {
 }
 
 const (
-	esdtOnCallbackSuccess int = iota
-	esdtOnCallbackWrongNumOfArgs
-	esdtOnCallbackFail
-	esdtOnCallbackNewAsync
-	esdtOnCallbackNoReturnData
+	dcdtOnCallbackSuccess int = iota
+	dcdtOnCallbackWrongNumOfArgs
+	dcdtOnCallbackFail
+	dcdtOnCallbackNewAsync
+	dcdtOnCallbackNoReturnData
 )
 
-// ESDTTransferToParentMock is an exposed mock contract method
-func ESDTTransferToParentMock(instanceMock *mock.InstanceMock, config interface{}) {
+// DCDTTransferToParentMock is an exposed mock contract method
+func DCDTTransferToParentMock(instanceMock *mock.InstanceMock, config interface{}) {
 	testConfig := config.(*test.TestConfig)
-	esdtTransferToParentMock(instanceMock, testConfig, esdtOnCallbackSuccess)
+	dcdtTransferToParentMock(instanceMock, testConfig, dcdtOnCallbackSuccess)
 }
 
-func ESDTTransferToParentMockNoReturnData(instanceMock *mock.InstanceMock, config interface{}) {
+func DCDTTransferToParentMockNoReturnData(instanceMock *mock.InstanceMock, config interface{}) {
 	testConfig := config.(*test.TestConfig)
-	esdtTransferToParentMock(instanceMock, testConfig, esdtOnCallbackNoReturnData)
+	dcdtTransferToParentMock(instanceMock, testConfig, dcdtOnCallbackNoReturnData)
 }
 
-// ESDTTransferToParentWrongESDTArgsNumberMock is an exposed mock contract method
-func ESDTTransferToParentWrongESDTArgsNumberMock(instanceMock *mock.InstanceMock, config interface{}) {
+// DCDTTransferToParentWrongDCDTArgsNumberMock is an exposed mock contract method
+func DCDTTransferToParentWrongDCDTArgsNumberMock(instanceMock *mock.InstanceMock, config interface{}) {
 	testConfig := config.(*test.TestConfig)
-	esdtTransferToParentMock(instanceMock, testConfig, esdtOnCallbackWrongNumOfArgs)
+	dcdtTransferToParentMock(instanceMock, testConfig, dcdtOnCallbackWrongNumOfArgs)
 }
 
-// ESDTTransferToParentCallbackWillFail is an exposed mock contract method
-func ESDTTransferToParentCallbackWillFail(instanceMock *mock.InstanceMock, config interface{}) {
+// DCDTTransferToParentCallbackWillFail is an exposed mock contract method
+func DCDTTransferToParentCallbackWillFail(instanceMock *mock.InstanceMock, config interface{}) {
 	testConfig := config.(*test.TestConfig)
-	esdtTransferToParentMock(instanceMock, testConfig, esdtOnCallbackFail)
+	dcdtTransferToParentMock(instanceMock, testConfig, dcdtOnCallbackFail)
 }
 
-// ESDTTransferToParentAndNewAsyncFromCallbackMock is an exposed mock contract method
-func ESDTTransferToParentAndNewAsyncFromCallbackMock(instanceMock *mock.InstanceMock, config interface{}) {
-	esdtTransferToParentMock(instanceMock, config, esdtOnCallbackNewAsync)
+// DCDTTransferToParentAndNewAsyncFromCallbackMock is an exposed mock contract method
+func DCDTTransferToParentAndNewAsyncFromCallbackMock(instanceMock *mock.InstanceMock, config interface{}) {
+	dcdtTransferToParentMock(instanceMock, config, dcdtOnCallbackNewAsync)
 }
 
-func esdtTransferToParentMock(instanceMock *mock.InstanceMock, config interface{}, behavior int) {
-	instanceMock.AddMockMethod("transferESDTToParent", func() *mock.InstanceMock {
+func dcdtTransferToParentMock(instanceMock *mock.InstanceMock, config interface{}, behavior int) {
+	instanceMock.AddMockMethod("transferDCDTToParent", func() *mock.InstanceMock {
 		testConfig := config.(*test.TestConfig)
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
 		_ = host.Metering().UseGasBounded(testConfig.GasUsedByChild)
 
 		switch behavior {
-		case esdtOnCallbackSuccess:
+		case dcdtOnCallbackSuccess:
 			host.Output().Finish([]byte("success"))
-		case esdtOnCallbackFail:
+		case dcdtOnCallbackFail:
 			host.Output().Finish([]byte("fail"))
-		case esdtOnCallbackNewAsync:
+		case dcdtOnCallbackNewAsync:
 			host.Output().Finish([]byte("new_async"))
 			host.Output().Finish(host.Runtime().GetContextAddress())
 			host.Output().Finish([]byte("wasteGas"))
@@ -305,22 +305,22 @@ func esdtTransferToParentMock(instanceMock *mock.InstanceMock, config interface{
 
 		var err error
 		for numCallbacks := uint64(0); numCallbacks < numberOfBackTransfers; numCallbacks++ {
-			transfer := &vmcommon.ESDTTransfer{
-				ESDTValue:      big.NewInt(int64(testConfig.CallbackESDTTokensToTransfer)),
-				ESDTTokenName:  test.ESDTTestTokenName,
-				ESDTTokenType:  0,
-				ESDTTokenNonce: 0,
+			transfer := &vmcommon.DCDTTransfer{
+				DCDTValue:      big.NewInt(int64(testConfig.CallbackDCDTTokensToTransfer)),
+				DCDTTokenName:  test.DCDTTestTokenName,
+				DCDTTokenType:  0,
+				DCDTTokenNonce: 0,
 			}
 
-			ret := vmhooks.TransferESDTNFTExecuteWithTypedArgs(
+			ret := vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
 				host,
 				test.ParentAddress,
-				[]*vmcommon.ESDTTransfer{transfer},
+				[]*vmcommon.DCDTTransfer{transfer},
 				int64(testConfig.GasProvidedToChild),
 				nil,
 				nil)
 			if ret != 0 {
-				host.Runtime().FailExecution(fmt.Errorf("Transfer ESDT failed"))
+				host.Runtime().FailExecution(fmt.Errorf("Transfer DCDT failed"))
 			}
 
 		}

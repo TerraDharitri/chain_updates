@@ -11,12 +11,12 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -26,8 +26,8 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "egldValue": "1000",
-                "function": "forward_transf_exec_egld",
+                "rewaValue": "1000",
+                "function": "forward_transf_exec_rewa",
                 "arguments": [
                     "sc:vault",
                     "str:accept_funds"
@@ -58,13 +58,13 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -74,7 +74,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "function": "forward_transf_exec_egld",
+                "function": "forward_transf_exec_rewa",
                 "arguments": [
                     "sc:vault",
                     "str:accept_funds"
@@ -105,13 +105,13 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "2"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         }

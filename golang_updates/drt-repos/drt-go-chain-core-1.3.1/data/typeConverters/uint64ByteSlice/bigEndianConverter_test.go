@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/typeConverters"
-	"github.com/multiversx/mx-chain-core-go/data/typeConverters/uint64ByteSlice"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/typeConverters"
+	"github.com/TerraDharitri/drt-go-chain-core/data/typeConverters/uint64ByteSlice"
 	"github.com/stretchr/testify/assert"
 )
 

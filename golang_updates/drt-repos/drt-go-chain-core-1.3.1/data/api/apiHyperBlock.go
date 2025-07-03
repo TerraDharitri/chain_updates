@@ -3,7 +3,7 @@ package api
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 )
 
 // Hyperblock contains all fully executed (both in source and in destination shards) transactions notarized in a given metablock

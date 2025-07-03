@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -35,7 +35,7 @@ type StakedDataV1_0 struct {
 	UnStakedNonce uint64        `protobuf:"varint,4,opt,name=UnStakedNonce,proto3" json:"UnStakedNonce"`
 	UnStakedEpoch uint32        `protobuf:"varint,5,opt,name=UnStakedEpoch,proto3" json:"UnStakedEpoch"`
 	RewardAddress []byte        `protobuf:"bytes,6,opt,name=RewardAddress,proto3" json:"RewardAddress"`
-	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"StakeValue"`
+	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"StakeValue"`
 	JailedRound   uint64        `protobuf:"varint,8,opt,name=JailedRound,proto3" json:"JailedRound"`
 	JailedNonce   uint64        `protobuf:"varint,9,opt,name=JailedNonce,proto3" json:"JailedNonce"`
 	UnJailedNonce uint64        `protobuf:"varint,10,opt,name=UnJailedNonce,proto3" json:"UnJailedNonce"`
@@ -162,14 +162,14 @@ type StakedDataV1_1 struct {
 	UnStakedNonce uint64        `protobuf:"varint,4,opt,name=UnStakedNonce,proto3" json:"UnStakedNonce"`
 	UnStakedEpoch uint32        `protobuf:"varint,5,opt,name=UnStakedEpoch,proto3" json:"UnStakedEpoch"`
 	RewardAddress []byte        `protobuf:"bytes,6,opt,name=RewardAddress,proto3" json:"RewardAddress"`
-	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"StakeValue"`
+	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"StakeValue"`
 	JailedRound   uint64        `protobuf:"varint,8,opt,name=JailedRound,proto3" json:"JailedRound"`
 	JailedNonce   uint64        `protobuf:"varint,9,opt,name=JailedNonce,proto3" json:"JailedNonce"`
 	UnJailedNonce uint64        `protobuf:"varint,10,opt,name=UnJailedNonce,proto3" json:"UnJailedNonce"`
 	Jailed        bool          `protobuf:"varint,11,opt,name=Jailed,proto3" json:"Jailed"`
 	Waiting       bool          `protobuf:"varint,12,opt,name=Waiting,proto3" json:"Waiting"`
 	NumJailed     uint32        `protobuf:"varint,13,opt,name=NumJailed,proto3" json:"NumJailed"`
-	SlashValue    *math_big.Int `protobuf:"bytes,14,opt,name=SlashValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"SlashValue"`
+	SlashValue    *math_big.Int `protobuf:"bytes,14,opt,name=SlashValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"SlashValue"`
 }
 
 func (m *StakedDataV1_1) Reset()      { *m = StakedDataV1_1{} }
@@ -305,14 +305,14 @@ type StakedDataV2_0 struct {
 	UnStakedNonce uint64        `protobuf:"varint,4,opt,name=UnStakedNonce,proto3" json:"UnStakedNonce"`
 	UnStakedEpoch uint32        `protobuf:"varint,5,opt,name=UnStakedEpoch,proto3" json:"UnStakedEpoch"`
 	RewardAddress []byte        `protobuf:"bytes,6,opt,name=RewardAddress,proto3" json:"RewardAddress"`
-	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"StakeValue"`
+	StakeValue    *math_big.Int `protobuf:"bytes,7,opt,name=StakeValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"StakeValue"`
 	JailedRound   uint64        `protobuf:"varint,8,opt,name=JailedRound,proto3" json:"JailedRound"`
 	JailedNonce   uint64        `protobuf:"varint,9,opt,name=JailedNonce,proto3" json:"JailedNonce"`
 	UnJailedNonce uint64        `protobuf:"varint,10,opt,name=UnJailedNonce,proto3" json:"UnJailedNonce"`
 	Jailed        bool          `protobuf:"varint,11,opt,name=Jailed,proto3" json:"Jailed"`
 	Waiting       bool          `protobuf:"varint,12,opt,name=Waiting,proto3" json:"Waiting"`
 	NumJailed     uint32        `protobuf:"varint,13,opt,name=NumJailed,proto3" json:"NumJailed"`
-	SlashValue    *math_big.Int `protobuf:"bytes,14,opt,name=SlashValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"SlashValue"`
+	SlashValue    *math_big.Int `protobuf:"bytes,14,opt,name=SlashValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"SlashValue"`
 	OwnerAddress  []byte        `protobuf:"bytes,15,opt,name=OwnerAddress,proto3" json:"OwnerAddress"`
 }
 
@@ -732,7 +732,7 @@ func (this *StakedDataV1_0) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.StakeValue, that1.StakeValue) {
 			return false
 		}
@@ -792,7 +792,7 @@ func (this *StakedDataV1_1) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.StakeValue, that1.StakeValue) {
 			return false
 		}
@@ -816,7 +816,7 @@ func (this *StakedDataV1_1) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.SlashValue, that1.SlashValue) {
 			return false
 		}
@@ -861,7 +861,7 @@ func (this *StakedDataV2_0) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.StakeValue, that1.StakeValue) {
 			return false
 		}
@@ -885,7 +885,7 @@ func (this *StakedDataV2_0) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.SlashValue, that1.SlashValue) {
 			return false
 		}
@@ -1161,7 +1161,7 @@ func (m *StakedDataV1_0) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x40
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.StakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.StakeValue, dAtA[i:]); err != nil {
@@ -1232,7 +1232,7 @@ func (m *StakedDataV1_1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.SlashValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.SlashValue, dAtA[i:]); err != nil {
@@ -1283,7 +1283,7 @@ func (m *StakedDataV1_1) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x40
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.StakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.StakeValue, dAtA[i:]); err != nil {
@@ -1361,7 +1361,7 @@ func (m *StakedDataV2_0) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x7a
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.SlashValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.SlashValue, dAtA[i:]); err != nil {
@@ -1412,7 +1412,7 @@ func (m *StakedDataV2_0) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x40
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.StakeValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.StakeValue, dAtA[i:]); err != nil {
@@ -1635,7 +1635,7 @@ func (m *StakedDataV1_0) Size() (n int) {
 		n += 1 + l + sovStaking(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.StakeValue)
 		n += 1 + l + sovStaking(uint64(l))
 	}
@@ -1683,7 +1683,7 @@ func (m *StakedDataV1_1) Size() (n int) {
 		n += 1 + l + sovStaking(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.StakeValue)
 		n += 1 + l + sovStaking(uint64(l))
 	}
@@ -1706,7 +1706,7 @@ func (m *StakedDataV1_1) Size() (n int) {
 		n += 1 + sovStaking(uint64(m.NumJailed))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.SlashValue)
 		n += 1 + l + sovStaking(uint64(l))
 	}
@@ -1739,7 +1739,7 @@ func (m *StakedDataV2_0) Size() (n int) {
 		n += 1 + l + sovStaking(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.StakeValue)
 		n += 1 + l + sovStaking(uint64(l))
 	}
@@ -1762,7 +1762,7 @@ func (m *StakedDataV2_0) Size() (n int) {
 		n += 1 + sovStaking(uint64(m.NumJailed))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.SlashValue)
 		n += 1 + l + sovStaking(uint64(l))
 	}
@@ -2148,7 +2148,7 @@ func (m *StakedDataV1_0) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2466,7 +2466,7 @@ func (m *StakedDataV1_1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2620,7 +2620,7 @@ func (m *StakedDataV1_1) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2841,7 +2841,7 @@ func (m *StakedDataV2_0) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2995,7 +2995,7 @@ func (m *StakedDataV2_0) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

@@ -12,12 +12,12 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:recursive-caller": {
                     "nonce": "0",
                     "balance": "1000",
-                    "code": "mxsc:../recursive-caller/output/recursive-caller.mxsc.json"
+                    "code": "drtsc:../recursive-caller/output/recursive-caller.drtsc.json"
                 }
             }
         },
@@ -30,7 +30,7 @@
                 "function": "recursive_send_funds",
                 "arguments": [
                     "sc:vault",
-                    "str:EGLD",
+                    "str:REWA",
                     "1",
                     "1"
                 ],
@@ -47,7 +47,7 @@
                         "topics": [
                             "str:recursive_send_funds",
                             "sc:vault",
-                            "str:EGLD",
+                            "str:REWA",
                             "1"
                         ],
                         "data": [
@@ -96,7 +96,7 @@
                         "topics": [
                             "str:recursive_send_funds_callback",
                             "sc:vault",
-                            "str:EGLD",
+                            "str:REWA",
                             "1"
                         ],
                         "data": [
@@ -123,13 +123,13 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:recursive-caller": {
                     "nonce": "0",
                     "balance": "999",
                     "storage": {},
-                    "code": "mxsc:../recursive-caller/output/recursive-caller.mxsc.json"
+                    "code": "drtsc:../recursive-caller/output/recursive-caller.drtsc.json"
                 }
             }
         }

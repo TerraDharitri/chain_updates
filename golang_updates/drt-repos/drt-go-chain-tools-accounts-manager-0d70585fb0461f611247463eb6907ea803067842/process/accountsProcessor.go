@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 	"github.com/tidwall/gjson"
 )
 
@@ -43,7 +43,7 @@ func (ap *accountsProcessor) GetAllAccountsWithStake(currentEpoch uint32) (*data
 		return nil, err
 	}
 
-	lkMexAccountsWithStake, err := ap.GetLKMEXStakeAccounts()
+	lkMexAccountsWithStake, err := ap.GetLKMOAStakeAccounts()
 	if err != nil {
 		return nil, err
 	}
@@ -144,8 +144,8 @@ func (ap *accountsProcessor) mergeAccounts(
 			continue
 		}
 
-		mergedAccounts[address].LKMEXStake = lkMexAccount.LKMEXStake
-		mergedAccounts[address].LKMEXStakeNum = lkMexAccount.LKMEXStakeNum
+		mergedAccounts[address].LKMOAStake = lkMexAccount.LKMOAStake
+		mergedAccounts[address].LKMOAStakeNum = lkMexAccount.LKMOAStakeNum
 	}
 
 	for address, energyAccount := range accountsWithEnergy {

@@ -3,7 +3,7 @@ package mock
 import (
 	"errors"
 
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // ValStatsCacherMock --

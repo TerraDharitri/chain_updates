@@ -8,30 +8,30 @@
     "round": 2735017,
     "epoch": 2277,
     "value": "1000",
-    "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-    "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+    "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+    "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
     "data": "ZG9fZGVwbG95QDAwMDAwMDAwMDAwMDAwMDAwNTAwRkIxNUE1MEZGNUQ2MEQyQUI5NjA3MTgyRDdCQjM2MjlEQThFNkQxOEEwMTJAMDAwMDAwMDAwMDAwMDAwMDAwMDEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxRkZGRg==",
     "smartContractResults": [
       {
         "hash": "SCR-hash1",
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "operation": "transfer"
       },
       {
         "hash": "SCR-hash2",
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "data": "@73656e64696e672076616c756520746f206e6f6e2070617961626c6520636f6e7472616374",
         "returnMessage": "sending value to non payable contract",
         "operation": "transfer"
       }
     ],
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "transferValueOnly",
           "topics": [
             "AAAAAAAAAAAFAAc2sq9MjfurX+5zluCpV5y58QqNoBI=",
@@ -41,7 +41,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "SCDeploy",
           "topics": [
             "AAAAAAAAAAAFAOchRUX9HQDwjcJbkLd9jkXd5nAjoBI=",
@@ -50,7 +50,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "writeLog",
           "topics": [
             "VuJjyDpv3q8GVEqm7SLrVgl7ySOB9Ya6HTmmeI4+oBI=",
@@ -71,18 +71,18 @@
       "processingTypeOnSource": "MoveBalance",
       "processingTypeOnDestination": "MoveBalance",
       "hash": "SCR-hash1",
-      "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "gasPrice": 1000000000,
       "sourceShard": 2,
       "destinationShard": 4294967295,
       "blockNonce": 2733469,
       "miniblockType": "SmartContractResultBlock",
       "logs": {
-        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l",
+        "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp",
         "events": [
           {
-            "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l",
+            "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp",
             "identifier": "signalError",
             "topics": [
               "AAAAAAAAAAAFAAc2sq9MjfurX+5zluCpV5y58QqNoBI=",
@@ -107,12 +107,12 @@
       "round": 2735021,
       "epoch": 2277,
       "value": "1000",
-      "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "gasUsed": 162500,
       "data": "QDczNjU2ZTY0Njk2ZTY3MjA3NjYxNmM3NTY1MjA3NDZmMjA2ZTZmNmUyMDcwNjE3OTYxNjI2YzY1MjA2MzZmNmU3NDcyNjE2Mzc0",
       "returnMessage": "sending value to non payable contract",
-      "originalSender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "originalSender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "sourceShard": 4294967295,
       "destinationShard": 2,
       "status": "success",

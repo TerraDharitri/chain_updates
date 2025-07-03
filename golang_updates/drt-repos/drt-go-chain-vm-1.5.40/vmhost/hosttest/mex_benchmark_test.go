@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 
 	"github.com/stretchr/testify/require"
 )
@@ -31,14 +31,14 @@ func Test_RunDEXPairBenchmark(t *testing.T) {
 	numBatches := 10
 	numSwapsPerBatch := 2000
 
-	wegldToMexESDT, wegldToMexESDTSwap := mex.CreateSwapVMInputs(mex.WEGLDToken, 100, mex.MEXToken, 1)
-	mexToWegldESDT, mexToWegldSwap := mex.CreateSwapVMInputs(mex.MEXToken, 100, mex.WEGLDToken, 1)
+	wrewaToMexDCDT, wrewaToMexDCDTSwap := mex.CreateSwapVMInputs(mex.WREWAToken, 100, mex.MEXToken, 1)
+	mexToWrewaDCDT, mexToWrewaSwap := mex.CreateSwapVMInputs(mex.MEXToken, 100, mex.WREWAToken, 1)
 
 	for batch := 0; batch < numBatches; batch++ {
 		start := time.Now()
 		for i := 0; i < numSwapsPerBatch/2; i++ {
-			mex.ExecuteSwap(wegldToMexESDT, wegldToMexESDTSwap)
-			mex.ExecuteSwap(mexToWegldESDT, mexToWegldSwap)
+			mex.ExecuteSwap(wrewaToMexDCDT, wrewaToMexDCDTSwap)
+			mex.ExecuteSwap(mexToWrewaDCDT, mexToWrewaSwap)
 		}
 		elapsedTime := time.Since(start)
 		logBenchmark.Trace(
@@ -70,7 +70,7 @@ func setupMEXPair(t *testing.T, owner Address, user Address) (*worldmock.MockWor
 }
 
 type MEXSetup struct {
-	WEGLDToken               []byte
+	WREWAToken               []byte
 	MEXToken                 []byte
 	LPToken                  []byte
 	OwnerAccount             *worldmock.Account
@@ -82,7 +82,7 @@ type MEXSetup struct {
 	MaxObservationsPerRecord int
 	Code                     []byte
 	UserAccount              *worldmock.Account
-	UserWEGLDBalance         uint64
+	UserWREWABalance         uint64
 	UserMEXBalance           uint64
 
 	T     *testing.T
@@ -98,7 +98,7 @@ func NewMEXSetup(
 	userAccount *worldmock.Account,
 ) *MEXSetup {
 	return &MEXSetup{
-		WEGLDToken:               []byte("WEGLD-abcdef"),
+		WREWAToken:               []byte("WREWA-abcdef"),
 		MEXToken:                 []byte("MEX-abcdef"),
 		LPToken:                  []byte("LPTOK-abcdef"),
 		OwnerAccount:             ownerAccount,
@@ -110,7 +110,7 @@ func NewMEXSetup(
 		MaxObservationsPerRecord: 10,
 		Code:                     test.GetTestSCCode("pair", "../../"),
 		UserAccount:              userAccount,
-		UserWEGLDBalance:         5_000_000_000,
+		UserWREWABalance:         5_000_000_000,
 		UserMEXBalance:           5_000_000_000,
 
 		T:     t,
@@ -129,7 +129,7 @@ func (mex *MEXSetup) Deploy() {
 		WithContractCode(mex.Code).
 		WithContractCodeMetadata([]byte{5, 6}).
 		WithArguments(
-			mex.WEGLDToken,
+			mex.WREWAToken,
 			mex.MEXToken,
 			mex.OwnerAddress,
 			mex.RouterAddress,
@@ -159,7 +159,7 @@ func (mex *MEXSetup) ApplyInitialSetup() {
 	mex.setActiveState()
 	mex.setMaxObservationsPerRecord()
 	mex.setRequiredTokenRoles()
-	mex.setESDTBalances()
+	mex.setDCDTBalances()
 }
 
 func (mex *MEXSetup) setLPToken() {
@@ -228,19 +228,19 @@ func (mex *MEXSetup) setRequiredTokenRoles() {
 	world := mex.World
 	pairAccount := world.AcctMap.GetAccount(mex.PairAddress)
 
-	roles := []string{core.ESDTRoleLocalMint, core.ESDTRoleLocalBurn}
+	roles := []string{core.DCDTRoleLocalMint, core.DCDTRoleLocalBurn}
 	_ = pairAccount.SetTokenRolesAsStrings(mex.LPToken, roles)
 }
 
-func (mex *MEXSetup) setESDTBalances() {
-	_ = mex.UserAccount.SetTokenBalanceUint64(mex.WEGLDToken, 0, mex.UserWEGLDBalance)
+func (mex *MEXSetup) setDCDTBalances() {
+	_ = mex.UserAccount.SetTokenBalanceUint64(mex.WREWAToken, 0, mex.UserWREWABalance)
 	_ = mex.UserAccount.SetTokenBalanceUint64(mex.MEXToken, 0, mex.UserMEXBalance)
 }
 
 func (mex *MEXSetup) AddLiquidity(
 	userAddress Address,
-	WEGLDAmount uint64,
-	minWEGLDAmount uint64,
+	WREWAAmount uint64,
+	minWREWAAmount uint64,
 	MEXAmount uint64,
 	minMEXAmount uint64,
 ) {
@@ -253,27 +253,27 @@ func (mex *MEXSetup) AddLiquidity(
 		WithRecipientAddr(mex.PairAddress).
 		WithFunction("addLiquidity").
 		WithArguments(
-			big.NewInt(int64(minWEGLDAmount)).Bytes(),
+			big.NewInt(int64(minWREWAAmount)).Bytes(),
 			big.NewInt(int64(minMEXAmount)).Bytes(),
 		).
 		WithGasProvided(math.MaxInt64)
 
 	vmInputBuiler.
-		WithESDTTokenName(mex.WEGLDToken).
-		WithESDTValue(big.NewInt(int64(WEGLDAmount))).
-		NextESDTTransfer().
-		WithESDTTokenName(mex.MEXToken).
-		WithESDTValue(big.NewInt(int64(MEXAmount)))
+		WithDCDTTokenName(mex.WREWAToken).
+		WithDCDTValue(big.NewInt(int64(WREWAAmount))).
+		NextDCDTTransfer().
+		WithDCDTTokenName(mex.MEXToken).
+		WithDCDTValue(big.NewInt(int64(MEXAmount)))
 
 	vmInput := vmInputBuiler.Build()
 
-	addLiquidityESDT := mex.createMultiESDTTransferVMInput(
+	addLiquidityDCDT := mex.createMultiDCDTTransferVMInput(
 		vmInput.CallerAddr,
 		vmInput.RecipientAddr,
-		vmInput.ESDTTransfers,
+		vmInput.DCDTTransfers,
 	)
 
-	mex.performMultiESDTTransfer(addLiquidityESDT)
+	mex.performMultiDCDTTransfer(addLiquidityDCDT)
 
 	vmOutput, err := host.RunSmartContractCall(vmInput)
 	require.Nil(t, err)
@@ -294,8 +294,8 @@ func (mex *MEXSetup) CreateSwapVMInputs(
 		WithRecipientAddr(mex.PairAddress)
 
 	vmInputBuiler.
-		WithESDTTokenName(leftToken).
-		WithESDTValue(big.NewInt(int64(leftAmount))).
+		WithDCDTTokenName(leftToken).
+		WithDCDTValue(big.NewInt(int64(leftAmount))).
 		WithFunction("swapTokensFixedInput").
 		WithArguments(
 			rightToken,
@@ -305,10 +305,10 @@ func (mex *MEXSetup) CreateSwapVMInputs(
 
 	vmInput := vmInputBuiler.Build()
 
-	multiTransferInput := mex.createMultiESDTTransferVMInput(
+	multiTransferInput := mex.createMultiDCDTTransferVMInput(
 		vmInput.CallerAddr,
 		vmInput.RecipientAddr,
-		vmInput.ESDTTransfers,
+		vmInput.DCDTTransfers,
 	)
 
 	return multiTransferInput, vmInput
@@ -323,7 +323,7 @@ func (mex *MEXSetup) ExecuteSwap(
 	host := mex.Host
 	world := mex.World
 
-	mex.performMultiESDTTransfer(multiTransferInput)
+	mex.performMultiDCDTTransfer(multiTransferInput)
 
 	vmOutput, err := host.RunSmartContractCall(vmInput)
 	require.Nil(t, err)
@@ -336,12 +336,12 @@ func (mex *MEXSetup) ExecuteSwap(
 	require.Nil(t, err)
 }
 
-func (mex *MEXSetup) createMultiESDTTransferVMInput(
+func (mex *MEXSetup) createMultiDCDTTransferVMInput(
 	sender Address,
 	receiver Address,
-	esdtTransfers []*vmcommon.ESDTTransfer,
+	dcdtTransfers []*vmcommon.DCDTTransfer,
 ) *vmcommon.ContractCallInput {
-	nrTransfers := len(esdtTransfers)
+	nrTransfers := len(dcdtTransfers)
 	nrTransfersAsBytes := big.NewInt(0).SetUint64(uint64(nrTransfers)).Bytes()
 
 	multiTransferInput := &vmcommon.ContractCallInput{
@@ -355,15 +355,15 @@ func (mex *MEXSetup) createMultiESDTTransferVMInput(
 			GasLocked:   0,
 		},
 		RecipientAddr:     sender,
-		Function:          core.BuiltInFunctionMultiESDTNFTTransfer,
+		Function:          core.BuiltInFunctionMultiDCDTNFTTransfer,
 		AllowInitFunction: false,
 	}
 	multiTransferInput.Arguments = append(multiTransferInput.Arguments, receiver, nrTransfersAsBytes)
 
 	for i := 0; i < nrTransfers; i++ {
-		token := esdtTransfers[i].ESDTTokenName
-		nonceAsBytes := big.NewInt(0).SetUint64(esdtTransfers[i].ESDTTokenNonce).Bytes()
-		value := esdtTransfers[i].ESDTValue.Bytes()
+		token := dcdtTransfers[i].DCDTTokenName
+		nonceAsBytes := big.NewInt(0).SetUint64(dcdtTransfers[i].DCDTTokenNonce).Bytes()
+		value := dcdtTransfers[i].DCDTValue.Bytes()
 
 		multiTransferInput.Arguments = append(multiTransferInput.Arguments, token, nonceAsBytes, value)
 	}
@@ -371,7 +371,7 @@ func (mex *MEXSetup) createMultiESDTTransferVMInput(
 	return multiTransferInput
 }
 
-func (mex *MEXSetup) performMultiESDTTransfer(
+func (mex *MEXSetup) performMultiDCDTTransfer(
 	multiTransferInput *vmcommon.ContractCallInput,
 ) {
 	t := mex.T

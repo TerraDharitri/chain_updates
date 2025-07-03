@@ -3,8 +3,8 @@ package versioning
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	"github.com/stretchr/testify/require"
 )
 
@@ -42,7 +42,7 @@ func TestTxVersionChecker_IsGuardedTransaction(t *testing.T) {
 	minTxVersion := uint32(1)
 	tx := &transaction.Transaction{
 		Options: transaction.MaskGuardedTransaction,
-		Version: minTxVersion+1,
+		Version: minTxVersion + 1,
 	}
 
 	tvc := NewTxVersionChecker(minTxVersion)

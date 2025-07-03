@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 const numComponents = 3

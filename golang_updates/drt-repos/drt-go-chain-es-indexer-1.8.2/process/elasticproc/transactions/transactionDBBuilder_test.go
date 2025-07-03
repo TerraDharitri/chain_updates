@@ -7,14 +7,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 	"github.com/stretchr/testify/require"
 )
 
@@ -92,7 +92,7 @@ func TestGetMoveBalanceTransaction(t *testing.T) {
 		FeeNum:           1e-16,
 		ReceiverUserName: []byte("rcv"),
 		SenderUserName:   []byte("snd"),
-		ESDTValuesNum:    []float64{},
+		DCDTValuesNum:    []float64{},
 		Operation:        "transfer",
 		Version:          1,
 		Receivers:        []string{},
@@ -192,7 +192,7 @@ func TestRelayedV3Transaction(t *testing.T) {
 		Operation:        "transfer",
 		Version:          1,
 		Receivers:        []string{},
-		ESDTValuesNum:    []float64{},
+		DCDTValuesNum:    []float64{},
 		RelayedAddr:      hex.EncodeToString(tx.RelayerAddr),
 		RelayedSignature: hex.EncodeToString(tx.RelayerSignature),
 	}
@@ -265,7 +265,7 @@ func TestGetMoveBalanceTransactionInvalid(t *testing.T) {
 		Operation:        "transfer",
 		Version:          1,
 		Receivers:        []string{},
-		ESDTValuesNum:    []float64{},
+		DCDTValuesNum:    []float64{},
 	}
 
 	txInfo := &outport.TxInfo{

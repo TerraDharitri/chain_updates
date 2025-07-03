@@ -1,25 +1,25 @@
 {
   "deployTxHash": "6831",
-  "deployer": "erd12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfqrwpdx0",
-  "currentOwner": "erd1y78ds2tvzw6ntcggldjld2vk96wgq0mj47mk6auny0nkvn242e3sd4qz7m",
+  "deployer": "drt12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfq7jkw93",
+  "currentOwner": "drt1y78ds2tvzw6ntcggldjld2vk96wgq0mj47mk6auny0nkvn242e3ssfhpa9",
   "initialCodeHash": "Y29kZUhhc2g=",
   "timestamp": 5040,
   "upgrades": [
     {
       "upgradeTxHash": "6832",
       "codeHash": "c2Vjb25kQ29kZUhhc2g=",
-      "upgrader": "erd12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfqrwpdx0",
+      "upgrader": "drt12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfq7jkw93",
       "timestamp": 6000
     }
   ],
   "owners": [
     {
-      "address": "erd1d942l8w4yvgjffpqacs8vdwl0mndsv0zn0uxa80hxc3xmq4477eqnyw3dh",
+      "address": "drt1d942l8w4yvgjffpqacs8vdwl0mndsv0zn0uxa80hxc3xmq4477eqwcejwf",
       "txHash": "6833",
       "timestamp": 7000
     },
     {
-      "address": "erd1y78ds2tvzw6ntcggldjld2vk96wgq0mj47mk6auny0nkvn242e3sd4qz7m",
+      "address": "drt1y78ds2tvzw6ntcggldjld2vk96wgq0mj47mk6auny0nkvn242e3ssfhpa9",
       "txHash": "6834",
       "timestamp": 8000
     }

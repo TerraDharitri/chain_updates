@@ -1,5 +1,5 @@
 {
-    "name": "send_esdt",
+    "name": "send_dcdt",
     "gasSchedule": "v3",
     "steps": [
         {
@@ -8,10 +8,10 @@
                 "sc:forwarder": {
                     "nonce": "1000",
                     "balance": "0",
-                    "esdt": {
-                        "str:SENDESDT": "1,000"
+                    "dcdt": {
+                        "str:SENDDCDT": "1,000"
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",
@@ -25,10 +25,10 @@
             "tx": {
                 "from": "address:an_account",
                 "to": "sc:forwarder",
-                "function": "send_esdt",
+                "function": "send_dcdt",
                 "arguments": [
                     "address:an_account",
-                    "str:SENDESDT",
+                    "str:SENDDCDT",
                     "10000"
                 ],
                 "gasLimit": "50,000,000",
@@ -43,14 +43,14 @@
         },
         {
             "step": "scCall",
-            "id": "send_esdt-ok",
+            "id": "send_dcdt-ok",
             "tx": {
                 "from": "address:an_account",
                 "to": "sc:forwarder",
-                "function": "send_esdt",
+                "function": "send_dcdt",
                 "arguments": [
                     "address:an_account",
-                    "str:SENDESDT",
+                    "str:SENDDCDT",
                     "200"
                 ],
                 "gasLimit": "50,000,000",
@@ -62,17 +62,17 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTTransfer",
+                        "endpoint": "str:DCDTTransfer",
                         "topics": [
-                            "str:SENDESDT",
+                            "str:SENDDCDT",
                             "0",
                             "200",
                             "address:an_account"
                         ],
                         "data": [
                             "str:DirectCall",
-                            "str:ESDTTransfer",
-                            "str:SENDESDT",
+                            "str:DCDTTransfer",
+                            "str:SENDDCDT",
                             "200"
                         ]
                     }
@@ -85,17 +85,17 @@
                 "sc:forwarder": {
                     "nonce": "1000",
                     "balance": "0",
-                    "esdt": {
-                        "str:SENDESDT": "800"
+                    "dcdt": {
+                        "str:SENDDCDT": "800"
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
-                        "str:SENDESDT": "200"
+                    "dcdt": {
+                        "str:SENDDCDT": "200"
                     },
                     "storage": {},
                     "code": ""

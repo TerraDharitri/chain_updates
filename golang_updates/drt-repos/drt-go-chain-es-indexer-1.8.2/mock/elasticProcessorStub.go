@@ -1,9 +1,9 @@
 package mock
 
 import (
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 )
 
 // ElasticProcessorStub -
@@ -18,13 +18,13 @@ type ElasticProcessorStub struct {
 	SaveRoundsInfoCalled             func(infos *outport.RoundsInfo) error
 	SaveShardValidatorsPubKeysCalled func(validators *outport.ValidatorsPubKeys) error
 	SaveAccountsCalled               func(accountsData *outport.Accounts) error
-	RemoveAccountsESDTCalled         func(headerTimestamp uint64) error
+	RemoveAccountsDCDTCalled         func(headerTimestamp uint64) error
 }
 
-// RemoveAccountsESDT -
-func (eim *ElasticProcessorStub) RemoveAccountsESDT(headerTimestamp uint64, _ uint32) error {
-	if eim.RemoveAccountsESDTCalled != nil {
-		return eim.RemoveAccountsESDTCalled(headerTimestamp)
+// RemoveAccountsDCDT -
+func (eim *ElasticProcessorStub) RemoveAccountsDCDT(headerTimestamp uint64, _ uint32) error {
+	if eim.RemoveAccountsDCDTCalled != nil {
+		return eim.RemoveAccountsDCDTCalled(headerTimestamp)
 	}
 
 	return nil

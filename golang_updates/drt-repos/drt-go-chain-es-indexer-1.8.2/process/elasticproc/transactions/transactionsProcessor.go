@@ -4,17 +4,17 @@ import (
 	"encoding/hex"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 )
 
 var log = logger.GetOrCreate("indexer/process/transactions")

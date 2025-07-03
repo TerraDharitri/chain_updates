@@ -3,14 +3,15 @@ package contexts
 import (
 	"bytes"
 	"fmt"
-	"github.com/multiversx/mx-chain-core-go/core"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 // TODO audit and verify consistency of all GetStorage*() methods

@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataCore "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataCore "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -459,7 +459,7 @@ func BenchmarkGetApproximatePercentageOfValue(b *testing.B) {
 	}
 }
 
-func TestIsValidESDTRole(t *testing.T) {
+func TestIsValidDCDTRole(t *testing.T) {
 	t.Parallel()
 
 	tests := []struct {
@@ -467,23 +467,23 @@ func TestIsValidESDTRole(t *testing.T) {
 		output bool
 	}{
 		{
-			input:  core.ESDTRoleLocalMint,
+			input:  core.DCDTRoleLocalMint,
 			output: true,
 		},
 		{
-			input:  core.ESDTRoleLocalBurn,
+			input:  core.DCDTRoleLocalBurn,
 			output: true,
 		},
 		{
-			input:  core.ESDTRoleNFTCreate,
+			input:  core.DCDTRoleNFTCreate,
 			output: true,
 		},
 		{
-			input:  core.ESDTRoleNFTAddQuantity,
+			input:  core.DCDTRoleNFTAddQuantity,
 			output: true,
 		},
 		{
-			input:  core.ESDTRoleNFTBurn,
+			input:  core.DCDTRoleNFTBurn,
 			output: true,
 		},
 		{
@@ -501,7 +501,7 @@ func TestIsValidESDTRole(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		require.Equal(t, tt.output, core.IsValidESDTRole(tt.input))
+		require.Equal(t, tt.output, core.IsValidDCDTRole(tt.input))
 	}
 }
 

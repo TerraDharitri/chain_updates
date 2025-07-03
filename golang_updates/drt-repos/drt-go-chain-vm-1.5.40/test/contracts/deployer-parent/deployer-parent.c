@@ -1,6 +1,6 @@
-#include "../mxvm/context.h"
-#include "../mxvm/test_utils.h"
-#include "../mxvm/args.h"
+#include "../drtvm/context.h"
+#include "../drtvm/test_utils.h"
+#include "../drtvm/args.h"
 
 byte parentAddress[32] = {};
 

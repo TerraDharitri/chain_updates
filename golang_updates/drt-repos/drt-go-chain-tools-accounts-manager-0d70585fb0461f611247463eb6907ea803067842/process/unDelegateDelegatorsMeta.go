@@ -5,9 +5,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 const queryGetDelegatorsWithUnDelegateInfo = `{

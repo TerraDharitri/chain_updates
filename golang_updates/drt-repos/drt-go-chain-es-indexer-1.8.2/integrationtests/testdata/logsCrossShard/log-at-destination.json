@@ -1,9 +1,9 @@
 {
-  "address": "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99",
+  "address": "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm",
   "events": [
     {
-      "identifier": "ESDTTransfer",
-      "address": "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99",
+      "identifier": "DCDTTransfer",
+      "address": "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm",
       "data": null,
       "topics": [
         "RVNEVC1hYmNk",
@@ -14,7 +14,7 @@
     },
     {
       "identifier": "do-something",
-      "address": "erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7",
+      "address": "drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q",
       "data": null,
       "topics": [
         "dG9waWMx",

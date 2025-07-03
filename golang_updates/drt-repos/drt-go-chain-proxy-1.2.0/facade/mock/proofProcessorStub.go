@@ -1,6 +1,6 @@
 package mock
 
-import "github.com/multiversx/mx-chain-proxy-go/data"
+import "github.com/TerraDharitri/drt-go-chain-proxy/data"
 
 // ProofProcessorStub -
 type ProofProcessorStub struct {

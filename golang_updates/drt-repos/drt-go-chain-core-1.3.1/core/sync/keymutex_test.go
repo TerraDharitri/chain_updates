@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 func TestNewKeyMutex(t *testing.T) {

@@ -3,8 +3,8 @@ package data
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tokeninfo"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tokeninfo"
 )
 
 // Logs holds all the fields needed for a logs structure

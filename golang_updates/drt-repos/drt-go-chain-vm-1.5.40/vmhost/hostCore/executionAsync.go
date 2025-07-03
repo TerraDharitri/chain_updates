@@ -1,7 +1,7 @@
 package hostCore
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 func (host *vmHost) handleAsyncCallBreakpoint() error {

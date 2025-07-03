@@ -1,10 +1,10 @@
-//go:generate protoc -I=. -I=$GOPATH/src -I=$GOPATH/src/github.com/multiversx/protobuf/protobuf  --gogoslick_out=$GOPATH/src receipt.proto
+//go:generate protoc -I=. -I=$GOPATH/src -I=$GOPATH/src/github.com/TerraDharitri/protobuf/protobuf  --gogoslick_out=$GOPATH/src receipt.proto
 package receipt
 
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 var _ = data.TransactionHandler(&Receipt{})

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
 	"github.com/stretchr/testify/require"
@@ -20,7 +20,7 @@ func TestNewNetworkComponentsFactory(t *testing.T) {
 		args.StatusHandler = nil
 		ncf, err := networkComp.NewNetworkComponentsFactory(args)
 		require.Nil(t, ncf)
-		require.Equal(t, errorsMx.ErrNilStatusHandler, err)
+		require.Equal(t, errorsDrt.ErrNilStatusHandler, err)
 	})
 	t.Run("nil Marshalizer should error", func(t *testing.T) {
 		t.Parallel()
@@ -29,7 +29,7 @@ func TestNewNetworkComponentsFactory(t *testing.T) {
 		args.Marshalizer = nil
 		ncf, err := networkComp.NewNetworkComponentsFactory(args)
 		require.Nil(t, ncf)
-		require.True(t, errors.Is(err, errorsMx.ErrNilMarshalizer))
+		require.True(t, errors.Is(err, errorsDrt.ErrNilMarshalizer))
 	})
 	t.Run("nil Syncer should error", func(t *testing.T) {
 		t.Parallel()
@@ -38,7 +38,7 @@ func TestNewNetworkComponentsFactory(t *testing.T) {
 		args.Syncer = nil
 		ncf, err := networkComp.NewNetworkComponentsFactory(args)
 		require.Nil(t, ncf)
-		require.Equal(t, errorsMx.ErrNilSyncTimer, err)
+		require.Equal(t, errorsDrt.ErrNilSyncTimer, err)
 	})
 	t.Run("nil CryptoComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -47,7 +47,7 @@ func TestNewNetworkComponentsFactory(t *testing.T) {
 		args.CryptoComponents = nil
 		ncf, err := networkComp.NewNetworkComponentsFactory(args)
 		require.Nil(t, ncf)
-		require.Equal(t, errorsMx.ErrNilCryptoComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponentsHolder, err)
 	})
 	t.Run("invalid node operation mode should error", func(t *testing.T) {
 		t.Parallel()
@@ -56,7 +56,7 @@ func TestNewNetworkComponentsFactory(t *testing.T) {
 		args.NodeOperationMode = "invalid"
 
 		ncf, err := networkComp.NewNetworkComponentsFactory(args)
-		require.Equal(t, errorsMx.ErrInvalidNodeOperationMode, err)
+		require.Equal(t, errorsDrt.ErrInvalidNodeOperationMode, err)
 		require.Nil(t, ncf)
 	})
 	t.Run("should work", func(t *testing.T) {

@@ -19,8 +19,8 @@
         {
             "step": "setState",
             "accounts": {
-                "address:esdt-owner": {
-                    "esdt": {
+                "address:dcdt-owner": {
+                    "dcdt": {
                         "str:FUNG-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [
@@ -46,9 +46,9 @@
             "step": "transfer",
             "id": "multi-transfer",
             "tx": {
-                "from": "address:esdt-owner",
+                "from": "address:dcdt-owner",
                 "to": "sc:multisig",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:FUNG-TOKEN",
                         "value": "1000"
@@ -70,7 +70,7 @@
         },
         {
             "step": "scCall",
-            "id": "proposeSendEsdt",
+            "id": "proposeSendDcdt",
             "tx": {
                 "from": "address:paul",
                 "to": "sc:multisig",
@@ -78,8 +78,8 @@
                 "arguments": [
                     "sc:multisig",
                     "0",
-                    "str:MultiESDTNFTTransfer",
-                    "address:esdt-owner",
+                    "str:MultiDCDTNFTTransfer",
+                    "address:dcdt-owner",
                     "3",
                     "str:FUNG-TOKEN",
                     "0",
@@ -147,7 +147,7 @@
         },
         {
             "step": "scCall",
-            "id": "send-esdt-perform-1",
+            "id": "send-dcdt-perform-1",
             "tx": {
                 "from": "address:paul",
                 "to": "sc:multisig",
@@ -179,8 +179,8 @@
                             "sc:multisig",
                             "0",
                             "*",
-                            "str:MultiESDTNFTTransfer",
-                            "address:esdt-owner",
+                            "str:MultiDCDTNFTTransfer",
+                            "address:dcdt-owner",
                             "3",
                             "str:FUNG-TOKEN",
                             "0",
@@ -196,7 +196,7 @@
                     },
                     {
                         "address": "sc:multisig",
-                        "endpoint": "str:MultiESDTNFTTransfer",
+                        "endpoint": "str:MultiDCDTNFTTransfer",
                         "topics": [
                             "str:FUNG-TOKEN",
                             "0",
@@ -207,12 +207,12 @@
                             "str:SFT-456789",
                             "3",
                             "10",
-                            "address:esdt-owner"
+                            "address:dcdt-owner"
                         ],
                         "data": "*"
                     },
                     {
-                        "address": "address:esdt-owner",
+                        "address": "address:dcdt-owner",
                         "endpoint": "str:transferValueOnly",
                         "topics": [
                             "",
@@ -240,9 +240,9 @@
         {
             "step": "checkState",
             "accounts": {
-                "address:esdt-owner": {
+                "address:dcdt-owner": {
                     "nonce": "1",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 // Config will hold the whole config file's data
@@ -23,7 +23,7 @@ type Config struct {
 // GeneralConfig will hold the general settings for an accounts manager
 type GeneralConfig struct {
 	DelegationLegacyContractAddress string
-	LKMEXStakingContractAddress     string
+	LKMOAStakingContractAddress     string
 	EnergyContractAddress           string
 	ValidatorsContract              string
 }

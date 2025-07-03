@@ -15,7 +15,7 @@ services:
   events-notifier:
     #ports: 22111
     container_name: en-container
-    image: multiversx/events-notifier:latest
+    image: dharitri/events-notifier:latest
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -51,7 +51,7 @@ services:
 #  elastic-indexer:
 #    #ports: 22112
 #    container_name: es-indexer
-#    image: multiversx/elastic-indexer:latest
+#    image: dharitri/elastic-indexer:latest
 #    depends_on:
 #      - elasticsearch
 #    entrypoint: "./elasticindexer -log-level *:DEBUG"
@@ -59,7 +59,7 @@ services:
 
   chain-simulator:
     #ports: 8085
-    image: multiversx/chainsimulator:latest
+    image: dharitri/chainsimulator:latest
     network_mode: "host"
     environment:
       EVENTS_NOTIFIER_URL: '127.0.0.1:22111'

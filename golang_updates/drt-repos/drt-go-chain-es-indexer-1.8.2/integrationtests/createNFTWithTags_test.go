@@ -10,13 +10,13 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -26,10 +26,10 @@ func TestCreateNFTWithTags(t *testing.T) {
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
-	esdtToken := &esdt.ESDigitalToken{
+	dcdtToken := &dcdt.DCDigitalToken{
 		Value:      big.NewInt(1000),
 		Properties: []byte("3032"),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Creator:    []byte("creator"),
 			Attributes: []byte("tags:hello,something,do,music,art,gallery;metadata:QmZ2QqaGq4bqsEzs5JLTjRmmvR2GAR4qXJZBN8ibfDdaud"),
 		},
@@ -44,10 +44,10 @@ func TestCreateNFTWithTags(t *testing.T) {
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
 
-	esdtDataBytes, _ := json.Marshal(esdtToken)
+	dcdtDataBytes, _ := json.Marshal(dcdtToken)
 
 	// CREATE A FIRST NFT WITH THE TAGS
-	address1 := "erd1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsqx0h5j"
+	address1 := "drt1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsa6c5hv"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -57,8 +57,8 @@ func TestCreateNFTWithTags(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(1).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(1).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -95,9 +95,9 @@ func TestCreateNFTWithTags(t *testing.T) {
 
 	ids := []string{fmt.Sprintf("%s-DESK-abcd-01", address1)}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/createNFTWithTags/accounts-esdt-address-balance.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/createNFTWithTags/accounts-dcdt-address-balance.json"), string(genericResponse.Docs[0].Source))
 
 	ids = []string{"bXVzaWM=", "aGVsbG8=", "Z2FsbGVyeQ==", "ZG8=", "YXJ0", "c29tZXRoaW5n"}
 	genericResponse = &GenericResponse{}
@@ -126,8 +126,8 @@ func TestCreateNFTWithTags(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -176,8 +176,8 @@ func TestCreateNFTWithTags(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(3).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("DESK-abcd"), big.NewInt(3).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},

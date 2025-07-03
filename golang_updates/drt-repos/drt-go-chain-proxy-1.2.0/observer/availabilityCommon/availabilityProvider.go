@@ -1,8 +1,8 @@
 package availabilityCommon
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // AvailabilityProvider is a stateless component that aims to group common operations regarding observers' data availability

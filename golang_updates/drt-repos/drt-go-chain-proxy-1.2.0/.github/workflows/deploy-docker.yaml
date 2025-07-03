@@ -1,6 +1,6 @@
 env:
   IMAGE_NODE: chain-proxy
-  REGISTRY_HOSTNAME: multiversx
+  REGISTRY_HOSTNAME: dharitri
 
 name: Build Docker image & push
 

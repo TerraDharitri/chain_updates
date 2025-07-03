@@ -31,7 +31,7 @@ message PeerData {
 	bytes      PublicKey   = 2 [(gogoproto.jsontag) = "publicKey,omitempty"];
 	PeerAction Action      = 3 [(gogoproto.jsontag) = "action"];
 	uint64     TimeStamp   = 4 [(gogoproto.jsontag) = "timeStamp,omitempty"];
-	bytes      ValueChange = 5 [(gogoproto.jsontag) = "valueChange,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+	bytes      ValueChange = 5 [(gogoproto.jsontag) = "valueChange,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
 }
 
 // ShardData holds the block information sent by the shards to the metachain
@@ -44,8 +44,8 @@ message ShardData {
 	uint64                   Round                 				= 8 [(gogoproto.jsontag) = "round"];
 	bytes                    PrevHash              				= 9 [(gogoproto.jsontag) = "prevHash,omitempty"];
 	uint64                   Nonce                 				= 10 [(gogoproto.jsontag) = "nonce"];
-	bytes                    AccumulatedFees       				= 12 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes                    DeveloperFees         				= 14 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+	bytes                    AccumulatedFees       				= 12 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes                    DeveloperFees         				= 14 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
 	uint32                   NumPendingMiniBlocks  				= 11 [(gogoproto.jsontag) = "numPendingMiniBlocks"];
 	uint64                   LastIncludedMetaNonce 				= 13 [(gogoproto.jsontag) = "lastIncludedMetaNonce"];
 	uint32                   ShardID               				= 1 [(gogoproto.jsontag) = "shardID"];
@@ -69,12 +69,12 @@ message EpochStartShardData {
 
 // Economics holds the block information for total supply and rewards
 message Economics {
-	bytes  TotalSupply                      = 1 [(gogoproto.jsontag) = "totalSupply,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes  TotalToDistribute                = 2 [(gogoproto.jsontag) = "totalToDistribute,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes  TotalNewlyMinted                 = 3 [(gogoproto.jsontag) = "totalNewlyMinted,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes  RewardsPerBlock                  = 4 [(gogoproto.jsontag) = "rewardsPerBlock,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes  RewardsForProtocolSustainability = 5 [(gogoproto.jsontag) = "rewardsForProtocolSustainability,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	bytes  NodePrice                        = 6 [(gogoproto.jsontag) = "nodePrice,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+	bytes  TotalSupply                      = 1 [(gogoproto.jsontag) = "totalSupply,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes  TotalToDistribute                = 2 [(gogoproto.jsontag) = "totalToDistribute,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes  TotalNewlyMinted                 = 3 [(gogoproto.jsontag) = "totalNewlyMinted,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes  RewardsPerBlock                  = 4 [(gogoproto.jsontag) = "rewardsPerBlock,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes  RewardsForProtocolSustainability = 5 [(gogoproto.jsontag) = "rewardsForProtocolSustainability,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	bytes  NodePrice                        = 6 [(gogoproto.jsontag) = "nodePrice,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
 	uint64 PrevEpochStartRound              = 7 [(gogoproto.jsontag) = "prevEpochStartRound"];
 	bytes  PrevEpochStartHash               = 8 [(gogoproto.jsontag) = "prevEpochStartHash,omitempty"];
 }
@@ -106,10 +106,10 @@ message MetaBlock {
 	 EpochStart           EpochStart               = 18 [(gogoproto.jsontag) = "epochStart,omitempty", (gogoproto.nullable) = false];
 	 bytes                ChainID                  = 19 [(gogoproto.jsontag) = "chainID,omitempty"];
 	 bytes                SoftwareVersion          = 20 [(gogoproto.jsontag) = "softwareVersion,omitempty"];
-	 bytes                AccumulatedFees          = 21 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	 bytes                AccumulatedFeesInEpoch   = 22 [(gogoproto.jsontag) = "accumulatedFeesInEpoch,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	 bytes                DeveloperFees            = 23 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-	 bytes                DevFeesInEpoch           = 24 [(gogoproto.jsontag) = "devFeesInEpoch,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+	 bytes                AccumulatedFees          = 21 [(gogoproto.jsontag) = "accumulatedFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	 bytes                AccumulatedFeesInEpoch   = 22 [(gogoproto.jsontag) = "accumulatedFeesInEpoch,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	 bytes                DeveloperFees            = 23 [(gogoproto.jsontag) = "developerFees,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+	 bytes                DevFeesInEpoch           = 24 [(gogoproto.jsontag) = "devFeesInEpoch,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
 	 uint32               TxCount                  = 25 [(gogoproto.jsontag) = "txCount"];
 	 bytes                Reserved                 = 26 [(gogoproto.jsontag) = "reserved,omitempty"];
 }

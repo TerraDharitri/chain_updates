@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // SCQueryServiceStub is a stub

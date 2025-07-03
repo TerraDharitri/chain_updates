@@ -8,7 +8,7 @@ from core.chain_simulator import ChainSimulator
 # Steps:
 # 1) Stake with A 2 nodes
 # 2) check if balance is - (5000 + gas fees)
-# 3) check with getTotalStaked that has 5000 egld staked
+# 3) check with getTotalStaked that has 5000 rewa staked
 # 4) check with getOwner if staked keys belongs to A
 # 5) check with getBlsKeysStatus if keys are staked
 # do this in epoch 3, 4, 5 and 6

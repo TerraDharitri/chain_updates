@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
 	"github.com/stretchr/testify/assert"
 )
 

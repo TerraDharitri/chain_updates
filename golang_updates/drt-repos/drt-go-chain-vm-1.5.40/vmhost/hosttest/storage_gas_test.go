@@ -3,11 +3,11 @@ package hostCoretest
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/mock/contracts"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/mock/contracts"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 	"github.com/stretchr/testify/assert"
 )
 

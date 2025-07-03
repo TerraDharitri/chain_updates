@@ -3,25 +3,25 @@ package hostCoretest
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestBaseOpsAPI_validateToken(t *testing.T) {
 	var result bool
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL-08d8eff"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL-08d8eff"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL-08d8e"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL-08d8e"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL08d8ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL08d8ef"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFl-08d8ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFl-08d8ef"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEF*-08d8ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEF*-08d8ef"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL-08d8eF"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL-08d8eF"))
 	assert.False(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL-08d*ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL-08d*ef"))
 	assert.False(t, result)
 
 	result = vmhooks.ValidateToken([]byte("ALC6258d2"))
@@ -39,9 +39,9 @@ func TestBaseOpsAPI_validateToken(t *testing.T) {
 	result = vmhooks.ValidateToken([]byte("ALCCCCCCCCC-6258d2"))
 	assert.False(t, result)
 
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEF2-08d8ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEF2-08d8ef"))
 	assert.True(t, result)
-	result = vmhooks.ValidateToken([]byte("EGLDRIDEFL-08d8ef"))
+	result = vmhooks.ValidateToken([]byte("REWARIDEFL-08d8ef"))
 	assert.True(t, result)
 	result = vmhooks.ValidateToken([]byte("ALC-6258d2"))
 	assert.True(t, result)

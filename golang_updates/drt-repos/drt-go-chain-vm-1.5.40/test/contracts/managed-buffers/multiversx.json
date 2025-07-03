@@ -2,6 +2,6 @@
     "language": "clang",
     "source_files": [
         "managed-buffers.c",
-        "../mxvm/cbuiltins.c"
+        "../drtvm/cbuiltins.c"
     ]
 }

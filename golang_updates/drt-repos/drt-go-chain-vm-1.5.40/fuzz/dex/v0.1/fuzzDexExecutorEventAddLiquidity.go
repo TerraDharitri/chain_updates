@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"math/rand"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDexExecutor) addLiquidity(r *rand.Rand, statistics *eventsStatistics) error {
@@ -41,13 +41,13 @@ func (pfe *fuzzDexExecutor) addLiquidity(r *rand.Rand, statistics *eventsStatist
 	_, err = pfe.executeTxStep(fmt.Sprintf(`
 	{
 		"step": "scCall",
-		"txId": "accept-esdt-payment",
+		"txId": "accept-dcdt-payment",
 		"tx": {
 			"from": "%s",
 			"to": "%s",
 			"value": "0",
-			"function": "acceptEsdtPayment",
-			"esdt": {
+			"function": "acceptDcdtPayment",
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d"
 			},
@@ -76,13 +76,13 @@ func (pfe *fuzzDexExecutor) addLiquidity(r *rand.Rand, statistics *eventsStatist
 	_, err = pfe.executeTxStep(fmt.Sprintf(`
 	{
 		"step": "scCall",
-		"txId": "accept-esdt-payment",
+		"txId": "accept-dcdt-payment",
 		"tx": {
 			"from": "%s",
 			"to": "%s",
 			"value": "0",
-			"function": "acceptEsdtPayment",
-			"esdt": {
+			"function": "acceptDcdtPayment",
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d"
 			},

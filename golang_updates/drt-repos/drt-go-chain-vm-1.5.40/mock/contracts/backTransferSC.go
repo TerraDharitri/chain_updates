@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // BackTransfer_ParentCallsChild is an exposed mock contract method
@@ -38,21 +38,21 @@ func BackTransfer_ParentCallsChild(instanceMock *mock.InstanceMock, config inter
 		if len(arguments) > 0 {
 			checkBackTransfers := arguments[0]
 			if checkBackTransfers[0] == 1 {
-				esdtTransfers, egld := managedTypes.GetBackTransfers()
-				if len(esdtTransfers) != 1 {
-					host.Runtime().FailExecution(fmt.Errorf("found esdt transfers %d", len(esdtTransfers)))
+				dcdtTransfers, rewa := managedTypes.GetBackTransfers()
+				if len(dcdtTransfers) != 1 {
+					host.Runtime().FailExecution(fmt.Errorf("found dcdt transfers %d", len(dcdtTransfers)))
 					storedResult = []byte("err")
 				}
-				if !bytes.Equal(test.ESDTTestTokenName, esdtTransfers[0].ESDTTokenName) {
-					host.Runtime().FailExecution(fmt.Errorf("invalid token name %s", string(esdtTransfers[0].ESDTTokenName)))
+				if !bytes.Equal(test.DCDTTestTokenName, dcdtTransfers[0].DCDTTokenName) {
+					host.Runtime().FailExecution(fmt.Errorf("invalid token name %s", string(dcdtTransfers[0].DCDTTokenName)))
 					storedResult = []byte("err")
 				}
-				if big.NewInt(0).SetUint64(testConfig.ESDTTokensToTransfer).Cmp(esdtTransfers[0].ESDTValue) != 0 {
-					host.Runtime().FailExecution(fmt.Errorf("invalid token value %d", esdtTransfers[0].ESDTValue.Uint64()))
+				if big.NewInt(0).SetUint64(testConfig.DCDTTokensToTransfer).Cmp(dcdtTransfers[0].DCDTValue) != 0 {
+					host.Runtime().FailExecution(fmt.Errorf("invalid token value %d", dcdtTransfers[0].DCDTValue.Uint64()))
 					storedResult = []byte("err")
 				}
-				if egld.Cmp(big.NewInt(testConfig.TransferFromChildToParent)) != 0 {
-					host.Runtime().FailExecution(fmt.Errorf("invalid egld value %d", egld))
+				if rewa.Cmp(big.NewInt(testConfig.TransferFromChildToParent)) != 0 {
+					host.Runtime().FailExecution(fmt.Errorf("invalid rewa value %d", rewa))
 					storedResult = []byte("err")
 				}
 			}
@@ -111,22 +111,22 @@ func BackTransfer_ChildCallback(instanceMock *mock.InstanceMock, config interfac
 			host.Runtime().FailExecution(err)
 		}
 
-		transfer := &vmcommon.ESDTTransfer{
-			ESDTValue:      big.NewInt(int64(testConfig.ESDTTokensToTransfer)),
-			ESDTTokenName:  test.ESDTTestTokenName,
-			ESDTTokenType:  0,
-			ESDTTokenNonce: 0,
+		transfer := &vmcommon.DCDTTransfer{
+			DCDTValue:      big.NewInt(int64(testConfig.DCDTTokensToTransfer)),
+			DCDTTokenName:  test.DCDTTestTokenName,
+			DCDTTokenType:  0,
+			DCDTTokenNonce: 0,
 		}
 
-		ret := vmhooks.TransferESDTNFTExecuteWithTypedArgs(
+		ret := vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
 			host,
 			testConfig.ParentAddress,
-			[]*vmcommon.ESDTTransfer{transfer},
+			[]*vmcommon.DCDTTransfer{transfer},
 			int64(testConfig.GasProvidedToChild),
 			nil,
 			nil)
 		if ret != 0 {
-			host.Runtime().FailExecution(fmt.Errorf("Transfer ESDT failed"))
+			host.Runtime().FailExecution(fmt.Errorf("Transfer DCDT failed"))
 		}
 
 		return instance

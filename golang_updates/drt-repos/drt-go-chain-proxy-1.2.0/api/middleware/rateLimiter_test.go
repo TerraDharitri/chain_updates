@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

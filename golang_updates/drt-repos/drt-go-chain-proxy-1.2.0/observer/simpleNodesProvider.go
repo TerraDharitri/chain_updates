@@ -1,7 +1,7 @@
 package observer
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // simpleNodesProvider will handle the providing of observers in a simple way, in the order in which they were

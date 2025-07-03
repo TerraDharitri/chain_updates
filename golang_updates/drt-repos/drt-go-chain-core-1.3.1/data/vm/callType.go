@@ -15,9 +15,9 @@ const (
 	// previously, and now the control returns to the caller SmartContract's callBack method
 	AsynchronousCallBack
 
-	// ESDTTransferAndExecute means that there is a smart contract execution after the ESDT transfer
+	// DCDTTransferAndExecute means that there is a smart contract execution after the DCDT transfer
 	// this is needed in order to skip the check whether a contract is payable or not
-	ESDTTransferAndExecute
+	DCDTTransferAndExecute
 
 	// ExecOnDestByCaller means that the call is an invocation of a built in function / smart contract from
 	// another smart contract but the caller is from the previous caller
@@ -28,7 +28,7 @@ const (
 	DirectCallStr             = "directCall"
 	AsynchronousCallStr       = "asynchronousCall"
 	AsynchronousCallBackStr   = "asynchronousCallBack"
-	ESDTTransferAndExecuteStr = "esdtTransferAndExecute"
+	DCDTTransferAndExecuteStr = "dcdtTransferAndExecute"
 	ExecOnDestByCallerStr     = "execOnDestByCaller"
 	UnknownStr                = "unknown"
 )
@@ -41,8 +41,8 @@ func (ct CallType) ToString() string {
 		return AsynchronousCallStr
 	case AsynchronousCallBack:
 		return AsynchronousCallBackStr
-	case ESDTTransferAndExecute:
-		return ESDTTransferAndExecuteStr
+	case DCDTTransferAndExecute:
+		return DCDTTransferAndExecuteStr
 	case ExecOnDestByCaller:
 		return ExecOnDestByCallerStr
 	default:

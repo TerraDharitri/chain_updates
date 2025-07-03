@@ -1,4 +1,4 @@
-#include "../mxvm/context.h"
+#include "../drtvm/context.h"
 
 void memSize() {
 	i64 count = int64getArgument(0);

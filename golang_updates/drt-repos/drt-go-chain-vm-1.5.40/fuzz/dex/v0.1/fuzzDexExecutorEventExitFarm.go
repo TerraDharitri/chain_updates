@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDexExecutor) exitFarm(r *rand.Rand, statistics *eventsStatistics) error {
@@ -51,7 +51,7 @@ func (pfe *fuzzDexExecutor) exitFarm(r *rand.Rand, statistics *eventsStatistics)
 			"to": "%s",
 			"value": "0",
 			"function": "exitFarm",
-			"esdt": {
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d",
 				"nonce": "%d"

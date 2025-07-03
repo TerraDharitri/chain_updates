@@ -3,7 +3,7 @@ package templatesAndPolicies
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/templates"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates"
 )
 
 // TemplatesAndPoliciesHandler  defines the actions that a templates and policies handler should do

@@ -1,8 +1,8 @@
 package factory
 
 import (
-	"github.com/multiversx/eth-chain-sovereign-notifier-go/config"
-	"github.com/multiversx/eth-chain-sovereign-notifier-go/process/client"
+	"github.com/TerraDharitri/eth-chain-sovereign-notifier-go/config"
+	"github.com/TerraDharitri/eth-chain-sovereign-notifier-go/process/client"
 )
 
 // CreateWSETHClientNotifier creates a ws eth client notifier

@@ -1,6 +1,6 @@
 package process
 
-import "github.com/multiversx/mx-chain-core-go/core/check"
+import "github.com/TerraDharitri/drt-go-chain-core/core/check"
 
 type reindexerDataProcessor struct {
 	accountsProcessor AccountsProcessorHandler

@@ -128,28 +128,28 @@ var Tokens = Object{
 			"roles": Object{
 				"type": "nested",
 				"properties": Object{
-					"ESDTRoleLocalBurn": Object{
+					"DCDTRoleLocalBurn": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleLocalMint": Object{
+					"DCDTRoleLocalMint": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTAddQuantity": Object{
+					"DCDTRoleNFTAddQuantity": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTAddURI": Object{
+					"DCDTRoleNFTAddURI": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTBurn": Object{
+					"DCDTRoleNFTBurn": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTCreate": Object{
+					"DCDTRoleNFTCreate": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTUpdateAttributes": Object{
+					"DCDTRoleNFTUpdateAttributes": Object{
 						"type": "keyword",
 					},
-					"ESDTTransferRole": Object{
+					"DCDTTransferRole": Object{
 						"type": "keyword",
 					},
 				},

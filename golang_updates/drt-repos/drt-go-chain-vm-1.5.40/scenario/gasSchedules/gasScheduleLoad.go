@@ -3,7 +3,7 @@ package gasschedules
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-vm-go/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
 	"github.com/pelletier/go-toml"
 )
 

@@ -1,11 +1,11 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.VMHost = (*VMHostMock)(nil)
@@ -90,8 +90,8 @@ func (host *VMHostMock) IsDynamicGasLockingEnabled() bool {
 	return true
 }
 
-// IsESDTFunctionsEnabled mocked method
-func (host *VMHostMock) IsESDTFunctionsEnabled() bool {
+// IsDCDTFunctionsEnabled mocked method
+func (host *VMHostMock) IsDCDTFunctionsEnabled() bool {
 	return true
 }
 
@@ -107,8 +107,8 @@ func (host *VMHostMock) IsAllowedToExecute(_ string) bool {
 	return true
 }
 
-// ExecuteESDTTransfer mocked method
-func (host *VMHostMock) ExecuteESDTTransfer(_ *vmhost.ESDTTransfersArgs, _ vm.CallType) (*vmcommon.VMOutput, uint64, error) {
+// ExecuteDCDTTransfer mocked method
+func (host *VMHostMock) ExecuteDCDTTransfer(_ *vmhost.DCDTTransfersArgs, _ vm.CallType) (*vmcommon.VMOutput, uint64, error) {
 	return nil, 0, nil
 }
 

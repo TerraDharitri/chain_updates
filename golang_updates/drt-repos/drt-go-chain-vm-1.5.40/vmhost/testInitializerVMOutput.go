@@ -3,7 +3,7 @@ package vmhost
 import (
 	"math/big"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // MakeEmptyVMOutput creates a vmcommon.VMOutput struct with default values

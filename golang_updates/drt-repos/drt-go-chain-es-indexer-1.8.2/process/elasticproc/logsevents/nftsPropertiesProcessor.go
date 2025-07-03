@@ -3,11 +3,11 @@ package logsevents
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 const minTopicsUpdate = 4
@@ -23,17 +23,17 @@ func newNFTsPropertiesProcessor(pubKeyConverter core.PubkeyConverter, marshaller
 		marshaller:      marshaller,
 		pubKeyConverter: pubKeyConverter,
 		propertiesChangeOperations: map[string]struct{}{
-			core.BuiltInFunctionESDTNFTAddURI:           {},
-			core.BuiltInFunctionESDTNFTUpdateAttributes: {},
-			core.BuiltInFunctionESDTFreeze:              {},
-			core.BuiltInFunctionESDTUnFreeze:            {},
-			core.BuiltInFunctionESDTPause:               {},
-			core.BuiltInFunctionESDTUnPause:             {},
-			core.ESDTMetaDataRecreate:                   {},
-			core.ESDTMetaDataUpdate:                     {},
-			core.ESDTSetNewURIs:                         {},
-			core.ESDTModifyCreator:                      {},
-			core.ESDTModifyRoyalties:                    {},
+			core.BuiltInFunctionDCDTNFTAddURI:           {},
+			core.BuiltInFunctionDCDTNFTUpdateAttributes: {},
+			core.BuiltInFunctionDCDTFreeze:              {},
+			core.BuiltInFunctionDCDTUnFreeze:            {},
+			core.BuiltInFunctionDCDTPause:               {},
+			core.BuiltInFunctionDCDTUnPause:             {},
+			core.DCDTMetaDataRecreate:                   {},
+			core.DCDTMetaDataUpdate:                     {},
+			core.DCDTSetNewURIs:                         {},
+			core.DCDTModifyCreator:                      {},
+			core.DCDTModifyRoyalties:                    {},
 		},
 	}
 }
@@ -63,9 +63,9 @@ func (npp *nftsPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 	// [1] --> nonce of the NFT (bytes)
 	// [2] --> value
 	// [3:] --> modified data
-	// [3] --> ESDT token data in case of ESDTMetaDataRecreate
+	// [3] --> DCDT token data in case of DCDTMetaDataRecreate
 
-	isModifyCreator := len(topics) == minTopicsUpdate-1 && eventIdentifier == core.ESDTModifyCreator
+	isModifyCreator := len(topics) == minTopicsUpdate-1 && eventIdentifier == core.DCDTModifyCreator
 	if len(topics) < minTopicsUpdate && !isModifyCreator {
 		return argOutputProcessEvent{
 			processed: true,
@@ -94,22 +94,22 @@ func (npp *nftsPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 	}
 
 	switch eventIdentifier {
-	case core.BuiltInFunctionESDTNFTUpdateAttributes:
+	case core.BuiltInFunctionDCDTNFTUpdateAttributes:
 		updateNFT.NewAttributes = topics[3]
-	case core.BuiltInFunctionESDTNFTAddURI:
+	case core.BuiltInFunctionDCDTNFTAddURI:
 		updateNFT.URIsToAdd = topics[3:]
-	case core.ESDTSetNewURIs:
+	case core.DCDTSetNewURIs:
 		updateNFT.SetURIs = true
 		updateNFT.URIsToAdd = topics[3:]
-	case core.BuiltInFunctionESDTFreeze:
+	case core.BuiltInFunctionDCDTFreeze:
 		updateNFT.Freeze = true
-	case core.BuiltInFunctionESDTUnFreeze:
+	case core.BuiltInFunctionDCDTUnFreeze:
 		updateNFT.UnFreeze = true
-	case core.ESDTMetaDataRecreate, core.ESDTMetaDataUpdate:
+	case core.DCDTMetaDataRecreate, core.DCDTMetaDataUpdate:
 		npp.processMetaDataUpdate(updateNFT, topics[3])
-	case core.ESDTModifyCreator:
+	case core.DCDTModifyCreator:
 		updateNFT.NewCreator = callerAddress
-	case core.ESDTModifyRoyalties:
+	case core.DCDTModifyRoyalties:
 		newRoyalties := uint32(big.NewInt(0).SetBytes(topics[3]).Uint64())
 		updateNFT.NewRoyalties = core.OptionalUint32{
 			Value:    newRoyalties,
@@ -123,15 +123,15 @@ func (npp *nftsPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 	}
 }
 
-func (npp *nftsPropertiesProc) processMetaDataUpdate(updateNFT *data.NFTDataUpdate, esdtTokenBytes []byte) {
-	esdtToken := &esdt.ESDigitalToken{}
-	err := npp.marshaller.Unmarshal(esdtToken, esdtTokenBytes)
+func (npp *nftsPropertiesProc) processMetaDataUpdate(updateNFT *data.NFTDataUpdate, dcdtTokenBytes []byte) {
+	dcdtToken := &dcdt.DCDigitalToken{}
+	err := npp.marshaller.Unmarshal(dcdtToken, dcdtTokenBytes)
 	if err != nil {
 		log.Warn("nftsPropertiesProc.processMetaDataRecreate() cannot urmarshal", "error", err.Error())
 		return
 	}
 
-	tokenMetaData := converters.PrepareTokenMetaData(convertMetaData(npp.pubKeyConverter, esdtToken.TokenMetaData))
+	tokenMetaData := converters.PrepareTokenMetaData(convertMetaData(npp.pubKeyConverter, dcdtToken.TokenMetaData))
 	updateNFT.NewMetaData = tokenMetaData
 }
 
@@ -139,12 +139,12 @@ func (npp *nftsPropertiesProc) processPauseAndUnPauseEvent(eventIdentifier strin
 	var updateNFT *data.NFTDataUpdate
 
 	switch eventIdentifier {
-	case core.BuiltInFunctionESDTPause:
+	case core.BuiltInFunctionDCDTPause:
 		updateNFT = &data.NFTDataUpdate{
 			Identifier: token,
 			Pause:      true,
 		}
-	case core.BuiltInFunctionESDTUnPause:
+	case core.BuiltInFunctionDCDTUnPause:
 		updateNFT = &data.NFTDataUpdate{
 			Identifier: token,
 			UnPause:    true,

@@ -3,12 +3,12 @@ package process
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 const (

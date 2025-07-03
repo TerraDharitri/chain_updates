@@ -4,7 +4,7 @@ import (
 	"io"
 	"math/big"
 
-	twos "github.com/multiversx/mx-components-big-int/twos-complement"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
 
 // BigIntValue is a wrapper for a big integer (signed)

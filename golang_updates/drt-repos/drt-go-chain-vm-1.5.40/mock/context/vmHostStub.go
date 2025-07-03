@@ -1,11 +1,11 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.VMHost = (*VMHostStub)(nil)
@@ -29,7 +29,7 @@ type VMHostStub struct {
 	GetContextsCalled         func() (vmhost.ManagedTypesContext, vmhost.BlockchainContext, vmhost.MeteringContext, vmhost.OutputContext, vmhost.RuntimeContext, vmhost.AsyncContext, vmhost.StorageContext)
 	ManagedTypesCalled        func() vmhost.ManagedTypesContext
 
-	ExecuteESDTTransferCalled   func(transfersArgs *vmhost.ESDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error)
+	ExecuteDCDTTransferCalled   func(transfersArgs *vmhost.DCDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error)
 	CreateNewContractCalled     func(input *vmcommon.ContractCreateInput, createContractCallType int) ([]byte, error)
 	ExecuteOnSameContextCalled  func(input *vmcommon.ContractCallInput) error
 	ExecuteOnDestContextCalled  func(input *vmcommon.ContractCallInput) (*vmcommon.VMOutput, bool, error)
@@ -131,8 +131,8 @@ func (vhs *VMHostStub) IsDynamicGasLockingEnabled() bool {
 	return true
 }
 
-// IsESDTFunctionsEnabled mocked method
-func (vhs *VMHostStub) IsESDTFunctionsEnabled() bool {
+// IsDCDTFunctionsEnabled mocked method
+func (vhs *VMHostStub) IsDCDTFunctionsEnabled() bool {
 	return true
 }
 
@@ -176,10 +176,10 @@ func (vhs *VMHostStub) Async() vmhost.AsyncContext {
 	return nil
 }
 
-// ExecuteESDTTransfer mocked method
-func (vhs *VMHostStub) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error) {
-	if vhs.ExecuteESDTTransferCalled != nil {
-		return vhs.ExecuteESDTTransferCalled(transfersArgs, callType)
+// ExecuteDCDTTransfer mocked method
+func (vhs *VMHostStub) ExecuteDCDTTransfer(transfersArgs *vmhost.DCDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error) {
+	if vhs.ExecuteDCDTTransferCalled != nil {
+		return vhs.ExecuteDCDTTransferCalled(transfersArgs, callType)
 	}
 	return nil, 0, nil
 }

@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	ui "github.com/gizak/termui/v3"
-	"github.com/gizak/termui/v3/widgets"
-	"github.com/TerraDharitri/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain/cmd/termui/view"
 	"github.com/TerraDharitri/drt-go-chain/common"
+	ui "github.com/gizak/termui/v3"
+	"github.com/gizak/termui/v3/widgets"
 )
 
 const (
@@ -173,7 +173,7 @@ func (wr *WidgetsRender) prepareInstanceInfo() {
 	rows[5] = []string{computeRedundancyStr(wr.presenter.GetRedundancyLevel(), wr.presenter.GetRedundancyIsMainActive())}
 	rows[6] = []string{fmt.Sprintf("Chain ID: %s", chainID)}
 
-	wr.instanceInfo.Title = "Dharitri instance info:"
+	wr.instanceInfo.Title = "DharitrI instance info:"
 	wr.instanceInfo.RowSeparator = false
 	wr.instanceInfo.Rows = rows
 }

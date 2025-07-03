@@ -8,7 +8,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",
@@ -70,7 +70,7 @@
                         "str:set_mapper.node_id|u32:123": "1",
                         "str:set_mapper.info": "u32:1|u32:1|u32:1|u32:1"
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
@@ -161,7 +161,7 @@
                         "str:set_mapper.node_id|u32:111": "2",
                         "str:set_mapper.info": "u32:2|u32:1|u32:2|u32:2"
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
@@ -229,7 +229,7 @@
                         "str:set_mapper.node_id|u32:111": "2",
                         "str:set_mapper.info": "u32:1|u32:2|u32:2|u32:2"
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
@@ -269,7 +269,7 @@
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",

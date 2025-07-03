@@ -1,5 +1,5 @@
 {
-    "name": "wrap egld",
+    "name": "wrap rewa",
     "gasSchedule": "v4",
     "steps": [
         {
@@ -9,11 +9,11 @@
                     "nonce": "0",
                     "balance": "1000"
                 },
-                "sc:egld_esdt_swap": {
+                "sc:rewa_dcdt_swap": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
-                        "str:EGLD-abcdef": {
+                    "dcdt": {
+                        "str:REWA-abcdef": {
                             "instances": [
                                 {
                                     "nonce": "",
@@ -21,33 +21,33 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {
-                        "str:wrappedEgldTokenId": "str:EGLD-abcdef"
+                        "str:wrappedRewaTokenId": "str:REWA-abcdef"
                     },
-                    "code": "mxsc:../output/multiversx-wegld-swap-sc.mxsc.json"
+                    "code": "drtsc:../output/dharitri-wrewa-swap-sc.drtsc.json"
                 }
             }
         },
         {
             "step": "scCall",
-            "id": "wrap-egld",
+            "id": "wrap-rewa",
             "tx": {
                 "from": "address:user",
-                "to": "sc:egld_esdt_swap",
-                "egldValue": "500",
-                "function": "wrapEgld",
+                "to": "sc:rewa_dcdt_swap",
+                "rewaValue": "500",
+                "function": "wrapRewa",
                 "arguments": [],
                 "gasLimit": "5,000,000",
                 "gasPrice": "0"
             },
             "expect": {
                 "out": [
-                    "nested:str:EGLD-abcdef|u64:0|biguint:500"
+                    "nested:str:REWA-abcdef|u64:0|biguint:500"
                 ],
                 "status": "0",
                 "message": "",
@@ -61,16 +61,16 @@
                 "address:user": {
                     "nonce": "1",
                     "balance": "500",
-                    "esdt": {
-                        "str:EGLD-abcdef": "500"
+                    "dcdt": {
+                        "str:REWA-abcdef": "500"
                     },
                     "storage": {}
                 },
-                "sc:egld_esdt_swap": {
+                "sc:rewa_dcdt_swap": {
                     "nonce": "0",
                     "balance": "500",
-                    "esdt": {
-                        "str:EGLD-abcdef": {
+                    "dcdt": {
+                        "str:REWA-abcdef": {
                             "instances": [
                                 {
                                     "nonce": "",
@@ -78,15 +78,15 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {
-                        "str:wrappedEgldTokenId": "str:EGLD-abcdef"
+                        "str:wrappedRewaTokenId": "str:REWA-abcdef"
                     },
-                    "code": "mxsc:../output/multiversx-wegld-swap-sc.mxsc.json"
+                    "code": "drtsc:../output/dharitri-wrewa-swap-sc.drtsc.json"
                 }
             }
         }

@@ -6,10 +6,10 @@ import (
 	"math"
 	"time"
 
+	indexerClient "github.com/TerraDharitri/drt-go-chain-es-indexer/client"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/index-modifier/pkg/client"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/elastic/go-elasticsearch/v7"
-	indexerClient "github.com/multiversx/mx-chain-es-indexer-go/client"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/index-modifier/pkg/client"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 const (

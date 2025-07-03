@@ -5,12 +5,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/mocks"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/mocks"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/require"
 )
 
@@ -32,7 +32,7 @@ func TestAccountsGetter_ValidatorsAccountsPutUnDelegatedValues(t *testing.T) {
 			return nil
 		},
 	}, pubKeyConverter, data.RestApiAuthenticationData{}, config.GeneralConfig{
-		ValidatorsContract: "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l",
+		ValidatorsContract: "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp",
 	}, &mocks.ElasticClientStub{})
 	require.Nil(t, err)
 

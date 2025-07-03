@@ -3,13 +3,13 @@ package process
 import (
 	"net/http"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/observer"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer"
 )
 
 // Processor defines what a processor should be able to do

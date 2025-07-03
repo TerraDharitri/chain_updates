@@ -3,7 +3,7 @@ package random
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core/mock"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,13 +4,13 @@ import (
 	"math"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -20,13 +20,13 @@ func TestNewVMHost(t *testing.T) {
 	epochNotifier := &mock.EpochNotifierStub{}
 	epochsHandler := &worldmock.EnableEpochsHandlerStub{}
 	vmType := []byte("vmType")
-	esdtTransferParser, err := parsers.NewESDTTransferParser(worldmock.WorldMarshalizer)
+	dcdtTransferParser, err := parsers.NewDCDTTransferParser(worldmock.WorldMarshalizer)
 	require.Nil(t, err)
 
 	makeHostParameters := func() *vmhost.VMHostParameters {
 		return &vmhost.VMHostParameters{
 			VMType:                    vmType,
-			ESDTTransferParser:        esdtTransferParser,
+			DCDTTransferParser:        dcdtTransferParser,
 			BuiltInFuncContainer:      bfc,
 			EpochNotifier:             epochNotifier,
 			EnableEpochsHandler:       epochsHandler,
@@ -45,12 +45,12 @@ func TestNewVMHost(t *testing.T) {
 		require.Nil(t, host)
 		require.ErrorIs(t, err, vmhost.ErrNilHostParameters)
 	})
-	t.Run("NilESDTTransferParser", func(t *testing.T) {
+	t.Run("NilDCDTTransferParser", func(t *testing.T) {
 		hostParameters := makeHostParameters()
-		hostParameters.ESDTTransferParser = nil
+		hostParameters.DCDTTransferParser = nil
 		host, err := NewVMHost(blockchainHook, hostParameters)
 		require.Nil(t, host)
-		require.ErrorIs(t, err, vmhost.ErrNilESDTTransferParser)
+		require.ErrorIs(t, err, vmhost.ErrNilDCDTTransferParser)
 	})
 	t.Run("NilBuiltInFunctionsContainer", func(t *testing.T) {
 		hostParameters := makeHostParameters()

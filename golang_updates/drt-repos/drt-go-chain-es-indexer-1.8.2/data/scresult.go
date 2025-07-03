@@ -30,8 +30,8 @@ type ScResult struct {
 	Type               string        `json:"type,omitempty"`
 	Status             string        `json:"status,omitempty"`
 	Tokens             []string      `json:"tokens,omitempty"`
-	ESDTValues         []string      `json:"esdtValues,omitempty"`
-	ESDTValuesNum      []float64     `json:"esdtValuesNum,omitempty"`
+	DCDTValues         []string      `json:"dcdtValues,omitempty"`
+	DCDTValuesNum      []float64     `json:"dcdtValuesNum,omitempty"`
 	Receivers          []string      `json:"receivers,omitempty"`
 	ReceiversShardIDs  []uint32      `json:"receiversShardIDs,omitempty"`
 	Operation          string        `json:"operation,omitempty"`

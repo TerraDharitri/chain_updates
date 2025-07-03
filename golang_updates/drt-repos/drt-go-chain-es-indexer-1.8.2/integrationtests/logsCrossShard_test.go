@@ -8,12 +8,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -42,8 +42,8 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99"
-	address2 := "erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7"
+	address1 := "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm"
+	address2 := "drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q"
 
 	// index on source
 	pool := &outport.TransactionPool{
@@ -55,8 +55,8 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
-							Topics:     [][]byte{[]byte("ESDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
+							Topics:     [][]byte{[]byte("DCDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
 						},
 						nil,
 					},
@@ -106,8 +106,8 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
-							Topics:     [][]byte{[]byte("ESDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
+							Topics:     [][]byte{[]byte("DCDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
 						},
 						{
 
@@ -165,8 +165,8 @@ func TestIndexLogSourceShardAndAfterDestinationAndAgainSource(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTTransfer),
-							Topics:     [][]byte{[]byte("ESDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
+							Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
+							Topics:     [][]byte{[]byte("DCDT-abcd"), big.NewInt(0).Bytes(), big.NewInt(1).Bytes()},
 						},
 						nil,
 					},

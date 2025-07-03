@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/TerraDharitri/drt-go-chain/config"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	coreComp "github.com/TerraDharitri/drt-go-chain/factory/core"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
@@ -20,7 +20,7 @@ func TestManagedCoreComponents(t *testing.T) {
 		t.Parallel()
 
 		managedCoreComponents, err := coreComp.NewManagedCoreComponents(nil)
-		require.Equal(t, errorsMx.ErrNilCoreComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilCoreComponentsFactory, err)
 		require.Nil(t, managedCoreComponents)
 	})
 	t.Run("invalid args should error", func(t *testing.T) {
@@ -130,7 +130,7 @@ func TestManagedCoreComponents_CheckSubcomponents(t *testing.T) {
 	coreComponentsFactory, _ := coreComp.NewCoreComponentsFactory(coreArgs)
 	managedCoreComponents, err := coreComp.NewManagedCoreComponents(coreComponentsFactory)
 	require.NoError(t, err)
-	require.Equal(t, errorsMx.ErrNilCoreComponents, managedCoreComponents.CheckSubcomponents())
+	require.Equal(t, errorsDrt.ErrNilCoreComponents, managedCoreComponents.CheckSubcomponents())
 
 	err = managedCoreComponents.Create()
 	require.NoError(t, err)

@@ -5,8 +5,8 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // DefaultVMType is an exposed value to use in tests
@@ -164,24 +164,24 @@ func (contractInput *ContractCallInputBuilder) WithCurrentTxHash(txHash []byte) 
 	return contractInput
 }
 
-func (contractInput *ContractCallInputBuilder) initESDTTransferIfNeeded() {
-	if len(contractInput.ESDTTransfers) == 0 {
-		contractInput.ESDTTransfers = make([]*vmcommon.ESDTTransfer, 1)
-		contractInput.ESDTTransfers[0] = &vmcommon.ESDTTransfer{}
+func (contractInput *ContractCallInputBuilder) initDCDTTransferIfNeeded() {
+	if len(contractInput.DCDTTransfers) == 0 {
+		contractInput.DCDTTransfers = make([]*vmcommon.DCDTTransfer, 1)
+		contractInput.DCDTTransfers[0] = &vmcommon.DCDTTransfer{}
 	}
 }
 
-// WithESDTValue provides the ESDTValue for ContractCallInputBuilder
-func (contractInput *ContractCallInputBuilder) WithESDTValue(esdtValue *big.Int) *ContractCallInputBuilder {
-	contractInput.initESDTTransferIfNeeded()
-	contractInput.ContractCallInput.ESDTTransfers[0].ESDTValue = esdtValue
+// WithDCDTValue provides the DCDTValue for ContractCallInputBuilder
+func (contractInput *ContractCallInputBuilder) WithDCDTValue(dcdtValue *big.Int) *ContractCallInputBuilder {
+	contractInput.initDCDTTransferIfNeeded()
+	contractInput.ContractCallInput.DCDTTransfers[0].DCDTValue = dcdtValue
 	return contractInput
 }
 
-// WithESDTTokenName provides the ESDTTokenName for ContractCallInputBuilder
-func (contractInput *ContractCallInputBuilder) WithESDTTokenName(esdtTokenName []byte) *ContractCallInputBuilder {
-	contractInput.initESDTTransferIfNeeded()
-	contractInput.ContractCallInput.ESDTTransfers[0].ESDTTokenName = esdtTokenName
+// WithDCDTTokenName provides the DCDTTokenName for ContractCallInputBuilder
+func (contractInput *ContractCallInputBuilder) WithDCDTTokenName(dcdtTokenName []byte) *ContractCallInputBuilder {
+	contractInput.initDCDTTransferIfNeeded()
+	contractInput.ContractCallInput.DCDTTransfers[0].DCDTTokenName = dcdtTokenName
 	return contractInput
 }
 

@@ -13,8 +13,8 @@
         "hash": "SCR-hash1",
         "nonce": 129720,
         "value": 0,
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "data": "@75736572206572726f72",
         "gasLimit": 0,
         "gasPrice": 0,
@@ -24,10 +24,10 @@
       }
     ],
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "signalError",
           "topics": [
             "Sd25Y1LBEqThbU8hyGXwUowOF/MPA2oXKg30lSKKuzI="
@@ -38,7 +38,7 @@
     },
     "status": "success",
     "receivers": [
-      "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty"
+      "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6"
     ],
     "receiversShardIDs": [
       2
@@ -58,8 +58,8 @@
       "processingTypeOnSource": "MoveBalance",
       "processingTypeOnDestination": "MoveBalance",
       "hash": "SCR-hash1",
-      "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "gasUsed": 81500,
       "data": "QDc1NzM2NTcyMjA2NTcyNzI2Zjcy",
       "returnMessage": "must be called after saveAttestation",

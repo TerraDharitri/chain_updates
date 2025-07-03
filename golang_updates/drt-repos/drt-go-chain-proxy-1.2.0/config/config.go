@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // GeneralSettingsConfig will hold the general settings for a node

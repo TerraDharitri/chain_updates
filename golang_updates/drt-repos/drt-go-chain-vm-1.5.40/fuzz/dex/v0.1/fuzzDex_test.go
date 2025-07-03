@@ -10,8 +10,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	scenio "github.com/multiversx/mx-chain-scenario-go/scenario/io"
-	roulette "github.com/multiversx/mx-chain-vm-go/fuzz/weightedroulette"
+	scenio "github.com/TerraDharitri/drt-go-chain-scenario/scenario/io"
+	roulette "github.com/TerraDharitri/drt-go-chain-vm/fuzz/weightedroulette"
 	"github.com/stretchr/testify/require"
 )
 
@@ -63,7 +63,7 @@ func TestFuzzDex_v0_1(t *testing.T) {
 
 	err := pfe.init(
 		&fuzzDexExecutorInitArgs{
-			wegldTokenId:            "WEGLD-abcdef",
+			wrewaTokenId:            "WREWA-abcdef",
 			mexTokenId:              "MEX-abcdef",
 			busdTokenId:             "BUSD-abcdef",
 			wemeLpTokenId:           "WEMELP-abcdef",

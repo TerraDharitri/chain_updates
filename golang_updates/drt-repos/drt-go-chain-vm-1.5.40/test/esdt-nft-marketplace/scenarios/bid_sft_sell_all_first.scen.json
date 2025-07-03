@@ -12,7 +12,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "100",
+                "rewaValue": "100",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -41,7 +41,7 @@
                 "sc:marketplace": {
                     "nonce": "0",
                     "balance": "100",
-                    "esdt": {
+                    "dcdt": {
                         "str:SFT-123456": {
                             "instances": [
                                 {
@@ -60,7 +60,7 @@
                             "00-auctioned_token": "nested:str:SFT-123456|u64:1",
                             "01-nr_auctioned_tokens": "biguint:10",
                             "02-auction_type": "u8:2",
-                            "04-payment_token": "nested:str:EGLD|u64:0",
+                            "04-payment_token": "nested:str:REWA|u64:0",
                             "05-min_bid": "biguint:100",
                             "06-max_bid": "u8:1|biguint:1000",
                             "07-start_time": "u64:123,000",
@@ -72,7 +72,7 @@
                             "13-creator_royalties_percentage": "biguint:2000"
                         }
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

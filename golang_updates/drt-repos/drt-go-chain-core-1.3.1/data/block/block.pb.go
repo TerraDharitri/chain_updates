@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -336,8 +336,8 @@ type Header struct {
 	ReceiptsHash       []byte            `protobuf:"bytes,19,opt,name=ReceiptsHash,proto3" json:"receiptsHash,omitempty"`
 	ChainID            []byte            `protobuf:"bytes,20,opt,name=ChainID,proto3" json:"chainID,omitempty"`
 	SoftwareVersion    []byte            `protobuf:"bytes,21,opt,name=SoftwareVersion,proto3" json:"softwareVersion,omitempty"`
-	AccumulatedFees    *math_big.Int     `protobuf:"bytes,22,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"accumulatedFees,omitempty"`
-	DeveloperFees      *math_big.Int     `protobuf:"bytes,23,opt,name=DeveloperFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"developerFees,omitempty"`
+	AccumulatedFees    *math_big.Int     `protobuf:"bytes,22,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"accumulatedFees,omitempty"`
+	DeveloperFees      *math_big.Int     `protobuf:"bytes,23,opt,name=DeveloperFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"developerFees,omitempty"`
 	Reserved           []byte            `protobuf:"bytes,24,opt,name=Reserved,proto3" json:"reserved,omitempty"`
 }
 
@@ -945,13 +945,13 @@ func (this *Header) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.AccumulatedFees, that1.AccumulatedFees) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.DeveloperFees, that1.DeveloperFees) {
 			return false
 		}
@@ -1309,7 +1309,7 @@ func (m *Header) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0xc2
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.DeveloperFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.DeveloperFees, dAtA[i:]); err != nil {
@@ -1322,7 +1322,7 @@ func (m *Header) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0xba
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.AccumulatedFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.AccumulatedFees, dAtA[i:]); err != nil {
@@ -1746,12 +1746,12 @@ func (m *Header) Size() (n int) {
 		n += 2 + l + sovBlock(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.AccumulatedFees)
 		n += 2 + l + sovBlock(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.DeveloperFees)
 		n += 2 + l + sovBlock(uint64(l))
 	}
@@ -3062,7 +3062,7 @@ func (m *Header) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3100,7 +3100,7 @@ func (m *Header) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

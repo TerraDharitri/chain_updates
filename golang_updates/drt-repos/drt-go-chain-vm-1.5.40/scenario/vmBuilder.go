@@ -3,17 +3,17 @@ package scenario
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	scenexec "github.com/multiversx/mx-chain-scenario-go/scenario/executor"
-	scenmodel "github.com/multiversx/mx-chain-scenario-go/scenario/model"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	gasSchedules "github.com/multiversx/mx-chain-vm-go/scenario/gasSchedules"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/hostCore"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	scenexec "github.com/TerraDharitri/drt-go-chain-scenario/scenario/executor"
+	scenmodel "github.com/TerraDharitri/drt-go-chain-scenario/scenario/model"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	gasSchedules "github.com/TerraDharitri/drt-go-chain-vm/scenario/gasSchedules"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 )
 
 var _ scenexec.VMBuilder = (*ScenarioVMHostBuilder)(nil)
@@ -78,23 +78,23 @@ func (svb *ScenarioVMHostBuilder) NewVM(
 	}
 
 	blockGasLimit := uint64(10000000)
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(worldmock.WorldMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(worldmock.WorldMarshalizer)
 
 	return hostCore.NewVMHost(
 		world,
 		&vmhost.VMHostParameters{
-			VMType:                    svb.VMType,
-			OverrideVMExecutor:        svb.OverrideVMExecutor,
-			BlockGasLimit:             blockGasLimit,
-			GasSchedule:               gasSchedule,
-			BuiltInFuncContainer:      world.BuiltinFuncs.Container,
-			ProtectedKeyPrefix:        []byte(core.ProtectedKeyPrefix),
-			ESDTTransferParser:        esdtTransferParser,
-			EpochNotifier:             &mock.EpochNotifierStub{},
-			EnableEpochsHandler:       world.EnableEpochsHandler,
-			WasmerSIGSEGVPassthrough:  false,
-			Hasher:                    worldmock.DefaultHasher,
-			MapOpcodeAddressIsAllowed: map[string]map[string]struct{}{},
+			VMType:                              svb.VMType,
+			OverrideVMExecutor:                  svb.OverrideVMExecutor,
+			BlockGasLimit:                       blockGasLimit,
+			GasSchedule:                         gasSchedule,
+			BuiltInFuncContainer:                world.BuiltinFuncs.Container,
+			ProtectedKeyPrefix:                  []byte(core.ProtectedKeyPrefix),
+			DCDTTransferParser:                  dcdtTransferParser,
+			EpochNotifier:                       &mock.EpochNotifierStub{},
+			EnableEpochsHandler:                 world.EnableEpochsHandler,
+			WasmerSIGSEGVPassthrough:            false,
+			Hasher:                              worldmock.DefaultHasher,
+			MapOpcodeAddressIsAllowed:           map[string]map[string]struct{}{},
 			TimeOutForSCExecutionInMilliseconds: svb.TimeOutForSCExecutionInMilliseconds,
 		})
 

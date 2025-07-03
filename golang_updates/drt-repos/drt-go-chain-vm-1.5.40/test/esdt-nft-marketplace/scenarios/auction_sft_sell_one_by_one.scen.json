@@ -20,7 +20,7 @@
             "tx": {
                 "from": "address:seller",
                 "to": "sc:marketplace",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:SFT-123456",
                         "nonce": "1",
@@ -32,7 +32,7 @@
                     "100",
                     "100",
                     "123,456",
-                    "str:EGLD",
+                    "str:REWA",
                     "0",
                     "true"
                 ],
@@ -55,7 +55,7 @@
                 "address:seller": {
                     "nonce": "1",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "instances": [
                                 {
@@ -73,7 +73,7 @@
                 "sc:marketplace": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:SFT-123456": {
                             "instances": [
                                 {
@@ -92,7 +92,7 @@
                             "00-auctioned_token": "nested:str:SFT-123456|u64:1",
                             "01-nr_auctioned_tokens": "biguint:10",
                             "02-auction_type": "u8:3",
-                            "04-payment_token": "nested:str:EGLD|u64:0",
+                            "04-payment_token": "nested:str:REWA|u64:0",
                             "05-min_bid": "biguint:100",
                             "06-max_bid": "u8:1|biguint:100",
                             "07-start_time": "u64:123,000",
@@ -104,7 +104,7 @@
                             "13-creator_royalties_percentage": "biguint:2000"
                         }
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

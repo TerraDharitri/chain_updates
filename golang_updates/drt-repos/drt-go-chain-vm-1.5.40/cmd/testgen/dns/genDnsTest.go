@@ -6,10 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
-	scenio "github.com/multiversx/mx-chain-scenario-go/scenario/io"
-	scenjsonparse "github.com/multiversx/mx-chain-scenario-go/scenario/json/parse"
-	scenjsonwrite "github.com/multiversx/mx-chain-scenario-go/scenario/json/write"
-	scenmodel "github.com/multiversx/mx-chain-scenario-go/scenario/model"
+	scenio "github.com/TerraDharitri/drt-go-chain-scenario/scenario/io"
+	scenjsonparse "github.com/TerraDharitri/drt-go-chain-scenario/scenario/json/parse"
+	scenjsonwrite "github.com/TerraDharitri/drt-go-chain-scenario/scenario/json/write"
+	scenmodel "github.com/TerraDharitri/drt-go-chain-scenario/scenario/model"
 )
 
 // DefaultVMType helps us set up the scenario generator.

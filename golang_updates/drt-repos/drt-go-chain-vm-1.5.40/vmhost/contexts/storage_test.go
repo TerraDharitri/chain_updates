@@ -3,16 +3,17 @@ package contexts
 import (
 	"bytes"
 	"errors"
-	"github.com/multiversx/mx-chain-core-go/core"
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 	"github.com/stretchr/testify/require"
 )
 

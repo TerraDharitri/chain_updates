@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/require"
 )
 

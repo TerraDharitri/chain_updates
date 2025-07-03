@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 const (

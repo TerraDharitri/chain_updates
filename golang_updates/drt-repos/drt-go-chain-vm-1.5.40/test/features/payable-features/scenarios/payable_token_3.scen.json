@@ -8,12 +8,12 @@
                 "sc:payable-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/payable-features.mxsc.json"
+                    "code": "drtsc:../output/payable-features.drtsc.json"
                 },
                 "address:an-account": {
                     "nonce": "0",
                     "balance": "1,000,000,000,000",
-                    "esdt": {
+                    "dcdt": {
                         "str:PAYABLE-FEATURES-TOKEN": "1,000,000,000,000",
                         "str:OTHER-TOKEN": "1,000,000,000,000"
                     }
@@ -34,7 +34,7 @@
             "expect": {
                 "out": [],
                 "status": "4",
-                "message": "str:function expects single ESDT payment",
+                "message": "str:function expects single DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -46,7 +46,7 @@
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "egldValue": "5",
+                "rewaValue": "5",
                 "function": "payable_token_3",
                 "arguments": [],
                 "gasLimit": "50,000,000",
@@ -55,7 +55,7 @@
             "expect": {
                 "out": [],
                 "status": "4",
-                "message": "str:function expects single ESDT payment",
+                "message": "str:function expects single DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -67,7 +67,7 @@
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:PAYABLE-FEATURES-TOKEN",
                         "value": "100"
@@ -95,7 +95,7 @@
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:OTHER-TOKEN",
                         "value": "100"

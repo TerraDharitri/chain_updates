@@ -6,19 +6,19 @@ import (
 	"fmt"
 	"os"
 
-	scenexec "github.com/multiversx/mx-chain-scenario-go/scenario/executor"
-	fr "github.com/multiversx/mx-chain-scenario-go/scenario/expression/fileresolver"
-	scenjsonparse "github.com/multiversx/mx-chain-scenario-go/scenario/json/parse"
-	scenjsonwrite "github.com/multiversx/mx-chain-scenario-go/scenario/json/write"
-	scenmodel "github.com/multiversx/mx-chain-scenario-go/scenario/model"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	vmscenario "github.com/multiversx/mx-chain-vm-go/scenario"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	scenexec "github.com/TerraDharitri/drt-go-chain-scenario/scenario/executor"
+	fr "github.com/TerraDharitri/drt-go-chain-scenario/scenario/expression/fileresolver"
+	scenjsonparse "github.com/TerraDharitri/drt-go-chain-scenario/scenario/json/parse"
+	scenjsonwrite "github.com/TerraDharitri/drt-go-chain-scenario/scenario/json/write"
+	scenmodel "github.com/TerraDharitri/drt-go-chain-scenario/scenario/model"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	vmscenario "github.com/TerraDharitri/drt-go-chain-vm/scenario"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 type fuzzDexExecutorInitArgs struct {
-	wegldTokenId            string
+	wrewaTokenId            string
 	mexTokenId              string
 	busdTokenId             string
 	wemeLpTokenId           string
@@ -78,7 +78,7 @@ type fuzzDexExecutor struct {
 	parser         scenjsonparse.Parser
 	txIndex        int
 
-	wegldTokenId            string
+	wrewaTokenId            string
 	mexTokenId              string
 	busdTokenId             string
 	wemeLpTokenId           string
@@ -228,21 +228,21 @@ func (pfe *fuzzDexExecutor) userAddress(userIndex int) string {
 	return fmt.Sprintf("address:user%06d", userIndex)
 }
 
-func (pfe *fuzzDexExecutor) fullOfEsdtWalletString() string {
-	esdtString := ""
+func (pfe *fuzzDexExecutor) fullOfDcdtWalletString() string {
+	dcdtString := ""
 
-	esdtString += fmt.Sprintf(`
-						"str:%s": "1,000,000,000,000,000,000,000,000,000,000",`, pfe.wegldTokenId)
-	esdtString += fmt.Sprintf(`
+	dcdtString += fmt.Sprintf(`
+						"str:%s": "1,000,000,000,000,000,000,000,000,000,000",`, pfe.wrewaTokenId)
+	dcdtString += fmt.Sprintf(`
 						"str:%s": "1,000,000,000,000,000,000,000,000,000,000",`, pfe.mexTokenId)
-	esdtString += fmt.Sprintf(`
+	dcdtString += fmt.Sprintf(`
 						"str:%s": "1,000,000,000,000,000,000,000,000,000,000",`, pfe.busdTokenId)
-	esdtString += fmt.Sprintf(`
+	dcdtString += fmt.Sprintf(`
 						"str:%s": "1,000,000,000,000,000,000,000,000,000,000",`, pfe.wemeLpTokenId)
-	esdtString += fmt.Sprintf(`
+	dcdtString += fmt.Sprintf(`
 						"str:%s": "1,000,000,000,000,000,000,000,000,000,000"`, pfe.webuLpTokenId)
 
-	return esdtString
+	return dcdtString
 }
 
 func (pfe *fuzzDexExecutor) querySingleResult(from, to, funcName, args string) ([][]byte, error) {

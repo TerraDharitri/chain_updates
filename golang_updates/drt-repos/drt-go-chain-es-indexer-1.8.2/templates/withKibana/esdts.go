@@ -1,9 +1,9 @@
 package withKibana
 
-// ESDTs will hold the configuration for the esdts index
-var ESDTs = Object{
+// DCDTs will hold the configuration for the dcdts index
+var DCDTs = Object{
 	"index_patterns": Array{
-		"esdts-*",
+		"dcdts-*",
 	},
 	"settings": Object{
 		"number_of_shards":   3,
@@ -99,28 +99,28 @@ var ESDTs = Object{
 			"roles": Object{
 				"type": "nested",
 				"properties": Object{
-					"ESDTRoleLocalBurn": Object{
+					"DCDTRoleLocalBurn": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleLocalMint": Object{
+					"DCDTRoleLocalMint": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTAddQuantity": Object{
+					"DCDTRoleNFTAddQuantity": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTAddURI": Object{
+					"DCDTRoleNFTAddURI": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTBurn": Object{
+					"DCDTRoleNFTBurn": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTCreate": Object{
+					"DCDTRoleNFTCreate": Object{
 						"type": "keyword",
 					},
-					"ESDTRoleNFTUpdateAttributes": Object{
+					"DCDTRoleNFTUpdateAttributes": Object{
 						"type": "keyword",
 					},
-					"ESDTTransferRole": Object{
+					"DCDTTransferRole": Object{
 						"type": "keyword",
 					},
 				},

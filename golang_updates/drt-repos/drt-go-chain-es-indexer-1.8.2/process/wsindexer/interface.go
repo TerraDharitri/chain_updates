@@ -1,7 +1,7 @@
 package wsindexer
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 )
 
 // WSClient defines what a websocket client should do

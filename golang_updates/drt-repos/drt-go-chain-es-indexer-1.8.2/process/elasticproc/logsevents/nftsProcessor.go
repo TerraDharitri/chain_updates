@@ -4,15 +4,15 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/sharding"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/sharding"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 const (
@@ -35,9 +35,9 @@ func newNFTsProcessor(
 		pubKeyConverter: pubKeyConverter,
 		marshalizer:     marshalizer,
 		nftOperationsIdentifiers: map[string]struct{}{
-			core.BuiltInFunctionESDTNFTBurn:   {},
-			core.BuiltInFunctionESDTNFTCreate: {},
-			core.BuiltInFunctionESDTWipe:      {},
+			core.BuiltInFunctionDCDTNFTBurn:   {},
+			core.BuiltInFunctionDCDTNFTCreate: {},
+			core.BuiltInFunctionDCDTWipe:      {},
 		},
 	}
 }
@@ -54,7 +54,7 @@ func (np *nftsProcessor) processEvent(args *argsProcessEvent) argOutputProcessEv
 	// [1] --> nonce of the NFT (bytes)
 	// [2] --> value
 	// [3] --> receiver NFT address in case of NFTTransfer
-	//     --> ESDT token data in case of NFTCreate
+	//     --> DCDT token data in case of NFTCreate
 	topics := args.event.GetTopics()
 	nonceBig := big.NewInt(0).SetBytes(topics[1])
 	if nonceBig.Uint64() == 0 {
@@ -85,7 +85,7 @@ func (np *nftsProcessor) processEvent(args *argsProcessEvent) argOutputProcessEv
 		}
 	}
 
-	if eventIdentifier == core.BuiltInFunctionESDTWipe {
+	if eventIdentifier == core.BuiltInFunctionDCDTWipe {
 		args.tokensSupply.Add(&data.TokenInfo{
 			Token:      token,
 			Identifier: identifier,
@@ -101,8 +101,8 @@ func (np *nftsProcessor) processEvent(args *argsProcessEvent) argOutputProcessEv
 
 func (np *nftsProcessor) shouldAddReceiverData(args *argsProcessEvent) bool {
 	eventIdentifier := string(args.event.GetIdentifier())
-	isWrongIdentifier := eventIdentifier != core.BuiltInFunctionESDTNFTTransfer &&
-		eventIdentifier != core.BuiltInFunctionMultiESDTNFTTransfer && eventIdentifier != core.BuiltInFunctionESDTWipe
+	isWrongIdentifier := eventIdentifier != core.BuiltInFunctionDCDTNFTTransfer &&
+		eventIdentifier != core.BuiltInFunctionMultiDCDTNFTTransfer && eventIdentifier != core.BuiltInFunctionDCDTWipe
 
 	if isWrongIdentifier || len(args.event.GetTopics()) < numTopicsWithReceiverAddress {
 		return false
@@ -121,7 +121,7 @@ func (np *nftsProcessor) processNFTEventOnSender(
 	token := string(topics[0])
 	nonceBig := big.NewInt(0).SetBytes(topics[1])
 	eventIdentifier := string(event.GetIdentifier())
-	if eventIdentifier == core.BuiltInFunctionESDTNFTBurn || eventIdentifier == core.BuiltInFunctionESDTWipe {
+	if eventIdentifier == core.BuiltInFunctionDCDTNFTBurn || eventIdentifier == core.BuiltInFunctionDCDTWipe {
 		tokensSupply.Add(&data.TokenInfo{
 			Token:      token,
 			Identifier: converters.ComputeTokenIdentifier(token, nonceBig.Uint64()),
@@ -130,21 +130,21 @@ func (np *nftsProcessor) processNFTEventOnSender(
 		})
 	}
 
-	isNFTCreate := eventIdentifier == core.BuiltInFunctionESDTNFTCreate
+	isNFTCreate := eventIdentifier == core.BuiltInFunctionDCDTNFTCreate
 	shouldReturn := !isNFTCreate || len(topics) < numTopicsWithReceiverAddress
 	if shouldReturn {
 		return
 	}
 
-	esdtTokenBytes := topics[3]
-	esdtToken := &esdt.ESDigitalToken{}
-	err := np.marshalizer.Unmarshal(esdtToken, esdtTokenBytes)
+	dcdtTokenBytes := topics[3]
+	dcdtToken := &dcdt.DCDigitalToken{}
+	err := np.marshalizer.Unmarshal(dcdtToken, dcdtTokenBytes)
 	if err != nil {
 		log.Warn("nftsProcessor.processNFTEventOnSender() cannot urmarshal", "error", err.Error())
 		return
 	}
 
-	tokenMetaData := converters.PrepareTokenMetaData(convertMetaData(np.pubKeyConverter, esdtToken.TokenMetaData))
+	tokenMetaData := converters.PrepareTokenMetaData(convertMetaData(np.pubKeyConverter, dcdtToken.TokenMetaData))
 	tokensCreateInfo.Add(&data.TokenInfo{
 		Token:      token,
 		Identifier: converters.ComputeTokenIdentifier(token, nonceBig.Uint64()),
@@ -154,7 +154,7 @@ func (np *nftsProcessor) processNFTEventOnSender(
 	})
 }
 
-func convertMetaData(pubKeyConverter core.PubkeyConverter, metaData *esdt.MetaData) *alteredAccount.TokenMetaData {
+func convertMetaData(pubKeyConverter core.PubkeyConverter, metaData *dcdt.MetaData) *alteredAccount.TokenMetaData {
 	if metaData == nil {
 		return nil
 	}

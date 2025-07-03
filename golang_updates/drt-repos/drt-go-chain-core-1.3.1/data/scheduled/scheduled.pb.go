@@ -8,10 +8,10 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
-	block "github.com/multiversx/mx-chain-core-go/data/block"
-	smartContractResult "github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	transaction "github.com/multiversx/mx-chain-core-go/data/transaction"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
+	block "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	smartContractResult "github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	transaction "github.com/TerraDharitri/drt-go-chain-core/data/transaction"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -32,8 +32,8 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type GasAndFees struct {
-	AccumulatedFees *math_big.Int `protobuf:"bytes,1,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"AccumulatedFees,omitempty"`
-	DeveloperFees   *math_big.Int `protobuf:"bytes,2,opt,name=DeveloperFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"DeveloperFees,omitempty"`
+	AccumulatedFees *math_big.Int `protobuf:"bytes,1,opt,name=AccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"AccumulatedFees,omitempty"`
+	DeveloperFees   *math_big.Int `protobuf:"bytes,2,opt,name=DeveloperFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"DeveloperFees,omitempty"`
 	GasProvided     uint64        `protobuf:"varint,3,opt,name=GasProvided,proto3" json:"GasProvided,omitempty"`
 	GasPenalized    uint64        `protobuf:"varint,4,opt,name=GasPenalized,proto3" json:"GasPenalized,omitempty"`
 	GasRefunded     uint64        `protobuf:"varint,5,opt,name=GasRefunded,proto3" json:"GasRefunded,omitempty"`
@@ -235,13 +235,13 @@ func (this *GasAndFees) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.AccumulatedFees, that1.AccumulatedFees) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.DeveloperFees, that1.DeveloperFees) {
 			return false
 		}
@@ -388,7 +388,7 @@ func (m *GasAndFees) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x18
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.DeveloperFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.DeveloperFees, dAtA[i:]); err != nil {
@@ -399,7 +399,7 @@ func (m *GasAndFees) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.AccumulatedFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.AccumulatedFees, dAtA[i:]); err != nil {
@@ -514,12 +514,12 @@ func (m *GasAndFees) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.AccumulatedFees)
 		n += 1 + l + sovScheduled(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.DeveloperFees)
 		n += 1 + l + sovScheduled(uint64(l))
 	}
@@ -686,7 +686,7 @@ func (m *GasAndFees) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -724,7 +724,7 @@ func (m *GasAndFees) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

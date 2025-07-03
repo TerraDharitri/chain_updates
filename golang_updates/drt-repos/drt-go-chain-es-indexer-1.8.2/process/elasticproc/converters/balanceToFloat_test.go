@@ -81,7 +81,7 @@ func TestComputeBalanceToFloatInf(t *testing.T) {
 	ap, _ := NewBalanceConverter(18)
 	require.NotNil(t, ap)
 
-	str := "erd1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9q2hgxwwerd1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9q2hgxwwerd1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9q2hgxwwerd1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9q2hgxww"
+	str := "drt1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9qhtl9dsdrt1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9qhtl9dsdrt1ahmy0yjhjg87n755yv99nzla22zzwfud55sa69gk3anyxyyucq9qhtl9ds"
 	bigValue := big.NewInt(0).SetBytes([]byte(str))
 	valueNum, err := ap.ConvertBigValueToFloat(bigValue)
 	require.Equal(t, errValueTooBig, err)

@@ -1,8 +1,8 @@
 package testscommon
 
 import (
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/process"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
 )
 
 // SimulatorHandlerMock -

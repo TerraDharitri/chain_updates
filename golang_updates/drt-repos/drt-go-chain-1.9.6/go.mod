@@ -25,7 +25,7 @@ require (
 	github.com/TerraDharitri/drt-go-chain-storage v1.0.19
 	github.com/TerraDharitri/drt-go-chain-vm-common v1.5.16
 	github.com/TerraDharitri/drt-go-chain-vm v1.5.40
-	github.com/TerraDharitri/drt-go-chain-vm-v1 v1.2.68
+	github.com/TerraDharitri/drt-go-chain-vm v1.2.68
 	github.com/TerraDharitri/drt-go-chain-vm-v2 v1.3.69
 	github.com/TerraDharitri/drt-go-chain-vm-v3 v1.4.98
 	github.com/pelletier/go-toml v1.9.3
@@ -135,7 +135,7 @@ require (
 	github.com/multiformats/go-multistream v0.4.1 // indirect
 	github.com/multiformats/go-varint v0.0.7 // indirect
 	github.com/TerraDharitri/concurrent-map v0.1.4 // indirect
-	github.com/TerraDharitri/mx-components-big-int v1.0.0 // indirect
+	github.com/TerraDharitri/drt-go-bigint v1.0.0 // indirect
 	github.com/nsf/termbox-go v0.0.0-20190121233118-02980233997d // indirect
 	github.com/onsi/ginkgo/v2 v2.9.7 // indirect
 	github.com/opencontainers/runtime-spec v1.0.2 // indirect

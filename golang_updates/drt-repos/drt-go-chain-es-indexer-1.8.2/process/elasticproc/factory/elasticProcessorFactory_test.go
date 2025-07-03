@@ -3,7 +3,7 @@ package factory
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,5 +1,5 @@
-#include "../mxvm/context.h"
-#include "../mxvm/test_utils.h"
+#include "../drtvm/context.h"
+#include "../drtvm/test_utils.h"
 
 byte sourceContractAddress[32] = {};
 byte newAddress[32] = {};

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 const (
@@ -73,15 +73,15 @@ func whiteListedStorage(uris [][]byte) bool {
 }
 
 // PrepareNFTUpdateData will prepare nfts update data
-func PrepareNFTUpdateData(buffSlice *data.BufferSlice, updateNFTData []*data.NFTDataUpdate, isAccountsESDTIndex bool, index string) error {
+func PrepareNFTUpdateData(buffSlice *data.BufferSlice, updateNFTData []*data.NFTDataUpdate, isAccountsDCDTIndex bool, index string) error {
 	for _, nftUpdate := range updateNFTData {
 		id := nftUpdate.Identifier
-		if isAccountsESDTIndex {
+		if isAccountsDCDTIndex {
 			id = fmt.Sprintf("%s-%s", nftUpdate.Address, nftUpdate.Identifier)
 		}
 
 		metaData := []byte(fmt.Sprintf(`{"update":{ "_index":"%s","_id":"%s"}}%s`, index, id, "\n"))
-		freezeOrUnfreezeTokenIndex := (nftUpdate.Freeze || nftUpdate.UnFreeze) && !isAccountsESDTIndex
+		freezeOrUnfreezeTokenIndex := (nftUpdate.Freeze || nftUpdate.UnFreeze) && !isAccountsDCDTIndex
 		if freezeOrUnfreezeTokenIndex {
 			err := buffSlice.PutData(metaData, prepareSerializeDataForFreezeAndUnFreeze(nftUpdate))
 			if err != nil {
@@ -89,7 +89,7 @@ func PrepareNFTUpdateData(buffSlice *data.BufferSlice, updateNFTData []*data.NFT
 			}
 			continue
 		}
-		pauseOrUnPauseTokenIndex := (nftUpdate.Pause || nftUpdate.UnPause) && !isAccountsESDTIndex
+		pauseOrUnPauseTokenIndex := (nftUpdate.Pause || nftUpdate.UnPause) && !isAccountsDCDTIndex
 		if pauseOrUnPauseTokenIndex {
 			err := buffSlice.PutData(metaData, prepareSerializedDataForPauseAndUnPause(nftUpdate))
 			if err != nil {

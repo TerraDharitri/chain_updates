@@ -6,7 +6,7 @@
             "step": "setState",
             "accounts": {
                 "sc:basic-features": {
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {}
             }

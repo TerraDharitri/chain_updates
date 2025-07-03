@@ -1,7 +1,7 @@
 package block
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // GetLastFinalizedHeaderHandlers returns the last finalized header handlers

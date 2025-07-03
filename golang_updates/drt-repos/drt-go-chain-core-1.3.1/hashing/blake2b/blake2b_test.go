@@ -3,7 +3,7 @@ package blake2b_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	blake2bLib "golang.org/x/crypto/blake2b"

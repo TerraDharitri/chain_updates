@@ -36,8 +36,8 @@ type Transaction struct {
 	HasOperations        bool          `json:"hasOperations,omitempty"`
 	HasLogs              bool          `json:"hasLogs,omitempty"`
 	Tokens               []string      `json:"tokens,omitempty"`
-	ESDTValues           []string      `json:"esdtValues,omitempty"`
-	ESDTValuesNum        []float64     `json:"esdtValuesNum,omitempty"`
+	DCDTValues           []string      `json:"dcdtValues,omitempty"`
+	DCDTValuesNum        []float64     `json:"dcdtValuesNum,omitempty"`
 	Receivers            []string      `json:"receivers,omitempty"`
 	ReceiversShardIDs    []uint32      `json:"receiversShardIDs,omitempty"`
 	Type                 string        `json:"type,omitempty"`

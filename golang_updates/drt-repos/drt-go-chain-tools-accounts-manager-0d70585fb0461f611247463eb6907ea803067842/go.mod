@@ -1,13 +1,13 @@
-module github.com/multiversx/mx-chain-tools-accounts-manager-go
+module github.com/TerraDharitri/drt-go-chain-tools-accounts-manager
 
 go 1.17
 
 require (
 	github.com/elastic/go-elasticsearch/v7 v7.12.0
-	github.com/multiversx/mx-chain-core-go v1.1.30
-	github.com/multiversx/mx-chain-es-indexer-go v1.3.8
-	github.com/multiversx/mx-chain-logger-go v1.0.11
-	github.com/multiversx/mx-chain-vm-common-go v1.3.36
+	github.com/TerraDharitri/drt-go-chain-core v1.1.30
+	github.com/TerraDharitri/drt-go-chain-es-indexer v1.3.8
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.11
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.3.36
 	github.com/stretchr/testify v1.7.0
 	github.com/tidwall/gjson v1.14.0
 	github.com/urfave/cli v1.22.9

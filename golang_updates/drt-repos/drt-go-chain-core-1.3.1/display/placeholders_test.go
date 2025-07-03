@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/display"
+	"github.com/TerraDharitri/drt-go-chain-core/display"
 	"github.com/stretchr/testify/assert"
 )
 

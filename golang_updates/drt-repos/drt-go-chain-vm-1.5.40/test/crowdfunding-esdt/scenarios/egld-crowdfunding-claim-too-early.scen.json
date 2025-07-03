@@ -3,7 +3,7 @@
     "steps": [
         {
             "step": "externalSteps",
-            "path": "egld-crowdfunding-fund.scen.json"
+            "path": "rewa-crowdfunding-fund.scen.json"
         },
         {
             "step": "scCall",

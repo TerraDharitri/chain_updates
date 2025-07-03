@@ -8,11 +8,11 @@ import (
 	"math/big"
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -49,8 +49,8 @@ func TestMultiTransferCrossShardAndScCallErrorSignaledBySC(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99"
-	address2 := "erd1qqqqqqqqqqqqqpgqa0fsfshnff4n76jhcye6k7uvd7qacsq42jpsp6shh2"
+	address1 := "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm"
+	address2 := "drt1qqqqqqqqqqqqqpgqa0fsfshnff4n76jhcye6k7uvd7qacsq42jpsux8555"
 
 	// process transaction on shard 0
 	scr1 := &smartContractResult.SmartContractResult{
@@ -59,7 +59,7 @@ func TestMultiTransferCrossShardAndScCallErrorSignaledBySC(t *testing.T) {
 		GasLimit:       148957500,
 		SndAddr:        decodeAddress(address1),
 		RcvAddr:        decodeAddress(address2),
-		Data:           []byte("MultiESDTNFTTransfer@02@5745474c442d626434643739@00@38e62046fb1a0000@584d45582d666461333535@07@0801120c00048907e58284c28e898e2922520807120a4d45582d3435356335371a20000000000000000005007afb2c871d1647372fd53a9eb3e53e5a8ec9251cb05532003a1e0000000a4d45582d343535633537000000000000000000000000000008e8@6164644c697175696469747950726f7879@00000000000000000500ebd304c2f34a6b3f6a57c133ab7b8c6f81dc40155483@38d78f595785c000@0487deac313c6f6b111906"),
+		Data:           []byte("MultiDCDTNFTTransfer@02@5745474c442d626434643739@00@38e62046fb1a0000@584d45582d666461333535@07@0801120c00048907e58284c28e898e2922520807120a4d45582d3435356335371a20000000000000000005007afb2c871d1647372fd53a9eb3e53e5a8ec9251cb05532003a1e0000000a4d45582d343535633537000000000000000000000000000008e8@6164644c697175696469747950726f7879@00000000000000000500ebd304c2f34a6b3f6a57c133ab7b8c6f81dc40155483@38d78f595785c000@0487deac313c6f6b111906"),
 		PrevTxHash:     txHash,
 		OriginalTxHash: txHash,
 	}
@@ -70,7 +70,7 @@ func TestMultiTransferCrossShardAndScCallErrorSignaledBySC(t *testing.T) {
 		RcvAddr:  decodeAddress(address1),
 		GasLimit: 150000000,
 		GasPrice: 1000000000,
-		Data:     []byte("MultiESDTNFTTransfer@000000000000000005005ebeb3515cb42056a81d42adaf756a3f63a360bfb055@02@5745474c442d626434643739@@38e62046fb1a0000@584d45582d666461333535@07@048907e58284c28e898e29@6164644c697175696469747950726f7879@00000000000000000500ebd304c2f34a6b3f6a57c133ab7b8c6f81dc40155483@38d78f595785c000@0487deac313c6f6b111906"),
+		Data:     []byte("MultiDCDTNFTTransfer@000000000000000005005ebeb3515cb42056a81d42adaf756a3f63a360bfb055@02@5745474c442d626434643739@@38e62046fb1a0000@584d45582d666461333535@07@048907e58284c28e898e29@6164644c697175696469747950726f7879@00000000000000000500ebd304c2f34a6b3f6a57c133ab7b8c6f81dc40155483@38d78f595785c000@0487deac313c6f6b111906"),
 		Value:    big.NewInt(0),
 	}
 
@@ -131,7 +131,7 @@ func TestMultiTransferCrossShardAndScCallErrorSignaledBySC(t *testing.T) {
 		OriginalTxHash: txHash,
 		SndAddr:        decodeAddress(address2),
 		RcvAddr:        decodeAddress(address1),
-		Data:           []byte("MultiESDTNFTTransfer@02@5745474c442d626434643739@00@38e62046fb1a0000@584d45582d666461333535@07@0801120c00048907e58284c28e898e2922520807120a4d45582d3435356335371a20000000000000000005007afb2c871d1647372fd53a9eb3e53e5a8ec9251cb05532003a1e0000000a4d45582d343535633537000000000000000000000000000008e8@657865637574696f6e206661696c6564"),
+		Data:           []byte("MultiDCDTNFTTransfer@02@5745474c442d626434643739@00@38e62046fb1a0000@584d45582d666461333535@07@0801120c00048907e58284c28e898e2922520807120a4d45582d3435356335371a20000000000000000005007afb2c871d1647372fd53a9eb3e53e5a8ec9251cb05532003a1e0000000a4d45582d343535633537000000000000000000000000000008e8@657865637574696f6e206661696c6564"),
 		ReturnMessage:  []byte("error signalled by smartcontract"),
 	}
 

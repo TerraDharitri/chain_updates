@@ -2,8 +2,8 @@
 package executor
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // CompilationOptions contains configurations for instantiating an executor instance.

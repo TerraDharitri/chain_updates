@@ -152,10 +152,10 @@ long long getStorageLock(byte *key, int keyLen);
 int isStorageLocked(byte *key, int keyLen);
 int clearStorageLock(byte *key, int keyLen);
 
-// ESDT-related functions
-int getESDTTokenName(byte *name);
-int getESDTValue(byte *value);
-int getESDTBalance(
+// DCDT-related functions
+int getDCDTTokenName(byte *name);
+int getDCDTValue(byte *value);
+int getDCDTBalance(
 		byte *address,
 		byte *tokenName,
 		int tokenNameLen,

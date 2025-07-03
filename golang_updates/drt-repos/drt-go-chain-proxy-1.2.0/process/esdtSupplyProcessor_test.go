@@ -5,24 +5,24 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/require"
 )
 
-func TestNewESDTSupplyProcessor(t *testing.T) {
+func TestNewDCDTSupplyProcessor(t *testing.T) {
 	t.Parallel()
 
-	_, err := NewESDTSupplyProcessor(nil, &mock.SCQueryServiceStub{})
+	_, err := NewDCDTSupplyProcessor(nil, &mock.SCQueryServiceStub{})
 	require.Equal(t, ErrNilCoreProcessor, err)
 
-	_, err = NewESDTSupplyProcessor(&mock.ProcessorStub{}, nil)
+	_, err = NewDCDTSupplyProcessor(&mock.ProcessorStub{}, nil)
 	require.Equal(t, ErrNilSCQueryService, err)
 }
 
-func TestEsdtSupplyProcessor_GetESDTSupplyFungible(t *testing.T) {
+func TestEsdtSupplyProcessor_GetDCDTSupplyFungible(t *testing.T) {
 	t.Parallel()
 
 	baseProc := &mock.ProcessorStub{
@@ -40,13 +40,13 @@ func TestEsdtSupplyProcessor_GetESDTSupplyFungible(t *testing.T) {
 		CallGetRestEndPointCalled: func(address string, path string, value interface{}) (int, error) {
 			switch address {
 			case "shard-0":
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "1000"
 				valResp.Data.Burned = "500"
 				valResp.Data.Minted = "2000"
 				return 200, nil
 			case "shard-1":
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "3000"
 				valResp.Data.Burned = "100"
 				valResp.Data.Minted = "300"
@@ -62,17 +62,17 @@ func TestEsdtSupplyProcessor_GetESDTSupplyFungible(t *testing.T) {
 			}, data.BlockInfo{}, nil
 		},
 	}
-	esdtProc, err := NewESDTSupplyProcessor(baseProc, scQueryProc)
+	esdtProc, err := NewDCDTSupplyProcessor(baseProc, scQueryProc)
 	require.Nil(t, err)
 
-	supplyRes, err := esdtProc.GetESDTSupply("TOKEN-ABCD")
+	supplyRes, err := esdtProc.GetDCDTSupply("TOKEN-ABCD")
 	require.Nil(t, err)
 	require.Equal(t, "4500", supplyRes.Data.Supply)
 	require.Equal(t, "600", supplyRes.Data.Burned)
 	require.Equal(t, "2300", supplyRes.Data.Minted)
 }
 
-func TestEsdtSupplyProcessor_GetESDTSupplyNonFungible(t *testing.T) {
+func TestEsdtSupplyProcessor_GetDCDTSupplyNonFungible(t *testing.T) {
 	t.Parallel()
 
 	called := false
@@ -99,11 +99,11 @@ func TestEsdtSupplyProcessor_GetESDTSupplyNonFungible(t *testing.T) {
 					called = true
 					return 400, errors.New("local err")
 				}
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "-1000"
 				return 200, nil
 			case "shard-1":
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "3000"
 				return 200, nil
 			}
@@ -111,16 +111,16 @@ func TestEsdtSupplyProcessor_GetESDTSupplyNonFungible(t *testing.T) {
 		},
 	}
 	scQueryProc := &mock.SCQueryServiceStub{}
-	esdtProc, err := NewESDTSupplyProcessor(baseProc, scQueryProc)
+	esdtProc, err := NewDCDTSupplyProcessor(baseProc, scQueryProc)
 	require.Nil(t, err)
 
-	supplyRes, err := esdtProc.GetESDTSupply("SEMI-ABCD-0A")
+	supplyRes, err := esdtProc.GetDCDTSupply("SEMI-ABCD-0A")
 	require.Nil(t, err)
 	require.Equal(t, "2000", supplyRes.Data.Supply)
 	require.Equal(t, "0", supplyRes.Data.InitialMinted)
 }
 
-func TestEsdtSupplyProcessor_GetESDTSupplyShouldReturnRecomputed(t *testing.T) {
+func TestEsdtSupplyProcessor_GetDCDTSupplyShouldReturnRecomputed(t *testing.T) {
 	t.Parallel()
 
 	called := false
@@ -147,12 +147,12 @@ func TestEsdtSupplyProcessor_GetESDTSupplyShouldReturnRecomputed(t *testing.T) {
 					called = true
 					return 400, errors.New("local err")
 				}
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "300"
 				valResp.Data.RecomputedSupply = true
 				return 200, nil
 			case "shard-1":
-				valResp := value.(*data.ESDTSupplyResponse)
+				valResp := value.(*data.DCDTSupplyResponse)
 				valResp.Data.Supply = "600"
 				valResp.Data.Minted = "50"
 				valResp.Data.Burned = "100"
@@ -169,10 +169,10 @@ func TestEsdtSupplyProcessor_GetESDTSupplyShouldReturnRecomputed(t *testing.T) {
 			}, data.BlockInfo{}, nil
 		},
 	}
-	esdtProc, err := NewESDTSupplyProcessor(baseProc, scQueryProc)
+	esdtProc, err := NewDCDTSupplyProcessor(baseProc, scQueryProc)
 	require.Nil(t, err)
 
-	supplyRes, err := esdtProc.GetESDTSupply("SEMI-ABCDEF")
+	supplyRes, err := esdtProc.GetDCDTSupply("SEMI-ABCDEF")
 	require.Nil(t, err)
 	require.Equal(t, "900", supplyRes.Data.Supply)
 	require.Equal(t, "0", supplyRes.Data.Burned)

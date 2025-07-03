@@ -1,6 +1,6 @@
 package check
 
-import "github.com/multiversx/mx-chain-es-indexer-go/data"
+import "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 
 type ResponseTransactions struct {
 	Hits struct {
@@ -44,17 +44,17 @@ type AccountResponse struct {
 	Code  string `json:"code"`
 }
 
-// BalancesESDTResponse holds the account esdt balances endpoint response
-type BalancesESDTResponse struct {
+// BalancesDCDTResponse holds the account dcdt balances endpoint response
+type BalancesDCDTResponse struct {
 	Data struct {
-		ESDTS     map[string]*esdtNFTTokenData `json:"esdts"`
-		TokenData *esdtNFTTokenData            `json:"tokenData"`
+		DCDTS     map[string]*dcdtNFTTokenData `json:"dcdts"`
+		TokenData *dcdtNFTTokenData            `json:"tokenData"`
 	} `json:"data"`
 	Error string `json:"error"`
 	Code  string `json:"code"`
 }
 
-type esdtNFTTokenData struct {
+type dcdtNFTTokenData struct {
 	TokenIdentifier string   `json:"tokenIdentifier"`
 	Balance         string   `json:"balance"`
 	Properties      string   `json:"properties,omitempty"`

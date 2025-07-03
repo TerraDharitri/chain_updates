@@ -46,10 +46,10 @@
                 "address:nft_creator": {
                     "nonce": "0",
                     "balance": "40",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
@@ -58,7 +58,7 @@
                 "address:seller": {
                     "nonce": "1",
                     "balance": "140",
-                    "esdt": {
+                    "dcdt": {
                         "str:SFT-123456": {
                             "instances": [
                                 {
@@ -80,7 +80,7 @@
                 "address:second_bidder": {
                     "nonce": "2",
                     "balance": "800",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "instances": [
                                 {
@@ -102,7 +102,7 @@
                         "str:lastValidAuctionId": "1",
                         "str:auctionById|nested:str:NFT-123456|u64:1": ""
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

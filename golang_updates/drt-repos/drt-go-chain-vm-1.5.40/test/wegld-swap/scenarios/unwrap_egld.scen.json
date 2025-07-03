@@ -1,24 +1,24 @@
 {
-    "name": "unwrap egld",
+    "name": "unwrap rewa",
     "gasSchedule": "v4",
     "steps": [
         {
             "step": "externalSteps",
-            "path": "wrap_egld.scen.json"
+            "path": "wrap_rewa.scen.json"
         },
         {
             "step": "scCall",
-            "id": "unwrap-egld",
+            "id": "unwrap-rewa",
             "tx": {
                 "from": "address:user",
-                "to": "sc:egld_esdt_swap",
-                "esdtValue": [
+                "to": "sc:rewa_dcdt_swap",
+                "dcdtValue": [
                     {
-                        "tokenIdentifier": "str:EGLD-abcdef",
+                        "tokenIdentifier": "str:REWA-abcdef",
                         "value": "300"
                     }
                 ],
-                "function": "unwrapEgld",
+                "function": "unwrapRewa",
                 "arguments": [],
                 "gasLimit": "5,000,000",
                 "gasPrice": "0"
@@ -37,16 +37,16 @@
                 "address:user": {
                     "nonce": "2",
                     "balance": "800",
-                    "esdt": {
-                        "str:EGLD-abcdef": "200"
+                    "dcdt": {
+                        "str:REWA-abcdef": "200"
                     },
                     "storage": {}
                 },
-                "sc:egld_esdt_swap": {
+                "sc:rewa_dcdt_swap": {
                     "nonce": "0",
                     "balance": "200",
-                    "esdt": {
-                        "str:EGLD-abcdef": {
+                    "dcdt": {
+                        "str:REWA-abcdef": {
                             "instances": [
                                 {
                                     "nonce": "",
@@ -54,15 +54,15 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {
-                        "str:wrappedEgldTokenId": "str:EGLD-abcdef"
+                        "str:wrappedRewaTokenId": "str:REWA-abcdef"
                     },
-                    "code": "mxsc:../output/multiversx-wegld-swap-sc.mxsc.json"
+                    "code": "drtsc:../output/dharitri-wrewa-swap-sc.drtsc.json"
                 }
             }
         }

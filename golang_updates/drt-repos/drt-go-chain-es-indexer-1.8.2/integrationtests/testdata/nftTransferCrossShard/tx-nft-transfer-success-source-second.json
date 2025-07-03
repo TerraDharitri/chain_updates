@@ -6,18 +6,18 @@
   "signature": "",
   "fee": "238820000000000",
   "completedEvent": true,
-  "esdtValues": [
+  "dcdtValues": [
     "1"
   ],
   "initialPaidFee": "595490000000000",
   "gasLimit": 5000000,
-  "esdtValuesNum": [
+  "dcdtValuesNum": [
     1e-18
   ],
   "gasUsed": 963500,
   "miniBlockHash": "091d7b3e7cd6ceed57ff5aa17a22bb8ffd6df009fc24d89faa7458452708ec69",
   "receivers": [
-    "erd1qqqqqqqqqqqqqpgq57szwud2quysucrlq2e97ntdysdl7v4ejz3qn3njq4"
+    "drt1qqqqqqqqqqqqqpgq57szwud2quysucrlq2e97ntdysdl7v4ejz3qwdy3rt"
   ],
   "senderShard": 0,
   "tokens": [
@@ -26,15 +26,15 @@
   "value": "0",
   "gasPrice": 1000000000,
   "timestamp": 5040,
-  "receiver": "erd1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xs74hasv",
+  "receiver": "drt1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xsrfq7nj",
   "valueNum": 0,
   "feeNum": 0.00023882,
   "nonce": 79,
   "round": 50,
   "hasScResults": true,
-  "sender": "erd1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xs74hasv",
+  "sender": "drt1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xsrfq7nj",
   "receiverShard": 0,
-  "operation": "ESDTNFTTransfer",
+  "operation": "DCDTNFTTransfer",
   "status": "success",
   "searchOrder": 0,
   "epoch": 0

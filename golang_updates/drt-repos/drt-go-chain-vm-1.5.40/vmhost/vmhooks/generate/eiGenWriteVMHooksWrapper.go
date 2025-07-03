@@ -16,7 +16,7 @@ func WriteVMHooksWrapper(out *eiGenWriter, eiMetadata *EIMetadata) {
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // WrapperVMHooks wraps a VMHooks instance and optionally performs some logging.

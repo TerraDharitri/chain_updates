@@ -3,7 +3,7 @@ package vmjsonintegrationtest
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
 )
 
 func TestRustAdder(t *testing.T) {
@@ -41,7 +41,7 @@ func TestDigitalCash(t *testing.T) {
 		CheckNoError()
 }
 
-func TestESDTMultiTransferOnCallback(t *testing.T) {
+func TestDCDTMultiTransferOnCallback(t *testing.T) {
 	ScenariosTest(t).
 		Folder("features/composability/scenarios").
 		File("forw_raw_call_async_retrieve_multi_transfer.scen.json").
@@ -77,23 +77,23 @@ func TestDnsContract(t *testing.T) {
 		CheckNoError()
 }
 
-func TestCrowdfundingEsdt(t *testing.T) {
+func TestCrowdfundingDcdt(t *testing.T) {
 	ScenariosTest(t).
-		Folder("crowdfunding-esdt").
+		Folder("crowdfunding-dcdt").
 		Run().
 		CheckNoError()
 }
 
-func TestWEgldSwap(t *testing.T) {
+func TestWRewaSwap(t *testing.T) {
 	ScenariosTest(t).
-		Folder("wegld-swap").
+		Folder("wrewa-swap").
 		Run().
 		CheckNoError()
 }
 
-func TestPingPongEgld(t *testing.T) {
+func TestPingPongRewa(t *testing.T) {
 	ScenariosTest(t).
-		Folder("ping-pong-egld").
+		Folder("ping-pong-rewa").
 		Run().
 		CheckNoError()
 }

@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -30,7 +30,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // Receipt holds all the data needed for a transaction receipt
 type Receipt struct {
-	Value   *math_big.Int `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"value"`
+	Value   *math_big.Int `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"value"`
 	SndAddr []byte        `protobuf:"bytes,2,opt,name=SndAddr,proto3" json:"sender"`
 	Data    []byte        `protobuf:"bytes,3,opt,name=Data,proto3" json:"data,omitempty"`
 	TxHash  []byte        `protobuf:"bytes,4,opt,name=TxHash,proto3" json:"txHash"`
@@ -143,7 +143,7 @@ func (this *Receipt) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Value, that1.Value) {
 			return false
 		}
@@ -222,7 +222,7 @@ func (m *Receipt) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x12
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Value)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Value, dAtA[i:]); err != nil {
@@ -253,7 +253,7 @@ func (m *Receipt) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Value)
 		n += 1 + l + sovReceipt(uint64(l))
 	}
@@ -358,7 +358,7 @@ func (m *Receipt) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

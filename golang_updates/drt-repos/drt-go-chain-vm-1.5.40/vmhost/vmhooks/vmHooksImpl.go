@@ -1,9 +1,9 @@
 package vmhooks
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 //go:generate go run generate/cmd/eiGenMain.go

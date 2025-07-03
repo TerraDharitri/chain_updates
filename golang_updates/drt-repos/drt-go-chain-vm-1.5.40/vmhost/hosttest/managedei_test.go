@@ -10,21 +10,21 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-vm-go/crypto/hashing"
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing/secp256"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/mock/contracts"
-	"github.com/multiversx/mx-chain-vm-go/testcommon"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/hashing"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing/secp256"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/mock/contracts"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock/esdtconvert"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock/dcdtconvert"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -38,15 +38,15 @@ var baseTestConfig = &testcommon.TestConfig{
 	ChildBalance:  1000,
 }
 
-func Test_ManagedIsESDTFrozen_NotFrozen(t *testing.T) {
-	testManagedIsESDTFrozen(t, false)
+func Test_ManagedIsDCDTFrozen_NotFrozen(t *testing.T) {
+	testManagedIsDCDTFrozen(t, false)
 }
 
-func Test_ManagedIsESDTFrozen_Frozen(t *testing.T) {
-	testManagedIsESDTFrozen(t, true)
+func Test_ManagedIsDCDTFrozen_Frozen(t *testing.T) {
+	testManagedIsDCDTFrozen(t, true)
 }
 
-func testManagedIsESDTFrozen(t *testing.T, isFrozen bool) {
+func testManagedIsDCDTFrozen(t *testing.T, isFrozen bool) {
 	testConfig := baseTestConfig
 
 	var addressHandle, tokenIDHandle int32
@@ -68,9 +68,9 @@ func testManagedIsESDTFrozen(t *testing.T, isFrozen bool) {
 
 						managedTypes := host.ManagedTypes()
 						addressHandle = managedTypes.NewManagedBufferFromBytes(test.ParentAddress)
-						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.ESDTTestTokenName)
+						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.DCDTTestTokenName)
 
-						retValue := vmhooks.ManagedIsESDTFrozenWithHost(
+						retValue := vmhooks.ManagedIsDCDTFrozenWithHost(
 							host,
 							addressHandle,
 							tokenIDHandle,
@@ -90,12 +90,12 @@ func testManagedIsESDTFrozen(t *testing.T, isFrozen bool) {
 			createMockBuiltinFunctions(t, host, world)
 			err := world.BuiltinFuncs.SetTokenData(
 				test.ParentAddress,
-				test.ESDTTestTokenName,
+				test.DCDTTestTokenName,
 				0,
-				&esdt.ESDigitalToken{
+				&dcdt.DCDigitalToken{
 					Value:      big.NewInt(100),
 					Type:       uint32(core.Fungible),
-					Properties: esdtconvert.MakeESDTUserMetadataBytes(isFrozen),
+					Properties: dcdtconvert.MakeDCDTUserMetadataBytes(isFrozen),
 				})
 			require.Nil(t, err)
 		}).
@@ -107,15 +107,15 @@ func testManagedIsESDTFrozen(t *testing.T, isFrozen bool) {
 	assert.Nil(t, err)
 }
 
-func Test_ManagedIsESDTFrozen_IsPaused(t *testing.T) {
-	testManagedIsESDTFrozenIsPaused(t, true)
+func Test_ManagedIsDCDTFrozen_IsPaused(t *testing.T) {
+	testManagedIsDCDTFrozenIsPaused(t, true)
 }
 
-func Test_ManagedIsESDTFrozen_IsNotPaused(t *testing.T) {
-	testManagedIsESDTFrozenIsPaused(t, false)
+func Test_ManagedIsDCDTFrozen_IsNotPaused(t *testing.T) {
+	testManagedIsDCDTFrozenIsPaused(t, false)
 }
 
-func testManagedIsESDTFrozenIsPaused(t *testing.T, isPaused bool) {
+func testManagedIsDCDTFrozenIsPaused(t *testing.T, isPaused bool) {
 	testConfig := baseTestConfig
 
 	var tokenIDHandle int32
@@ -135,9 +135,9 @@ func testManagedIsESDTFrozenIsPaused(t *testing.T, isPaused bool) {
 						host := parentInstance.Host
 
 						managedTypes := host.ManagedTypes()
-						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.ESDTTestTokenName)
+						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.DCDTTestTokenName)
 
-						retValue := vmhooks.ManagedIsESDTPausedWithHost(
+						retValue := vmhooks.ManagedIsDCDTPausedWithHost(
 							host,
 							tokenIDHandle)
 
@@ -162,15 +162,15 @@ func testManagedIsESDTFrozenIsPaused(t *testing.T, isPaused bool) {
 	assert.Nil(t, err)
 }
 
-func Test_ManagedIsESDTFrozen_IsLimitedTransfer(t *testing.T) {
-	testManagedIsESDTFrozenIsLimitedTransfer(t, true)
+func Test_ManagedIsDCDTFrozen_IsLimitedTransfer(t *testing.T) {
+	testManagedIsDCDTFrozenIsLimitedTransfer(t, true)
 }
 
-func Test_ManagedIsESDTFrozen_IsNotLimitedTransfer(t *testing.T) {
-	testManagedIsESDTFrozenIsLimitedTransfer(t, false)
+func Test_ManagedIsDCDTFrozen_IsNotLimitedTransfer(t *testing.T) {
+	testManagedIsDCDTFrozenIsLimitedTransfer(t, false)
 }
 
-func testManagedIsESDTFrozenIsLimitedTransfer(t *testing.T, isLimitedTransfer bool) {
+func testManagedIsDCDTFrozenIsLimitedTransfer(t *testing.T, isLimitedTransfer bool) {
 	testConfig := baseTestConfig
 
 	var tokenIDHandle int32
@@ -190,9 +190,9 @@ func testManagedIsESDTFrozenIsLimitedTransfer(t *testing.T, isLimitedTransfer bo
 						host := parentInstance.Host
 
 						managedTypes := host.ManagedTypes()
-						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.ESDTTestTokenName)
+						tokenIDHandle = managedTypes.NewManagedBufferFromBytes(test.DCDTTestTokenName)
 
-						retValue := vmhooks.ManagedIsESDTLimitedTransferWithHost(
+						retValue := vmhooks.ManagedIsDCDTLimitedTransferWithHost(
 							host,
 							tokenIDHandle)
 
@@ -1411,7 +1411,7 @@ func TestBaseOpsAPI_NFTNonceOverflow(t *testing.T) {
 						managed := host.ManagedTypes()
 
 						addressHandle := managed.NewManagedBufferFromBytes(test.ParentAddress)
-						tokenIDHandle := managed.NewManagedBufferFromBytes(test.ESDTTestTokenName)
+						tokenIDHandle := managed.NewManagedBufferFromBytes(test.DCDTTestTokenName)
 
 						nonce := int64(OverflowedMaxInt)
 
@@ -1424,7 +1424,7 @@ func TestBaseOpsAPI_NFTNonceOverflow(t *testing.T) {
 						royaltiesHandle := managed.NewManagedBuffer()
 						urisHandle := managed.NewManagedBuffer()
 
-						vmhooks.ManagedGetESDTTokenDataWithHost(host,
+						vmhooks.ManagedGetDCDTTokenDataWithHost(host,
 							addressHandle,
 							tokenIDHandle,
 							nonce,
@@ -1451,12 +1451,12 @@ func TestBaseOpsAPI_NFTNonceOverflow(t *testing.T) {
 			setZeroCodeCosts(host)
 			err := world.BuiltinFuncs.SetTokenData(
 				test.ParentAddress,
-				test.ESDTTestTokenName,
+				test.DCDTTestTokenName,
 				OverflowedMaxInt,
-				&esdt.ESDigitalToken{
+				&dcdt.DCDigitalToken{
 					Value:      big.NewInt(tokenValue),
 					Type:       uint32(core.Fungible),
-					Properties: esdtconvert.MakeESDTUserMetadataBytes(false),
+					Properties: dcdtconvert.MakeDCDTUserMetadataBytes(false),
 				})
 			assert.Nil(t, err)
 		}).
@@ -1527,7 +1527,7 @@ func Test_ManagedIsBuiltinFunction(t *testing.T) {
 						host := parentInstance.Host
 
 						managedTypes := host.ManagedTypes()
-						functionNameHandle := managedTypes.NewManagedBufferFromBytes([]byte("ESDTTransfer"))
+						functionNameHandle := managedTypes.NewManagedBufferFromBytes([]byte("DCDTTransfer"))
 
 						returnValue := vmhooks.ManagedIsBuiltinFunctionWithHost(
 							host,
@@ -1568,9 +1568,9 @@ func Test_ManagedIsBuiltinFunction(t *testing.T) {
 
 func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 	testConfig := makeTestConfig()
-	egldTransfer := big.NewInt(2)
-	initialESDTTokenBalance := uint64(100)
-	testConfig.ESDTTokensToTransfer = 5
+	rewaTransfer := big.NewInt(2)
+	initialDCDTTokenBalance := uint64(100)
+	testConfig.DCDTTokensToTransfer = 5
 
 	_, err := test.BuildMockInstanceCallTest(t).
 		WithContracts(
@@ -1590,11 +1590,11 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 							host.Runtime().FailExecution(fmt.Errorf("return value %d", returnValue))
 						}
 						managedTypes := host.ManagedTypes()
-						esdtTransfers, egld := managedTypes.GetBackTransfers()
-						assert.Equal(t, 1, len(esdtTransfers))
-						assert.Equal(t, test.ESDTTestTokenName, esdtTransfers[0].ESDTTokenName)
-						assert.Equal(t, big.NewInt(0).SetUint64(testConfig.ESDTTokensToTransfer), esdtTransfers[0].ESDTValue)
-						assert.Equal(t, egld, egldTransfer)
+						dcdtTransfers, rewa := managedTypes.GetBackTransfers()
+						assert.Equal(t, 1, len(dcdtTransfers))
+						assert.Equal(t, test.DCDTTestTokenName, dcdtTransfers[0].DCDTTokenName)
+						assert.Equal(t, big.NewInt(0).SetUint64(testConfig.DCDTTokensToTransfer), dcdtTransfers[0].DCDTValue)
+						assert.Equal(t, rewa, rewaTransfer)
 						return parentInstance
 					})
 				}),
@@ -1605,7 +1605,7 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 					parentInstance.AddMockMethod("childFunction", func() *mock.InstanceMock {
 						host := parentInstance.Host
 
-						valueBytes := egldTransfer.Bytes()
+						valueBytes := rewaTransfer.Bytes()
 						err := host.Output().Transfer(
 							test.ParentAddress,
 							test.ChildAddress, 0, 0, big.NewInt(0).SetBytes(valueBytes), nil, []byte{}, vm.DirectCall)
@@ -1613,22 +1613,22 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 							host.Runtime().FailExecution(err)
 						}
 
-						transfer := &vmcommon.ESDTTransfer{
-							ESDTValue:      big.NewInt(int64(testConfig.ESDTTokensToTransfer)),
-							ESDTTokenName:  test.ESDTTestTokenName,
-							ESDTTokenType:  0,
-							ESDTTokenNonce: 0,
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      big.NewInt(int64(testConfig.DCDTTokensToTransfer)),
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
 						}
 
-						ret := vmhooks.TransferESDTNFTExecuteWithTypedArgs(
+						ret := vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
 							host,
 							test.ParentAddress,
-							[]*vmcommon.ESDTTransfer{transfer},
+							[]*vmcommon.DCDTTransfer{transfer},
 							int64(testConfig.GasProvidedToChild),
 							nil,
 							nil)
 						if ret != 0 {
-							host.Runtime().FailExecution(fmt.Errorf("Transfer ESDT failed"))
+							host.Runtime().FailExecution(fmt.Errorf("Transfer DCDT failed"))
 						}
 
 						return parentInstance
@@ -1637,7 +1637,7 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 		).
 		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
 			childAccount := world.AcctMap.GetAccount(test.ChildAddress)
-			_ = childAccount.SetTokenBalanceUint64(test.ESDTTestTokenName, 0, initialESDTTokenBalance)
+			_ = childAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 			createMockBuiltinFunctions(t, host, world)
 			setZeroCodeCosts(host)
 		}).
@@ -1655,10 +1655,10 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 
 func Test_Async_ManagedGetBackTransfers(t *testing.T) {
 	testConfig := makeTestConfig()
-	initialESDTTokenBalance := uint64(100)
+	initialDCDTTokenBalance := uint64(100)
 	testConfig.GasProvided = 10_000
 	testConfig.GasProvidedToChild = 1000
-	testConfig.ESDTTokensToTransfer = 5
+	testConfig.DCDTTokensToTransfer = 5
 	testConfig.SuccessCallback = "myCallback"
 	testConfig.ErrorCallback = "myCallback"
 	testConfig.TransferFromChildToParent = 2
@@ -1687,7 +1687,7 @@ func Test_Async_ManagedGetBackTransfers(t *testing.T) {
 		).
 		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
 			childAccount := world.AcctMap.GetAccount(test.ChildAddress)
-			_ = childAccount.SetTokenBalanceUint64(test.ESDTTestTokenName, 0, initialESDTTokenBalance)
+			_ = childAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 			createMockBuiltinFunctions(t, host, world)
 			setZeroCodeCosts(host)
 			host.Metering().GasSchedule().BaseOpsAPICost.AsyncCallbackGasLock = 0
@@ -1705,18 +1705,18 @@ func Test_Async_ManagedGetBackTransfers(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func assertTestESDTTokenBalance(t *testing.T, world *worldmock.MockWorld, address []byte, balance int64) {
+func assertTestDCDTTokenBalance(t *testing.T, world *worldmock.MockWorld, address []byte, balance int64) {
 	account := world.AcctMap.GetAccount(address)
-	accountESDTBalance, err := account.GetTokenBalance(test.ESDTTestTokenName, 0)
+	accountDCDTBalance, err := account.GetTokenBalance(test.DCDTTestTokenName, 0)
 	assert.Nil(t, err)
-	assert.Equal(t, big.NewInt(balance), accountESDTBalance)
+	assert.Equal(t, big.NewInt(balance), accountDCDTBalance)
 }
 
-func Test_ManagedMultiTransferESDTNFTExecuteByUser_JustTransfer(t *testing.T) {
+func Test_ManagedMultiTransferDCDTNFTExecuteByUser_JustTransfer(t *testing.T) {
 	testConfig := baseTestConfig
 
-	initialESDTTokenBalance := uint64(100)
-	transferESDTTokenValue := big.NewInt(5)
+	initialDCDTTokenBalance := uint64(100)
+	transferDCDTTokenValue := big.NewInt(5)
 
 	_, err := test.BuildMockInstanceCallTest(t).
 		WithContracts(
@@ -1732,23 +1732,23 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_JustTransfer(t *testing.T) {
 					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
 						host := parentInstance.Host
 
-						transfer := &vmcommon.ESDTTransfer{
-							ESDTValue:      transferESDTTokenValue,
-							ESDTTokenName:  test.ESDTTestTokenName,
-							ESDTTokenType:  0,
-							ESDTTokenNonce: 0,
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      transferDCDTTokenValue,
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
 						}
 
-						ret := vmhooks.TransferESDTNFTExecuteByUserWithTypedArgs(
+						ret := vmhooks.TransferDCDTNFTExecuteByUserWithTypedArgs(
 							host,
 							test.UserAddress,
 							test.ChildAddress,
-							[]*vmcommon.ESDTTransfer{transfer},
+							[]*vmcommon.DCDTTransfer{transfer},
 							int64(testConfig.GasProvided),
 							[]byte{}, [][]byte{})
 
 						if ret != 0 {
-							host.Runtime().FailExecution(fmt.Errorf("transfer ESDT failed"))
+							host.Runtime().FailExecution(fmt.Errorf("transfer DCDT failed"))
 						}
 
 						output := host.Output().GetVMOutput()
@@ -1764,7 +1764,7 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_JustTransfer(t *testing.T) {
 			createMockBuiltinFunctions(t, host, world)
 
 			parentAccount := world.AcctMap.GetAccount(test.ParentAddress)
-			_ = parentAccount.SetTokenBalanceUint64(test.ESDTTestTokenName, 0, initialESDTTokenBalance)
+			_ = parentAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 		}).
 		WithInput(test.CreateTestContractCallInputBuilder().
 			WithRecipientAddr(test.ParentAddress).
@@ -1772,8 +1772,8 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_JustTransfer(t *testing.T) {
 			WithFunction("testFunction").
 			Build()).
 		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
-			assertTestESDTTokenBalance(t, world, test.ParentAddress, 95)
-			assertTestESDTTokenBalance(t, world, test.ChildAddress, 5)
+			assertTestDCDTTokenBalance(t, world, test.ParentAddress, 95)
+			assertTestDCDTTokenBalance(t, world, test.ChildAddress, 5)
 
 			verify.
 				Ok()
@@ -1781,11 +1781,11 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_JustTransfer(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func Test_ManagedMultiTransferESDTNFTExecuteByUser(t *testing.T) {
+func Test_ManagedMultiTransferDCDTNFTExecuteByUser(t *testing.T) {
 	testConfig := baseTestConfig
 
-	initialESDTTokenBalance := uint64(100)
-	transferESDTTokenValue := big.NewInt(5)
+	initialDCDTTokenBalance := uint64(100)
+	transferDCDTTokenValue := big.NewInt(5)
 
 	_, err := test.BuildMockInstanceCallTest(t).
 		WithContracts(
@@ -1805,23 +1805,23 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser(t *testing.T) {
 					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
 						host := parentInstance.Host
 
-						transfer := &vmcommon.ESDTTransfer{
-							ESDTValue:      transferESDTTokenValue,
-							ESDTTokenName:  test.ESDTTestTokenName,
-							ESDTTokenType:  0,
-							ESDTTokenNonce: 0,
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      transferDCDTTokenValue,
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
 						}
 
-						ret := vmhooks.TransferESDTNFTExecuteByUserWithTypedArgs(
+						ret := vmhooks.TransferDCDTNFTExecuteByUserWithTypedArgs(
 							host,
 							test.UserAddress,
 							test.ChildAddress,
-							[]*vmcommon.ESDTTransfer{transfer},
+							[]*vmcommon.DCDTTransfer{transfer},
 							int64(testConfig.GasProvided),
 							[]byte("childFunction"), [][]byte{})
 
 						if ret != 0 {
-							host.Runtime().FailExecution(fmt.Errorf("transfer ESDT failed"))
+							host.Runtime().FailExecution(fmt.Errorf("transfer DCDT failed"))
 						}
 
 						return parentInstance
@@ -1832,7 +1832,7 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser(t *testing.T) {
 			createMockBuiltinFunctions(t, host, world)
 
 			parentAccount := world.AcctMap.GetAccount(test.ParentAddress)
-			_ = parentAccount.SetTokenBalanceUint64(test.ESDTTestTokenName, 0, initialESDTTokenBalance)
+			_ = parentAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 		}).
 		WithInput(test.CreateTestContractCallInputBuilder().
 			WithRecipientAddr(test.ParentAddress).
@@ -1840,8 +1840,8 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser(t *testing.T) {
 			WithFunction("testFunction").
 			Build()).
 		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
-			assertTestESDTTokenBalance(t, world, test.ParentAddress, 95)
-			assertTestESDTTokenBalance(t, world, test.ChildAddress, 5)
+			assertTestDCDTTokenBalance(t, world, test.ParentAddress, 95)
+			assertTestDCDTTokenBalance(t, world, test.ChildAddress, 5)
 
 			verify.
 				Ok()
@@ -1849,11 +1849,11 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func Test_ManagedMultiTransferESDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
+func Test_ManagedMultiTransferDCDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
 	testConfig := baseTestConfig
 
-	initialESDTTokenBalance := uint64(100)
-	transferESDTTokenValue := big.NewInt(5)
+	initialDCDTTokenBalance := uint64(100)
+	transferDCDTTokenValue := big.NewInt(5)
 
 	_, err := test.BuildMockInstanceCallTest(t).
 		WithContracts(
@@ -1876,23 +1876,23 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
 					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
 						host := parentInstance.Host
 
-						transfer := &vmcommon.ESDTTransfer{
-							ESDTValue:      transferESDTTokenValue,
-							ESDTTokenName:  test.ESDTTestTokenName,
-							ESDTTokenType:  0,
-							ESDTTokenNonce: 0,
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      transferDCDTTokenValue,
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
 						}
 
-						ret := vmhooks.TransferESDTNFTExecuteByUserWithTypedArgs(
+						ret := vmhooks.TransferDCDTNFTExecuteByUserWithTypedArgs(
 							host,
 							test.UserAddress,
 							test.ChildAddress,
-							[]*vmcommon.ESDTTransfer{transfer},
+							[]*vmcommon.DCDTTransfer{transfer},
 							int64(testConfig.GasProvided),
 							[]byte("childFunction"), [][]byte{})
 
 						if ret != 0 {
-							host.Runtime().FailExecution(fmt.Errorf("transfer ESDT failed"))
+							host.Runtime().FailExecution(fmt.Errorf("transfer DCDT failed"))
 						}
 
 						return parentInstance
@@ -1904,7 +1904,7 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
 			setZeroCodeCosts(host)
 
 			parentAccount := world.AcctMap.GetAccount(test.ParentAddress)
-			_ = parentAccount.SetTokenBalanceUint64(test.ESDTTestTokenName, 0, initialESDTTokenBalance)
+			_ = parentAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 		}).
 		WithInput(test.CreateTestContractCallInputBuilder().
 			WithRecipientAddr(test.ParentAddress).
@@ -1912,9 +1912,9 @@ func Test_ManagedMultiTransferESDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
 			WithFunction("testFunction").
 			Build()).
 		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
-			assertTestESDTTokenBalance(t, world, test.ParentAddress, 95)
-			assertTestESDTTokenBalance(t, world, test.ChildAddress, 0)
-			assertTestESDTTokenBalance(t, world, test.UserAddress, 5)
+			assertTestDCDTTokenBalance(t, world, test.ParentAddress, 95)
+			assertTestDCDTTokenBalance(t, world, test.ChildAddress, 0)
+			assertTestDCDTTokenBalance(t, world, test.UserAddress, 5)
 
 			verify.
 				ExecutionFailed()

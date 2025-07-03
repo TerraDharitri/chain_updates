@@ -9,7 +9,7 @@ package executorwrapper
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // WrapperVMHooks wraps a VMHooks instance and optionally performs some logging.
@@ -86,56 +86,56 @@ func (w *WrapperVMHooks) GetBlockHash(nonce int64, resultOffset executor.MemPtr)
 	return result
 }
 
-// GetESDTBalance VM hook wrapper
-func (w *WrapperVMHooks) GetESDTBalance(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, resultOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("GetESDTBalance(%d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, resultOffset)
+// GetDCDTBalance VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTBalance(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, resultOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("GetDCDTBalance(%d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, resultOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTBalance(addressOffset, tokenIDOffset, tokenIDLen, nonce, resultOffset)
+	result := w.wrappedVMHooks.GetDCDTBalance(addressOffset, tokenIDOffset, tokenIDLen, nonce, resultOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTNFTNameLength VM hook wrapper
-func (w *WrapperVMHooks) GetESDTNFTNameLength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
-	callInfo := fmt.Sprintf("GetESDTNFTNameLength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
+// GetDCDTNFTNameLength VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTNFTNameLength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
+	callInfo := fmt.Sprintf("GetDCDTNFTNameLength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTNFTNameLength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	result := w.wrappedVMHooks.GetDCDTNFTNameLength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTNFTAttributeLength VM hook wrapper
-func (w *WrapperVMHooks) GetESDTNFTAttributeLength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
-	callInfo := fmt.Sprintf("GetESDTNFTAttributeLength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
+// GetDCDTNFTAttributeLength VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTNFTAttributeLength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
+	callInfo := fmt.Sprintf("GetDCDTNFTAttributeLength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTNFTAttributeLength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	result := w.wrappedVMHooks.GetDCDTNFTAttributeLength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTNFTURILength VM hook wrapper
-func (w *WrapperVMHooks) GetESDTNFTURILength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
-	callInfo := fmt.Sprintf("GetESDTNFTURILength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
+// GetDCDTNFTURILength VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTNFTURILength(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64) int32 {
+	callInfo := fmt.Sprintf("GetDCDTNFTURILength(%d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTNFTURILength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	result := w.wrappedVMHooks.GetDCDTNFTURILength(addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenData VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenData(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, valueHandle int32, propertiesOffset executor.MemPtr, hashOffset executor.MemPtr, nameOffset executor.MemPtr, attributesOffset executor.MemPtr, creatorOffset executor.MemPtr, royaltiesHandle int32, urisOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("GetESDTTokenData(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, valueHandle, propertiesOffset, hashOffset, nameOffset, attributesOffset, creatorOffset, royaltiesHandle, urisOffset)
+// GetDCDTTokenData VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenData(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, valueHandle int32, propertiesOffset executor.MemPtr, hashOffset executor.MemPtr, nameOffset executor.MemPtr, attributesOffset executor.MemPtr, creatorOffset executor.MemPtr, royaltiesHandle int32, urisOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("GetDCDTTokenData(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, valueHandle, propertiesOffset, hashOffset, nameOffset, attributesOffset, creatorOffset, royaltiesHandle, urisOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenData(addressOffset, tokenIDOffset, tokenIDLen, nonce, valueHandle, propertiesOffset, hashOffset, nameOffset, attributesOffset, creatorOffset, royaltiesHandle, urisOffset)
+	result := w.wrappedVMHooks.GetDCDTTokenData(addressOffset, tokenIDOffset, tokenIDLen, nonce, valueHandle, propertiesOffset, hashOffset, nameOffset, attributesOffset, creatorOffset, royaltiesHandle, urisOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTLocalRoles VM hook wrapper
-func (w *WrapperVMHooks) GetESDTLocalRoles(tokenIdHandle int32) int64 {
-	callInfo := fmt.Sprintf("GetESDTLocalRoles(%d)", tokenIdHandle)
+// GetDCDTLocalRoles VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTLocalRoles(tokenIdHandle int32) int64 {
+	callInfo := fmt.Sprintf("GetDCDTLocalRoles(%d)", tokenIdHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTLocalRoles(tokenIdHandle)
+	result := w.wrappedVMHooks.GetDCDTLocalRoles(tokenIdHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
@@ -167,29 +167,29 @@ func (w *WrapperVMHooks) TransferValueExecute(destOffset executor.MemPtr, valueO
 	return result
 }
 
-// TransferESDTExecute VM hook wrapper
-func (w *WrapperVMHooks) TransferESDTExecute(destOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, valueOffset executor.MemPtr, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("TransferESDTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, tokenIDOffset, tokenIDLen, valueOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+// TransferDCDTExecute VM hook wrapper
+func (w *WrapperVMHooks) TransferDCDTExecute(destOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, valueOffset executor.MemPtr, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("TransferDCDTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, tokenIDOffset, tokenIDLen, valueOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.TransferESDTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+	result := w.wrappedVMHooks.TransferDCDTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// TransferESDTNFTExecute VM hook wrapper
-func (w *WrapperVMHooks) TransferESDTNFTExecute(destOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, valueOffset executor.MemPtr, nonce int64, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("TransferESDTNFTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, tokenIDOffset, tokenIDLen, valueOffset, nonce, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+// TransferDCDTNFTExecute VM hook wrapper
+func (w *WrapperVMHooks) TransferDCDTNFTExecute(destOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, valueOffset executor.MemPtr, nonce int64, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("TransferDCDTNFTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, tokenIDOffset, tokenIDLen, valueOffset, nonce, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.TransferESDTNFTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, nonce, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+	result := w.wrappedVMHooks.TransferDCDTNFTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, nonce, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// MultiTransferESDTNFTExecute VM hook wrapper
-func (w *WrapperVMHooks) MultiTransferESDTNFTExecute(destOffset executor.MemPtr, numTokenTransfers int32, tokenTransfersArgsLengthOffset executor.MemPtr, tokenTransferDataOffset executor.MemPtr, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("MultiTransferESDTNFTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, numTokenTransfers, tokenTransfersArgsLengthOffset, tokenTransferDataOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+// MultiTransferDCDTNFTExecute VM hook wrapper
+func (w *WrapperVMHooks) MultiTransferDCDTNFTExecute(destOffset executor.MemPtr, numTokenTransfers int32, tokenTransfersArgsLengthOffset executor.MemPtr, tokenTransferDataOffset executor.MemPtr, gasLimit int64, functionOffset executor.MemPtr, functionLength executor.MemLength, numArguments int32, argumentsLengthOffset executor.MemPtr, dataOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("MultiTransferDCDTNFTExecute(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", destOffset, numTokenTransfers, tokenTransfersArgsLengthOffset, tokenTransferDataOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.MultiTransferESDTNFTExecute(destOffset, numTokenTransfers, tokenTransfersArgsLengthOffset, tokenTransferDataOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
+	result := w.wrappedVMHooks.MultiTransferDCDTNFTExecute(destOffset, numTokenTransfers, tokenTransfersArgsLengthOffset, tokenTransferDataOffset, gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
@@ -377,92 +377,92 @@ func (w *WrapperVMHooks) GetCallValue(resultOffset executor.MemPtr) int32 {
 	return result
 }
 
-// GetESDTValue VM hook wrapper
-func (w *WrapperVMHooks) GetESDTValue(resultOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("GetESDTValue(%d)", resultOffset)
+// GetDCDTValue VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTValue(resultOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("GetDCDTValue(%d)", resultOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTValue(resultOffset)
+	result := w.wrappedVMHooks.GetDCDTValue(resultOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTValueByIndex VM hook wrapper
-func (w *WrapperVMHooks) GetESDTValueByIndex(resultOffset executor.MemPtr, index int32) int32 {
-	callInfo := fmt.Sprintf("GetESDTValueByIndex(%d, %d)", resultOffset, index)
+// GetDCDTValueByIndex VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTValueByIndex(resultOffset executor.MemPtr, index int32) int32 {
+	callInfo := fmt.Sprintf("GetDCDTValueByIndex(%d, %d)", resultOffset, index)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTValueByIndex(resultOffset, index)
+	result := w.wrappedVMHooks.GetDCDTValueByIndex(resultOffset, index)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenName VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenName(resultOffset executor.MemPtr) int32 {
-	callInfo := fmt.Sprintf("GetESDTTokenName(%d)", resultOffset)
+// GetDCDTTokenName VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenName(resultOffset executor.MemPtr) int32 {
+	callInfo := fmt.Sprintf("GetDCDTTokenName(%d)", resultOffset)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenName(resultOffset)
+	result := w.wrappedVMHooks.GetDCDTTokenName(resultOffset)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenNameByIndex VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenNameByIndex(resultOffset executor.MemPtr, index int32) int32 {
-	callInfo := fmt.Sprintf("GetESDTTokenNameByIndex(%d, %d)", resultOffset, index)
+// GetDCDTTokenNameByIndex VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenNameByIndex(resultOffset executor.MemPtr, index int32) int32 {
+	callInfo := fmt.Sprintf("GetDCDTTokenNameByIndex(%d, %d)", resultOffset, index)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenNameByIndex(resultOffset, index)
+	result := w.wrappedVMHooks.GetDCDTTokenNameByIndex(resultOffset, index)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenNonce VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenNonce() int64 {
-	callInfo := "GetESDTTokenNonce()"
+// GetDCDTTokenNonce VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenNonce() int64 {
+	callInfo := "GetDCDTTokenNonce()"
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenNonce()
+	result := w.wrappedVMHooks.GetDCDTTokenNonce()
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenNonceByIndex VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenNonceByIndex(index int32) int64 {
-	callInfo := fmt.Sprintf("GetESDTTokenNonceByIndex(%d)", index)
+// GetDCDTTokenNonceByIndex VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenNonceByIndex(index int32) int64 {
+	callInfo := fmt.Sprintf("GetDCDTTokenNonceByIndex(%d)", index)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenNonceByIndex(index)
+	result := w.wrappedVMHooks.GetDCDTTokenNonceByIndex(index)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetCurrentESDTNFTNonce VM hook wrapper
-func (w *WrapperVMHooks) GetCurrentESDTNFTNonce(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength) int64 {
-	callInfo := fmt.Sprintf("GetCurrentESDTNFTNonce(%d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen)
+// GetCurrentDCDTNFTNonce VM hook wrapper
+func (w *WrapperVMHooks) GetCurrentDCDTNFTNonce(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength) int64 {
+	callInfo := fmt.Sprintf("GetCurrentDCDTNFTNonce(%d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetCurrentESDTNFTNonce(addressOffset, tokenIDOffset, tokenIDLen)
+	result := w.wrappedVMHooks.GetCurrentDCDTNFTNonce(addressOffset, tokenIDOffset, tokenIDLen)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenType VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenType() int32 {
-	callInfo := "GetESDTTokenType()"
+// GetDCDTTokenType VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenType() int32 {
+	callInfo := "GetDCDTTokenType()"
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenType()
+	result := w.wrappedVMHooks.GetDCDTTokenType()
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetESDTTokenTypeByIndex VM hook wrapper
-func (w *WrapperVMHooks) GetESDTTokenTypeByIndex(index int32) int32 {
-	callInfo := fmt.Sprintf("GetESDTTokenTypeByIndex(%d)", index)
+// GetDCDTTokenTypeByIndex VM hook wrapper
+func (w *WrapperVMHooks) GetDCDTTokenTypeByIndex(index int32) int32 {
+	callInfo := fmt.Sprintf("GetDCDTTokenTypeByIndex(%d)", index)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetESDTTokenTypeByIndex(index)
+	result := w.wrappedVMHooks.GetDCDTTokenTypeByIndex(index)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// GetNumESDTTransfers VM hook wrapper
-func (w *WrapperVMHooks) GetNumESDTTransfers() int32 {
-	callInfo := "GetNumESDTTransfers()"
+// GetNumDCDTTransfers VM hook wrapper
+func (w *WrapperVMHooks) GetNumDCDTTransfers() int32 {
+	callInfo := "GetNumDCDTTransfers()"
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.GetNumESDTTransfers()
+	result := w.wrappedVMHooks.GetNumDCDTTransfers()
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
@@ -822,35 +822,35 @@ func (w *WrapperVMHooks) ManagedGetReturnData(resultID int32, resultHandle int32
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// ManagedGetMultiESDTCallValue VM hook wrapper
-func (w *WrapperVMHooks) ManagedGetMultiESDTCallValue(multiCallValueHandle int32) {
-	callInfo := fmt.Sprintf("ManagedGetMultiESDTCallValue(%d)", multiCallValueHandle)
+// ManagedGetMultiDCDTCallValue VM hook wrapper
+func (w *WrapperVMHooks) ManagedGetMultiDCDTCallValue(multiCallValueHandle int32) {
+	callInfo := fmt.Sprintf("ManagedGetMultiDCDTCallValue(%d)", multiCallValueHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.ManagedGetMultiESDTCallValue(multiCallValueHandle)
+	w.wrappedVMHooks.ManagedGetMultiDCDTCallValue(multiCallValueHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
 // ManagedGetBackTransfers VM hook wrapper
-func (w *WrapperVMHooks) ManagedGetBackTransfers(esdtTransfersValueHandle int32, egldValueHandle int32) {
-	callInfo := fmt.Sprintf("ManagedGetBackTransfers(%d, %d)", esdtTransfersValueHandle, egldValueHandle)
+func (w *WrapperVMHooks) ManagedGetBackTransfers(dcdtTransfersValueHandle int32, rewaValueHandle int32) {
+	callInfo := fmt.Sprintf("ManagedGetBackTransfers(%d, %d)", dcdtTransfersValueHandle, rewaValueHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.ManagedGetBackTransfers(esdtTransfersValueHandle, egldValueHandle)
+	w.wrappedVMHooks.ManagedGetBackTransfers(dcdtTransfersValueHandle, rewaValueHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// ManagedGetESDTBalance VM hook wrapper
-func (w *WrapperVMHooks) ManagedGetESDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
-	callInfo := fmt.Sprintf("ManagedGetESDTBalance(%d, %d, %d, %d)", addressHandle, tokenIDHandle, nonce, valueHandle)
+// ManagedGetDCDTBalance VM hook wrapper
+func (w *WrapperVMHooks) ManagedGetDCDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
+	callInfo := fmt.Sprintf("ManagedGetDCDTBalance(%d, %d, %d, %d)", addressHandle, tokenIDHandle, nonce, valueHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.ManagedGetESDTBalance(addressHandle, tokenIDHandle, nonce, valueHandle)
+	w.wrappedVMHooks.ManagedGetDCDTBalance(addressHandle, tokenIDHandle, nonce, valueHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// ManagedGetESDTTokenData VM hook wrapper
-func (w *WrapperVMHooks) ManagedGetESDTTokenData(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32) {
-	callInfo := fmt.Sprintf("ManagedGetESDTTokenData(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
+// ManagedGetDCDTTokenData VM hook wrapper
+func (w *WrapperVMHooks) ManagedGetDCDTTokenData(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32) {
+	callInfo := fmt.Sprintf("ManagedGetDCDTTokenData(%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)", addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.ManagedGetESDTTokenData(addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
+	w.wrappedVMHooks.ManagedGetDCDTTokenData(addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
@@ -948,20 +948,20 @@ func (w *WrapperVMHooks) ManagedExecuteOnDestContext(gas int64, addressHandle in
 	return result
 }
 
-// ManagedMultiTransferESDTNFTExecute VM hook wrapper
-func (w *WrapperVMHooks) ManagedMultiTransferESDTNFTExecute(dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
-	callInfo := fmt.Sprintf("ManagedMultiTransferESDTNFTExecute(%d, %d, %d, %d, %d)", dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+// ManagedMultiTransferDCDTNFTExecute VM hook wrapper
+func (w *WrapperVMHooks) ManagedMultiTransferDCDTNFTExecute(dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
+	callInfo := fmt.Sprintf("ManagedMultiTransferDCDTNFTExecute(%d, %d, %d, %d, %d)", dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.ManagedMultiTransferESDTNFTExecute(dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+	result := w.wrappedVMHooks.ManagedMultiTransferDCDTNFTExecute(dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// ManagedMultiTransferESDTNFTExecuteByUser VM hook wrapper
-func (w *WrapperVMHooks) ManagedMultiTransferESDTNFTExecuteByUser(userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
-	callInfo := fmt.Sprintf("ManagedMultiTransferESDTNFTExecuteByUser(%d, %d, %d, %d, %d, %d)", userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+// ManagedMultiTransferDCDTNFTExecuteByUser VM hook wrapper
+func (w *WrapperVMHooks) ManagedMultiTransferDCDTNFTExecuteByUser(userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
+	callInfo := fmt.Sprintf("ManagedMultiTransferDCDTNFTExecuteByUser(%d, %d, %d, %d, %d, %d)", userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.ManagedMultiTransferESDTNFTExecuteByUser(userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+	result := w.wrappedVMHooks.ManagedMultiTransferDCDTNFTExecuteByUser(userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
@@ -975,29 +975,29 @@ func (w *WrapperVMHooks) ManagedTransferValueExecute(dstHandle int32, valueHandl
 	return result
 }
 
-// ManagedIsESDTFrozen VM hook wrapper
-func (w *WrapperVMHooks) ManagedIsESDTFrozen(addressHandle int32, tokenIDHandle int32, nonce int64) int32 {
-	callInfo := fmt.Sprintf("ManagedIsESDTFrozen(%d, %d, %d)", addressHandle, tokenIDHandle, nonce)
+// ManagedIsDCDTFrozen VM hook wrapper
+func (w *WrapperVMHooks) ManagedIsDCDTFrozen(addressHandle int32, tokenIDHandle int32, nonce int64) int32 {
+	callInfo := fmt.Sprintf("ManagedIsDCDTFrozen(%d, %d, %d)", addressHandle, tokenIDHandle, nonce)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.ManagedIsESDTFrozen(addressHandle, tokenIDHandle, nonce)
+	result := w.wrappedVMHooks.ManagedIsDCDTFrozen(addressHandle, tokenIDHandle, nonce)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// ManagedIsESDTLimitedTransfer VM hook wrapper
-func (w *WrapperVMHooks) ManagedIsESDTLimitedTransfer(tokenIDHandle int32) int32 {
-	callInfo := fmt.Sprintf("ManagedIsESDTLimitedTransfer(%d)", tokenIDHandle)
+// ManagedIsDCDTLimitedTransfer VM hook wrapper
+func (w *WrapperVMHooks) ManagedIsDCDTLimitedTransfer(tokenIDHandle int32) int32 {
+	callInfo := fmt.Sprintf("ManagedIsDCDTLimitedTransfer(%d)", tokenIDHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.ManagedIsESDTLimitedTransfer(tokenIDHandle)
+	result := w.wrappedVMHooks.ManagedIsDCDTLimitedTransfer(tokenIDHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
 
-// ManagedIsESDTPaused VM hook wrapper
-func (w *WrapperVMHooks) ManagedIsESDTPaused(tokenIDHandle int32) int32 {
-	callInfo := fmt.Sprintf("ManagedIsESDTPaused(%d)", tokenIDHandle)
+// ManagedIsDCDTPaused VM hook wrapper
+func (w *WrapperVMHooks) ManagedIsDCDTPaused(tokenIDHandle int32) int32 {
+	callInfo := fmt.Sprintf("ManagedIsDCDTPaused(%d)", tokenIDHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	result := w.wrappedVMHooks.ManagedIsESDTPaused(tokenIDHandle)
+	result := w.wrappedVMHooks.ManagedIsDCDTPaused(tokenIDHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 	return result
 }
@@ -1251,19 +1251,19 @@ func (w *WrapperVMHooks) BigIntGetCallValue(destinationHandle int32) {
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// BigIntGetESDTCallValue VM hook wrapper
-func (w *WrapperVMHooks) BigIntGetESDTCallValue(destination int32) {
-	callInfo := fmt.Sprintf("BigIntGetESDTCallValue(%d)", destination)
+// BigIntGetDCDTCallValue VM hook wrapper
+func (w *WrapperVMHooks) BigIntGetDCDTCallValue(destination int32) {
+	callInfo := fmt.Sprintf("BigIntGetDCDTCallValue(%d)", destination)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.BigIntGetESDTCallValue(destination)
+	w.wrappedVMHooks.BigIntGetDCDTCallValue(destination)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// BigIntGetESDTCallValueByIndex VM hook wrapper
-func (w *WrapperVMHooks) BigIntGetESDTCallValueByIndex(destinationHandle int32, index int32) {
-	callInfo := fmt.Sprintf("BigIntGetESDTCallValueByIndex(%d, %d)", destinationHandle, index)
+// BigIntGetDCDTCallValueByIndex VM hook wrapper
+func (w *WrapperVMHooks) BigIntGetDCDTCallValueByIndex(destinationHandle int32, index int32) {
+	callInfo := fmt.Sprintf("BigIntGetDCDTCallValueByIndex(%d, %d)", destinationHandle, index)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.BigIntGetESDTCallValueByIndex(destinationHandle, index)
+	w.wrappedVMHooks.BigIntGetDCDTCallValueByIndex(destinationHandle, index)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
@@ -1275,11 +1275,11 @@ func (w *WrapperVMHooks) BigIntGetExternalBalance(addressOffset executor.MemPtr,
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 
-// BigIntGetESDTExternalBalance VM hook wrapper
-func (w *WrapperVMHooks) BigIntGetESDTExternalBalance(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, resultHandle int32) {
-	callInfo := fmt.Sprintf("BigIntGetESDTExternalBalance(%d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, resultHandle)
+// BigIntGetDCDTExternalBalance VM hook wrapper
+func (w *WrapperVMHooks) BigIntGetDCDTExternalBalance(addressOffset executor.MemPtr, tokenIDOffset executor.MemPtr, tokenIDLen executor.MemLength, nonce int64, resultHandle int32) {
+	callInfo := fmt.Sprintf("BigIntGetDCDTExternalBalance(%d, %d, %d, %d, %d)", addressOffset, tokenIDOffset, tokenIDLen, nonce, resultHandle)
 	w.logger.LogVMHookCallBefore(callInfo)
-	w.wrappedVMHooks.BigIntGetESDTExternalBalance(addressOffset, tokenIDOffset, tokenIDLen, nonce, resultHandle)
+	w.wrappedVMHooks.BigIntGetDCDTExternalBalance(addressOffset, tokenIDOffset, tokenIDLen, nonce, resultHandle)
 	w.logger.LogVMHookCallAfter(callInfo)
 }
 

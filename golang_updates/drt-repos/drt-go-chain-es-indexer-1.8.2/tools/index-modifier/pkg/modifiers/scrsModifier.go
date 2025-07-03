@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/transactions"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/transactions"
 )
 
 type responseSCRsBulk struct {
@@ -118,7 +118,7 @@ func (sm *scrsModifier) prepareSCRForIndexing(scr *data.ScResult) error {
 
 	scr.Operation = res.Operation
 	scr.Function = res.Function
-	scr.ESDTValues = res.ESDTValues
+	scr.DCDTValues = res.DCDTValues
 	scr.Tokens = res.Tokens
 	scr.ReceiversShardIDs = res.ReceiversShardID
 

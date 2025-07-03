@@ -7,7 +7,7 @@
                 "address:a_user": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -21,7 +21,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -31,11 +31,11 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -76,7 +76,7 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -92,7 +92,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -112,12 +112,12 @@
                             ],
                             "lastNonce": "2",
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

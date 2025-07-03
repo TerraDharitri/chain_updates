@@ -13,7 +13,7 @@ def update_go_mod_file(go_mod_path, new_hash):
         # Print the original content for debugging
         print("Original go.mod content:")
         print(content)
-        updated_content = re.sub(r'(github\.com/multiversx/mx-chain-go\s+)[^\s]+', f'github.com/multiversx/mx-chain-go {new_hash}', content)
+        updated_content = re.sub(r'(github\.com/dharitri/drt-go-chain\s+)[^\s]+', f'github.com/TerraDharitri/drt-go-chain {new_hash}', content)
 
         # Print updated content for verification
         print("Updated go.mod content:")
@@ -42,7 +42,7 @@ def run_go_mod_tidy():
         sys.exit(1)
 
 def main():
-    # Assuming the script is run from the root of mx-chain-simulator-go
+    # Assuming the script is run from the root of drt-go-chain-simulator
     go_mod_path = './go.mod'
 
     if len(sys.argv) != 2:

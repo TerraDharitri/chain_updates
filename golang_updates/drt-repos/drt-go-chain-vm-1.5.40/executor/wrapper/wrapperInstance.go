@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 var _ executor.Instance = (*WrapperInstance)(nil)

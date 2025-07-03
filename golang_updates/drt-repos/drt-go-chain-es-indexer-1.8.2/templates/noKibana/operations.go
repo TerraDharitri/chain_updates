@@ -34,10 +34,10 @@ var Operations = Object{
 				"data": Object{
 					"type": "text",
 				},
-				"esdtValues": Object{
+				"dcdtValues": Object{
 					"type": "keyword",
 				},
-				"esdtValuesNum": Object{
+				"dcdtValuesNum": Object{
 					"type": "double",
 				},
 				"fee": Object{

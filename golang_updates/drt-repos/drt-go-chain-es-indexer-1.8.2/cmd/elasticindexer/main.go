@@ -7,16 +7,16 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
-	"github.com/multiversx/mx-chain-es-indexer-go/factory"
-	"github.com/multiversx/mx-chain-es-indexer-go/metrics"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/wsindexer"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/factory"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/metrics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/wsindexer"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
 	"github.com/urfave/cli"
 )
 
@@ -66,8 +66,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

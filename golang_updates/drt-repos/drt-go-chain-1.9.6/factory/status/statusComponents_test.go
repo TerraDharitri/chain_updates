@@ -7,7 +7,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-communication/websocket/data"
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain/config"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory/mock"
 	statusComp "github.com/TerraDharitri/drt-go-chain/factory/status"
 	testsMocks "github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
@@ -74,7 +74,7 @@ func TestNewStatusComponentsFactory(t *testing.T) {
 		args.CoreComponents = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilCoreComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilCoreComponentsHolder, err)
 	})
 	t.Run("CoreComponents with nil GenesisNodesSetup should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
@@ -83,49 +83,49 @@ func TestNewStatusComponentsFactory(t *testing.T) {
 		}
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilGenesisNodesSetupHandler, err)
+		require.Equal(t, errorsDrt.ErrNilGenesisNodesSetupHandler, err)
 	})
 	t.Run("nil NetworkComponents should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.NetworkComponents = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilNetworkComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilNetworkComponentsHolder, err)
 	})
 	t.Run("nil ShardCoordinator should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.ShardCoordinator = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 	})
 	t.Run("nil NodesCoordinator should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.NodesCoordinator = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilNodesCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilNodesCoordinator, err)
 	})
 	t.Run("nil EpochStartNotifier should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.EpochStartNotifier = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilEpochStartNotifier, err)
+		require.Equal(t, errorsDrt.ErrNilEpochStartNotifier, err)
 	})
 	t.Run("nil StatusCoreComponents should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.StatusCoreComponents = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilStatusCoreComponents, err)
+		require.Equal(t, errorsDrt.ErrNilStatusCoreComponents, err)
 	})
 	t.Run("nil CryptoComponents should error", func(t *testing.T) {
 		args := createMockStatusComponentsFactoryArgs()
 		args.CryptoComponents = nil
 		scf, err := statusComp.NewStatusComponentsFactory(args)
 		require.Nil(t, scf)
-		require.Equal(t, errorsMx.ErrNilCryptoComponents, err)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponents, err)
 	})
 	t.Run("should work", func(t *testing.T) {
 		scf, err := statusComp.NewStatusComponentsFactory(createMockStatusComponentsFactoryArgs())
@@ -174,7 +174,7 @@ func TestStatusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, scf)
 
 		sc, err := scf.Create()
-		require.Equal(t, errorsMx.ErrInvalidRoundDuration, err)
+		require.Equal(t, errorsDrt.ErrInvalidRoundDuration, err)
 		require.Nil(t, sc)
 	})
 	t.Run("makeWebSocketDriverArgs fails due to invalid marshaller type should error", func(t *testing.T) {

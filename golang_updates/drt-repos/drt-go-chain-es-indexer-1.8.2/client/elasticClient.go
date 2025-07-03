@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/elastic/go-elasticsearch/v7"
 	"github.com/elastic/go-elasticsearch/v7/esapi"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 // TODO add more unit tests

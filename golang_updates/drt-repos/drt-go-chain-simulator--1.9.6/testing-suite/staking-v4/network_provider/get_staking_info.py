@@ -1,6 +1,6 @@
 import requests
 import json
-from multiversx_sdk_core import Address
+from dharitri_sdk_core import Address
 from constants import VALIDATOR_CONTRACT
 from config import DEFAULT_PROXY
 from helpers import base64_to_string

@@ -1,10 +1,10 @@
-from multiversx_sdk_wallet.validator_pem import ValidatorPEM
-from multiversx_sdk_wallet.validator_signer import ValidatorSigner
-from multiversx_sdk_core import Transaction
-from multiversx_sdk_core import Address
-from multiversx_sdk_core.transaction import TransactionComputer
-from multiversx_sdk_network_providers import ProxyNetworkProvider
-from multiversx_sdk_wallet import UserSigner
+from dharitri_sdk_wallet.validator_pem import ValidatorPEM
+from dharitri_sdk_wallet.validator_signer import ValidatorSigner
+from dharitri_sdk_core import Transaction
+from dharitri_sdk_core import Address
+from dharitri_sdk_core.transaction import TransactionComputer
+from dharitri_sdk_network_providers import ProxyNetworkProvider
+from dharitri_sdk_wallet import UserSigner
 
 from config import *
 from helpers import *

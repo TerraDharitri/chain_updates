@@ -8,8 +8,8 @@
     "round": 17813271,
     "epoch": 1236,
     "value": "0",
-    "receiver": "erd13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxq7hpjgw",
-    "sender": "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499",
+    "receiver": "drt13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxqrtk3ts",
+    "sender": "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm",
     "gasPrice": 1000000000,
     "gasLimit": 1084000,
     "gasUsed": 1084000,
@@ -33,9 +33,9 @@
         "hash": "8cc84367ffe898d922c82d23e7557c4b735c4ef1e93e563a1dfa36839bdfdaa4",
         "nonce": 0,
         "value": 337400000000000000,
-        "receiver": "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499",
-        "sender": "erd13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxq7hpjgw",
-        "relayerAddress": "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499",
+        "receiver": "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm",
+        "sender": "drt13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxqrtk3ts",
+        "relayerAddress": "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm",
         "relayedValue": 0,
         "prevTxHash": "4dd5faec9431b8111e96ac01e592b66be50a1454eb2d008ce941323d49715ca9",
         "originalTxHash": "4dd5faec9431b8111e96ac01e592b66be50a1454eb2d008ce941323d49715ca9",
@@ -47,7 +47,7 @@
     ],
     "status": "success",
     "receivers": [
-      "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499"
+      "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm"
     ],
     "receiversShardIDs": [
       1
@@ -70,8 +70,8 @@
       "round": 17813275,
       "epoch": 1236,
       "value": "337400000000000000",
-      "receiver": "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499",
-      "sender": "erd13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxq7hpjgw",
+      "receiver": "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm",
+      "sender": "drt13mfn9qksaq03c0nltpg23lqca67lhup544a56z0j4vlrhgu90lxqrtk3ts",
       "gasPrice": 1000000000,
       "gasUsed": 50000,
       "previousTransactionHash": "4dd5faec9431b8111e96ac01e592b66be50a1454eb2d008ce941323d49715ca9",
@@ -93,7 +93,7 @@
       "operation": "transfer",
       "fee": "0",
       "callType": "directCall",
-      "relayerAddress": "erd16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqswke499",
+      "relayerAddress": "drt16mpvgjpfgj8fd8h2stw9zxqx2n0prmmqsan02ash93jdrp6m7fqsn2wkxm",
       "relayedValue": "0",
       "options": 0
     }

@@ -1,7 +1,7 @@
 import sys
 import time
 
-from multiversx_sdk import (Address, ProxyNetworkProvider,
+from dharitri_sdk import (Address, ProxyNetworkProvider,
                             TransactionsFactoryConfig,
                             TransferTransactionsFactory, UserSecretKey)
 
@@ -24,14 +24,14 @@ def main():
     # cross-shard transfer
     config = TransactionsFactoryConfig(provider.get_network_config().chain_id)
     tx_factory = TransferTransactionsFactory(config)
-    amount_egld = 1000000000000000000  # 1 egld
+    amount_rewa = 1000000000000000000  # 1 rewa
     receiver = Address.new_from_bech32(
-        "erd13kp9r5fx4tf8da4ex37sd48pc4xhkmtteq6hcyt4y36pstte0tjqxjf3ns"
+        "drt13kp9r5fx4tf8da4ex37sd48pc4xhkmtteq6hcyt4y36pstte0tjqmw7jsw"
     )
     call_transaction = tx_factory.create_transaction_for_native_token_transfer(
         sender=address,
         receiver=receiver,
-        native_amount=amount_egld,
+        native_amount=amount_rewa,
     )
     call_transaction.nonce = provider.get_account(address).nonce
     call_transaction.signature = b"dummy"
@@ -45,9 +45,9 @@ def main():
 
     # check receiver balance
     receiver_account = provider.get_account(receiver)
-    if receiver_account.balance != amount_egld:
+    if receiver_account.balance != amount_rewa:
         sys.exit(f"receiver did not receive the transferred amount"
-                 f"expected balance: {amount_egld}, current balance: {receiver_account.balance}")
+                 f"expected balance: {amount_rewa}, current balance: {receiver_account.balance}")
 
 
 if __name__ == "__main__":

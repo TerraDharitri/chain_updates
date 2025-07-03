@@ -12,7 +12,7 @@
             "version": "0.0.0"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.54.4"
         }
     },
@@ -139,7 +139,7 @@
                 ]
             }
         ],
-        "esdtAttributes": [],
+        "dcdtAttributes": [],
         "hasCallback": false,
         "types": {
             "CodecErrorTestType": {
@@ -148,7 +148,7 @@
                     "Helper type to explore encode/decode errors."
                 ]
             },
-            "EsdtTokenPayment": {
+            "DcdtTokenPayment": {
                 "type": "struct",
                 "fields": [
                     {
@@ -168,7 +168,7 @@
             "ExampleEnumSimple": {
                 "type": "enum",
                 "docs": [
-                    "Copied from multiversx-sc serialization tests."
+                    "Copied from dharitri-sc serialization tests."
                 ],
                 "variants": [
                     {
@@ -195,7 +195,7 @@
             "ExampleEnumWithFields": {
                 "type": "enum",
                 "docs": [
-                    "Copied from multiversx-sc serialization tests."
+                    "Copied from dharitri-sc serialization tests."
                 ],
                 "variants": [
                     {

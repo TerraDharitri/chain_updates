@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/appStatusPolling"
-	"github.com/multiversx/mx-chain-core-go/core/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/appStatusPolling"
+	"github.com/TerraDharitri/drt-go-chain-core/core/mock"
 	"github.com/stretchr/testify/assert"
 )
 

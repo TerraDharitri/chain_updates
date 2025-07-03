@@ -33,7 +33,7 @@
             "tx": {
                 "from": "address:endless_sack_of_erd",
                 "to": "address:delegator3",
-                "egldValue": "500,000,000,000,000"
+                "rewaValue": "500,000,000,000,000"
             }
         },
         {
@@ -49,7 +49,7 @@
             "tx": {
                 "from": "address:delegator3",
                 "to": "sc:delegation",
-                "egldValue": "200,000,000,000,000",
+                "rewaValue": "200,000,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -88,7 +88,7 @@
             "tx": {
                 "from": "address:delegator3",
                 "to": "sc:delegation",
-                "egldValue": "300,000,000,000,000",
+                "rewaValue": "300,000,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "100,000,000",

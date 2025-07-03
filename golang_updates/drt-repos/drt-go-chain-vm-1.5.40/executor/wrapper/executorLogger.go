@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 var log = logger.GetOrCreate("vm/executor")

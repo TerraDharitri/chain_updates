@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 const maxNumOfRetries = 10

@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	factoryMarshalizer "github.com/multiversx/mx-chain-core-go/marshal/factory"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/transactions"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	factoryMarshalizer "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/transactions"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 )
 
 var log = logger.GetOrCreate("index-modifier/pkg/alterindex")
@@ -156,7 +156,7 @@ func (tm *txsModifier) prepareTxForIndexing(tx *data.Transaction) error {
 
 	tx.Operation = res.Operation
 	tx.Function = res.Function
-	tx.ESDTValues = res.ESDTValues
+	tx.DCDTValues = res.DCDTValues
 	tx.Tokens = res.Tokens
 	tx.ReceiversShardIDs = res.ReceiversShardID
 

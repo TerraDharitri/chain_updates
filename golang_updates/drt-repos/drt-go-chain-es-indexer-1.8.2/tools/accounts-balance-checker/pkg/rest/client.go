@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/utils"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/utils"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 const maxNumOfRetries = 10

@@ -2,22 +2,22 @@
   "name": "semi-token",
   "ticker": "SEMI",
   "token": "TOK-abcd",
-  "issuer": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
-  "currentOwner": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
-  "type": "SemiFungibleESDT",
+  "issuer": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
+  "currentOwner": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
+  "type": "SemiFungibleDCDT",
   "timestamp": 5040,
   "ownersHistory": [
     {
-      "address": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
+      "address": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
       "timestamp": 5040
     }
   ],
   "roles": {
-    "ESDTRoleNFTCreate": [
-      "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+    "DCDTRoleNFTCreate": [
+      "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
     ],
-    "ESDTRoleNFTBurn": [
-      "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+    "DCDTRoleNFTBurn": [
+      "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
     ]
   },
   "properties": {

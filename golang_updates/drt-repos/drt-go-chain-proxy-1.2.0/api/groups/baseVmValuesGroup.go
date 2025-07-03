@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	apiErrors "github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	apiErrors "github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/api/shared"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 )
 
 // VMValueRequest represents the structure on which user input for generating a new transaction will validate against

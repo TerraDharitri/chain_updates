@@ -2,7 +2,7 @@
 package config
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // GasCost defines the gas cost config structure
@@ -82,7 +82,7 @@ type BaseOpsAPICost struct {
 	DeleteFromReturnData    uint64
 	GetCodeMetadata         uint64
 	IsBuiltinFunction       uint64
-	IsReservedFunctionName 	uint64
+	IsReservedFunctionName  uint64
 }
 
 // DynamicStorageLoadCostCoefficients holds the signed coefficients of the func that will compute the gas cost

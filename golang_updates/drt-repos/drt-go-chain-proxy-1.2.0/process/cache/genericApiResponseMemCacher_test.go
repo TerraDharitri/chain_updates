@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process/cache"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/cache"
 	"github.com/stretchr/testify/assert"
 )
 

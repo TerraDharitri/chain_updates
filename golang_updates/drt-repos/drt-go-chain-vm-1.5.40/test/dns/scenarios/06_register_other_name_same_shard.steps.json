@@ -8,7 +8,7 @@
             "tx": {
                 "from": "address:cool_address",
                 "to": "sc:dns#87",
-                "egldValue": "123,000",
+                "rewaValue": "123,000",
                 "function": "register",
                 "arguments": [
                     "str:coolname1075.|0x656C726F6E64"
@@ -51,7 +51,7 @@
                 "address:cool_address": {
                     "nonce": "*",
                     "balance": "0",
-                    "username": "0x636f6f6c6e616d65303030312e656c726f6e64"
+                    "username": "0x636f6f6c6e616d65303030312e6e756d626174"
                 },
                 "sc:dns#87": {
                     "nonce": "*",
@@ -59,7 +59,7 @@
                     "storage": {
                         "''registration_cost": "123,000",
                         "''feat:register": "1",
-                        "''value_state|keccak256:0x636f6f6c6e616d65303030312e656c726f6e64": "u8:2|address:cool_address"
+                        "''value_state|keccak256:0x636f6f6c6e616d65303030312e6e756d626174": "u8:2|address:cool_address"
                     },
                     "code": "file:../output/dns.wasm"
                 },

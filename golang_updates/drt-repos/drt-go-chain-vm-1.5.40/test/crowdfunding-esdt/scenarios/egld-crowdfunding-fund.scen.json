@@ -3,7 +3,7 @@
     "steps": [
         {
             "step": "externalSteps",
-            "path": "egld-crowdfunding-init.scen.json"
+            "path": "rewa-crowdfunding-init.scen.json"
         },
         {
             "step": "setState",
@@ -20,7 +20,7 @@
             "tx": {
                 "from": "address:donor1",
                 "to": "sc:crowdfunding",
-                "egldValue": "250,000,000,000",
+                "rewaValue": "250,000,000,000",
                 "function": "fund",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -52,10 +52,10 @@
                     "storage": {
                         "str:target": "500,000,000,000",
                         "str:deadline": "123,000",
-                        "str:tokenIdentifier": "str:EGLD",
+                        "str:tokenIdentifier": "str:REWA",
                         "str:deposit|address:donor1": "250,000,000,000"
                     },
-                    "code": "mxsc:../output/crowdfunding-esdt.mxsc.json"
+                    "code": "drtsc:../output/crowdfunding-dcdt.drtsc.json"
                 }
             }
         }

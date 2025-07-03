@@ -13,18 +13,18 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	hasherFactory "github.com/multiversx/mx-chain-core-go/hashing/factory"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	marshalFactory "github.com/multiversx/mx-chain-core-go/marshal/factory"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	apiErrors "github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/logsevents"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	hasherFactory "github.com/TerraDharitri/drt-go-chain-core/hashing/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	marshalFactory "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	apiErrors "github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/logsevents"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -1646,7 +1646,7 @@ func TestTransactionProcessor_GetTransactionPool(t *testing.T) {
 		t.Parallel()
 		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
 		providedShardId := uint32(0)
-		providedSenderStr := "erd1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugq3gt3yc"
+		providedSenderStr := "drt1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugqv5uj8x"
 		addrObs0 := "observer0"
 
 		tp, _ := process.NewTransactionProcessor(&mock.ProcessorStub{
@@ -1696,7 +1696,7 @@ func TestTransactionProcessor_GetTransactionPool(t *testing.T) {
 
 		providedPubKeyConverter, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
 		providedShardId := uint32(0)
-		providedSenderStr := "erd1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugq3gt3yc"
+		providedSenderStr := "drt1kwh72fxl5rwndatsgrvfu235q3pwyng9ax4zxcrg4ss3p6pwuugqv5uj8x"
 		addrObs0 := "observer0"
 
 		lastNonce := uint64(111)
@@ -1879,7 +1879,7 @@ func TestTransactionProcessor_computeTransactionStatus(t *testing.T) {
 		})
 	})
 	t.Run("complex scenarios with failed async calls", func(t *testing.T) {
-		t.Run("scenario 1: tx failed with ESDTs and SC calls", func(t *testing.T) {
+		t.Run("scenario 1: tx failed with DCDTs and SC calls", func(t *testing.T) {
 			t.Parallel()
 
 			testData := loadJsonIntoTxAndScrs(t, "./testdata/finishedFailedComplexScenario1.json")
@@ -1888,7 +1888,7 @@ func TestTransactionProcessor_computeTransactionStatus(t *testing.T) {
 			status := tp.ComputeTransactionStatus(testData.Transaction, withResults)
 			require.Equal(t, string(transaction.TxStatusFail), status.Status)
 		})
-		t.Run("scenario 2: tx failed with ESDTs and SC calls", func(t *testing.T) {
+		t.Run("scenario 2: tx failed with DCDTs and SC calls", func(t *testing.T) {
 			t.Parallel()
 
 			testData := loadJsonIntoTxAndScrs(t, "./testdata/finishedFailedComplexScenario2.json")
@@ -1897,7 +1897,7 @@ func TestTransactionProcessor_computeTransactionStatus(t *testing.T) {
 			status := tp.ComputeTransactionStatus(testData.Transaction, withResults)
 			require.Equal(t, string(transaction.TxStatusFail), status.Status)
 		})
-		t.Run("scenario 3: tx failed with ESDTs and SC calls", func(t *testing.T) {
+		t.Run("scenario 3: tx failed with DCDTs and SC calls", func(t *testing.T) {
 			t.Parallel()
 
 			testData := loadJsonIntoTxAndScrs(t, "./testdata/finishedFailedComplexScenario3.json")
@@ -2115,10 +2115,10 @@ func TestCheckIfFailed(t *testing.T) {
 	t.Parallel()
 
 	logs := `{
-        "address": "erd1qqqqqqqqqqqqqpgqzhpcdd8jg77m06zwqmhgw9xdmukn6pfeh2uslry9u8",
+        "address": "drt1qqqqqqqqqqqqqpgqzhpcdd8jg77m06zwqmhgw9xdmukn6pfeh2uszlnxle",
         "events": [
           {
-            "address": "erd1qqqqqqqqqqqqqpgqzhpcdd8jg77m06zwqmhgw9xdmukn6pfeh2uslry9u8",
+            "address": "drt1qqqqqqqqqqqqqpgqzhpcdd8jg77m06zwqmhgw9xdmukn6pfeh2uszlnxle",
             "identifier": "signalError",
             "topics": [
               "Y7snvmIze+8YqIYkhNMYG8zZ7Q8PzaroT/Z7+3rEdCU=",
@@ -2130,7 +2130,7 @@ func TestCheckIfFailed(t *testing.T) {
             ]
           },
           {
-            "address": "erd1vwaj00nzxda77x9gscjgf5ccr0xdnmg0plx646z07ealk7kywsjsqf596y",
+            "address": "drt1vwaj00nzxda77x9gscjgf5ccr0xdnmg0plx646z07ealk7kywsjsa4rxe6",
             "identifier": "internalVMErrors",
             "topics": [
               "AAAAAAAAAAAFABXDhrTyR7236E4G7ocUzd8tPQU5urk=",

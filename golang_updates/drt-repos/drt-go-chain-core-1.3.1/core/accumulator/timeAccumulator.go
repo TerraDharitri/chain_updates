@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 var _ core.Accumulator = (*timeAccumulator)(nil)
@@ -17,7 +17,7 @@ var _ core.Accumulator = (*timeAccumulator)(nil)
 const minimumAllowedTime = time.Millisecond * 10
 
 // timeAccumulator is a structure that is able to accumulate data and will try to write on the output channel
-//once per provided interval
+// once per provided interval
 type timeAccumulator struct {
 	cancel         func()
 	maxAllowedTime time.Duration

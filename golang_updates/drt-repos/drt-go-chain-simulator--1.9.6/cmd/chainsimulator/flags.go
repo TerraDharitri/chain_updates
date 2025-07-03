@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-simulator-go/config"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-simulator/config"
 	"github.com/urfave/cli"
 )
 

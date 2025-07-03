@@ -5,15 +5,15 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.OutputContext = (*outputContext)(nil)
@@ -405,7 +405,7 @@ func (context *outputContext) Transfer(
 
 	executionType := callType
 	if executionType == vm.DirectCall {
-		executionType = vm.ESDTTransferAndExecute
+		executionType = vm.DCDTTransferAndExecute
 	}
 
 	context.WriteLogWithIdentifier(
@@ -424,7 +424,7 @@ func getExecutionTypeString(callType vm.CallType, isBackTransfer bool) string {
 	}
 
 	switch callType {
-	case vm.ESDTTransferAndExecute:
+	case vm.DCDTTransferAndExecute:
 		return vmhost.TransferAndExecuteString
 	case vm.AsynchronousCall:
 		return vmhost.AsyncCallString
@@ -435,13 +435,13 @@ func getExecutionTypeString(callType vm.CallType, isBackTransfer bool) string {
 	return vmhost.DirectCallString
 }
 
-// TransferESDT makes the esdt/nft transfer and exports the data if it is cross shard
-func (context *outputContext) TransferESDT(
-	transfersArgs *vmhost.ESDTTransfersArgs,
+// TransferDCDT makes the dcdt/nft transfer and exports the data if it is cross shard
+func (context *outputContext) TransferDCDT(
+	transfersArgs *vmhost.DCDTTransfersArgs,
 	callInput *vmcommon.ContractCallInput,
 ) (uint64, error) {
 	if len(transfersArgs.Transfers) == 0 {
-		return 0, vmhost.ErrTransferValueOnESDTCall
+		return 0, vmhost.ErrTransferValueOnDCDTCall
 	}
 
 	isSmartContract := context.host.Blockchain().IsSmartContract(transfersArgs.Destination)
@@ -457,10 +457,10 @@ func (context *outputContext) TransferESDT(
 	}
 	executionType := callType
 	if callType == vm.DirectCall && (isExecution || isBackTransfer) {
-		executionType = vm.ESDTTransferAndExecute
+		executionType = vm.DCDTTransferAndExecute
 	}
 
-	vmOutput, gasConsumedByTransfer, err := context.host.ExecuteESDTTransfer(transfersArgs, executionType)
+	vmOutput, gasConsumedByTransfer, err := context.host.ExecuteDCDTTransfer(transfersArgs, executionType)
 	if err != nil {
 		return 0, err
 	}
@@ -469,7 +469,7 @@ func (context *outputContext) TransferESDT(
 
 	if callInput != nil && isSmartContract {
 		if gasConsumedByTransfer > callInput.GasProvided {
-			logOutput.Trace("ESDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
+			logOutput.Trace("DCDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
 			return 0, vmhost.ErrNotEnoughGas
 		}
 		gasRemaining = callInput.GasProvided - gasConsumedByTransfer
@@ -477,14 +477,14 @@ func (context *outputContext) TransferESDT(
 
 	if isExecution {
 		if gasRemaining > context.host.Metering().GasLeft() {
-			logOutput.Trace("ESDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
+			logOutput.Trace("DCDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
 			return 0, vmhost.ErrNotEnoughGas
 		}
 
 		if !sameShard {
 			err = context.host.Metering().UseGasBounded(gasRemaining)
 			if err != nil {
-				logOutput.Trace("ESDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
+				logOutput.Trace("DCDT post-transfer execution", "error", vmhost.ErrNotEnoughGas)
 				return 0, vmhost.ErrNotEnoughGas
 			}
 		}
@@ -494,15 +494,15 @@ func (context *outputContext) TransferESDT(
 	outputAcc, ok := vmOutput.OutputAccounts[string(transfersArgs.Destination)]
 
 	if ok && len(outputAcc.OutputTransfers) == 1 {
-		esdtOutTransfer := outputAcc.OutputTransfers[0]
-		esdtOutTransfer.GasLimit = gasRemaining
-		esdtOutTransfer.CallType = callType
-		esdtOutTransfer.SenderAddress = transfersArgs.SenderForExec
+		dcdtOutTransfer := outputAcc.OutputTransfers[0]
+		dcdtOutTransfer.GasLimit = gasRemaining
+		dcdtOutTransfer.CallType = callType
+		dcdtOutTransfer.SenderAddress = transfersArgs.SenderForExec
 		if sameShard {
-			esdtOutTransfer.GasLimit = 0
+			dcdtOutTransfer.GasLimit = 0
 		}
 
-		AppendOutputTransfers(destAcc, destAcc.OutputTransfers, esdtOutTransfer)
+		AppendOutputTransfers(destAcc, destAcc.OutputTransfers, dcdtOutTransfer)
 	}
 
 	context.host.CompleteLogEntriesWithCallType(vmOutput, getExecutionTypeString(executionType, isBackTransfer))

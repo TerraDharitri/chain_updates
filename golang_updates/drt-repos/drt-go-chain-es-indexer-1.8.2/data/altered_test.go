@@ -3,7 +3,7 @@ package data
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/require"
 )
 
@@ -42,7 +42,7 @@ func TestAlteredAccounts_AddTokenAddFunds(t *testing.T) {
 	altAccounts.Add(addr, acct1)
 
 	acct2 := &AlteredAccount{
-		IsESDTOperation: true,
+		IsDCDTOperation: true,
 		TokenIdentifier: "my-token",
 	}
 	altAccounts.Add(addr, acct2)
@@ -53,7 +53,7 @@ func TestAlteredAccounts_AddTokenAddFunds(t *testing.T) {
 	require.True(t, res[0].BalanceChange)
 }
 
-func TestAlteredAccounts_AddESDT(t *testing.T) {
+func TestAlteredAccounts_AddDCDT(t *testing.T) {
 	t.Parallel()
 
 	altAccounts := NewAlteredAccounts()
@@ -66,7 +66,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 
 	acct2 := &AlteredAccount{
 		TokenIdentifier: "my-token",
-		IsESDTOperation: true,
+		IsDCDTOperation: true,
 		NFTNonce:        0,
 	}
 	altAccounts.Add(addr, acct2)
@@ -74,7 +74,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 	acct3 := &AlteredAccount{
 		IsSender:        true,
 		TokenIdentifier: "my-token",
-		IsESDTOperation: true,
+		IsDCDTOperation: true,
 		NFTNonce:        0,
 	}
 	altAccounts.Add(addr, acct3)
@@ -84,7 +84,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 		TokenIdentifier: "my-nft-token",
 		IsNFTOperation:  true,
 		NFTNonce:        1,
-		Type:            core.NonFungibleESDT,
+		Type:            core.NonFungibleDCDT,
 	}
 	altAccounts.Add(addr, acct4)
 
@@ -93,7 +93,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 		TokenIdentifier: "my-nft-token",
 		IsNFTOperation:  true,
 		NFTNonce:        1,
-		Type:            core.NonFungibleESDT,
+		Type:            core.NonFungibleDCDT,
 	}
 	altAccounts.Add(addr, acct5)
 
@@ -102,7 +102,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 		TokenIdentifier: "my-nft-token",
 		IsNFTOperation:  true,
 		NFTNonce:        2,
-		Type:            core.NonFungibleESDT,
+		Type:            core.NonFungibleDCDT,
 		IsNFTCreate:     true,
 	}
 	altAccounts.Add(addr, acct6)
@@ -114,7 +114,7 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 	require.Equal(t, &AlteredAccount{
 		BalanceChange:   true,
 		IsSender:        true,
-		IsESDTOperation: true,
+		IsDCDTOperation: true,
 		TokenIdentifier: "my-token",
 	}, res[0])
 
@@ -122,14 +122,14 @@ func TestAlteredAccounts_AddESDT(t *testing.T) {
 		IsNFTOperation:  true,
 		TokenIdentifier: "my-nft-token",
 		NFTNonce:        1,
-		Type:            core.NonFungibleESDT,
+		Type:            core.NonFungibleDCDT,
 	}, res[1])
 
 	require.Equal(t, &AlteredAccount{
 		IsNFTOperation:  true,
 		TokenIdentifier: "my-nft-token",
 		NFTNonce:        2,
-		Type:            core.NonFungibleESDT,
+		Type:            core.NonFungibleDCDT,
 		IsNFTCreate:     true,
 	}, res[2])
 }

@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/mock"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 	"github.com/stretchr/testify/require"
 )
 

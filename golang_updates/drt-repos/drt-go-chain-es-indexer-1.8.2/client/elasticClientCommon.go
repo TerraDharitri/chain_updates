@@ -10,9 +10,9 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/elastic/go-elasticsearch/v7/esapi"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
 )
 
 func exists(res *esapi.Response, err error) bool {

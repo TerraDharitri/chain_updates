@@ -1,6 +1,6 @@
 import sys
 
-from multiversx_sdk import ProxyNetworkProvider, NetworkProviderConfig
+from dharitri_sdk import ProxyNetworkProvider, NetworkProviderConfig
 
 SIMULATOR_URL = "http://localhost:8085"
 GENERATE_BLOCKS_UNTIL_EPOCH_REACHED_URL = "simulator/generate-blocks-until-epoch-reached"

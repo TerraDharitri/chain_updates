@@ -1,3 +1,3 @@
-## Multiversx Rosetta
+## Dharitri Rosetta
 
-Moved at [Multiversx/rosetta](https://github.com/multiversx/mx-chain-rosetta).
+Moved at [Dharitri/rosetta](https://github.com/TerraDharitri/drt-chain-rosetta).

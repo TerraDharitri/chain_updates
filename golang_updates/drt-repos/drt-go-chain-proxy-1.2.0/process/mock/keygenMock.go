@@ -1,6 +1,6 @@
 package mock
 
-import crypto "github.com/multiversx/mx-chain-crypto-go"
+import crypto "github.com/TerraDharitri/drt-go-chain-core"
 
 type KeygenStub struct {
 	GeneratePairCalled            func() (crypto.PrivateKey, crypto.PublicKey)

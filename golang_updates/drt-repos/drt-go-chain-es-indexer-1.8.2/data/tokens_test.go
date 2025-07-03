@@ -3,7 +3,7 @@ package data
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/require"
 )
 
@@ -79,7 +79,7 @@ func TestTokensInfo_AddTypeFromResponse(t *testing.T) {
 				Found: true,
 				ID:    "my-token-1",
 				Source: SourceToken{
-					Type: core.SemiFungibleESDT,
+					Type: core.SemiFungibleDCDT,
 				},
 			},
 			{
@@ -89,7 +89,7 @@ func TestTokensInfo_AddTypeFromResponse(t *testing.T) {
 				Found: true,
 				ID:    "my-token-3",
 				Source: SourceToken{
-					Type: core.SemiFungibleESDT,
+					Type: core.SemiFungibleDCDT,
 				},
 			},
 		},
@@ -98,8 +98,8 @@ func TestTokensInfo_AddTypeFromResponse(t *testing.T) {
 	tokensData.AddTypeAndOwnerFromResponse(res)
 
 	tokenData := tokensData.tokensInfo["my-token-1"]
-	require.Equal(t, core.SemiFungibleESDT, tokenData.Type)
+	require.Equal(t, core.SemiFungibleDCDT, tokenData.Type)
 
 	tokenData = tokensData.tokensInfo["my-token-3-03"]
-	require.Equal(t, core.SemiFungibleESDT, tokenData.Type)
+	require.Equal(t, core.SemiFungibleDCDT, tokenData.Type)
 }

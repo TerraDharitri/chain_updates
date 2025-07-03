@@ -10,9 +10,9 @@ import (
 	"sort"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 const (
@@ -20,7 +20,7 @@ const (
 	heartbeatPath = "/node/heartbeatstatus"
 	// waitingEpochsLeftPath represents the path where an observer the number of epochs left in waiting state for a key
 	waitingEpochsLeftPath = "/node/waiting-epochs-left/%s"
-	systemAccountAddress  = "erd1lllllllllllllllllllllllllllllllllllllllllllllllllllsckry7t"
+	systemAccountAddress  = "drt1llllllllllllllllllllllllllllllllllllllllllllllllllls9258a4"
 )
 
 // NodeGroupProcessor is able to process transaction requests
@@ -96,7 +96,7 @@ func (ngp *NodeGroupProcessor) IsOldStorageForToken(tokenID string, nonce uint64
 
 func computeTokenStorageKey(tokenID string, nonce uint64) string {
 	key := []byte(core.ProtectedKeyPrefix)
-	key = append(key, core.ESDTKeyIdentifier...)
+	key = append(key, core.DCDTKeyIdentifier...)
 	key = append(key, []byte(tokenID)...)
 
 	if nonce > 0 {

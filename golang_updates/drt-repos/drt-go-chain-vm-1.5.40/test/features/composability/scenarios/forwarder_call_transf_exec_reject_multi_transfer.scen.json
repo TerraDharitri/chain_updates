@@ -11,7 +11,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [
@@ -30,12 +30,12 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 }
             }
         },
@@ -80,12 +80,12 @@
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [
@@ -105,7 +105,7 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

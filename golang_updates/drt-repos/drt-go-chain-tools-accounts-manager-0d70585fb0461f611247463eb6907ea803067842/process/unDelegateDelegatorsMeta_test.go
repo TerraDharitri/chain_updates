@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/mocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/mocks"
 	"github.com/stretchr/testify/require"
 )
 
@@ -31,11 +31,11 @@ func TestAccountsGetter_DelegationMetaPutUnDelegatedValues(t *testing.T) {
 	err = ag.unDelegatedInfoProc.putUnDelegateInfoFromStakingProviders(accountsWithStake)
 	require.Nil(t, err)
 
-	accounts1 := accountsWithStake["erd102hpxzdawtka2usnmkqsk58v3k70jprhy50u4kdgc44j5azd6q5q7nn7f2"]
+	accounts1 := accountsWithStake["drt102hpxzdawtka2usnmkqsk58v3k70jprhy50u4kdgc44j5azd6q5qr0ya25"]
 	require.Equal(t, accounts1.UnDelegateDelegation, "2000000000000000000")
 	require.Equal(t, accounts1.UnDelegateDelegationNum, float64(2))
 
-	accounts2 := accountsWithStake["erd1063s32hkyj55dpvhtsadacpt268angz2rh2wu4zwqe54awxz5q5sdg5e8z"]
+	accounts2 := accountsWithStake["drt1063s32hkyj55dpvhtsadacpt268angz2rh2wu4zwqe54awxz5q5ss5r6yu"]
 	require.Equal(t, accounts2.UnDelegateDelegation, "10000000000000000000")
 	require.Equal(t, accounts2.UnDelegateDelegationNum, float64(10))
 }

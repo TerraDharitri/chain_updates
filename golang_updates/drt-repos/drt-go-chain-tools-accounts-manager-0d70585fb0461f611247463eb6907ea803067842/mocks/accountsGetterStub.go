@@ -1,7 +1,7 @@
 package mocks
 
 import (
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 type AccountsGetterStub struct {
@@ -14,7 +14,7 @@ func (a *AccountsGetterStub) GetAccountsWithEnergy(_ uint32) (map[string]*data.A
 	return nil, nil, nil
 }
 
-func (a *AccountsGetterStub) GetLKMEXStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error) {
+func (a *AccountsGetterStub) GetLKMOAStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error) {
 	return nil, nil
 }
 

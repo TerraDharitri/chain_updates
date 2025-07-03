@@ -1,8 +1,8 @@
 package versions
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/facade"
-	"github.com/multiversx/mx-chain-proxy-go/process/v_next"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/v_next"
 )
 
 // ProxyFacadeV_next is the facade that corresponds to the version v_next

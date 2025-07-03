@@ -27,18 +27,18 @@ type MainVMHooks interface {
 	SignalError(messageOffset MemPtr, messageLength MemLength)
 	GetExternalBalance(addressOffset MemPtr, resultOffset MemPtr)
 	GetBlockHash(nonce int64, resultOffset MemPtr) int32
-	GetESDTBalance(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, resultOffset MemPtr) int32
-	GetESDTNFTNameLength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
-	GetESDTNFTAttributeLength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
-	GetESDTNFTURILength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
-	GetESDTTokenData(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, valueHandle int32, propertiesOffset MemPtr, hashOffset MemPtr, nameOffset MemPtr, attributesOffset MemPtr, creatorOffset MemPtr, royaltiesHandle int32, urisOffset MemPtr) int32
-	GetESDTLocalRoles(tokenIdHandle int32) int64
+	GetDCDTBalance(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, resultOffset MemPtr) int32
+	GetDCDTNFTNameLength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
+	GetDCDTNFTAttributeLength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
+	GetDCDTNFTURILength(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64) int32
+	GetDCDTTokenData(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, valueHandle int32, propertiesOffset MemPtr, hashOffset MemPtr, nameOffset MemPtr, attributesOffset MemPtr, creatorOffset MemPtr, royaltiesHandle int32, urisOffset MemPtr) int32
+	GetDCDTLocalRoles(tokenIdHandle int32) int64
 	ValidateTokenIdentifier(tokenIdHandle int32) int32
 	TransferValue(destOffset MemPtr, valueOffset MemPtr, dataOffset MemPtr, length MemLength) int32
 	TransferValueExecute(destOffset MemPtr, valueOffset MemPtr, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
-	TransferESDTExecute(destOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, valueOffset MemPtr, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
-	TransferESDTNFTExecute(destOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, valueOffset MemPtr, nonce int64, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
-	MultiTransferESDTNFTExecute(destOffset MemPtr, numTokenTransfers int32, tokenTransfersArgsLengthOffset MemPtr, tokenTransferDataOffset MemPtr, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
+	TransferDCDTExecute(destOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, valueOffset MemPtr, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
+	TransferDCDTNFTExecute(destOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, valueOffset MemPtr, nonce int64, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
+	MultiTransferDCDTNFTExecute(destOffset MemPtr, numTokenTransfers int32, tokenTransfersArgsLengthOffset MemPtr, tokenTransferDataOffset MemPtr, gasLimit int64, functionOffset MemPtr, functionLength MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr) int32
 	CreateAsyncCall(destOffset MemPtr, valueOffset MemPtr, dataOffset MemPtr, dataLength MemLength, successOffset MemPtr, successLength MemLength, errorOffset MemPtr, errorLength MemLength, gas int64, extraGasForCallback int64) int32
 	SetAsyncContextCallback(callback MemPtr, callbackLength MemLength, data MemPtr, dataLength MemLength, gas int64) int32
 	UpgradeContract(destOffset MemPtr, gasLimit int64, valueOffset MemPtr, codeOffset MemPtr, codeMetadataOffset MemPtr, length MemLength, numArguments int32, argumentsLengthOffset MemPtr, dataOffset MemPtr)
@@ -60,16 +60,16 @@ type MainVMHooks interface {
 	GetCaller(resultOffset MemPtr)
 	CheckNoPayment()
 	GetCallValue(resultOffset MemPtr) int32
-	GetESDTValue(resultOffset MemPtr) int32
-	GetESDTValueByIndex(resultOffset MemPtr, index int32) int32
-	GetESDTTokenName(resultOffset MemPtr) int32
-	GetESDTTokenNameByIndex(resultOffset MemPtr, index int32) int32
-	GetESDTTokenNonce() int64
-	GetESDTTokenNonceByIndex(index int32) int64
-	GetCurrentESDTNFTNonce(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength) int64
-	GetESDTTokenType() int32
-	GetESDTTokenTypeByIndex(index int32) int32
-	GetNumESDTTransfers() int32
+	GetDCDTValue(resultOffset MemPtr) int32
+	GetDCDTValueByIndex(resultOffset MemPtr, index int32) int32
+	GetDCDTTokenName(resultOffset MemPtr) int32
+	GetDCDTTokenNameByIndex(resultOffset MemPtr, index int32) int32
+	GetDCDTTokenNonce() int64
+	GetDCDTTokenNonceByIndex(index int32) int64
+	GetCurrentDCDTNFTNonce(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength) int64
+	GetDCDTTokenType() int32
+	GetDCDTTokenTypeByIndex(index int32) int32
+	GetNumDCDTTransfers() int32
 	GetCallValueTokenName(callValueOffset MemPtr, tokenNameOffset MemPtr) int32
 	GetCallValueTokenNameByIndex(callValueOffset MemPtr, tokenNameOffset MemPtr, index int32) int32
 	IsReservedFunctionName(nameHandle int32) int32
@@ -115,10 +115,10 @@ type ManagedVMHooks interface {
 	ManagedGetBlockRandomSeed(resultHandle int32)
 	ManagedGetPrevBlockRandomSeed(resultHandle int32)
 	ManagedGetReturnData(resultID int32, resultHandle int32)
-	ManagedGetMultiESDTCallValue(multiCallValueHandle int32)
-	ManagedGetBackTransfers(esdtTransfersValueHandle int32, egldValueHandle int32)
-	ManagedGetESDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32)
-	ManagedGetESDTTokenData(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32)
+	ManagedGetMultiDCDTCallValue(multiCallValueHandle int32)
+	ManagedGetBackTransfers(dcdtTransfersValueHandle int32, rewaValueHandle int32)
+	ManagedGetDCDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32)
+	ManagedGetDCDTTokenData(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32)
 	ManagedAsyncCall(destHandle int32, valueHandle int32, functionHandle int32, argumentsHandle int32)
 	ManagedCreateAsyncCall(destHandle int32, valueHandle int32, functionHandle int32, argumentsHandle int32, successOffset MemPtr, successLength MemLength, errorOffset MemPtr, errorLength MemLength, gas int64, extraGasForCallback int64, callbackClosureHandle int32) int32
 	ManagedGetCallbackClosure(callbackClosureHandle int32)
@@ -130,12 +130,12 @@ type ManagedVMHooks interface {
 	ManagedExecuteReadOnly(gas int64, addressHandle int32, functionHandle int32, argumentsHandle int32, resultHandle int32) int32
 	ManagedExecuteOnSameContext(gas int64, addressHandle int32, valueHandle int32, functionHandle int32, argumentsHandle int32, resultHandle int32) int32
 	ManagedExecuteOnDestContext(gas int64, addressHandle int32, valueHandle int32, functionHandle int32, argumentsHandle int32, resultHandle int32) int32
-	ManagedMultiTransferESDTNFTExecute(dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32
-	ManagedMultiTransferESDTNFTExecuteByUser(userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32
+	ManagedMultiTransferDCDTNFTExecute(dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32
+	ManagedMultiTransferDCDTNFTExecuteByUser(userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32
 	ManagedTransferValueExecute(dstHandle int32, valueHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32
-	ManagedIsESDTFrozen(addressHandle int32, tokenIDHandle int32, nonce int64) int32
-	ManagedIsESDTLimitedTransfer(tokenIDHandle int32) int32
-	ManagedIsESDTPaused(tokenIDHandle int32) int32
+	ManagedIsDCDTFrozen(addressHandle int32, tokenIDHandle int32, nonce int64) int32
+	ManagedIsDCDTLimitedTransfer(tokenIDHandle int32) int32
+	ManagedIsDCDTPaused(tokenIDHandle int32) int32
 	ManagedBufferToHex(sourceHandle int32, destHandle int32)
 	ManagedGetCodeMetadata(addressHandle int32, responseHandle int32)
 	ManagedIsBuiltinFunction(functionNameHandle int32) int32
@@ -172,10 +172,10 @@ type BigIntVMHooks interface {
 	BigIntStorageStoreUnsigned(keyOffset MemPtr, keyLength MemLength, sourceHandle int32) int32
 	BigIntStorageLoadUnsigned(keyOffset MemPtr, keyLength MemLength, destinationHandle int32) int32
 	BigIntGetCallValue(destinationHandle int32)
-	BigIntGetESDTCallValue(destination int32)
-	BigIntGetESDTCallValueByIndex(destinationHandle int32, index int32)
+	BigIntGetDCDTCallValue(destination int32)
+	BigIntGetDCDTCallValueByIndex(destinationHandle int32, index int32)
 	BigIntGetExternalBalance(addressOffset MemPtr, result int32)
-	BigIntGetESDTExternalBalance(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, resultHandle int32)
+	BigIntGetDCDTExternalBalance(addressOffset MemPtr, tokenIDOffset MemPtr, tokenIDLen MemLength, nonce int64, resultHandle int32)
 	BigIntNew(smallValue int64) int32
 	BigIntUnsignedByteLength(referenceHandle int32) int32
 	BigIntSignedByteLength(referenceHandle int32) int32

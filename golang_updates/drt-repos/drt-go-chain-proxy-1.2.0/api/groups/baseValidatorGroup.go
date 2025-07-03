@@ -3,9 +3,9 @@ package groups
 import (
 	"net/http"
 
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-proxy-go/api/shared"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 )
 
 type validatorGroup struct {

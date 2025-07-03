@@ -8,12 +8,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -51,8 +51,8 @@ func TestTransactionWithClaimRewardsGasRefund(t *testing.T) {
 		},
 	}
 
-	addressSender := "erd14wnzmpwhcm9up7lsrujcf7jne2lgnydcpkfwk0etlnndn5dcacksplnun7"
-	addressReceiver := "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l"
+	addressSender := "drt14wnzmpwhcm9up7lsrujcf7jne2lgnydcpkfwk0etlnndn5dcacksurylsq"
+	addressReceiver := "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllskzf8kp"
 
 	refundValue, _ := big.NewInt(0).SetString("49320000000000", 10)
 	scr1 := &smartContractResult.SmartContractResult{

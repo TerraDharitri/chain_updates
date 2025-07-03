@@ -10,7 +10,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -20,11 +20,11 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTAddURI"
+                                "DCDTRoleNFTAddURI"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -49,7 +49,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTNFTAddURI",
+                        "endpoint": "str:DCDTNFTAddURI",
                         "topics": [
                             "str:NFT-000001",
                             "1",
@@ -73,7 +73,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -86,12 +86,12 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTAddURI"
+                                "DCDTRoleNFTAddURI"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -117,7 +117,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTNFTAddURI",
+                        "endpoint": "str:DCDTNFTAddURI",
                         "topics": [
                             "str:NFT-000001",
                             "1",
@@ -142,7 +142,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -157,12 +157,12 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTAddURI"
+                                "DCDTRoleNFTAddURI"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

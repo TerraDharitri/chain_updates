@@ -7,15 +7,15 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 const (
@@ -26,9 +26,9 @@ const (
 	getExternalBalanceName           = "getExternalBalance"
 	blockHashName                    = "blockHash"
 	transferValueName                = "transferValue"
-	transferESDTExecuteName          = "transferESDTExecute"
-	transferESDTNFTExecuteName       = "transferESDTNFTExecute"
-	multiTransferESDTNFTExecuteName  = "multiTransferESDTNFTExecute"
+	transferDCDTExecuteName          = "transferDCDTExecute"
+	transferDCDTNFTExecuteName       = "transferDCDTNFTExecute"
+	multiTransferDCDTNFTExecuteName  = "multiTransferDCDTNFTExecute"
 	transferValueExecuteName         = "transferValueExecute"
 	createAsyncCallName              = "createAsyncCall"
 	setAsyncGroupCallbackName        = "setAsyncGroupCallback"
@@ -44,29 +44,29 @@ const (
 	getCallerName                    = "getCaller"
 	checkNoPaymentName               = "checkNoPayment"
 	callValueName                    = "callValue"
-	getESDTValueName                 = "getESDTValue"
-	getESDTTokenNameName             = "getESDTTokenName"
-	getESDTTokenNonceName            = "getESDTTokenNonce"
-	getESDTTokenTypeName             = "getESDTTokenType"
+	getDCDTValueName                 = "getDCDTValue"
+	getDCDTTokenNameName             = "getDCDTTokenName"
+	getDCDTTokenNonceName            = "getDCDTTokenNonce"
+	getDCDTTokenTypeName             = "getDCDTTokenType"
 	getCallValueTokenNameName        = "getCallValueTokenName"
-	getESDTValueByIndexName          = "getESDTValueByIndex"
-	getESDTTokenNameByIndexName      = "getESDTTokenNameByIndex"
-	getESDTTokenNonceByIndexName     = "getESDTTokenNonceByIndex"
-	getESDTTokenTypeByIndexName      = "getESDTTokenTypeByIndex"
+	getDCDTValueByIndexName          = "getDCDTValueByIndex"
+	getDCDTTokenNameByIndexName      = "getDCDTTokenNameByIndex"
+	getDCDTTokenNonceByIndexName     = "getDCDTTokenNonceByIndex"
+	getDCDTTokenTypeByIndexName      = "getDCDTTokenTypeByIndex"
 	getCallValueTokenNameByIndexName = "getCallValueTokenNameByIndex"
-	getNumESDTTransfersName          = "getNumESDTTransfers"
-	getCurrentESDTNFTNonceName       = "getCurrentESDTNFTNonce"
+	getNumDCDTTransfersName          = "getNumDCDTTransfers"
+	getCurrentDCDTNFTNonceName       = "getCurrentDCDTNFTNonce"
 	writeLogName                     = "writeLog"
 	writeEventLogName                = "writeEventLog"
 	returnDataName                   = "returnData"
 	signalErrorName                  = "signalError"
 	getGasLeftName                   = "getGasLeft"
-	getESDTBalanceName               = "getESDTBalance"
-	getESDTNFTNameLengthName         = "getESDTNFTNameLength"
-	getESDTNFTAttributeLengthName    = "getESDTNFTAttributeLength"
-	getESDTNFTURILengthName          = "getESDTNFTURILength"
-	getESDTTokenDataName             = "getESDTTokenData"
-	getESDTLocalRolesName            = "getESDTLocalRoles"
+	getDCDTBalanceName               = "getDCDTBalance"
+	getDCDTNFTNameLengthName         = "getDCDTNFTNameLength"
+	getDCDTNFTAttributeLengthName    = "getDCDTNFTAttributeLength"
+	getDCDTNFTURILengthName          = "getDCDTNFTURILength"
+	getDCDTTokenDataName             = "getDCDTTokenData"
+	getDCDTLocalRolesName            = "getDCDTLocalRoles"
 	validateTokenIdentifierName      = "validateTokenIdentifier"
 	executeOnDestContextName         = "executeOnDestContext"
 	executeOnSameContextName         = "executeOnSameContext"
@@ -111,19 +111,19 @@ const (
 
 var logEEI = logger.GetOrCreate("vm/eei")
 
-func getESDTTransferFromInputFailIfWrongIndex(host vmhost.VMHost, index int32) *vmcommon.ESDTTransfer {
-	esdtTransfers := host.Runtime().GetVMInput().ESDTTransfers
-	if int32(len(esdtTransfers))-1 < index || index < 0 {
+func getDCDTTransferFromInputFailIfWrongIndex(host vmhost.VMHost, index int32) *vmcommon.DCDTTransfer {
+	dcdtTransfers := host.Runtime().GetVMInput().DCDTTransfers
+	if int32(len(dcdtTransfers))-1 < index || index < 0 {
 		WithFaultAndHost(host, vmhost.ErrInvalidTokenIndex, host.Runtime().BaseOpsErrorShouldFailExecution())
 		return nil
 	}
-	return esdtTransfers[index]
+	return dcdtTransfers[index]
 }
 
-func failIfMoreThanOneESDTTransfer(context *VMHooksImpl) bool {
+func failIfMoreThanOneDCDTTransfer(context *VMHooksImpl) bool {
 	runtime := context.GetRuntimeContext()
-	if len(runtime.GetVMInput().ESDTTransfers) > 1 {
-		return context.WithFault(vmhost.ErrTooManyESDTTransfers, true)
+	if len(runtime.GetVMInput().DCDTTransfers) > 1 {
+		return context.WithFault(vmhost.ErrTooManyDCDTTransfers, true)
 	}
 	return false
 }
@@ -299,13 +299,13 @@ func (context *VMHooksImpl) GetBlockHash(nonce int64, resultOffset executor.MemP
 	return 0
 }
 
-func getESDTDataFromBlockchainHook(
+func getDCDTDataFromBlockchainHook(
 	context *VMHooksImpl,
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
 	nonce int64,
-) (*esdt.ESDigitalToken, error) {
+) (*dcdt.DCDigitalToken, error) {
 	metering := context.GetMeteringContext()
 	blockchain := context.GetBlockchainContext()
 
@@ -325,17 +325,17 @@ func getESDTDataFromBlockchainHook(
 		return nil, err
 	}
 
-	esdtToken, err := blockchain.GetESDTToken(address, tokenID, uint64(nonce))
+	dcdtToken, err := blockchain.GetDCDTToken(address, tokenID, uint64(nonce))
 	if err != nil {
 		return nil, err
 	}
 
-	return esdtToken, nil
+	return dcdtToken, nil
 }
 
-// GetESDTBalance VMHooks implementation.
+// GetDCDTBalance VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTBalance(
+func (context *VMHooksImpl) GetDCDTBalance(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -344,24 +344,24 @@ func (context *VMHooksImpl) GetESDTBalance(
 ) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(getESDTBalanceName)
+	metering.StartGasTracing(getDCDTBalanceName)
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
-	err = context.MemStore(resultOffset, esdtData.Value.Bytes())
+	err = context.MemStore(resultOffset, dcdtData.Value.Bytes())
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	return int32(len(esdtData.Value.Bytes()))
+	return int32(len(dcdtData.Value.Bytes()))
 }
 
-// GetESDTNFTNameLength VMHooks implementation.
+// GetDCDTNFTNameLength VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTNFTNameLength(
+func (context *VMHooksImpl) GetDCDTNFTNameLength(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -369,24 +369,24 @@ func (context *VMHooksImpl) GetESDTNFTNameLength(
 ) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(getESDTNFTNameLengthName)
+	metering.StartGasTracing(getDCDTNFTNameLengthName)
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
-	if esdtData == nil || esdtData.TokenMetaData == nil {
-		context.WithFault(vmhost.ErrNilESDTData, runtime.BaseOpsErrorShouldFailExecution())
+	if dcdtData == nil || dcdtData.TokenMetaData == nil {
+		context.WithFault(vmhost.ErrNilDCDTData, runtime.BaseOpsErrorShouldFailExecution())
 		return 0
 	}
 
-	return int32(len(esdtData.TokenMetaData.Name))
+	return int32(len(dcdtData.TokenMetaData.Name))
 }
 
-// GetESDTNFTAttributeLength VMHooks implementation.
+// GetDCDTNFTAttributeLength VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTNFTAttributeLength(
+func (context *VMHooksImpl) GetDCDTNFTAttributeLength(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -394,24 +394,24 @@ func (context *VMHooksImpl) GetESDTNFTAttributeLength(
 ) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(getESDTNFTAttributeLengthName)
+	metering.StartGasTracing(getDCDTNFTAttributeLengthName)
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
-	if esdtData == nil || esdtData.TokenMetaData == nil {
-		context.WithFault(vmhost.ErrNilESDTData, runtime.BaseOpsErrorShouldFailExecution())
+	if dcdtData == nil || dcdtData.TokenMetaData == nil {
+		context.WithFault(vmhost.ErrNilDCDTData, runtime.BaseOpsErrorShouldFailExecution())
 		return 0
 	}
 
-	return int32(len(esdtData.TokenMetaData.Attributes))
+	return int32(len(dcdtData.TokenMetaData.Attributes))
 }
 
-// GetESDTNFTURILength VMHooks implementation.
+// GetDCDTNFTURILength VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTNFTURILength(
+func (context *VMHooksImpl) GetDCDTNFTURILength(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -419,27 +419,27 @@ func (context *VMHooksImpl) GetESDTNFTURILength(
 ) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(getESDTNFTURILengthName)
+	metering.StartGasTracing(getDCDTNFTURILengthName)
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
-	if esdtData == nil || esdtData.TokenMetaData == nil {
-		context.WithFault(vmhost.ErrNilESDTData, runtime.BaseOpsErrorShouldFailExecution())
+	if dcdtData == nil || dcdtData.TokenMetaData == nil {
+		context.WithFault(vmhost.ErrNilDCDTData, runtime.BaseOpsErrorShouldFailExecution())
 		return 0
 	}
-	if len(esdtData.TokenMetaData.URIs) == 0 {
+	if len(dcdtData.TokenMetaData.URIs) == 0 {
 		return 0
 	}
 
-	return int32(len(esdtData.TokenMetaData.URIs[0]))
+	return int32(len(dcdtData.TokenMetaData.URIs[0]))
 }
 
-// GetESDTTokenData VMHooks implementation.
+// GetDCDTTokenData VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenData(
+func (context *VMHooksImpl) GetDCDTTokenData(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -456,56 +456,56 @@ func (context *VMHooksImpl) GetESDTTokenData(
 	managedType := context.GetManagedTypesContext()
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(getESDTTokenDataName)
+	metering.StartGasTracing(getDCDTTokenDataName)
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
 	value := managedType.GetBigIntOrCreate(valueHandle)
-	value.Set(esdtData.Value)
+	value.Set(dcdtData.Value)
 
-	err = context.MemStore(propertiesOffset, esdtData.Properties)
+	err = context.MemStore(propertiesOffset, dcdtData.Properties)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	if esdtData.TokenMetaData != nil {
-		err = context.MemStore(hashOffset, esdtData.TokenMetaData.Hash)
+	if dcdtData.TokenMetaData != nil {
+		err = context.MemStore(hashOffset, dcdtData.TokenMetaData.Hash)
 		if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return -1
 		}
-		err = context.MemStore(nameOffset, esdtData.TokenMetaData.Name)
+		err = context.MemStore(nameOffset, dcdtData.TokenMetaData.Name)
 		if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return -1
 		}
-		err = context.MemStore(attributesOffset, esdtData.TokenMetaData.Attributes)
+		err = context.MemStore(attributesOffset, dcdtData.TokenMetaData.Attributes)
 		if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return -1
 		}
-		err = context.MemStore(creatorOffset, esdtData.TokenMetaData.Creator)
+		err = context.MemStore(creatorOffset, dcdtData.TokenMetaData.Creator)
 		if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return -1
 		}
 
 		royalties := managedType.GetBigIntOrCreate(royaltiesHandle)
-		royalties.SetUint64(uint64(esdtData.TokenMetaData.Royalties))
+		royalties.SetUint64(uint64(dcdtData.TokenMetaData.Royalties))
 
-		if len(esdtData.TokenMetaData.URIs) > 0 {
-			err = context.MemStore(urisOffset, esdtData.TokenMetaData.URIs[0])
+		if len(dcdtData.TokenMetaData.URIs) > 0 {
+			err = context.MemStore(urisOffset, dcdtData.TokenMetaData.URIs[0])
 			if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 				return -1
 			}
 		}
 	}
-	return int32(len(esdtData.Value.Bytes()))
+	return int32(len(dcdtData.Value.Bytes()))
 }
 
-// GetESDTLocalRoles VMHooks implementation.
+// GetDCDTLocalRoles VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTLocalRoles(tokenIdHandle int32) int64 {
+func (context *VMHooksImpl) GetDCDTLocalRoles(tokenIdHandle int32) int64 {
 	managedType := context.GetManagedTypesContext()
 	runtime := context.GetRuntimeContext()
 	storage := context.GetStorageContext()
@@ -516,8 +516,8 @@ func (context *VMHooksImpl) GetESDTLocalRoles(tokenIdHandle int32) int64 {
 		return -1
 	}
 
-	esdtRoleKeyPrefix := []byte(core.ProtectedKeyPrefix + core.ESDTRoleIdentifier + core.ESDTKeyIdentifier)
-	key := []byte(string(esdtRoleKeyPrefix) + string(tokenID))
+	dcdtRoleKeyPrefix := []byte(core.ProtectedKeyPrefix + core.DCDTRoleIdentifier + core.DCDTKeyIdentifier)
+	key := []byte(string(dcdtRoleKeyPrefix) + string(tokenID))
 
 	data, trieDepth, usedCache, err := storage.GetStorage(key)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
@@ -534,7 +534,7 @@ func (context *VMHooksImpl) GetESDTLocalRoles(tokenIdHandle int32) int64 {
 	}
 
 	enableEpochsHandler := context.host.EnableEpochsHandler()
-	return getESDTRoles(data, enableEpochsHandler.IsFlagEnabled(vmhost.CryptoOpcodesV2Flag))
+	return getDCDTRoles(data, enableEpochsHandler.IsFlagEnabled(vmhost.CryptoOpcodesV2Flag))
 }
 
 // ValidateTokenIdentifier VMHooks implementation.
@@ -608,7 +608,7 @@ func (context *VMHooksImpl) TransferValue(
 	}
 
 	if host.IsBuiltinFunctionCall(data) {
-		context.WithFault(vmhost.ErrTransferValueOnESDTCall, runtime.BaseOpsErrorShouldFailExecution())
+		context.WithFault(vmhost.ErrTransferValueOnDCDTCall, runtime.BaseOpsErrorShouldFailExecution())
 		return 1
 	}
 
@@ -836,7 +836,7 @@ func TransferValueExecuteWithTypedArgs(
 
 	if contractCallInput != nil {
 		if host.IsBuiltinFunctionName(contractCallInput.Function) {
-			WithFaultAndHost(host, vmhost.ErrNilESDTData, runtime.BaseOpsErrorShouldFailExecution())
+			WithFaultAndHost(host, vmhost.ErrNilDCDTData, runtime.BaseOpsErrorShouldFailExecution())
 			return 1
 		}
 	}
@@ -849,15 +849,15 @@ func TransferValueExecuteWithTypedArgs(
 	lastRound := host.Blockchain().LastRound()
 	if host.IsBuiltinFunctionCall([]byte(data)) &&
 		lastRound >= uint64(host.EnableEpochsHandler().GetActivationEpoch(vmhost.CheckBuiltInCallOnTransferValueAndFailExecutionFlag)) {
-		WithFaultAndHost(host, vmhost.ErrTransferValueOnESDTCall, runtime.BaseOpsErrorShouldFailExecution())
+		WithFaultAndHost(host, vmhost.ErrTransferValueOnDCDTCall, runtime.BaseOpsErrorShouldFailExecution())
 		return 1
 	}
 
 	if host.AreInSameShard(sender, dest) && contractCallInput != nil && host.Blockchain().IsSmartContract(dest) {
-		logEEI.Trace("eGLD pre-transfer execution begin")
+		logEEI.Trace("rEWA pre-transfer execution begin")
 		vmOutput, err := executeOnDestContextFromAPI(host, contractCallInput)
 		if err != nil {
-			logEEI.Trace("eGLD pre-transfer execution failed", "error", err)
+			logEEI.Trace("rEWA pre-transfer execution failed", "error", err)
 			WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution())
 			return 1
 		}
@@ -888,9 +888,9 @@ func makeCrossShardCallFromInput(function string, arguments [][]byte) string {
 	return txData
 }
 
-// TransferESDTExecute VMHooks implementation.
+// TransferDCDTExecute VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) TransferESDTExecute(
+func (context *VMHooksImpl) TransferDCDTExecute(
 	destOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -903,13 +903,13 @@ func (context *VMHooksImpl) TransferESDTExecute(
 	dataOffset executor.MemPtr,
 ) int32 {
 
-	return context.TransferESDTNFTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, 0,
+	return context.TransferDCDTNFTExecute(destOffset, tokenIDOffset, tokenIDLen, valueOffset, 0,
 		gasLimit, functionOffset, functionLength, numArguments, argumentsLengthOffset, dataOffset)
 }
 
-// TransferESDTNFTExecute VMHooks implementation.
+// TransferDCDTNFTExecute VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) TransferESDTNFTExecute(
+func (context *VMHooksImpl) TransferDCDTNFTExecute(
 	destOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -924,8 +924,8 @@ func (context *VMHooksImpl) TransferESDTNFTExecute(
 ) int32 {
 	host := context.GetVMHost()
 	metering := host.Metering()
-	metering.StartGasTracing(transferESDTNFTExecuteName)
-	return context.TransferESDTNFTExecuteWithHost(
+	metering.StartGasTracing(transferDCDTNFTExecuteName)
+	return context.TransferDCDTNFTExecuteWithHost(
 		host,
 		destOffset,
 		tokenIDOffset,
@@ -940,9 +940,9 @@ func (context *VMHooksImpl) TransferESDTNFTExecute(
 		dataOffset)
 }
 
-// MultiTransferESDTNFTExecute VMHooks implementation.
+// MultiTransferDCDTNFTExecute VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) MultiTransferESDTNFTExecute(
+func (context *VMHooksImpl) MultiTransferDCDTNFTExecute(
 	destOffset executor.MemPtr,
 	numTokenTransfers int32,
 	tokenTransfersArgsLengthOffset executor.MemPtr,
@@ -957,7 +957,7 @@ func (context *VMHooksImpl) MultiTransferESDTNFTExecute(
 	host := context.GetVMHost()
 	runtime := host.Runtime()
 	metering := host.Metering()
-	metering.StartGasTracing(multiTransferESDTNFTExecuteName)
+	metering.StartGasTracing(multiTransferDCDTNFTExecuteName)
 
 	if numTokenTransfers == 0 {
 		_ = WithFaultAndHost(host, vmhost.ErrFailedTransfer, runtime.BaseOpsErrorShouldFailExecution())
@@ -993,22 +993,22 @@ func (context *VMHooksImpl) MultiTransferESDTNFTExecute(
 		return 1
 	}
 
-	transfers := make([]*vmcommon.ESDTTransfer, numTokenTransfers)
+	transfers := make([]*vmcommon.DCDTTransfer, numTokenTransfers)
 	for i := int32(0); i < numTokenTransfers; i++ {
 		tokenStartIndex := i * parsers.ArgsPerTransfer
-		transfer := &vmcommon.ESDTTransfer{
-			ESDTTokenName:  transferArgs[tokenStartIndex],
-			ESDTTokenNonce: big.NewInt(0).SetBytes(transferArgs[tokenStartIndex+1]).Uint64(),
-			ESDTValue:      big.NewInt(0).SetBytes(transferArgs[tokenStartIndex+2]),
-			ESDTTokenType:  uint32(core.Fungible),
+		transfer := &vmcommon.DCDTTransfer{
+			DCDTTokenName:  transferArgs[tokenStartIndex],
+			DCDTTokenNonce: big.NewInt(0).SetBytes(transferArgs[tokenStartIndex+1]).Uint64(),
+			DCDTValue:      big.NewInt(0).SetBytes(transferArgs[tokenStartIndex+2]),
+			DCDTTokenType:  uint32(core.Fungible),
 		}
-		if transfer.ESDTTokenNonce > 0 {
-			transfer.ESDTTokenType = uint32(core.NonFungible)
+		if transfer.DCDTTokenNonce > 0 {
+			transfer.DCDTTokenType = uint32(core.NonFungible)
 		}
 		transfers[i] = transfer
 	}
 
-	return TransferESDTNFTExecuteWithTypedArgs(
+	return TransferDCDTNFTExecuteWithTypedArgs(
 		host,
 		callArgs.dest,
 		transfers,
@@ -1018,8 +1018,8 @@ func (context *VMHooksImpl) MultiTransferESDTNFTExecute(
 	)
 }
 
-// TransferESDTNFTExecuteWithHost contains only memory reading of arguments
-func (context *VMHooksImpl) TransferESDTNFTExecuteWithHost(
+// TransferDCDTNFTExecuteWithHost contains only memory reading of arguments
+func (context *VMHooksImpl) TransferDCDTNFTExecuteWithHost(
 	host vmhost.VMHost,
 	destOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
@@ -1053,30 +1053,30 @@ func (context *VMHooksImpl) TransferESDTNFTExecuteWithHost(
 		return 1
 	}
 
-	transfer := &vmcommon.ESDTTransfer{
-		ESDTValue:      callArgs.value,
-		ESDTTokenName:  tokenIdentifier,
-		ESDTTokenNonce: uint64(nonce),
-		ESDTTokenType:  uint32(core.Fungible),
+	transfer := &vmcommon.DCDTTransfer{
+		DCDTValue:      callArgs.value,
+		DCDTTokenName:  tokenIdentifier,
+		DCDTTokenNonce: uint64(nonce),
+		DCDTTokenType:  uint32(core.Fungible),
 	}
 	if nonce > 0 {
-		transfer.ESDTTokenType = uint32(core.NonFungible)
+		transfer.DCDTTokenType = uint32(core.NonFungible)
 	}
-	return TransferESDTNFTExecuteWithTypedArgs(
+	return TransferDCDTNFTExecuteWithTypedArgs(
 		host,
 		callArgs.dest,
-		[]*vmcommon.ESDTTransfer{transfer},
+		[]*vmcommon.DCDTTransfer{transfer},
 		gasLimit,
 		callArgs.function,
 		callArgs.args,
 	)
 }
 
-// TransferESDTNFTExecuteWithTypedArgs defines the actual transfer ESDT execute logic
-func TransferESDTNFTExecuteWithTypedArgs(
+// TransferDCDTNFTExecuteWithTypedArgs defines the actual transfer DCDT execute logic
+func TransferDCDTNFTExecuteWithTypedArgs(
 	host vmhost.VMHost,
 	dest []byte,
-	transfers []*vmcommon.ESDTTransfer,
+	transfers []*vmcommon.DCDTTransfer,
 	gasLimit int64,
 	function []byte,
 	data [][]byte,
@@ -1113,20 +1113,20 @@ func TransferESDTNFTExecuteWithTypedArgs(
 			return 1
 		}
 
-		contractCallInput.ESDTTransfers = transfers
+		contractCallInput.DCDTTransfers = transfers
 	}
 
 	snapshotBeforeTransfer := host.Blockchain().GetSnapshot()
 
 	originalCaller := host.Runtime().GetOriginalCallerAddress()
-	transfersArgs := &vmhost.ESDTTransfersArgs{
+	transfersArgs := &vmhost.DCDTTransfersArgs{
 		Destination:    dest,
 		OriginalCaller: originalCaller,
 		Sender:         sender,
 		Transfers:      transfers,
 		SenderForExec:  sender,
 	}
-	gasLimitForExec, executeErr := output.TransferESDT(transfersArgs, contractCallInput)
+	gasLimitForExec, executeErr := output.TransferDCDT(transfersArgs, contractCallInput)
 	if WithFaultAndHost(host, executeErr, runtime.BaseOpsErrorShouldFailExecution()) {
 		return 1
 	}
@@ -1134,10 +1134,10 @@ func TransferESDTNFTExecuteWithTypedArgs(
 	if host.AreInSameShard(sender, dest) && contractCallInput != nil && host.Blockchain().IsSmartContract(dest) {
 		contractCallInput.GasProvided = gasLimitForExec
 		contractCallInput.CallerAddr = sender
-		logEEI.Trace("ESDT post-transfer execution begin")
+		logEEI.Trace("DCDT post-transfer execution begin")
 		_, executeErr := executeOnDestContextFromAPI(host, contractCallInput)
 		if executeErr != nil {
-			logEEI.Trace("ESDT post-transfer execution failed", "error", executeErr)
+			logEEI.Trace("DCDT post-transfer execution failed", "error", executeErr)
 			host.Blockchain().RevertToSnapshot(snapshotBeforeTransfer)
 			WithFaultAndHost(host, executeErr, runtime.BaseOpsErrorShouldFailExecution())
 			return 1
@@ -1150,12 +1150,12 @@ func TransferESDTNFTExecuteWithTypedArgs(
 
 }
 
-// TransferESDTNFTExecuteByUserWithTypedArgs defines the actual transfer ESDT execute logic and execution
-func TransferESDTNFTExecuteByUserWithTypedArgs(
+// TransferDCDTNFTExecuteByUserWithTypedArgs defines the actual transfer DCDT execute logic and execution
+func TransferDCDTNFTExecuteByUserWithTypedArgs(
 	host vmhost.VMHost,
 	callerForExecution []byte,
 	dest []byte,
-	transfers []*vmcommon.ESDTTransfer,
+	transfers []*vmcommon.DCDTTransfer,
 	gasLimit int64,
 	function []byte,
 	data [][]byte,
@@ -1192,18 +1192,18 @@ func TransferESDTNFTExecuteByUserWithTypedArgs(
 			return 1
 		}
 
-		contractCallInput.ESDTTransfers = transfers
+		contractCallInput.DCDTTransfers = transfers
 	}
 
 	originalCaller := host.Runtime().GetOriginalCallerAddress()
-	transfersArgs := &vmhost.ESDTTransfersArgs{
+	transfersArgs := &vmhost.DCDTTransfersArgs{
 		Destination:    dest,
 		OriginalCaller: originalCaller,
 		Sender:         sender,
 		Transfers:      transfers,
 		SenderForExec:  callerForExecution,
 	}
-	gasLimitForExec, executeErr := output.TransferESDT(transfersArgs, contractCallInput)
+	gasLimitForExec, executeErr := output.TransferDCDT(transfersArgs, contractCallInput)
 	if WithFaultAndHost(host, executeErr, runtime.BaseOpsErrorShouldFailExecution()) {
 		return 1
 	}
@@ -1211,13 +1211,13 @@ func TransferESDTNFTExecuteByUserWithTypedArgs(
 	if host.AreInSameShard(sender, dest) && contractCallInput != nil && host.Blockchain().IsSmartContract(dest) {
 		contractCallInput.GasProvided = gasLimitForExec
 		contractCallInput.CallerAddr = callerForExecution
-		logEEI.Trace("ESDT post-transfer execution begin")
+		logEEI.Trace("DCDT post-transfer execution begin")
 		_, executeErr = executeOnDestContextFromAPI(host, contractCallInput)
 		if executeErr != nil {
-			logEEI.Trace("ESDT post-transfer execution failed, started transfer to user", "error", executeErr)
+			logEEI.Trace("DCDT post-transfer execution failed, started transfer to user", "error", executeErr)
 
 			// in case of failed execution, the funds have to be moved to the user
-			returnTransferArgs := &vmhost.ESDTTransfersArgs{
+			returnTransferArgs := &vmhost.DCDTTransfersArgs{
 				Destination:      callerForExecution,
 				OriginalCaller:   originalCaller,
 				Sender:           dest,
@@ -1225,7 +1225,7 @@ func TransferESDTNFTExecuteByUserWithTypedArgs(
 				SenderForExec:    dest,
 				ReturnAfterError: true,
 			}
-			_, executeErr = output.TransferESDT(returnTransferArgs, nil)
+			_, executeErr = output.TransferDCDT(returnTransferArgs, nil)
 			if WithFaultAndHost(host, executeErr, runtime.BaseOpsErrorShouldFailExecution()) {
 				return 1
 			}
@@ -2214,11 +2214,11 @@ func (context *VMHooksImpl) CheckNoPayment() {
 
 	vmInput := runtime.GetVMInput()
 	if vmInput.CallValue.Sign() > 0 {
-		_ = context.WithFault(vmhost.ErrNonPayableFunctionEgld, runtime.BaseOpsErrorShouldFailExecution())
+		_ = context.WithFault(vmhost.ErrNonPayableFunctionRewa, runtime.BaseOpsErrorShouldFailExecution())
 		return
 	}
-	if len(vmInput.ESDTTransfers) > 0 {
-		_ = context.WithFault(vmhost.ErrNonPayableFunctionEsdt, runtime.BaseOpsErrorShouldFailExecution())
+	if len(vmInput.DCDTTransfers) > 0 {
+		_ = context.WithFault(vmhost.ErrNonPayableFunctionDcdt, runtime.BaseOpsErrorShouldFailExecution())
 		return
 	}
 }
@@ -2246,33 +2246,33 @@ func (context *VMHooksImpl) GetCallValue(resultOffset executor.MemPtr) int32 {
 	return int32(len(value))
 }
 
-// GetESDTValue VMHooks implementation.
+// GetDCDTValue VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTValue(resultOffset executor.MemPtr) int32 {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+func (context *VMHooksImpl) GetDCDTValue(resultOffset executor.MemPtr) int32 {
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return -1
 	}
-	return context.GetESDTValueByIndex(resultOffset, 0)
+	return context.GetDCDTValueByIndex(resultOffset, 0)
 }
 
-// GetESDTValueByIndex VMHooks implementation.
+// GetDCDTValueByIndex VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTValueByIndex(resultOffset executor.MemPtr, index int32) int32 {
+func (context *VMHooksImpl) GetDCDTValueByIndex(resultOffset executor.MemPtr, index int32) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(getESDTValueByIndexName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(getDCDTValueByIndexName, gasToUse)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
 	var value []byte
 
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
-	if esdtTransfer != nil && esdtTransfer.ESDTValue.Cmp(vmhost.Zero) > 0 {
-		value = esdtTransfer.ESDTValue.Bytes()
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	if dcdtTransfer != nil && dcdtTransfer.DCDTValue.Cmp(vmhost.Zero) > 0 {
+		value = dcdtTransfer.DCDTValue.Bytes()
 		value = vmhost.PadBytesLeft(value, vmhost.BalanceLen)
 	}
 
@@ -2284,32 +2284,32 @@ func (context *VMHooksImpl) GetESDTValueByIndex(resultOffset executor.MemPtr, in
 	return int32(len(value))
 }
 
-// GetESDTTokenName VMHooks implementation.
+// GetDCDTTokenName VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenName(resultOffset executor.MemPtr) int32 {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+func (context *VMHooksImpl) GetDCDTTokenName(resultOffset executor.MemPtr) int32 {
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return -1
 	}
-	return context.GetESDTTokenNameByIndex(resultOffset, 0)
+	return context.GetDCDTTokenNameByIndex(resultOffset, 0)
 }
 
-// GetESDTTokenNameByIndex VMHooks implementation.
+// GetDCDTTokenNameByIndex VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenNameByIndex(resultOffset executor.MemPtr, index int32) int32 {
+func (context *VMHooksImpl) GetDCDTTokenNameByIndex(resultOffset executor.MemPtr, index int32) int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(getESDTTokenNameByIndexName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(getDCDTTokenNameByIndexName, gasToUse)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
 	var tokenName []byte
-	if esdtTransfer != nil {
-		tokenName = esdtTransfer.ESDTTokenName
+	if dcdtTransfer != nil {
+		tokenName = dcdtTransfer.DCDTTokenName
 	}
 
 	err = context.MemStore(resultOffset, tokenName)
@@ -2320,38 +2320,38 @@ func (context *VMHooksImpl) GetESDTTokenNameByIndex(resultOffset executor.MemPtr
 	return int32(len(tokenName))
 }
 
-// GetESDTTokenNonce VMHooks implementation.
+// GetDCDTTokenNonce VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenNonce() int64 {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+func (context *VMHooksImpl) GetDCDTTokenNonce() int64 {
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return -1
 	}
-	return context.GetESDTTokenNonceByIndex(0)
+	return context.GetDCDTTokenNonceByIndex(0)
 }
 
-// GetESDTTokenNonceByIndex VMHooks implementation.
+// GetDCDTTokenNonceByIndex VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenNonceByIndex(index int32) int64 {
+func (context *VMHooksImpl) GetDCDTTokenNonceByIndex(index int32) int64 {
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(getESDTTokenNonceByIndexName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(getDCDTTokenNonceByIndexName, gasToUse)
 	if context.WithFault(err, context.GetRuntimeContext().BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
 	nonce := uint64(0)
-	if esdtTransfer != nil {
-		nonce = esdtTransfer.ESDTTokenNonce
+	if dcdtTransfer != nil {
+		nonce = dcdtTransfer.DCDTTokenNonce
 	}
 	return int64(nonce)
 }
 
-// GetCurrentESDTNFTNonce VMHooks implementation.
+// GetCurrentDCDTNFTNonce VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetCurrentESDTNFTNonce(
+func (context *VMHooksImpl) GetCurrentDCDTNFTNonce(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength) int64 {
@@ -2370,14 +2370,14 @@ func (context *VMHooksImpl) GetCurrentESDTNFTNonce(
 		return 0
 	}
 
-	key := []byte(core.ProtectedKeyPrefix + core.ESDTNFTLatestNonceIdentifier + string(tokenID))
+	key := []byte(core.ProtectedKeyPrefix + core.DCDTNFTLatestNonceIdentifier + string(tokenID))
 	data, trieDepth, _, err := storage.GetStorageFromAddress(destination, key)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return 0
 	}
 
 	err = storage.UseGasForStorageLoad(
-		getCurrentESDTNFTNonceName,
+		getCurrentDCDTNFTNonceName,
 		int64(trieDepth),
 		metering.GasSchedule().BaseOpsAPICost.StorageLoad,
 		false)
@@ -2389,53 +2389,53 @@ func (context *VMHooksImpl) GetCurrentESDTNFTNonce(
 	return int64(nonce)
 }
 
-// GetESDTTokenType VMHooks implementation.
+// GetDCDTTokenType VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenType() int32 {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+func (context *VMHooksImpl) GetDCDTTokenType() int32 {
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return -1
 	}
-	return context.GetESDTTokenTypeByIndex(0)
+	return context.GetDCDTTokenTypeByIndex(0)
 }
 
-// GetESDTTokenTypeByIndex VMHooks implementation.
+// GetDCDTTokenTypeByIndex VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetESDTTokenTypeByIndex(index int32) int32 {
+func (context *VMHooksImpl) GetDCDTTokenTypeByIndex(index int32) int32 {
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(getESDTTokenTypeByIndexName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(getDCDTTokenTypeByIndexName, gasToUse)
 	if context.WithFault(err, context.GetRuntimeContext().BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
-	if esdtTransfer != nil {
-		return int32(esdtTransfer.ESDTTokenType)
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	if dcdtTransfer != nil {
+		return int32(dcdtTransfer.DCDTTokenType)
 	}
 	return 0
 }
 
-// GetNumESDTTransfers VMHooks implementation.
+// GetNumDCDTTransfers VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) GetNumESDTTransfers() int32 {
+func (context *VMHooksImpl) GetNumDCDTTransfers() int32 {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(getNumESDTTransfersName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(getNumDCDTTransfersName, gasToUse)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	return int32(len(runtime.GetVMInput().ESDTTransfers))
+	return int32(len(runtime.GetVMInput().DCDTTransfers))
 }
 
 // GetCallValueTokenName VMHooks implementation.
 // @autogenerate(VMHooks)
 func (context *VMHooksImpl) GetCallValueTokenName(callValueOffset executor.MemPtr, tokenNameOffset executor.MemPtr) int32 {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return -1
 	}
@@ -2460,12 +2460,12 @@ func (context *VMHooksImpl) GetCallValueTokenNameByIndex(
 
 	callValue := runtime.GetVMInput().CallValue.Bytes()
 	tokenName := make([]byte, 0)
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
 
-	if esdtTransfer != nil {
-		tokenName = make([]byte, len(esdtTransfer.ESDTTokenName))
-		copy(tokenName, esdtTransfer.ESDTTokenName)
-		callValue = esdtTransfer.ESDTValue.Bytes()
+	if dcdtTransfer != nil {
+		tokenName = make([]byte, len(dcdtTransfer.DCDTTokenName))
+		copy(tokenName, dcdtTransfer.DCDTTokenName)
+		callValue = dcdtTransfer.DCDTValue.Bytes()
 	}
 	callValue = vmhost.PadBytesLeft(callValue, vmhost.BalanceLen)
 

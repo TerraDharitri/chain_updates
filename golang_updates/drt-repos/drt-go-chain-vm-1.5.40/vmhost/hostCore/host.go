@@ -7,21 +7,21 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	scenexec "github.com/multiversx/mx-chain-scenario-go/scenario/executor"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/crypto/factory"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/contexts"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	scenexec "github.com/TerraDharitri/drt-go-chain-scenario/scenario/executor"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/factory"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/contexts"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 )
 
 var log = logger.GetOrCreate("vm/host")
@@ -37,10 +37,10 @@ var _ scenexec.VMInterface = (*vmHost)(nil)
 const minExecutionTimeout = time.Second
 const internalVMErrors = "internalVMErrors"
 
-// allFlags must have all flags used by mx-chain-vm-go in the current version
+// allFlags must have all flags used by drt-go-chain-vm in the current version
 var allFlags = []core.EnableEpochFlag{
 	vmhost.CryptoOpcodesV2Flag,
-	vmhost.MultiESDTNFTTransferAndExecuteByUserFlag,
+	vmhost.MultiDCDTNFTTransferAndExecuteByUserFlag,
 	vmhost.UseGasBoundedShouldFailExecutionFlag,
 	vmhost.CheckBuiltInCallOnTransferValueAndFailExecutionFlag,
 }
@@ -64,7 +64,7 @@ type vmHost struct {
 
 	gasSchedule          config.GasScheduleMap
 	builtInFuncContainer vmcommon.BuiltInFunctionContainer
-	esdtTransferParser   vmcommon.ESDTTransferParser
+	dcdtTransferParser   vmcommon.DCDTTransferParser
 	callArgsParser       vmhost.CallArgsParser
 	enableEpochsHandler  vmhost.EnableEpochsHandler
 	activationEpochMap   map[uint32]struct{}
@@ -84,8 +84,8 @@ func NewVMHost(
 	if hostParameters == nil {
 		return nil, vmhost.ErrNilHostParameters
 	}
-	if check.IfNil(hostParameters.ESDTTransferParser) {
-		return nil, vmhost.ErrNilESDTTransferParser
+	if check.IfNil(hostParameters.DCDTTransferParser) {
+		return nil, vmhost.ErrNilDCDTTransferParser
 	}
 	if check.IfNil(hostParameters.BuiltInFuncContainer) {
 		return nil, vmhost.ErrNilBuiltInFunctionsContainer
@@ -125,7 +125,7 @@ func NewVMHost(
 		managedTypesContext:       nil,
 		gasSchedule:               hostParameters.GasSchedule,
 		builtInFuncContainer:      hostParameters.BuiltInFuncContainer,
-		esdtTransferParser:        hostParameters.ESDTTransferParser,
+		dcdtTransferParser:        hostParameters.DCDTTransferParser,
 		callArgsParser:            parsers.NewCallArgsParser(),
 		executionTimeout:          minExecutionTimeout,
 		enableEpochsHandler:       hostParameters.EnableEpochsHandler,
@@ -176,7 +176,7 @@ func NewVMHost(
 		return nil, err
 	}
 
-	host.asyncContext, err = contexts.NewAsyncContext(host, host.callArgsParser, host.esdtTransferParser, &marshal.GogoProtoMarshalizer{})
+	host.asyncContext, err = contexts.NewAsyncContext(host, host.callArgsParser, host.dcdtTransferParser, &marshal.GogoProtoMarshalizer{})
 	if err != nil {
 		return nil, err
 	}
@@ -193,9 +193,9 @@ func NewVMHost(
 
 	host.transferLogIdentifiers = make(map[string]bool)
 	host.transferLogIdentifiers["transferValueOnly"] = true
-	host.transferLogIdentifiers["ESDTTransfer"] = true
-	host.transferLogIdentifiers["ESDTNFTTransfer"] = true
-	host.transferLogIdentifiers["MultiESDTNFTTransfer"] = true
+	host.transferLogIdentifiers["DCDTTransfer"] = true
+	host.transferLogIdentifiers["DCDTNFTTransfer"] = true
+	host.transferLogIdentifiers["MultiDCDTNFTTransfer"] = true
 
 	return host, nil
 }
@@ -547,7 +547,7 @@ func (host *vmHost) AreInSameShard(leftAddress []byte, rightAddress []byte) bool
 
 // IsAllowedToExecute returns true if the special opcode is allowed to be run by the address
 func (host *vmHost) IsAllowedToExecute(opcode string) bool {
-	if !host.enableEpochsHandler.IsFlagEnabled(vmhost.MultiESDTNFTTransferAndExecuteByUserFlag) {
+	if !host.enableEpochsHandler.IsFlagEnabled(vmhost.MultiDCDTNFTTransferAndExecuteByUserFlag) {
 		return false
 	}
 

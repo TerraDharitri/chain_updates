@@ -76,7 +76,7 @@
                             "5-arguments": "u32:0"
                         }
                     },
-                    "code": "mxsc:../output/multisig.mxsc.json"
+                    "code": "drtsc:../output/multisig.drtsc.json"
                 },
                 "+": ""
             }
@@ -184,13 +184,13 @@
                         "str:quorum": "2",
                         "str:action_data.len": "3"
                     },
-                    "code": "mxsc:../output/multisig.mxsc.json"
+                    "code": "drtsc:../output/multisig.drtsc.json"
                 },
                 "sc:factorial": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../test-contracts/factorial.mxsc.json"
+                    "code": "drtsc:../test-contracts/factorial.drtsc.json"
                 },
                 "+": ""
             }

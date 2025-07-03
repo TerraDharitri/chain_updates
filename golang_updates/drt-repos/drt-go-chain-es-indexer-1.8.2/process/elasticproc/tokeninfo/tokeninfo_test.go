@@ -3,7 +3,7 @@ package tokeninfo
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/stretchr/testify/require"
 )
 
@@ -12,11 +12,11 @@ func TestTokenRolesAndPropertiesAddRole(t *testing.T) {
 
 	tokenRolesAndProp := NewTokenRolesAndProperties()
 
-	tokenRolesAndProp.AddRole("MY-abcd", "addr-1", core.ESDTRoleNFTBurn, true)
-	tokenRolesAndProp.AddRole("MY-abcd", "addr-2", core.ESDTRoleNFTBurn, true)
+	tokenRolesAndProp.AddRole("MY-abcd", "addr-1", core.DCDTRoleNFTBurn, true)
+	tokenRolesAndProp.AddRole("MY-abcd", "addr-2", core.DCDTRoleNFTBurn, true)
 
 	expected := map[string][]*RoleData{
-		core.ESDTRoleNFTBurn: {
+		core.DCDTRoleNFTBurn: {
 			{
 				Token:   "MY-abcd",
 				Address: "addr-1",

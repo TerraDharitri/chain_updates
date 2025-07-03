@@ -9,9 +9,9 @@
                 "address:user": {
                     "nonce": "1",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FEE-123456": "100,000,000",
-                        "str:WEGLD-123456": "100,000,000"
+                        "str:WREWA-123456": "100,000,000"
                     }
                 },
                 "address:owner": {
@@ -21,11 +21,11 @@
                     "nonce": "1",
                     "balance": "0"
                 },
-                "sc:wegld": {
+                "sc:wrewa": {
                     "nonce": "0",
                     "balance": "100,000,000",
-                    "esdt": {
-                        "str:WEGLD-123456": {
+                    "dcdt": {
+                        "str:WREWA-123456": {
                             "instances": [
                                 {
                                     "nonce": "",
@@ -33,15 +33,15 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {
-                        "str:wrappedEgldTokenId": "str:WEGLD-123456"
+                        "str:wrappedRewaTokenId": "str:WREWA-123456"
                     },
-                    "code": "mxsc:../../wegld-swap/output/multiversx-wegld-swap-sc.mxsc.json"
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
                 }
             },
             "newAddresses": [
@@ -71,9 +71,9 @@
             "step": "checkState",
             "accounts": {
                 "address:user": {
-                    "esdt": {
+                    "dcdt": {
                         "str:FEE-123456": "100,000,000",
-                        "str:WEGLD-123456": "100,000,000"
+                        "str:WREWA-123456": "100,000,000"
                     },
                     "storage": "*",
                     "code": "*",
@@ -90,21 +90,21 @@
             "tx": {
                 "from": "address:user",
                 "to": "sc:paymaster",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:FEE-123456",
                         "value": "20,000"
                     },
                     {
-                        "tokenIdentifier": "str:WEGLD-123456",
+                        "tokenIdentifier": "str:WREWA-123456",
                         "value": "100,000,000"
                     }
                 ],
                 "function": "forwardExecution",
                 "arguments": [
                     "address:relayer",
-                    "sc:wegld",
-                    "str:unwrapEgld"
+                    "sc:wrewa",
+                    "str:unwrapRewa"
                 ],
                 "gasLimit": "100,000,000",
                 "gasPrice": ""
@@ -120,9 +120,9 @@
             "step": "checkState",
             "accounts": {
                 "address:relayer": {
-                    "esdt": {
+                    "dcdt": {
                         "str:FEE-123456": "20,000",
-                        "str:WEGLD-123456": "0"
+                        "str:WREWA-123456": "0"
                     },
                     "storage": "*",
                     "code": "*",
@@ -130,7 +130,7 @@
                     "nonce": "1"
                 },
                 "address:user": {
-                    "esdt": {
+                    "dcdt": {
                         "str:FEE-123456": "99,980,000"
                     },
                     "balance": "100,000,000",
@@ -140,9 +140,9 @@
                     "nonce": "2"
                 },
                 "sc:paymaster": {
-                    "esdt": {
+                    "dcdt": {
                         "str:FEE-123456": "0",
-                        "str:WEGLD-123456": "0"
+                        "str:WREWA-123456": "0"
                     },
                     "balance": "0",
                     "storage": "*",
@@ -150,10 +150,10 @@
                     "owner": "address:owner",
                     "nonce": "0"
                 },
-                "sc:wegld": {
-                    "esdt": {
+                "sc:wrewa": {
+                    "dcdt": {
                         "str:FEE-123456": "0",
-                        "str:WEGLD-123456": {
+                        "str:WREWA-123456": {
                             "instances": [
                                 {
                                     "nonce": "",
@@ -161,8 +161,8 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint",
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
@@ -170,7 +170,7 @@
                     "storage": "*",
                     "owner": "*",
                     "nonce": "0",
-                    "code": "mxsc:../../wegld-swap/output/multiversx-wegld-swap-sc.mxsc.json"
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
                 },
                 "+": ""
             }

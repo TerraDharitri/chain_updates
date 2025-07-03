@@ -3,7 +3,7 @@ package network_test
 import (
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	networkComp "github.com/TerraDharitri/drt-go-chain/factory/network"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
@@ -17,7 +17,7 @@ func TestNewManagedNetworkComponents(t *testing.T) {
 		t.Parallel()
 
 		managedNetworkComponents, err := networkComp.NewManagedNetworkComponents(nil)
-		require.Equal(t, errorsMx.ErrNilNetworkComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilNetworkComponentsFactory, err)
 		require.Nil(t, managedNetworkComponents)
 	})
 	t.Run("should work", func(t *testing.T) {

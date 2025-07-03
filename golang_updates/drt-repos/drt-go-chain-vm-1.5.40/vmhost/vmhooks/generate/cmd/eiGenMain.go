@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	eapigen "github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks/generate"
+	eapigen "github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks/generate"
 )
 
 const pathToApiPackage = "./"

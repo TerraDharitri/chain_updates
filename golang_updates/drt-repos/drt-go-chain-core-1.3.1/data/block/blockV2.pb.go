@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -32,8 +32,8 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type HeaderV2 struct {
 	Header                   *Header       `protobuf:"bytes,1,opt,name=Header,proto3" json:"header,omitempty"`
 	ScheduledRootHash        []byte        `protobuf:"bytes,2,opt,name=ScheduledRootHash,proto3" json:"scheduledRootHash,omitempty"`
-	ScheduledAccumulatedFees *math_big.Int `protobuf:"bytes,3,opt,name=ScheduledAccumulatedFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"scheduledAccumulatedFees,omitempty"`
-	ScheduledDeveloperFees   *math_big.Int `protobuf:"bytes,4,opt,name=ScheduledDeveloperFees,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"scheduledDeveloperFees,omitempty"`
+	ScheduledAccumulatedFees *math_big.Int `protobuf:"bytes,3,opt,name=ScheduledAccumulatedFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"scheduledAccumulatedFees,omitempty"`
+	ScheduledDeveloperFees   *math_big.Int `protobuf:"bytes,4,opt,name=ScheduledDeveloperFees,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"scheduledDeveloperFees,omitempty"`
 	ScheduledGasProvided     uint64        `protobuf:"varint,5,opt,name=ScheduledGasProvided,proto3" json:"scheduledGasProvided"`
 	ScheduledGasPenalized    uint64        `protobuf:"varint,6,opt,name=ScheduledGasPenalized,proto3" json:"scheduledGasPenalized"`
 	ScheduledGasRefunded     uint64        `protobuf:"varint,7,opt,name=ScheduledGasRefunded,proto3" json:"scheduledGasRefunded"`
@@ -303,13 +303,13 @@ func (this *HeaderV2) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.ScheduledAccumulatedFees, that1.ScheduledAccumulatedFees) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.ScheduledDeveloperFees, that1.ScheduledDeveloperFees) {
 			return false
 		}
@@ -471,7 +471,7 @@ func (m *HeaderV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x28
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.ScheduledDeveloperFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.ScheduledDeveloperFees, dAtA[i:]); err != nil {
@@ -482,7 +482,7 @@ func (m *HeaderV2) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x22
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.ScheduledAccumulatedFees)
 		i -= size
 		if _, err := __caster.MarshalTo(m.ScheduledAccumulatedFees, dAtA[i:]); err != nil {
@@ -618,12 +618,12 @@ func (m *HeaderV2) Size() (n int) {
 		n += 1 + l + sovBlockV2(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.ScheduledAccumulatedFees)
 		n += 1 + l + sovBlockV2(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.ScheduledDeveloperFees)
 		n += 1 + l + sovBlockV2(uint64(l))
 	}
@@ -859,7 +859,7 @@ func (m *HeaderV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -897,7 +897,7 @@ func (m *HeaderV2) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

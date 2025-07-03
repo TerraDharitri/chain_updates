@@ -4,10 +4,10 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 // TransferToAsyncParentOnCallbackChildMock -

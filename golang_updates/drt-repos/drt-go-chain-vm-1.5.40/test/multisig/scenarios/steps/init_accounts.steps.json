@@ -30,10 +30,10 @@
                     "balance": "0"
                 },
                 "sc:adder-code": {
-                    "code": "mxsc:../../test-contracts/adder.mxsc.json"
+                    "code": "drtsc:../../test-contracts/adder.drtsc.json"
                 },
                 "sc:factorial-code": {
-                    "code": "mxsc:../../test-contracts/factorial.mxsc.json"
+                    "code": "drtsc:../../test-contracts/factorial.drtsc.json"
                 }
             },
             "newAddresses": [

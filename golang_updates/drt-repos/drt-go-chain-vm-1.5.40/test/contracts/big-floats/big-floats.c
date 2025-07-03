@@ -1,8 +1,8 @@
-#include "../mxvm/context.h"
-#include "../mxvm/bigInt.h"
-#include "../mxvm/types.h"
-#include "../mxvm/test_utils.h"
-#include "../mxvm/bigFloat.h"
+#include "../drtvm/context.h"
+#include "../drtvm/bigInt.h"
+#include "../drtvm/types.h"
+#include "../drtvm/test_utils.h"
+#include "../drtvm/bigFloat.h"
 
 void init() {}
 

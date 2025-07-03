@@ -7,12 +7,12 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "sc:extra-instance": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json",
+                    "code": "drtsc:../output/basic-features.drtsc.json",
                     "storage": {
                         "str:contract_address": "sc:basic-features"
                     }

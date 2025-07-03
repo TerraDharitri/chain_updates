@@ -34,7 +34,7 @@ int       bigIntGetSignedBytes(bigInt bigIntHandle, byte *byte);
 void      bigIntSetUnsignedBytes(bigInt destinationHandle, byte *byte, int byteLength);
 void      bigIntSetSignedBytes(bigInt destinationHandle, byte *byte, int byteLength);
 
-void      bigIntGetESDTCallValue(bigInt destinationHandle);
-void      bigIntGetESDTExternalBalance(byte *addressOffset, byte *tokenIDOffset, unsigned int tokenIDLen, long long nonce, bigInt result);
+void      bigIntGetDCDTCallValue(bigInt destinationHandle);
+void      bigIntGetDCDTExternalBalance(byte *addressOffset, byte *tokenIDOffset, unsigned int tokenIDLen, long long nonce, bigInt result);
 
 #endif

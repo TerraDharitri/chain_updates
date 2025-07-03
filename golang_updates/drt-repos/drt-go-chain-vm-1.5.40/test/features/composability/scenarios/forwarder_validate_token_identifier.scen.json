@@ -1,5 +1,5 @@
 {
-    "name": "load local esdt roles",
+    "name": "load local dcdt roles",
     "gasSchedule": "dummy",
     "steps": [
         {
@@ -8,10 +8,10 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
-                        "str:ESDT-123456": "200"
+                    "dcdt": {
+                        "str:DCDT-123456": "200"
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:viewer": {
                     "nonce": "0",
@@ -28,7 +28,7 @@
                 "to": "sc:forwarder",
                 "function": "validate_token_identifier",
                 "arguments": [
-                    "str:ESDT-123456"
+                    "str:DCDT-123456"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -52,7 +52,7 @@
                 "to": "sc:forwarder",
                 "function": "validate_token_identifier",
                 "arguments": [
-                    "str:ESDT-12345"
+                    "str:DCDT-12345"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -76,7 +76,7 @@
                 "to": "sc:forwarder",
                 "function": "validate_token_identifier",
                 "arguments": [
-                    "str:esdt-123456"
+                    "str:dcdt-123456"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"

@@ -1,13 +1,13 @@
-module github.com/multiversx/eth-chain-sovereign-notifier-go
+module github.com/TerraDharitri/eth-chain-sovereign-notifier-go
 
-replace github.com/multiversx/mx-chain-core-go => github.com/multiversx/mx-chain-core-sovereign-go v1.2.25-0.20250415123724-6e778f55ccd3
+replace github.com/TerraDharitri/drt-go-chain-core => github.com/TerraDharitri/drt-go-chain-core-sovereign v1.2.25-0.20250415123724-6e778f55ccd3
 
 go 1.20
 
 require (
 	github.com/ethereum/go-ethereum v1.12.0
-	github.com/multiversx/mx-chain-core-go v1.3.1
-	github.com/multiversx/mx-chain-logger-go v1.0.15
+	github.com/TerraDharitri/drt-go-chain-core v1.3.1
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.15
 	github.com/urfave/cli v1.22.9
 )
 

@@ -15,7 +15,7 @@
 ### 3) Export PythonPath 
 `export PYTHONPATH=.`
 
-### 4) Make sure [chain-simulator](https://github.com/multiversx/mx-chain-simulator-go) is:
+### 4) Make sure [chain-simulator](https://github.com/TerraDharitri/drt-go-chain-simulator) is:
 - Running 
 - Running with a correct config (specific config can be found at the begging of every `./scenarios/_test.py`)
 - If you run chain-simulator on different port, you can edit it in `./scenarios/config.py`

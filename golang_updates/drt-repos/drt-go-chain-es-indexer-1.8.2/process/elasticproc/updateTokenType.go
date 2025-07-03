@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	elasticIndexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	elasticIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 )
 
 func (ei *elasticProcessor) indexTokens(tokensData []*data.TokenInfo, updateNFTData []*data.NFTDataUpdate, buffSlice *data.BufferSlice, shardID uint32) error {
-	err := ei.prepareAndAddSerializedDataForTokens(tokensData, updateNFTData, buffSlice, elasticIndexer.ESDTsIndex)
+	err := ei.prepareAndAddSerializedDataForTokens(tokensData, updateNFTData, buffSlice, elasticIndexer.DCDTsIndex)
 	if err != nil {
 		return err
 	}
@@ -22,7 +22,7 @@ func (ei *elasticProcessor) indexTokens(tokensData []*data.TokenInfo, updateNFTD
 		return err
 	}
 
-	err = ei.addTokenType(tokensData, elasticIndexer.AccountsESDTIndex, shardID)
+	err = ei.addTokenType(tokensData, elasticIndexer.AccountsDCDTIndex, shardID)
 	if err != nil {
 		return err
 	}
@@ -48,7 +48,7 @@ func (ei *elasticProcessor) addTokenType(tokensData []*data.TokenInfo, index str
 	}(time.Now())
 
 	for _, td := range tokensData {
-		if td.Type == core.FungibleESDT {
+		if td.Type == core.FungibleDCDT {
 			continue
 		}
 

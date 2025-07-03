@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.AsyncContext = (*asyncContext)(nil)
@@ -32,7 +32,7 @@ type asyncContext struct {
 	returnData         []byte
 	asyncCallGroups    []*vmhost.AsyncCallGroup
 	callArgsParser     vmhost.CallArgsParser
-	esdtTransferParser vmcommon.ESDTTransferParser
+	dcdtTransferParser vmcommon.DCDTTransferParser
 
 	callsCounter      uint64 // incremented and decremented during run
 	totalCallsCounter uint64 // used for callid generation
@@ -54,7 +54,7 @@ type asyncContext struct {
 func NewAsyncContext(
 	host vmhost.VMHost,
 	callArgsParser vmhost.CallArgsParser,
-	esdtTransferParser vmcommon.ESDTTransferParser,
+	dcdtTransferParser vmcommon.DCDTTransferParser,
 	_ *marshal.GogoProtoMarshalizer,
 ) (*asyncContext, error) {
 	if check.IfNil(host) {
@@ -63,8 +63,8 @@ func NewAsyncContext(
 	if check.IfNil(callArgsParser) {
 		return nil, vmhost.ErrNilCallArgsParser
 	}
-	if check.IfNil(esdtTransferParser) {
-		return nil, vmhost.ErrNilESDTTransferParser
+	if check.IfNil(dcdtTransferParser) {
+		return nil, vmhost.ErrNilDCDTTransferParser
 	}
 
 	storage := host.Storage()
@@ -81,7 +81,7 @@ func NewAsyncContext(
 		returnData:             nil,
 		asyncCallGroups:        make([]*vmhost.AsyncCallGroup, 0),
 		callArgsParser:         callArgsParser,
-		esdtTransferParser:     esdtTransferParser,
+		dcdtTransferParser:     dcdtTransferParser,
 		contextCallbackEnabled: false,
 		asyncStorageDataPrefix: storage.GetVmProtectedPrefix(vmhost.AsyncDataPrefix),
 		callbackParentCall:     nil,
@@ -263,7 +263,7 @@ func (context *asyncContext) Clone() vmhost.AsyncContext {
 		host:                         context.host,
 		marshalizer:                  context.marshalizer,
 		callArgsParser:               context.callArgsParser,
-		esdtTransferParser:           context.esdtTransferParser,
+		dcdtTransferParser:           context.dcdtTransferParser,
 		stateStack:                   context.stateStack,
 	}
 }
@@ -619,7 +619,7 @@ func (context *asyncContext) addAsyncCall(groupID string, call *vmhost.AsyncCall
 	}
 
 	call.ExecutionMode = execMode
-	if execMode == vmhost.ESDTTransferOnCallBack {
+	if execMode == vmhost.DCDTTransferOnCallBack {
 		context.incrementCallsCounter()
 		call.CallID = context.generateNewCallID()
 	}
@@ -969,7 +969,7 @@ func (context *asyncContext) determineDestinationForAsyncCall(destination []byte
 		return destination, nil
 	}
 
-	parsedTransfer, err := context.esdtTransferParser.ParseESDTTransfers(destination, destination, functionName, args)
+	parsedTransfer, err := context.dcdtTransferParser.ParseDCDTTransfers(destination, destination, functionName, args)
 	if err != nil {
 		return destination, nil
 	}

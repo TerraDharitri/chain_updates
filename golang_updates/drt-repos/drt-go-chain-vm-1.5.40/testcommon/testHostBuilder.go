@@ -3,18 +3,18 @@ package testcommon
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	executorwrapper "github.com/multiversx/mx-chain-vm-go/executor/wrapper"
-	"github.com/multiversx/mx-chain-vm-go/testcommon/testexecutor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/hostCore"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	executorwrapper "github.com/TerraDharitri/drt-go-chain-vm/executor/wrapper"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,7 +28,7 @@ type TestHostBuilder struct {
 
 // NewTestHostBuilder commences a test host builder pattern.
 func NewTestHostBuilder(tb testing.TB) *TestHostBuilder {
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(worldmock.WorldMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(worldmock.WorldMarshalizer)
 	return &TestHostBuilder{
 		tb: tb,
 		vmHostParameters: &vmhost.VMHostParameters{
@@ -36,8 +36,8 @@ func NewTestHostBuilder(tb testing.TB) *TestHostBuilder {
 			BlockGasLimit:             uint64(1000),
 			GasSchedule:               nil,
 			BuiltInFuncContainer:      nil,
-			ProtectedKeyPrefix:        []byte("E" + "L" + "R" + "O" + "N" + "D"),
-			ESDTTransferParser:        esdtTransferParser,
+			ProtectedKeyPrefix:        []byte("N" + "U" + "M" + "B" + "A" + "T"),
+			DCDTTransferParser:        dcdtTransferParser,
 			EpochNotifier:             &mock.EpochNotifierStub{},
 			EnableEpochsHandler:       worldmock.EnableEpochsHandlerStubAllFlags(),
 			OverrideVMExecutor:        nil,

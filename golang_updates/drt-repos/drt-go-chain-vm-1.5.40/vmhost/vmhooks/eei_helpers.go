@@ -1,16 +1,16 @@
 package vmhooks
 
-const esdtRoleLocalMint = "ESDTRoleLocalMint"
-const esdtRoleLocalBurn = "ESDTRoleLocalBurn"
-const esdtRoleNFTCreate = "ESDTRoleNFTCreate"
-const esdtRoleNFTAddQuantity = "ESDTRoleNFTAddQuantity"
-const esdtRoleNFTBurn = "ESDTRoleNFTBurn"
-const esdtRoleNFTUpdateAttributes = "ESDTRoleNFTUpdateAttributes"
-const esdtRoleNFTAddURI = "ESDTRoleNFTAddURI"
-const esdtRoleNFTRecreate = "ESDTRoleNFTRecreate"
-const esdtRoleModifyCreator = "ESDTRoleModifyCreator"
-const esdtRoleModifyRoyalties = "ESDTRoleModifyRoyalties"
-const esdtRoleSetNewURI = "ESDTRoleSetNewURI"
+const dcdtRoleLocalMint = "DCDTRoleLocalMint"
+const dcdtRoleLocalBurn = "DCDTRoleLocalBurn"
+const dcdtRoleNFTCreate = "DCDTRoleNFTCreate"
+const dcdtRoleNFTAddQuantity = "DCDTRoleNFTAddQuantity"
+const dcdtRoleNFTBurn = "DCDTRoleNFTBurn"
+const dcdtRoleNFTUpdateAttributes = "DCDTRoleNFTUpdateAttributes"
+const dcdtRoleNFTAddURI = "DCDTRoleNFTAddURI"
+const dcdtRoleNFTRecreate = "DCDTRoleNFTRecreate"
+const dcdtRoleModifyCreator = "DCDTRoleModifyCreator"
+const dcdtRoleModifyRoyalties = "DCDTRoleModifyRoyalties"
+const dcdtRoleSetNewURI = "DCDTRoleSetNewURI"
 
 const tickerMinLength = 3
 const tickerMaxLength = 10
@@ -36,15 +36,15 @@ const (
 func roleFromByteArray(bytes []byte) int64 {
 	stringValue := string(bytes)
 	switch stringValue {
-	case esdtRoleLocalMint:
+	case dcdtRoleLocalMint:
 		return RoleMint
-	case esdtRoleLocalBurn:
+	case dcdtRoleLocalBurn:
 		return RoleBurn
-	case esdtRoleNFTCreate:
+	case dcdtRoleNFTCreate:
 		return RoleNFTCreate
-	case esdtRoleNFTAddQuantity:
+	case dcdtRoleNFTAddQuantity:
 		return RoleNFTAddQuantity
-	case esdtRoleNFTBurn:
+	case dcdtRoleNFTBurn:
 		return RoleNFTBurn
 	default:
 		return 0
@@ -54,34 +54,34 @@ func roleFromByteArray(bytes []byte) int64 {
 func roleFromByteArrayV2(bytes []byte) int64 {
 	stringValue := string(bytes)
 	switch stringValue {
-	case esdtRoleLocalMint:
+	case dcdtRoleLocalMint:
 		return RoleMint
-	case esdtRoleLocalBurn:
+	case dcdtRoleLocalBurn:
 		return RoleBurn
-	case esdtRoleNFTCreate:
+	case dcdtRoleNFTCreate:
 		return RoleNFTCreate
-	case esdtRoleNFTAddQuantity:
+	case dcdtRoleNFTAddQuantity:
 		return RoleNFTAddQuantity
-	case esdtRoleNFTBurn:
+	case dcdtRoleNFTBurn:
 		return RoleNFTBurn
-	case esdtRoleNFTUpdateAttributes:
+	case dcdtRoleNFTUpdateAttributes:
 		return RoleNFTUpdateAttributes
-	case esdtRoleNFTAddURI:
+	case dcdtRoleNFTAddURI:
 		return RoleNFTAddURI
-	case esdtRoleNFTRecreate:
+	case dcdtRoleNFTRecreate:
 		return RoleNFTRecreate
-	case esdtRoleModifyCreator:
+	case dcdtRoleModifyCreator:
 		return RoleModifyCreator
-	case esdtRoleModifyRoyalties:
+	case dcdtRoleModifyRoyalties:
 		return RoleModifyRoyalties
-	case esdtRoleSetNewURI:
+	case dcdtRoleSetNewURI:
 		return RoleSetNewURI
 	default:
 		return 0
 	}
 }
 
-func getESDTRoles(dataBuffer []byte, cryptoOpcodesV2Enabled bool) int64 {
+func getDCDTRoles(dataBuffer []byte, cryptoOpcodesV2Enabled bool) int64 {
 	result := int64(0)
 	currentIndex := 0
 	valueLen := len(dataBuffer)

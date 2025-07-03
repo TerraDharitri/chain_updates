@@ -1,9 +1,9 @@
 package shared
 
 import (
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
 )
 
 // GroupHandler defines the actions needed to be performed by a gin API group

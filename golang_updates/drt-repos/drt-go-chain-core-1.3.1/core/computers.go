@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // MaxInt32 returns the maximum of two given numbers
@@ -175,11 +175,11 @@ func SafeAddUint64(a, b uint64) (uint64, error) {
 	return 0, ErrAdditionOverflow
 }
 
-// IsValidESDTRole returns true if the input string represents a valid ESDT role
-func IsValidESDTRole(role string) bool {
+// IsValidDCDTRole returns true if the input string represents a valid DCDT role
+func IsValidDCDTRole(role string) bool {
 	switch role {
-	case ESDTRoleNFTCreate, ESDTRoleNFTAddQuantity, ESDTRoleNFTBurn, ESDTRoleLocalMint, ESDTRoleLocalBurn, ESDTRoleNFTUpdateAttributes,
-		ESDTRoleNFTAddURI, ESDTRoleTransfer:
+	case DCDTRoleNFTCreate, DCDTRoleNFTAddQuantity, DCDTRoleNFTBurn, DCDTRoleLocalMint, DCDTRoleLocalBurn, DCDTRoleNFTUpdateAttributes,
+		DCDTRoleNFTAddURI, DCDTRoleTransfer:
 		return true
 	default:
 		return false

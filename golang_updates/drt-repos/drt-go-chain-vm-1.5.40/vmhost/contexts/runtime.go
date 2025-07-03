@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
 	builtinMath "math"
 	"math/big"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var logRuntime = logger.GetOrCreate("vm/runtime")
@@ -23,7 +24,7 @@ var mapNewCryptoAPI = map[string]struct{}{
 	"managedVerifySecp256r1":                   {},
 	"managedGetOriginalCallerAddr":             {},
 	"managedGetRelayerAddr":                    {},
-	"managedMultiTransferESDTNFTExecuteByUser": {},
+	"managedMultiTransferDCDTNFTExecuteByUser": {},
 }
 
 const warmCacheSize = 100
@@ -463,15 +464,15 @@ func (context *runtimeContext) GetVMInput() *vmcommon.ContractCallInput {
 	return context.vmInput
 }
 
-func copyESDTTransfer(esdtTransfer *vmcommon.ESDTTransfer) *vmcommon.ESDTTransfer {
-	newESDTTransfer := &vmcommon.ESDTTransfer{
-		ESDTValue:      big.NewInt(0).Set(esdtTransfer.ESDTValue),
-		ESDTTokenType:  esdtTransfer.ESDTTokenType,
-		ESDTTokenNonce: esdtTransfer.ESDTTokenNonce,
-		ESDTTokenName:  make([]byte, len(esdtTransfer.ESDTTokenName)),
+func copyDCDTTransfer(dcdtTransfer *vmcommon.DCDTTransfer) *vmcommon.DCDTTransfer {
+	newDCDTTransfer := &vmcommon.DCDTTransfer{
+		DCDTValue:      big.NewInt(0).Set(dcdtTransfer.DCDTValue),
+		DCDTTokenType:  dcdtTransfer.DCDTTokenType,
+		DCDTTokenNonce: dcdtTransfer.DCDTTokenNonce,
+		DCDTTokenName:  make([]byte, len(dcdtTransfer.DCDTTokenName)),
 	}
-	copy(newESDTTransfer.ESDTTokenName, esdtTransfer.ESDTTokenName)
-	return newESDTTransfer
+	copy(newDCDTTransfer.DCDTTokenName, dcdtTransfer.DCDTTokenName)
+	return newDCDTTransfer
 }
 
 // SetVMInput sets the given vm input as the current context vm input.
@@ -510,11 +511,11 @@ func (context *runtimeContext) SetVMInput(vmInput *vmcommon.ContractCallInput) {
 		copy(context.vmInput.RelayerAddr, vmInput.RelayerAddr)
 	}
 
-	context.vmInput.ESDTTransfers = make([]*vmcommon.ESDTTransfer, len(vmInput.ESDTTransfers))
+	context.vmInput.DCDTTransfers = make([]*vmcommon.DCDTTransfer, len(vmInput.DCDTTransfers))
 
-	if len(vmInput.ESDTTransfers) > 0 {
-		for i, esdtTransfer := range vmInput.ESDTTransfers {
-			context.vmInput.ESDTTransfers[i] = copyESDTTransfer(esdtTransfer)
+	if len(vmInput.DCDTTransfers) > 0 {
+		for i, dcdtTransfer := range vmInput.DCDTTransfers {
+			context.vmInput.DCDTTransfers[i] = copyDCDTTransfer(dcdtTransfer)
 		}
 	}
 

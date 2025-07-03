@@ -1,15 +1,15 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-proxy-go/api"
-	apiv_next "github.com/multiversx/mx-chain-proxy-go/api/groups/v_next"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/facade"
-	facadeVersions "github.com/multiversx/mx-chain-proxy-go/facade/versions"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/v_next"
-	"github.com/multiversx/mx-chain-proxy-go/versions"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api"
+	apiv_next "github.com/TerraDharitri/drt-go-chain-proxy/api/groups/v_next"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade"
+	facadeVersions "github.com/TerraDharitri/drt-go-chain-proxy/facade/versions"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/v_next"
+	"github.com/TerraDharitri/drt-go-chain-proxy/versions"
 )
 
 // FacadeArgs holds the arguments needed for creating a base facade
@@ -26,7 +26,7 @@ type FacadeArgs struct {
 	ValidatorStatisticsProcessor facade.ValidatorStatisticsProcessor
 	ProofProcessor               facade.ProofProcessor
 	PubKeyConverter              core.PubkeyConverter
-	ESDTSuppliesProcessor        facade.ESDTSupplyProcessor
+	DCDTSuppliesProcessor        facade.DCDTSupplyProcessor
 	StatusProcessor              facade.StatusProcessor
 	AboutInfoProcessor           facade.AboutInfoProcessor
 }
@@ -108,7 +108,7 @@ func createVersionV1_0Facade(facadeArgs FacadeArgs) (*facadeVersions.ProxyFacade
 		ValidatorStatisticsProcessor: facadeArgs.ValidatorStatisticsProcessor,
 		ProofProcessor:               facadeArgs.ProofProcessor,
 		PubKeyConverter:              facadeArgs.PubKeyConverter,
-		ESDTSuppliesProcessor:        facadeArgs.ESDTSuppliesProcessor,
+		DCDTSuppliesProcessor:        facadeArgs.DCDTSuppliesProcessor,
 		StatusProcessor:              facadeArgs.StatusProcessor,
 		AboutInfoProcessor:           facadeArgs.AboutInfoProcessor,
 	}
@@ -167,7 +167,7 @@ func createVersionV_nextFacade(facadeArgs FacadeArgs) (data.FacadeHandler, error
 		TransactionProcessor:         facadeArgs.TransactionProcessor,
 		ValidatorStatisticsProcessor: facadeArgs.ValidatorStatisticsProcessor,
 		PubKeyConverter:              facadeArgs.PubKeyConverter,
-		ESDTSuppliesProcessor:        facadeArgs.ESDTSuppliesProcessor,
+		DCDTSuppliesProcessor:        facadeArgs.DCDTSuppliesProcessor,
 		StatusProcessor:              facadeArgs.StatusProcessor,
 	}
 
@@ -205,7 +205,7 @@ func createVersionedFacade(args FacadeArgs) (data.FacadeHandler, error) {
 		args.BlocksProcessor,
 		args.ProofProcessor,
 		args.PubKeyConverter,
-		args.ESDTSuppliesProcessor,
+		args.DCDTSuppliesProcessor,
 		args.StatusProcessor,
 		args.AboutInfoProcessor,
 	)

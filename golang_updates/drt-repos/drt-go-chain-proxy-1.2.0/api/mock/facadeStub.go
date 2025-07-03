@@ -3,11 +3,11 @@ package mock
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // FacadeStub is the mock implementation of a node's router handler
@@ -18,11 +18,11 @@ type FacadeStub struct {
 	GetShardIDForAddressHandler                  func(address string) (uint32, error)
 	GetValueForKeyHandler                        func(address string, key string, options common.AccountQueryOptions) (string, error)
 	GetKeyValuePairsHandler                      func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTTokenDataCalled                       func(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTNftTokenDataCalled                    func(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsWithRoleCalled                       func(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTTokenDataCalled                       func(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTNftTokenDataCalled                    func(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsWithRoleCalled                       func(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetNFTTokenIDsRegisteredByAddressCalled      func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetAllESDTTokensCalled                       func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetAllDCDTTokensCalled                       func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetTransactionsHandler                       func(address string) ([]data.DatabaseTransaction, error)
 	GetTransactionHandler                        func(txHash string, withResults bool) (*transaction.ApiTransactionResult, error)
 	GetTransactionsPoolHandler                   func(fields string) (*data.TransactionsPool, error)
@@ -43,7 +43,7 @@ type FacadeStub struct {
 	GetProcessedTransactionStatusHandler         func(txHash string) (*data.ProcessStatusResponse, error)
 	GetConfigMetricsHandler                      func() (*data.GenericAPIResponse, error)
 	GetNetworkMetricsHandler                     func(shardID uint32) (*data.GenericAPIResponse, error)
-	GetAllIssuedESDTsHandler                     func(tokenType string) (*data.GenericAPIResponse, error)
+	GetAllIssuedDCDTsHandler                     func(tokenType string) (*data.GenericAPIResponse, error)
 	GetEnableEpochsMetricsHandler                func() (*data.GenericAPIResponse, error)
 	GetEconomicsDataMetricsHandler               func() (*data.GenericAPIResponse, error)
 	GetDirectStakedInfoCalled                    func() (*data.GenericAPIResponse, error)
@@ -66,8 +66,8 @@ type FacadeStub struct {
 	GetProofDataTrieCalled                       func(string, string, string) (*data.GenericAPIResponse, error)
 	GetProofCurrentRootHashCalled                func(string) (*data.GenericAPIResponse, error)
 	VerifyProofCalled                            func(string, string, []string) (*data.GenericAPIResponse, error)
-	GetESDTsRolesCalled                          func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTSupplyCalled                          func(token string) (*data.ESDTSupplyResponse, error)
+	GetDCDTsRolesCalled                          func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTSupplyCalled                          func(token string) (*data.DCDTSupplyResponse, error)
 	GetMetricsCalled                             func() map[string]*data.EndpointMetrics
 	GetPrometheusMetricsCalled                   func() string
 	GetGenesisNodesPubKeysCalled                 func() (*data.GenericAPIResponse, error)
@@ -175,28 +175,28 @@ func (f *FacadeStub) GetEconomicsDataMetrics() (*data.GenericAPIResponse, error)
 	return &data.GenericAPIResponse{}, nil
 }
 
-// GetAllIssuedESDTs -
-func (f *FacadeStub) GetAllIssuedESDTs(tokenType string) (*data.GenericAPIResponse, error) {
-	if f.GetAllIssuedESDTsHandler != nil {
-		return f.GetAllIssuedESDTsHandler(tokenType)
+// GetAllIssuedDCDTs -
+func (f *FacadeStub) GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error) {
+	if f.GetAllIssuedDCDTsHandler != nil {
+		return f.GetAllIssuedDCDTsHandler(tokenType)
 	}
 
 	return &data.GenericAPIResponse{}, nil
 }
 
-// GetESDTsWithRole -
-func (f *FacadeStub) GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if f.GetESDTsWithRoleCalled != nil {
-		return f.GetESDTsWithRoleCalled(address, role, options)
+// GetDCDTsWithRole -
+func (f *FacadeStub) GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if f.GetDCDTsWithRoleCalled != nil {
+		return f.GetDCDTsWithRoleCalled(address, role, options)
 	}
 
 	return &data.GenericAPIResponse{}, nil
 }
 
-// GetESDTsRoles -
-func (f *FacadeStub) GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if f.GetESDTsRolesCalled != nil {
-		return f.GetESDTsRolesCalled(address, options)
+// GetDCDTsRoles -
+func (f *FacadeStub) GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if f.GetDCDTsRolesCalled != nil {
+		return f.GetDCDTsRolesCalled(address, options)
 	}
 
 	return &data.GenericAPIResponse{}, nil
@@ -239,10 +239,10 @@ func (f *FacadeStub) GetRatingsConfig() (*data.GenericAPIResponse, error) {
 	return f.GetRatingsConfigCalled()
 }
 
-// GetESDTSupply -
-func (f *FacadeStub) GetESDTSupply(token string) (*data.ESDTSupplyResponse, error) {
-	if f.GetESDTSupplyCalled != nil {
-		return f.GetESDTSupplyCalled(token)
+// GetDCDTSupply -
+func (f *FacadeStub) GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error) {
+	if f.GetDCDTSupplyCalled != nil {
+		return f.GetDCDTSupplyCalled(token)
 	}
 
 	return nil, nil
@@ -296,28 +296,28 @@ func (f *FacadeStub) GetShardIDForAddress(address string) (uint32, error) {
 	return f.GetShardIDForAddressHandler(address)
 }
 
-// GetESDTTokenData -
-func (f *FacadeStub) GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if f.GetESDTTokenDataCalled != nil {
-		return f.GetESDTTokenDataCalled(address, key, options)
+// GetDCDTTokenData -
+func (f *FacadeStub) GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if f.GetDCDTTokenDataCalled != nil {
+		return f.GetDCDTTokenDataCalled(address, key, options)
 	}
 
 	return nil, nil
 }
 
-// GetAllESDTTokens -
-func (f *FacadeStub) GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if f.GetAllESDTTokensCalled != nil {
-		return f.GetAllESDTTokensCalled(address, options)
+// GetAllDCDTTokens -
+func (f *FacadeStub) GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if f.GetAllDCDTTokensCalled != nil {
+		return f.GetAllDCDTTokensCalled(address, options)
 	}
 
 	return nil, nil
 }
 
-// GetESDTNftTokenData -
-func (f *FacadeStub) GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if f.GetESDTNftTokenDataCalled != nil {
-		return f.GetESDTNftTokenDataCalled(address, key, nonce, options)
+// GetDCDTNftTokenData -
+func (f *FacadeStub) GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if f.GetDCDTNftTokenDataCalled != nil {
+		return f.GetDCDTNftTokenDataCalled(address, key, nonce, options)
 	}
 
 	return nil, nil

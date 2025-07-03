@@ -5,16 +5,16 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 const eventIDFormat = "%s-%d-%d"
@@ -71,16 +71,16 @@ func createEventsProcessors(args ArgsLogsAndEventsProcessor) []eventsProcessor {
 	scDeploysProc := newSCDeploysProcessor(args.PubKeyConverter)
 	informativeProc := newInformativeLogsProcessor()
 	updateNFTProc := newNFTsPropertiesProcessor(args.PubKeyConverter, args.Marshalizer)
-	esdtPropProc := newEsdtPropertiesProcessor(args.PubKeyConverter)
-	esdtIssueProc := newESDTIssueProcessor(args.PubKeyConverter)
+	dcdtPropProc := newDcdtPropertiesProcessor(args.PubKeyConverter)
+	dcdtIssueProc := newDCDTIssueProcessor(args.PubKeyConverter)
 	delegatorsProcessor := newDelegatorsProcessor(args.PubKeyConverter, args.BalanceConverter)
 
 	eventsProcs := []eventsProcessor{
 		scDeploysProc,
 		informativeProc,
 		updateNFTProc,
-		esdtPropProc,
-		esdtIssueProc,
+		dcdtPropProc,
+		dcdtIssueProc,
 		delegatorsProcessor,
 		nftsProc,
 	}

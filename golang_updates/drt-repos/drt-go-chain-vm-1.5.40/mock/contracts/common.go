@@ -1,9 +1,9 @@
 package contracts
 
 import (
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // DirectCallGasTestConfig is configuration for direct call tests
@@ -14,7 +14,7 @@ type DirectCallGasTestConfig struct {
 	GasProvidedToChild   uint64
 	ParentBalance        int64
 	ChildBalance         int64
-	ESDTTokensToTransfer uint64
+	DCDTTokensToTransfer uint64
 }
 
 // TransferAndExecuteTestConfig is configuration for transfer and execute tests
@@ -43,8 +43,8 @@ type AsyncCallTestConfig struct {
 	AsyncCallBaseTestConfig
 	TransferToThirdParty         int64
 	TransferToVault              int64
-	ESDTTokensToTransfer         uint64
-	CallbackESDTTokensToTransfer uint64
+	DCDTTokensToTransfer         uint64
+	CallbackDCDTTokensToTransfer uint64
 }
 
 // AsyncBuiltInCallTestConfig is configuration for async call tests of builtin functions

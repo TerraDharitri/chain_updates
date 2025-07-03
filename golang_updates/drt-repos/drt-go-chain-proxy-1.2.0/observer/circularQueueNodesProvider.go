@@ -1,8 +1,8 @@
 package observer
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/observer/mapCounters"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer/mapCounters"
 )
 
 // circularQueueNodesProvider will handle the providing of observers in a circular queue way, guaranteeing the

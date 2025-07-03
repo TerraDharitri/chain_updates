@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // interfaces assertions. verifies that all API endpoint have their corresponding methods in the facade
@@ -38,7 +38,7 @@ type ProxyFacade struct {
 	blockProc        BlockProcessor
 	blocksProc       BlocksProcessor
 	proofProc        ProofProcessor
-	esdtSuppliesProc ESDTSupplyProcessor
+	esdtSuppliesProc DCDTSupplyProcessor
 	statusProc       StatusProcessor
 
 	pubKeyConverter core.PubkeyConverter
@@ -59,7 +59,7 @@ func NewProxyFacade(
 	blocksProc BlocksProcessor,
 	proofProc ProofProcessor,
 	pubKeyConverter core.PubkeyConverter,
-	esdtSuppliesProc ESDTSupplyProcessor,
+	esdtSuppliesProc DCDTSupplyProcessor,
 	statusProc StatusProcessor,
 	aboutInfoProc AboutInfoProcessor,
 ) (*ProxyFacade, error) {
@@ -97,7 +97,7 @@ func NewProxyFacade(
 		return nil, ErrNilProofProcessor
 	}
 	if esdtSuppliesProc == nil {
-		return nil, ErrNilESDTSuppliesProcessor
+		return nil, ErrNilDCDTSuppliesProcessor
 	}
 	if statusProc == nil {
 		return nil, ErrNilStatusProcessor
@@ -160,24 +160,24 @@ func (pf *ProxyFacade) GetShardIDForAddress(address string) (uint32, error) {
 	return pf.accountProc.GetShardIDForAddress(address)
 }
 
-// GetESDTTokenData returns the token data for a given token name
-func (pf *ProxyFacade) GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return pf.accountProc.GetESDTTokenData(address, key, options)
+// GetDCDTTokenData returns the token data for a given token name
+func (pf *ProxyFacade) GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return pf.accountProc.GetDCDTTokenData(address, key, options)
 }
 
-// GetESDTNftTokenData returns the token data for a given token name
-func (pf *ProxyFacade) GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return pf.accountProc.GetESDTNftTokenData(address, key, nonce, options)
+// GetDCDTNftTokenData returns the token data for a given token name
+func (pf *ProxyFacade) GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return pf.accountProc.GetDCDTNftTokenData(address, key, nonce, options)
 }
 
-// GetESDTsWithRole returns the tokens where the given address has the assigned role
-func (pf *ProxyFacade) GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return pf.accountProc.GetESDTsWithRole(address, role, options)
+// GetDCDTsWithRole returns the tokens where the given address has the assigned role
+func (pf *ProxyFacade) GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return pf.accountProc.GetDCDTsWithRole(address, role, options)
 }
 
-// GetESDTsRoles returns the tokens and roles for the given address
-func (pf *ProxyFacade) GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return pf.accountProc.GetESDTsRoles(address, options)
+// GetDCDTsRoles returns the tokens and roles for the given address
+func (pf *ProxyFacade) GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return pf.accountProc.GetDCDTsRoles(address, options)
 }
 
 // GetNFTTokenIDsRegisteredByAddress returns the token identifiers of the NFTs registered by the address
@@ -185,9 +185,9 @@ func (pf *ProxyFacade) GetNFTTokenIDsRegisteredByAddress(address string, options
 	return pf.accountProc.GetNFTTokenIDsRegisteredByAddress(address, options)
 }
 
-// GetAllESDTTokens returns all the ESDT tokens for a given address
-func (pf *ProxyFacade) GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return pf.accountProc.GetAllESDTTokens(address, options)
+// GetAllDCDTTokens returns all the DCDT tokens for a given address
+func (pf *ProxyFacade) GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return pf.accountProc.GetAllDCDTTokens(address, options)
 }
 
 // SendTransaction should send the transaction to the correct observer
@@ -315,9 +315,9 @@ func (pf *ProxyFacade) GetNetworkStatusMetrics(shardID uint32) (*data.GenericAPI
 	return pf.nodeStatusProc.GetNetworkStatusMetrics(shardID)
 }
 
-// GetESDTSupply retrieves the supply for the provided token
-func (pf *ProxyFacade) GetESDTSupply(token string) (*data.ESDTSupplyResponse, error) {
-	return pf.esdtSuppliesProc.GetESDTSupply(token)
+// GetDCDTSupply retrieves the supply for the provided token
+func (pf *ProxyFacade) GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error) {
+	return pf.esdtSuppliesProc.GetDCDTSupply(token)
 }
 
 // GetEconomicsDataMetrics retrieves the node's network metrics for a given shard
@@ -335,9 +335,9 @@ func (pf *ProxyFacade) GetDirectStakedInfo() (*data.GenericAPIResponse, error) {
 	return pf.nodeStatusProc.GetDirectStakedInfo()
 }
 
-// GetAllIssuedESDTs retrieves all the issued ESDTs from the node
-func (pf *ProxyFacade) GetAllIssuedESDTs(tokenType string) (*data.GenericAPIResponse, error) {
-	return pf.nodeStatusProc.GetAllIssuedESDTs(tokenType)
+// GetAllIssuedDCDTs retrieves all the issued DCDTs from the node
+func (pf *ProxyFacade) GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error) {
+	return pf.nodeStatusProc.GetAllIssuedDCDTs(tokenType)
 }
 
 // GetEnableEpochsMetrics retrieves the activation epochs

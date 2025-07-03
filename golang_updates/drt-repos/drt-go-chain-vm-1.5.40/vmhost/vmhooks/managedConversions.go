@@ -5,22 +5,22 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
-const esdtTransferLen = 16
+const dcdtTransferLen = 16
 
-// Deserializes a vmcommon.ESDTTransfer object.
-func readESDTTransfer(
+// Deserializes a vmcommon.DCDTTransfer object.
+func readDCDTTransfer(
 	managedType vmhost.ManagedTypesContext,
 	runtime vmhost.RuntimeContext,
 	data []byte,
-) (*vmcommon.ESDTTransfer, error) {
-	if len(data) != esdtTransferLen {
-		return nil, errors.New("invalid ESDT transfer object encoding")
+) (*vmcommon.DCDTTransfer, error) {
+	if len(data) != dcdtTransferLen {
+		return nil, errors.New("invalid DCDT transfer object encoding")
 	}
 
 	tokenIdentifierHandle := int32(binary.BigEndian.Uint32(data[0:4]))
@@ -51,25 +51,25 @@ func readESDTTransfer(
 		tokenType = core.NonFungible
 	}
 
-	return &vmcommon.ESDTTransfer{
-		ESDTTokenName:  tokenIdentifier,
-		ESDTTokenType:  uint32(tokenType),
-		ESDTTokenNonce: nonce,
-		ESDTValue:      value,
+	return &vmcommon.DCDTTransfer{
+		DCDTTokenName:  tokenIdentifier,
+		DCDTTokenType:  uint32(tokenType),
+		DCDTTokenNonce: nonce,
+		DCDTValue:      value,
 	}, nil
 }
 
-// Converts a managed buffer of serialized data to a slice of ESDTTransfer.
+// Converts a managed buffer of serialized data to a slice of DCDTTransfer.
 // The format is:
 // - token identifier handle - 4 bytes
 // - nonce - 8 bytes
 // - value handle - 4 bytes
 // Total: 16 bytes.
-func readESDTTransfers(
+func readDCDTTransfers(
 	managedType vmhost.ManagedTypesContext,
 	runtime vmhost.RuntimeContext,
 	managedVecHandle int32,
-) ([]*vmcommon.ESDTTransfer, error) {
+) ([]*vmcommon.DCDTTransfer, error) {
 	managedVecBytes, err := managedType.GetBytes(managedVecHandle)
 	if err != nil {
 		return nil, err
@@ -80,52 +80,52 @@ func readESDTTransfers(
 		return nil, err
 	}
 
-	if len(managedVecBytes)%esdtTransferLen != 0 {
-		return nil, errors.New("invalid managed vector of ESDT transfers")
+	if len(managedVecBytes)%dcdtTransferLen != 0 {
+		return nil, errors.New("invalid managed vector of DCDT transfers")
 	}
 
-	numTransfers := len(managedVecBytes) / esdtTransferLen
-	result := make([]*vmcommon.ESDTTransfer, 0, numTransfers)
-	for i := 0; i < len(managedVecBytes); i += esdtTransferLen {
-		esdtTransfer, err := readESDTTransfer(managedType, runtime, managedVecBytes[i:i+esdtTransferLen])
+	numTransfers := len(managedVecBytes) / dcdtTransferLen
+	result := make([]*vmcommon.DCDTTransfer, 0, numTransfers)
+	for i := 0; i < len(managedVecBytes); i += dcdtTransferLen {
+		dcdtTransfer, err := readDCDTTransfer(managedType, runtime, managedVecBytes[i:i+dcdtTransferLen])
 		if err != nil {
 			return nil, err
 		}
-		result = append(result, esdtTransfer)
+		result = append(result, dcdtTransfer)
 	}
 
 	return result, nil
 }
 
-// Serializes a vmcommon.ESDTTransfer object.
-func writeESDTTransfer(
+// Serializes a vmcommon.DCDTTransfer object.
+func writeDCDTTransfer(
 	managedType vmhost.ManagedTypesContext,
-	esdtTransfer *vmcommon.ESDTTransfer,
+	dcdtTransfer *vmcommon.DCDTTransfer,
 	destinationBytes []byte,
 ) {
-	tokenIdentifierHandle := managedType.NewManagedBufferFromBytes(esdtTransfer.ESDTTokenName)
-	valueHandle := managedType.NewBigInt(esdtTransfer.ESDTValue)
+	tokenIdentifierHandle := managedType.NewManagedBufferFromBytes(dcdtTransfer.DCDTTokenName)
+	valueHandle := managedType.NewBigInt(dcdtTransfer.DCDTValue)
 
 	binary.BigEndian.PutUint32(destinationBytes[0:4], uint32(tokenIdentifierHandle))
-	binary.BigEndian.PutUint64(destinationBytes[4:12], esdtTransfer.ESDTTokenNonce)
+	binary.BigEndian.PutUint64(destinationBytes[4:12], dcdtTransfer.DCDTTokenNonce)
 	binary.BigEndian.PutUint32(destinationBytes[12:16], uint32(valueHandle))
 }
 
-// Serializes a list of ESDTTransfer one after the other into a byte slice.
-// The format is (for each ESDTTransfer):
+// Serializes a list of DCDTTransfer one after the other into a byte slice.
+// The format is (for each DCDTTransfer):
 // - token identifier handle - 4 bytes
 // - nonce - 8 bytes
 // - value handle - 4 bytes
 // Total: 16 bytes.
-func writeESDTTransfersToBytes(
+func writeDCDTTransfersToBytes(
 	managedType vmhost.ManagedTypesContext,
-	esdtTransfers []*vmcommon.ESDTTransfer,
+	dcdtTransfers []*vmcommon.DCDTTransfer,
 ) []byte {
-	destinationBytes := make([]byte, esdtTransferLen*len(esdtTransfers))
+	destinationBytes := make([]byte, dcdtTransferLen*len(dcdtTransfers))
 	dataIndex := 0
-	for _, esdtTransfer := range esdtTransfers {
-		writeESDTTransfer(managedType, esdtTransfer, destinationBytes[dataIndex:dataIndex+esdtTransferLen])
-		dataIndex += esdtTransferLen
+	for _, dcdtTransfer := range dcdtTransfers {
+		writeDCDTTransfer(managedType, dcdtTransfer, destinationBytes[dataIndex:dataIndex+dcdtTransferLen])
+		dataIndex += dcdtTransferLen
 	}
 
 	return destinationBytes

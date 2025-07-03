@@ -7,7 +7,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -16,11 +16,11 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint"
+                                "DCDTRoleLocalMint"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -33,7 +33,7 @@
                 "function": "call_execute_on_dest_context",
                 "arguments": [
                     "sc:forwarder",
-                    "str:ESDTLocalMint",
+                    "str:DCDTLocalMint",
                     "str:FUNG-0001",
                     "1200"
                 ],
@@ -46,7 +46,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTLocalMint",
+                        "endpoint": "str:DCDTLocalMint",
                         "topics": [
                             "str:FUNG-0001",
                             "0",
@@ -78,7 +78,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -87,12 +87,12 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint"
+                                "DCDTRoleLocalMint"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         }

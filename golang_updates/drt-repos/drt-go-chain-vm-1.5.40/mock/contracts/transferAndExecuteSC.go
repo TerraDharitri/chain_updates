@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"math/big"
 
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/testcommon"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // TransferAndExecuteFuncName -
@@ -45,8 +45,8 @@ func TransferAndExecute(instanceMock *mock.InstanceMock, config interface{}) {
 	})
 }
 
-func TransferEGLDToParent(instanceMock *mock.InstanceMock, config interface{}) {
-	instanceMock.AddMockMethod("transferEGLDToParent", func() *mock.InstanceMock {
+func TransferREWAToParent(instanceMock *mock.InstanceMock, config interface{}) {
+	instanceMock.AddMockMethod("transferREWAToParent", func() *mock.InstanceMock {
 		testConfig := config.(*test.TestConfig)
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
@@ -73,7 +73,7 @@ func TransferAndExecuteWithBuiltIn(instanceMock *mock.InstanceMock, config inter
 
 		_ = host.Metering().UseGasBounded(testConfig.GasUsedByChild)
 
-		transferString := "ESDTTransfer@" + hex.EncodeToString([]byte("XYY-ABCDEF")) + "@" + hex.EncodeToString(big.NewInt(100000).Bytes())
+		transferString := "DCDTTransfer@" + hex.EncodeToString([]byte("XYY-ABCDEF")) + "@" + hex.EncodeToString(big.NewInt(100000).Bytes())
 		vmhooks.TransferValueExecuteWithTypedArgs(host,
 			test.UserAddress,
 			big.NewInt(0),

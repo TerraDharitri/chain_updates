@@ -4,8 +4,8 @@
   "round": 50,
   "value": "0",
   "valueNum": 0,
-  "receiver": "erd1ef9xx3k3m89azf4c4xc98wpcdnx5h0cnxy6em47r6dc4alud0uwqx24f50",
-  "sender": "erd1ef9xx3k3m89azf4c4xc98wpcdnx5h0cnxy6em47r6dc4alud0uwqx24f50",
+  "receiver": "drt1ef9xx3k3m89azf4c4xc98wpcdnx5h0cnxy6em47r6dc4alud0uwqmkz2h3",
+  "sender": "drt1ef9xx3k3m89azf4c4xc98wpcdnx5h0cnxy6em47r6dc4alud0uwqmkz2h3",
   "receiverShard": 0,
   "senderShard": 0,
   "gasPrice": 1000000000,
@@ -23,19 +23,19 @@
   "tokens": [
     "LKFARM-3f4f9b-016534"
   ],
-  "esdtValues": [
+  "dcdtValues": [
     "2049781565634260759982"
   ],
-  "esdtValuesNum": [
+  "dcdtValuesNum": [
     2049.781565634261
   ],
   "receivers": [
-    "erd1qqqqqqqqqqqqqpgq78y09lw93f3udvsplshdv2vk957l5vl70n4splrad2"
+    "drt1qqqqqqqqqqqqqpgq78y09lw93f3udvsplshdv2vk957l5vl70n4sur57w5"
   ],
   "receiversShardIDs": [
     1
   ],
-  "operation": "ESDTNFTTransfer",
+  "operation": "DCDTNFTTransfer",
   "function": "compoundRewardsProxy",
   "epoch": 0
 }

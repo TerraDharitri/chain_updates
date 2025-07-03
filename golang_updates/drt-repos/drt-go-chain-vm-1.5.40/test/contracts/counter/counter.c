@@ -1,5 +1,5 @@
-#include "../mxvm/context.h"
-#include "../mxvm/util.h"
+#include "../drtvm/context.h"
+#include "../drtvm/util.h"
 
 STORAGE_KEY(COUNTER);
 

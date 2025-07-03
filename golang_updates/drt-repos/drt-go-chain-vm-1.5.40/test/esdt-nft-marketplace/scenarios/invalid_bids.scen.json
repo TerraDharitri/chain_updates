@@ -12,7 +12,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "500",
+                "rewaValue": "500",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -66,7 +66,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "500",
+                "rewaValue": "500",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -91,7 +91,7 @@
                 "address:first_bidder": {
                     "nonce": "0",
                     "balance": "2000",
-                    "esdt": {
+                    "dcdt": {
                         "str:RANDTOK-123456": "100"
                     }
                 }
@@ -106,7 +106,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:RANDTOK-123456",
                         "value": "100"
@@ -135,7 +135,7 @@
             "tx": {
                 "from": "address:second_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "300",
+                "rewaValue": "300",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -159,7 +159,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "50",
+                "rewaValue": "50",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -183,7 +183,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "150",
+                "rewaValue": "150",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -207,7 +207,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "1500",
+                "rewaValue": "1500",
                 "function": "bid",
                 "arguments": [
                     "1",

@@ -5,14 +5,14 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	elasticIndexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	elasticIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/stretchr/testify/require"
 )
 
@@ -148,12 +148,12 @@ func TestIsCrossShardSourceMe(t *testing.T) {
 	require.False(t, isCrossShardOnSourceShard(tx2, 1))
 }
 
-func TestAreESDTValuesOK(t *testing.T) {
+func TestAreDCDTValuesOK(t *testing.T) {
 	t.Parallel()
 
 	values := []string{"10000", "1", "10"}
-	require.True(t, areESDTValuesOK(values))
+	require.True(t, areDCDTValuesOK(values))
 
 	values = []string{"10000", "1", "1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"}
-	require.False(t, areESDTValuesOK(values))
+	require.False(t, areDCDTValuesOK(values))
 }

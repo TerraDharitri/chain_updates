@@ -51,7 +51,7 @@ func (bc *balanceChecker) checkBalancesSC(addr string, balancesFromES map[string
 }
 
 func (bc *balanceChecker) getBalanceFromProxy(endpoint string) (string, bool) {
-	responseBalancesProxy := &BalancesESDTResponse{}
+	responseBalancesProxy := &BalancesDCDTResponse{}
 	err := bc.restClient.CallGetRestEndPoint(endpoint, responseBalancesProxy)
 	if err != nil {
 		log.Warn("cannot call get rest endpoint", "error", err)
@@ -72,7 +72,7 @@ func (bc *balanceChecker) getBalanceFromProxy(endpoint string) (string, bool) {
 func computeEndpoint(tokenIdentifier string, addr string) string {
 	split := strings.Split(tokenIdentifier, "-")
 
-	endpoint := fmt.Sprintf(specificESDTEndpoint, addr, tokenIdentifier)
+	endpoint := fmt.Sprintf(specificDCDTEndpoint, addr, tokenIdentifier)
 	if len(split) == 3 {
 		token := split[0] + "-" + split[1]
 		nonceStr := split[2]

@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	scenio "github.com/multiversx/mx-chain-scenario-go/scenario/io"
-	fuzzutil "github.com/multiversx/mx-chain-vm-go/fuzz/util"
+	scenio "github.com/TerraDharitri/drt-go-chain-scenario/scenario/io"
+	fuzzutil "github.com/TerraDharitri/drt-go-chain-vm/fuzz/util"
 	"github.com/stretchr/testify/require"
 )
 

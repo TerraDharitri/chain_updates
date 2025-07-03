@@ -3,7 +3,7 @@ package configs
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
 	"github.com/stretchr/testify/require"
 )
 
@@ -20,7 +20,7 @@ func createArgsProxyConfigs(t *testing.T) ArgsProxyConfigs {
 		InitialWallets: map[uint32]*dtos.WalletKey{
 			0: {
 				Address: dtos.WalletAddress{
-					Bech32: "erd17g9splt634xppt782cktfyyfmhdqlya9vqlqjeclpk65ckuxkcwqxu78wy",
+					Bech32: "drt17g9splt634xppt782cktfyyfmhdqlya9vqlqjeclpk65ckuxkcwqmqfyd6",
 				},
 				PrivateKeyHex: "NzhkOGI1ZDYxOWVkNzkyY2U5ZWE1YTk5YjZkYjA4NzgwMDA1MzE3OTRlYmVhNzFk\nNWRhYWUwODdlNDE4MGZmZGYyMGIwMGZkN2E4ZDRjMTBhZmM3NTYyY2I0OTA4OWRk\nZGEwZjkzYTU2MDNlMDk2NzFmMGRiNTRjNWI4NmI2MWM=",
 			},

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"unicode"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
 )
 
 const (

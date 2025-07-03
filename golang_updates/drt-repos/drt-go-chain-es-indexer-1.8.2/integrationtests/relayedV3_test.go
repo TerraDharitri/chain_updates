@@ -8,11 +8,11 @@ import (
 	"math/big"
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -44,9 +44,9 @@ func TestRelayedV3TransactionWithMultipleRefunds(t *testing.T) {
 
 	initialTx := &transaction.Transaction{
 		Nonce:            1000,
-		SndAddr:          decodeAddress("erd1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfszrp64a"),
-		RcvAddr:          decodeAddress("erd1qqqqqqqqqqqqqpgqak8zt22wl2ph4tswtyc39namqx6ysa2sd8ss4xmlj3"),
-		RelayerAddr:      decodeAddress("erd10ksryjr065ad5475jcg82pnjfg9j9qtszjsrp24anl6ym7cmeddshwnru8"),
+		SndAddr:          decodeAddress("drt1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfsllkekr"),
+		RcvAddr:          decodeAddress("drt1qqqqqqqqqqqqqpgqak8zt22wl2ph4tswtyc39namqx6ysa2sd8ssg6vu30"),
+		RelayerAddr:      decodeAddress("drt10ksryjr065ad5475jcg82pnjfg9j9qtszjsrp24anl6ym7cmedds2jyqle"),
 		Signature:        []byte("d"),
 		RelayerSignature: []byte("a"),
 		GasLimit:         500_000_000,

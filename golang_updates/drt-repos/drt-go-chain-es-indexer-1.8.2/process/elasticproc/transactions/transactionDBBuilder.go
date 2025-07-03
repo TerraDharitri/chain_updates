@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/sharding"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/sharding"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 type dbTransactionBuilder struct {
@@ -69,15 +69,15 @@ func (dtb *dbTransactionBuilder) prepareTransaction(
 		log.Warn("dbTransactionBuilder.prepareTransaction: cannot compute transaction fee as num", "fee", feeInfo.Fee,
 			"hash", txHash, "error", err)
 	}
-	esdtValuesNum, err := dtb.balanceConverter.ComputeSliceOfStringsAsFloat(res.ESDTValues)
+	dcdtValuesNum, err := dtb.balanceConverter.ComputeSliceOfStringsAsFloat(res.DCDTValues)
 	if err != nil {
-		log.Warn("dbTransactionBuilder.prepareTransaction: cannot compute esdt values as num",
-			"esdt values", res.ESDTValues, "hash", txHash, "error", err)
+		log.Warn("dbTransactionBuilder.prepareTransaction: cannot compute dcdt values as num",
+			"dcdt values", res.DCDTValues, "hash", txHash, "error", err)
 	}
 
-	var esdtValues []string
-	if areESDTValuesOK(res.ESDTValues) {
-		esdtValues = res.ESDTValues
+	var dcdtValues []string
+	if areDCDTValuesOK(res.DCDTValues) {
+		dcdtValues = res.DCDTValues
 	}
 	guardianAddress := ""
 	if len(tx.GuardianAddr) > 0 {
@@ -115,8 +115,8 @@ func (dtb *dbTransactionBuilder) prepareTransaction(
 		ReceiverUserName:  []byte(receiverUserName),
 		SenderUserName:    []byte(senderUserName),
 		IsScCall:          isScCall,
-		ESDTValues:        esdtValues,
-		ESDTValuesNum:     esdtValuesNum,
+		DCDTValues:        dcdtValues,
+		DCDTValuesNum:     dcdtValuesNum,
 		Receivers:         receiversAddr,
 		Version:           tx.Version,
 		GuardianAddress:   guardianAddress,

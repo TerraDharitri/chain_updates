@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	processComp "github.com/TerraDharitri/drt-go-chain/factory/processing"
 	"github.com/stretchr/testify/require"
@@ -17,7 +17,7 @@ func TestNewManagedProcessComponents(t *testing.T) {
 		t.Parallel()
 
 		managedProcessComponents, err := processComp.NewManagedProcessComponents(nil)
-		require.Equal(t, errorsMx.ErrNilProcessComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilProcessComponentsFactory, err)
 		require.Nil(t, managedProcessComponents)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -150,7 +150,7 @@ func TestManagedProcessComponents_CheckSubcomponents(t *testing.T) {
 	processComponentsFactory, _ := processComp.NewProcessComponentsFactory(createMockProcessComponentsFactoryArgs())
 	managedProcessComponents, _ := processComp.NewManagedProcessComponents(processComponentsFactory)
 	require.NotNil(t, managedProcessComponents)
-	require.Equal(t, errorsMx.ErrNilProcessComponents, managedProcessComponents.CheckSubcomponents())
+	require.Equal(t, errorsDrt.ErrNilProcessComponents, managedProcessComponents.CheckSubcomponents())
 
 	err := managedProcessComponents.Create()
 	require.NoError(t, err)

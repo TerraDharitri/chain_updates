@@ -12,19 +12,19 @@
                 "sc:nft_creator": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "address:seller": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "instances": [
                                 {
@@ -56,7 +56,7 @@
             "comment": "10% cut for the marketplace",
             "tx": {
                 "from": "address:owner",
-                "contractCode": "file:../output/esdt-nft-marketplace.wasm",
+                "contractCode": "file:../output/dcdt-nft-marketplace.wasm",
                 "arguments": [
                     "1000"
                 ],
@@ -74,11 +74,11 @@
         {
             "step": "scCall",
             "id": "auctionToken",
-            "comment": "arguments are: min_bid, max_bid, deadline, payment token. Nonce is skipped, since EGLD has no nonce",
+            "comment": "arguments are: min_bid, max_bid, deadline, payment token. Nonce is skipped, since REWA has no nonce",
             "tx": {
                 "from": "address:seller",
                 "to": "sc:marketplace",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:NFT-123456",
                         "nonce": "1",
@@ -90,7 +90,7 @@
                     "100",
                     "1,000",
                     "123,456",
-                    "str:EGLD"
+                    "str:REWA"
                 ],
                 "gasLimit": "20,000,000",
                 "gasPrice": "0"
@@ -111,7 +111,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "1000",
+                "rewaValue": "1000",
                 "function": "bid",
                 "arguments": [
                     "1",
@@ -162,15 +162,15 @@
                 "sc:nft_creator": {
                     "nonce": "0",
                     "balance": "200",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "address:seller": {
                     "nonce": "1",
@@ -180,7 +180,7 @@
                 "address:first_bidder": {
                     "nonce": "2",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "instances": [
                                 {
@@ -200,7 +200,7 @@
                     "storage": {
                         "+": ""
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

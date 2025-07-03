@@ -3,10 +3,10 @@ package contracts
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 // RecursiveAsyncCallRecursiveChildMock is an exposed mock contract method

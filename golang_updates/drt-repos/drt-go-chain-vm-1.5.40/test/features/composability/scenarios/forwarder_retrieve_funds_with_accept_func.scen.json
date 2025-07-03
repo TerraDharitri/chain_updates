@@ -7,7 +7,7 @@
                 "address:a_user": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FIRSTTOKEN-abcdef": "1,000,000",
                         "str:SECTOKEN-abcdef": "2,000,000"
                     }
@@ -15,15 +15,15 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:THIRDTOKEN-abcdef": "5,000,000"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -33,7 +33,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:FIRSTTOKEN-abcdef",
                         "value": "1,000,000"
@@ -72,23 +72,23 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FIRSTTOKEN-abcdef": "1,000,000",
                         "str:SECTOKEN-abcdef": "2,000,000"
                     },
                     "storage": {},
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:THIRDTOKEN-abcdef": "5,000,000"
                     },
                     "storage": {
                         "+": ""
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

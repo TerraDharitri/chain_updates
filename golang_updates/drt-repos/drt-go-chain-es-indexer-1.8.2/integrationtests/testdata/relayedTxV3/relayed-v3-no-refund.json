@@ -4,8 +4,8 @@
    "round": 50,
    "value": "0",
    "valueNum": 0,
-   "receiver": "erd1qqqqqqqqqqqqqpgqak8zt22wl2ph4tswtyc39namqx6ysa2sd8ss4xmlj3",
-   "sender": "erd1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfszrp64a",
+   "receiver": "drt1qqqqqqqqqqqqqpgqak8zt22wl2ph4tswtyc39namqx6ysa2sd8ssg6vu30",
+   "sender": "drt1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfsllkekr",
    "receiverShard": 0,
    "senderShard": 0,
    "gasPrice": 1000000000,
@@ -23,7 +23,7 @@
    "operation": "transfer",
    "function": "doSomething",
    "isRelayed": true,
-   "relayer": "erd10ksryjr065ad5475jcg82pnjfg9j9qtszjsrp24anl6ym7cmeddshwnru8",
+   "relayer": "drt10ksryjr065ad5475jcg82pnjfg9j9qtszjsrp24anl6ym7cmedds2jyqle",
    "relayerSignature": "61",
    "epoch": 0
 }

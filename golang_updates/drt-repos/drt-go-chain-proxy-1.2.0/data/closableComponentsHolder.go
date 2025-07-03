@@ -3,7 +3,7 @@ package data
 import (
 	"sync"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 // closableComponent defines the behaviour of a component that is closable

@@ -1,7 +1,7 @@
 package keccak
 
 import (
-	"github.com/multiversx/mx-chain-core-go/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
 	"golang.org/x/crypto/sha3"
 )
 

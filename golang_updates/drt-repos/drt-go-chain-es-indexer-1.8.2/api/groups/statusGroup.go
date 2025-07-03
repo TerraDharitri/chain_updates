@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-es-indexer-go/api/shared"
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
 )
 
 const (

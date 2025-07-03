@@ -5,7 +5,7 @@ import (
 )
 
 func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
-	pfe.wegldTokenId = args.wegldTokenId
+	pfe.wrewaTokenId = args.wrewaTokenId
 	pfe.mexTokenId = args.mexTokenId
 	pfe.busdTokenId = args.busdTokenId
 	pfe.wemeLpTokenId = args.wemeLpTokenId
@@ -71,18 +71,18 @@ func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
 	pfe.swaps[0] = SwapPair{
 		address:     pfe.wemeSwapAddress,
 		lpToken:     pfe.wemeLpTokenId,
-		firstToken:  pfe.wegldTokenId,
+		firstToken:  pfe.wrewaTokenId,
 		secondToken: pfe.mexTokenId,
 	}
 	pfe.swaps[1] = SwapPair{
 		address:     pfe.webuSwapAddress,
 		lpToken:     pfe.webuLpTokenId,
-		firstToken:  pfe.wegldTokenId,
+		firstToken:  pfe.wrewaTokenId,
 		secondToken: pfe.busdTokenId,
 	}
 
 	// users
-	esdtString := pfe.fullOfEsdtWalletString()
+	dcdtString := pfe.fullOfDcdtWalletString()
 	for i := 1; i <= args.numUsers; i++ {
 		err := pfe.executeStep(fmt.Sprintf(`
 		{
@@ -92,7 +92,7 @@ func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
 					"nonce": "0",
 					"balance": "0",
 					"storage": {},
-					"esdt": {
+					"dcdt": {
 						%s
 					},
 					"code": ""
@@ -100,7 +100,7 @@ func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
 			}
 		}`,
 			pfe.userAddress(i),
-			esdtString,
+			dcdtString,
 		))
 		if err != nil {
 			return err
@@ -125,12 +125,12 @@ func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
 	}
 
 	// swaps
-	err = pfe.setupPair(pfe.wemeSwapAddress, pfe.wegldTokenId, pfe.mexTokenId, pfe.wemeLpTokenId, pfe.ownerAddress, pfe.ownerAddress)
+	err = pfe.setupPair(pfe.wemeSwapAddress, pfe.wrewaTokenId, pfe.mexTokenId, pfe.wemeLpTokenId, pfe.ownerAddress, pfe.ownerAddress)
 	if err != nil {
 		return err
 	}
 
-	err = pfe.setupPair(pfe.webuSwapAddress, pfe.wegldTokenId, pfe.busdTokenId, pfe.webuLpTokenId, pfe.ownerAddress, pfe.ownerAddress)
+	err = pfe.setupPair(pfe.webuSwapAddress, pfe.wrewaTokenId, pfe.busdTokenId, pfe.webuLpTokenId, pfe.ownerAddress, pfe.ownerAddress)
 	if err != nil {
 		return err
 	}
@@ -167,7 +167,7 @@ func (pfe *fuzzDexExecutor) init(args *fuzzDexExecutorInitArgs) error {
 		return err
 	}
 
-	err = pfe.addTrustedSwapPair(pfe.ownerAddress, pfe.webuSwapAddress, pfe.wemeSwapAddress, pfe.wegldTokenId, pfe.mexTokenId)
+	err = pfe.addTrustedSwapPair(pfe.ownerAddress, pfe.webuSwapAddress, pfe.wemeSwapAddress, pfe.wrewaTokenId, pfe.mexTokenId)
 	if err != nil {
 		return err
 	}
@@ -184,11 +184,11 @@ func (pfe *fuzzDexExecutor) setupPair(swapAddress, firstTokenId, secondTokenId, 
 				"%s": {
 					"nonce": "0",
 					"balance": "0",
-					"esdt": {
+					"dcdt": {
 						"str:%s": {
 							"roles": [
-								"ESDTRoleLocalMint",
-								"ESDTRoleLocalBurn"
+								"DCDTRoleLocalMint",
+								"DCDTRoleLocalBurn"
 							]
 						}
 					},
@@ -230,24 +230,24 @@ func (pfe *fuzzDexExecutor) setupFarm(farmAddress, farmTokenId, enterFarmTokenId
 				"%s": {
 					"nonce": "0",
 					"balance": "0",
-					"esdt": {
+					"dcdt": {
 						"str:%s": {
 							"roles": [
-								"ESDTRoleNFTCreate",
-								"ESDTRoleNFTAddQuantity",
-								"ESDTRoleNFTBurn"
+								"DCDTRoleNFTCreate",
+								"DCDTRoleNFTAddQuantity",
+								"DCDTRoleNFTBurn"
 							]
 						},
 						"str:%s": {
 							"roles": [
-								"ESDTRoleLocalMint",
-								"ESDTRoleLocalBurn"
+								"DCDTRoleLocalMint",
+								"DCDTRoleLocalBurn"
 							]
 						},
 						"str:%s": {
 							"roles": [
-								"ESDTRoleLocalMint",
-								"ESDTRoleLocalBurn"
+								"DCDTRoleLocalMint",
+								"DCDTRoleLocalBurn"
 							]
 						}
 					},

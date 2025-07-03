@@ -3,12 +3,12 @@ package contexts
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 var logBlockchain = logger.GetOrCreate("vm/blockchainContext")
@@ -125,9 +125,9 @@ func (context *blockchainContext) IncreaseNonce(address []byte) {
 	outputAccount.Nonce = nonce + 1
 }
 
-// GetESDTToken returns the unmarshalled esdt token for the given address and nonce for NFTs
-func (context *blockchainContext) GetESDTToken(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error) {
-	return context.blockChainHook.GetESDTToken(address, tokenID, nonce)
+// GetDCDTToken returns the unmarshalled dcdt token for the given address and nonce for NFTs
+func (context *blockchainContext) GetDCDTToken(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error) {
+	return context.blockChainHook.GetDCDTToken(address, tokenID, nonce)
 }
 
 // GetCodeHash retrieves the hash of the code stored under the given address.

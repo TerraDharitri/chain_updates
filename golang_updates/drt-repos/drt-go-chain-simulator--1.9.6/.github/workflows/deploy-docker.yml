@@ -56,7 +56,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: multiversx/chainsimulator
+          images: dharitri/chainsimulator
 
       - name: Build and push Docker image
         id: push

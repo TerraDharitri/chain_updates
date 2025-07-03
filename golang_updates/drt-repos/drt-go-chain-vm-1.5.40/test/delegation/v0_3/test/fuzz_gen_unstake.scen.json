@@ -229,7 +229,7 @@
             "id": "4",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "377650987"
+                "rewaValue": "377650987"
             }
         },
         {
@@ -299,7 +299,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     8               s1",
-                "egldValue": "801366117"
+                "rewaValue": "801366117"
             }
         },
         {
@@ -308,7 +308,7 @@
             "tx": {
                 "from": "''delegator     8               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "801366117",
+                "rewaValue": "801366117",
                 "function": "purchaseStake",
                 "arguments": [
                     "''delegator     6               s1"
@@ -323,7 +323,7 @@
             "tx": {
                 "from": "''delegator     8               s1",
                 "to": "''endless_sack_of_erd___________s1",
-                "egldValue": "801366117"
+                "rewaValue": "801366117"
             }
         },
         {
@@ -369,7 +369,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     7               s1",
-                "egldValue": "1006682239"
+                "rewaValue": "1006682239"
             }
         },
         {
@@ -378,7 +378,7 @@
             "tx": {
                 "from": "''delegator     7               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1006682239",
+                "rewaValue": "1006682239",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -398,7 +398,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     5               s1",
-                "egldValue": "251653161"
+                "rewaValue": "251653161"
             }
         },
         {
@@ -407,7 +407,7 @@
             "tx": {
                 "from": "''delegator     5               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "251653161",
+                "rewaValue": "251653161",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -440,7 +440,7 @@
             "id": "18",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "548569578"
+                "rewaValue": "548569578"
             }
         },
         {
@@ -448,7 +448,7 @@
             "id": "19",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "16768845"
+                "rewaValue": "16768845"
             }
         },
         {
@@ -506,7 +506,7 @@
             "id": "23",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "33060347"
+                "rewaValue": "33060347"
             }
         },
         {
@@ -536,7 +536,7 @@
             "id": "25",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "503369361"
+                "rewaValue": "503369361"
             }
         },
         {
@@ -559,7 +559,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     6               s1",
-                "egldValue": "459004534"
+                "rewaValue": "459004534"
             }
         },
         {
@@ -568,7 +568,7 @@
             "tx": {
                 "from": "''delegator     6               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "459004534",
+                "rewaValue": "459004534",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -611,7 +611,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "1433501913"
+                "rewaValue": "1433501913"
             }
         },
         {
@@ -620,7 +620,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1433501913",
+                "rewaValue": "1433501913",
                 "function": "purchaseStake",
                 "arguments": [
                     "''delegator     8               s1"
@@ -635,7 +635,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "''endless_sack_of_erd___________s1",
-                "egldValue": "1433501913"
+                "rewaValue": "1433501913"
             }
         },
         {
@@ -644,7 +644,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     6               s1",
-                "egldValue": "550528740"
+                "rewaValue": "550528740"
             }
         },
         {
@@ -653,7 +653,7 @@
             "tx": {
                 "from": "''delegator     6               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "550528740",
+                "rewaValue": "550528740",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -687,7 +687,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     4               s1",
-                "egldValue": "1714387956"
+                "rewaValue": "1714387956"
             }
         },
         {
@@ -696,7 +696,7 @@
             "tx": {
                 "from": "''delegator     4               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1714387956",
+                "rewaValue": "1714387956",
                 "function": "purchaseStake",
                 "arguments": [
                     "''delegator     5               s1"
@@ -711,7 +711,7 @@
             "tx": {
                 "from": "''delegator     4               s1",
                 "to": "''endless_sack_of_erd___________s1",
-                "egldValue": "1714387956"
+                "rewaValue": "1714387956"
             }
         },
         {
@@ -742,7 +742,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "1780760936"
+                "rewaValue": "1780760936"
             }
         },
         {
@@ -751,7 +751,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1780760936",
+                "rewaValue": "1780760936",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -812,7 +812,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     3               s1",
-                "egldValue": "583881787"
+                "rewaValue": "583881787"
             }
         },
         {
@@ -821,7 +821,7 @@
             "tx": {
                 "from": "''delegator     3               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "583881787",
+                "rewaValue": "583881787",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -869,7 +869,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "''withdraw_target_______________s1",
-                "egldValue": "39944098"
+                "rewaValue": "39944098"
             }
         },
         {
@@ -892,7 +892,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     8               s1",
-                "egldValue": "760064160"
+                "rewaValue": "760064160"
             }
         },
         {
@@ -901,7 +901,7 @@
             "tx": {
                 "from": "''delegator     8               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "760064160",
+                "rewaValue": "760064160",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -921,7 +921,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "1298592533"
+                "rewaValue": "1298592533"
             }
         },
         {
@@ -930,7 +930,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1298592533",
+                "rewaValue": "1298592533",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1046,7 +1046,7 @@
             "id": "59",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "978100007"
+                "rewaValue": "978100007"
             }
         },
         {
@@ -1055,7 +1055,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     8               s1",
-                "egldValue": "176934035"
+                "rewaValue": "176934035"
             }
         },
         {
@@ -1064,7 +1064,7 @@
             "tx": {
                 "from": "''delegator     8               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "176934035",
+                "rewaValue": "176934035",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1083,7 +1083,7 @@
             "id": "62",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "464945331"
+                "rewaValue": "464945331"
             }
         },
         {
@@ -1092,7 +1092,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     5               s1",
-                "egldValue": "840198516"
+                "rewaValue": "840198516"
             }
         },
         {
@@ -1101,7 +1101,7 @@
             "tx": {
                 "from": "''delegator     5               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "840198516",
+                "rewaValue": "840198516",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1121,7 +1121,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     4               s1",
-                "egldValue": "1037093802"
+                "rewaValue": "1037093802"
             }
         },
         {
@@ -1130,7 +1130,7 @@
             "tx": {
                 "from": "''delegator     4               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1037093802",
+                "rewaValue": "1037093802",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1149,7 +1149,7 @@
             "id": "67",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "250817270"
+                "rewaValue": "250817270"
             }
         },
         {
@@ -1244,7 +1244,7 @@
             "id": "72",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "930395044"
+                "rewaValue": "930395044"
             }
         },
         {
@@ -1383,7 +1383,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     4               s1",
-                "egldValue": "1002502394"
+                "rewaValue": "1002502394"
             }
         },
         {
@@ -1392,7 +1392,7 @@
             "tx": {
                 "from": "''delegator     4               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1002502394",
+                "rewaValue": "1002502394",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1411,7 +1411,7 @@
             "id": "81",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "174488783"
+                "rewaValue": "174488783"
             }
         },
         {
@@ -1434,7 +1434,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "325665785"
+                "rewaValue": "325665785"
             }
         },
         {
@@ -1443,7 +1443,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "325665785",
+                "rewaValue": "325665785",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1482,7 +1482,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     3               s1",
-                "egldValue": "567752448"
+                "rewaValue": "567752448"
             }
         },
         {
@@ -1491,7 +1491,7 @@
             "tx": {
                 "from": "''delegator     3               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "567752448",
+                "rewaValue": "567752448",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1604,7 +1604,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
-                "egldValue": "1907783229"
+                "rewaValue": "1907783229"
             }
         },
         {
@@ -1613,7 +1613,7 @@
             "tx": {
                 "from": "''fuzz_owner_addr_______________s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1907783229",
+                "rewaValue": "1907783229",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1633,7 +1633,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     3               s1",
-                "egldValue": "611682727"
+                "rewaValue": "611682727"
             }
         },
         {
@@ -1642,7 +1642,7 @@
             "tx": {
                 "from": "''delegator     3               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "611682727",
+                "rewaValue": "611682727",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1726,7 +1726,7 @@
             "id": "100",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "194032275"
+                "rewaValue": "194032275"
             }
         },
         {
@@ -1735,7 +1735,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "1106015394"
+                "rewaValue": "1106015394"
             }
         },
         {
@@ -1744,7 +1744,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "1106015394",
+                "rewaValue": "1106015394",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -1763,7 +1763,7 @@
             "id": "103",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "606928600"
+                "rewaValue": "606928600"
             }
         },
         {
@@ -1872,7 +1872,7 @@
             "id": "109",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "511248188"
+                "rewaValue": "511248188"
             }
         },
         {
@@ -1974,7 +1974,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
-                "egldValue": "453255881"
+                "rewaValue": "453255881"
             }
         },
         {
@@ -1983,7 +1983,7 @@
             "tx": {
                 "from": "''fuzz_owner_addr_______________s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "453255881",
+                "rewaValue": "453255881",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -2161,7 +2161,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''fuzz_owner_addr_______________s1",
-                "egldValue": "355908774"
+                "rewaValue": "355908774"
             }
         },
         {
@@ -2170,7 +2170,7 @@
             "tx": {
                 "from": "''fuzz_owner_addr_______________s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "355908774",
+                "rewaValue": "355908774",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -2204,7 +2204,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator     2               s1",
-                "egldValue": "747048514"
+                "rewaValue": "747048514"
             }
         },
         {
@@ -2213,7 +2213,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "sc:fuzz-delegation",
-                "egldValue": "747048514",
+                "rewaValue": "747048514",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -2232,7 +2232,7 @@
             "id": "130",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "841719123"
+                "rewaValue": "841719123"
             }
         },
         {
@@ -2240,7 +2240,7 @@
             "id": "131",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "488042733"
+                "rewaValue": "488042733"
             }
         },
         {
@@ -2248,7 +2248,7 @@
             "id": "132",
             "tx": {
                 "to": "sc:fuzz-delegation",
-                "egldValue": "599136617"
+                "rewaValue": "599136617"
             }
         },
         {
@@ -2459,7 +2459,7 @@
             "tx": {
                 "from": "''delegator     2               s1",
                 "to": "''withdraw_target_______________s1",
-                "egldValue": "747048514"
+                "rewaValue": "747048514"
             }
         },
         {
@@ -2505,7 +2505,7 @@
             "tx": {
                 "from": "''delegator     3               s1",
                 "to": "''withdraw_target_______________s1",
-                "egldValue": "1002398453"
+                "rewaValue": "1002398453"
             }
         },
         {
@@ -2551,7 +2551,7 @@
             "tx": {
                 "from": "''delegator     4               s1",
                 "to": "''withdraw_target_______________s1",
-                "egldValue": "33618524"
+                "rewaValue": "33618524"
             }
         },
         {

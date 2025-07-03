@@ -1,10 +1,10 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-es-indexer-go/api/gin"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/facade"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/api/gin"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/facade"
 )
 
 // CreateWebServer will create a new instance of core.WebServerHandler

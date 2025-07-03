@@ -9,15 +9,15 @@ import (
 	"os"
 	"path"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client/logging"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/factory"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/elastic/go-elasticsearch/v7"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-es-indexer-go/client"
-	"github.com/multiversx/mx-chain-es-indexer-go/client/logging"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/factory"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 var (
@@ -57,9 +57,9 @@ func CreateElasticProcessor(
 		AddressPubkeyConverter:   pubKeyConverter,
 		ValidatorPubkeyConverter: mock.NewPubkeyConverterMock(32),
 		DBClient:                 esClient,
-		EnabledIndexes: []string{dataindexer.TransactionsIndex, dataindexer.LogsIndex, dataindexer.AccountsESDTIndex, dataindexer.ScResultsIndex,
+		EnabledIndexes: []string{dataindexer.TransactionsIndex, dataindexer.LogsIndex, dataindexer.AccountsDCDTIndex, dataindexer.ScResultsIndex,
 			dataindexer.ReceiptsIndex, dataindexer.BlockIndex, dataindexer.AccountsIndex, dataindexer.TokensIndex, dataindexer.TagsIndex, dataindexer.EventsIndex,
-			dataindexer.OperationsIndex, dataindexer.DelegatorsIndex, dataindexer.ESDTsIndex, dataindexer.SCDeploysIndex, dataindexer.MiniblocksIndex, dataindexer.ValuesIndex},
+			dataindexer.OperationsIndex, dataindexer.DelegatorsIndex, dataindexer.DCDTsIndex, dataindexer.SCDeploysIndex, dataindexer.MiniblocksIndex, dataindexer.ValuesIndex},
 		Denomination: 18,
 	}
 

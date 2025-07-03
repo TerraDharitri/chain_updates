@@ -7,16 +7,16 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",
@@ -25,7 +25,7 @@
                 "0x000000000000000000010000000000000000000000000000000000000002ffff": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../../esdt-system-sc-mock/output/esdt-system-sc-mock.mxsc.json"
+                    "code": "drtsc:../../dcdt-system-sc-mock/output/dcdt-system-sc-mock.drtsc.json"
                 }
             }
         },
@@ -58,19 +58,19 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
                     "storage": {
                         "str:nonFungibleTokenMapper": ""
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 }
             }
         },
@@ -150,7 +150,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {
@@ -161,18 +161,18 @@
                             ],
                             "lastNonce": "2",
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {
@@ -242,7 +242,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {
@@ -253,18 +253,18 @@
                             ],
                             "lastNonce": "2",
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {
@@ -312,7 +312,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {
@@ -323,18 +323,18 @@
                             ],
                             "lastNonce": "2",
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TICKER-000000": {
                             "instances": [
                                 {

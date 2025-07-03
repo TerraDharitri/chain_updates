@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 const (
@@ -23,11 +23,11 @@ const (
 	// NodeStatusPath represents the path where an observer exposes his node status metrics
 	NodeStatusPath = "/node/status"
 
-	// AllIssuedESDTsPath represents the path where an observer exposes all the issued ESDTs
-	AllIssuedESDTsPath = "/network/esdts"
+	// AllIssuedDCDTsPath represents the path where an observer exposes all the issued DCDTs
+	AllIssuedDCDTsPath = "/network/esdts"
 
-	// NetworkEsdtTokensPrefix represents the prefix for the path where an observer exposes ESDT tokens of a kind
-	NetworkEsdtTokensPrefix = "/network/esdt"
+	// NetworkEsdtTokensPrefix represents the prefix for the path where an observer exposes DCDT tokens of a kind
+	NetworkEsdtTokensPrefix = "/network/dcdt"
 
 	// DelegatedInfoPath represents the path where an observer exposes his network delegated info
 	DelegatedInfoPath = "/network/delegated-info"
@@ -159,8 +159,8 @@ func (nsp *NodeStatusProcessor) GetEnableEpochsMetrics() (*data.GenericAPIRespon
 	return nil, WrapObserversError(responseEnableEpochsMetrics.Error)
 }
 
-// GetAllIssuedESDTs will forward the issued ESDTs based on the provided type
-func (nsp *NodeStatusProcessor) GetAllIssuedESDTs(tokenType string) (*data.GenericAPIResponse, error) {
+// GetAllIssuedDCDTs will forward the issued DCDTs based on the provided type
+func (nsp *NodeStatusProcessor) GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error) {
 	if !data.IsValidEsdtPath(tokenType) && tokenType != "" {
 		return nil, ErrInvalidTokenType
 	}
@@ -170,25 +170,25 @@ func (nsp *NodeStatusProcessor) GetAllIssuedESDTs(tokenType string) (*data.Gener
 		return nil, err
 	}
 
-	responseAllIssuedESDTs := data.GenericAPIResponse{}
+	responseAllIssuedDCDTs := data.GenericAPIResponse{}
 	for _, observer := range observers {
 
-		path := AllIssuedESDTsPath
+		path := AllIssuedDCDTsPath
 		if tokenType != "" {
 			path = fmt.Sprintf("%s/%s", NetworkEsdtTokensPrefix, tokenType)
 		}
-		_, err := nsp.proc.CallGetRestEndPoint(observer.Address, path, &responseAllIssuedESDTs)
+		_, err := nsp.proc.CallGetRestEndPoint(observer.Address, path, &responseAllIssuedDCDTs)
 		if err != nil {
 			log.Error("all issued esdts request", "observer", observer.Address, "error", err.Error())
 			continue
 		}
 
 		log.Info("all issued esdts request", "shard ID", observer.ShardId, "observer", observer.Address)
-		return &responseAllIssuedESDTs, nil
+		return &responseAllIssuedDCDTs, nil
 
 	}
 
-	return nil, WrapObserversError(responseAllIssuedESDTs.Error)
+	return nil, WrapObserversError(responseAllIssuedDCDTs.Error)
 }
 
 // GetDelegatedInfo returns the delegated info from nodes

@@ -3,9 +3,9 @@ package logsevents
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	hasherFactory "github.com/multiversx/mx-chain-core-go/hashing/factory"
-	marshalFactory "github.com/multiversx/mx-chain-core-go/marshal/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	hasherFactory "github.com/TerraDharitri/drt-go-chain-core/hashing/factory"
+	marshalFactory "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
 	"github.com/stretchr/testify/require"
 )
 

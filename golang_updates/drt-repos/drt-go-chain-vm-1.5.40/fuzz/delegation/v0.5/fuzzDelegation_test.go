@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	scenio "github.com/multiversx/mx-chain-scenario-go/scenario/io"
-	roulette "github.com/multiversx/mx-chain-vm-go/fuzz/weightedroulette"
+	scenio "github.com/TerraDharitri/drt-go-chain-scenario/scenario/io"
+	roulette "github.com/TerraDharitri/drt-go-chain-vm/fuzz/weightedroulette"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

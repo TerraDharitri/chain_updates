@@ -3,8 +3,8 @@ package data
 import (
 	"encoding/json"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 // GenericAPIResponse defines the structure of all responses on API endpoints
@@ -117,8 +117,8 @@ type StakeInfo struct {
 	TotalStake                 string  `json:"totalStake,omitempty"`
 	TotalStakeNum              float64 `json:"totalStakeNum,omitempty"`
 
-	LKMEXStake    string         `json:"lkMexStake,omitempty"`
-	LKMEXStakeNum float64        `json:"lkMexStakeNum,omitempty"`
+	LKMOAStake    string         `json:"lkMexStake,omitempty"`
+	LKMOAStakeNum float64        `json:"lkMexStakeNum,omitempty"`
 	Energy        string         `json:"energy,omitempty"`
 	EnergyNum     float64        `json:"energyNum,omitempty"`
 	EnergyDetails *EnergyDetails `json:"energyDetails,omitempty"`

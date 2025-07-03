@@ -1,6 +1,6 @@
 package tags
 
-import "github.com/multiversx/mx-chain-es-indexer-go/data"
+import "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 
 type tagsCount struct {
 	tags map[string]int

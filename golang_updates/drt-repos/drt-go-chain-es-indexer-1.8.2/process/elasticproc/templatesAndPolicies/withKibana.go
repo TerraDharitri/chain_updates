@@ -3,9 +3,9 @@ package templatesAndPolicies
 import (
 	"bytes"
 
-	indexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/templates"
-	"github.com/multiversx/mx-chain-es-indexer-go/templates/withKibana"
+	indexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates/withKibana"
 )
 
 type templatesAndPolicyReaderWithKibana struct{}
@@ -40,8 +40,8 @@ func getTemplatesKibana() map[string]*bytes.Buffer {
 	indexTemplates[indexer.ValidatorsIndex] = withKibana.Validators.ToBuffer()
 	indexTemplates[indexer.AccountsIndex] = withKibana.Accounts.ToBuffer()
 	indexTemplates[indexer.AccountsHistoryIndex] = withKibana.AccountsHistory.ToBuffer()
-	indexTemplates[indexer.AccountsESDTIndex] = withKibana.AccountsESDT.ToBuffer()
-	indexTemplates[indexer.AccountsESDTHistoryIndex] = withKibana.AccountsESDTHistory.ToBuffer()
+	indexTemplates[indexer.AccountsDCDTIndex] = withKibana.AccountsDCDT.ToBuffer()
+	indexTemplates[indexer.AccountsDCDTHistoryIndex] = withKibana.AccountsDCDTHistory.ToBuffer()
 	indexTemplates[indexer.EpochInfoIndex] = withKibana.EpochInfo.ToBuffer()
 	indexTemplates[indexer.ReceiptsIndex] = withKibana.Receipts.ToBuffer()
 	indexTemplates[indexer.ScResultsIndex] = withKibana.SCResults.ToBuffer()
@@ -51,7 +51,7 @@ func getTemplatesKibana() map[string]*bytes.Buffer {
 	indexTemplates[indexer.LogsIndex] = withKibana.Logs.ToBuffer()
 	indexTemplates[indexer.DelegatorsIndex] = withKibana.Delegators.ToBuffer()
 	indexTemplates[indexer.OperationsIndex] = withKibana.Operations.ToBuffer()
-	indexTemplates[indexer.ESDTsIndex] = withKibana.ESDTs.ToBuffer()
+	indexTemplates[indexer.DCDTsIndex] = withKibana.DCDTs.ToBuffer()
 
 	return indexTemplates
 }
@@ -67,8 +67,8 @@ func getPolicies() map[string]*bytes.Buffer {
 	indexesPolicies[indexer.ValidatorsPolicy] = withKibana.ValidatorsPolicy.ToBuffer()
 	indexesPolicies[indexer.AccountsHistoryPolicy] = withKibana.AccountsHistoryPolicy.ToBuffer()
 	indexesPolicies[indexer.AccountsPolicy] = withKibana.AccountsPolicy.ToBuffer()
-	indexesPolicies[indexer.AccountsESDTPolicy] = withKibana.AccountsESDTPolicy.ToBuffer()
-	indexesPolicies[indexer.AccountsESDTHistoryPolicy] = withKibana.AccountsESDTHistoryPolicy.ToBuffer()
+	indexesPolicies[indexer.AccountsDCDTPolicy] = withKibana.AccountsDCDTPolicy.ToBuffer()
+	indexesPolicies[indexer.AccountsDCDTHistoryPolicy] = withKibana.AccountsDCDTHistoryPolicy.ToBuffer()
 	indexesPolicies[indexer.AccountsHistoryPolicy] = withKibana.AccountsHistoryPolicy.ToBuffer()
 	indexesPolicies[indexer.ReceiptsPolicy] = withKibana.ReceiptsPolicy.ToBuffer()
 	indexesPolicies[indexer.ScResultsPolicy] = withKibana.ScResultsPolicy.ToBuffer()

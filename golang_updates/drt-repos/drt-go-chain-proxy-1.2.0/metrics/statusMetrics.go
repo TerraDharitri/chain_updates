@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // statusMetrics will handle displaying at /status/metrics all collected metrics

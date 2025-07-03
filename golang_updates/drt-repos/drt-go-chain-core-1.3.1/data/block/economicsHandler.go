@@ -3,7 +3,7 @@ package block
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // SetTotalSupply sets the total supply

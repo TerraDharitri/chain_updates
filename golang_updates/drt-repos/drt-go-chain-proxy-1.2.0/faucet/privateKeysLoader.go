@@ -4,12 +4,12 @@ import (
 	"encoding/hex"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/ed25519"
-	"github.com/multiversx/mx-chain-proxy-go/common"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/signing"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/ed25519"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
 )
 
 func getSuite() crypto.Suite {

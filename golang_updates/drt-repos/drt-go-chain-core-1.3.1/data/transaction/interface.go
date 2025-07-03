@@ -1,6 +1,6 @@
 package transaction
 
-import "github.com/multiversx/mx-chain-core-go/data/block"
+import "github.com/TerraDharitri/drt-go-chain-core/data/block"
 
 // StatusComputerHandler computes a transaction status
 type StatusComputerHandler interface {

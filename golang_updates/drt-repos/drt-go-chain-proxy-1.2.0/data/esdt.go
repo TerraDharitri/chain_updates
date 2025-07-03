@@ -6,18 +6,18 @@ const (
 	NonFungibleTokens  = "non-fungible-tokens"
 )
 
-// ValidTokenTypes holds a slice containing the valid esdt token types
+// ValidTokenTypes holds a slice containing the valid dcdt token types
 var ValidTokenTypes = []string{FungibleTokens, SemiFungibleTokens, NonFungibleTokens}
 
-// ESDTSupplyResponse is a response holding esdt supply
-type ESDTSupplyResponse struct {
-	Data  ESDTSupply `json:"data"`
+// DCDTSupplyResponse is a response holding dcdt supply
+type DCDTSupplyResponse struct {
+	Data  DCDTSupply `json:"data"`
 	Error string     `json:"error"`
 	Code  ReturnCode `json:"code"`
 }
 
-// ESDTSupply is a DTO holding esdt supply
-type ESDTSupply struct {
+// DCDTSupply is a DTO holding dcdt supply
+type DCDTSupply struct {
 	Supply           string `json:"supply"`
 	Minted           string `json:"minted"`
 	Burned           string `json:"burned"`
@@ -25,8 +25,8 @@ type ESDTSupply struct {
 	RecomputedSupply bool   `json:"recomputedSupply"`
 }
 
-// IsValidEsdtPath returns true if the provided path is a valid esdt token type
-func IsValidEsdtPath(path string) bool {
+// IsValidDcdtPath returns true if the provided path is a valid dcdt token type
+func IsValidDcdtPath(path string) bool {
 	for _, tokenType := range ValidTokenTypes {
 		if tokenType == path {
 			return true

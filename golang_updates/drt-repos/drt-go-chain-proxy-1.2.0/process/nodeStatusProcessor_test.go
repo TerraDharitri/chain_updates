@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -241,12 +241,12 @@ func TestNodeStatusProcessor_GetAllIssuedEDTsGetObserversFailedShouldErr(t *test
 		time.Nanosecond,
 	)
 
-	status, err := nodeStatusProc.GetAllIssuedESDTs("")
+	status, err := nodeStatusProc.GetAllIssuedDCDTs("")
 	require.Equal(t, localErr, err)
 	require.Nil(t, status)
 }
 
-func TestNodeStatusProcessor_GetAllIssuedESDTsGetRestEndPointError(t *testing.T) {
+func TestNodeStatusProcessor_GetAllIssuedDCDTsGetRestEndPointError(t *testing.T) {
 	t.Parallel()
 
 	localErr := errors.New("local error")
@@ -264,15 +264,15 @@ func TestNodeStatusProcessor_GetAllIssuedESDTsGetRestEndPointError(t *testing.T)
 		time.Nanosecond,
 	)
 
-	status, err := nodeStatusProc.GetAllIssuedESDTs("")
+	status, err := nodeStatusProc.GetAllIssuedDCDTs("")
 	require.True(t, errors.Is(err, ErrSendingRequest))
 	require.Nil(t, status)
 }
 
-func TestNodeStatusProcessor_GetAllIssuedESDTs(t *testing.T) {
+func TestNodeStatusProcessor_GetAllIssuedDCDTs(t *testing.T) {
 	t.Parallel()
 
-	tokens := []string{"ESDT-5t6y7u", "NFT-9i8u7y-03"}
+	tokens := []string{"DCDT-5t6y7u", "NFT-9i8u7y-03"}
 	nodeStatusProc, _ := NewNodeStatusProcessor(&mock.ProcessorStub{
 		GetObserversCalled: func(shardId uint32, _ data.ObserverDataAvailabilityType) (observers []*data.NodeData, err error) {
 			return []*data.NodeData{
@@ -290,7 +290,7 @@ func TestNodeStatusProcessor_GetAllIssuedESDTs(t *testing.T) {
 		time.Nanosecond,
 	)
 
-	genericResponse, err := nodeStatusProc.GetAllIssuedESDTs("")
+	genericResponse, err := nodeStatusProc.GetAllIssuedDCDTs("")
 	require.Nil(t, err)
 	require.NotNil(t, genericResponse)
 
@@ -319,7 +319,7 @@ func TestNodeStatusProcessor_ApiPathIsCorrect(t *testing.T) {
 			}, nil
 		},
 		CallGetRestEndPointCalled: func(address string, path string, value interface{}) (int, error) {
-			require.Equal(t, path, "/network/esdt/semi-fungible-tokens")
+			require.Equal(t, path, "/network/dcdt/semi-fungible-tokens")
 			return 0, nil
 		},
 	},
@@ -327,7 +327,7 @@ func TestNodeStatusProcessor_ApiPathIsCorrect(t *testing.T) {
 		time.Nanosecond,
 	)
 
-	_, err := nodeStatusProc.GetAllIssuedESDTs(data.SemiFungibleTokens)
+	_, err := nodeStatusProc.GetAllIssuedDCDTs(data.SemiFungibleTokens)
 	require.Nil(t, err)
 }
 

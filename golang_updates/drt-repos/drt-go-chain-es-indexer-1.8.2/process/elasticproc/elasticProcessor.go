@@ -8,20 +8,20 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	elasticIndexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tags"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tokeninfo"
-	"github.com/multiversx/mx-chain-es-indexer-go/templates"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	elasticIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tags"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tokeninfo"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var (
@@ -29,9 +29,9 @@ var (
 
 	indexes = []string{
 		elasticIndexer.TransactionsIndex, elasticIndexer.BlockIndex, elasticIndexer.MiniblocksIndex, elasticIndexer.RatingIndex, elasticIndexer.RoundsIndex, elasticIndexer.ValidatorsIndex,
-		elasticIndexer.AccountsIndex, elasticIndexer.AccountsHistoryIndex, elasticIndexer.ReceiptsIndex, elasticIndexer.ScResultsIndex, elasticIndexer.AccountsESDTHistoryIndex, elasticIndexer.AccountsESDTIndex,
+		elasticIndexer.AccountsIndex, elasticIndexer.AccountsHistoryIndex, elasticIndexer.ReceiptsIndex, elasticIndexer.ScResultsIndex, elasticIndexer.AccountsDCDTHistoryIndex, elasticIndexer.AccountsDCDTIndex,
 		elasticIndexer.EpochInfoIndex, elasticIndexer.SCDeploysIndex, elasticIndexer.TokensIndex, elasticIndexer.TagsIndex, elasticIndexer.LogsIndex, elasticIndexer.DelegatorsIndex, elasticIndexer.OperationsIndex,
-		elasticIndexer.ESDTsIndex, elasticIndexer.ValuesIndex, elasticIndexer.EventsIndex,
+		elasticIndexer.DCDTsIndex, elasticIndexer.ValuesIndex, elasticIndexer.EventsIndex,
 	}
 )
 
@@ -180,7 +180,7 @@ func (ei *elasticProcessor) indexVersion(version string) error {
 // nolint
 func (ei *elasticProcessor) createIndexPolicies(indexPolicies map[string]*bytes.Buffer) error {
 	indexesPolicies := []string{elasticIndexer.TransactionsPolicy, elasticIndexer.BlockPolicy, elasticIndexer.MiniblocksPolicy, elasticIndexer.RatingPolicy, elasticIndexer.RoundsPolicy, elasticIndexer.ValidatorsPolicy,
-		elasticIndexer.AccountsPolicy, elasticIndexer.AccountsESDTPolicy, elasticIndexer.AccountsHistoryPolicy, elasticIndexer.AccountsESDTHistoryPolicy, elasticIndexer.AccountsESDTIndex, elasticIndexer.ReceiptsPolicy, elasticIndexer.ScResultsPolicy}
+		elasticIndexer.AccountsPolicy, elasticIndexer.AccountsDCDTPolicy, elasticIndexer.AccountsHistoryPolicy, elasticIndexer.AccountsDCDTHistoryPolicy, elasticIndexer.AccountsDCDTIndex, elasticIndexer.ReceiptsPolicy, elasticIndexer.ScResultsPolicy}
 	for _, indexPolicyName := range indexesPolicies {
 		indexPolicy := getTemplateByName(indexPolicyName, indexPolicies)
 		if indexPolicy != nil {
@@ -376,14 +376,14 @@ func (ei *elasticProcessor) removeIfHashesNotEmpty(index string, hashes []string
 	)
 }
 
-// RemoveAccountsESDT will remove data from accountsesdt index and accountsesdthistory
-func (ei *elasticProcessor) RemoveAccountsESDT(headerTimestamp uint64, shardID uint32) error {
-	err := ei.removeFromIndexByTimestampAndShardID(headerTimestamp, shardID, elasticIndexer.AccountsESDTIndex)
+// RemoveAccountsDCDT will remove data from accountsdcdt index and accountsdcdthistory
+func (ei *elasticProcessor) RemoveAccountsDCDT(headerTimestamp uint64, shardID uint32) error {
+	err := ei.removeFromIndexByTimestampAndShardID(headerTimestamp, shardID, elasticIndexer.AccountsDCDTIndex)
 	if err != nil {
 		return err
 	}
 
-	return ei.removeFromIndexByTimestampAndShardID(headerTimestamp, shardID, elasticIndexer.AccountsESDTHistoryIndex)
+	return ei.removeFromIndexByTimestampAndShardID(headerTimestamp, shardID, elasticIndexer.AccountsDCDTHistoryIndex)
 }
 
 func (ei *elasticProcessor) removeFromIndexByTimestampAndShardID(headerTimestamp uint64, shardID uint32, index string) error {
@@ -493,7 +493,7 @@ func (ei *elasticProcessor) SaveTransactions(obh *outport.OutportBlockWithHeader
 	if err != nil {
 		return err
 	}
-	err = ei.prepareAndIndexRolesData(logsData.TokenRolesAndProperties, buffers, elasticIndexer.ESDTsIndex)
+	err = ei.prepareAndIndexRolesData(logsData.TokenRolesAndProperties, buffers, elasticIndexer.DCDTsIndex)
 	if err != nil {
 		return err
 	}
@@ -642,39 +642,39 @@ func (ei *elasticProcessor) indexAlteredAccounts(
 	tagsCount data.CountTags,
 	shardID uint32,
 ) error {
-	regularAccountsToIndex, accountsToIndexESDT := ei.accountsProc.GetAccounts(coreAlteredAccounts)
+	regularAccountsToIndex, accountsToIndexDCDT := ei.accountsProc.GetAccounts(coreAlteredAccounts)
 
 	err := ei.saveAccounts(timestamp, regularAccountsToIndex, buffSlice, shardID)
 	if err != nil {
 		return err
 	}
 
-	return ei.saveAccountsESDT(timestamp, accountsToIndexESDT, updatesNFTsData, buffSlice, tagsCount, shardID)
+	return ei.saveAccountsDCDT(timestamp, accountsToIndexDCDT, updatesNFTsData, buffSlice, tagsCount, shardID)
 }
 
-func (ei *elasticProcessor) saveAccountsESDT(
+func (ei *elasticProcessor) saveAccountsDCDT(
 	timestamp uint64,
-	wrappedAccounts []*data.AccountESDT,
+	wrappedAccounts []*data.AccountDCDT,
 	updatesNFTsData []*data.NFTDataUpdate,
 	buffSlice *data.BufferSlice,
 	tagsCount data.CountTags,
 	shardID uint32,
 ) error {
-	accountsESDTMap, tokensData := ei.accountsProc.PrepareAccountsMapESDT(timestamp, wrappedAccounts, tagsCount, shardID)
-	err := ei.addTokenTypeAndCurrentOwnerInAccountsESDT(tokensData, accountsESDTMap, shardID)
+	accountsDCDTMap, tokensData := ei.accountsProc.PrepareAccountsMapDCDT(timestamp, wrappedAccounts, tagsCount, shardID)
+	err := ei.addTokenTypeAndCurrentOwnerInAccountsDCDT(tokensData, accountsDCDTMap, shardID)
 	if err != nil {
 		return err
 	}
 
-	err = ei.indexAccountsESDT(accountsESDTMap, updatesNFTsData, buffSlice)
+	err = ei.indexAccountsDCDT(accountsDCDTMap, updatesNFTsData, buffSlice)
 	if err != nil {
 		return err
 	}
 
-	return ei.saveAccountsESDTHistory(timestamp, accountsESDTMap, buffSlice, shardID)
+	return ei.saveAccountsDCDTHistory(timestamp, accountsDCDTMap, buffSlice, shardID)
 }
 
-func (ei *elasticProcessor) addTokenTypeAndCurrentOwnerInAccountsESDT(tokensData data.TokensHandler, accountsESDTMap map[string]*data.AccountInfo, shardID uint32) error {
+func (ei *elasticProcessor) addTokenTypeAndCurrentOwnerInAccountsDCDT(tokensData data.TokensHandler, accountsDCDTMap map[string]*data.AccountInfo, shardID uint32) error {
 	if check.IfNil(tokensData) || tokensData.Len() == 0 {
 		return nil
 	}
@@ -687,7 +687,7 @@ func (ei *elasticProcessor) addTokenTypeAndCurrentOwnerInAccountsESDT(tokensData
 	}
 
 	tokensData.AddTypeAndOwnerFromResponse(responseTokens)
-	tokensData.PutTypeAndOwnerInAccountsESDT(accountsESDTMap)
+	tokensData.PutTypeAndOwnerInAccountsDCDT(accountsDCDTMap)
 
 	return nil
 }
@@ -701,16 +701,16 @@ func (ei *elasticProcessor) prepareAndIndexTagsCount(tagsCount data.CountTags, b
 	return tagsCount.Serialize(buffSlice, elasticIndexer.TagsIndex)
 }
 
-func (ei *elasticProcessor) indexAccountsESDT(
-	accountsESDTMap map[string]*data.AccountInfo,
+func (ei *elasticProcessor) indexAccountsDCDT(
+	accountsDCDTMap map[string]*data.AccountInfo,
 	updatesNFTsData []*data.NFTDataUpdate,
 	buffSlice *data.BufferSlice,
 ) error {
-	if !ei.isIndexEnabled(elasticIndexer.AccountsESDTIndex) {
+	if !ei.isIndexEnabled(elasticIndexer.AccountsDCDTIndex) {
 		return nil
 	}
 
-	return ei.accountsProc.SerializeAccountsESDT(accountsESDTMap, updatesNFTsData, buffSlice, elasticIndexer.AccountsESDTIndex)
+	return ei.accountsProc.SerializeAccountsDCDT(accountsDCDTMap, updatesNFTsData, buffSlice, elasticIndexer.AccountsDCDTIndex)
 }
 
 func (ei *elasticProcessor) indexNFTCreateInfo(tokensData data.TokensHandler, coreAlteredAccounts map[string]*alteredAccount.AlteredAccount, buffSlice *data.BufferSlice, shardID uint32) error {
@@ -728,7 +728,7 @@ func (ei *elasticProcessor) indexNFTCreateInfo(tokensData data.TokensHandler, co
 
 	tokensData.AddTypeAndOwnerFromResponse(responseTokens)
 
-	tokens := tokensData.GetAllWithoutMetaESDT()
+	tokens := tokensData.GetAllWithoutMetaDCDT()
 	ei.accountsProc.PutTokenMedataDataInTokens(tokens, coreAlteredAccounts)
 
 	return ei.accountsProc.SerializeNFTCreateInfo(tokens, buffSlice, elasticIndexer.TokensIndex)
@@ -789,14 +789,14 @@ func (ei *elasticProcessor) serializeAndIndexAccounts(accountsMap map[string]*da
 	return ei.accountsProc.SerializeAccounts(accountsMap, buffSlice, index)
 }
 
-func (ei *elasticProcessor) saveAccountsESDTHistory(timestamp uint64, accountsInfoMap map[string]*data.AccountInfo, buffSlice *data.BufferSlice, shardID uint32) error {
-	if !ei.isIndexEnabled(elasticIndexer.AccountsESDTHistoryIndex) {
+func (ei *elasticProcessor) saveAccountsDCDTHistory(timestamp uint64, accountsInfoMap map[string]*data.AccountInfo, buffSlice *data.BufferSlice, shardID uint32) error {
+	if !ei.isIndexEnabled(elasticIndexer.AccountsDCDTHistoryIndex) {
 		return nil
 	}
 
 	accountsMap := ei.accountsProc.PrepareAccountsHistory(timestamp, accountsInfoMap, shardID)
 
-	return ei.serializeAndIndexAccountsHistory(accountsMap, elasticIndexer.AccountsESDTHistoryIndex, buffSlice)
+	return ei.serializeAndIndexAccountsHistory(accountsMap, elasticIndexer.AccountsDCDTHistoryIndex, buffSlice)
 }
 
 func (ei *elasticProcessor) saveAccountsHistory(timestamp uint64, accountsInfoMap map[string]*data.AccountInfo, buffSlice *data.BufferSlice, shardID uint32) error {

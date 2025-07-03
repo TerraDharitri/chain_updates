@@ -14,7 +14,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/consensus"
 	retriever "github.com/TerraDharitri/drt-go-chain/dataRetriever"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	consensusComp "github.com/TerraDharitri/drt-go-chain/factory/consensus"
 	"github.com/TerraDharitri/drt-go-chain/factory/mock"
 	testsMocks "github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
@@ -188,7 +188,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilCoreComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilCoreComponentsHolder, err)
 	})
 	t.Run("nil GenesisNodesSetup should error", func(t *testing.T) {
 		t.Parallel()
@@ -200,7 +200,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilGenesisNodesSetupHandler, err)
+		require.Equal(t, errorsDrt.ErrNilGenesisNodesSetupHandler, err)
 	})
 	t.Run("nil DataComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -210,7 +210,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilDataComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilDataComponentsHolder, err)
 	})
 	t.Run("nil Datapool should error", func(t *testing.T) {
 		t.Parallel()
@@ -222,7 +222,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilDataPoolsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilDataPoolsHolder, err)
 	})
 	t.Run("nil BlockChain should error", func(t *testing.T) {
 		t.Parallel()
@@ -235,7 +235,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilBlockChainHandler, err)
+		require.Equal(t, errorsDrt.ErrNilBlockChainHandler, err)
 	})
 	t.Run("nil CryptoComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -245,7 +245,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilCryptoComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponentsHolder, err)
 	})
 	t.Run("nil PublicKey should error", func(t *testing.T) {
 		t.Parallel()
@@ -257,7 +257,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilPublicKey, err)
+		require.Equal(t, errorsDrt.ErrNilPublicKey, err)
 	})
 	t.Run("nil PrivateKey should error", func(t *testing.T) {
 		t.Parallel()
@@ -270,7 +270,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilPrivateKey, err)
+		require.Equal(t, errorsDrt.ErrNilPrivateKey, err)
 	})
 	t.Run("nil NetworkComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -280,7 +280,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilNetworkComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilNetworkComponentsHolder, err)
 	})
 	t.Run("nil Messenger should error", func(t *testing.T) {
 		t.Parallel()
@@ -292,7 +292,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilMessenger, err)
+		require.Equal(t, errorsDrt.ErrNilMessenger, err)
 	})
 	t.Run("nil ProcessComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -302,7 +302,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilProcessComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilProcessComponentsHolder, err)
 	})
 	t.Run("nil NodesCoordinator should error", func(t *testing.T) {
 		t.Parallel()
@@ -314,7 +314,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilNodesCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilNodesCoordinator, err)
 	})
 	t.Run("nil ShardCoordinator should error", func(t *testing.T) {
 		t.Parallel()
@@ -327,7 +327,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 	})
 	t.Run("nil RoundHandler should error", func(t *testing.T) {
 		t.Parallel()
@@ -341,7 +341,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilRoundHandler, err)
+		require.Equal(t, errorsDrt.ErrNilRoundHandler, err)
 	})
 	t.Run("nil HardforkTrigger should error", func(t *testing.T) {
 		t.Parallel()
@@ -356,7 +356,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilHardforkTrigger, err)
+		require.Equal(t, errorsDrt.ErrNilHardforkTrigger, err)
 	})
 	t.Run("nil StateComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -366,7 +366,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilStateComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilStateComponentsHolder, err)
 	})
 	t.Run("nil StatusComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -376,7 +376,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilStatusComponentsHolder, err)
+		require.Equal(t, errorsDrt.ErrNilStatusComponentsHolder, err)
 	})
 	t.Run("nil OutportHandler should error", func(t *testing.T) {
 		t.Parallel()
@@ -388,7 +388,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilOutportHandler, err)
+		require.Equal(t, errorsDrt.ErrNilOutportHandler, err)
 	})
 	t.Run("nil ScheduledProcessor should error", func(t *testing.T) {
 		t.Parallel()
@@ -398,7 +398,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilScheduledProcessor, err)
+		require.Equal(t, errorsDrt.ErrNilScheduledProcessor, err)
 	})
 	t.Run("nil StatusCoreComponents should error", func(t *testing.T) {
 		t.Parallel()
@@ -408,7 +408,7 @@ func TestNewConsensusComponentsFactory(t *testing.T) {
 		ccf, err := consensusComp.NewConsensusComponentsFactory(args)
 
 		require.Nil(t, ccf)
-		require.Equal(t, errorsMx.ErrNilStatusCoreComponents, err)
+		require.Equal(t, errorsDrt.ErrNilStatusCoreComponents, err)
 	})
 }
 
@@ -459,7 +459,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrGenesisBlockNotInitialized, err)
+		require.Equal(t, errorsDrt.ErrGenesisBlockNotInitialized, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createChronology fails should error", func(t *testing.T) {
@@ -512,7 +512,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createBootstrapper fails due to invalid shard coordinator should error", func(t *testing.T) {
@@ -551,7 +551,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilTrieStorageManager, err)
+		require.Equal(t, errorsDrt.ErrNilTrieStorageManager, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createUserAccountsSyncer fails due to invalid NumConcurrentTrieSyncers should error", func(t *testing.T) {
@@ -585,7 +585,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilTrieStorageManager, err)
+		require.Equal(t, errorsDrt.ErrNilTrieStorageManager, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createValidatorAccountsSyncer fails due to missing PeerAccountTrie should error", func(t *testing.T) {
@@ -608,7 +608,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilTrieStorageManager, err)
+		require.Equal(t, errorsDrt.ErrNilTrieStorageManager, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createConsensusState fails due to nil public key should error", func(t *testing.T) {
@@ -636,7 +636,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilPublicKey, err)
+		require.Equal(t, errorsDrt.ErrNilPublicKey, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createConsensusState fails due to ToByteArray failure should error", func(t *testing.T) {
@@ -758,7 +758,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createConsensusTopic fails due nil messenger should error", func(t *testing.T) {
@@ -779,7 +779,7 @@ func TestConsensusComponentsFactory_Create(t *testing.T) {
 		require.NotNil(t, ccf)
 
 		cc, err := ccf.Create()
-		require.Equal(t, errorsMx.ErrNilMessenger, err)
+		require.Equal(t, errorsDrt.ErrNilMessenger, err)
 		require.Nil(t, cc)
 	})
 	t.Run("createConsensusTopic fails due CreateTopic failure should error", func(t *testing.T) {

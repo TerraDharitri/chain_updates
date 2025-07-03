@@ -6,12 +6,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/crossIndex"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/process/accountsIndexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/crossIndex"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/process/accountsIndexer"
 )
 
 type reindexer struct {

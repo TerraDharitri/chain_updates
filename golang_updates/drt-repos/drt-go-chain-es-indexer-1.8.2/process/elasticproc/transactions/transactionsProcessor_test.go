@@ -5,17 +5,17 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/receipt"
-	"github.com/multiversx/mx-chain-core-go/data/rewardTx"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/receipt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/rewardTx"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -471,7 +471,7 @@ func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseInvalidTxWithSCR(t *
 		Transaction: &transaction.Transaction{
 			GasLimit: 100,
 			GasPrice: 123456,
-			Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+			Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 		},
 		FeeInfo: &outport.FeeInfo{GasUsed: 100},
 	}
@@ -516,7 +516,7 @@ func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseInvalidTxWithSCR(t *
 	require.Equal(t, resultedTx.GasLimit, resultedTx.GasUsed)
 }
 
-func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseESDTNFTTransfer(t *testing.T) {
+func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseDCDTNFTTransfer(t *testing.T) {
 	t.Parallel()
 
 	txDbProc, _ := NewTransactionsProcessor(createMockArgsTxsDBProc())
@@ -526,7 +526,7 @@ func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseESDTNFTTransfer(t *t
 		Transaction: &transaction.Transaction{
 			GasLimit: 100,
 			GasPrice: 123456,
-			Data:     []byte("ESDTNFTTransfer@595959453643392D303837363661@01@01@000000000000000005005C83E0C42EDCE394F40B24D29D298B0249C41F028974@66756E64@890479AFC610F4BEBC087D3ADA3F7C2775C736BBA91F41FD3D65092AA482D8B0@1c20"),
+			Data:     []byte("DCDTNFTTransfer@595959453643392D303837363661@01@01@000000000000000005005C83E0C42EDCE394F40B24D29D298B0249C41F028974@66756E64@890479AFC610F4BEBC087D3ADA3F7C2775C736BBA91F41FD3D65092AA482D8B0@1c20"),
 		},
 		FeeInfo: &outport.FeeInfo{GasUsed: 100},
 	}
@@ -573,7 +573,7 @@ func TestTxsDatabaseProcessor_PrepareTransactionsForDatabaseESDTNFTTransfer(t *t
 	require.Equal(t, resultedTx.GasLimit, resultedTx.GasUsed)
 }
 
-func TestTxsDatabaseProcessor_IssueESDTTx(t *testing.T) {
+func TestTxsDatabaseProcessor_IssueDCDTTx(t *testing.T) {
 	t.Parallel()
 
 	args := createMockArgsTxsDBProc()
@@ -605,23 +605,23 @@ func TestTxsDatabaseProcessor_IssueESDTTx(t *testing.T) {
 	pool := &outport.TransactionPool{
 		Transactions: map[string]*outport.TxInfo{
 			hex.EncodeToString([]byte("t1")): {Transaction: &transaction.Transaction{
-				SndAddr: decodeBech32("erd1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpsk46qrs"),
-				RcvAddr: decodeBech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
+				SndAddr: decodeBech32("drt1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpstfdrqw"),
+				RcvAddr: decodeBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"),
 				Data:    []byte("issue@4141414141@41414141414141@0186a0@01@63616e467265657a65@74727565@63616e57697065@74727565@63616e5061757365@74727565@63616e4d696e74@74727565@63616e4275726e@74727565@63616e4368616e67654f776e6572@74727565@63616e55706772616465@74727565"),
 			}, FeeInfo: &outport.FeeInfo{}},
 		},
 		SmartContractResults: map[string]*outport.SCRInfo{
 			hex.EncodeToString([]byte("scr1")): {SmartContractResult: &smartContractResult.SmartContractResult{
 				OriginalTxHash: []byte("t1"),
-				Data:           []byte("ESDTTransfer@414141414141412d323436626461@0186a0"),
-				SndAddr:        decodeBech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-				RcvAddr:        decodeBech32("erd1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpsk46qrs"),
+				Data:           []byte("DCDTTransfer@414141414141412d323436626461@0186a0"),
+				SndAddr:        decodeBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"),
+				RcvAddr:        decodeBech32("drt1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpstfdrqw"),
 			}, FeeInfo: &outport.FeeInfo{}},
 			hex.EncodeToString([]byte("scr2")): {SmartContractResult: &smartContractResult.SmartContractResult{
 				OriginalTxHash: []byte("t1"),
 				Data:           []byte("@6f6b"),
-				SndAddr:        decodeBech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-				RcvAddr:        decodeBech32("erd1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpsk46qrs"),
+				SndAddr:        decodeBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"),
+				RcvAddr:        decodeBech32("drt1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpstfdrqw"),
 			}, FeeInfo: &outport.FeeInfo{}},
 		},
 	}
@@ -634,8 +634,8 @@ func TestTxsDatabaseProcessor_IssueESDTTx(t *testing.T) {
 	pool = &outport.TransactionPool{
 		Transactions: map[string]*outport.TxInfo{
 			hex.EncodeToString([]byte("t1")): {Transaction: &transaction.Transaction{
-				SndAddr: decodeBech32("erd1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpsk46qrs"),
-				RcvAddr: decodeBech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
+				SndAddr: decodeBech32("drt1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpstfdrqw"),
+				RcvAddr: decodeBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"),
 				Data:    []byte("issue@4141414141@41414141414141@0186a0@01@63616e467265657a65@74727565@63616e57697065@74727565@63616e5061757365@74727565@63616e4d696e74@74727565@63616e4275726e@74727565@63616e4368616e67654f776e6572@74727565@63616e55706772616465@74727565"),
 			}, FeeInfo: &outport.FeeInfo{}},
 		},
@@ -643,8 +643,8 @@ func TestTxsDatabaseProcessor_IssueESDTTx(t *testing.T) {
 			hex.EncodeToString([]byte("scr1")): {SmartContractResult: &smartContractResult.SmartContractResult{
 				OriginalTxHash: []byte("t1"),
 				Data:           []byte("75736572206572726f72"),
-				SndAddr:        decodeBech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-				RcvAddr:        decodeBech32("erd1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpsk46qrs"),
+				SndAddr:        decodeBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"),
+				RcvAddr:        decodeBech32("drt1dglncxk6sl9a3xumj78n6z2xux4ghp5c92cstv5zsn56tjgtdwpstfdrqw"),
 			}, FeeInfo: &outport.FeeInfo{}},
 		},
 	}

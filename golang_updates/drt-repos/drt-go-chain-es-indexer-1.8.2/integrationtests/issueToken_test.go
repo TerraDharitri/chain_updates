@@ -8,11 +8,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -32,8 +32,8 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsqx0h5j"
-	address2 := "erd1acjlnuhkd8773sqhmw85r0ur4lcyuqgm0n69h9ttxh0gwxtuuzxq4lckh6"
+	address1 := "drt1v7e552pz9py4hv6raan0c4jflez3e6csdmzcgrncg0qrnk4tywvsa6c5hv"
+	address2 := "drt1acjlnuhkd8773sqhmw85r0ur4lcyuqgm0n69h9ttxh0gwxtuuzxqgr045y"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -44,7 +44,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("SSSS-abcd"), []byte("semi-token"), []byte("SSSS"), []byte(core.SemiFungibleESDT), big.NewInt(18).Bytes()},
+							Topics:     [][]byte{[]byte("SSSS-abcd"), []byte("semi-token"), []byte("SSSS"), []byte(core.SemiFungibleDCDT), big.NewInt(18).Bytes()},
 						},
 						nil,
 					},
@@ -62,7 +62,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueToken/token-semi.json"), string(genericResponse.Docs[0].Source))
 
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.ESDTsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.DCDTsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueToken/token-semi.json"), string(genericResponse.Docs[0].Source))
 
@@ -77,7 +77,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("transferOwnership"),
-							Topics:     [][]byte{[]byte("SSSS-abcd"), []byte("semi-token"), []byte("SSSS"), []byte(core.SemiFungibleESDT), decodeAddress(address2)},
+							Topics:     [][]byte{[]byte("SSSS-abcd"), []byte("semi-token"), []byte("SSSS"), []byte(core.SemiFungibleDCDT), decodeAddress(address2)},
 						},
 						nil,
 					},
@@ -94,7 +94,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueToken/token-semi-after-transfer-ownership.json"), string(genericResponse.Docs[0].Source))
 
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.ESDTsIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.DCDTsIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.JSONEq(t, readExpectedResult("./testdata/issueToken/token-semi-after-transfer-ownership.json"), string(genericResponse.Docs[0].Source))
 
@@ -108,7 +108,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte("ESDTPause"),
+							Identifier: []byte("DCDTPause"),
 							Topics:     [][]byte{[]byte("SSSS-abcd")},
 						},
 						nil,
@@ -136,7 +136,7 @@ func TestIssueTokenAndTransferOwnership(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte("ESDTUnPause"),
+							Identifier: []byte("DCDTUnPause"),
 							Topics:     [][]byte{[]byte("SSSS-abcd")},
 						},
 						nil,

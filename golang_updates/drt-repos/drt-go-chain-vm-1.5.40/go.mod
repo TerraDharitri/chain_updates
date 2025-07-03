@@ -1,4 +1,4 @@
-module github.com/multiversx/mx-chain-vm-go
+module github.com/TerraDharitri/drt-go-chain-vm
 
 go 1.20
 
@@ -8,13 +8,13 @@ require (
 	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1
 	github.com/gogo/protobuf v1.3.2
 	github.com/mitchellh/mapstructure v1.5.0
-	github.com/multiversx/mx-chain-core-go v1.2.22
-	github.com/multiversx/mx-chain-crypto-go v1.2.12
-	github.com/multiversx/mx-chain-logger-go v1.0.15
-	github.com/multiversx/mx-chain-scenario-go v1.4.4
-	github.com/multiversx/mx-chain-storage-go v1.0.16
-	github.com/multiversx/mx-chain-vm-common-go v1.5.16
-	github.com/multiversx/mx-components-big-int v1.0.0
+	github.com/TerraDharitri/drt-go-chain-core v1.2.22
+	github.com/TerraDharitri/drt-go-chain-core v1.2.12
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.15
+	github.com/TerraDharitri/drt-go-chain-scenario v1.4.4
+	github.com/TerraDharitri/drt-go-chain-storage v1.0.16
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.5.16
+	github.com/TerraDharitri/drt-go-bigint v1.0.0
 	github.com/pelletier/go-toml v1.9.3
 	github.com/stretchr/testify v1.8.1
 	github.com/urfave/cli/v2 v2.27.1

@@ -8,12 +8,12 @@
                 "sc:payable-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/payable-features.mxsc.json"
+                    "code": "drtsc:../output/payable-features.drtsc.json"
                 },
                 "address:an-account": {
                     "nonce": "0",
                     "balance": "1,000,000,000,000",
-                    "esdt": {
+                    "dcdt": {
                         "str:PAYABLE-FEATURES-TOKEN": "1,000,000,000,000",
                         "str:OTHER-TOKEN": "1,000,000,000,000"
                     }
@@ -22,11 +22,11 @@
         },
         {
             "step": "scCall",
-            "id": "payable_egld_2.1",
+            "id": "payable_rewa_2.1",
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "function": "payable_egld_2",
+                "function": "payable_rewa_2",
                 "arguments": [],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -34,7 +34,7 @@
             "expect": {
                 "out": [
                     "0",
-                    "str:EGLD"
+                    "str:REWA"
                 ],
                 "status": "",
                 "logs": "*",
@@ -44,12 +44,12 @@
         },
         {
             "step": "scCall",
-            "id": "payable_egld_2.2",
+            "id": "payable_rewa_2.2",
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "egldValue": "5",
-                "function": "payable_egld_2",
+                "rewaValue": "5",
+                "function": "payable_rewa_2",
                 "arguments": [],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -57,7 +57,7 @@
             "expect": {
                 "out": [
                     "5",
-                    "str:EGLD"
+                    "str:REWA"
                 ],
                 "status": "",
                 "logs": "*",
@@ -67,17 +67,17 @@
         },
         {
             "step": "scCall",
-            "id": "payable_egld_2.3",
+            "id": "payable_rewa_2.3",
             "tx": {
                 "from": "address:an-account",
                 "to": "sc:payable-features",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:PAYABLE-FEATURES-TOKEN",
                         "value": "100"
                     }
                 ],
-                "function": "payable_egld_2",
+                "function": "payable_rewa_2",
                 "arguments": [],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -85,7 +85,7 @@
             "expect": {
                 "out": [],
                 "status": "4",
-                "message": "str:function does not accept ESDT payment",
+                "message": "str:function does not accept DCDT payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"

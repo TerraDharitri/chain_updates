@@ -1,16 +1,16 @@
 package mock
 
-import "github.com/multiversx/mx-chain-proxy-go/data"
+import "github.com/TerraDharitri/drt-go-chain-proxy/data"
 
-// ESDTSuppliesProcessorStub -
-type ESDTSuppliesProcessorStub struct {
-	GetESDTSupplyCalled func(token string) (*data.ESDTSupplyResponse, error)
+// DCDTSuppliesProcessorStub -
+type DCDTSuppliesProcessorStub struct {
+	GetDCDTSupplyCalled func(token string) (*data.DCDTSupplyResponse, error)
 }
 
-// GetESDTSupply -
-func (e *ESDTSuppliesProcessorStub) GetESDTSupply(token string) (*data.ESDTSupplyResponse, error) {
-	if e.GetESDTSupplyCalled != nil {
-		return e.GetESDTSupplyCalled(token)
+// GetDCDTSupply -
+func (e *DCDTSuppliesProcessorStub) GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error) {
+	if e.GetDCDTSupplyCalled != nil {
+		return e.GetDCDTSupplyCalled(token)
 	}
 
 	return nil, nil

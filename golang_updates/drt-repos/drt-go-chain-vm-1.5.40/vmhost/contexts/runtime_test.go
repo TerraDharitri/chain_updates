@@ -7,19 +7,19 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto/factory"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/testcommon/testexecutor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/factory"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -210,18 +210,18 @@ func TestRuntimeContext_StateSettersAndGetters(t *testing.T) {
 	defer runtimeCtx.ClearWarmInstanceCache()
 
 	arguments := [][]byte{[]byte("argument 1"), []byte("argument 2")}
-	esdtTransfer := &vmcommon.ESDTTransfer{
-		ESDTValue:      big.NewInt(4242),
-		ESDTTokenName:  []byte("random_token"),
-		ESDTTokenType:  uint32(core.NonFungible),
-		ESDTTokenNonce: 94,
+	dcdtTransfer := &vmcommon.DCDTTransfer{
+		DCDTValue:      big.NewInt(4242),
+		DCDTTokenName:  []byte("random_token"),
+		DCDTTokenType:  uint32(core.NonFungible),
+		DCDTTokenNonce: 94,
 	}
 
 	vmInput := vmcommon.VMInput{
 		CallerAddr:    []byte("caller"),
 		Arguments:     arguments,
 		CallValue:     big.NewInt(0),
-		ESDTTransfers: []*vmcommon.ESDTTransfer{esdtTransfer},
+		DCDTTransfers: []*vmcommon.DCDTTransfer{dcdtTransfer},
 	}
 	callInput := &vmcommon.ContractCallInput{
 		VMInput:       vmInput,
@@ -237,10 +237,10 @@ func TestRuntimeContext_StateSettersAndGetters(t *testing.T) {
 	require.Equal(t, arguments, runtimeCtx.Arguments())
 
 	runtimeInput := runtimeCtx.GetVMInput()
-	require.Zero(t, big.NewInt(4242).Cmp(runtimeInput.ESDTTransfers[0].ESDTValue))
-	require.True(t, bytes.Equal([]byte("random_token"), runtimeInput.ESDTTransfers[0].ESDTTokenName))
-	require.Equal(t, uint32(core.NonFungible), runtimeInput.ESDTTransfers[0].ESDTTokenType)
-	require.Equal(t, uint64(94), runtimeInput.ESDTTransfers[0].ESDTTokenNonce)
+	require.Zero(t, big.NewInt(4242).Cmp(runtimeInput.DCDTTransfers[0].DCDTValue))
+	require.True(t, bytes.Equal([]byte("random_token"), runtimeInput.DCDTTransfers[0].DCDTTokenName))
+	require.Equal(t, uint32(core.NonFungible), runtimeInput.DCDTTransfers[0].DCDTTokenType)
+	require.Equal(t, uint64(94), runtimeInput.DCDTTransfers[0].DCDTTokenNonce)
 
 	vmInput2 := vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
@@ -303,7 +303,7 @@ func TestRuntimeContext_PushPopState(t *testing.T) {
 		CallerAddr:         []byte("caller"),
 		GasProvided:        1000,
 		CallValue:          big.NewInt(0),
-		ESDTTransfers:      make([]*vmcommon.ESDTTransfer, 0),
+		DCDTTransfers:      make([]*vmcommon.DCDTTransfer, 0),
 	}
 
 	funcName := "test_func"

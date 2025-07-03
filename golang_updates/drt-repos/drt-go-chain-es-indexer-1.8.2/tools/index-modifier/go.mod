@@ -1,13 +1,13 @@
-module github.com/multiversx/mx-chain-es-indexer-go/tools/index-modifier
+module github.com/TerraDharitri/drt-go-chain-es-indexer/tools/index-modifier
 
 go 1.17
 
 require (
 	github.com/elastic/go-elasticsearch/v7 v7.12.0
-	github.com/multiversx/mx-chain-core-go v1.1.30
-	github.com/multiversx/mx-chain-es-indexer-go v1.3.7-0.20230110115720-a54a2d8aa20d
-	github.com/multiversx/mx-chain-logger-go v1.0.11
-	github.com/multiversx/mx-chain-vm-common-go v1.3.34
+	github.com/TerraDharitri/drt-go-chain-core v1.1.30
+	github.com/TerraDharitri/drt-go-chain-es-indexer v1.3.7-0.20230110115720-a54a2d8aa20d
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.11
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.3.34
 	github.com/tidwall/gjson v1.14.0
 )
 

@@ -17,7 +17,7 @@ def start_seed_node(working_dir):
 def start_proxy(working_dir):
     current_directory = os.getcwd()
 
-    working_dir_proxy = working_dir/"mx-chain-proxy-go/cmd/proxy"
+    working_dir_proxy = working_dir/"drt-go-chain-proxy/cmd/proxy"
     os.chdir(working_dir_proxy)
     command = "./proxy"
     os.system("screen -d -m -S proxy" + " " + command)

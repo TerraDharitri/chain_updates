@@ -1,8 +1,8 @@
 package contexts
 
 import (
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 // reservedFunctions holds the reserved function names

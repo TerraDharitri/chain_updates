@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 	"github.com/stretchr/testify/require"
 )
 
@@ -85,7 +85,7 @@ func TestPrepareSmartContractResult(t *testing.T) {
 		Operation:          "transfer",
 		SenderAddressBytes: sndAddr,
 		Receivers:          []string{},
-		ESDTValuesNum:      []float64{},
+		DCDTValuesNum:      []float64{},
 		InitialTxFee:       "0",
 	}
 

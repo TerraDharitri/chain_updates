@@ -8,11 +8,11 @@ import (
 	"math/big"
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -49,9 +49,9 @@ func TestRelayedTransactionGasUsedCrossShard(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1k7j6ewjsla4zsgv8v6f6fe3dvrkgv3d0d9jerczw45hzedhyed8sh2u34u"
-	address2 := "erd14eyayfrvlrhzfrwg5zwleua25mkzgncggn35nvc6xhv5yxwml2es0f3dht"
-	address3 := "erd1qqqqqqqqqqqqqpgq3dswlnnlkfd3gqrcv3dhzgnvh8ryf27g5rfsecnn2s"
+	address1 := "drt1k7j6ewjsla4zsgv8v6f6fe3dvrkgv3d0d9jerczw45hzedhyed8s2ktjkz"
+	address2 := "drt14eyayfrvlrhzfrwg5zwleua25mkzgncggn35nvc6xhv5yxwml2esj4xw54"
+	address3 := "drt1qqqqqqqqqqqqqpgq3dswlnnlkfd3gqrcv3dhzgnvh8ryf27g5rfsyyysfw"
 	initialTx := &transaction.Transaction{
 		Nonce:    1196667,
 		SndAddr:  decodeAddress(address1),
@@ -178,8 +178,8 @@ func TestRelayedTransactionIntraShard(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1k7j6ewjsla4zsgv8v6f6fe3dvrkgv3d0d9jerczw45hzedhyed8sh2u34u"
-	address2 := "erd14eyayfrvlrhzfrwg5zwleua25mkzgncggn35nvc6xhv5yxwml2es0f3dht"
+	address1 := "drt1k7j6ewjsla4zsgv8v6f6fe3dvrkgv3d0d9jerczw45hzedhyed8s2ktjkz"
+	address2 := "drt14eyayfrvlrhzfrwg5zwleua25mkzgncggn35nvc6xhv5yxwml2esj4xw54"
 	initialTx := &transaction.Transaction{
 		Nonce:    1196665,
 		SndAddr:  decodeAddress(address1),

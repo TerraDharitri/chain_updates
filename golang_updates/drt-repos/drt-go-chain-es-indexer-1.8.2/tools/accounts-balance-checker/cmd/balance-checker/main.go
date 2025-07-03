@@ -7,12 +7,12 @@ import (
 	"os"
 	"time"
 
-	checkNil "github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/check"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
+	checkNil "github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/check"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/config"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
 	"github.com/urfave/cli"
 )
 
@@ -29,13 +29,13 @@ var (
 		Name:  "config-file",
 		Value: "config.json",
 	}
-	checkBalanceEGLD = cli.BoolFlag{
-		Name:  "check-balance-egld",
-		Usage: "If set, the checker will verify all the balance value of the accounts with EGLD",
+	checkBalanceREWA = cli.BoolFlag{
+		Name:  "check-balance-rewa",
+		Usage: "If set, the checker will verify all the balance value of the accounts with REWA",
 	}
-	checkBalanceESDT = cli.BoolFlag{
-		Name:  "check-balance-esdt",
-		Usage: "If set, the checker wil verify all the balance value of the accounts with ESDT",
+	checkBalanceDCDT = cli.BoolFlag{
+		Name:  "check-balance-dcdt",
+		Usage: "If set, the checker wil verify all the balance value of the accounts with DCDT",
 	}
 	repairFlag = cli.BoolFlag{
 		Name:  "repair",
@@ -68,8 +68,8 @@ func main() {
 	app.Usage = "This is the entry point for Elasticsearch accounts balance checker tool"
 	app.Flags = []cli.Flag{
 		configFile,
-		checkBalanceEGLD,
-		checkBalanceESDT,
+		checkBalanceREWA,
+		checkBalanceDCDT,
 		logLevel,
 		repairFlag,
 		logSaveFile,
@@ -77,8 +77,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 
@@ -111,27 +111,27 @@ func startCheck(ctx *cli.Context) {
 		return
 	}
 
-	shouldCheckBalanceEGLD := ctx.Bool(checkBalanceEGLD.Name)
-	if shouldCheckBalanceEGLD {
-		err = balanceChecker.CheckEGLDBalances()
+	shouldCheckBalanceREWA := ctx.Bool(checkBalanceREWA.Name)
+	if shouldCheckBalanceREWA {
+		err = balanceChecker.CheckREWABalances()
 		if err != nil {
-			log.Error("cannot check balance EGLD", "error", err)
+			log.Error("cannot check balance REWA", "error", err)
 			return
 		}
 
 		log.Info("done")
 	}
 
-	shouldCheckBalanceESDT := ctx.Bool(checkBalanceESDT.Name)
-	if shouldCheckBalanceESDT {
-		err = balanceChecker.CheckESDTBalances()
+	shouldCheckBalanceDCDT := ctx.Bool(checkBalanceDCDT.Name)
+	if shouldCheckBalanceDCDT {
+		err = balanceChecker.CheckDCDTBalances()
 		if err != nil {
-			log.Error("cannot check balance ESDT", "error", err)
+			log.Error("cannot check balance DCDT", "error", err)
 			return
 		}
 	}
 
-	if !shouldCheckBalanceEGLD && !shouldCheckBalanceESDT {
+	if !shouldCheckBalanceREWA && !shouldCheckBalanceDCDT {
 		log.Error("no flag has been provided")
 	}
 

@@ -3,10 +3,10 @@ package mock
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.OutputContext = (*OutputContextMock)(nil)
@@ -180,8 +180,8 @@ func (o *OutputContextMock) Transfer(_ []byte, _ []byte, _ uint64, _ uint64, _ *
 	return o.TransferResult
 }
 
-// TransferESDT mocked method
-func (o *OutputContextMock) TransferESDT(_ *vmhost.ESDTTransfersArgs, _ *vmcommon.ContractCallInput) (uint64, error) {
+// TransferDCDT mocked method
+func (o *OutputContextMock) TransferDCDT(_ *vmhost.DCDTTransfersArgs, _ *vmcommon.ContractCallInput) (uint64, error) {
 	return 0, nil
 }
 

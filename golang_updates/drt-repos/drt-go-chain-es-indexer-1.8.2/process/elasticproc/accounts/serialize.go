@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 // SerializeNFTCreateInfo will serialize the provided nft create information in a way that Elasticsearch expects a bulk request
@@ -43,8 +43,8 @@ func (ap *accountsProcessor) SerializeAccounts(accounts map[string]*data.Account
 	return nil
 }
 
-// SerializeAccountsESDT will serialize the provided accounts and nfts updates in a way that Elasticsearch expects a bulk request
-func (ap *accountsProcessor) SerializeAccountsESDT(
+// SerializeAccountsDCDT will serialize the provided accounts and nfts updates in a way that Elasticsearch expects a bulk request
+func (ap *accountsProcessor) SerializeAccountsDCDT(
 	accounts map[string]*data.AccountInfo,
 	updateNFTData []*data.NFTDataUpdate,
 	buffSlice *data.BufferSlice,
@@ -70,18 +70,18 @@ func (ap *accountsProcessor) SerializeAccountsESDT(
 	return nil
 }
 
-func prepareSerializedAccount(acc *data.AccountInfo, isESDT bool, index string) ([]byte, []byte, error) {
-	if (acc.Balance == "0" || acc.Balance == "") && isESDT {
-		meta, serializedData := prepareDeleteAccountInfo(acc, isESDT, index)
+func prepareSerializedAccount(acc *data.AccountInfo, isDCDT bool, index string) ([]byte, []byte, error) {
+	if (acc.Balance == "0" || acc.Balance == "") && isDCDT {
+		meta, serializedData := prepareDeleteAccountInfo(acc, isDCDT, index)
 		return meta, serializedData, nil
 	}
 
-	return prepareSerializedAccountInfo(acc, isESDT, index)
+	return prepareSerializedAccountInfo(acc, isDCDT, index)
 }
 
-func prepareDeleteAccountInfo(acct *data.AccountInfo, isESDT bool, index string) ([]byte, []byte) {
+func prepareDeleteAccountInfo(acct *data.AccountInfo, isDCDT bool, index string) ([]byte, []byte) {
 	id := acct.Address
-	if isESDT {
+	if isDCDT {
 		hexEncodedNonce := converters.EncodeNonceToHex(acct.TokenNonce)
 		id += fmt.Sprintf("-%s-%s", acct.TokenName, hexEncodedNonce)
 	}
@@ -114,11 +114,11 @@ func prepareDeleteAccountInfo(acct *data.AccountInfo, isESDT bool, index string)
 
 func prepareSerializedAccountInfo(
 	account *data.AccountInfo,
-	isESDTAccount bool,
+	isDCDTAccount bool,
 	index string,
 ) ([]byte, []byte, error) {
 	id := account.Address
-	if isESDTAccount {
+	if isDCDTAccount {
 		hexEncodedNonce := converters.EncodeNonceToHex(account.TokenNonce)
 		id += fmt.Sprintf("-%s-%s", account.TokenName, hexEncodedNonce)
 	}
@@ -180,8 +180,8 @@ func prepareSerializedAccountBalanceHistory(
 ) ([]byte, []byte, error) {
 	id := account.Address
 
-	isESDT := account.Token != ""
-	if isESDT {
+	isDCDT := account.Token != ""
+	if isDCDT {
 		hexEncodedNonce := converters.EncodeNonceToHex(account.TokenNonce)
 		id += fmt.Sprintf("-%s-%s", account.Token, hexEncodedNonce)
 	}

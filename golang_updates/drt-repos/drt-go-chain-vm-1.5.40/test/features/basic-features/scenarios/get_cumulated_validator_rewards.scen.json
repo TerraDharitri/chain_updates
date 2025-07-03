@@ -8,7 +8,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:viewer": {
                     "nonce": "0",
@@ -42,7 +42,7 @@
             "id": "validatorReward-1",
             "tx": {
                 "to": "sc:basic-features",
-                "egldValue": "100,000,000"
+                "rewaValue": "100,000,000"
             }
         },
         {
@@ -71,7 +71,7 @@
             "id": "validatorReward-1",
             "tx": {
                 "to": "sc:basic-features",
-                "egldValue": "300"
+                "rewaValue": "300"
             }
         },
         {

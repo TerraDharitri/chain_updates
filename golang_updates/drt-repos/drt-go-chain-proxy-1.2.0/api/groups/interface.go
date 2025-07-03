@@ -3,10 +3,10 @@ package groups
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // AccountsFacadeHandler interface defines methods that can be used from the facade
@@ -15,13 +15,13 @@ type AccountsFacadeHandler interface {
 	GetCodeHash(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetShardIDForAddress(address string) (uint32, error)
 	GetValueForKey(address string, key string, options common.AccountQueryOptions) (string, error)
-	GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetKeyValuePairs(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetAccounts(addresses []string, options common.AccountQueryOptions) (*data.AccountsModel, error)
-	GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetNFTTokenIDsRegisteredByAddress(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetGuardianData(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	IsDataTrieMigrated(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
@@ -60,11 +60,11 @@ type NetworkFacadeHandler interface {
 	GetNetworkStatusMetrics(shardID uint32) (*data.GenericAPIResponse, error)
 	GetNetworkConfigMetrics() (*data.GenericAPIResponse, error)
 	GetEconomicsDataMetrics() (*data.GenericAPIResponse, error)
-	GetAllIssuedESDTs(tokenType string) (*data.GenericAPIResponse, error)
+	GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error)
 	GetDirectStakedInfo() (*data.GenericAPIResponse, error)
 	GetDelegatedInfo() (*data.GenericAPIResponse, error)
 	GetEnableEpochsMetrics() (*data.GenericAPIResponse, error)
-	GetESDTSupply(token string) (*data.ESDTSupplyResponse, error)
+	GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error)
 	GetRatingsConfig() (*data.GenericAPIResponse, error)
 	GetGenesisNodesPubKeys() (*data.GenericAPIResponse, error)
 	GetGasConfigs() (*data.GenericAPIResponse, error)

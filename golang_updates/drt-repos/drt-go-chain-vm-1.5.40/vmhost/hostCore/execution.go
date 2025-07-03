@@ -7,15 +7,15 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/contexts"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/contexts"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 func (host *vmHost) doRunSmartContractCreate(input *vmcommon.ContractCreateInput) *vmcommon.VMOutput {
@@ -323,21 +323,21 @@ func (host *vmHost) ExecuteOnDestContext(input *vmcommon.ContractCallInput) (vmO
 	return
 }
 
-func (host *vmHost) isESDTTransferWithoutExecution(transferData []byte, parent, child []byte) (*vmcommon.ParsedESDTTransfers, bool) {
+func (host *vmHost) isDCDTTransferWithoutExecution(transferData []byte, parent, child []byte) (*vmcommon.ParsedDCDTTransfers, bool) {
 	function, args, err := host.callArgsParser.ParseData(string(transferData))
 	if err != nil {
 		return nil, false
 	}
 
-	esdtTransfers, err := host.esdtTransferParser.ParseESDTTransfers(child, parent, function, args)
+	dcdtTransfers, err := host.dcdtTransferParser.ParseDCDTTransfers(child, parent, function, args)
 	if err != nil {
 		return nil, false
 	}
-	if esdtTransfers.CallFunction != "" {
+	if dcdtTransfers.CallFunction != "" {
 		return nil, false
 	}
 
-	return esdtTransfers, true
+	return dcdtTransfers, true
 }
 
 func (host *vmHost) addNewBackTransfersFromVMOutput(vmOutput *vmcommon.VMOutput, parent, child []byte) {
@@ -364,12 +364,12 @@ func (host *vmHost) addNewBackTransfersFromVMOutput(vmOutput *vmcommon.VMOutput,
 			continue
 		}
 
-		esdtTransfers, isWithoutExec := host.isESDTTransferWithoutExecution(transfer.Data, parent, child)
+		dcdtTransfers, isWithoutExec := host.isDCDTTransferWithoutExecution(transfer.Data, parent, child)
 		if !isWithoutExec {
 			continue
 		}
 
-		host.managedTypesContext.AddBackTransfers(esdtTransfers.ESDTTransfers)
+		host.managedTypesContext.AddBackTransfers(dcdtTransfers.DCDTTransfers)
 	}
 }
 
@@ -474,7 +474,7 @@ func (host *vmHost) executeOnDestContextNoBuiltinFunction(input *vmcommon.Contra
 	// Perform a value transfer to the called SC. If the execution fails, this
 	// transfer will not persist.
 	isZeroBaseTransfer := input.CallValue.Cmp(vmhost.Zero) == 0
-	if len(input.ESDTTransfers) == 0 && (input.CallType != vm.AsynchronousCallBack || isZeroBaseTransfer) {
+	if len(input.DCDTTransfers) == 0 && (input.CallType != vm.AsynchronousCallBack || isZeroBaseTransfer) {
 		err = output.TransferValueOnly(input.RecipientAddr, input.CallerAddr, input.CallValue, false)
 		if err != nil {
 			log.Trace("ExecuteOnDestContext transfer", "error", err)
@@ -482,7 +482,7 @@ func (host *vmHost) executeOnDestContextNoBuiltinFunction(input *vmcommon.Contra
 		}
 	}
 	isAsyncCallBackWithBaseTransfer := !isZeroBaseTransfer && input.CallType == vm.AsynchronousCallBack
-	if len(input.ESDTTransfers) == 0 {
+	if len(input.DCDTTransfers) == 0 {
 		tmpCallValue := big.NewInt(0).Set(input.CallValue)
 		if isAsyncCallBackWithBaseTransfer {
 			tmpCallValue = big.NewInt(0)
@@ -918,9 +918,9 @@ func (host *vmHost) callSCMethodIndirect() error {
 	return err
 }
 
-// ExecuteESDTTransfer calls the process built in function with the given transfer for ESDT/ESDTNFT if nonce > 0
+// ExecuteDCDTTransfer calls the process built in function with the given transfer for DCDT/DCDTNFT if nonce > 0
 // there are no NFTs with nonce == 0, it will call multi transfer if multiple tokens are sent
-func (host *vmHost) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error) {
+func (host *vmHost) ExecuteDCDTTransfer(transfersArgs *vmhost.DCDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error) {
 	if len(transfersArgs.Transfers) == 0 {
 		return nil, 0, vmhost.ErrFailedTransfer
 	}
@@ -931,7 +931,7 @@ func (host *vmHost) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs,
 
 	_, _, metering, _, runtime, _, _ := host.GetContexts()
 
-	esdtTransferInput := &vmcommon.ContractCallInput{
+	dcdtTransferInput := &vmcommon.ContractCallInput{
 		VMInput: vmcommon.VMInput{
 			OriginalCallerAddr:   transfersArgs.OriginalCaller,
 			CallerAddr:           transfersArgs.Sender,
@@ -944,49 +944,49 @@ func (host *vmHost) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs,
 			ReturnCallAfterError: transfersArgs.ReturnAfterError,
 		},
 		RecipientAddr:     transfersArgs.Destination,
-		Function:          core.BuiltInFunctionESDTTransfer,
+		Function:          core.BuiltInFunctionDCDTTransfer,
 		AllowInitFunction: false,
 	}
 
 	transfers := transfersArgs.Transfers
 	if len(transfers) == 1 {
-		if transfers[0].ESDTTokenNonce > 0 {
-			esdtTransferInput.Function = core.BuiltInFunctionESDTNFTTransfer
-			esdtTransferInput.RecipientAddr = esdtTransferInput.CallerAddr
-			nonceAsBytes := big.NewInt(0).SetUint64(transfers[0].ESDTTokenNonce).Bytes()
-			esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, transfers[0].ESDTTokenName, nonceAsBytes, transfers[0].ESDTValue.Bytes(), transfersArgs.Destination)
+		if transfers[0].DCDTTokenNonce > 0 {
+			dcdtTransferInput.Function = core.BuiltInFunctionDCDTNFTTransfer
+			dcdtTransferInput.RecipientAddr = dcdtTransferInput.CallerAddr
+			nonceAsBytes := big.NewInt(0).SetUint64(transfers[0].DCDTTokenNonce).Bytes()
+			dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, transfers[0].DCDTTokenName, nonceAsBytes, transfers[0].DCDTValue.Bytes(), transfersArgs.Destination)
 		} else {
-			esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, transfers[0].ESDTTokenName, transfers[0].ESDTValue.Bytes())
+			dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, transfers[0].DCDTTokenName, transfers[0].DCDTValue.Bytes())
 		}
 	} else {
-		esdtTransferInput.Function = core.BuiltInFunctionMultiESDTNFTTransfer
-		esdtTransferInput.RecipientAddr = esdtTransferInput.CallerAddr
-		esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, transfersArgs.Destination, big.NewInt(int64(len(transfers))).Bytes())
+		dcdtTransferInput.Function = core.BuiltInFunctionMultiDCDTNFTTransfer
+		dcdtTransferInput.RecipientAddr = dcdtTransferInput.CallerAddr
+		dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, transfersArgs.Destination, big.NewInt(int64(len(transfers))).Bytes())
 		for _, transfer := range transfers {
-			nonceAsBytes := big.NewInt(0).SetUint64(transfer.ESDTTokenNonce).Bytes()
-			esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, transfer.ESDTTokenName, nonceAsBytes, transfer.ESDTValue.Bytes())
+			nonceAsBytes := big.NewInt(0).SetUint64(transfer.DCDTTokenNonce).Bytes()
+			dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, transfer.DCDTTokenName, nonceAsBytes, transfer.DCDTValue.Bytes())
 		}
 	}
 
 	if len(transfersArgs.Function) > 0 {
-		esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, []byte(transfersArgs.Function))
+		dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, []byte(transfersArgs.Function))
 	}
 	if len(transfersArgs.Arguments) > 0 {
-		esdtTransferInput.Arguments = append(esdtTransferInput.Arguments, transfersArgs.Arguments...)
+		dcdtTransferInput.Arguments = append(dcdtTransferInput.Arguments, transfersArgs.Arguments...)
 	}
 
-	vmOutput, err := host.Blockchain().ProcessBuiltInFunction(esdtTransferInput)
-	log.Trace("ESDT transfer", "sender", transfersArgs.Sender, "dest", transfersArgs.Destination)
+	vmOutput, err := host.Blockchain().ProcessBuiltInFunction(dcdtTransferInput)
+	log.Trace("DCDT transfer", "sender", transfersArgs.Sender, "dest", transfersArgs.Destination)
 	for _, transfer := range transfers {
-		log.Trace("ESDT transfer", "token", transfer.ESDTTokenName, "nonce", transfer.ESDTTokenNonce, "value", transfer.ESDTValue)
+		log.Trace("DCDT transfer", "token", transfer.DCDTTokenName, "nonce", transfer.DCDTTokenNonce, "value", transfer.DCDTValue)
 	}
 	if err != nil {
-		log.Trace("ESDT transfer", "error", err)
-		return vmOutput, esdtTransferInput.GasProvided, err
+		log.Trace("DCDT transfer", "error", err)
+		return vmOutput, dcdtTransferInput.GasProvided, err
 	}
 	if vmOutput.ReturnCode != vmcommon.Ok {
-		log.Trace("ESDT transfer", "error", err, "retcode", vmOutput.ReturnCode, "message", vmOutput.ReturnMessage)
-		return vmOutput, esdtTransferInput.GasProvided, vmhost.ErrExecutionFailed
+		log.Trace("DCDT transfer", "error", err, "retcode", vmOutput.ReturnCode, "message", vmOutput.ReturnMessage)
+		return vmOutput, dcdtTransferInput.GasProvided, vmhost.ErrExecutionFailed
 	}
 
 	err = vmOutput.ReindexTransfers(host.Output())
@@ -994,9 +994,9 @@ func (host *vmHost) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs,
 		return nil, 0, err
 	}
 
-	host.addESDTTransferToVMOutputSCIntraShardCall(esdtTransferInput, vmOutput)
+	host.addDCDTTransferToVMOutputSCIntraShardCall(dcdtTransferInput, vmOutput)
 
-	gasConsumed := math.SubUint64(esdtTransferInput.GasProvided, vmOutput.GasRemaining)
+	gasConsumed := math.SubUint64(dcdtTransferInput.GasProvided, vmOutput.GasRemaining)
 	for _, outAcc := range vmOutput.OutputAccounts {
 		for _, transfer := range outAcc.OutputTransfers {
 			gasConsumed = math.SubUint64(gasConsumed, transfer.GasLimit)
@@ -1004,13 +1004,13 @@ func (host *vmHost) ExecuteESDTTransfer(transfersArgs *vmhost.ESDTTransfersArgs,
 	}
 	if callType != vm.AsynchronousCallBack {
 		if metering.GasLeft() < gasConsumed {
-			log.Trace("ESDT transfer", "error", vmhost.ErrNotEnoughGas)
-			return vmOutput, esdtTransferInput.GasProvided, vmhost.ErrNotEnoughGas
+			log.Trace("DCDT transfer", "error", vmhost.ErrNotEnoughGas)
+			return vmOutput, dcdtTransferInput.GasProvided, vmhost.ErrNotEnoughGas
 		}
 		err = metering.UseGasBounded(gasConsumed)
 		if err != nil {
-			log.Trace("ESDT transfer", "error", vmhost.ErrNotEnoughGas)
-			return vmOutput, esdtTransferInput.GasProvided, vmhost.ErrNotEnoughGas
+			log.Trace("DCDT transfer", "error", vmhost.ErrNotEnoughGas)
+			return vmOutput, dcdtTransferInput.GasProvided, vmhost.ErrNotEnoughGas
 		}
 	}
 
@@ -1033,7 +1033,7 @@ func (host *vmHost) callFunctionOnOtherVM(input *vmcommon.ContractCallInput) (*v
 
 	metering.TrackGasUsedByOutOfVMFunction(input, vmOutput, nil)
 
-	host.addESDTTransferToVMOutputSCIntraShardCall(input, vmOutput)
+	host.addDCDTTransferToVMOutputSCIntraShardCall(input, vmOutput)
 
 	return vmOutput, nil
 }
@@ -1071,13 +1071,13 @@ func (host *vmHost) callBuiltinFunction(input *vmcommon.ContractCallInput) (*vmc
 
 	metering.TrackGasUsedByOutOfVMFunction(input, vmOutput, newVMInput)
 
-	host.addESDTTransferToVMOutputSCIntraShardCall(input, vmOutput)
+	host.addDCDTTransferToVMOutputSCIntraShardCall(input, vmOutput)
 
 	return newVMInput, vmOutput, nil
 }
 
-// add output transfer of esdt transfer when sc calling another sc intra shard to log the transfer information
-func (host *vmHost) addESDTTransferToVMOutputSCIntraShardCall(
+// add output transfer of dcdt transfer when sc calling another sc intra shard to log the transfer information
+func (host *vmHost) addDCDTTransferToVMOutputSCIntraShardCall(
 	input *vmcommon.ContractCallInput,
 	output *vmcommon.VMOutput,
 ) {
@@ -1085,7 +1085,7 @@ func (host *vmHost) addESDTTransferToVMOutputSCIntraShardCall(
 		return
 	}
 
-	parsedTransfer, err := host.esdtTransferParser.ParseESDTTransfers(input.CallerAddr, input.RecipientAddr, input.Function, input.Arguments)
+	parsedTransfer, err := host.dcdtTransferParser.ParseDCDTTransfers(input.CallerAddr, input.RecipientAddr, input.Function, input.Arguments)
 	if err != nil {
 		return
 	}
@@ -1105,14 +1105,14 @@ func (host *vmHost) addOutputTransferToVMOutput(
 	callType vm.CallType,
 	vmOutput *vmcommon.VMOutput,
 ) {
-	esdtTransferTxData := function
+	dcdtTransferTxData := function
 	for _, arg := range arguments {
-		esdtTransferTxData += "@" + hex.EncodeToString(arg)
+		dcdtTransferTxData += "@" + hex.EncodeToString(arg)
 	}
 	outTransfer := vmcommon.OutputTransfer{
 		Index:         host.Output().NextOutputTransferIndex(),
 		Value:         big.NewInt(0),
-		Data:          []byte(esdtTransferTxData),
+		Data:          []byte(dcdtTransferTxData),
 		CallType:      callType,
 		SenderAddress: sender,
 	}
@@ -1339,7 +1339,7 @@ func (host *vmHost) isSCExecutionAfterBuiltInFunc(
 		return nil, nil
 	}
 
-	parsedTransfer, err := host.esdtTransferParser.ParseESDTTransfers(vmInput.CallerAddr, vmInput.RecipientAddr, vmInput.Function, vmInput.Arguments)
+	parsedTransfer, err := host.dcdtTransferParser.ParseDCDTTransfers(vmInput.CallerAddr, vmInput.RecipientAddr, vmInput.Function, vmInput.Arguments)
 	if err != nil {
 		return nil, nil
 	}
@@ -1390,7 +1390,7 @@ func (host *vmHost) isSCExecutionAfterBuiltInFunc(
 		AllowInitFunction: false,
 	}
 
-	newVMInput.ESDTTransfers = parsedTransfer.ESDTTransfers
+	newVMInput.DCDTTransfers = parsedTransfer.DCDTTransfers
 
 	return newVMInput, nil
 }

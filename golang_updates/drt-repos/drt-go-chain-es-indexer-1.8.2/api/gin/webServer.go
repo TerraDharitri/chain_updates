@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"sync"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-es-indexer-go/api/groups"
-	"github.com/multiversx/mx-chain-es-indexer-go/api/shared"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
 )
 
 const (

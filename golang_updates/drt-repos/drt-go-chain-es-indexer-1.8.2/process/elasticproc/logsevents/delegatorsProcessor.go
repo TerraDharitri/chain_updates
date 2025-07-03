@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	indexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	indexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 )
 
 const (

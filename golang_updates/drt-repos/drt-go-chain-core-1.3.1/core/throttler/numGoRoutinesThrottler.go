@@ -3,7 +3,7 @@ package throttler
 import (
 	"sync/atomic"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 // NumGoRoutinesThrottler can limit the number of go routines launched

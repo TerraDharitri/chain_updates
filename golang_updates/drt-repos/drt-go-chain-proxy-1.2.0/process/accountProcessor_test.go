@@ -6,13 +6,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/core/sharding"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/core/sharding"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -233,10 +233,10 @@ func TestAccountProcessor_GetShardIForAddressShouldWork(t *testing.T) {
 	bech32C, _ := pubkeyConverter.NewBech32PubkeyConverter(32, "erd")
 
 	// this addressShard0 should be in shard 0 for a 2 shards configuration
-	addressShard0 := "erd1ffqlrryvwrnfh2523wmzrhvx5d8p2wmxeau64fps4lnqq5qex68q7ax8k5"
+	addressShard0 := "drt1ffqlrryvwrnfh2523wmzrhvx5d8p2wmxeau64fps4lnqq5qex68qrp3y42"
 
 	// this addressShard1 should be in shard 1 for a 2 shards configuration
-	addressShard1 := "erd1qqe9qll7n66lv4cuuml2wxsv3sd2t0eyajkyjr7rvtqmhha0cgsse4pel3"
+	addressShard1 := "drt1qqe9qll7n66lv4cuuml2wxsv3sd2t0eyajkyjr7rvtqmhha0cgssyfk6u0"
 
 	ap, _ := process.NewAccountProcessor(
 		&mock.ProcessorStub{
@@ -277,7 +277,7 @@ func TestAccountProcessor_GetShardIDForAddressShouldError(t *testing.T) {
 	assert.Equal(t, expectedError, err)
 }
 
-func TestAccountProcessor_GetESDTsWithRoleGetObserversFails(t *testing.T) {
+func TestAccountProcessor_GetDCDTsWithRoleGetObserversFails(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("cannot get observers")
@@ -290,12 +290,12 @@ func TestAccountProcessor_GetESDTsWithRoleGetObserversFails(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 
-	result, err := ap.GetESDTsWithRole("address", "role", common.AccountQueryOptions{})
+	result, err := ap.GetDCDTsWithRole("address", "role", common.AccountQueryOptions{})
 	require.Equal(t, expectedErr, err)
 	require.Nil(t, result)
 }
 
-func TestAccountProcessor_GetESDTsWithRoleApiCallFails(t *testing.T) {
+func TestAccountProcessor_GetDCDTsWithRoleApiCallFails(t *testing.T) {
 	t.Parallel()
 
 	expectedApiErr := errors.New("cannot get observers")
@@ -317,13 +317,13 @@ func TestAccountProcessor_GetESDTsWithRoleApiCallFails(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 
-	result, err := ap.GetESDTsWithRole("address", "role", common.AccountQueryOptions{})
+	result, err := ap.GetDCDTsWithRole("address", "role", common.AccountQueryOptions{})
 	require.Error(t, err)
 	require.True(t, strings.Contains(err.Error(), "sending request error"))
 	require.Nil(t, result)
 }
 
-func TestAccountProcessor_GetESDTsWithRoleShouldWork(t *testing.T) {
+func TestAccountProcessor_GetDCDTsWithRoleShouldWork(t *testing.T) {
 	t.Parallel()
 
 	ap, _ := process.NewAccountProcessor(
@@ -345,12 +345,12 @@ func TestAccountProcessor_GetESDTsWithRoleShouldWork(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 	address := "DEADBEEF"
-	response, err := ap.GetESDTsWithRole(address, "role", common.AccountQueryOptions{})
+	response, err := ap.GetDCDTsWithRole(address, "role", common.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, "token0", response.Data.([]string)[0])
 }
 
-func TestAccountProcessor_GetESDTsRolesGetObserversFails(t *testing.T) {
+func TestAccountProcessor_GetDCDTsRolesGetObserversFails(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("cannot get observers")
@@ -363,12 +363,12 @@ func TestAccountProcessor_GetESDTsRolesGetObserversFails(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 
-	result, err := ap.GetESDTsRoles("address", common.AccountQueryOptions{})
+	result, err := ap.GetDCDTsRoles("address", common.AccountQueryOptions{})
 	require.Equal(t, expectedErr, err)
 	require.Nil(t, result)
 }
 
-func TestAccountProcessor_GetESDTsRolesApiCallFails(t *testing.T) {
+func TestAccountProcessor_GetDCDTsRolesApiCallFails(t *testing.T) {
 	t.Parallel()
 
 	expectedApiErr := errors.New("cannot get observers")
@@ -390,13 +390,13 @@ func TestAccountProcessor_GetESDTsRolesApiCallFails(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 
-	result, err := ap.GetESDTsRoles("address", common.AccountQueryOptions{})
+	result, err := ap.GetDCDTsRoles("address", common.AccountQueryOptions{})
 	require.Error(t, err)
 	require.True(t, strings.Contains(err.Error(), "sending request error"))
 	require.Nil(t, result)
 }
 
-func TestAccountProcessor_GetESDTsRolesShouldWork(t *testing.T) {
+func TestAccountProcessor_GetDCDTsRolesShouldWork(t *testing.T) {
 	t.Parallel()
 
 	ap, _ := process.NewAccountProcessor(
@@ -418,7 +418,7 @@ func TestAccountProcessor_GetESDTsRolesShouldWork(t *testing.T) {
 		&mock.PubKeyConverterMock{},
 	)
 	address := "DEADBEEF"
-	response, err := ap.GetESDTsRoles(address, common.AccountQueryOptions{})
+	response, err := ap.GetDCDTsRoles(address, common.AccountQueryOptions{})
 	require.NoError(t, err)
 	require.Equal(t, "token0", response.Data.([]string)[0])
 }

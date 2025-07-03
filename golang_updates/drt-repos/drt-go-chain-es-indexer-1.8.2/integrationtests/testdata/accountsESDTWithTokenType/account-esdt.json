@@ -1,5 +1,5 @@
 {
-	"address": "erd1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzsnq0am3",
+	"address": "drt1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzswuc7c0",
 	"balance": "1000",
 	"balanceNum": 1e-15,
 	"token": "SEMI-abcd",
@@ -12,7 +12,7 @@
 		"whiteListedStorage": false
 	},
 	"timestamp": 5600,
-	"type": "SemiFungibleESDT",
-	"currentOwner":"erd1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzsnq0am3",
+	"type": "SemiFungibleDCDT",
+	"currentOwner":"drt1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzswuc7c0",
 	"shardID": 2
 }

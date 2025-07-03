@@ -5,12 +5,12 @@ import (
 	"math/big"
 	"testing"
 
-	vmMath "github.com/multiversx/mx-chain-vm-go/math"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	vmMath "github.com/TerraDharitri/drt-go-chain-vm/math"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 
-	twoscomplement "github.com/multiversx/mx-components-big-int/twos-complement"
+	twoscomplement "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
 
 var mBufferKey = []byte("mBuffer")

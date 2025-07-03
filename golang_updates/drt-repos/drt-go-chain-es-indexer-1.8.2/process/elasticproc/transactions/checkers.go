@@ -6,13 +6,13 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	elasticIndexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	elasticIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 const (
@@ -39,9 +39,9 @@ func checkTxsProcessorArg(args *ArgsTransactionProcessor) error {
 	return nil
 }
 
-func areESDTValuesOK(values []string) bool {
+func areDCDTValuesOK(values []string) bool {
 	for _, value := range values {
-		if len(value) > data.MaxESDTValueLength {
+		if len(value) > data.MaxDCDTValueLength {
 			return false
 		}
 	}

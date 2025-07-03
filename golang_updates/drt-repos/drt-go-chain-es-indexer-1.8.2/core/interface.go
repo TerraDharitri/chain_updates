@@ -1,8 +1,8 @@
 package core
 
 import (
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
-	"github.com/multiversx/mx-chain-es-indexer-go/metrics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/metrics"
 )
 
 // StatusMetricsHandler defines the behavior of a component that handles status metrics

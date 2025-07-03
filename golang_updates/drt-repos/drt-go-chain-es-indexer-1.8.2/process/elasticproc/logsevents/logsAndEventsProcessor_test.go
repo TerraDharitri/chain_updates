@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	elasticIndexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	elasticIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 	"github.com/stretchr/testify/require"
 )
 
@@ -79,7 +79,7 @@ func TestLogsAndEventsProcessor_ExtractDataFromLogsAndPutInAltered(t *testing.T)
 				Events: []*transaction.Event{
 					{
 						Address:    []byte("addr"),
-						Identifier: []byte(core.BuiltInFunctionESDTNFTTransfer),
+						Identifier: []byte(core.BuiltInFunctionDCDTNFTTransfer),
 						Topics:     [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(1).Bytes(), big.NewInt(100).Bytes(), []byte("receiver")},
 					},
 				},
@@ -91,8 +91,8 @@ func TestLogsAndEventsProcessor_ExtractDataFromLogsAndPutInAltered(t *testing.T)
 				Events: []*transaction.Event{
 					{
 						Address:    []byte("addr"),
-						Identifier: []byte(core.BuiltInFunctionESDTTransfer),
-						Topics:     [][]byte{[]byte("esdt"), big.NewInt(0).Bytes(), big.NewInt(0).SetUint64(100).Bytes(), []byte("receiver")},
+						Identifier: []byte(core.BuiltInFunctionDCDTTransfer),
+						Topics:     [][]byte{[]byte("dcdt"), big.NewInt(0).Bytes(), big.NewInt(0).SetUint64(100).Bytes(), []byte("receiver")},
 					},
 					nil,
 				},
@@ -104,8 +104,8 @@ func TestLogsAndEventsProcessor_ExtractDataFromLogsAndPutInAltered(t *testing.T)
 				Events: []*transaction.Event{
 					{
 						Address:    []byte("addr"),
-						Identifier: []byte(issueSemiFungibleESDTFunc),
-						Topics:     [][]byte{[]byte("SEMI-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleESDT)},
+						Identifier: []byte(issueSemiFungibleDCDTFunc),
+						Topics:     [][]byte{[]byte("SEMI-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleDCDT)},
 					},
 					nil,
 				},
@@ -176,7 +176,7 @@ func TestLogsAndEventsProcessor_ExtractDataFromLogsAndPutInAltered(t *testing.T)
 		Name:         "semi-token",
 		Ticker:       "SEMI",
 		Token:        "SEMI-abcd",
-		Type:         core.SemiFungibleESDT,
+		Type:         core.SemiFungibleDCDT,
 		Timestamp:    1000,
 		Issuer:       "61646472",
 		CurrentOwner: "61646472",
@@ -217,7 +217,7 @@ func TestLogsAndEventsProcessor_PrepareLogsForDB(t *testing.T) {
 				Events: []*transaction.Event{
 					{
 						Address:        []byte("addr"),
-						Identifier:     []byte(core.BuiltInFunctionESDTNFTTransfer),
+						Identifier:     []byte(core.BuiltInFunctionDCDTNFTTransfer),
 						Topics:         [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(1).Bytes(), []byte("receiver")},
 						AdditionalData: [][]byte{[]byte("something")},
 					},
@@ -246,7 +246,7 @@ func TestLogsAndEventsProcessor_PrepareLogsForDB(t *testing.T) {
 		Events: []*data.Event{
 			{
 				Address:        "61646472",
-				Identifier:     core.BuiltInFunctionESDTNFTTransfer,
+				Identifier:     core.BuiltInFunctionDCDTNFTTransfer,
 				Topics:         [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(1).Bytes(), []byte("receiver")},
 				AdditionalData: [][]byte{[]byte("something")},
 			},
@@ -265,7 +265,7 @@ func TestLogsAndEventsProcessor_ExtractDataFromLogsNFTBurn(t *testing.T) {
 			Events: []*transaction.Event{
 				{
 					Address:    []byte("addr"),
-					Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+					Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 					Topics:     [][]byte{[]byte("MY-NFT"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes()},
 				},
 			},
@@ -309,7 +309,7 @@ func TestPrepareLogsAndEvents_LogEvents(t *testing.T) {
 				Events: []*transaction.Event{
 					{
 						Address:        []byte("addr"),
-						Identifier:     []byte(core.BuiltInFunctionESDTNFTTransfer),
+						Identifier:     []byte(core.BuiltInFunctionDCDTNFTTransfer),
 						Topics:         [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(1).Bytes(), []byte("receiver")},
 						AdditionalData: [][]byte{[]byte("something")},
 					},
@@ -345,7 +345,7 @@ func TestPrepareLogsAndEvents_LogEvents(t *testing.T) {
 			OriginalTxHash: "originalHash",
 			LogAddress:     "61646472657373",
 			Address:        "61646472",
-			Identifier:     "ESDTNFTTransfer",
+			Identifier:     "DCDTNFTTransfer",
 			AdditionalData: []string{"736f6d657468696e67"},
 			Topics:         []string{"6d792d746f6b656e", "01", "7265636569766572"},
 			Order:          0,

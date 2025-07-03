@@ -1,7 +1,7 @@
 package executorwrapper
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // WrapperExecutorFactory is the factory for the WrapperExecutor.

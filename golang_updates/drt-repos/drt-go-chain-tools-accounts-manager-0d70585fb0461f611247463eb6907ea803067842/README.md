@@ -1,8 +1,8 @@
-# mx-chain-tools-accounts-manager-go
+# drt-go-chain-tools-accounts-manager
 
-The go implementation for the mx-chain-tools-accounts-manager-go
+The go implementation for the drt-go-chain-tools-accounts-manager
 
-- This application will be responsible to fetch all multiversx-accounts that have staked an amount of EGLD tokens. 
+- This application will be responsible to fetch all dharitri-accounts that have staked an amount of REWA tokens. 
 After the accounts are fetched from API it will process all the information, and it will index the new data 
 in a new Elaticsearch index.
 
@@ -31,7 +31,7 @@ version should be 1.12.4.
 #### Step 2: clone the repository and build the binary:
 
 ```
- $ git clone https://github.com/multiversx/mx-chain-tools-accounts-manager-go.git
+ $ git clone https://github.com/TerraDharitri/drt-go-chain-tools-accounts-manager.git
  $ cd accounts-manager-go/cmd/manager
  $ GO111MODULE=on go mod vendor
  $ go build

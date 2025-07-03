@@ -1,8 +1,8 @@
 package core
 
 import (
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 // ShouldUseBasicAuthentication returns true if the credentials aren't empty

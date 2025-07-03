@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"context"
 
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tokeninfo"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tokeninfo"
 )
 
 // DatabaseClientHandler defines the actions that a component that handles requests should do
@@ -32,15 +32,15 @@ type DatabaseClientHandler interface {
 
 // DBAccountHandler defines the actions that an accounts' handler should do
 type DBAccountHandler interface {
-	GetAccounts(coreAlteredAccounts map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountESDT)
+	GetAccounts(coreAlteredAccounts map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountDCDT)
 	PrepareRegularAccountsMap(timestamp uint64, accounts []*data.Account, shardID uint32) map[string]*data.AccountInfo
-	PrepareAccountsMapESDT(timestamp uint64, accounts []*data.AccountESDT, tagsCount data.CountTags, shardID uint32) (map[string]*data.AccountInfo, data.TokensHandler)
+	PrepareAccountsMapDCDT(timestamp uint64, accounts []*data.AccountDCDT, tagsCount data.CountTags, shardID uint32) (map[string]*data.AccountInfo, data.TokensHandler)
 	PrepareAccountsHistory(timestamp uint64, accounts map[string]*data.AccountInfo, shardID uint32) map[string]*data.AccountBalanceHistory
 	PutTokenMedataDataInTokens(tokensData []*data.TokenInfo, coreAlteredAccounts map[string]*alteredAccount.AlteredAccount)
 
 	SerializeAccountsHistory(accounts map[string]*data.AccountBalanceHistory, buffSlice *data.BufferSlice, index string) error
 	SerializeAccounts(accounts map[string]*data.AccountInfo, buffSlice *data.BufferSlice, index string) error
-	SerializeAccountsESDT(accounts map[string]*data.AccountInfo, updateNFTData []*data.NFTDataUpdate, buffSlice *data.BufferSlice, index string) error
+	SerializeAccountsDCDT(accounts map[string]*data.AccountInfo, updateNFTData []*data.NFTDataUpdate, buffSlice *data.BufferSlice, index string) error
 	SerializeNFTCreateInfo(tokensInfo []*data.TokenInfo, buffSlice *data.BufferSlice, index string) error
 	SerializeTypeForProvidedIDs(ids []string, tokenType string, buffSlice *data.BufferSlice, index string) error
 }

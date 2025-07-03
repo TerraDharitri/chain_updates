@@ -23,16 +23,16 @@ var ErrCannotGetAddresses = errors.New("error while fetching a bulk of accounts"
 // ErrComputeShardForAddress signals an error in computing the shard ID for a given address
 var ErrComputeShardForAddress = errors.New("compute shard ID for address error")
 
-// ErrGetESDTTokenData signals an error in fetching an ESDT token data
-var ErrGetESDTTokenData = errors.New("cannot get ESDT token data")
+// ErrGetDCDTTokenData signals an error in fetching an DCDT token data
+var ErrGetDCDTTokenData = errors.New("cannot get DCDT token data")
 
 // ErrGetGuardianData signals an error in fetching an address guardian data
 var ErrGetGuardianData = errors.New("cannot get guardian data")
 
-// ErrGetESDTsWithRole signals an error in fetching an tokens with role for an address
-var ErrGetESDTsWithRole = errors.New("cannot get ESDTs with role")
+// ErrGetDCDTsWithRole signals an error in fetching an tokens with role for an address
+var ErrGetDCDTsWithRole = errors.New("cannot get DCDTs with role")
 
-// ErrGetRolesForAccount signals an error in getting esdt tokens and roles for a given address
+// ErrGetRolesForAccount signals an error in getting dcdt tokens and roles for a given address
 var ErrGetRolesForAccount = errors.New("get roles for account error")
 
 // ErrGetNFTTokenIDsRegisteredByAddress signals an error in fetching owned NFTs for an address

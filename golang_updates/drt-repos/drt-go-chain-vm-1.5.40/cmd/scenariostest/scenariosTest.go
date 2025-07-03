@@ -1,12 +1,12 @@
 package main
 
 import (
-	scenclibase "github.com/multiversx/mx-chain-scenario-go/clibase"
-	scenio "github.com/multiversx/mx-chain-scenario-go/scenario/io"
+	scenclibase "github.com/TerraDharitri/drt-go-chain-scenario/clibase"
+	scenio "github.com/TerraDharitri/drt-go-chain-scenario/scenario/io"
 
-	vmscenario "github.com/multiversx/mx-chain-vm-go/scenario"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	vmscenario "github.com/TerraDharitri/drt-go-chain-vm/scenario"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 	cli "github.com/urfave/cli/v2"
 )
 

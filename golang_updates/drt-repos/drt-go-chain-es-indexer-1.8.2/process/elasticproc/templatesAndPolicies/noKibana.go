@@ -3,9 +3,9 @@ package templatesAndPolicies
 import (
 	"bytes"
 
-	indexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/templates"
-	"github.com/multiversx/mx-chain-es-indexer-go/templates/noKibana"
+	indexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates/noKibana"
 )
 
 type templatesAndPolicyReaderNoKibana struct{}
@@ -29,8 +29,8 @@ func (tr *templatesAndPolicyReaderNoKibana) GetElasticTemplatesAndPolicies() (ma
 	indexTemplates[indexer.ValidatorsIndex] = noKibana.Validators.ToBuffer()
 	indexTemplates[indexer.AccountsIndex] = noKibana.Accounts.ToBuffer()
 	indexTemplates[indexer.AccountsHistoryIndex] = noKibana.AccountsHistory.ToBuffer()
-	indexTemplates[indexer.AccountsESDTIndex] = noKibana.AccountsESDT.ToBuffer()
-	indexTemplates[indexer.AccountsESDTHistoryIndex] = noKibana.AccountsESDTHistory.ToBuffer()
+	indexTemplates[indexer.AccountsDCDTIndex] = noKibana.AccountsDCDT.ToBuffer()
+	indexTemplates[indexer.AccountsDCDTHistoryIndex] = noKibana.AccountsDCDTHistory.ToBuffer()
 	indexTemplates[indexer.EpochInfoIndex] = noKibana.EpochInfo.ToBuffer()
 	indexTemplates[indexer.ReceiptsIndex] = noKibana.Receipts.ToBuffer()
 	indexTemplates[indexer.ScResultsIndex] = noKibana.SCResults.ToBuffer()
@@ -40,7 +40,7 @@ func (tr *templatesAndPolicyReaderNoKibana) GetElasticTemplatesAndPolicies() (ma
 	indexTemplates[indexer.LogsIndex] = noKibana.Logs.ToBuffer()
 	indexTemplates[indexer.DelegatorsIndex] = noKibana.Delegators.ToBuffer()
 	indexTemplates[indexer.OperationsIndex] = noKibana.Operations.ToBuffer()
-	indexTemplates[indexer.ESDTsIndex] = noKibana.ESDTs.ToBuffer()
+	indexTemplates[indexer.DCDTsIndex] = noKibana.DCDTs.ToBuffer()
 	indexTemplates[indexer.ValuesIndex] = noKibana.Values.ToBuffer()
 	indexTemplates[indexer.EventsIndex] = noKibana.Events.ToBuffer()
 

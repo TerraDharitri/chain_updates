@@ -3,8 +3,8 @@ package process
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	proxyData "github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	proxyData "github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // SetDelayForCheckingNodesSyncState -

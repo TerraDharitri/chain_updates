@@ -1,6 +1,6 @@
 package mocks
 
-import "github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+import "github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 
 // RestClientStub -
 type RestClientStub struct {

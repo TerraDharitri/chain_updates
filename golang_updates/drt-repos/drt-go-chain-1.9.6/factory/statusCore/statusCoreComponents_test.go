@@ -8,7 +8,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/TerraDharitri/drt-go-chain/common/statistics"
 	"github.com/TerraDharitri/drt-go-chain/config"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory/statusCore"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
 	"github.com/TerraDharitri/drt-go-chain/process"
@@ -28,7 +28,7 @@ func TestNewStatusCoreComponentsFactory(t *testing.T) {
 
 		args := componentsMock.GetStatusCoreArgs(nil)
 		sccf, err := statusCore.NewStatusCoreComponentsFactory(args)
-		assert.Equal(t, errorsMx.ErrNilCoreComponents, err)
+		assert.Equal(t, errorsDrt.ErrNilCoreComponents, err)
 		require.Nil(t, sccf)
 	})
 	t.Run("nil economics data should error", func(t *testing.T) {
@@ -40,7 +40,7 @@ func TestNewStatusCoreComponentsFactory(t *testing.T) {
 
 		args := componentsMock.GetStatusCoreArgs(coreComp)
 		sccf, err := statusCore.NewStatusCoreComponentsFactory(args)
-		assert.Equal(t, errorsMx.ErrNilEconomicsData, err)
+		assert.Equal(t, errorsDrt.ErrNilEconomicsData, err)
 		require.Nil(t, sccf)
 	})
 	t.Run("should work", func(t *testing.T) {

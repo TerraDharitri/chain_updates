@@ -9,12 +9,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -36,7 +36,7 @@ func TestIssueNFTCreateAndBurn(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99"
+	address1 := "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -47,7 +47,7 @@ func TestIssueNFTCreateAndBurn(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueNonFungible"),
-							Topics:     [][]byte{[]byte("NON-abcd"), []byte("NON-token"), []byte("NON"), []byte(core.NonFungibleESDT)},
+							Topics:     [][]byte{[]byte("NON-abcd"), []byte("NON-token"), []byte("NON"), []byte(core.NonFungibleDCDT)},
 						},
 						nil,
 					},
@@ -75,12 +75,12 @@ func TestIssueNFTCreateAndBurn(t *testing.T) {
 		ShardID:   0,
 	}
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: decodeAddress(address1),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	pool = &outport.TransactionPool{
 		Logs: []*outport.LogData{
@@ -91,8 +91,8 @@ func TestIssueNFTCreateAndBurn(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("NON-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("NON-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -127,7 +127,7 @@ func TestIssueNFTCreateAndBurn(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 							Topics:     [][]byte{[]byte("NON-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), decodeAddress(address1)},
 						},
 						nil,
@@ -167,7 +167,7 @@ func TestIssueNFTCreateAndBurnNonFungibleV2(t *testing.T) {
 
 	tokenIdentifier := "NON-v2"
 
-	address1 := "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99"
+	address1 := "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -178,7 +178,7 @@ func TestIssueNFTCreateAndBurnNonFungibleV2(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueNonFungible"),
-							Topics:     [][]byte{[]byte(tokenIdentifier), []byte("NON-token"), []byte("NON"), []byte(core.NonFungibleESDTv2)},
+							Topics:     [][]byte{[]byte(tokenIdentifier), []byte("NON-token"), []byte("NON"), []byte(core.NonFungibleDCDTv2)},
 						},
 						nil,
 					},
@@ -200,12 +200,12 @@ func TestIssueNFTCreateAndBurnNonFungibleV2(t *testing.T) {
 		ShardID:   0,
 	}
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: decodeAddress(address1),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	pool = &outport.TransactionPool{
 		Logs: []*outport.LogData{
@@ -216,8 +216,8 @@ func TestIssueNFTCreateAndBurnNonFungibleV2(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte(tokenIdentifier), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte(tokenIdentifier), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -252,7 +252,7 @@ func TestIssueNFTCreateAndBurnNonFungibleV2(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTBurn),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTBurn),
 							Topics:     [][]byte{[]byte(tokenIdentifier), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), decodeAddress(address1)},
 						},
 						nil,

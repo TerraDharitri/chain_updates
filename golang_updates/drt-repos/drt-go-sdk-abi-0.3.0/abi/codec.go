@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-// codec is a component which follows the rules of the MultiversX Serialization format:
-// https://docs.multiversx.com/developers/data/serialization-overview
+// codec is a component which follows the rules of the Dharitri Serialization format:
+// https://docs.dharitri.org/developers/data/serialization-overview
 type codec struct {
 }
 

@@ -4,9 +4,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 )
 
 func TestCErc20Executors_TwiceW1ThenTwiceW2(t *testing.T) {

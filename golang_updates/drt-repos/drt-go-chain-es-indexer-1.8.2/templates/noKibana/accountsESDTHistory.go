@@ -1,9 +1,9 @@
 package noKibana
 
-// AccountsESDTHistory will hold the configuration for the accountsesdthistory index
-var AccountsESDTHistory = Object{
+// AccountsDCDTHistory will hold the configuration for the accountsdcdthistory index
+var AccountsDCDTHistory = Object{
 	"index_patterns": Array{
-		"accountsesdthistory-*",
+		"accountsdcdthistory-*",
 	},
 	"template": Object{
 		"settings": Object{

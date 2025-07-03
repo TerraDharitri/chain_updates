@@ -42,7 +42,7 @@
             "tx": {
                 "from": "''delegator_1___________________s1",
                 "to": "sc:delegation",
-                "egldValue": "567,000,000,000",
+                "rewaValue": "567,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "1,000,000",
@@ -74,7 +74,7 @@
             "tx": {
                 "from": "''delegator_2___________________s1",
                 "to": "sc:delegation",
-                "egldValue": "222,000,000,000",
+                "rewaValue": "222,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "1,000,000",

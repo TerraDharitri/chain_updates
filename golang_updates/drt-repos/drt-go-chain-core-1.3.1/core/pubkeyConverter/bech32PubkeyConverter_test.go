@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/mock"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -71,7 +71,7 @@ func TestBech32PubkeyConverter_DecodeWrongSizeShouldErr(t *testing.T) {
 	addressLen := 32
 	bpc, _ := pubkeyConverter.NewBech32PubkeyConverter(addressLen, core.DefaultAddressPrefix)
 
-	str, err := bpc.Decode("erd1xyerxdp4xcmnswfsxyeqqzq40r")
+	str, err := bpc.Decode("drt1xyerxdp4xcmnswfsxyeqxv3fj3")
 
 	assert.Equal(t, 0, len(str))
 	assert.True(t, errors.Is(err, pubkeyConverter.ErrWrongSize))
@@ -165,6 +165,6 @@ func TestBech32PubkeyConverter_EncodeSliceShouldWork(t *testing.T) {
 	str, err := bpc.EncodeSlice(decodedSlice)
 	assert.Nil(t, err)
 	assert.Equal(t, sliceLen, len(str))
-	assert.Equal(t, []string{"erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th",
-		"erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx"}, str)
+	assert.Equal(t, []string{"drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf",
+		"drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"}, str)
 }

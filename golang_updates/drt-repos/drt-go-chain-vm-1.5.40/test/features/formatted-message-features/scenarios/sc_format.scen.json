@@ -6,7 +6,7 @@
                 "sc:msg-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/formatted-message-features.mxsc.json"
+                    "code": "drtsc:../output/formatted-message-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",

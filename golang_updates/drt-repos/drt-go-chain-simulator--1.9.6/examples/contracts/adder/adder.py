@@ -2,8 +2,8 @@ import sys
 import time
 from pathlib import Path
 
-from multiversx_sdk import Account, NetworkEntrypoint, UserSecretKey
-from multiversx_sdk.abi import Abi
+from dharitri_sdk import Account, NetworkEntrypoint, UserSecretKey
+from dharitri_sdk.abi import Abi
 
 SIMULATOR_URL = "http://localhost:8085"
 GENERATE_BLOCKS_UNTIL_EPOCH_REACHED_URL = "simulator/generate-blocks-until-epoch-reached"

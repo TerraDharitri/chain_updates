@@ -6,7 +6,7 @@ import (
 
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"github.com/TerraDharitri/drt-go-chain/config"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	dataComp "github.com/TerraDharitri/drt-go-chain/factory/data"
 	"github.com/TerraDharitri/drt-go-chain/factory/mock"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
@@ -27,7 +27,7 @@ func TestNewDataComponentsFactory(t *testing.T) {
 
 		dcf, err := dataComp.NewDataComponentsFactory(args)
 		require.Nil(t, dcf)
-		require.Equal(t, errorsMx.ErrNilShardCoordinator, err)
+		require.Equal(t, errorsDrt.ErrNilShardCoordinator, err)
 	})
 	t.Run("nil core components should error", func(t *testing.T) {
 		t.Parallel()
@@ -38,7 +38,7 @@ func TestNewDataComponentsFactory(t *testing.T) {
 
 		dcf, err := dataComp.NewDataComponentsFactory(args)
 		require.Nil(t, dcf)
-		require.Equal(t, errorsMx.ErrNilCoreComponents, err)
+		require.Equal(t, errorsDrt.ErrNilCoreComponents, err)
 	})
 	t.Run("nil status core components should error", func(t *testing.T) {
 		t.Parallel()
@@ -50,7 +50,7 @@ func TestNewDataComponentsFactory(t *testing.T) {
 
 		dcf, err := dataComp.NewDataComponentsFactory(args)
 		require.Nil(t, dcf)
-		require.Equal(t, errorsMx.ErrNilStatusCoreComponents, err)
+		require.Equal(t, errorsDrt.ErrNilStatusCoreComponents, err)
 	})
 	t.Run("nil crypto components should error", func(t *testing.T) {
 		t.Parallel()
@@ -62,7 +62,7 @@ func TestNewDataComponentsFactory(t *testing.T) {
 
 		dcf, err := dataComp.NewDataComponentsFactory(args)
 		require.Nil(t, dcf)
-		require.Equal(t, errorsMx.ErrNilCryptoComponents, err)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponents, err)
 	})
 	t.Run("should work", func(t *testing.T) {
 		t.Parallel()
@@ -126,7 +126,7 @@ func TestDataComponentsFactory_Create(t *testing.T) {
 		require.NoError(t, err)
 
 		dc, err := dcf.Create()
-		require.Equal(t, errorsMx.ErrBlockchainCreation, err)
+		require.Equal(t, errorsDrt.ErrBlockchainCreation, err)
 		require.Nil(t, dc)
 	})
 	t.Run("NewStorageServiceFactory returns error", func(t *testing.T) {
@@ -176,7 +176,7 @@ func TestDataComponentsFactory_Create(t *testing.T) {
 		require.NoError(t, err)
 
 		dc, err := dcf.Create()
-		require.Equal(t, errorsMx.ErrDataStoreCreation, err)
+		require.Equal(t, errorsDrt.ErrDataStoreCreation, err)
 		require.Nil(t, dc)
 	})
 	t.Run("NewDataPoolFromConfig fails should error", func(t *testing.T) {
@@ -190,7 +190,7 @@ func TestDataComponentsFactory_Create(t *testing.T) {
 		require.NoError(t, err)
 
 		dc, err := dcf.Create()
-		require.True(t, errors.Is(err, errorsMx.ErrDataPoolCreation))
+		require.True(t, errors.Is(err, errorsDrt.ErrDataPoolCreation))
 		require.Nil(t, dc)
 	})
 	t.Run("should work for shard", func(t *testing.T) {

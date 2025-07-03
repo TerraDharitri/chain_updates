@@ -3,7 +3,7 @@ package data
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
 )
 
 // AccountInfo holds (serializable) data about an account
@@ -67,8 +67,8 @@ type Account struct {
 	IsSender    bool
 }
 
-// AccountESDT is a structure that is needed for ESDT accounts
-type AccountESDT struct {
+// AccountDCDT is a structure that is needed for DCDT accounts
+type AccountDCDT struct {
 	Account         *alteredAccount.AlteredAccount
 	TokenIdentifier string
 	NFTNonce        uint64

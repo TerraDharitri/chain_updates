@@ -7,9 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -219,12 +219,12 @@ func TestGetEconomicsData_ShouldWork(t *testing.T) {
 	assert.Equal(t, expectedResp.Data, ecDataResp.Data) //extra safe
 }
 
-func TestGetAllIssuedESDTs_ShouldErr(t *testing.T) {
+func TestGetAllIssuedDCDTs_ShouldErr(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal error")
 	facade := &mock.FacadeStub{
-		GetAllIssuedESDTsHandler: func(_ string) (*data.GenericAPIResponse, error) {
+		GetAllIssuedDCDTsHandler: func(_ string) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -232,23 +232,23 @@ func TestGetAllIssuedESDTs_ShouldErr(t *testing.T) {
 	require.NoError(t, err)
 	ws := startProxyServer(networkGroup, networkPath)
 
-	req, _ := http.NewRequest("GET", "/network/esdts", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdts", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	allIssuedEsdts := data.GenericAPIResponse{}
-	loadResponse(resp.Body, &allIssuedEsdts)
+	allIssuedDcdts := data.GenericAPIResponse{}
+	loadResponse(resp.Body, &allIssuedDcdts)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
-	assert.Equal(t, expectedErr.Error(), allIssuedEsdts.Error)
+	assert.Equal(t, expectedErr.Error(), allIssuedDcdts.Error)
 }
 
-func TestGetAllIssuedESDTs_ShouldWork(t *testing.T) {
+func TestGetAllIssuedDCDTs_ShouldWork(t *testing.T) {
 	t.Parallel()
 
-	expectedResp := data.GenericAPIResponse{Data: []string{"ESDT-1w2e3e", "NFT-1q2w3e-01"}}
+	expectedResp := data.GenericAPIResponse{Data: []string{"DCDT-1w2e3e", "NFT-1q2w3e-01"}}
 	facade := &mock.FacadeStub{
-		GetAllIssuedESDTsHandler: func(_ string) (*data.GenericAPIResponse, error) {
+		GetAllIssuedDCDTsHandler: func(_ string) (*data.GenericAPIResponse, error) {
 			return &expectedResp, nil
 		},
 	}
@@ -256,16 +256,16 @@ func TestGetAllIssuedESDTs_ShouldWork(t *testing.T) {
 	require.NoError(t, err)
 	ws := startProxyServer(networkGroup, networkPath)
 
-	req, _ := http.NewRequest("GET", "/network/esdts", nil)
+	req, _ := http.NewRequest("GET", "/network/dcdts", nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	allIssuedESDTs := data.GenericAPIResponse{}
-	loadResponse(resp.Body, &allIssuedESDTs)
+	allIssuedDCDTs := data.GenericAPIResponse{}
+	loadResponse(resp.Body, &allIssuedDCDTs)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
 
-	for _, resp := range allIssuedESDTs.Data.([]interface{}) {
+	for _, resp := range allIssuedDCDTs.Data.([]interface{}) {
 		respStr := resp.(string)
 		found := false
 		for _, exp := range expectedResp.Data.([]string) {

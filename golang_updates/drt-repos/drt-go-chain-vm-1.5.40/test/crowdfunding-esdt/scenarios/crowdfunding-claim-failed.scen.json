@@ -12,7 +12,7 @@
                 "address:donor2": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "1,000,000,000,000"
                     }
                 }
@@ -24,7 +24,7 @@
             "tx": {
                 "from": "address:donor2",
                 "to": "sc:crowdfunding",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:CROWD-123456",
                         "value": "200,000,000,000"
@@ -53,7 +53,7 @@
                 "address:donor1": {
                     "nonce": "1",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "150,000,000,000"
                     },
                     "storage": {}
@@ -61,7 +61,7 @@
                 "address:donor2": {
                     "nonce": "1",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "800,000,000,000"
                     },
                     "storage": {}
@@ -69,7 +69,7 @@
                 "sc:crowdfunding": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "450,000,000,000"
                     },
                     "storage": {
@@ -79,7 +79,7 @@
                         "str:deposit|address:donor1": "250,000,000,000",
                         "str:deposit|address:donor2": "200,000,000,000"
                     },
-                    "code": "mxsc:../output/crowdfunding-esdt.mxsc.json"
+                    "code": "drtsc:../output/crowdfunding-dcdt.drtsc.json"
                 }
             }
         },
@@ -106,7 +106,7 @@
                 "logs": [
                     {
                         "address": "sc:crowdfunding",
-                        "endpoint": "str:ESDTTransfer",
+                        "endpoint": "str:DCDTTransfer",
                         "topics": [
                             "str:CROWD-123456",
                             "",
@@ -137,7 +137,7 @@
                 "logs": [
                     {
                         "address": "sc:crowdfunding",
-                        "endpoint": "str:ESDTTransfer",
+                        "endpoint": "str:DCDTTransfer",
                         "topics": [
                             "str:CROWD-123456",
                             "",
@@ -162,7 +162,7 @@
                 "address:donor1": {
                     "nonce": "2",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "400,000,000,000"
                     },
                     "storage": {}
@@ -170,7 +170,7 @@
                 "address:donor2": {
                     "nonce": "2",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "1,000,000,000,000"
                     },
                     "storage": {}
@@ -178,7 +178,7 @@
                 "sc:crowdfunding": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:CROWD-123456": "0"
                     },
                     "storage": {
@@ -188,7 +188,7 @@
                         "str:deposit|address:donor1": "0",
                         "str:deposit|address:donor2": "0"
                     },
-                    "code": "mxsc:../output/crowdfunding-esdt.mxsc.json"
+                    "code": "drtsc:../output/crowdfunding-dcdt.drtsc.json"
                 }
             }
         }

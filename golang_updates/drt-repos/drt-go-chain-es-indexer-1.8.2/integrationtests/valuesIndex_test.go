@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	indexerData "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/factory"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	indexerData "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/factory"
 	"github.com/stretchr/testify/require"
 )
 

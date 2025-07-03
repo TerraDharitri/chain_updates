@@ -8,8 +8,8 @@ import (
 	"os"
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client/logging"
 	"github.com/elastic/go-elasticsearch/v7"
-	"github.com/multiversx/mx-chain-es-indexer-go/client/logging"
 	"github.com/stretchr/testify/require"
 )
 

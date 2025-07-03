@@ -40,7 +40,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "100",
+                "rewaValue": "100",
                 "function": "buySft",
                 "arguments": [
                     "1",

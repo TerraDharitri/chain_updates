@@ -14,7 +14,7 @@
             "id": "deploy",
             "tx": {
                 "from": "address:an_account",
-                "contractCode": "mxsc:../output/basic-features.mxsc.json",
+                "contractCode": "drtsc:../output/basic-features.drtsc.json",
                 "arguments": [],
                 "gasLimit": "200,000,000",
                 "gasPrice": "0"
@@ -40,7 +40,7 @@
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 }
             }
         }

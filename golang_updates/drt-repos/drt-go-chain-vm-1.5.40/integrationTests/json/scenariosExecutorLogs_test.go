@@ -3,10 +3,10 @@ package vmjsonintegrationtest
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	"github.com/multiversx/mx-chain-vm-go/testcommon/testexecutor"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 )
 
 func TestRustCompareAdderLog(t *testing.T) {
@@ -119,7 +119,7 @@ func TestDigitalCashLog(t *testing.T) {
 		CheckLog(expected)
 }
 
-func TestESDTMultiTransferOnCallbackLog(t *testing.T) {
+func TestDCDTMultiTransferOnCallbackLog(t *testing.T) {
 	if !testexecutor.IsWasmer1Allowed() {
 		t.Skip("run exclusively with wasmer1")
 	}
@@ -167,7 +167,7 @@ func TestCreateAsyncCallLog(t *testing.T) {
 		CheckLog(expected)
 }
 
-func TestESDTMultiTransferOnCallAndCallbackLog(t *testing.T) {
+func TestDCDTMultiTransferOnCallAndCallbackLog(t *testing.T) {
 	if !testexecutor.IsWasmer1Allowed() {
 		t.Skip("run exclusively with wasmer1")
 	}
@@ -243,13 +243,13 @@ func TestDnsContractLog(t *testing.T) {
 		CheckLog(expected)
 }
 
-func TestCrowdfundingEsdtLog(t *testing.T) {
+func TestCrowdfundingDcdtLog(t *testing.T) {
 	if !testexecutor.IsWasmer1Allowed() {
 		t.Skip("run exclusively with wasmer1")
 	}
 
 	expected := ScenariosTest(t).
-		Folder("crowdfunding-esdt").
+		Folder("crowdfunding-dcdt").
 		WithExecutorFactory(wasmer.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().
@@ -257,7 +257,7 @@ func TestCrowdfundingEsdtLog(t *testing.T) {
 		ExtractLog()
 
 	ScenariosTest(t).
-		Folder("crowdfunding-esdt").
+		Folder("crowdfunding-dcdt").
 		WithExecutorFactory(wasmer2.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().
@@ -265,13 +265,13 @@ func TestCrowdfundingEsdtLog(t *testing.T) {
 		CheckLog(expected)
 }
 
-func TestEgldEsdtSwapLog(t *testing.T) {
+func TestRewaDcdtSwapLog(t *testing.T) {
 	if !testexecutor.IsWasmer1Allowed() {
 		t.Skip("run exclusively with wasmer1")
 	}
 
 	expected := ScenariosTest(t).
-		Folder("egld-esdt-swap").
+		Folder("rewa-dcdt-swap").
 		WithExecutorFactory(wasmer.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().
@@ -279,7 +279,7 @@ func TestEgldEsdtSwapLog(t *testing.T) {
 		ExtractLog()
 
 	ScenariosTest(t).
-		Folder("egld-esdt-swap").
+		Folder("rewa-dcdt-swap").
 		WithExecutorFactory(wasmer2.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().
@@ -287,13 +287,13 @@ func TestEgldEsdtSwapLog(t *testing.T) {
 		CheckLog(expected)
 }
 
-func TestPingPongEgldLog(t *testing.T) {
+func TestPingPongRewaLog(t *testing.T) {
 	if !testexecutor.IsWasmer1Allowed() {
 		t.Skip("run exclusively with wasmer1")
 	}
 
 	expected := ScenariosTest(t).
-		Folder("ping-pong-egld").
+		Folder("ping-pong-rewa").
 		WithExecutorFactory(wasmer.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().
@@ -301,7 +301,7 @@ func TestPingPongEgldLog(t *testing.T) {
 		ExtractLog()
 
 	ScenariosTest(t).
-		Folder("ping-pong-egld").
+		Folder("ping-pong-rewa").
 		WithExecutorFactory(wasmer2.ExecutorFactory()).
 		WithExecutorLogs().
 		Run().

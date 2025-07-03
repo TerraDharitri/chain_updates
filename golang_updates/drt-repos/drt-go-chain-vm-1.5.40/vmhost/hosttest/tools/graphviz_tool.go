@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/testcommon"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 )
 
 func main() {

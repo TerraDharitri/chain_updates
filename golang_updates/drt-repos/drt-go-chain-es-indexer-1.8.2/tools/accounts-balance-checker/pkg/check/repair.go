@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 func (bc *balanceChecker) deleteExtraBalance(addr, identifier string, timestamp uint64, index string) error {
@@ -49,7 +49,7 @@ func (bc *balanceChecker) fixWrongBalance(addr, identifier string, timestamp uin
 	}
 
 	balanceBig, _ := big.NewInt(0).SetString(balanceFromProxy, 10)
-	balanceFloat := bc.balanceToFloat.ComputeESDTBalanceAsFloat(balanceBig)
+	balanceFloat := bc.balanceToFloat.ComputeDCDTBalanceAsFloat(balanceBig)
 	if identifier == "" {
 		balanceFloat = bc.balanceToFloat.ComputeBalanceAsFloat(balanceBig)
 	}

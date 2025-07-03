@@ -3,7 +3,7 @@ package observer
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-proxy-go/config"
+	"github.com/TerraDharitri/drt-go-chain-proxy/config"
 	"github.com/stretchr/testify/assert"
 )
 

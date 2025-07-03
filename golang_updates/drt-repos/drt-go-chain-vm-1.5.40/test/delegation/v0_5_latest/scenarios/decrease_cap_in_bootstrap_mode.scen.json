@@ -47,7 +47,7 @@
             "tx": {
                 "from": "address:endless_sack_of_erd",
                 "to": "address:delegator1",
-                "egldValue": "150,000,000,000"
+                "rewaValue": "150,000,000,000"
             }
         },
         {
@@ -56,7 +56,7 @@
             "tx": {
                 "from": "address:delegator1",
                 "to": "sc:delegation",
-                "egldValue": "150,000,000,000",
+                "rewaValue": "150,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "100,000,000",

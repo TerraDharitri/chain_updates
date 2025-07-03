@@ -1,5 +1,5 @@
-#include "../mxvm/context.h"
-#include "../mxvm/bigInt.h"
+#include "../drtvm/context.h"
+#include "../drtvm/bigInt.h"
 
 void managedAsyncCall(int addressBuffer, int valueBuffer, int functionBuffer, int argumentsBuffer);
 

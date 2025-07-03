@@ -1,12 +1,12 @@
 package bls
 
 import (
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
-	mclMultiSig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/multisig"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl/singlesig"
-	"github.com/multiversx/mx-chain-crypto-go/signing/multisig"
+	"github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/signing"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/mcl"
+	mclMultiSig "github.com/TerraDharitri/drt-go-chain-core/signing/mcl/multisig"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/mcl/singlesig"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/multisig"
 )
 
 type bls struct {

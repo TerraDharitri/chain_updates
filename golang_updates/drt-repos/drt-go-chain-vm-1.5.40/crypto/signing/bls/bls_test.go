@@ -6,11 +6,11 @@ import (
 	"strings"
 	"testing"
 
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/mcl"
-	llsig "github.com/multiversx/mx-chain-crypto-go/signing/mcl/multisig"
-	"github.com/multiversx/mx-chain-crypto-go/signing/multisig"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/signing"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/mcl"
+	llsig "github.com/TerraDharitri/drt-go-chain-core/signing/mcl/multisig"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/multisig"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

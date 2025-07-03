@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-proxy-go/faucet"
-	"github.com/multiversx/mx-chain-proxy-go/faucet/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/faucet"
+	"github.com/TerraDharitri/drt-go-chain-proxy/faucet/mock"
 	"github.com/stretchr/testify/require"
 )
 

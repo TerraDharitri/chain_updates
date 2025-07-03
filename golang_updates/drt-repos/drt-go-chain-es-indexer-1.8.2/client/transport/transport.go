@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
-	"github.com/multiversx/mx-chain-es-indexer-go/metrics"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/metrics"
 )
 
 var errNilRequest = errors.New("nil request")

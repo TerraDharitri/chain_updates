@@ -8,15 +8,15 @@ import (
 	"math/big"
 	"testing"
 
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
-func TestESDTTransferTooMuchGasProvided(t *testing.T) {
+func TestDCDTTransferTooMuchGasProvided(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
@@ -25,13 +25,13 @@ func TestESDTTransferTooMuchGasProvided(t *testing.T) {
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
 
-	txHash := []byte("esdtTransfer")
+	txHash := []byte("dcdtTransfer")
 	header := &dataBlock.Header{
 		Round:     50,
 		TimeStamp: 5040,
 		ShardID:   0,
 	}
-	scrHash2 := []byte("scrHash2ESDTTransfer")
+	scrHash2 := []byte("scrHash2DCDTTransfer")
 	body := &dataBlock.Body{
 		MiniBlocks: dataBlock.MiniBlockSlice{
 			{
@@ -49,19 +49,19 @@ func TestESDTTransferTooMuchGasProvided(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hq750xl9"
-	address2 := "erd13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s68e2ze"
-	txESDT := &transaction.Transaction{
+	address1 := "drt1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hqrgc9um"
+	address2 := "drt13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s8mwfp8"
+	txDCDT := &transaction.Transaction{
 		Nonce:    6,
 		SndAddr:  decodeAddress(address1),
 		RcvAddr:  decodeAddress(address2),
 		GasLimit: 104011,
 		GasPrice: 1000000000,
-		Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+		Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 		Value:    big.NewInt(0),
 	}
 
-	scrHash1 := []byte("scrHash1ESDTTransfer")
+	scrHash1 := []byte("scrHash1DCDTTransfer")
 	scr1 := &smartContractResult.SmartContractResult{
 		Nonce:          7,
 		GasPrice:       1000000000,
@@ -85,7 +85,7 @@ func TestESDTTransferTooMuchGasProvided(t *testing.T) {
 
 	initialPaidFee, _ := big.NewInt(0).SetString("104000110000000", 10)
 	txInfo := &outport.TxInfo{
-		Transaction: txESDT,
+		Transaction: txDCDT,
 		FeeInfo: &outport.FeeInfo{
 			GasUsed:        104011,
 			Fee:            initialPaidFee,
@@ -111,24 +111,24 @@ func TestESDTTransferTooMuchGasProvided(t *testing.T) {
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TransactionsIndex, true, genericResponse)
 	require.Nil(t, err)
 
-	require.JSONEq(t, readExpectedResult("./testdata/esdtTransfer/esdt-transfer.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/dcdtTransfer/dcdt-transfer.json"), string(genericResponse.Docs[0].Source))
 }
 
-func TestESDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
+func TestDCDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
 
-	txHash := []byte("esdtTransferCross")
+	txHash := []byte("dcdtTransferCross")
 	header := &dataBlock.Header{
 		Round:     50,
 		TimeStamp: 10101,
 		ShardID:   2,
 	}
 
-	scrHash1 := []byte("scrHash1ESDTTransferOnSourceShard")
+	scrHash1 := []byte("scrHash1DCDTTransferOnSourceShard")
 	body := &dataBlock.Body{
 		MiniBlocks: dataBlock.MiniBlockSlice{
 			{
@@ -146,17 +146,17 @@ func TestESDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
 		},
 	}
 
-	address1 := "erd1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hq750xl9"
-	address2 := "erd13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s68e2ze"
+	address1 := "drt1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hqrgc9um"
+	address2 := "drt13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s8mwfp8"
 
-	txESDT := outport.TxInfo{
+	txDCDT := outport.TxInfo{
 		Transaction: &transaction.Transaction{
 			Nonce:    1,
 			SndAddr:  decodeAddress(address1),
 			RcvAddr:  decodeAddress(address2),
 			GasLimit: 500_000,
 			GasPrice: 1000000000,
-			Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+			Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 			Value:    big.NewInt(0),
 		},
 		FeeInfo: &outport.FeeInfo{
@@ -179,7 +179,7 @@ func TestESDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
 
 	pool := &outport.TransactionPool{
 		Transactions: map[string]*outport.TxInfo{
-			hex.EncodeToString(txHash): &txESDT,
+			hex.EncodeToString(txHash): &txDCDT,
 		},
 		SmartContractResults: map[string]*outport.SCRInfo{
 			hex.EncodeToString(scrHash1): {SmartContractResult: scrRefund, FeeInfo: &outport.FeeInfo{}},
@@ -193,14 +193,14 @@ func TestESDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.OperationsIndex, true, genericResponse)
 	require.Nil(t, err)
 
-	require.JSONEq(t, readExpectedResult("./testdata/esdtTransfer/esdt-transfer-cross-shard-on-source.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/dcdtTransfer/dcdt-transfer-cross-shard-on-source.json"), string(genericResponse.Docs[0].Source))
 
 	header = &dataBlock.Header{
 		Round:     55,
 		TimeStamp: 10102,
 		ShardID:   1,
 	}
-	txESDT.FeeInfo = &outport.FeeInfo{
+	txDCDT.FeeInfo = &outport.FeeInfo{
 		GasUsed:        500_000,
 		Fee:            big.NewInt(137660000000000),
 		InitialPaidFee: big.NewInt(137660000000000),
@@ -212,24 +212,24 @@ func TestESDTTransferCrossShardWithRefundOnSourceShard(t *testing.T) {
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.OperationsIndex, true, genericResponse)
 	require.Nil(t, err)
 
-	require.JSONEq(t, readExpectedResult("./testdata/esdtTransfer/esdt-transfer-cross-shard-on-destination.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/dcdtTransfer/dcdt-transfer-cross-shard-on-destination.json"), string(genericResponse.Docs[0].Source))
 }
 
-func TestESDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.T) {
+func TestDCDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.T) {
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
 
-	txHash := []byte("esdtTransferCross2")
+	txHash := []byte("dcdtTransferCross2")
 	header := &dataBlock.Header{
 		Round:     55,
 		TimeStamp: 10102,
 		ShardID:   1,
 	}
 
-	scrHash1 := []byte("scrHash1ESDTTransferOnSourceShard2")
+	scrHash1 := []byte("scrHash1DCDTTransferOnSourceShard2")
 	body := &dataBlock.Body{
 		MiniBlocks: dataBlock.MiniBlockSlice{
 			{
@@ -241,17 +241,17 @@ func TestESDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.
 		},
 	}
 
-	address1 := "erd1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hq750xl9"
-	address2 := "erd13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s68e2ze"
+	address1 := "drt1ef6470tjdtlgpa9f6g3ae4nsedmjg0gv6w73v32xtvhkfff993hqrgc9um"
+	address2 := "drt13u7zyekzvdvzek8768r5gau9p6677ufppsjuklu9e6t7yx7rhg4s8mwfp8"
 
-	txESDT := outport.TxInfo{
+	txDCDT := outport.TxInfo{
 		Transaction: &transaction.Transaction{
 			Nonce:    1,
 			SndAddr:  decodeAddress(address1),
 			RcvAddr:  decodeAddress(address2),
 			GasLimit: 500_000,
 			GasPrice: 1000000000,
-			Data:     []byte("ESDTTransfer@54474e2d383862383366@0a"),
+			Data:     []byte("DCDTTransfer@54474e2d383862383366@0a"),
 			Value:    big.NewInt(0),
 		},
 		FeeInfo: &outport.FeeInfo{
@@ -274,7 +274,7 @@ func TestESDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.
 
 	pool := &outport.TransactionPool{
 		Transactions: map[string]*outport.TxInfo{
-			hex.EncodeToString(txHash): &txESDT,
+			hex.EncodeToString(txHash): &txDCDT,
 		},
 		SmartContractResults: map[string]*outport.SCRInfo{
 			hex.EncodeToString(scrHash1): {SmartContractResult: scrRefund, FeeInfo: &outport.FeeInfo{}},
@@ -287,9 +287,9 @@ func TestESDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.
 	genericResponse := &GenericResponse{}
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.OperationsIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/esdtTransfer/esdt-transfer-first-on-destination.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/dcdtTransfer/dcdt-transfer-first-on-destination.json"), string(genericResponse.Docs[0].Source))
 
-	txESDT.FeeInfo = &outport.FeeInfo{
+	txDCDT.FeeInfo = &outport.FeeInfo{
 		GasUsed:        334_000,
 		Fee:            big.NewInt(136000000000000),
 		InitialPaidFee: big.NewInt(137660000000000),
@@ -311,5 +311,5 @@ func TestESDTTransferCrossShardIndexFirstOnDestinationAndAfterSource(t *testing.
 
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.OperationsIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/esdtTransfer/esdt-transfer-second-on-source.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/dcdtTransfer/dcdt-transfer-second-on-source.json"), string(genericResponse.Docs[0].Source))
 }

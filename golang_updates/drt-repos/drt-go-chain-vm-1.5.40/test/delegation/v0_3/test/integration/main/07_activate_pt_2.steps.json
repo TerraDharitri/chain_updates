@@ -72,7 +72,7 @@
             "tx": {
                 "from": "''delegator_2___________________s1",
                 "to": "sc:delegation",
-                "egldValue": "1,000,000,000",
+                "rewaValue": "1,000,000,000",
                 "function": "stakeAndTryActivate",
                 "arguments": [],
                 "gasLimit": "2,000,000",

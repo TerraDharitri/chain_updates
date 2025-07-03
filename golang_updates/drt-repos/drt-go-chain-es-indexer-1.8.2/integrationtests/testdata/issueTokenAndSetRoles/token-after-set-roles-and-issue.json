@@ -1,22 +1,22 @@
 {
   "ticker": "SEMI",
-  "currentOwner": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
+  "currentOwner": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
   "roles": {
-    "ESDTRoleNFTCreate": [
-      "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+    "DCDTRoleNFTCreate": [
+      "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
     ],
-    "ESDTRoleNFTBurn": [
-      "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+    "DCDTRoleNFTBurn": [
+      "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
     ]
   },
   "name": "semi-token",
-  "type": "SemiFungibleESDT",
-  "issuer": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
+  "type": "SemiFungibleDCDT",
+  "issuer": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
   "token": "TTT-abcd",
   "timestamp": 10000,
   "ownersHistory": [
     {
-      "address": "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv",
+      "address": "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj",
       "timestamp": 10000
     }
   ],

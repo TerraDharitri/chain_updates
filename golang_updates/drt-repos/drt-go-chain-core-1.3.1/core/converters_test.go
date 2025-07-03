@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/mock"
-	"github.com/multiversx/mx-chain-core-go/data/batch"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/data/batch"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -256,55 +256,55 @@ func TestConvertShardIDToUint32(t *testing.T) {
 	assert.Equal(t, uint32(0), shardID)
 }
 
-func TestConvertESDTTypeToUint32(t *testing.T) {
+func TestConvertDCDTTypeToUint32(t *testing.T) {
 	t.Parallel()
 
-	tokenTypeId, err := core.ConvertESDTTypeToUint32(core.FungibleESDT)
+	tokenTypeId, err := core.ConvertDCDTTypeToUint32(core.FungibleDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.Fungible), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.NonFungibleESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.NonFungibleDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.NonFungible), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.NonFungibleESDTv2)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.NonFungibleDCDTv2)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.NonFungibleV2), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.MetaESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.MetaDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.MetaFungible), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.SemiFungibleESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.SemiFungibleDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.SemiFungible), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.DynamicNFTESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.DynamicNFTDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.DynamicNFT), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.DynamicSFTESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.DynamicSFTDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.DynamicSFT), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32(core.DynamicMetaESDT)
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32(core.DynamicMetaDCDT)
 	assert.Nil(t, err)
 	assert.Equal(t, uint32(core.DynamicMeta), tokenTypeId)
 
-	tokenTypeId, err = core.ConvertESDTTypeToUint32("wrongType")
+	tokenTypeId, err = core.ConvertDCDTTypeToUint32("wrongType")
 	assert.NotNil(t, err)
 	assert.Equal(t, uint32(math.MaxUint32), tokenTypeId)
 }
 
-func TestIsDynamicESDT(t *testing.T) {
+func TestIsDynamicDCDT(t *testing.T) {
 	t.Parallel()
 
-	assert.True(t, core.IsDynamicESDT(uint32(core.DynamicNFT)))
-	assert.True(t, core.IsDynamicESDT(uint32(core.DynamicSFT)))
-	assert.True(t, core.IsDynamicESDT(uint32(core.DynamicMeta)))
-	assert.False(t, core.IsDynamicESDT(uint32(core.Fungible)))
-	assert.False(t, core.IsDynamicESDT(uint32(core.NonFungible)))
-	assert.False(t, core.IsDynamicESDT(uint32(core.NonFungibleV2)))
-	assert.False(t, core.IsDynamicESDT(uint32(core.SemiFungible)))
-	assert.False(t, core.IsDynamicESDT(uint32(core.MetaFungible)))
+	assert.True(t, core.IsDynamicDCDT(uint32(core.DynamicNFT)))
+	assert.True(t, core.IsDynamicDCDT(uint32(core.DynamicSFT)))
+	assert.True(t, core.IsDynamicDCDT(uint32(core.DynamicMeta)))
+	assert.False(t, core.IsDynamicDCDT(uint32(core.Fungible)))
+	assert.False(t, core.IsDynamicDCDT(uint32(core.NonFungible)))
+	assert.False(t, core.IsDynamicDCDT(uint32(core.NonFungibleV2)))
+	assert.False(t, core.IsDynamicDCDT(uint32(core.SemiFungible)))
+	assert.False(t, core.IsDynamicDCDT(uint32(core.MetaFungible)))
 }

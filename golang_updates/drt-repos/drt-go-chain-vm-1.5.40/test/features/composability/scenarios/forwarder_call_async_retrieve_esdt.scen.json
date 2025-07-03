@@ -11,15 +11,15 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-TOKENA": "1000"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -73,7 +73,7 @@
                     },
                     {
                         "address": "sc:vault",
-                        "endpoint": "str:ESDTTransfer",
+                        "endpoint": "str:DCDTTransfer",
                         "topics": [
                             "str:TEST-TOKENA",
                             "0",
@@ -82,7 +82,7 @@
                         ],
                         "data": [
                             "str:BackTransfer",
-                            "str:ESDTTransfer",
+                            "str:DCDTTransfer",
                             "str:TEST-TOKENA",
                             "1000"
                         ]
@@ -118,16 +118,16 @@
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-TOKENA": "1000"
                     },
                     "storage": "*",
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

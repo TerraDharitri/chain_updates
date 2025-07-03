@@ -6,13 +6,13 @@
             "accounts": {
                 "address:a_user": {},
                 "sc:forwarder": {
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:reference": {
-                    "code": "mxsc:../vault/output/vault-upgrade.mxsc.json"
+                    "code": "drtsc:../vault/output/vault-upgrade.drtsc.json"
                 },
                 "sc:child": {
-                    "code": "mxsc:../vault/output/vault.mxsc.json",
+                    "code": "drtsc:../vault/output/vault.drtsc.json",
                     "owner": "sc:forwarder"
                 }
             }
@@ -40,7 +40,7 @@
             "step": "checkState",
             "accounts": {
                 "sc:child": {
-                    "code": "mxsc:../vault/output/vault-upgrade.mxsc.json",
+                    "code": "drtsc:../vault/output/vault-upgrade.drtsc.json",
                     "codeMetadata": "0x0100"
                 },
                 "+": ""
@@ -56,7 +56,7 @@
                 "function": "upgradeVault",
                 "arguments": [
                     "sc:child",
-                    "mxsc:../vault/output/vault.mxsc.json",
+                    "drtsc:../vault/output/vault.drtsc.json",
                     "str:arg"
                 ],
                 "gasLimit": "500,000,000",
@@ -113,7 +113,7 @@
             "step": "checkState",
             "accounts": {
                 "sc:child": {
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "+": ""
             }

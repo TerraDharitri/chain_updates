@@ -1,6 +1,6 @@
 package data
 
-import "github.com/multiversx/mx-chain-core-go/data/validator"
+import "github.com/TerraDharitri/drt-go-chain-core/data/validator"
 
 // AccountModel defines an account model (with associated information)
 type AccountModel struct {

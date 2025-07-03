@@ -16,7 +16,7 @@
                         "str:balance|address:account_1": "0x2710",
                         "str:totalSupply": "0x2710"
                     },
-                    "code": "mxsc:../output/erc20.mxsc.json"
+                    "code": "drtsc:../output/erc20.drtsc.json"
                 }
             }
         },
@@ -26,7 +26,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "totalSupply",
                 "arguments": [],
                 "gasLimit": "0x100000",
@@ -35,7 +35,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -47,7 +47,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "balanceOf",
                 "arguments": [
                     "address:account_1"
@@ -58,7 +58,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -70,7 +70,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "allowance",
                 "arguments": [
                     "address:account_1",
@@ -82,7 +82,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -94,7 +94,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "transfer",
                 "arguments": [
                     "address:account_1",
@@ -106,7 +106,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -118,7 +118,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "approve",
                 "arguments": [
                     "address:account_1",
@@ -130,7 +130,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -142,7 +142,7 @@
             "tx": {
                 "from": "address:account_1",
                 "to": "sc:erc20",
-                "egldValue": "0x01",
+                "rewaValue": "0x01",
                 "function": "transferFrom",
                 "arguments": [
                     "address:account_1",
@@ -155,7 +155,7 @@
             "expect": {
                 "out": [],
                 "status": "10",
-                "message": "str:function does not accept EGLD payment",
+                "message": "str:function does not accept REWA payment",
                 "logs": "*",
                 "gas": "*",
                 "refund": "*"
@@ -177,7 +177,7 @@
                         "str:balance|address:account_1": "0x2710",
                         "str:totalSupply": "0x2710"
                     },
-                    "code": "mxsc:../output/erc20.mxsc.json"
+                    "code": "drtsc:../output/erc20.drtsc.json"
                 }
             }
         }

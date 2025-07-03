@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // AccountProcessorStub -
@@ -13,13 +13,13 @@ type AccountProcessorStub struct {
 	GetShardIDForAddressCalled              func(address string) (uint32, error)
 	GetTransactionsCalled                   func(address string) ([]data.DatabaseTransaction, error)
 	ValidatorStatisticsCalled               func() (map[string]*data.ValidatorApiResponse, error)
-	GetAllESDTTokensCalled                  func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTTokenDataCalled                  func(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTNftTokenDataCalled               func(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsWithRoleCalled                  func(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetAllDCDTTokensCalled                  func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTTokenDataCalled                  func(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTNftTokenDataCalled               func(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsWithRoleCalled                  func(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetNFTTokenIDsRegisteredByAddressCalled func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetKeyValuePairsCalled                  func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsRolesCalled                     func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsRolesCalled                     func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetCodeHashCalled                       func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetGuardianDataCalled                   func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	IsDataTrieMigratedCalled                func(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
@@ -30,30 +30,30 @@ func (aps *AccountProcessorStub) GetKeyValuePairs(address string, options common
 	return aps.GetKeyValuePairsCalled(address, options)
 }
 
-// GetAllESDTTokens -
-func (aps *AccountProcessorStub) GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return aps.GetAllESDTTokensCalled(address, options)
+// GetAllDCDTTokens -
+func (aps *AccountProcessorStub) GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return aps.GetAllDCDTTokensCalled(address, options)
 }
 
-// GetESDTTokenData -
-func (aps *AccountProcessorStub) GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return aps.GetESDTTokenDataCalled(address, key, options)
+// GetDCDTTokenData -
+func (aps *AccountProcessorStub) GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return aps.GetDCDTTokenDataCalled(address, key, options)
 }
 
-// GetESDTNftTokenData -
-func (aps *AccountProcessorStub) GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return aps.GetESDTNftTokenDataCalled(address, key, nonce, options)
+// GetDCDTNftTokenData -
+func (aps *AccountProcessorStub) GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return aps.GetDCDTNftTokenDataCalled(address, key, nonce, options)
 }
 
-// GetESDTsWithRole -
-func (aps *AccountProcessorStub) GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	return aps.GetESDTsWithRoleCalled(address, role, options)
+// GetDCDTsWithRole -
+func (aps *AccountProcessorStub) GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	return aps.GetDCDTsWithRoleCalled(address, role, options)
 }
 
-// GetESDTsRoles -
-func (aps *AccountProcessorStub) GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-	if aps.GetESDTsRolesCalled != nil {
-		return aps.GetESDTsRolesCalled(address, options)
+// GetDCDTsRoles -
+func (aps *AccountProcessorStub) GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+	if aps.GetDCDTsRolesCalled != nil {
+		return aps.GetDCDTsRolesCalled(address, options)
 	}
 
 	return &data.GenericAPIResponse{}, nil

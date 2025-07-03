@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/alarm"
-	"github.com/multiversx/mx-chain-core-go/core/atomic"
+	"github.com/TerraDharitri/drt-go-chain-core/core/alarm"
+	"github.com/TerraDharitri/drt-go-chain-core/core/atomic"
 	"github.com/stretchr/testify/require"
 )
 

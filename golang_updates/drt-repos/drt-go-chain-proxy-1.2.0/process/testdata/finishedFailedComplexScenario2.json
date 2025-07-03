@@ -13,8 +13,8 @@
         "hash": "SCR-hash1",
         "nonce": 0,
         "value": 5000000000000000000,
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "data": "issueNonFungible@4d79546573744e667464",
         "gasPrice": 1000000000,
         "callType": 1,
@@ -30,10 +30,10 @@
         "callType": 2,
         "returnMessage": "callValue not equals with baseIssuingCost",
         "logs": {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "events": [
             {
-              "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+              "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
               "identifier": "transferValueOnly",
               "topics": [
                 "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw="
@@ -41,7 +41,7 @@
               "data": null
             },
             {
-              "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+              "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
               "identifier": "completedTxEvent",
               "topics": [
                 "Nugi510SGIVupLRZnynNrPWGvz5kgYpnWWdNS4102a8="
@@ -59,7 +59,7 @@
         "gasLimit": 0,
         "gasPrice": 1000000000,
         "callType": 0,
-        "originalSender": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+        "originalSender": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
         "operation": "transfer"
       },
       {
@@ -75,10 +75,10 @@
       }
     ],
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "transferValueOnly",
           "topics": [
             "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw=",
@@ -88,7 +88,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "writeLog",
           "topics": [
             "qfaoGqfadnipWFWCnaJeOiknm8PQtEqI8lHBatO+rNw="
@@ -118,10 +118,10 @@
       "sourceShard": 0,
       "destinationShard": 4294967295,
       "logs": {
-        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+        "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
         "events": [
           {
-            "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+            "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
             "identifier": "signalError",
             "topics": [
               "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw="
@@ -144,10 +144,10 @@
       "nonce": 0,
       "gasLimit": 5828600,
       "logs": {
-        "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "events": [
           {
-            "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+            "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
             "identifier": "transferValueOnly",
             "topics": [
               "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw="
@@ -155,7 +155,7 @@
             "data": null
           },
           {
-            "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+            "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
             "identifier": "completedTxEvent",
             "topics": [
               "Nugi510SGIVupLRZnynNrPWGvz5kgYpnWWdNS4102a8="

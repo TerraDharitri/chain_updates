@@ -1,8 +1,8 @@
 package process
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // StatusProcessor is able to process status requests

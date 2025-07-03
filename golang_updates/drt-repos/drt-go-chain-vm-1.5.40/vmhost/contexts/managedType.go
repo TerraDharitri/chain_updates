@@ -9,12 +9,12 @@ import (
 	basicMath "math"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var logMTypes = logger.GetOrCreate("vm/mtypes")
@@ -62,7 +62,7 @@ type managedTypesContext struct {
 
 // structure for transfers where scA call scB and scB makes transfers without execution to scA
 type backTransfers struct {
-	ESDTTransfers []*vmcommon.ESDTTransfer
+	DCDTTransfers []*vmcommon.DCDTTransfer
 	CallValue     *big.Int
 }
 
@@ -90,7 +90,7 @@ func NewManagedTypesContext(host vmhost.VMHost) (*managedTypesContext, error) {
 			mBufferValues:  make(managedBufferMap),
 			mMapValues:     make(managedMapMap),
 			backTransfers: backTransfers{
-				ESDTTransfers: make([]*vmcommon.ESDTTransfer, 0),
+				DCDTTransfers: make([]*vmcommon.DCDTTransfer, 0),
 				CallValue:     big.NewInt(0),
 			},
 		},
@@ -131,7 +131,7 @@ func (context *managedTypesContext) InitState() {
 		mBufferValues:  make(managedBufferMap),
 		mMapValues:     make(managedMapMap),
 		backTransfers: backTransfers{
-			ESDTTransfers: make([]*vmcommon.ESDTTransfer, 0),
+			DCDTTransfers: make([]*vmcommon.DCDTTransfer, 0),
 			CallValue:     big.NewInt(0),
 		},
 	}
@@ -833,8 +833,8 @@ func (context *managedTypesContext) getKeyValueFromManagedMap(mMapHandle int32, 
 }
 
 // AddBackTransfers add transfers to back transfers structure
-func (context *managedTypesContext) AddBackTransfers(transfers []*vmcommon.ESDTTransfer) {
-	context.managedTypesValues.backTransfers.ESDTTransfers = append(context.managedTypesValues.backTransfers.ESDTTransfers, transfers...)
+func (context *managedTypesContext) AddBackTransfers(transfers []*vmcommon.DCDTTransfer) {
+	context.managedTypesValues.backTransfers.DCDTTransfers = append(context.managedTypesValues.backTransfers.DCDTTransfers, transfers...)
 }
 
 // AddValueOnlyBackTransfer add to back transfer value
@@ -842,29 +842,29 @@ func (context *managedTypesContext) AddValueOnlyBackTransfer(value *big.Int) {
 	context.managedTypesValues.backTransfers.CallValue.Add(context.managedTypesValues.backTransfers.CallValue, value)
 }
 
-// GetBackTransfers returns all ESDT transfers and accumulated value as well, will clean accumulated values
-func (context *managedTypesContext) GetBackTransfers() ([]*vmcommon.ESDTTransfer, *big.Int) {
+// GetBackTransfers returns all DCDT transfers and accumulated value as well, will clean accumulated values
+func (context *managedTypesContext) GetBackTransfers() ([]*vmcommon.DCDTTransfer, *big.Int) {
 	clonedTransfers := cloneBackTransfers(context.managedTypesValues.backTransfers)
 	context.managedTypesValues.backTransfers = backTransfers{
-		ESDTTransfers: make([]*vmcommon.ESDTTransfer, 0),
+		DCDTTransfers: make([]*vmcommon.DCDTTransfer, 0),
 		CallValue:     big.NewInt(0),
 	}
 
-	return clonedTransfers.ESDTTransfers, clonedTransfers.CallValue
+	return clonedTransfers.DCDTTransfers, clonedTransfers.CallValue
 }
 
 func cloneBackTransfers(currentBackTransfers backTransfers) backTransfers {
 	newBackTransfers := backTransfers{
-		ESDTTransfers: make([]*vmcommon.ESDTTransfer, len(currentBackTransfers.ESDTTransfers)),
+		DCDTTransfers: make([]*vmcommon.DCDTTransfer, len(currentBackTransfers.DCDTTransfers)),
 		CallValue:     big.NewInt(0).Set(currentBackTransfers.CallValue),
 	}
 
-	for index, transfer := range currentBackTransfers.ESDTTransfers {
-		newBackTransfers.ESDTTransfers[index] = &vmcommon.ESDTTransfer{
-			ESDTValue:      big.NewInt(0).Set(transfer.ESDTValue),
-			ESDTTokenName:  transfer.ESDTTokenName,
-			ESDTTokenType:  transfer.ESDTTokenType,
-			ESDTTokenNonce: transfer.ESDTTokenNonce,
+	for index, transfer := range currentBackTransfers.DCDTTransfers {
+		newBackTransfers.DCDTTransfers[index] = &vmcommon.DCDTTransfer{
+			DCDTValue:      big.NewInt(0).Set(transfer.DCDTValue),
+			DCDTTokenName:  transfer.DCDTTokenName,
+			DCDTTokenType:  transfer.DCDTTokenType,
+			DCDTTokenNonce: transfer.DCDTTokenNonce,
 		}
 	}
 

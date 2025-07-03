@@ -1,6 +1,6 @@
 package cache
 
-import "github.com/multiversx/mx-chain-proxy-go/data"
+import "github.com/TerraDharitri/drt-go-chain-proxy/data"
 
 func (hmc *HeartbeatMemoryCacher) GetStoredHbts() []data.PubKeyHeartbeat {
 	hmc.mutHeartbeats.RLock()

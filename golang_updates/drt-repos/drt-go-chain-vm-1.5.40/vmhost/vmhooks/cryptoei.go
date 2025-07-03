@@ -3,10 +3,10 @@ package vmhooks
 import (
 	"crypto/elliptic"
 
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing/secp256"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing/secp256"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 const blsPublicKeyLength = 96

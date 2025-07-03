@@ -1,5 +1,5 @@
-#include "../mxvm/context.h"
-#include "../mxvm/bigInt.h"
+#include "../drtvm/context.h"
+#include "../drtvm/bigInt.h"
 
 // global data used in functions, will be statically allocated to WebAssembly memory
 byte sender[32]        = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};

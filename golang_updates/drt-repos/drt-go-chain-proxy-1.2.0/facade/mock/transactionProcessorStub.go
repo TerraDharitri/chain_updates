@@ -4,8 +4,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 var errNotImplemented = errors.New("not implemented")

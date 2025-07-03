@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/api/shared"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 )
 
 type networkGroup struct {
@@ -31,11 +31,11 @@ func NewNetworkGroup(facadeHandler data.FacadeHandler) (*networkGroup, error) {
 		{Path: "/status/:shard", Handler: ng.getNetworkStatusData, Method: http.MethodGet},
 		{Path: "/config", Handler: ng.getNetworkConfigData, Method: http.MethodGet},
 		{Path: "/economics", Handler: ng.getEconomicsData, Method: http.MethodGet},
-		{Path: "/esdts", Handler: ng.getEsdts, Method: http.MethodGet},
-		{Path: "/esdt/fungible-tokens", Handler: ng.getEsdtHandlerFunc(data.FungibleTokens), Method: http.MethodGet},
-		{Path: "/esdt/semi-fungible-tokens", Handler: ng.getEsdtHandlerFunc(data.SemiFungibleTokens), Method: http.MethodGet},
-		{Path: "/esdt/non-fungible-tokens", Handler: ng.getEsdtHandlerFunc(data.NonFungibleTokens), Method: http.MethodGet},
-		{Path: "/esdt/supply/:token", Handler: ng.getESDTSupply, Method: http.MethodGet},
+		{Path: "/dcdts", Handler: ng.getDcdts, Method: http.MethodGet},
+		{Path: "/dcdt/fungible-tokens", Handler: ng.getDcdtHandlerFunc(data.FungibleTokens), Method: http.MethodGet},
+		{Path: "/dcdt/semi-fungible-tokens", Handler: ng.getDcdtHandlerFunc(data.SemiFungibleTokens), Method: http.MethodGet},
+		{Path: "/dcdt/non-fungible-tokens", Handler: ng.getDcdtHandlerFunc(data.NonFungibleTokens), Method: http.MethodGet},
+		{Path: "/dcdt/supply/:token", Handler: ng.getDCDTSupply, Method: http.MethodGet},
 		{Path: "/enable-epochs", Handler: ng.getEnableEpochs, Method: http.MethodGet},
 		{Path: "/direct-staked-info", Handler: ng.getDirectStakedInfo, Method: http.MethodGet},
 		{Path: "/delegated-info", Handler: ng.getDelegatedInfo, Method: http.MethodGet},
@@ -89,9 +89,9 @@ func (group *networkGroup) getEconomicsData(c *gin.Context) {
 	c.JSON(http.StatusOK, economicsData)
 }
 
-func (group *networkGroup) getEsdtHandlerFunc(tokenType string) func(c *gin.Context) {
+func (group *networkGroup) getDcdtHandlerFunc(tokenType string) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		tokens, err := group.facade.GetAllIssuedESDTs(tokenType)
+		tokens, err := group.facade.GetAllIssuedDCDTs(tokenType)
 		if err != nil {
 			shared.RespondWith(c, http.StatusInternalServerError, nil, err.Error(), data.ReturnCodeInternalError)
 			return
@@ -123,15 +123,15 @@ func (group *networkGroup) getDelegatedInfo(c *gin.Context) {
 	c.JSON(http.StatusOK, delegatedInfo)
 }
 
-// getEsdts will expose all the issued ESDTs
-func (group *networkGroup) getEsdts(c *gin.Context) {
-	allIssuedESDTs, err := group.facade.GetAllIssuedESDTs("")
+// getDcdts will expose all the issued DCDTs
+func (group *networkGroup) getDcdts(c *gin.Context) {
+	allIssuedDCDTs, err := group.facade.GetAllIssuedDCDTs("")
 	if err != nil {
 		shared.RespondWith(c, http.StatusInternalServerError, nil, err.Error(), data.ReturnCodeInternalError)
 		return
 	}
 
-	c.JSON(http.StatusOK, allIssuedESDTs)
+	c.JSON(http.StatusOK, allIssuedDCDTs)
 }
 
 func (group *networkGroup) getEnableEpochs(c *gin.Context) {
@@ -144,26 +144,26 @@ func (group *networkGroup) getEnableEpochs(c *gin.Context) {
 	c.JSON(http.StatusOK, enableEpochsMetrics)
 }
 
-func (group *networkGroup) getESDTSupply(c *gin.Context) {
+func (group *networkGroup) getDCDTSupply(c *gin.Context) {
 	tokenIdentifier := c.Param("token")
 	if tokenIdentifier == "" {
 		shared.RespondWith(
 			c,
 			http.StatusBadRequest,
 			nil,
-			fmt.Sprintf("%s: %s", errors.ErrGetESDTTokenData.Error(), errors.ErrEmptyTokenIdentifier.Error()),
+			fmt.Sprintf("%s: %s", errors.ErrGetDCDTTokenData.Error(), errors.ErrEmptyTokenIdentifier.Error()),
 			data.ReturnCodeRequestError,
 		)
 		return
 	}
 
-	esdtSupply, err := group.facade.GetESDTSupply(tokenIdentifier)
+	dcdtSupply, err := group.facade.GetDCDTSupply(tokenIdentifier)
 	if err != nil {
 		shared.RespondWith(c, http.StatusInternalServerError, nil, err.Error(), data.ReturnCodeInternalError)
 		return
 	}
 
-	c.JSON(http.StatusOK, esdtSupply)
+	c.JSON(http.StatusOK, dcdtSupply)
 }
 
 // getRatingsConfig will expose the ratings configuration

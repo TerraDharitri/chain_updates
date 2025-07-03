@@ -8,12 +8,12 @@
                 "sc:caller": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "sc:to-be-called": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",
@@ -72,13 +72,13 @@
                     "storage": {
                         "str:contract_address": "sc:to-be-called"
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "sc:to-be-called": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": "*",
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",

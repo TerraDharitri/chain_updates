@@ -7,7 +7,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -16,11 +16,11 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint"
+                                "DCDTRoleLocalMint"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -33,7 +33,7 @@
                 "function": "forward_async_call",
                 "arguments": [
                     "sc:forwarder",
-                    "str:ESDTLocalMint",
+                    "str:DCDTLocalMint",
                     "str:FUNG-0001",
                     "1200"
                 ],
@@ -46,7 +46,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTLocalMint",
+                        "endpoint": "str:DCDTLocalMint",
                         "topics": [
                             "str:FUNG-0001",
                             "0",
@@ -91,7 +91,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -100,7 +100,7 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalMint"
+                                "DCDTRoleLocalMint"
                             ]
                         }
                     },
@@ -108,7 +108,7 @@
                         "str:callback_args.len": "1",
                         "str:callback_args.item|u32:01": "nested:0x00"
                     },
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         }

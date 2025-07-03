@@ -3,7 +3,7 @@ package core
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 	"github.com/stretchr/testify/require"
 )
 

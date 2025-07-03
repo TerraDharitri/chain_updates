@@ -3,9 +3,9 @@ package contexts
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 func (context *asyncContext) sendAsyncCallCrossShard(asyncCall *vmhost.AsyncCall) error {

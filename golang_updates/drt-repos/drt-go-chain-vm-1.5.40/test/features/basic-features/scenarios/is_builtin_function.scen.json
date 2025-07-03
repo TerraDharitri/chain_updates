@@ -6,7 +6,7 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json",
+                    "code": "drtsc:../output/basic-features.drtsc.json",
                     "codeMetadata": "0x0104"
                 },
                 "address:an_account": {
@@ -23,7 +23,7 @@
                 "to": "sc:basic-features",
                 "function": "is_builtin_function",
                 "arguments": [
-                    "str:ESDTTransfer"
+                    "str:DCDTTransfer"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"

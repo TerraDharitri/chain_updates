@@ -37,7 +37,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/epochStart/metachain"
 	"github.com/TerraDharitri/drt-go-chain/epochStart/notifier"
 	"github.com/TerraDharitri/drt-go-chain/epochStart/shardchain"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	mainFactory "github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/factory/disabled"
@@ -797,7 +797,7 @@ func (pcf *processComponentsFactory) newValidatorStatisticsProcessor() (process.
 
 	genesisHeader := pcf.data.Blockchain().GetGenesisHeader()
 	if check.IfNil(genesisHeader) {
-		return nil, errorsMx.ErrGenesisBlockNotInitialized
+		return nil, errorsDrt.ErrGenesisBlockNotInitialized
 	}
 
 	arguments := peer.ArgValidatorStatisticsProcessor{
@@ -869,7 +869,7 @@ func (pcf *processComponentsFactory) newEpochStartTrigger(requestHandler epochSt
 	if shardCoordinator.SelfId() == core.MetachainShardId {
 		genesisHeader := pcf.data.Blockchain().GetGenesisHeader()
 		if check.IfNil(genesisHeader) {
-			return nil, errorsMx.ErrGenesisBlockNotInitialized
+			return nil, errorsDrt.ErrGenesisBlockNotInitialized
 		}
 
 		argEpochStart := &metachain.ArgsNewMetaEpochStartTrigger{
@@ -1956,91 +1956,91 @@ func createCache(cacheConfig config.CacheConfig) (storage.Cacher, error) {
 func checkProcessComponentsArgs(args ProcessComponentsFactoryArgs) error {
 	baseErrMessage := "error creating process components"
 	if check.IfNil(args.AccountsParser) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilAccountsParser)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilAccountsParser)
 	}
 	if check.IfNil(args.GasSchedule) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilGasSchedule)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilGasSchedule)
 	}
 	if check.IfNil(args.Data) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilDataComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilDataComponentsHolder)
 	}
 	if check.IfNil(args.Data.Blockchain()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilBlockChainHandler)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilBlockChainHandler)
 	}
 	if check.IfNil(args.Data.Datapool()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilDataPoolsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilDataPoolsHolder)
 	}
 	if check.IfNil(args.Data.StorageService()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilStorageService)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilStorageService)
 	}
 	if check.IfNil(args.CoreData) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilCoreComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilCoreComponentsHolder)
 	}
 	if check.IfNil(args.CoreData.EconomicsData()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilEconomicsData)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilEconomicsData)
 	}
 	if check.IfNil(args.CoreData.GenesisNodesSetup()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilGenesisNodesSetupHandler)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilGenesisNodesSetupHandler)
 	}
 	if check.IfNil(args.CoreData.AddressPubKeyConverter()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilAddressPublicKeyConverter)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilAddressPublicKeyConverter)
 	}
 	if check.IfNil(args.CoreData.EpochNotifier()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilEpochNotifier)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilEpochNotifier)
 	}
 	if check.IfNil(args.CoreData.ValidatorPubKeyConverter()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilPubKeyConverter)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilPubKeyConverter)
 	}
 	if check.IfNil(args.CoreData.InternalMarshalizer()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilInternalMarshalizer)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilInternalMarshalizer)
 	}
 	if check.IfNil(args.CoreData.Uint64ByteSliceConverter()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilUint64ByteSliceConverter)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilUint64ByteSliceConverter)
 	}
 	if check.IfNil(args.Crypto) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilCryptoComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilCryptoComponentsHolder)
 	}
 	if check.IfNil(args.Crypto.BlockSignKeyGen()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilBlockSignKeyGen)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilBlockSignKeyGen)
 	}
 	if check.IfNil(args.State) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilStateComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilStateComponentsHolder)
 	}
 	if check.IfNil(args.State.AccountsAdapter()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilAccountsAdapter)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilAccountsAdapter)
 	}
 	if check.IfNil(args.Network) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilNetworkComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilNetworkComponentsHolder)
 	}
 	if check.IfNil(args.Network.NetworkMessenger()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilMessenger)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilMessenger)
 	}
 	if check.IfNil(args.Network.InputAntiFloodHandler()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilInputAntiFloodHandler)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilInputAntiFloodHandler)
 	}
 	if args.SystemSCConfig == nil {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilSystemSCConfig)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilSystemSCConfig)
 	}
 	if check.IfNil(args.BootstrapComponents) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilBootstrapComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilBootstrapComponentsHolder)
 	}
 	if check.IfNil(args.BootstrapComponents.ShardCoordinator()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilShardCoordinator)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilShardCoordinator)
 	}
 	if check.IfNil(args.BootstrapComponents.EpochBootstrapParams()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilBootstrapParamsHandler)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilBootstrapParamsHandler)
 	}
 	if check.IfNil(args.StatusComponents) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilStatusComponentsHolder)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilStatusComponentsHolder)
 	}
 	if check.IfNil(args.StatusComponents.OutportHandler()) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilOutportHandler)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilOutportHandler)
 	}
 	if check.IfNil(args.HistoryRepo) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilHistoryRepository)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilHistoryRepository)
 	}
 	if check.IfNil(args.StatusCoreComponents) {
-		return fmt.Errorf("%s: %w", baseErrMessage, errorsMx.ErrNilStatusCoreComponents)
+		return fmt.Errorf("%s: %w", baseErrMessage, errorsDrt.ErrNilStatusCoreComponents)
 	}
 	if check.IfNil(args.TxExecutionOrderHandler) {
 		return fmt.Errorf("%s: %w", baseErrMessage, process.ErrNilTxExecutionOrderHandler)

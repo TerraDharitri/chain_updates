@@ -16,8 +16,8 @@ func TestCallType_ToString(t *testing.T) {
 	callType = AsynchronousCallBack
 	require.Equal(t, AsynchronousCallBackStr, callType.ToString())
 
-	callType = ESDTTransferAndExecute
-	require.Equal(t, ESDTTransferAndExecuteStr, callType.ToString())
+	callType = DCDTTransferAndExecute
+	require.Equal(t, DCDTTransferAndExecuteStr, callType.ToString())
 
 	callType = ExecOnDestByCaller
 	require.Equal(t, ExecOnDestByCallerStr, callType.ToString())

@@ -19,18 +19,18 @@ package wasmer2
 // extern void      w2_signalError(void* context, int32_t messageOffset, int32_t messageLength);
 // extern void      w2_getExternalBalance(void* context, int32_t addressOffset, int32_t resultOffset);
 // extern int32_t   w2_getBlockHash(void* context, long long nonce, int32_t resultOffset);
-// extern int32_t   w2_getESDTBalance(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t resultOffset);
-// extern int32_t   w2_getESDTNFTNameLength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
-// extern int32_t   w2_getESDTNFTAttributeLength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
-// extern int32_t   w2_getESDTNFTURILength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
-// extern int32_t   w2_getESDTTokenData(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t valueHandle, int32_t propertiesOffset, int32_t hashOffset, int32_t nameOffset, int32_t attributesOffset, int32_t creatorOffset, int32_t royaltiesHandle, int32_t urisOffset);
-// extern long long w2_getESDTLocalRoles(void* context, int32_t tokenIdHandle);
+// extern int32_t   w2_getDCDTBalance(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t resultOffset);
+// extern int32_t   w2_getDCDTNFTNameLength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
+// extern int32_t   w2_getDCDTNFTAttributeLength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
+// extern int32_t   w2_getDCDTNFTURILength(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce);
+// extern int32_t   w2_getDCDTTokenData(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t valueHandle, int32_t propertiesOffset, int32_t hashOffset, int32_t nameOffset, int32_t attributesOffset, int32_t creatorOffset, int32_t royaltiesHandle, int32_t urisOffset);
+// extern long long w2_getDCDTLocalRoles(void* context, int32_t tokenIdHandle);
 // extern int32_t   w2_validateTokenIdentifier(void* context, int32_t tokenIdHandle);
 // extern int32_t   w2_transferValue(void* context, int32_t destOffset, int32_t valueOffset, int32_t dataOffset, int32_t length);
 // extern int32_t   w2_transferValueExecute(void* context, int32_t destOffset, int32_t valueOffset, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
-// extern int32_t   w2_transferESDTExecute(void* context, int32_t destOffset, int32_t tokenIDOffset, int32_t tokenIDLen, int32_t valueOffset, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
-// extern int32_t   w2_transferESDTNFTExecute(void* context, int32_t destOffset, int32_t tokenIDOffset, int32_t tokenIDLen, int32_t valueOffset, long long nonce, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
-// extern int32_t   w2_multiTransferESDTNFTExecute(void* context, int32_t destOffset, int32_t numTokenTransfers, int32_t tokenTransfersArgsLengthOffset, int32_t tokenTransferDataOffset, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
+// extern int32_t   w2_transferDCDTExecute(void* context, int32_t destOffset, int32_t tokenIDOffset, int32_t tokenIDLen, int32_t valueOffset, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
+// extern int32_t   w2_transferDCDTNFTExecute(void* context, int32_t destOffset, int32_t tokenIDOffset, int32_t tokenIDLen, int32_t valueOffset, long long nonce, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
+// extern int32_t   w2_multiTransferDCDTNFTExecute(void* context, int32_t destOffset, int32_t numTokenTransfers, int32_t tokenTransfersArgsLengthOffset, int32_t tokenTransferDataOffset, long long gasLimit, int32_t functionOffset, int32_t functionLength, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
 // extern int32_t   w2_createAsyncCall(void* context, int32_t destOffset, int32_t valueOffset, int32_t dataOffset, int32_t dataLength, int32_t successOffset, int32_t successLength, int32_t errorOffset, int32_t errorLength, long long gas, long long extraGasForCallback);
 // extern int32_t   w2_setAsyncContextCallback(void* context, int32_t callback, int32_t callbackLength, int32_t data, int32_t dataLength, long long gas);
 // extern void      w2_upgradeContract(void* context, int32_t destOffset, long long gasLimit, int32_t valueOffset, int32_t codeOffset, int32_t codeMetadataOffset, int32_t length, int32_t numArguments, int32_t argumentsLengthOffset, int32_t dataOffset);
@@ -52,16 +52,16 @@ package wasmer2
 // extern void      w2_getCaller(void* context, int32_t resultOffset);
 // extern void      w2_checkNoPayment(void* context);
 // extern int32_t   w2_getCallValue(void* context, int32_t resultOffset);
-// extern int32_t   w2_getESDTValue(void* context, int32_t resultOffset);
-// extern int32_t   w2_getESDTValueByIndex(void* context, int32_t resultOffset, int32_t index);
-// extern int32_t   w2_getESDTTokenName(void* context, int32_t resultOffset);
-// extern int32_t   w2_getESDTTokenNameByIndex(void* context, int32_t resultOffset, int32_t index);
-// extern long long w2_getESDTTokenNonce(void* context);
-// extern long long w2_getESDTTokenNonceByIndex(void* context, int32_t index);
-// extern long long w2_getCurrentESDTNFTNonce(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen);
-// extern int32_t   w2_getESDTTokenType(void* context);
-// extern int32_t   w2_getESDTTokenTypeByIndex(void* context, int32_t index);
-// extern int32_t   w2_getNumESDTTransfers(void* context);
+// extern int32_t   w2_getDCDTValue(void* context, int32_t resultOffset);
+// extern int32_t   w2_getDCDTValueByIndex(void* context, int32_t resultOffset, int32_t index);
+// extern int32_t   w2_getDCDTTokenName(void* context, int32_t resultOffset);
+// extern int32_t   w2_getDCDTTokenNameByIndex(void* context, int32_t resultOffset, int32_t index);
+// extern long long w2_getDCDTTokenNonce(void* context);
+// extern long long w2_getDCDTTokenNonceByIndex(void* context, int32_t index);
+// extern long long w2_getCurrentDCDTNFTNonce(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen);
+// extern int32_t   w2_getDCDTTokenType(void* context);
+// extern int32_t   w2_getDCDTTokenTypeByIndex(void* context, int32_t index);
+// extern int32_t   w2_getNumDCDTTransfers(void* context);
 // extern int32_t   w2_getCallValueTokenName(void* context, int32_t callValueOffset, int32_t tokenNameOffset);
 // extern int32_t   w2_getCallValueTokenNameByIndex(void* context, int32_t callValueOffset, int32_t tokenNameOffset, int32_t index);
 // extern int32_t   w2_isReservedFunctionName(void* context, int32_t nameHandle);
@@ -104,10 +104,10 @@ package wasmer2
 // extern void      w2_managedGetBlockRandomSeed(void* context, int32_t resultHandle);
 // extern void      w2_managedGetPrevBlockRandomSeed(void* context, int32_t resultHandle);
 // extern void      w2_managedGetReturnData(void* context, int32_t resultID, int32_t resultHandle);
-// extern void      w2_managedGetMultiESDTCallValue(void* context, int32_t multiCallValueHandle);
-// extern void      w2_managedGetBackTransfers(void* context, int32_t esdtTransfersValueHandle, int32_t egldValueHandle);
-// extern void      w2_managedGetESDTBalance(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce, int32_t valueHandle);
-// extern void      w2_managedGetESDTTokenData(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce, int32_t valueHandle, int32_t propertiesHandle, int32_t hashHandle, int32_t nameHandle, int32_t attributesHandle, int32_t creatorHandle, int32_t royaltiesHandle, int32_t urisHandle);
+// extern void      w2_managedGetMultiDCDTCallValue(void* context, int32_t multiCallValueHandle);
+// extern void      w2_managedGetBackTransfers(void* context, int32_t dcdtTransfersValueHandle, int32_t rewaValueHandle);
+// extern void      w2_managedGetDCDTBalance(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce, int32_t valueHandle);
+// extern void      w2_managedGetDCDTTokenData(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce, int32_t valueHandle, int32_t propertiesHandle, int32_t hashHandle, int32_t nameHandle, int32_t attributesHandle, int32_t creatorHandle, int32_t royaltiesHandle, int32_t urisHandle);
 // extern void      w2_managedAsyncCall(void* context, int32_t destHandle, int32_t valueHandle, int32_t functionHandle, int32_t argumentsHandle);
 // extern int32_t   w2_managedCreateAsyncCall(void* context, int32_t destHandle, int32_t valueHandle, int32_t functionHandle, int32_t argumentsHandle, int32_t successOffset, int32_t successLength, int32_t errorOffset, int32_t errorLength, long long gas, long long extraGasForCallback, int32_t callbackClosureHandle);
 // extern void      w2_managedGetCallbackClosure(void* context, int32_t callbackClosureHandle);
@@ -119,12 +119,12 @@ package wasmer2
 // extern int32_t   w2_managedExecuteReadOnly(void* context, long long gas, int32_t addressHandle, int32_t functionHandle, int32_t argumentsHandle, int32_t resultHandle);
 // extern int32_t   w2_managedExecuteOnSameContext(void* context, long long gas, int32_t addressHandle, int32_t valueHandle, int32_t functionHandle, int32_t argumentsHandle, int32_t resultHandle);
 // extern int32_t   w2_managedExecuteOnDestContext(void* context, long long gas, int32_t addressHandle, int32_t valueHandle, int32_t functionHandle, int32_t argumentsHandle, int32_t resultHandle);
-// extern int32_t   w2_managedMultiTransferESDTNFTExecute(void* context, int32_t dstHandle, int32_t tokenTransfersHandle, long long gasLimit, int32_t functionHandle, int32_t argumentsHandle);
-// extern int32_t   w2_managedMultiTransferESDTNFTExecuteByUser(void* context, int32_t userHandle, int32_t dstHandle, int32_t tokenTransfersHandle, long long gasLimit, int32_t functionHandle, int32_t argumentsHandle);
+// extern int32_t   w2_managedMultiTransferDCDTNFTExecute(void* context, int32_t dstHandle, int32_t tokenTransfersHandle, long long gasLimit, int32_t functionHandle, int32_t argumentsHandle);
+// extern int32_t   w2_managedMultiTransferDCDTNFTExecuteByUser(void* context, int32_t userHandle, int32_t dstHandle, int32_t tokenTransfersHandle, long long gasLimit, int32_t functionHandle, int32_t argumentsHandle);
 // extern int32_t   w2_managedTransferValueExecute(void* context, int32_t dstHandle, int32_t valueHandle, long long gasLimit, int32_t functionHandle, int32_t argumentsHandle);
-// extern int32_t   w2_managedIsESDTFrozen(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce);
-// extern int32_t   w2_managedIsESDTLimitedTransfer(void* context, int32_t tokenIDHandle);
-// extern int32_t   w2_managedIsESDTPaused(void* context, int32_t tokenIDHandle);
+// extern int32_t   w2_managedIsDCDTFrozen(void* context, int32_t addressHandle, int32_t tokenIDHandle, long long nonce);
+// extern int32_t   w2_managedIsDCDTLimitedTransfer(void* context, int32_t tokenIDHandle);
+// extern int32_t   w2_managedIsDCDTPaused(void* context, int32_t tokenIDHandle);
 // extern void      w2_managedBufferToHex(void* context, int32_t sourceHandle, int32_t destHandle);
 // extern void      w2_managedGetCodeMetadata(void* context, int32_t addressHandle, int32_t responseHandle);
 // extern int32_t   w2_managedIsBuiltinFunction(void* context, int32_t functionNameHandle);
@@ -155,10 +155,10 @@ package wasmer2
 // extern int32_t   w2_bigIntStorageStoreUnsigned(void* context, int32_t keyOffset, int32_t keyLength, int32_t sourceHandle);
 // extern int32_t   w2_bigIntStorageLoadUnsigned(void* context, int32_t keyOffset, int32_t keyLength, int32_t destinationHandle);
 // extern void      w2_bigIntGetCallValue(void* context, int32_t destinationHandle);
-// extern void      w2_bigIntGetESDTCallValue(void* context, int32_t destination);
-// extern void      w2_bigIntGetESDTCallValueByIndex(void* context, int32_t destinationHandle, int32_t index);
+// extern void      w2_bigIntGetDCDTCallValue(void* context, int32_t destination);
+// extern void      w2_bigIntGetDCDTCallValueByIndex(void* context, int32_t destinationHandle, int32_t index);
 // extern void      w2_bigIntGetExternalBalance(void* context, int32_t addressOffset, int32_t result);
-// extern void      w2_bigIntGetESDTExternalBalance(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t resultHandle);
+// extern void      w2_bigIntGetDCDTExternalBalance(void* context, int32_t addressOffset, int32_t tokenIDOffset, int32_t tokenIDLen, long long nonce, int32_t resultHandle);
 // extern int32_t   w2_bigIntNew(void* context, long long smallValue);
 // extern int32_t   w2_bigIntUnsignedByteLength(void* context, int32_t referenceHandle);
 // extern int32_t   w2_bigIntSignedByteLength(void* context, int32_t referenceHandle);
@@ -278,7 +278,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // populateCgoFunctionPointers populates imports with the BaseOpsAPI API methods
@@ -292,18 +292,18 @@ func populateCgoFunctionPointers() *cWasmerVmHookPointers {
 		signal_error_func_ptr:                                    funcPointer(C.w2_signalError),
 		get_external_balance_func_ptr:                            funcPointer(C.w2_getExternalBalance),
 		get_block_hash_func_ptr:                                  funcPointer(C.w2_getBlockHash),
-		get_esdt_balance_func_ptr:                                funcPointer(C.w2_getESDTBalance),
-		get_esdt_nft_name_length_func_ptr:                        funcPointer(C.w2_getESDTNFTNameLength),
-		get_esdt_nft_attribute_length_func_ptr:                   funcPointer(C.w2_getESDTNFTAttributeLength),
-		get_esdt_nft_uri_length_func_ptr:                         funcPointer(C.w2_getESDTNFTURILength),
-		get_esdt_token_data_func_ptr:                             funcPointer(C.w2_getESDTTokenData),
-		get_esdt_local_roles_func_ptr:                            funcPointer(C.w2_getESDTLocalRoles),
+		get_dcdt_balance_func_ptr:                                funcPointer(C.w2_getDCDTBalance),
+		get_dcdt_nft_name_length_func_ptr:                        funcPointer(C.w2_getDCDTNFTNameLength),
+		get_dcdt_nft_attribute_length_func_ptr:                   funcPointer(C.w2_getDCDTNFTAttributeLength),
+		get_dcdt_nft_uri_length_func_ptr:                         funcPointer(C.w2_getDCDTNFTURILength),
+		get_dcdt_token_data_func_ptr:                             funcPointer(C.w2_getDCDTTokenData),
+		get_dcdt_local_roles_func_ptr:                            funcPointer(C.w2_getDCDTLocalRoles),
 		validate_token_identifier_func_ptr:                       funcPointer(C.w2_validateTokenIdentifier),
 		transfer_value_func_ptr:                                  funcPointer(C.w2_transferValue),
 		transfer_value_execute_func_ptr:                          funcPointer(C.w2_transferValueExecute),
-		transfer_esdt_execute_func_ptr:                           funcPointer(C.w2_transferESDTExecute),
-		transfer_esdt_nft_execute_func_ptr:                       funcPointer(C.w2_transferESDTNFTExecute),
-		multi_transfer_esdt_nft_execute_func_ptr:                 funcPointer(C.w2_multiTransferESDTNFTExecute),
+		transfer_dcdt_execute_func_ptr:                           funcPointer(C.w2_transferDCDTExecute),
+		transfer_dcdt_nft_execute_func_ptr:                       funcPointer(C.w2_transferDCDTNFTExecute),
+		multi_transfer_dcdt_nft_execute_func_ptr:                 funcPointer(C.w2_multiTransferDCDTNFTExecute),
 		create_async_call_func_ptr:                               funcPointer(C.w2_createAsyncCall),
 		set_async_context_callback_func_ptr:                      funcPointer(C.w2_setAsyncContextCallback),
 		upgrade_contract_func_ptr:                                funcPointer(C.w2_upgradeContract),
@@ -325,16 +325,16 @@ func populateCgoFunctionPointers() *cWasmerVmHookPointers {
 		get_caller_func_ptr:                                      funcPointer(C.w2_getCaller),
 		check_no_payment_func_ptr:                                funcPointer(C.w2_checkNoPayment),
 		get_call_value_func_ptr:                                  funcPointer(C.w2_getCallValue),
-		get_esdt_value_func_ptr:                                  funcPointer(C.w2_getESDTValue),
-		get_esdt_value_by_index_func_ptr:                         funcPointer(C.w2_getESDTValueByIndex),
-		get_esdt_token_name_func_ptr:                             funcPointer(C.w2_getESDTTokenName),
-		get_esdt_token_name_by_index_func_ptr:                    funcPointer(C.w2_getESDTTokenNameByIndex),
-		get_esdt_token_nonce_func_ptr:                            funcPointer(C.w2_getESDTTokenNonce),
-		get_esdt_token_nonce_by_index_func_ptr:                   funcPointer(C.w2_getESDTTokenNonceByIndex),
-		get_current_esdt_nft_nonce_func_ptr:                      funcPointer(C.w2_getCurrentESDTNFTNonce),
-		get_esdt_token_type_func_ptr:                             funcPointer(C.w2_getESDTTokenType),
-		get_esdt_token_type_by_index_func_ptr:                    funcPointer(C.w2_getESDTTokenTypeByIndex),
-		get_num_esdt_transfers_func_ptr:                          funcPointer(C.w2_getNumESDTTransfers),
+		get_dcdt_value_func_ptr:                                  funcPointer(C.w2_getDCDTValue),
+		get_dcdt_value_by_index_func_ptr:                         funcPointer(C.w2_getDCDTValueByIndex),
+		get_dcdt_token_name_func_ptr:                             funcPointer(C.w2_getDCDTTokenName),
+		get_dcdt_token_name_by_index_func_ptr:                    funcPointer(C.w2_getDCDTTokenNameByIndex),
+		get_dcdt_token_nonce_func_ptr:                            funcPointer(C.w2_getDCDTTokenNonce),
+		get_dcdt_token_nonce_by_index_func_ptr:                   funcPointer(C.w2_getDCDTTokenNonceByIndex),
+		get_current_dcdt_nft_nonce_func_ptr:                      funcPointer(C.w2_getCurrentDCDTNFTNonce),
+		get_dcdt_token_type_func_ptr:                             funcPointer(C.w2_getDCDTTokenType),
+		get_dcdt_token_type_by_index_func_ptr:                    funcPointer(C.w2_getDCDTTokenTypeByIndex),
+		get_num_dcdt_transfers_func_ptr:                          funcPointer(C.w2_getNumDCDTTransfers),
 		get_call_value_token_name_func_ptr:                       funcPointer(C.w2_getCallValueTokenName),
 		get_call_value_token_name_by_index_func_ptr:              funcPointer(C.w2_getCallValueTokenNameByIndex),
 		is_reserved_function_name_func_ptr:                       funcPointer(C.w2_isReservedFunctionName),
@@ -377,10 +377,10 @@ func populateCgoFunctionPointers() *cWasmerVmHookPointers {
 		managed_get_block_random_seed_func_ptr:                   funcPointer(C.w2_managedGetBlockRandomSeed),
 		managed_get_prev_block_random_seed_func_ptr:              funcPointer(C.w2_managedGetPrevBlockRandomSeed),
 		managed_get_return_data_func_ptr:                         funcPointer(C.w2_managedGetReturnData),
-		managed_get_multi_esdt_call_value_func_ptr:               funcPointer(C.w2_managedGetMultiESDTCallValue),
+		managed_get_multi_dcdt_call_value_func_ptr:               funcPointer(C.w2_managedGetMultiDCDTCallValue),
 		managed_get_back_transfers_func_ptr:                      funcPointer(C.w2_managedGetBackTransfers),
-		managed_get_esdt_balance_func_ptr:                        funcPointer(C.w2_managedGetESDTBalance),
-		managed_get_esdt_token_data_func_ptr:                     funcPointer(C.w2_managedGetESDTTokenData),
+		managed_get_dcdt_balance_func_ptr:                        funcPointer(C.w2_managedGetDCDTBalance),
+		managed_get_dcdt_token_data_func_ptr:                     funcPointer(C.w2_managedGetDCDTTokenData),
 		managed_async_call_func_ptr:                              funcPointer(C.w2_managedAsyncCall),
 		managed_create_async_call_func_ptr:                       funcPointer(C.w2_managedCreateAsyncCall),
 		managed_get_callback_closure_func_ptr:                    funcPointer(C.w2_managedGetCallbackClosure),
@@ -392,12 +392,12 @@ func populateCgoFunctionPointers() *cWasmerVmHookPointers {
 		managed_execute_read_only_func_ptr:                       funcPointer(C.w2_managedExecuteReadOnly),
 		managed_execute_on_same_context_func_ptr:                 funcPointer(C.w2_managedExecuteOnSameContext),
 		managed_execute_on_dest_context_func_ptr:                 funcPointer(C.w2_managedExecuteOnDestContext),
-		managed_multi_transfer_esdt_nft_execute_func_ptr:         funcPointer(C.w2_managedMultiTransferESDTNFTExecute),
-		managed_multi_transfer_esdt_nft_execute_by_user_func_ptr: funcPointer(C.w2_managedMultiTransferESDTNFTExecuteByUser),
+		managed_multi_transfer_dcdt_nft_execute_func_ptr:         funcPointer(C.w2_managedMultiTransferDCDTNFTExecute),
+		managed_multi_transfer_dcdt_nft_execute_by_user_func_ptr: funcPointer(C.w2_managedMultiTransferDCDTNFTExecuteByUser),
 		managed_transfer_value_execute_func_ptr:                  funcPointer(C.w2_managedTransferValueExecute),
-		managed_is_esdt_frozen_func_ptr:                          funcPointer(C.w2_managedIsESDTFrozen),
-		managed_is_esdt_limited_transfer_func_ptr:                funcPointer(C.w2_managedIsESDTLimitedTransfer),
-		managed_is_esdt_paused_func_ptr:                          funcPointer(C.w2_managedIsESDTPaused),
+		managed_is_dcdt_frozen_func_ptr:                          funcPointer(C.w2_managedIsDCDTFrozen),
+		managed_is_dcdt_limited_transfer_func_ptr:                funcPointer(C.w2_managedIsDCDTLimitedTransfer),
+		managed_is_dcdt_paused_func_ptr:                          funcPointer(C.w2_managedIsDCDTPaused),
 		managed_buffer_to_hex_func_ptr:                           funcPointer(C.w2_managedBufferToHex),
 		managed_get_code_metadata_func_ptr:                       funcPointer(C.w2_managedGetCodeMetadata),
 		managed_is_builtin_function_func_ptr:                     funcPointer(C.w2_managedIsBuiltinFunction),
@@ -428,10 +428,10 @@ func populateCgoFunctionPointers() *cWasmerVmHookPointers {
 		big_int_storage_store_unsigned_func_ptr:                  funcPointer(C.w2_bigIntStorageStoreUnsigned),
 		big_int_storage_load_unsigned_func_ptr:                   funcPointer(C.w2_bigIntStorageLoadUnsigned),
 		big_int_get_call_value_func_ptr:                          funcPointer(C.w2_bigIntGetCallValue),
-		big_int_get_esdt_call_value_func_ptr:                     funcPointer(C.w2_bigIntGetESDTCallValue),
-		big_int_get_esdt_call_value_by_index_func_ptr:            funcPointer(C.w2_bigIntGetESDTCallValueByIndex),
+		big_int_get_dcdt_call_value_func_ptr:                     funcPointer(C.w2_bigIntGetDCDTCallValue),
+		big_int_get_dcdt_call_value_by_index_func_ptr:            funcPointer(C.w2_bigIntGetDCDTCallValueByIndex),
 		big_int_get_external_balance_func_ptr:                    funcPointer(C.w2_bigIntGetExternalBalance),
-		big_int_get_esdt_external_balance_func_ptr:               funcPointer(C.w2_bigIntGetESDTExternalBalance),
+		big_int_get_dcdt_external_balance_func_ptr:               funcPointer(C.w2_bigIntGetDCDTExternalBalance),
 		big_int_new_func_ptr:                                     funcPointer(C.w2_bigIntNew),
 		big_int_unsigned_byte_length_func_ptr:                    funcPointer(C.w2_bigIntUnsignedByteLength),
 		big_int_signed_byte_length_func_ptr:                      funcPointer(C.w2_bigIntSignedByteLength),
@@ -597,40 +597,40 @@ func w2_getBlockHash(context unsafe.Pointer, nonce int64, resultOffset int32) in
 	return vmHooks.GetBlockHash(nonce, executor.MemPtr(resultOffset))
 }
 
-//export w2_getESDTBalance
-func w2_getESDTBalance(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, resultOffset int32) int32 {
+//export w2_getDCDTBalance
+func w2_getDCDTBalance(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, resultOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTBalance(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, executor.MemPtr(resultOffset))
+	return vmHooks.GetDCDTBalance(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, executor.MemPtr(resultOffset))
 }
 
-//export w2_getESDTNFTNameLength
-func w2_getESDTNFTNameLength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
+//export w2_getDCDTNFTNameLength
+func w2_getDCDTNFTNameLength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTNFTNameLength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
+	return vmHooks.GetDCDTNFTNameLength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
 }
 
-//export w2_getESDTNFTAttributeLength
-func w2_getESDTNFTAttributeLength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
+//export w2_getDCDTNFTAttributeLength
+func w2_getDCDTNFTAttributeLength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTNFTAttributeLength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
+	return vmHooks.GetDCDTNFTAttributeLength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
 }
 
-//export w2_getESDTNFTURILength
-func w2_getESDTNFTURILength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
+//export w2_getDCDTNFTURILength
+func w2_getDCDTNFTURILength(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTNFTURILength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
+	return vmHooks.GetDCDTNFTURILength(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce)
 }
 
-//export w2_getESDTTokenData
-func w2_getESDTTokenData(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, valueHandle int32, propertiesOffset int32, hashOffset int32, nameOffset int32, attributesOffset int32, creatorOffset int32, royaltiesHandle int32, urisOffset int32) int32 {
+//export w2_getDCDTTokenData
+func w2_getDCDTTokenData(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, valueHandle int32, propertiesOffset int32, hashOffset int32, nameOffset int32, attributesOffset int32, creatorOffset int32, royaltiesHandle int32, urisOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenData(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, valueHandle, executor.MemPtr(propertiesOffset), executor.MemPtr(hashOffset), executor.MemPtr(nameOffset), executor.MemPtr(attributesOffset), executor.MemPtr(creatorOffset), royaltiesHandle, executor.MemPtr(urisOffset))
+	return vmHooks.GetDCDTTokenData(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, valueHandle, executor.MemPtr(propertiesOffset), executor.MemPtr(hashOffset), executor.MemPtr(nameOffset), executor.MemPtr(attributesOffset), executor.MemPtr(creatorOffset), royaltiesHandle, executor.MemPtr(urisOffset))
 }
 
-//export w2_getESDTLocalRoles
-func w2_getESDTLocalRoles(context unsafe.Pointer, tokenIdHandle int32) int64 {
+//export w2_getDCDTLocalRoles
+func w2_getDCDTLocalRoles(context unsafe.Pointer, tokenIdHandle int32) int64 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTLocalRoles(tokenIdHandle)
+	return vmHooks.GetDCDTLocalRoles(tokenIdHandle)
 }
 
 //export w2_validateTokenIdentifier
@@ -651,22 +651,22 @@ func w2_transferValueExecute(context unsafe.Pointer, destOffset int32, valueOffs
 	return vmHooks.TransferValueExecute(executor.MemPtr(destOffset), executor.MemPtr(valueOffset), gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
 }
 
-//export w2_transferESDTExecute
-func w2_transferESDTExecute(context unsafe.Pointer, destOffset int32, tokenIDOffset int32, tokenIDLen int32, valueOffset int32, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
+//export w2_transferDCDTExecute
+func w2_transferDCDTExecute(context unsafe.Pointer, destOffset int32, tokenIDOffset int32, tokenIDLen int32, valueOffset int32, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.TransferESDTExecute(executor.MemPtr(destOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, executor.MemPtr(valueOffset), gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
+	return vmHooks.TransferDCDTExecute(executor.MemPtr(destOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, executor.MemPtr(valueOffset), gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
 }
 
-//export w2_transferESDTNFTExecute
-func w2_transferESDTNFTExecute(context unsafe.Pointer, destOffset int32, tokenIDOffset int32, tokenIDLen int32, valueOffset int32, nonce int64, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
+//export w2_transferDCDTNFTExecute
+func w2_transferDCDTNFTExecute(context unsafe.Pointer, destOffset int32, tokenIDOffset int32, tokenIDLen int32, valueOffset int32, nonce int64, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.TransferESDTNFTExecute(executor.MemPtr(destOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, executor.MemPtr(valueOffset), nonce, gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
+	return vmHooks.TransferDCDTNFTExecute(executor.MemPtr(destOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, executor.MemPtr(valueOffset), nonce, gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
 }
 
-//export w2_multiTransferESDTNFTExecute
-func w2_multiTransferESDTNFTExecute(context unsafe.Pointer, destOffset int32, numTokenTransfers int32, tokenTransfersArgsLengthOffset int32, tokenTransferDataOffset int32, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
+//export w2_multiTransferDCDTNFTExecute
+func w2_multiTransferDCDTNFTExecute(context unsafe.Pointer, destOffset int32, numTokenTransfers int32, tokenTransfersArgsLengthOffset int32, tokenTransferDataOffset int32, gasLimit int64, functionOffset int32, functionLength int32, numArguments int32, argumentsLengthOffset int32, dataOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.MultiTransferESDTNFTExecute(executor.MemPtr(destOffset), numTokenTransfers, executor.MemPtr(tokenTransfersArgsLengthOffset), executor.MemPtr(tokenTransferDataOffset), gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
+	return vmHooks.MultiTransferDCDTNFTExecute(executor.MemPtr(destOffset), numTokenTransfers, executor.MemPtr(tokenTransfersArgsLengthOffset), executor.MemPtr(tokenTransferDataOffset), gasLimit, executor.MemPtr(functionOffset), functionLength, numArguments, executor.MemPtr(argumentsLengthOffset), executor.MemPtr(dataOffset))
 }
 
 //export w2_createAsyncCall
@@ -795,64 +795,64 @@ func w2_getCallValue(context unsafe.Pointer, resultOffset int32) int32 {
 	return vmHooks.GetCallValue(executor.MemPtr(resultOffset))
 }
 
-//export w2_getESDTValue
-func w2_getESDTValue(context unsafe.Pointer, resultOffset int32) int32 {
+//export w2_getDCDTValue
+func w2_getDCDTValue(context unsafe.Pointer, resultOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTValue(executor.MemPtr(resultOffset))
+	return vmHooks.GetDCDTValue(executor.MemPtr(resultOffset))
 }
 
-//export w2_getESDTValueByIndex
-func w2_getESDTValueByIndex(context unsafe.Pointer, resultOffset int32, index int32) int32 {
+//export w2_getDCDTValueByIndex
+func w2_getDCDTValueByIndex(context unsafe.Pointer, resultOffset int32, index int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTValueByIndex(executor.MemPtr(resultOffset), index)
+	return vmHooks.GetDCDTValueByIndex(executor.MemPtr(resultOffset), index)
 }
 
-//export w2_getESDTTokenName
-func w2_getESDTTokenName(context unsafe.Pointer, resultOffset int32) int32 {
+//export w2_getDCDTTokenName
+func w2_getDCDTTokenName(context unsafe.Pointer, resultOffset int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenName(executor.MemPtr(resultOffset))
+	return vmHooks.GetDCDTTokenName(executor.MemPtr(resultOffset))
 }
 
-//export w2_getESDTTokenNameByIndex
-func w2_getESDTTokenNameByIndex(context unsafe.Pointer, resultOffset int32, index int32) int32 {
+//export w2_getDCDTTokenNameByIndex
+func w2_getDCDTTokenNameByIndex(context unsafe.Pointer, resultOffset int32, index int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenNameByIndex(executor.MemPtr(resultOffset), index)
+	return vmHooks.GetDCDTTokenNameByIndex(executor.MemPtr(resultOffset), index)
 }
 
-//export w2_getESDTTokenNonce
-func w2_getESDTTokenNonce(context unsafe.Pointer) int64 {
+//export w2_getDCDTTokenNonce
+func w2_getDCDTTokenNonce(context unsafe.Pointer) int64 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenNonce()
+	return vmHooks.GetDCDTTokenNonce()
 }
 
-//export w2_getESDTTokenNonceByIndex
-func w2_getESDTTokenNonceByIndex(context unsafe.Pointer, index int32) int64 {
+//export w2_getDCDTTokenNonceByIndex
+func w2_getDCDTTokenNonceByIndex(context unsafe.Pointer, index int32) int64 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenNonceByIndex(index)
+	return vmHooks.GetDCDTTokenNonceByIndex(index)
 }
 
-//export w2_getCurrentESDTNFTNonce
-func w2_getCurrentESDTNFTNonce(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32) int64 {
+//export w2_getCurrentDCDTNFTNonce
+func w2_getCurrentDCDTNFTNonce(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32) int64 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetCurrentESDTNFTNonce(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen)
+	return vmHooks.GetCurrentDCDTNFTNonce(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen)
 }
 
-//export w2_getESDTTokenType
-func w2_getESDTTokenType(context unsafe.Pointer) int32 {
+//export w2_getDCDTTokenType
+func w2_getDCDTTokenType(context unsafe.Pointer) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenType()
+	return vmHooks.GetDCDTTokenType()
 }
 
-//export w2_getESDTTokenTypeByIndex
-func w2_getESDTTokenTypeByIndex(context unsafe.Pointer, index int32) int32 {
+//export w2_getDCDTTokenTypeByIndex
+func w2_getDCDTTokenTypeByIndex(context unsafe.Pointer, index int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetESDTTokenTypeByIndex(index)
+	return vmHooks.GetDCDTTokenTypeByIndex(index)
 }
 
-//export w2_getNumESDTTransfers
-func w2_getNumESDTTransfers(context unsafe.Pointer) int32 {
+//export w2_getNumDCDTTransfers
+func w2_getNumDCDTTransfers(context unsafe.Pointer) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.GetNumESDTTransfers()
+	return vmHooks.GetNumDCDTTransfers()
 }
 
 //export w2_getCallValueTokenName
@@ -1107,28 +1107,28 @@ func w2_managedGetReturnData(context unsafe.Pointer, resultID int32, resultHandl
 	vmHooks.ManagedGetReturnData(resultID, resultHandle)
 }
 
-//export w2_managedGetMultiESDTCallValue
-func w2_managedGetMultiESDTCallValue(context unsafe.Pointer, multiCallValueHandle int32) {
+//export w2_managedGetMultiDCDTCallValue
+func w2_managedGetMultiDCDTCallValue(context unsafe.Pointer, multiCallValueHandle int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.ManagedGetMultiESDTCallValue(multiCallValueHandle)
+	vmHooks.ManagedGetMultiDCDTCallValue(multiCallValueHandle)
 }
 
 //export w2_managedGetBackTransfers
-func w2_managedGetBackTransfers(context unsafe.Pointer, esdtTransfersValueHandle int32, egldValueHandle int32) {
+func w2_managedGetBackTransfers(context unsafe.Pointer, dcdtTransfersValueHandle int32, rewaValueHandle int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.ManagedGetBackTransfers(esdtTransfersValueHandle, egldValueHandle)
+	vmHooks.ManagedGetBackTransfers(dcdtTransfersValueHandle, rewaValueHandle)
 }
 
-//export w2_managedGetESDTBalance
-func w2_managedGetESDTBalance(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
+//export w2_managedGetDCDTBalance
+func w2_managedGetDCDTBalance(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.ManagedGetESDTBalance(addressHandle, tokenIDHandle, nonce, valueHandle)
+	vmHooks.ManagedGetDCDTBalance(addressHandle, tokenIDHandle, nonce, valueHandle)
 }
 
-//export w2_managedGetESDTTokenData
-func w2_managedGetESDTTokenData(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32) {
+//export w2_managedGetDCDTTokenData
+func w2_managedGetDCDTTokenData(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32, propertiesHandle int32, hashHandle int32, nameHandle int32, attributesHandle int32, creatorHandle int32, royaltiesHandle int32, urisHandle int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.ManagedGetESDTTokenData(addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
+	vmHooks.ManagedGetDCDTTokenData(addressHandle, tokenIDHandle, nonce, valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle)
 }
 
 //export w2_managedAsyncCall
@@ -1197,16 +1197,16 @@ func w2_managedExecuteOnDestContext(context unsafe.Pointer, gas int64, addressHa
 	return vmHooks.ManagedExecuteOnDestContext(gas, addressHandle, valueHandle, functionHandle, argumentsHandle, resultHandle)
 }
 
-//export w2_managedMultiTransferESDTNFTExecute
-func w2_managedMultiTransferESDTNFTExecute(context unsafe.Pointer, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
+//export w2_managedMultiTransferDCDTNFTExecute
+func w2_managedMultiTransferDCDTNFTExecute(context unsafe.Pointer, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.ManagedMultiTransferESDTNFTExecute(dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+	return vmHooks.ManagedMultiTransferDCDTNFTExecute(dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 }
 
-//export w2_managedMultiTransferESDTNFTExecuteByUser
-func w2_managedMultiTransferESDTNFTExecuteByUser(context unsafe.Pointer, userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
+//export w2_managedMultiTransferDCDTNFTExecuteByUser
+func w2_managedMultiTransferDCDTNFTExecuteByUser(context unsafe.Pointer, userHandle int32, dstHandle int32, tokenTransfersHandle int32, gasLimit int64, functionHandle int32, argumentsHandle int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.ManagedMultiTransferESDTNFTExecuteByUser(userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
+	return vmHooks.ManagedMultiTransferDCDTNFTExecuteByUser(userHandle, dstHandle, tokenTransfersHandle, gasLimit, functionHandle, argumentsHandle)
 }
 
 //export w2_managedTransferValueExecute
@@ -1215,22 +1215,22 @@ func w2_managedTransferValueExecute(context unsafe.Pointer, dstHandle int32, val
 	return vmHooks.ManagedTransferValueExecute(dstHandle, valueHandle, gasLimit, functionHandle, argumentsHandle)
 }
 
-//export w2_managedIsESDTFrozen
-func w2_managedIsESDTFrozen(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64) int32 {
+//export w2_managedIsDCDTFrozen
+func w2_managedIsDCDTFrozen(context unsafe.Pointer, addressHandle int32, tokenIDHandle int32, nonce int64) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.ManagedIsESDTFrozen(addressHandle, tokenIDHandle, nonce)
+	return vmHooks.ManagedIsDCDTFrozen(addressHandle, tokenIDHandle, nonce)
 }
 
-//export w2_managedIsESDTLimitedTransfer
-func w2_managedIsESDTLimitedTransfer(context unsafe.Pointer, tokenIDHandle int32) int32 {
+//export w2_managedIsDCDTLimitedTransfer
+func w2_managedIsDCDTLimitedTransfer(context unsafe.Pointer, tokenIDHandle int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.ManagedIsESDTLimitedTransfer(tokenIDHandle)
+	return vmHooks.ManagedIsDCDTLimitedTransfer(tokenIDHandle)
 }
 
-//export w2_managedIsESDTPaused
-func w2_managedIsESDTPaused(context unsafe.Pointer, tokenIDHandle int32) int32 {
+//export w2_managedIsDCDTPaused
+func w2_managedIsDCDTPaused(context unsafe.Pointer, tokenIDHandle int32) int32 {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	return vmHooks.ManagedIsESDTPaused(tokenIDHandle)
+	return vmHooks.ManagedIsDCDTPaused(tokenIDHandle)
 }
 
 //export w2_managedBufferToHex
@@ -1413,16 +1413,16 @@ func w2_bigIntGetCallValue(context unsafe.Pointer, destinationHandle int32) {
 	vmHooks.BigIntGetCallValue(destinationHandle)
 }
 
-//export w2_bigIntGetESDTCallValue
-func w2_bigIntGetESDTCallValue(context unsafe.Pointer, destination int32) {
+//export w2_bigIntGetDCDTCallValue
+func w2_bigIntGetDCDTCallValue(context unsafe.Pointer, destination int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.BigIntGetESDTCallValue(destination)
+	vmHooks.BigIntGetDCDTCallValue(destination)
 }
 
-//export w2_bigIntGetESDTCallValueByIndex
-func w2_bigIntGetESDTCallValueByIndex(context unsafe.Pointer, destinationHandle int32, index int32) {
+//export w2_bigIntGetDCDTCallValueByIndex
+func w2_bigIntGetDCDTCallValueByIndex(context unsafe.Pointer, destinationHandle int32, index int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.BigIntGetESDTCallValueByIndex(destinationHandle, index)
+	vmHooks.BigIntGetDCDTCallValueByIndex(destinationHandle, index)
 }
 
 //export w2_bigIntGetExternalBalance
@@ -1431,10 +1431,10 @@ func w2_bigIntGetExternalBalance(context unsafe.Pointer, addressOffset int32, re
 	vmHooks.BigIntGetExternalBalance(executor.MemPtr(addressOffset), result)
 }
 
-//export w2_bigIntGetESDTExternalBalance
-func w2_bigIntGetESDTExternalBalance(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, resultHandle int32) {
+//export w2_bigIntGetDCDTExternalBalance
+func w2_bigIntGetDCDTExternalBalance(context unsafe.Pointer, addressOffset int32, tokenIDOffset int32, tokenIDLen int32, nonce int64, resultHandle int32) {
 	vmHooks := getVMHooksFromContextRawPtr(context)
-	vmHooks.BigIntGetESDTExternalBalance(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, resultHandle)
+	vmHooks.BigIntGetDCDTExternalBalance(executor.MemPtr(addressOffset), executor.MemPtr(tokenIDOffset), tokenIDLen, nonce, resultHandle)
 }
 
 //export w2_bigIntNew

@@ -3,8 +3,8 @@ package groups
 import (
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 	"github.com/stretchr/testify/assert"
 )
 

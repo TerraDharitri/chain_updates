@@ -1,5 +1,5 @@
 {
-    "name": "send_egld",
+    "name": "send_rewa",
     "gasSchedule": "v3",
     "steps": [
         {
@@ -8,7 +8,7 @@
                 "sc:basic-features": {
                     "nonce": "1000",
                     "balance": "200",
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",
@@ -22,7 +22,7 @@
             "tx": {
                 "from": "address:an_account",
                 "to": "sc:basic-features",
-                "function": "send_egld",
+                "function": "send_rewa",
                 "arguments": [
                     "address:an_account",
                     "10000"
@@ -39,11 +39,11 @@
         },
         {
             "step": "scCall",
-            "id": "send_egld-ok",
+            "id": "send_rewa-ok",
             "tx": {
                 "from": "address:an_account",
                 "to": "sc:basic-features",
-                "function": "send_egld",
+                "function": "send_rewa",
                 "arguments": [
                     "address:an_account",
                     "200"
@@ -64,7 +64,7 @@
                     "nonce": "1000",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "*",

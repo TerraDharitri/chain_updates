@@ -3,7 +3,7 @@ package data
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 // DatabaseTransaction extends indexer.Transaction with the 'hash' field that is not ignored in json schema

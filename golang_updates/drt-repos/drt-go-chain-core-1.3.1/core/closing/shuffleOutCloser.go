@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/random"
-	"github.com/multiversx/mx-chain-core-go/data/endProcess"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/random"
+	"github.com/TerraDharitri/drt-go-chain-core/data/endProcess"
 )
 
 const minDuration = time.Second

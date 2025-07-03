@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestIsValidEsdtPath(t *testing.T) {
+func TestIsValidDcdtPath(t *testing.T) {
 	testCases := []struct {
 		input  string
 		output bool
@@ -34,7 +34,7 @@ func TestIsValidEsdtPath(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		res := IsValidEsdtPath(tc.input)
+		res := IsValidDcdtPath(tc.input)
 		require.Equal(t, tc.output, res)
 	}
 }

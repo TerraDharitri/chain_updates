@@ -7,11 +7,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	apiErrors "github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	apiErrors "github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

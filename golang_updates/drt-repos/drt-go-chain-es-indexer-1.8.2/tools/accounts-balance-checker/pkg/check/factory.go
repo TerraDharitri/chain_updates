@@ -4,13 +4,13 @@ import (
 	"math"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client/logging"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/config"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/esclient"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/rest"
 	"github.com/elastic/go-elasticsearch/v7"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-es-indexer-go/client/logging"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/config"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/esclient"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/rest"
 )
 
 // CreateBalanceChecker will create a new instance of balanceChecker

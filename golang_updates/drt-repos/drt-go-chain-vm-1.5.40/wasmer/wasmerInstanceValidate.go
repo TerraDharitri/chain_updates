@@ -3,7 +3,7 @@ package wasmer
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 const noArity = -1

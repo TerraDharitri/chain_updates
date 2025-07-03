@@ -1,8 +1,8 @@
 package vmhost
 
 import (
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/math"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
 )
 
 // AsyncCall holds the information about an individual async call

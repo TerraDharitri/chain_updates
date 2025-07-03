@@ -1,6 +1,6 @@
 package config
 
-import "github.com/multiversx/mx-chain-go/config"
+import "github.com/TerraDharitri/drt-go-chain/config"
 
 // Config will hold the whole config file's data
 type Config struct {
@@ -13,8 +13,8 @@ type Config struct {
 			InitialRound      int64  `toml:"initial-round"`
 			InitialNonce      uint64 `toml:"initial-nonce"`
 			InitialEpoch      uint32 `toml:"initial-epoch"`
-			MxChainRepo       string `toml:"mx-chain-go-repo"`
-			MxProxyRepo       string `toml:"mx-chain-proxy-go-repo"`
+			MxChainRepo       string `toml:"drt-go-chain-repo"`
+			MxProxyRepo       string `toml:"drt-go-chain-proxy-repo"`
 		} `toml:"simulator"`
 		Logs struct {
 			LogFileLifeSpanInMB  int    `toml:"log-file-life-span-in-mb"`

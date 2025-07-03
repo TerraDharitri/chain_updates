@@ -7,11 +7,11 @@ import (
 	"os"
 	"path"
 
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/client/logging"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/indexes-creator/reader"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/elastic/go-elasticsearch/v7"
-	"github.com/multiversx/mx-chain-es-indexer-go/client"
-	"github.com/multiversx/mx-chain-es-indexer-go/client/logging"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/indexes-creator/reader"
-	logger "github.com/multiversx/mx-chain-logger-go"
 	"github.com/pelletier/go-toml"
 	"github.com/urfave/cli"
 )
@@ -66,8 +66,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

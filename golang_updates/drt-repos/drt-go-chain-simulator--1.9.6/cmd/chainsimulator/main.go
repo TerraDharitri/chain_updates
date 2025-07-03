@@ -11,22 +11,22 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	nodeConfig "github.com/multiversx/mx-chain-go/config"
-	"github.com/multiversx/mx-chain-go/config/overridableConfig"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/components/api"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
-	"github.com/multiversx/mx-chain-simulator-go/config"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/facade"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/factory"
-	endpoints "github.com/multiversx/mx-chain-simulator-go/pkg/proxy/api"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/proxy/configs"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/proxy/configs/git"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/proxy/creator"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
+	"github.com/TerraDharitri/drt-go-chain-simulator/config"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/facade"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/factory"
+	endpoints "github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/api"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/configs"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/configs/git"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy/creator"
+	nodeConfig "github.com/TerraDharitri/drt-go-chain/config"
+	"github.com/TerraDharitri/drt-go-chain/config/overridableConfig"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/components/api"
 	"github.com/urfave/cli"
 )
 
@@ -87,8 +87,8 @@ func main() {
 
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

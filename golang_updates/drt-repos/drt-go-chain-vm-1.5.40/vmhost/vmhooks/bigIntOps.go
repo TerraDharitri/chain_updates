@@ -3,10 +3,10 @@ package vmhooks
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	twos "github.com/multiversx/mx-components-big-int/twos-complement"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 const (
@@ -47,9 +47,9 @@ const (
 	bigIntGetUnsignedArgumentName     = "bigIntGetUnsignedArgument"
 	bigIntGetSignedArgumentName       = "bigIntGetSignedArgument"
 	bigIntGetCallValueName            = "bigIntGetCallValue"
-	bigIntGetESDTCallValueName        = "bigIntGetESDTCallValue"
-	bigIntGetESDTCallValueByIndexName = "bigIntGetESDTCallValueByIndex"
-	bigIntGetESDTExternalBalanceName  = "bigIntGetESDTExternalBalance"
+	bigIntGetDCDTCallValueName        = "bigIntGetDCDTCallValue"
+	bigIntGetDCDTCallValueByIndexName = "bigIntGetDCDTCallValueByIndex"
+	bigIntGetDCDTExternalBalanceName  = "bigIntGetDCDTExternalBalance"
 	bigIntGetExternalBalanceName      = "bigIntGetExternalBalance"
 	bigIntToStringName                = "bigIntToString"
 )
@@ -179,32 +179,32 @@ func (context *VMHooksImpl) BigIntGetCallValue(destinationHandle int32) {
 	value.Set(runtime.GetVMInput().CallValue)
 }
 
-// BigIntGetESDTCallValue VMHooks implementation.
+// BigIntGetDCDTCallValue VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) BigIntGetESDTCallValue(destination int32) {
-	isFail := failIfMoreThanOneESDTTransfer(context)
+func (context *VMHooksImpl) BigIntGetDCDTCallValue(destination int32) {
+	isFail := failIfMoreThanOneDCDTTransfer(context)
 	if isFail {
 		return
 	}
-	context.BigIntGetESDTCallValueByIndex(destination, 0)
+	context.BigIntGetDCDTCallValueByIndex(destination, 0)
 }
 
-// BigIntGetESDTCallValueByIndex VMHooks implementation.
+// BigIntGetDCDTCallValueByIndex VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) BigIntGetESDTCallValueByIndex(destinationHandle int32, index int32) {
+func (context *VMHooksImpl) BigIntGetDCDTCallValueByIndex(destinationHandle int32, index int32) {
 	managedType := context.GetManagedTypesContext()
 	metering := context.GetMeteringContext()
 
 	gasToUse := metering.GasSchedule().BigIntAPICost.BigIntGetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(bigIntGetESDTCallValueByIndexName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(bigIntGetDCDTCallValueByIndexName, gasToUse)
 	if context.WithFault(err, context.GetRuntimeContext().BigIntAPIErrorShouldFailExecution()) {
 		return
 	}
 
 	value := managedType.GetBigIntOrCreate(destinationHandle)
-	esdtTransfer := getESDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
-	if esdtTransfer != nil {
-		value.Set(esdtTransfer.ESDTValue)
+	dcdtTransfer := getDCDTTransferFromInputFailIfWrongIndex(context.GetVMHost(), index)
+	if dcdtTransfer != nil {
+		value.Set(dcdtTransfer.DCDTValue)
 	} else {
 		value.Set(big.NewInt(0))
 	}
@@ -235,9 +235,9 @@ func (context *VMHooksImpl) BigIntGetExternalBalance(addressOffset executor.MemP
 	value.SetBytes(balance)
 }
 
-// BigIntGetESDTExternalBalance VMHooks implementation.
+// BigIntGetDCDTExternalBalance VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) BigIntGetESDTExternalBalance(
+func (context *VMHooksImpl) BigIntGetDCDTExternalBalance(
 	addressOffset executor.MemPtr,
 	tokenIDOffset executor.MemPtr,
 	tokenIDLen executor.MemLength,
@@ -247,7 +247,7 @@ func (context *VMHooksImpl) BigIntGetESDTExternalBalance(
 	managedType := context.GetManagedTypesContext()
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
-	metering.StartGasTracing(bigIntGetESDTExternalBalanceName)
+	metering.StartGasTracing(bigIntGetDCDTExternalBalanceName)
 
 	gasToUse := metering.GasSchedule().BigIntAPICost.BigIntGetExternalBalance
 	err := metering.UseGasBounded(gasToUse)
@@ -255,16 +255,16 @@ func (context *VMHooksImpl) BigIntGetESDTExternalBalance(
 		return
 	}
 
-	esdtData, err := getESDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
+	dcdtData, err := getDCDTDataFromBlockchainHook(context, addressOffset, tokenIDOffset, tokenIDLen, nonce)
 	if context.WithFault(err, runtime.BigIntAPIErrorShouldFailExecution()) {
 		return
 	}
-	if esdtData == nil {
+	if dcdtData == nil {
 		return
 	}
 
 	value := managedType.GetBigIntOrCreate(resultHandle)
-	value.Set(esdtData.Value)
+	value.Set(dcdtData.Value)
 }
 
 // BigIntNew VMHooks implementation.

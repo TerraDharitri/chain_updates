@@ -7,11 +7,11 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	ed25519SingleSigner "github.com/multiversx/mx-chain-crypto-go/signing/ed25519/singlesig"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	ed25519SingleSigner "github.com/TerraDharitri/drt-go-chain-core/signing/ed25519/singlesig"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 func getSingleSigner() crypto.SingleSigner {

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 	"github.com/tidwall/gjson"
 )
 

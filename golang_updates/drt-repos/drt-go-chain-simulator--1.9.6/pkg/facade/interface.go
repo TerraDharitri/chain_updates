@@ -1,9 +1,9 @@
 package facade
 
 import (
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/process"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
 )
 
 // SimulatorHandler defines what a simulator handler should be able to do

@@ -59,7 +59,7 @@ print-api-costs:
 	@grep "func v1_5\|GasSchedule" vmhost/vmhooks/smallIntOps.go | sed -e "/func/ s:func v1_5_\(.*\)(.*:\1:" -e "/GasSchedule/ s:metering.GasSchedule()::"
 
 
-build-test-contracts: build-test-contracts-erdpy build-test-contracts-wat
+build-test-contracts: build-test-contracts-drtpy build-test-contracts-wat
 
 build-test-contracts-wat:
 	cd test/contracts/init-simple-popcnt && wat2wasm *.wat
@@ -85,67 +85,67 @@ build-test-contracts-wat:
 	cd test/contracts/wasmbacking/single-immutable/output/ && wat2wasm --no-check *.wat
 	cd test/contracts/wasmbacking/single-mutable/output/ && wat2wasm *.wat
 
-build-test-contracts-erdpy:
-	erdpy contract build --no-optimization ./test/contracts/answer
-	erdpy contract build ./test/contracts/async-call-builtin
-	erdpy contract build ./test/contracts/async-call-child
-	erdpy contract build ./test/contracts/async-call-parent
-	erdpy contract build ./test/contracts/breakpoint
-	erdpy contract build ./test/contracts/big-floats
-	erdpy contract build ./test/contracts/counter
-	erdpy contract build ./test/contracts/deployer
-	erdpy contract build ./test/contracts/deployer-child
-	erdpy contract build ./test/contracts/deployer-fromanother-contract
-	erdpy contract build ./test/contracts/deployer-parent
-	erdpy contract build ./test/contracts/vmhooks
-	erdpy contract build ./test/contracts/erc20
-	erdpy contract build ./test/contracts/exchange
+build-test-contracts-drtpy:
+	drtpy contract build --no-optimization ./test/contracts/answer
+	drtpy contract build ./test/contracts/async-call-builtin
+	drtpy contract build ./test/contracts/async-call-child
+	drtpy contract build ./test/contracts/async-call-parent
+	drtpy contract build ./test/contracts/breakpoint
+	drtpy contract build ./test/contracts/big-floats
+	drtpy contract build ./test/contracts/counter
+	drtpy contract build ./test/contracts/deployer
+	drtpy contract build ./test/contracts/deployer-child
+	drtpy contract build ./test/contracts/deployer-fromanother-contract
+	drtpy contract build ./test/contracts/deployer-parent
+	drtpy contract build ./test/contracts/vmhooks
+	drtpy contract build ./test/contracts/erc20
+	drtpy contract build ./test/contracts/exchange
 	
-	erdpy contract build ./test/contracts/exec-dest-ctx-builtin
-	erdpy contract build ./test/contracts/exec-dest-ctx-by-caller/child
-	erdpy contract build ./test/contracts/exec-dest-ctx-by-caller/parent
-	erdpy contract build ./test/contracts/exec-dest-ctx-child
-	erdpy contract build ./test/contracts/exec-dest-ctx-esdt/basic
-	erdpy contract build ./test/contracts/exec-dest-ctx-parent
-	erdpy contract build ./test/contracts/exec-dest-ctx-recursive
-	erdpy contract build ./test/contracts/exec-dest-ctx-recursive-child
-	erdpy contract build ./test/contracts/exec-dest-ctx-recursive-parent
+	drtpy contract build ./test/contracts/exec-dest-ctx-builtin
+	drtpy contract build ./test/contracts/exec-dest-ctx-by-caller/child
+	drtpy contract build ./test/contracts/exec-dest-ctx-by-caller/parent
+	drtpy contract build ./test/contracts/exec-dest-ctx-child
+	drtpy contract build ./test/contracts/exec-dest-ctx-dcdt/basic
+	drtpy contract build ./test/contracts/exec-dest-ctx-parent
+	drtpy contract build ./test/contracts/exec-dest-ctx-recursive
+	drtpy contract build ./test/contracts/exec-dest-ctx-recursive-child
+	drtpy contract build ./test/contracts/exec-dest-ctx-recursive-parent
 	
-	erdpy contract build ./test/contracts/exec-same-ctx-child
-	erdpy contract build ./test/contracts/exec-same-ctx-parent
-	erdpy contract build ./test/contracts/exec-same-ctx-recursive
-	erdpy contract build ./test/contracts/exec-same-ctx-recursive-child
-	erdpy contract build ./test/contracts/exec-same-ctx-recursive-parent
-	erdpy contract build ./test/contracts/exec-same-ctx-simple-child
-	erdpy contract build ./test/contracts/exec-same-ctx-simple-parent
+	drtpy contract build ./test/contracts/exec-same-ctx-child
+	drtpy contract build ./test/contracts/exec-same-ctx-parent
+	drtpy contract build ./test/contracts/exec-same-ctx-recursive
+	drtpy contract build ./test/contracts/exec-same-ctx-recursive-child
+	drtpy contract build ./test/contracts/exec-same-ctx-recursive-parent
+	drtpy contract build ./test/contracts/exec-same-ctx-simple-child
+	drtpy contract build ./test/contracts/exec-same-ctx-simple-parent
 	
-	erdpy contract build ./test/contracts/exec-sync-ctx-multiple/alpha
-	erdpy contract build ./test/contracts/exec-sync-ctx-multiple/beta
-	erdpy contract build ./test/contracts/exec-sync-ctx-multiple/delta
-	erdpy contract build ./test/contracts/exec-sync-ctx-multiple/gamma
+	drtpy contract build ./test/contracts/exec-sync-ctx-multiple/alpha
+	drtpy contract build ./test/contracts/exec-sync-ctx-multiple/beta
+	drtpy contract build ./test/contracts/exec-sync-ctx-multiple/delta
+	drtpy contract build ./test/contracts/exec-sync-ctx-multiple/gamma
 	
-	erdpy contract build ./test/contracts/init-correct
-	erdpy contract build ./test/contracts/init-simple
-	erdpy contract build ./test/contracts/init-wrong
-	erdpy contract build ./test/contracts/managed-buffers
-	erdpy contract build ./test/contracts/misc
-	erdpy contract build --no-optimization ./test/contracts/num-with-fp
-	erdpy contract build ./test/contracts/promises
-	erdpy contract build ./test/contracts/promises-train
-	erdpy contract build ./test/contracts/promises-tracking
-	erdpy contract build ./test/contracts/signatures
-	erdpy contract build ./test/contracts/timelocks
-	erdpy contract build ./test/contracts/upgrader-fromanother-contract
+	drtpy contract build ./test/contracts/init-correct
+	drtpy contract build ./test/contracts/init-simple
+	drtpy contract build ./test/contracts/init-wrong
+	drtpy contract build ./test/contracts/managed-buffers
+	drtpy contract build ./test/contracts/misc
+	drtpy contract build --no-optimization ./test/contracts/num-with-fp
+	drtpy contract build ./test/contracts/promises
+	drtpy contract build ./test/contracts/promises-train
+	drtpy contract build ./test/contracts/promises-tracking
+	drtpy contract build ./test/contracts/signatures
+	drtpy contract build ./test/contracts/timelocks
+	drtpy contract build ./test/contracts/upgrader-fromanother-contract
 
 build-delegation:
 ifndef SANDBOX
 	$(error SANDBOX variable is undefined)
 endif
 	rm -rf ${SANDBOX}/sc-delegation-rs
-	git clone --depth=1 --branch=master https://github.com/multiversx/sc-delegation-rs.git ${SANDBOX}/sc-delegation-rs
+	git clone --depth=1 --branch=master https://github.com/TerraDharitri/sc-delegation-rs.git ${SANDBOX}/sc-delegation-rs
 	rm -rf ${SANDBOX}/sc-delegation-rs/.git
-	erdpy contract build ${SANDBOX}/sc-delegation-rs
-	erdpy contract test --directory="tests" ${SANDBOX}/sc-delegation-rs
+	drtpy contract build ${SANDBOX}/sc-delegation-rs
+	drtpy contract test --directory="tests" ${SANDBOX}/sc-delegation-rs
 	cp ${SANDBOX}/sc-delegation-rs/output/delegation.wasm ./test/delegation/delegation.wasm
 
 
@@ -154,10 +154,10 @@ ifndef SANDBOX
 	$(error SANDBOX variable is undefined)
 endif
 	rm -rf ${SANDBOX}/sc-dns-rs
-	git clone --depth=1 --branch=master https://github.com/multiversx/sc-dns-rs.git ${SANDBOX}/sc-dns-rs
+	git clone --depth=1 --branch=master https://github.com/TerraDharitri/sc-dns-rs.git ${SANDBOX}/sc-dns-rs
 	rm -rf ${SANDBOX}/sc-dns-rs/.git
-	erdpy contract build ${SANDBOX}/sc-dns-rs
-	erdpy contract test --directory="tests" ${SANDBOX}/sc-dns-rs
+	drtpy contract build ${SANDBOX}/sc-dns-rs
+	drtpy contract test --directory="tests" ${SANDBOX}/sc-dns-rs
 	cp ${SANDBOX}/sc-dns-rs/output/dns.wasm ./test/dns/dns.wasm
 
 
@@ -167,8 +167,8 @@ ifndef SANDBOX
 endif
 	rm -rf ${SANDBOX}/sc-examples
 
-	erdpy contract new --template=erc20-c --directory ${SANDBOX}/sc-examples erc20-c
-	erdpy contract build ${SANDBOX}/sc-examples/erc20-c
+	drtpy contract new --template=erc20-c --directory ${SANDBOX}/sc-examples erc20-c
+	drtpy contract build ${SANDBOX}/sc-examples/erc20-c
 	cp ${SANDBOX}/sc-examples/erc20-c/output/wrc20.wasm ./test/erc20/contracts/erc20-c.wasm
 
 
@@ -178,12 +178,12 @@ ifndef SANDBOX
 endif
 	rm -rf ${SANDBOX}/sc-examples-rs
 	
-	erdpy contract new --template=simple-coin --directory ${SANDBOX}/sc-examples-rs simple-coin
-	erdpy contract new --template=adder --directory ${SANDBOX}/sc-examples-rs adder
-	erdpy contract build ${SANDBOX}/sc-examples-rs/adder
-	erdpy contract build ${SANDBOX}/sc-examples-rs/simple-coin
-	erdpy contract test ${SANDBOX}/sc-examples-rs/adder
-	erdpy contract test ${SANDBOX}/sc-examples-rs/simple-coin
+	drtpy contract new --template=simple-coin --directory ${SANDBOX}/sc-examples-rs simple-coin
+	drtpy contract new --template=adder --directory ${SANDBOX}/sc-examples-rs adder
+	drtpy contract build ${SANDBOX}/sc-examples-rs/adder
+	drtpy contract build ${SANDBOX}/sc-examples-rs/simple-coin
+	drtpy contract test ${SANDBOX}/sc-examples-rs/adder
+	drtpy contract test ${SANDBOX}/sc-examples-rs/simple-coin
 	cp ${SANDBOX}/sc-examples-rs/adder/output/adder.wasm ./test/adder/adder.wasm
 	cp ${SANDBOX}/sc-examples-rs/simple-coin/output/simple-coin.wasm ./test/erc20/contracts/simple-coin.wasm
 

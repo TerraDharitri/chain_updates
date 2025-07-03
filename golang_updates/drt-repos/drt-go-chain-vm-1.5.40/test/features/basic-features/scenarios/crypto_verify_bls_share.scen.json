@@ -9,7 +9,7 @@
                 "sc:basic-features-crypto": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features-crypto.mxsc.json"
+                    "code": "drtsc:../output/basic-features-crypto.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",

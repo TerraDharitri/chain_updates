@@ -1,6 +1,6 @@
 package mock
 
-import crypto "github.com/multiversx/mx-chain-crypto-go"
+import crypto "github.com/TerraDharitri/drt-go-chain-core"
 
 type PrivateKeysLoaderStub struct {
 	PrivateKeysByShardCalled func() (map[uint32][]crypto.PrivateKey, error)

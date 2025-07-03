@@ -1,5 +1,5 @@
 SIMULATOR_URL="http://localhost:8085"
-MY_ADDR="erd1r87hlp37eqdf25ydxd4pasc3tqp8suztzm7x4xnv53f5phzuyk3s2g7yn4"
+MY_ADDR="drt1r87hlp37eqdf25ydxd4pasc3tqp8suztzm7x4xnv53f5phzuyk3sh5f8st"
 
 
 # Call faucet for my address

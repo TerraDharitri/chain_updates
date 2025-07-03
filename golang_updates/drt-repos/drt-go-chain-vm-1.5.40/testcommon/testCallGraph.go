@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/crypto/factory"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/factory"
 )
 
 // DefaultCallGraphLockedGas is the default gas locked value

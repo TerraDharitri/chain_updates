@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	apiErrors "github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	apiErrors "github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -96,22 +96,22 @@ type guardian struct {
 	ServiceUID      string `json:"serviceUID"`
 }
 
-type getEsdtTokensResponseData struct {
+type getDcdtTokensResponseData struct {
 	Tokens []string `json:"tokens"`
 }
 
-type getEsdtTokensResponse struct {
+type getDcdtTokensResponse struct {
 	GeneralResponse
-	Data getEsdtTokensResponseData
+	Data getDcdtTokensResponseData
 }
 
-type esdtTokenData struct {
+type dcdtTokenData struct {
 	TokenIdentifier string `json:"tokenIdentifier"`
 	Balance         string `json:"balance"`
 	Properties      string `json:"properties"`
 }
 
-type esdtNftData struct {
+type dcdtNftData struct {
 	TokenIdentifier string   `json:"tokenIdentifier"`
 	Balance         string   `json:"balance"`
 	Properties      string   `json:"properties"`
@@ -123,40 +123,40 @@ type esdtNftData struct {
 	Attributes      []byte   `json:"attributes"`
 }
 
-type getEsdtTokenDataResponseData struct {
-	TokenData esdtTokenData `json:"tokenData"`
+type getDcdtTokenDataResponseData struct {
+	TokenData dcdtTokenData `json:"tokenData"`
 }
 
-type getEsdtTokenDataResponse struct {
+type getDcdtTokenDataResponse struct {
 	GeneralResponse
-	Data getEsdtTokenDataResponseData
+	Data getDcdtTokenDataResponseData
 }
 
-type getEsdtNftTokenDataResponseData struct {
-	TokenData esdtNftData `json:"tokenData"`
+type getDcdtNftTokenDataResponseData struct {
+	TokenData dcdtNftData `json:"tokenData"`
 }
 
-type getEsdtNftTokenDataResponse struct {
+type getDcdtNftTokenDataResponse struct {
 	GeneralResponse
-	Data getEsdtNftTokenDataResponseData
+	Data getDcdtNftTokenDataResponseData
 }
 
-type getESDTsRolesResponseData struct {
+type getDCDTsRolesResponseData struct {
 	Roles map[string][]string `json:"roles"`
 }
 
-type getESDTsRolesResponse struct {
+type getDCDTsRolesResponse struct {
 	GeneralResponse
-	Data getESDTsRolesResponseData
+	Data getDCDTsRolesResponseData
 }
 
-type getEsdtsWithRoleResponseData struct {
+type getDcdtsWithRoleResponseData struct {
 	Tokens []string `json:"tokenData"`
 }
 
-type getEsdtsWithRoleResponse struct {
+type getDcdtsWithRoleResponse struct {
 	GeneralResponse
-	Data getEsdtsWithRoleResponseData
+	Data getDcdtsWithRoleResponseData
 }
 
 type nonceResponseData struct {
@@ -302,13 +302,13 @@ func TestGetAccounts_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
 	accounts := map[string]*data.Account{
-		"erd1alice": {
-			Address: "erd1alice",
+		"drt1alice": {
+			Address: "drt1alice",
 			Nonce:   1,
 			Balance: "100",
 		},
-		"erd1bob": {
-			Address: "erd1bob",
+		"drt1bob": {
+			Address: "drt1bob",
 			Nonce:   1,
 			Balance: "101",
 		},
@@ -324,7 +324,7 @@ func TestGetAccounts_ReturnsSuccessfully(t *testing.T) {
 	require.NoError(t, err)
 	ws := startProxyServer(addressGroup, addressPath)
 
-	reqAddresses := []string{"erd1alice", "erd1bob"}
+	reqAddresses := []string{"drt1alice", "drt1bob"}
 	addressBytes, _ := json.Marshal(reqAddresses)
 	fmt.Println(string(addressBytes))
 	req, _ := http.NewRequest("POST", "/address/bulk", bytes.NewBuffer(addressBytes))
@@ -493,14 +493,14 @@ func TestGetShard_ReturnsSuccessfully(t *testing.T) {
 	assert.Empty(t, shardResponse.Error)
 }
 
-// ---- GetESDTTokens
+// ---- GetDCDTTokens
 
-func TestGetESDTTokens_FailsWhenFacadeErrors(t *testing.T) {
+func TestGetDCDTTokens_FailsWhenFacadeErrors(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal err")
 	facade := &mock.FacadeStub{
-		GetAllESDTTokensCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+		GetAllDCDTTokensCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -510,24 +510,24 @@ func TestGetESDTTokens_FailsWhenFacadeErrors(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdt", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdt", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getEsdtTokensResponse{}
+	shardResponse := getDcdtTokensResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
 	assert.True(t, strings.Contains(shardResponse.Error, expectedErr.Error()))
 }
 
-func TestGetESDTTokens_ReturnsSuccessfully(t *testing.T) {
+func TestGetDCDTTokens_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
 	expectedTokens := []string{"abc", "def"}
 	facade := &mock.FacadeStub{
-		GetAllESDTTokensCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getEsdtTokensResponseData{Tokens: expectedTokens}}, nil
+		GetAllDCDTTokensCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+			return &data.GenericAPIResponse{Data: getDcdtTokensResponseData{Tokens: expectedTokens}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -535,11 +535,11 @@ func TestGetESDTTokens_ReturnsSuccessfully(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdt", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdt", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getEsdtTokensResponse{}
+	shardResponse := getDcdtTokensResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
@@ -608,14 +608,14 @@ func TestGetGuardianData(t *testing.T) {
 	})
 }
 
-// ---- GetESDTsRoles
+// ---- GetDCDTsRoles
 
-func TestGetESDTsRoles_FailsWhenFacadeErrors(t *testing.T) {
+func TestGetDCDTsRoles_FailsWhenFacadeErrors(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal err")
 	facade := &mock.FacadeStub{
-		GetESDTsRolesCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+		GetDCDTsRolesCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -625,18 +625,18 @@ func TestGetESDTsRoles_FailsWhenFacadeErrors(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts/roles", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts/roles", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getESDTsRolesResponse{}
+	shardResponse := getDCDTsRolesResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
 	assert.True(t, strings.Contains(shardResponse.Error, expectedErr.Error()))
 }
 
-func TestGetESDTsRoles_ReturnsSuccessfully(t *testing.T) {
+func TestGetDCDTsRoles_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
 	expectedRoles := map[string][]string{
@@ -644,8 +644,8 @@ func TestGetESDTsRoles_ReturnsSuccessfully(t *testing.T) {
 		"tkn1": {"role1"},
 	}
 	facade := &mock.FacadeStub{
-		GetESDTsRolesCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getESDTsRolesResponseData{Roles: expectedRoles}}, nil
+		GetDCDTsRolesCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+			return &data.GenericAPIResponse{Data: getDCDTsRolesResponseData{Roles: expectedRoles}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -653,11 +653,11 @@ func TestGetESDTsRoles_ReturnsSuccessfully(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts/roles", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts/roles", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getESDTsRolesResponse{}
+	shardResponse := getDCDTsRolesResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
@@ -665,14 +665,14 @@ func TestGetESDTsRoles_ReturnsSuccessfully(t *testing.T) {
 	assert.Empty(t, shardResponse.Error)
 }
 
-// ---- GetESDTTokenData
+// ---- GetDCDTTokenData
 
-func TestGetESDTTokenData_FailWhenFacadeErrors(t *testing.T) {
+func TestGetDCDTTokenData_FailWhenFacadeErrors(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal err")
 	facade := &mock.FacadeStub{
-		GetESDTTokenDataCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+		GetDCDTTokenDataCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -681,28 +681,28 @@ func TestGetESDTTokenData_FailWhenFacadeErrors(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdt/tkn", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdt/tkn", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getEsdtTokenDataResponse{}
+	shardResponse := getDcdtTokenDataResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
 	assert.True(t, strings.Contains(shardResponse.Error, expectedErr.Error()))
 }
 
-func TestGetESDTTokenData_ReturnsSuccessfully(t *testing.T) {
+func TestGetDCDTTokenData_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
-	expectedTokenData := esdtTokenData{
+	expectedTokenData := dcdtTokenData{
 		TokenIdentifier: "name",
 		Balance:         "123",
 		Properties:      "1",
 	}
 	facade := &mock.FacadeStub{
-		GetESDTTokenDataCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getEsdtTokenDataResponseData{TokenData: expectedTokenData}}, nil
+		GetDCDTTokenDataCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+			return &data.GenericAPIResponse{Data: getDcdtTokenDataResponseData{TokenData: expectedTokenData}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -710,11 +710,11 @@ func TestGetESDTTokenData_ReturnsSuccessfully(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdt/tkn", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdt/tkn", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getEsdtTokenDataResponse{}
+	shardResponse := getDcdtTokenDataResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
@@ -722,14 +722,14 @@ func TestGetESDTTokenData_ReturnsSuccessfully(t *testing.T) {
 	assert.Empty(t, shardResponse.Error)
 }
 
-// ---- GetESDTNftTokenData
+// ---- GetDCDTNftTokenData
 
-func TestGetESDTNftTokenData_FailWhenFacadeErrors(t *testing.T) {
+func TestGetDCDTNftTokenData_FailWhenFacadeErrors(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal err")
 	facade := &mock.FacadeStub{
-		GetESDTNftTokenDataCalled: func(_ string, _ string, _ uint64, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+		GetDCDTNftTokenDataCalled: func(_ string, _ string, _ uint64, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -742,14 +742,14 @@ func TestGetESDTNftTokenData_FailWhenFacadeErrors(t *testing.T) {
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	shardResponse := getEsdtNftTokenDataResponse{}
+	shardResponse := getDcdtNftTokenDataResponse{}
 	loadResponse(resp.Body, &shardResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
 	assert.True(t, strings.Contains(shardResponse.Error, expectedErr.Error()))
 }
 
-func TestGetESDTNftTokenData_FailWhenNonceParamIsInvalid(t *testing.T) {
+func TestGetDCDTNftTokenData_FailWhenNonceParamIsInvalid(t *testing.T) {
 	t.Parallel()
 
 	facade := &mock.FacadeStub{}
@@ -762,25 +762,25 @@ func TestGetESDTNftTokenData_FailWhenNonceParamIsInvalid(t *testing.T) {
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	response := getEsdtNftTokenDataResponse{}
+	response := getDcdtNftTokenDataResponse{}
 	loadResponse(resp.Body, &response)
 
 	assert.Equal(t, http.StatusBadRequest, resp.Code)
 	assert.True(t, strings.Contains(response.Error, apiErrors.ErrCannotParseNonce.Error()))
 }
 
-func TestGetESDTNftTokenData_ReturnsSuccessfully(t *testing.T) {
+func TestGetDCDTNftTokenData_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
-	expectedTokenData := esdtNftData{
+	expectedTokenData := dcdtNftData{
 		TokenIdentifier: "name",
 		Balance:         "123",
 		Properties:      "1",
 		Royalties:       "10000",
 	}
 	facade := &mock.FacadeStub{
-		GetESDTNftTokenDataCalled: func(_ string, _ string, _ uint64, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getEsdtNftTokenDataResponseData{TokenData: expectedTokenData}}, nil
+		GetDCDTNftTokenDataCalled: func(_ string, _ string, _ uint64, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+			return &data.GenericAPIResponse{Data: getDcdtNftTokenDataResponseData{TokenData: expectedTokenData}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -792,7 +792,7 @@ func TestGetESDTNftTokenData_ReturnsSuccessfully(t *testing.T) {
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	response := getEsdtNftTokenDataResponse{}
+	response := getDcdtNftTokenDataResponse{}
 	loadResponse(resp.Body, &response)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
@@ -800,14 +800,14 @@ func TestGetESDTNftTokenData_ReturnsSuccessfully(t *testing.T) {
 	assert.Empty(t, response.Error)
 }
 
-// ---- GetESDTsWithRole
+// ---- GetDCDTsWithRole
 
-func TestGetESDTsWithRole_FailWhenFacadeErrors(t *testing.T) {
+func TestGetDCDTsWithRole_FailWhenFacadeErrors(t *testing.T) {
 	t.Parallel()
 
 	expectedErr := errors.New("internal err")
 	facade := &mock.FacadeStub{
-		GetESDTsWithRoleCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+		GetDCDTsWithRoleCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 			return nil, expectedErr
 		},
 	}
@@ -816,24 +816,24 @@ func TestGetESDTsWithRole_FailWhenFacadeErrors(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts-with-role/ESDTRoleNFTBurn", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts-with-role/DCDTRoleNFTBurn", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	esdtsWithRoleResponse := getEsdtsWithRoleResponse{}
-	loadResponse(resp.Body, &esdtsWithRoleResponse)
+	dcdtsWithRoleResponse := getDcdtsWithRoleResponse{}
+	loadResponse(resp.Body, &dcdtsWithRoleResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
-	assert.True(t, strings.Contains(esdtsWithRoleResponse.Error, expectedErr.Error()))
+	assert.True(t, strings.Contains(dcdtsWithRoleResponse.Error, expectedErr.Error()))
 }
 
-func TestGetESDTsWithRole_ReturnsSuccessfully(t *testing.T) {
+func TestGetDCDTsWithRole_ReturnsSuccessfully(t *testing.T) {
 	t.Parallel()
 
 	expectedTokens := []string{"FDF-00rr44", "CVC-2598v7"}
 	facade := &mock.FacadeStub{
-		GetESDTsWithRoleCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getEsdtsWithRoleResponseData{Tokens: expectedTokens}}, nil
+		GetDCDTsWithRoleCalled: func(_ string, _ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+			return &data.GenericAPIResponse{Data: getDcdtsWithRoleResponseData{Tokens: expectedTokens}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -841,11 +841,11 @@ func TestGetESDTsWithRole_ReturnsSuccessfully(t *testing.T) {
 	ws := startProxyServer(addressGroup, addressPath)
 
 	reqAddress := "test"
-	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/esdts-with-role/ESDTRoleNFTBurn", reqAddress), nil)
+	req, _ := http.NewRequest("GET", fmt.Sprintf("/address/%s/dcdts-with-role/DCDTRoleNFTBurn", reqAddress), nil)
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	response := getEsdtsWithRoleResponse{}
+	response := getDcdtsWithRoleResponse{}
 	loadResponse(resp.Body, &response)
 
 	assert.Equal(t, http.StatusOK, resp.Code)
@@ -873,7 +873,7 @@ func TestGetNFTTokenIDsRegisteredByAddress_FailWhenFacadeErrors(t *testing.T) {
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	tokensResponse := getEsdtsWithRoleResponse{}
+	tokensResponse := getDcdtsWithRoleResponse{}
 	loadResponse(resp.Body, &tokensResponse)
 
 	assert.Equal(t, http.StatusInternalServerError, resp.Code)
@@ -886,7 +886,7 @@ func TestGetNFTTokenIDsRegisteredByAddress_ReturnsSuccessfully(t *testing.T) {
 	expectedTokens := []string{"FDF-00rr44", "CVC-2598v7"}
 	facade := &mock.FacadeStub{
 		GetNFTTokenIDsRegisteredByAddressCalled: func(_ string, _ common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
-			return &data.GenericAPIResponse{Data: getEsdtsWithRoleResponseData{Tokens: expectedTokens}}, nil
+			return &data.GenericAPIResponse{Data: getDcdtsWithRoleResponseData{Tokens: expectedTokens}}, nil
 		},
 	}
 	addressGroup, err := groups.NewAccountsGroup(facade)
@@ -898,7 +898,7 @@ func TestGetNFTTokenIDsRegisteredByAddress_ReturnsSuccessfully(t *testing.T) {
 	resp := httptest.NewRecorder()
 	ws.ServeHTTP(resp, req)
 
-	response := getEsdtsWithRoleResponse{}
+	response := getDcdtsWithRoleResponse{}
 	loadResponse(resp.Body, &response)
 
 	assert.Equal(t, http.StatusOK, resp.Code)

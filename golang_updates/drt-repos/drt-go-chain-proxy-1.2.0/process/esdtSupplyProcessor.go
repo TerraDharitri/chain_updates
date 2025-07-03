@@ -4,16 +4,16 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 const (
-	esdtContractAddress   = "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
-	initialESDTSupplyFunc = "getTokenProperties"
+	esdtContractAddress   = "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"
+	initialDCDTSupplyFunc = "getTokenProperties"
 
-	networkESDTSupplyPath = "/network/esdt/supply/"
+	networkDCDTSupplyPath = "/network/dcdt/supply/"
 	zeroBigIntStr         = "0"
 )
 
@@ -22,8 +22,8 @@ type esdtSupplyProcessor struct {
 	scQueryProc SCQueryService
 }
 
-// NewESDTSupplyProcessor will create a new instance of the ESDT supply processor
-func NewESDTSupplyProcessor(baseProc Processor, scQueryProc SCQueryService) (*esdtSupplyProcessor, error) {
+// NewDCDTSupplyProcessor will create a new instance of the DCDT supply processor
+func NewDCDTSupplyProcessor(baseProc Processor, scQueryProc SCQueryService) (*esdtSupplyProcessor, error) {
 	if check.IfNil(baseProc) {
 		return nil, ErrNilCoreProcessor
 	}
@@ -37,17 +37,17 @@ func NewESDTSupplyProcessor(baseProc Processor, scQueryProc SCQueryService) (*es
 	}, nil
 }
 
-// GetESDTSupply will return the total supply for the provided token
-func (esp *esdtSupplyProcessor) GetESDTSupply(tokenIdentifier string) (*data.ESDTSupplyResponse, error) {
+// GetDCDTSupply will return the total supply for the provided token
+func (esp *esdtSupplyProcessor) GetDCDTSupply(tokenIdentifier string) (*data.DCDTSupplyResponse, error) {
 	totalSupply, err := esp.getSupplyFromShards(tokenIdentifier)
 	if err != nil {
 		return nil, err
 	}
 
-	res := &data.ESDTSupplyResponse{
+	res := &data.DCDTSupplyResponse{
 		Code: data.ReturnCodeSuccess,
 	}
-	if !isFungibleESDT(tokenIdentifier) {
+	if !isFungibleDCDT(tokenIdentifier) {
 		res.Data = *totalSupply
 		makeInitialMintedNotEmpty(res)
 		return res, nil
@@ -74,14 +74,14 @@ func (esp *esdtSupplyProcessor) GetESDTSupply(tokenIdentifier string) (*data.ESD
 	return res, nil
 }
 
-func makeInitialMintedNotEmpty(resp *data.ESDTSupplyResponse) {
+func makeInitialMintedNotEmpty(resp *data.DCDTSupplyResponse) {
 	if resp.Data.InitialMinted == "" {
 		resp.Data.InitialMinted = zeroBigIntStr
 	}
 }
 
-func (esp *esdtSupplyProcessor) getSupplyFromShards(tokenIdentifier string) (*data.ESDTSupply, error) {
-	totalSupply := &data.ESDTSupply{}
+func (esp *esdtSupplyProcessor) getSupplyFromShards(tokenIdentifier string) (*data.DCDTSupply, error) {
+	totalSupply := &data.DCDTSupply{}
 	shardIDs := esp.baseProc.GetShardIDs()
 	numNodesQueried := 0
 	numNodesWithRecomputedSupply := 0
@@ -109,7 +109,7 @@ func (esp *esdtSupplyProcessor) getSupplyFromShards(tokenIdentifier string) (*da
 	return totalSupply, nil
 }
 
-func addToSupply(dstSupply, sourceSupply *data.ESDTSupply) {
+func addToSupply(dstSupply, sourceSupply *data.DCDTSupply) {
 	dstSupply.Supply = sumStr(dstSupply.Supply, sourceSupply.Supply)
 	dstSupply.Burned = sumStr(dstSupply.Burned, sourceSupply.Burned)
 	dstSupply.Minted = sumStr(dstSupply.Minted, sourceSupply.Minted)
@@ -131,7 +131,7 @@ func sumStr(s1, s2 string) string {
 func (esp *esdtSupplyProcessor) getInitialSupplyFromMeta(token string) (*big.Int, error) {
 	scQuery := &data.SCQuery{
 		ScAddress: esdtContractAddress,
-		FuncName:  initialESDTSupplyFunc,
+		FuncName:  initialDCDTSupplyFunc,
 		Arguments: [][]byte{[]byte(token)},
 	}
 
@@ -153,23 +153,23 @@ func (esp *esdtSupplyProcessor) getInitialSupplyFromMeta(token string) (*big.Int
 	return supplyBig, nil
 }
 
-func (esp *esdtSupplyProcessor) getShardSupply(token string, shardID uint32) (*data.ESDTSupply, error) {
+func (esp *esdtSupplyProcessor) getShardSupply(token string, shardID uint32) (*data.DCDTSupply, error) {
 	shardObservers, errObs := esp.baseProc.GetObservers(shardID, data.AvailabilityAll)
 	if errObs != nil {
 		return nil, errObs
 	}
 
-	responseEsdtSupply := data.ESDTSupplyResponse{}
-	apiPath := networkESDTSupplyPath + token
+	responseEsdtSupply := data.DCDTSupplyResponse{}
+	apiPath := networkDCDTSupplyPath + token
 	for _, observer := range shardObservers {
 
 		_, errGet := esp.baseProc.CallGetRestEndPoint(observer.Address, apiPath, &responseEsdtSupply)
 		if errGet != nil {
-			log.Error("esdt supply request", "shard ID", observer.ShardId, "observer", observer.Address, "error", errGet.Error())
+			log.Error("dcdt supply request", "shard ID", observer.ShardId, "observer", observer.Address, "error", errGet.Error())
 			continue
 		}
 
-		log.Info("esdt supply request", "shard ID", observer.ShardId, "observer", observer.Address)
+		log.Info("dcdt supply request", "shard ID", observer.ShardId, "observer", observer.Address)
 
 		return &responseEsdtSupply.Data, nil
 
@@ -178,7 +178,7 @@ func (esp *esdtSupplyProcessor) getShardSupply(token string, shardID uint32) (*d
 	return nil, WrapObserversError(responseEsdtSupply.Error)
 }
 
-func isFungibleESDT(tokenIdentifier string) bool {
+func isFungibleDCDT(tokenIdentifier string) bool {
 	splitToken := strings.Split(tokenIdentifier, "-")
 
 	return len(splitToken) < 3

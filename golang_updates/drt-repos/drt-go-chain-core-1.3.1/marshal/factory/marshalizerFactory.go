@@ -3,7 +3,7 @@ package factory
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 // JsonMarshalizer is the name reserved for the json marshalizer

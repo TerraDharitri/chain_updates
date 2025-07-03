@@ -22,7 +22,7 @@
             "tx": {
                 "from": "address:faucet",
                 "to": "sc:multisig",
-                "egldValue": "10"
+                "rewaValue": "10"
             }
         },
         {

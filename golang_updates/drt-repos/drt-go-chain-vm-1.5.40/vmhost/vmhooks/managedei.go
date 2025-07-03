@@ -4,12 +4,12 @@ import (
 	"encoding/hex"
 	"errors"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 const (
@@ -18,7 +18,7 @@ const (
 	managedCallerName                        = "managedCaller"
 	managedSignalErrorName                   = "managedSignalError"
 	managedWriteLogName                      = "managedWriteLog"
-	managedMultiTransferESDTNFTExecuteName   = "managedMultiTransferESDTNFTExecute"
+	managedMultiTransferDCDTNFTExecuteName   = "managedMultiTransferDCDTNFTExecute"
 	managedTransferValueExecuteName          = "managedTransferValueExecute"
 	managedExecuteOnDestContextName          = "managedExecuteOnDestContext"
 	managedExecuteOnDestContextByCallerName  = "managedExecuteOnDestContextByCaller"
@@ -31,21 +31,21 @@ const (
 	managedAsyncCallName                     = "managedAsyncCall"
 	managedCreateAsyncCallName               = "managedCreateAsyncCall"
 	managedGetCallbackClosure                = "managedGetCallbackClosure"
-	managedGetMultiESDTCallValueName         = "managedGetMultiESDTCallValue"
-	managedGetESDTBalanceName                = "managedGetESDTBalance"
-	managedGetESDTTokenDataName              = "managedGetESDTTokenData"
+	managedGetMultiDCDTCallValueName         = "managedGetMultiDCDTCallValue"
+	managedGetDCDTBalanceName                = "managedGetDCDTBalance"
+	managedGetDCDTTokenDataName              = "managedGetDCDTTokenData"
 	managedGetReturnDataName                 = "managedGetReturnData"
 	managedGetPrevBlockRandomSeedName        = "managedGetPrevBlockRandomSeed"
 	managedGetBlockRandomSeedName            = "managedGetBlockRandomSeed"
 	managedGetStateRootHashName              = "managedGetStateRootHash"
 	managedGetOriginalTxHashName             = "managedGetOriginalTxHash"
-	managedIsESDTFrozenName                  = "managedIsESDTFrozen"
-	managedIsESDTLimitedTransferName         = "managedIsESDTLimitedTransfer"
-	managedIsESDTPausedName                  = "managedIsESDTPaused"
+	managedIsDCDTFrozenName                  = "managedIsDCDTFrozen"
+	managedIsDCDTLimitedTransferName         = "managedIsDCDTLimitedTransfer"
+	managedIsDCDTPausedName                  = "managedIsDCDTPaused"
 	managedBufferToHexName                   = "managedBufferToHex"
 	managedGetCodeMetadataName               = "managedGetCodeMetadata"
 	managedIsBuiltinFunction                 = "managedIsBuiltinFunction"
-	managedMultiTransferESDTNFTExecuteByUser = "managedMultiTransferESDTNFTExecuteByUser"
+	managedMultiTransferDCDTNFTExecuteByUser = "managedMultiTransferDCDTNFTExecuteByUser"
 )
 
 // ManagedSCAddress VMHooks implementation.
@@ -301,21 +301,21 @@ func (context *VMHooksImpl) ManagedGetReturnData(resultID int32, resultHandle in
 	managedType.SetBytes(resultHandle, returnData[resultID])
 }
 
-// ManagedGetMultiESDTCallValue VMHooks implementation.
+// ManagedGetMultiDCDTCallValue VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedGetMultiESDTCallValue(multiCallValueHandle int32) {
+func (context *VMHooksImpl) ManagedGetMultiDCDTCallValue(multiCallValueHandle int32) {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
 	managedType := context.GetManagedTypesContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(managedGetMultiESDTCallValueName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedGetMultiDCDTCallValueName, gasToUse)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return
 	}
 
-	esdtTransfers := runtime.GetVMInput().ESDTTransfers
-	multiCallBytes := writeESDTTransfersToBytes(managedType, esdtTransfers)
+	dcdtTransfers := runtime.GetVMInput().DCDTTransfers
+	multiCallBytes := writeDCDTTransfersToBytes(managedType, dcdtTransfers)
 	err = managedType.ConsumeGasForBytes(multiCallBytes)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return
@@ -326,38 +326,38 @@ func (context *VMHooksImpl) ManagedGetMultiESDTCallValue(multiCallValueHandle in
 
 // ManagedGetBackTransfers VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedGetBackTransfers(esdtTransfersValueHandle int32, egldValueHandle int32) {
+func (context *VMHooksImpl) ManagedGetBackTransfers(dcdtTransfersValueHandle int32, rewaValueHandle int32) {
 	metering := context.GetMeteringContext()
 	managedType := context.GetManagedTypesContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetCallValue
-	err := metering.UseGasBoundedAndAddTracedGas(managedGetMultiESDTCallValueName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedGetMultiDCDTCallValueName, gasToUse)
 	if context.WithFault(err, context.GetRuntimeContext().BaseOpsErrorShouldFailExecution()) {
 		return
 	}
 
-	esdtTransfers, transferValue := managedType.GetBackTransfers()
-	multiCallBytes := writeESDTTransfersToBytes(managedType, esdtTransfers)
+	dcdtTransfers, transferValue := managedType.GetBackTransfers()
+	multiCallBytes := writeDCDTTransfersToBytes(managedType, dcdtTransfers)
 	err = managedType.ConsumeGasForBytes(multiCallBytes)
 	if context.WithFault(err, context.GetRuntimeContext().BaseOpsErrorShouldFailExecution()) {
 		return
 	}
 
-	managedType.SetBytes(esdtTransfersValueHandle, multiCallBytes)
-	egldValue := managedType.GetBigIntOrCreate(egldValueHandle)
-	egldValue.SetBytes(transferValue.Bytes())
+	managedType.SetBytes(dcdtTransfersValueHandle, multiCallBytes)
+	rewaValue := managedType.GetBigIntOrCreate(rewaValueHandle)
+	rewaValue.SetBytes(transferValue.Bytes())
 }
 
-// ManagedGetESDTBalance VMHooks implementation.
+// ManagedGetDCDTBalance VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedGetESDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
+func (context *VMHooksImpl) ManagedGetDCDTBalance(addressHandle int32, tokenIDHandle int32, nonce int64, valueHandle int32) {
 	runtime := context.GetRuntimeContext()
 	metering := context.GetMeteringContext()
 	blockchain := context.GetBlockchainContext()
 	managedType := context.GetManagedTypesContext()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetExternalBalance
-	err := metering.UseGasBoundedAndAddTracedGas(managedGetESDTBalanceName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedGetDCDTBalanceName, gasToUse)
 	if context.WithFault(err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return
 	}
@@ -373,25 +373,25 @@ func (context *VMHooksImpl) ManagedGetESDTBalance(addressHandle int32, tokenIDHa
 		return
 	}
 
-	esdtToken, err := blockchain.GetESDTToken(address, tokenID, uint64(nonce))
+	dcdtToken, err := blockchain.GetDCDTToken(address, tokenID, uint64(nonce))
 	if err != nil {
 		_ = context.WithFault(vmhost.ErrArgOutOfRange, runtime.BaseOpsErrorShouldFailExecution())
 		return
 	}
 
 	value := managedType.GetBigIntOrCreate(valueHandle)
-	value.Set(esdtToken.Value)
+	value.Set(dcdtToken.Value)
 }
 
-// ManagedGetESDTTokenData VMHooks implementation.
+// ManagedGetDCDTTokenData VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedGetESDTTokenData(
+func (context *VMHooksImpl) ManagedGetDCDTTokenData(
 	addressHandle int32,
 	tokenIDHandle int32,
 	nonce int64,
 	valueHandle, propertiesHandle, hashHandle, nameHandle, attributesHandle, creatorHandle, royaltiesHandle, urisHandle int32) {
 	host := context.GetVMHost()
-	ManagedGetESDTTokenDataWithHost(
+	ManagedGetDCDTTokenDataWithHost(
 		host,
 		addressHandle,
 		tokenIDHandle,
@@ -400,7 +400,7 @@ func (context *VMHooksImpl) ManagedGetESDTTokenData(
 
 }
 
-func ManagedGetESDTTokenDataWithHost(
+func ManagedGetDCDTTokenDataWithHost(
 	host vmhost.VMHost,
 	addressHandle int32,
 	tokenIDHandle int32,
@@ -410,7 +410,7 @@ func ManagedGetESDTTokenDataWithHost(
 	metering := host.Metering()
 	blockchain := host.Blockchain()
 	managedType := host.ManagedTypes()
-	metering.StartGasTracing(managedGetESDTTokenDataName)
+	metering.StartGasTracing(managedGetDCDTTokenDataName)
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetExternalBalance
 	err := metering.UseGasBounded(gasToUse)
@@ -429,41 +429,41 @@ func ManagedGetESDTTokenDataWithHost(
 		return
 	}
 
-	esdtToken, err := blockchain.GetESDTToken(address, tokenID, uint64(nonce))
+	dcdtToken, err := blockchain.GetDCDTToken(address, tokenID, uint64(nonce))
 	if err != nil {
 		_ = WithFaultAndHost(host, vmhost.ErrArgOutOfRange, runtime.BaseOpsErrorShouldFailExecution())
 		return
 	}
 
 	value := managedType.GetBigIntOrCreate(valueHandle)
-	value.Set(esdtToken.Value)
+	value.Set(dcdtToken.Value)
 
-	managedType.SetBytes(propertiesHandle, esdtToken.Properties)
-	if esdtToken.TokenMetaData != nil {
-		managedType.SetBytes(hashHandle, esdtToken.TokenMetaData.Hash)
-		err = managedType.ConsumeGasForBytes(esdtToken.TokenMetaData.Hash)
+	managedType.SetBytes(propertiesHandle, dcdtToken.Properties)
+	if dcdtToken.TokenMetaData != nil {
+		managedType.SetBytes(hashHandle, dcdtToken.TokenMetaData.Hash)
+		err = managedType.ConsumeGasForBytes(dcdtToken.TokenMetaData.Hash)
 		if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return
 		}
-		managedType.SetBytes(nameHandle, esdtToken.TokenMetaData.Name)
-		err = managedType.ConsumeGasForBytes(esdtToken.TokenMetaData.Name)
+		managedType.SetBytes(nameHandle, dcdtToken.TokenMetaData.Name)
+		err = managedType.ConsumeGasForBytes(dcdtToken.TokenMetaData.Name)
 		if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return
 		}
-		managedType.SetBytes(attributesHandle, esdtToken.TokenMetaData.Attributes)
-		err = managedType.ConsumeGasForBytes(esdtToken.TokenMetaData.Attributes)
+		managedType.SetBytes(attributesHandle, dcdtToken.TokenMetaData.Attributes)
+		err = managedType.ConsumeGasForBytes(dcdtToken.TokenMetaData.Attributes)
 		if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return
 		}
-		managedType.SetBytes(creatorHandle, esdtToken.TokenMetaData.Creator)
-		err = managedType.ConsumeGasForBytes(esdtToken.TokenMetaData.Creator)
+		managedType.SetBytes(creatorHandle, dcdtToken.TokenMetaData.Creator)
+		err = managedType.ConsumeGasForBytes(dcdtToken.TokenMetaData.Creator)
 		if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return
 		}
 		royalties := managedType.GetBigIntOrCreate(royaltiesHandle)
-		royalties.SetUint64(uint64(esdtToken.TokenMetaData.Royalties))
+		royalties.SetUint64(uint64(dcdtToken.TokenMetaData.Royalties))
 
-		err = managedType.WriteManagedVecOfManagedBuffers(esdtToken.TokenMetaData.URIs, urisHandle)
+		err = managedType.WriteManagedVecOfManagedBuffers(dcdtToken.TokenMetaData.URIs, urisHandle)
 		if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 			return
 		}
@@ -1026,9 +1026,9 @@ func (context *VMHooksImpl) ManagedExecuteOnDestContext(
 	return returnVal
 }
 
-// ManagedMultiTransferESDTNFTExecute VMHooks implementation.
+// ManagedMultiTransferDCDTNFTExecute VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecute(
+func (context *VMHooksImpl) ManagedMultiTransferDCDTNFTExecute(
 	dstHandle int32,
 	tokenTransfersHandle int32,
 	gasLimit int64,
@@ -1039,19 +1039,19 @@ func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecute(
 	managedType := host.ManagedTypes()
 	runtime := host.Runtime()
 	metering := host.Metering()
-	metering.StartGasTracing(managedMultiTransferESDTNFTExecuteName)
+	metering.StartGasTracing(managedMultiTransferDCDTNFTExecuteName)
 
 	vmInput, err := readDestinationFunctionArguments(host, dstHandle, functionHandle, argumentsHandle)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	transfers, err := readESDTTransfers(managedType, runtime, tokenTransfersHandle)
+	transfers, err := readDCDTTransfers(managedType, runtime, tokenTransfersHandle)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	return TransferESDTNFTExecuteWithTypedArgs(
+	return TransferDCDTNFTExecuteWithTypedArgs(
 		host,
 		vmInput.destination,
 		transfers,
@@ -1061,9 +1061,9 @@ func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecute(
 	)
 }
 
-// ManagedMultiTransferESDTNFTExecuteByUser VMHooks implementation.
+// ManagedMultiTransferDCDTNFTExecuteByUser VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecuteByUser(
+func (context *VMHooksImpl) ManagedMultiTransferDCDTNFTExecuteByUser(
 	userHandle int32,
 	dstHandle int32,
 	tokenTransfersHandle int32,
@@ -1075,9 +1075,9 @@ func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecuteByUser(
 	managedType := host.ManagedTypes()
 	runtime := host.Runtime()
 	metering := host.Metering()
-	metering.StartGasTracing(managedMultiTransferESDTNFTExecuteByUser)
+	metering.StartGasTracing(managedMultiTransferDCDTNFTExecuteByUser)
 
-	if !host.IsAllowedToExecute(managedMultiTransferESDTNFTExecuteByUser) {
+	if !host.IsAllowedToExecute(managedMultiTransferDCDTNFTExecuteByUser) {
 		_ = WithFaultAndHost(host, vmhost.ErrOpcodeIsNotAllowed, runtime.BaseOpsErrorShouldFailExecution())
 		return -1
 	}
@@ -1092,12 +1092,12 @@ func (context *VMHooksImpl) ManagedMultiTransferESDTNFTExecuteByUser(
 		return -1
 	}
 
-	transfers, err := readESDTTransfers(managedType, runtime, tokenTransfersHandle)
+	transfers, err := readDCDTTransfers(managedType, runtime, tokenTransfersHandle)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
 
-	return TransferESDTNFTExecuteByUserWithTypedArgs(
+	return TransferDCDTNFTExecuteByUserWithTypedArgs(
 		host,
 		user,
 		vmInput.destination,
@@ -1136,17 +1136,17 @@ func (context *VMHooksImpl) ManagedTransferValueExecute(
 	)
 }
 
-// ManagedIsESDTFrozen VMHooks implementation.
+// ManagedIsDCDTFrozen VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedIsESDTFrozen(
+func (context *VMHooksImpl) ManagedIsDCDTFrozen(
 	addressHandle int32,
 	tokenIDHandle int32,
 	nonce int64) int32 {
 	host := context.GetVMHost()
-	return ManagedIsESDTFrozenWithHost(host, addressHandle, tokenIDHandle, nonce)
+	return ManagedIsDCDTFrozenWithHost(host, addressHandle, tokenIDHandle, nonce)
 }
 
-func ManagedIsESDTFrozenWithHost(
+func ManagedIsDCDTFrozenWithHost(
 	host vmhost.VMHost,
 	addressHandle int32,
 	tokenIDHandle int32,
@@ -1157,7 +1157,7 @@ func ManagedIsESDTFrozenWithHost(
 	managedType := host.ManagedTypes()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetExternalBalance
-	err := metering.UseGasBoundedAndAddTracedGas(managedIsESDTFrozenName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedIsDCDTFrozenName, gasToUse)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
@@ -1173,34 +1173,34 @@ func ManagedIsESDTFrozenWithHost(
 		return -1
 	}
 
-	esdtToken, err := blockchain.GetESDTToken(address, tokenID, uint64(nonce))
+	dcdtToken, err := blockchain.GetDCDTToken(address, tokenID, uint64(nonce))
 	if err != nil {
 		_ = WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution())
 		return -1
 	}
 
-	esdtUserData := builtInFunctions.ESDTUserMetadataFromBytes(esdtToken.Properties)
-	if esdtUserData.Frozen {
+	dcdtUserData := builtInFunctions.DCDTUserMetadataFromBytes(dcdtToken.Properties)
+	if dcdtUserData.Frozen {
 		return 1
 	}
 	return 0
 }
 
-// ManagedIsESDTLimitedTransfer VMHooks implementation.
+// ManagedIsDCDTLimitedTransfer VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedIsESDTLimitedTransfer(tokenIDHandle int32) int32 {
+func (context *VMHooksImpl) ManagedIsDCDTLimitedTransfer(tokenIDHandle int32) int32 {
 	host := context.GetVMHost()
-	return ManagedIsESDTLimitedTransferWithHost(host, tokenIDHandle)
+	return ManagedIsDCDTLimitedTransferWithHost(host, tokenIDHandle)
 }
 
-func ManagedIsESDTLimitedTransferWithHost(host vmhost.VMHost, tokenIDHandle int32) int32 {
+func ManagedIsDCDTLimitedTransferWithHost(host vmhost.VMHost, tokenIDHandle int32) int32 {
 	runtime := host.Runtime()
 	metering := host.Metering()
 	blockchain := host.Blockchain()
 	managedType := host.ManagedTypes()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetExternalBalance
-	err := metering.UseGasBoundedAndAddTracedGas(managedIsESDTLimitedTransferName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedIsDCDTLimitedTransferName, gasToUse)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}
@@ -1218,21 +1218,21 @@ func ManagedIsESDTLimitedTransferWithHost(host vmhost.VMHost, tokenIDHandle int3
 	return 0
 }
 
-// ManagedIsESDTPaused VMHooks implementation.
+// ManagedIsDCDTPaused VMHooks implementation.
 // @autogenerate(VMHooks)
-func (context *VMHooksImpl) ManagedIsESDTPaused(tokenIDHandle int32) int32 {
+func (context *VMHooksImpl) ManagedIsDCDTPaused(tokenIDHandle int32) int32 {
 	host := context.GetVMHost()
-	return ManagedIsESDTPausedWithHost(host, tokenIDHandle)
+	return ManagedIsDCDTPausedWithHost(host, tokenIDHandle)
 }
 
-func ManagedIsESDTPausedWithHost(host vmhost.VMHost, tokenIDHandle int32) int32 {
+func ManagedIsDCDTPausedWithHost(host vmhost.VMHost, tokenIDHandle int32) int32 {
 	runtime := host.Runtime()
 	metering := host.Metering()
 	blockchain := host.Blockchain()
 	managedType := host.ManagedTypes()
 
 	gasToUse := metering.GasSchedule().BaseOpsAPICost.GetExternalBalance
-	err := metering.UseGasBoundedAndAddTracedGas(managedIsESDTPausedName, gasToUse)
+	err := metering.UseGasBoundedAndAddTracedGas(managedIsDCDTPausedName, gasToUse)
 	if WithFaultAndHost(host, err, runtime.BaseOpsErrorShouldFailExecution()) {
 		return -1
 	}

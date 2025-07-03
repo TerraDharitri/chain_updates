@@ -8,7 +8,7 @@ import (
 	"math"
 	"math/big"
 
-	twos "github.com/multiversx/mx-components-big-int/twos-complement"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
 
 // U8Value is a wrapper for uint8

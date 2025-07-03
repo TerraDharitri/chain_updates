@@ -4,8 +4,8 @@
   "round": 50,
   "value": "0",
   "valueNum": 0,
-  "receiver": "erd1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xs74hasv",
-  "sender": "erd1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xs74hasv",
+  "receiver": "drt1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xsrfq7nj",
+  "sender": "drt1ure7ea247clj6yqjg80unz6xzjhlj2zwm4gtg6sudcmtsd2cw3xsrfq7nj",
   "receiverShard": 0,
   "senderShard": 0,
   "gasPrice": 1000000000,
@@ -23,19 +23,19 @@
   "tokens": [
     "Something-abcdef-01"
   ],
-  "esdtValues": [
+  "dcdtValues": [
     "1"
   ],
-  "esdtValuesNum": [
+  "dcdtValuesNum": [
     1e-18
   ],
   "receivers": [
-    "erd1qqqqqqqqqqqqqpgq57szwud2quysucrlq2e97ntdysdl7v4ejz3qn3njq4"
+    "drt1qqqqqqqqqqqqqpgq57szwud2quysucrlq2e97ntdysdl7v4ejz3qwdy3rt"
   ],
   "receiversShardIDs": [
     2
   ],
-  "operation": "ESDTNFTTransfer",
+  "operation": "DCDTNFTTransfer",
   "errorEvent": true,
   "epoch": 0
 }

@@ -3,11 +3,11 @@ package dataindexer
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 // ElasticProcessor defines the interface for the elastic search indexer
@@ -16,7 +16,7 @@ type ElasticProcessor interface {
 	RemoveHeader(header coreData.HeaderHandler) error
 	RemoveMiniblocks(header coreData.HeaderHandler, body *block.Body) error
 	RemoveTransactions(header coreData.HeaderHandler, body *block.Body) error
-	RemoveAccountsESDT(headerTimestamp uint64, shardID uint32) error
+	RemoveAccountsDCDT(headerTimestamp uint64, shardID uint32) error
 	SaveMiniblocks(header coreData.HeaderHandler, miniBlocks []*block.MiniBlock) error
 	SaveTransactions(outportBlockWithHeader *outport.OutportBlockWithHeader) error
 	SaveValidatorsRating(ratingData *outport.ValidatorsRating) error

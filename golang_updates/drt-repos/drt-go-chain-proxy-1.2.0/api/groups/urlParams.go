@@ -4,13 +4,13 @@ import (
 	"encoding/hex"
 	"strconv"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-proxy-go/common"
 )
 
 // SystemAccountAddressBech is the const for the system account address
-const SystemAccountAddressBech = "erd1lllllllllllllllllllllllllllllllllllllllllllllllllllsckry7t"
+const SystemAccountAddressBech = "drt1llllllllllllllllllllllllllllllllllllllllllllllllllls9258a4"
 
 func parseBlockQueryOptions(c *gin.Context) (common.BlockQueryOptions, error) {
 	withTxs, err := parseBoolUrlParam(c, common.UrlParameterWithTransactions)

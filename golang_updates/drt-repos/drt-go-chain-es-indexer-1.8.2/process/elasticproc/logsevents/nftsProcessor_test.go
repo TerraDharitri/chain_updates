@@ -7,29 +7,29 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 
 func TestNftsProcessor_processLogAndEventsNFTs(t *testing.T) {
 	t.Parallel()
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: []byte("creator"),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	nonce := uint64(19)
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-		Topics:     [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(nonce).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+		Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+		Topics:     [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(nonce).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 	}
 
 	nftsProc := newNFTsProcessor(&mock.PubkeyConverterMock{}, &mock.MarshalizerMock{})
@@ -65,7 +65,7 @@ func TestNftsProcessor_processLogAndEventsNFTs_Wipe(t *testing.T) {
 
 	events := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(core.BuiltInFunctionESDTWipe),
+		Identifier: []byte(core.BuiltInFunctionDCDTWipe),
 		Topics:     [][]byte{[]byte("nft-0123"), big.NewInt(0).SetUint64(nonce).Bytes(), big.NewInt(1).Bytes(), []byte("receiver")},
 	}
 

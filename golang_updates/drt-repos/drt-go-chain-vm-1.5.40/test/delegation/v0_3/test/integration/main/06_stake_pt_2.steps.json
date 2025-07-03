@@ -7,7 +7,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''delegator_1___________________s1",
-                "egldValue": "100,000,000,000,000"
+                "rewaValue": "100,000,000,000,000"
             }
         },
         {
@@ -16,7 +16,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''node_address__________________s1",
-                "egldValue": "011,000,000,000,000"
+                "rewaValue": "011,000,000,000,000"
             }
         },
         {
@@ -25,7 +25,7 @@
             "tx": {
                 "from": "''delegator_1___________________s1",
                 "to": "sc:delegation",
-                "egldValue": "100,000,000,000,000",
+                "rewaValue": "100,000,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "1,000,000",
@@ -57,7 +57,7 @@
             "tx": {
                 "from": "''node_address__________________s1",
                 "to": "sc:delegation",
-                "egldValue": "011,000,000,000,000",
+                "rewaValue": "011,000,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "1,000,000",

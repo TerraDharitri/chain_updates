@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/multiversx/mx-chain-vm-go/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
 )
 
 // Zero is the big integer 0

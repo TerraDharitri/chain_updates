@@ -1,7 +1,7 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // ApiConfigParser defines the actions that an api config parser should be able to do

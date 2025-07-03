@@ -1,14 +1,14 @@
-module github.com/multiversx/mx-chain-simulator-go
+module github.com/TerraDharitri/drt-go-chain-simulator
 
 go 1.20
 
 require (
 	github.com/btcsuite/websocket v0.0.0-20150119174127-31079b680792
 	github.com/gin-gonic/gin v1.10.0
-	github.com/multiversx/mx-chain-core-go v1.3.1
-	github.com/multiversx/mx-chain-go v1.9.6
-	github.com/multiversx/mx-chain-logger-go v1.0.15
-	github.com/multiversx/mx-chain-proxy-go v1.1.57
+	github.com/TerraDharitri/drt-go-chain-core v1.3.1
+	github.com/TerraDharitri/drt-go-chain v1.9.6
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.15
+	github.com/TerraDharitri/drt-go-chain-proxy v1.1.57
 	github.com/pelletier/go-toml v1.9.3
 	github.com/stretchr/testify v1.10.0
 	github.com/urfave/cli v1.22.16
@@ -118,18 +118,18 @@ require (
 	github.com/multiformats/go-multihash v0.2.3 // indirect
 	github.com/multiformats/go-multistream v0.4.1 // indirect
 	github.com/multiformats/go-varint v0.0.7 // indirect
-	github.com/multiversx/concurrent-map v0.1.4 // indirect
-	github.com/multiversx/mx-chain-communication-go v1.2.0 // indirect
-	github.com/multiversx/mx-chain-crypto-go v1.2.12 // indirect
-	github.com/multiversx/mx-chain-es-indexer-go v1.8.1 // indirect
-	github.com/multiversx/mx-chain-scenario-go v1.4.4 // indirect
-	github.com/multiversx/mx-chain-storage-go v1.0.19 // indirect
-	github.com/multiversx/mx-chain-vm-common-go v1.5.16 // indirect
-	github.com/multiversx/mx-chain-vm-go v1.5.40 // indirect
-	github.com/multiversx/mx-chain-vm-v1_2-go v1.2.68 // indirect
-	github.com/multiversx/mx-chain-vm-v1_3-go v1.3.69 // indirect
-	github.com/multiversx/mx-chain-vm-v1_4-go v1.4.98 // indirect
-	github.com/multiversx/mx-components-big-int v1.0.0 // indirect
+	github.com/TerraDharitri/concurrent-map v0.1.4 // indirect
+	github.com/TerraDharitri/drt-go-chain-communication v1.2.0 // indirect
+	github.com/TerraDharitri/drt-go-chain-core v1.2.12 // indirect
+	github.com/TerraDharitri/drt-go-chain-es-indexer v1.8.1 // indirect
+	github.com/TerraDharitri/drt-go-chain-scenario v1.4.4 // indirect
+	github.com/TerraDharitri/drt-go-chain-storage v1.0.19 // indirect
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.5.16 // indirect
+	github.com/TerraDharitri/drt-go-chain-vm v1.5.40 // indirect
+	github.com/TerraDharitri/drt-go-chain-vm v1.2.68 // indirect
+	github.com/TerraDharitri/drt-go-chain-vm-v2 v1.3.69 // indirect
+	github.com/TerraDharitri/drt-go-chain-vm-v3 v1.4.98 // indirect
+	github.com/TerraDharitri/drt-go-bigint v1.0.0 // indirect
 	github.com/onsi/ginkgo/v2 v2.11.0 // indirect
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/opencontainers/runtime-spec v1.0.2 // indirect

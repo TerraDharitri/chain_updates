@@ -7,11 +7,11 @@ import (
 	"sync"
 	"time"
 
-	nodeCore "github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-vm-common-go"
+	nodeCore "github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	vmcommon "github.com/TerraDharitri/drt-gochain-vm-common"
 	"github.com/tidwall/gjson"
 )
 
@@ -49,7 +49,7 @@ func NewAccountsGetter(
 		restClient:                restClient,
 		pubKeyConverter:           pubKeyConverter,
 		authenticationData:        authenticationData,
-		lkMexContractAddress:      generalConfig.LKMEXStakingContractAddress,
+		lkMexContractAddress:      generalConfig.LKMOAStakingContractAddress,
 		energyContractAddress:     generalConfig.EnergyContractAddress,
 		delegationContractAddress: generalConfig.DelegationLegacyContractAddress,
 		validatorsContract:        generalConfig.ValidatorsContract,
@@ -167,14 +167,14 @@ func (ag *accountsGetter) GetDelegatorsAccounts() (map[string]*data.AccountInfoW
 	return accountsStake, nil
 }
 
-// GetLKMEXStakeAccounts will fetch all accounts that have stake lkmex tokens
-func (ag *accountsGetter) GetLKMEXStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error) {
+// GetLKMOAStakeAccounts will fetch all accounts that have stake lkmoa tokens
+func (ag *accountsGetter) GetLKMOAStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error) {
 	accountsMap := make(map[string]*data.AccountInfoWithStakeValues)
 	if ag.lkMexContractAddress == "" {
 		return accountsMap, nil
 	}
 
-	defer logExecutionTime(time.Now(), "Fetched accounts from lkmex staking contract")
+	defer logExecutionTime(time.Now(), "Fetched accounts from lkmoa staking contract")
 
 	vmRequest := &data.VmValueRequest{
 		Address:    ag.lkMexContractAddress,
@@ -209,13 +209,13 @@ func (ag *accountsGetter) GetLKMEXStakeAccounts() (map[string]*data.AccountInfoW
 	for key, value := range accountsStake {
 		accountsMap[key] = &data.AccountInfoWithStakeValues{
 			StakeInfo: data.StakeInfo{
-				LKMEXStake:    value,
-				LKMEXStakeNum: core.ComputeBalanceAsFloat(value),
+				LKMOAStake:    value,
+				LKMOAStakeNum: core.ComputeBalanceAsFloat(value),
 			},
 		}
 	}
 
-	log.Info("staked lkmex accounts", "num", len(accountsStake))
+	log.Info("staked lkmoa accounts", "num", len(accountsStake))
 
 	return accountsMap, nil
 }

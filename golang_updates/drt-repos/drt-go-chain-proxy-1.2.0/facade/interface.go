@@ -3,11 +3,11 @@ package facade
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 // ActionsProcessor defines what an actions processor should do
@@ -22,12 +22,12 @@ type AccountProcessor interface {
 	GetAccounts(addresses []string, options common.AccountQueryOptions) (*data.AccountsModel, error)
 	GetShardIDForAddress(address string) (uint32, error)
 	GetValueForKey(address string, key string, options common.AccountQueryOptions) (string, error)
-	GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetKeyValuePairs(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
-	GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
+	GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetNFTTokenIDsRegisteredByAddress(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetCodeHash(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
 	GetGuardianData(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error)
@@ -78,9 +78,9 @@ type ValidatorStatisticsProcessor interface {
 	GetAuctionList() (*data.AuctionListResponse, error)
 }
 
-// ESDTSupplyProcessor defines what an esdt supply processor should do
-type ESDTSupplyProcessor interface {
-	GetESDTSupply(token string) (*data.ESDTSupplyResponse, error)
+// DCDTSupplyProcessor defines what an dcdt supply processor should do
+type DCDTSupplyProcessor interface {
+	GetDCDTSupply(token string) (*data.DCDTSupplyResponse, error)
 }
 
 // NodeStatusProcessor defines what a node status processor should do
@@ -89,7 +89,7 @@ type NodeStatusProcessor interface {
 	GetNetworkStatusMetrics(shardID uint32) (*data.GenericAPIResponse, error)
 	GetEconomicsDataMetrics() (*data.GenericAPIResponse, error)
 	GetLatestFullySynchronizedHyperblockNonce() (uint64, error)
-	GetAllIssuedESDTs(tokenType string) (*data.GenericAPIResponse, error)
+	GetAllIssuedDCDTs(tokenType string) (*data.GenericAPIResponse, error)
 	GetEnableEpochsMetrics() (*data.GenericAPIResponse, error)
 	GetDirectStakedInfo() (*data.GenericAPIResponse, error)
 	GetDelegatedInfo() (*data.GenericAPIResponse, error)

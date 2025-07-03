@@ -9,12 +9,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
 )
 
 var defaultHasher = blake2b.NewBlake2b()
@@ -46,11 +46,11 @@ var ChildAddress = MakeTestSCAddressWithDefaultVM("childSC")
 // NephewAddress is an exposed value to use in tests
 var NephewAddress = MakeTestSCAddressWithDefaultVM("NephewAddress")
 
-// ESDTTransferGasCost is an exposed value to use in tests
-var ESDTTransferGasCost = uint64(1)
+// DCDTTransferGasCost is an exposed value to use in tests
+var DCDTTransferGasCost = uint64(1)
 
-// ESDTTestTokenName is an exposed value to use in tests
-var ESDTTestTokenName = []byte("TTT-010101")
+// DCDTTestTokenName is an exposed value to use in tests
+var DCDTTestTokenName = []byte("TTT-010101")
 
 // DefaultCodeMetadata is an exposed value to use in tests
 var DefaultCodeMetadata = []byte{3, 0}
@@ -277,14 +277,14 @@ func DefaultTestContractCallInput() *vmcommon.ContractCallInput {
 // ContractCallInputBuilder extends a ContractCallInput for extra building functionality during testing
 type ContractCallInputBuilder struct {
 	vmcommon.ContractCallInput
-	CurrentESDTTransferIndex int
+	CurrentDCDTTransferIndex int
 }
 
 // CreateTestContractCallInputBuilder is a builder for ContractCallInputBuilder
 func CreateTestContractCallInputBuilder() *ContractCallInputBuilder {
 	return &ContractCallInputBuilder{
 		ContractCallInput:        *DefaultTestContractCallInput(),
-		CurrentESDTTransferIndex: 0,
+		CurrentDCDTTransferIndex: 0,
 	}
 }
 
@@ -354,34 +354,34 @@ func (contractInput *ContractCallInputBuilder) WithPrevTxHash(txHash []byte) *Co
 	return contractInput
 }
 
-func (contractInput *ContractCallInputBuilder) initESDTTransferIfNeeded() {
-	if len(contractInput.ESDTTransfers) == 0 {
-		contractInput.ESDTTransfers = make([]*vmcommon.ESDTTransfer, 1)
-		contractInput.ESDTTransfers[0] = &vmcommon.ESDTTransfer{}
-		contractInput.CurrentESDTTransferIndex = 0
+func (contractInput *ContractCallInputBuilder) initDCDTTransferIfNeeded() {
+	if len(contractInput.DCDTTransfers) == 0 {
+		contractInput.DCDTTransfers = make([]*vmcommon.DCDTTransfer, 1)
+		contractInput.DCDTTransfers[0] = &vmcommon.DCDTTransfer{}
+		contractInput.CurrentDCDTTransferIndex = 0
 	}
 }
 
-// WithESDTValue provides the ESDTValue for ContractCallInputBuilder
-func (contractInput *ContractCallInputBuilder) WithESDTValue(esdtValue *big.Int) *ContractCallInputBuilder {
-	contractInput.initESDTTransferIfNeeded()
-	i := contractInput.CurrentESDTTransferIndex
-	contractInput.ContractCallInput.ESDTTransfers[i].ESDTValue = esdtValue
+// WithDCDTValue provides the DCDTValue for ContractCallInputBuilder
+func (contractInput *ContractCallInputBuilder) WithDCDTValue(dcdtValue *big.Int) *ContractCallInputBuilder {
+	contractInput.initDCDTTransferIfNeeded()
+	i := contractInput.CurrentDCDTTransferIndex
+	contractInput.ContractCallInput.DCDTTransfers[i].DCDTValue = dcdtValue
 	return contractInput
 }
 
-// WithESDTTokenName provides the ESDTTokenName for ContractCallInputBuilder
-func (contractInput *ContractCallInputBuilder) WithESDTTokenName(esdtTokenName []byte) *ContractCallInputBuilder {
-	contractInput.initESDTTransferIfNeeded()
-	i := contractInput.CurrentESDTTransferIndex
-	contractInput.ContractCallInput.ESDTTransfers[i].ESDTTokenName = esdtTokenName
+// WithDCDTTokenName provides the DCDTTokenName for ContractCallInputBuilder
+func (contractInput *ContractCallInputBuilder) WithDCDTTokenName(dcdtTokenName []byte) *ContractCallInputBuilder {
+	contractInput.initDCDTTransferIfNeeded()
+	i := contractInput.CurrentDCDTTransferIndex
+	contractInput.ContractCallInput.DCDTTransfers[i].DCDTTokenName = dcdtTokenName
 	return contractInput
 }
 
-func (contractInput *ContractCallInputBuilder) NextESDTTransfer() *ContractCallInputBuilder {
-	nextTransfer := &vmcommon.ESDTTransfer{}
-	contractInput.ESDTTransfers = append(contractInput.ESDTTransfers, nextTransfer)
-	contractInput.CurrentESDTTransferIndex++
+func (contractInput *ContractCallInputBuilder) NextDCDTTransfer() *ContractCallInputBuilder {
+	nextTransfer := &vmcommon.DCDTTransfer{}
+	contractInput.DCDTTransfers = append(contractInput.DCDTTransfers, nextTransfer)
+	contractInput.CurrentDCDTTransferIndex++
 	return contractInput
 }
 

@@ -7,7 +7,7 @@
             "comment": "reward value proportional to stake to make it easier to check, 50% are fees",
             "tx": {
                 "to": "sc:delegation",
-                "egldValue": "888,000,000"
+                "rewaValue": "888,000,000"
             }
         },
         {

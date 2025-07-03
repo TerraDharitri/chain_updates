@@ -8,7 +8,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_dharitri_mx_chain_core_go_data "github.com/TerraDharitri/mx-chain-core-go/data"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -33,8 +33,8 @@ type DelegationManagement struct {
 	LastAddress         []byte        `protobuf:"bytes,2,opt,name=LastAddress,proto3" json:"LastAddress"`
 	MinServiceFee       uint64        `protobuf:"varint,3,opt,name=MinServiceFee,proto3" json:"MinServiceFee"`
 	MaxServiceFee       uint64        `protobuf:"varint,4,opt,name=MaxServiceFee,proto3" json:"MaxServiceFee"`
-	MinDeposit          *math_big.Int `protobuf:"bytes,5,opt,name=MinDeposit,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MinDeposit"`
-	MinDelegationAmount *math_big.Int `protobuf:"bytes,6,opt,name=MinDelegationAmount,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MinDelegationAmount"`
+	MinDeposit          *math_big.Int `protobuf:"bytes,5,opt,name=MinDeposit,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"MinDeposit"`
+	MinDelegationAmount *math_big.Int `protobuf:"bytes,6,opt,name=MinDelegationAmount,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"MinDelegationAmount"`
 }
 
 func (m *DelegationManagement) Reset()      { *m = DelegationManagement{} }
@@ -147,8 +147,8 @@ func (m *DelegationContractList) GetAddresses() [][]byte {
 }
 
 type DelegationConfig struct {
-	MaxDelegationCap            *math_big.Int `protobuf:"bytes,1,opt,name=MaxDelegationCap,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"MaxDelegationCap"`
-	InitialOwnerFunds           *math_big.Int `protobuf:"bytes,2,opt,name=InitialOwnerFunds,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"InitialOwnerFunds"`
+	MaxDelegationCap            *math_big.Int `protobuf:"bytes,1,opt,name=MaxDelegationCap,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"MaxDelegationCap"`
+	InitialOwnerFunds           *math_big.Int `protobuf:"bytes,2,opt,name=InitialOwnerFunds,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"InitialOwnerFunds"`
 	AutomaticActivation         bool          `protobuf:"varint,3,opt,name=AutomaticActivation,proto3" json:"AutomaticActivation"`
 	ChangeableServiceFee        bool          `protobuf:"varint,4,opt,name=ChangeableServiceFee,proto3" json:"ChangeableServiceFee"`
 	CreatedNonce                uint64        `protobuf:"varint,5,opt,name=CreatedNonce,proto3" json:"CreatedNonce"`
@@ -352,7 +352,7 @@ func (m *DelegationContractStatus) GetNumUsers() uint64 {
 }
 
 type Fund struct {
-	Value   *math_big.Int `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"Value"`
+	Value   *math_big.Int `protobuf:"bytes,1,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"Value"`
 	Address []byte        `protobuf:"bytes,2,opt,name=Address,proto3" json:"Address"`
 	Epoch   uint32        `protobuf:"varint,3,opt,name=Epoch,proto3" json:"Epoch"`
 	Type    uint32        `protobuf:"varint,4,opt,name=Type,proto3" json:"Type"`
@@ -418,8 +418,8 @@ type DelegatorData struct {
 	ActiveFund            []byte        `protobuf:"bytes,1,opt,name=ActiveFund,proto3" json:"ActiveFund"`
 	UnStakedFunds         [][]byte      `protobuf:"bytes,2,rep,name=UnStakedFunds,proto3" json:"UnStakedFunds"`
 	RewardsCheckpoint     uint32        `protobuf:"varint,3,opt,name=RewardsCheckpoint,proto3" json:"RewardsCheckpoint"`
-	UnClaimedRewards      *math_big.Int `protobuf:"bytes,4,opt,name=UnClaimedRewards,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"UnClaimedRewards"`
-	TotalCumulatedRewards *math_big.Int `protobuf:"bytes,5,opt,name=TotalCumulatedRewards,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalCumulatedRewards"`
+	UnClaimedRewards      *math_big.Int `protobuf:"bytes,4,opt,name=UnClaimedRewards,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"UnClaimedRewards"`
+	TotalCumulatedRewards *math_big.Int `protobuf:"bytes,5,opt,name=TotalCumulatedRewards,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"TotalCumulatedRewards"`
 }
 
 func (m *DelegatorData) Reset()      { *m = DelegatorData{} }
@@ -486,8 +486,8 @@ func (m *DelegatorData) GetTotalCumulatedRewards() *math_big.Int {
 }
 
 type GlobalFundData struct {
-	TotalActive   *math_big.Int `protobuf:"bytes,1,opt,name=TotalActive,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalActive"`
-	TotalUnStaked *math_big.Int `protobuf:"bytes,2,opt,name=TotalUnStaked,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalUnStaked"`
+	TotalActive   *math_big.Int `protobuf:"bytes,1,opt,name=TotalActive,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"TotalActive"`
+	TotalUnStaked *math_big.Int `protobuf:"bytes,2,opt,name=TotalUnStaked,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"TotalUnStaked"`
 }
 
 func (m *GlobalFundData) Reset()      { *m = GlobalFundData{} }
@@ -580,8 +580,8 @@ func (m *NodesData) GetSignedMsg() []byte {
 }
 
 type RewardComputationData struct {
-	RewardsToDistribute *math_big.Int `protobuf:"bytes,1,opt,name=RewardsToDistribute,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"RewardsToDistribute"`
-	TotalActive         *math_big.Int `protobuf:"bytes,2,opt,name=TotalActive,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/mx-chain-core-go/data.BigIntCaster" json:"TotalActive"`
+	RewardsToDistribute *math_big.Int `protobuf:"bytes,1,opt,name=RewardsToDistribute,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"RewardsToDistribute"`
+	TotalActive         *math_big.Int `protobuf:"bytes,2,opt,name=TotalActive,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"TotalActive"`
 	ServiceFee          uint64        `protobuf:"varint,3,opt,name=ServiceFee,proto3" json:"ServiceFee"`
 }
 
@@ -757,13 +757,13 @@ func (this *DelegationManagement) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.MinDeposit, that1.MinDeposit) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.MinDelegationAmount, that1.MinDelegationAmount) {
 			return false
 		}
@@ -819,13 +819,13 @@ func (this *DelegationConfig) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.MaxDelegationCap, that1.MaxDelegationCap) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.InitialOwnerFunds, that1.InitialOwnerFunds) {
 			return false
 		}
@@ -945,7 +945,7 @@ func (this *Fund) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Value, that1.Value) {
 			return false
 		}
@@ -995,13 +995,13 @@ func (this *DelegatorData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.UnClaimedRewards, that1.UnClaimedRewards) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalCumulatedRewards, that1.TotalCumulatedRewards) {
 			return false
 		}
@@ -1028,13 +1028,13 @@ func (this *GlobalFundData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalActive, that1.TotalActive) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalUnStaked, that1.TotalUnStaked) {
 			return false
 		}
@@ -1088,13 +1088,13 @@ func (this *RewardComputationData) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.RewardsToDistribute, that1.RewardsToDistribute) {
 			return false
 		}
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.TotalActive, that1.TotalActive) {
 			return false
 		}
@@ -1266,7 +1266,7 @@ func (m *DelegationManagement) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.MinDelegationAmount)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MinDelegationAmount, dAtA[i:]); err != nil {
@@ -1277,7 +1277,7 @@ func (m *DelegationManagement) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x32
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.MinDeposit)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MinDeposit, dAtA[i:]); err != nil {
@@ -1405,7 +1405,7 @@ func (m *DelegationConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x18
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.InitialOwnerFunds)
 		i -= size
 		if _, err := __caster.MarshalTo(m.InitialOwnerFunds, dAtA[i:]); err != nil {
@@ -1416,7 +1416,7 @@ func (m *DelegationConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.MaxDelegationCap)
 		i -= size
 		if _, err := __caster.MarshalTo(m.MaxDelegationCap, dAtA[i:]); err != nil {
@@ -1581,7 +1581,7 @@ func (m *Fund) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x12
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Value)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Value, dAtA[i:]); err != nil {
@@ -1615,7 +1615,7 @@ func (m *DelegatorData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.TotalCumulatedRewards)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalCumulatedRewards, dAtA[i:]); err != nil {
@@ -1626,7 +1626,7 @@ func (m *DelegatorData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x2a
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.UnClaimedRewards)
 		i -= size
 		if _, err := __caster.MarshalTo(m.UnClaimedRewards, dAtA[i:]); err != nil {
@@ -1681,7 +1681,7 @@ func (m *GlobalFundData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.TotalUnStaked)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalUnStaked, dAtA[i:]); err != nil {
@@ -1692,7 +1692,7 @@ func (m *GlobalFundData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.TotalActive)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalActive, dAtA[i:]); err != nil {
@@ -1768,7 +1768,7 @@ func (m *RewardComputationData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x18
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.TotalActive)
 		i -= size
 		if _, err := __caster.MarshalTo(m.TotalActive, dAtA[i:]); err != nil {
@@ -1779,7 +1779,7 @@ func (m *RewardComputationData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i--
 	dAtA[i] = 0x12
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.RewardsToDistribute)
 		i -= size
 		if _, err := __caster.MarshalTo(m.RewardsToDistribute, dAtA[i:]); err != nil {
@@ -1823,12 +1823,12 @@ func (m *DelegationManagement) Size() (n int) {
 		n += 1 + sovDelegation(uint64(m.MaxServiceFee))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.MinDeposit)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.MinDelegationAmount)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -1857,12 +1857,12 @@ func (m *DelegationConfig) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.MaxDelegationCap)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.InitialOwnerFunds)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -1942,7 +1942,7 @@ func (m *Fund) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Value)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -1979,12 +1979,12 @@ func (m *DelegatorData) Size() (n int) {
 		n += 1 + sovDelegation(uint64(m.RewardsCheckpoint))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.UnClaimedRewards)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.TotalCumulatedRewards)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -1998,12 +1998,12 @@ func (m *GlobalFundData) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.TotalActive)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.TotalUnStaked)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -2034,12 +2034,12 @@ func (m *RewardComputationData) Size() (n int) {
 	var l int
 	_ = l
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.RewardsToDistribute)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
 	{
-		__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.TotalActive)
 		n += 1 + l + sovDelegation(uint64(l))
 	}
@@ -2355,7 +2355,7 @@ func (m *DelegationManagement) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2393,7 +2393,7 @@ func (m *DelegationManagement) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2569,7 +2569,7 @@ func (m *DelegationConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -2607,7 +2607,7 @@ func (m *DelegationConfig) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3125,7 +3125,7 @@ func (m *Fund) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3373,7 +3373,7 @@ func (m *DelegatorData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3411,7 +3411,7 @@ func (m *DelegatorData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3502,7 +3502,7 @@ func (m *GlobalFundData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3540,7 +3540,7 @@ func (m *GlobalFundData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3752,7 +3752,7 @@ func (m *RewardComputationData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -3790,7 +3790,7 @@ func (m *RewardComputationData) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_dharitri_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {

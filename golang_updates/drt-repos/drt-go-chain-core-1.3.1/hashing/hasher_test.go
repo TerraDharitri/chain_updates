@@ -4,11 +4,11 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	"github.com/multiversx/mx-chain-core-go/hashing/fnv"
-	"github.com/multiversx/mx-chain-core-go/hashing/keccak"
-	"github.com/multiversx/mx-chain-core-go/hashing/sha256"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/fnv"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/keccak"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/sha256"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

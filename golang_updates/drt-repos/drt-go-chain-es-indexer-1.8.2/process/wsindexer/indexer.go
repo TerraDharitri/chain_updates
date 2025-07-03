@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/metrics"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/metrics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var (

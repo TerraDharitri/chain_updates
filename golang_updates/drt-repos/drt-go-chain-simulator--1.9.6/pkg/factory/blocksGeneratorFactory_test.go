@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-simulator-go/config"
-	"github.com/multiversx/mx-chain-simulator-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-simulator/config"
+	"github.com/TerraDharitri/drt-go-chain-simulator/testscommon"
 	"github.com/stretchr/testify/require"
 )
 

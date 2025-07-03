@@ -1,20 +1,20 @@
-package esdt
+package dcdt
 
 import "strings"
 
 const (
-	// esdtTickerNumRandChars represents the number of hex-encoded random characters sequence of a ticker
-	esdtTickerNumRandChars = 6
+	// dcdtTickerNumRandChars represents the number of hex-encoded random characters sequence of a ticker
+	dcdtTickerNumRandChars = 6
 	// separatorChar represents the character that separated the token ticker by the random sequence
 	separatorChar = "-"
 	// minLengthForTickerName represents the minimum number of characters a token's ticker can have
 	minLengthForTickerName = 3
 	// maxLengthForTickerName represents the maximum number of characters a token's ticker can have
 	maxLengthForTickerName = 10
-	// maxLengthESDTPrefix represents the maximum number of characters a token's prefix can have
-	maxLengthESDTPrefix = 4
-	// minLengthESDTPrefix represents the minimum number of characters a token's prefix can have
-	minLengthESDTPrefix = 1
+	// maxLengthDCDTPrefix represents the maximum number of characters a token's prefix can have
+	maxLengthDCDTPrefix = 4
+	// minLengthDCDTPrefix represents the minimum number of characters a token's prefix can have
+	minLengthDCDTPrefix = 1
 )
 
 // IsValidPrefixedToken checks if the provided token is valid, and returns if prefix if so
@@ -45,7 +45,7 @@ func IsValidPrefixedToken(token string) (string, bool) {
 // IsValidTokenPrefix checks if the token prefix is valid
 func IsValidTokenPrefix(prefix string) bool {
 	prefixLen := len(prefix)
-	if prefixLen > maxLengthESDTPrefix || prefixLen < minLengthESDTPrefix {
+	if prefixLen > maxLengthDCDTPrefix || prefixLen < minLengthDCDTPrefix {
 		return false
 	}
 
@@ -86,7 +86,7 @@ func IsTokenTickerLenCorrect(tokenTickerLen int) bool {
 
 // IsRandomSeqValid checks if the token random sequence is valid
 func IsRandomSeqValid(randomSeq string) bool {
-	if len(randomSeq) != esdtTickerNumRandChars {
+	if len(randomSeq) != dcdtTickerNumRandChars {
 		return false
 	}
 

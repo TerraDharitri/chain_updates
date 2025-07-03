@@ -7,13 +7,13 @@ import (
 	"runtime/debug"
 	"testing"
 
-	"github.com/multiversx/mx-chain-simulator-go/testscommon"
+	"github.com/TerraDharitri/drt-go-chain-simulator/testscommon"
 	"github.com/stretchr/testify/require"
 )
 
 const (
-	mxNodeRepo  = "https://github.com/multiversx/mx-chain-go"
-	mxProxyRepo = "https://github.com/multiversx/mx-chain-proxy-go"
+	mxNodeRepo  = "https://github.com/TerraDharitri/drt-go-chain"
+	mxProxyRepo = "https://github.com/TerraDharitri/drt-go-chain-proxy"
 )
 
 var expectedErr = errors.New("expected error")
@@ -30,7 +30,7 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchProxyConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},
@@ -48,7 +48,7 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchProxyConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},
@@ -66,7 +66,7 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchProxyConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},
@@ -84,11 +84,11 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchProxyConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain",
 					Version: "v1.6.4-0.20231113110318-c71f3fc323f4",
 				},
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},
@@ -109,11 +109,11 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchProxyConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain",
 					Version: "v1.6.4-0.20231113110318-c71f3fc323f4",
 				},
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},
@@ -131,7 +131,7 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchNodeConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain",
 					Version: "v1.6.4-0.20231113110318-c71f3fc323f4",
 				},
 			},
@@ -152,11 +152,11 @@ func TestConfigsFetcher(t *testing.T) {
 		err := cf.FetchNodeConfigs(&debug.BuildInfo{
 			Deps: []*debug.Module{
 				{
-					Path:    "github.com/multiversx/mx-chain-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain",
 					Version: "v1.6.4-0.20231113110318-c71f3fc323f4",
 				},
 				{
-					Path:    "github.com/multiversx/mx-chain-proxy-go",
+					Path:    "github.com/TerraDharitri/drt-go-chain-proxy",
 					Version: "v1.1.41",
 				},
 			},

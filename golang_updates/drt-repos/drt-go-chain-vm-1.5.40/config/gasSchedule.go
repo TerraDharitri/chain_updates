@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 	"github.com/mitchellh/mapstructure"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-vm-go/executor"
 )
 
 // GasValueForTests defines the gas value for tests
@@ -226,23 +226,23 @@ func FillGasMapBuiltInCosts(value uint64) map[string]uint64 {
 	gasMap["ClaimDeveloperRewards"] = value
 	gasMap["SaveUserName"] = value
 	gasMap["SaveKeyValue"] = value
-	gasMap["ESDTTransfer"] = value
-	gasMap["ESDTBurn"] = value
-	gasMap["ESDTLocalMint"] = value
-	gasMap["ESDTLocalBurn"] = value
-	gasMap["ESDTNFTCreate"] = value
-	gasMap["ESDTNFTAddQuantity"] = value
-	gasMap["ESDTNFTBurn"] = value
-	gasMap["ESDTNFTTransfer"] = value
-	gasMap["ESDTNFTChangeCreateOwner"] = value
-	gasMap["ESDTNFTAddUri"] = value
-	gasMap["ESDTNFTUpdateAttributes"] = value
-	gasMap["ESDTNFTMultiTransfer"] = value
-	gasMap["ESDTModifyRoyalties"] = value
-	gasMap["ESDTModifyCreator"] = value
-	gasMap["ESDTNFTRecreate"] = value
-	gasMap["ESDTNFTUpdate"] = value
-	gasMap["ESDTNFTSetNewURIs"] = value
+	gasMap["DCDTTransfer"] = value
+	gasMap["DCDTBurn"] = value
+	gasMap["DCDTLocalMint"] = value
+	gasMap["DCDTLocalBurn"] = value
+	gasMap["DCDTNFTCreate"] = value
+	gasMap["DCDTNFTAddQuantity"] = value
+	gasMap["DCDTNFTBurn"] = value
+	gasMap["DCDTNFTTransfer"] = value
+	gasMap["DCDTNFTChangeCreateOwner"] = value
+	gasMap["DCDTNFTAddUri"] = value
+	gasMap["DCDTNFTUpdateAttributes"] = value
+	gasMap["DCDTNFTMultiTransfer"] = value
+	gasMap["DCDTModifyRoyalties"] = value
+	gasMap["DCDTModifyCreator"] = value
+	gasMap["DCDTNFTRecreate"] = value
+	gasMap["DCDTNFTUpdate"] = value
+	gasMap["DCDTNFTSetNewURIs"] = value
 	gasMap["SetGuardian"] = value
 	gasMap["GuardAccount"] = value
 	gasMap["UnGuardAccount"] = value

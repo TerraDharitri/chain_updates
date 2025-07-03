@@ -3,7 +3,7 @@ package statusCore_test
 import (
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/factory/statusCore"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
@@ -17,7 +17,7 @@ func TestNewManagedStatusCoreComponents(t *testing.T) {
 		t.Parallel()
 
 		managedStatusCoreComponents, err := statusCore.NewManagedStatusCoreComponents(nil)
-		require.Equal(t, errorsMx.ErrNilStatusCoreComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilStatusCoreComponentsFactory, err)
 		require.Nil(t, managedStatusCoreComponents)
 	})
 	t.Run("should work", func(t *testing.T) {
@@ -89,7 +89,7 @@ func TestManagedStatusCoreComponents_CheckSubcomponents(t *testing.T) {
 	managedStatusCoreComponents, _ := statusCore.NewManagedStatusCoreComponents(statusCoreComponentsFactory)
 
 	err := managedStatusCoreComponents.CheckSubcomponents()
-	require.Equal(t, errorsMx.ErrNilStatusCoreComponents, err)
+	require.Equal(t, errorsDrt.ErrNilStatusCoreComponents, err)
 
 	err = managedStatusCoreComponents.Create()
 	require.NoError(t, err)

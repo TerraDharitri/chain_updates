@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	indexerData "github.com/multiversx/mx-chain-es-indexer-go/data"
-	indexer "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/accounts-balance-checker/pkg/utils"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	indexerData "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	indexer "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/accounts-balance-checker/pkg/utils"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 const (
@@ -63,18 +63,18 @@ func NewBalanceChecker(
 	}, nil
 }
 
-// CheckEGLDBalances will compare the EGLD balance from the Elasticsearch database with the results from gateway
-func (bc *balanceChecker) CheckEGLDBalances() error {
+// CheckREWABalances will compare the REWA balance from the Elasticsearch database with the results from gateway
+func (bc *balanceChecker) CheckREWABalances() error {
 	return bc.esClient.DoScrollRequestAllDocuments(
 		accountsIndex,
 		[]byte(matchAllQuery),
-		bc.handlerFuncScrollAccountEGLD,
+		bc.handlerFuncScrollAccountREWA,
 	)
 }
 
 var countCheck = 0
 
-func (bc *balanceChecker) handlerFuncScrollAccountEGLD(responseBytes []byte) error {
+func (bc *balanceChecker) handlerFuncScrollAccountREWA(responseBytes []byte) error {
 	accountsRes := &ResponseAccounts{}
 	err := json.Unmarshal(responseBytes, accountsRes)
 	if err != nil {

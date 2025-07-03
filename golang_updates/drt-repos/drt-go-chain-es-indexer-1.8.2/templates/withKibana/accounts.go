@@ -1,7 +1,7 @@
 package withKibana
 
 import (
-	"github.com/multiversx/mx-chain-es-indexer-go/templates"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/templates"
 )
 
 type Object = templates.Object

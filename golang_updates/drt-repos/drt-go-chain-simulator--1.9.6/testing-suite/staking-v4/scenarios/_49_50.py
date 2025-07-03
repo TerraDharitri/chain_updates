@@ -10,7 +10,7 @@ from core.chain_simulator import *
 # Steps
 # 1) Test 49 : Stake a node with an invalid bls key
 # 2) Test 49.1 : Stake a node with an already staked bls key
-# 3) Test 50 : Stake a node with less than 2500 egld
+# 3) Test 50 : Stake a node with less than 2500 rewa
 
 
 EPOCHS = [3, 4, 5, 6]
@@ -102,8 +102,8 @@ def test_49_50():
             assert check_if_error_is_present_in_tx("error bls key already registered", tx_hash)
 
             # === STEP 3 ==============================================================
-            # 3) Test 50 : Stake a node with less than 2500 egld
-            # send a malicious stake with less than 2500 egld
+            # 3) Test 50 : Stake a node with less than 2500 rewa
+            # send a malicious stake with less than 2500 rewa
             _key = ValidatorKey(Path("./validatorKeys/validatorKey_3.pem"))
             tx_hash = malicious_stake(_C, [_key], AMOUNT_DEFICIT=1)
 

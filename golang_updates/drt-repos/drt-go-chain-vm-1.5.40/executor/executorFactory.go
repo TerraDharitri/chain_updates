@@ -1,6 +1,6 @@
 package executor
 
-import "github.com/multiversx/mx-chain-core-go/core/check"
+import "github.com/TerraDharitri/drt-go-chain-core/core/check"
 
 // ExecutorFactoryArgs define the Executor configurations that come from the VM, especially the hooks and the gas costs.
 type ExecutorFactoryArgs struct {

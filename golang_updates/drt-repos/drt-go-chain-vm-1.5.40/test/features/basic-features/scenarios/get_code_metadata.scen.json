@@ -6,13 +6,13 @@
                 "sc:basic-features": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json",
+                    "code": "drtsc:../output/basic-features.drtsc.json",
                     "codeMetadata": "0x0104"
                 },
                 "sc:basic-features-2": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../output/basic-features.mxsc.json",
+                    "code": "drtsc:../output/basic-features.drtsc.json",
                     "codeMetadata": "0x0100"
                 },
                 "address:an_account": {

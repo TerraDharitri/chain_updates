@@ -55,70 +55,70 @@ const BuiltInFunctionSetUserName = "SetUserName"
 // BuiltInFunctionSaveKeyValue is the key for the save key value built-in function
 const BuiltInFunctionSaveKeyValue = "SaveKeyValue"
 
-// BuiltInFunctionESDTTransfer is the key for the electronic standard digital token transfer built-in function
-const BuiltInFunctionESDTTransfer = "ESDTTransfer"
+// BuiltInFunctionDCDTTransfer is the key for the electronic standard digital token transfer built-in function
+const BuiltInFunctionDCDTTransfer = "DCDTTransfer"
 
-// BuiltInFunctionESDTBurn is the key for the electronic standard digital token burn built-in function
-const BuiltInFunctionESDTBurn = "ESDTBurn"
+// BuiltInFunctionDCDTBurn is the key for the electronic standard digital token burn built-in function
+const BuiltInFunctionDCDTBurn = "DCDTBurn"
 
-// BuiltInFunctionESDTFreeze is the key for the electronic standard digital token freeze built-in function
-const BuiltInFunctionESDTFreeze = "ESDTFreeze"
+// BuiltInFunctionDCDTFreeze is the key for the electronic standard digital token freeze built-in function
+const BuiltInFunctionDCDTFreeze = "DCDTFreeze"
 
-// BuiltInFunctionESDTUnFreeze is the key for the electronic standard digital token unfreeze built-in function
-const BuiltInFunctionESDTUnFreeze = "ESDTUnFreeze"
+// BuiltInFunctionDCDTUnFreeze is the key for the electronic standard digital token unfreeze built-in function
+const BuiltInFunctionDCDTUnFreeze = "DCDTUnFreeze"
 
-// BuiltInFunctionESDTWipe is the key for the electronic standard digital token wipe built-in function
-const BuiltInFunctionESDTWipe = "ESDTWipe"
+// BuiltInFunctionDCDTWipe is the key for the electronic standard digital token wipe built-in function
+const BuiltInFunctionDCDTWipe = "DCDTWipe"
 
-// BuiltInFunctionESDTPause is the key for the electronic standard digital token pause built-in function
-const BuiltInFunctionESDTPause = "ESDTPause"
+// BuiltInFunctionDCDTPause is the key for the electronic standard digital token pause built-in function
+const BuiltInFunctionDCDTPause = "DCDTPause"
 
-// BuiltInFunctionESDTUnPause is the key for the electronic standard digital token unpause built-in function
-const BuiltInFunctionESDTUnPause = "ESDTUnPause"
+// BuiltInFunctionDCDTUnPause is the key for the electronic standard digital token unpause built-in function
+const BuiltInFunctionDCDTUnPause = "DCDTUnPause"
 
-// BuiltInFunctionSetESDTRole is the key for the electronic standard digital token set built-in function
-const BuiltInFunctionSetESDTRole = "ESDTSetRole"
+// BuiltInFunctionSetDCDTRole is the key for the electronic standard digital token set built-in function
+const BuiltInFunctionSetDCDTRole = "DCDTSetRole"
 
-// BuiltInFunctionUnSetESDTRole is the key for the electronic standard digital token unset built-in function
-const BuiltInFunctionUnSetESDTRole = "ESDTUnSetRole"
+// BuiltInFunctionUnSetDCDTRole is the key for the electronic standard digital token unset built-in function
+const BuiltInFunctionUnSetDCDTRole = "DCDTUnSetRole"
 
-// BuiltInFunctionESDTSetLimitedTransfer is the key for the electronic standard digital token built-in function which sets the property
+// BuiltInFunctionDCDTSetLimitedTransfer is the key for the electronic standard digital token built-in function which sets the property
 // for the token to be transferable only through accounts with transfer roles
-const BuiltInFunctionESDTSetLimitedTransfer = "ESDTSetLimitedTransfer"
+const BuiltInFunctionDCDTSetLimitedTransfer = "DCDTSetLimitedTransfer"
 
-// BuiltInFunctionESDTUnSetLimitedTransfer is the key for the electronic standard digital token built-in function which unsets the property
+// BuiltInFunctionDCDTUnSetLimitedTransfer is the key for the electronic standard digital token built-in function which unsets the property
 // for the token to be transferable only through accounts with transfer roles
-const BuiltInFunctionESDTUnSetLimitedTransfer = "ESDTUnSetLimitedTransfer"
+const BuiltInFunctionDCDTUnSetLimitedTransfer = "DCDTUnSetLimitedTransfer"
 
-// BuiltInFunctionESDTLocalMint is the key for the electronic standard digital token local mint built-in function
-const BuiltInFunctionESDTLocalMint = "ESDTLocalMint"
+// BuiltInFunctionDCDTLocalMint is the key for the electronic standard digital token local mint built-in function
+const BuiltInFunctionDCDTLocalMint = "DCDTLocalMint"
 
-// BuiltInFunctionESDTLocalBurn is the key for the electronic standard digital token local burn built-in function
-const BuiltInFunctionESDTLocalBurn = "ESDTLocalBurn"
+// BuiltInFunctionDCDTLocalBurn is the key for the electronic standard digital token local burn built-in function
+const BuiltInFunctionDCDTLocalBurn = "DCDTLocalBurn"
 
-// BuiltInFunctionESDTNFTTransfer is the key for the electronic standard digital token NFT transfer built-in function
-const BuiltInFunctionESDTNFTTransfer = "ESDTNFTTransfer"
+// BuiltInFunctionDCDTNFTTransfer is the key for the electronic standard digital token NFT transfer built-in function
+const BuiltInFunctionDCDTNFTTransfer = "DCDTNFTTransfer"
 
-// BuiltInFunctionESDTNFTCreate is the key for the electronic standard digital token NFT create built-in function
-const BuiltInFunctionESDTNFTCreate = "ESDTNFTCreate"
+// BuiltInFunctionDCDTNFTCreate is the key for the electronic standard digital token NFT create built-in function
+const BuiltInFunctionDCDTNFTCreate = "DCDTNFTCreate"
 
-// BuiltInFunctionESDTNFTAddQuantity is the key for the electronic standard digital token NFT add quantity built-in function
-const BuiltInFunctionESDTNFTAddQuantity = "ESDTNFTAddQuantity"
+// BuiltInFunctionDCDTNFTAddQuantity is the key for the electronic standard digital token NFT add quantity built-in function
+const BuiltInFunctionDCDTNFTAddQuantity = "DCDTNFTAddQuantity"
 
-// BuiltInFunctionESDTNFTCreateRoleTransfer is the key for the electronic standard digital token create role transfer function
-const BuiltInFunctionESDTNFTCreateRoleTransfer = "ESDTNFTCreateRoleTransfer"
+// BuiltInFunctionDCDTNFTCreateRoleTransfer is the key for the electronic standard digital token create role transfer function
+const BuiltInFunctionDCDTNFTCreateRoleTransfer = "DCDTNFTCreateRoleTransfer"
 
-// BuiltInFunctionESDTNFTBurn is the key for the electronic standard digital token NFT burn built-in function
-const BuiltInFunctionESDTNFTBurn = "ESDTNFTBurn"
+// BuiltInFunctionDCDTNFTBurn is the key for the electronic standard digital token NFT burn built-in function
+const BuiltInFunctionDCDTNFTBurn = "DCDTNFTBurn"
 
-// BuiltInFunctionESDTNFTAddURI is the key for the electronic standard digital token NFT add URI built-in function
-const BuiltInFunctionESDTNFTAddURI = "ESDTNFTAddURI"
+// BuiltInFunctionDCDTNFTAddURI is the key for the electronic standard digital token NFT add URI built-in function
+const BuiltInFunctionDCDTNFTAddURI = "DCDTNFTAddURI"
 
-// BuiltInFunctionESDTNFTUpdateAttributes is the key for the electronic standard digital token NFT update attributes built-in function
-const BuiltInFunctionESDTNFTUpdateAttributes = "ESDTNFTUpdateAttributes"
+// BuiltInFunctionDCDTNFTUpdateAttributes is the key for the electronic standard digital token NFT update attributes built-in function
+const BuiltInFunctionDCDTNFTUpdateAttributes = "DCDTNFTUpdateAttributes"
 
-// BuiltInFunctionMultiESDTNFTTransfer is the key for the electronic standard digital token multi transfer built-in function
-const BuiltInFunctionMultiESDTNFTTransfer = "MultiESDTNFTTransfer"
+// BuiltInFunctionMultiDCDTNFTTransfer is the key for the electronic standard digital token multi transfer built-in function
+const BuiltInFunctionMultiDCDTNFTTransfer = "MultiDCDTNFTTransfer"
 
 // BuiltInFunctionSetGuardian is the key for setting a guardian built-in function
 const BuiltInFunctionSetGuardian = "SetGuardian"
@@ -132,138 +132,138 @@ const BuiltInFunctionUnGuardAccount = "UnGuardAccount"
 // BuiltInFunctionMigrateDataTrie is the built-in function key for migrating the data trie
 const BuiltInFunctionMigrateDataTrie = "MigrateDataTrie"
 
-// ESDTSetTokenType represents the builtin function name to set token type
-const ESDTSetTokenType = "ESDTSetTokenType"
+// DCDTSetTokenType represents the builtin function name to set token type
+const DCDTSetTokenType = "DCDTSetTokenType"
 
-// ESDTModifyRoyalties represents the builtin function name to modify royalties
-const ESDTModifyRoyalties = "ESDTModifyRoyalties"
+// DCDTModifyRoyalties represents the builtin function name to modify royalties
+const DCDTModifyRoyalties = "DCDTModifyRoyalties"
 
-// ESDTSetNewURIs represents the builtin function name to set new URIs for NFTs
-const ESDTSetNewURIs = "ESDTSetNewURIs"
+// DCDTSetNewURIs represents the builtin function name to set new URIs for NFTs
+const DCDTSetNewURIs = "DCDTSetNewURIs"
 
-// ESDTModifyCreator represents the builtin function name to modify creator for NFTs
-const ESDTModifyCreator = "ESDTModifyCreator"
+// DCDTModifyCreator represents the builtin function name to modify creator for NFTs
+const DCDTModifyCreator = "DCDTModifyCreator"
 
-// ESDTMetaDataRecreate represents the builtin function name to recreate the metadata for ESDT tokens
-const ESDTMetaDataRecreate = "ESDTMetaDataRecreate"
+// DCDTMetaDataRecreate represents the builtin function name to recreate the metadata for DCDT tokens
+const DCDTMetaDataRecreate = "DCDTMetaDataRecreate"
 
-// ESDTMetaDataUpdate represents the builtin function name to update the metadata for ESDT tokens
-const ESDTMetaDataUpdate = "ESDTMetaDataUpdate"
+// DCDTMetaDataUpdate represents the builtin function name to update the metadata for DCDT tokens
+const DCDTMetaDataUpdate = "DCDTMetaDataUpdate"
 
-// ESDTRoleLocalMint is the constant string for the local role of mint for ESDT tokens
-const ESDTRoleLocalMint = "ESDTRoleLocalMint"
+// DCDTRoleLocalMint is the constant string for the local role of mint for DCDT tokens
+const DCDTRoleLocalMint = "DCDTRoleLocalMint"
 
-// ESDTRoleLocalBurn is the constant string for the local role of burn for ESDT tokens
-const ESDTRoleLocalBurn = "ESDTRoleLocalBurn"
+// DCDTRoleLocalBurn is the constant string for the local role of burn for DCDT tokens
+const DCDTRoleLocalBurn = "DCDTRoleLocalBurn"
 
-// ESDTRoleNFTCreate is the constant string for the local role of create for ESDT NFT tokens
-const ESDTRoleNFTCreate = "ESDTRoleNFTCreate"
+// DCDTRoleNFTCreate is the constant string for the local role of create for DCDT NFT tokens
+const DCDTRoleNFTCreate = "DCDTRoleNFTCreate"
 
-// ESDTRoleNFTCreateMultiShard is the constant string for the local role of create for ESDT NFT tokens multishard
-const ESDTRoleNFTCreateMultiShard = "ESDTRoleNFTCreateMultiShard"
+// DCDTRoleNFTCreateMultiShard is the constant string for the local role of create for DCDT NFT tokens multishard
+const DCDTRoleNFTCreateMultiShard = "DCDTRoleNFTCreateMultiShard"
 
-// ESDTRoleNFTAddQuantity is the constant string for the local role of adding quantity for existing ESDT NFT tokens
-const ESDTRoleNFTAddQuantity = "ESDTRoleNFTAddQuantity"
+// DCDTRoleNFTAddQuantity is the constant string for the local role of adding quantity for existing DCDT NFT tokens
+const DCDTRoleNFTAddQuantity = "DCDTRoleNFTAddQuantity"
 
-// ESDTRoleNFTBurn is the constant string for the local role of burn for ESDT NFT tokens
-const ESDTRoleNFTBurn = "ESDTRoleNFTBurn"
+// DCDTRoleNFTBurn is the constant string for the local role of burn for DCDT NFT tokens
+const DCDTRoleNFTBurn = "DCDTRoleNFTBurn"
 
-// ESDTRoleNFTAddURI is the constant string for the local role of adding a URI for ESDT NFT tokens
-const ESDTRoleNFTAddURI = "ESDTRoleNFTAddURI"
+// DCDTRoleNFTAddURI is the constant string for the local role of adding a URI for DCDT NFT tokens
+const DCDTRoleNFTAddURI = "DCDTRoleNFTAddURI"
 
-// ESDTRoleNFTUpdateAttributes is the constant string for the local role of updating attributes for ESDT NFT tokens
-const ESDTRoleNFTUpdateAttributes = "ESDTRoleNFTUpdateAttributes"
+// DCDTRoleNFTUpdateAttributes is the constant string for the local role of updating attributes for DCDT NFT tokens
+const DCDTRoleNFTUpdateAttributes = "DCDTRoleNFTUpdateAttributes"
 
-// ESDTRoleTransfer is the constant string for the local role to transfer ESDT, only for special tokens
-const ESDTRoleTransfer = "ESDTTransferRole"
+// DCDTRoleTransfer is the constant string for the local role to transfer DCDT, only for special tokens
+const DCDTRoleTransfer = "DCDTTransferRole"
 
-// ESDTRoleSetNewURI represents the role which can rewrite the URI in the token metadata
-const ESDTRoleSetNewURI = "ESDTRoleSetNewURI"
+// DCDTRoleSetNewURI represents the role which can rewrite the URI in the token metadata
+const DCDTRoleSetNewURI = "DCDTRoleSetNewURI"
 
-// ESDTRoleModifyRoyalties represents the role which can rewrite the royalties of a token
-const ESDTRoleModifyRoyalties = "ESDTRoleModifyRoyalties"
+// DCDTRoleModifyRoyalties represents the role which can rewrite the royalties of a token
+const DCDTRoleModifyRoyalties = "DCDTRoleModifyRoyalties"
 
-// ESDTRoleModifyCreator represents the role which can rewrite the creator in the token metadata
-const ESDTRoleModifyCreator = "ESDTRoleModifyCreator"
+// DCDTRoleModifyCreator represents the role which can rewrite the creator in the token metadata
+const DCDTRoleModifyCreator = "DCDTRoleModifyCreator"
 
-// ESDTRoleNFTRecreate represents the role which can recreate the token metadata
-const ESDTRoleNFTRecreate = "ESDTRoleNFTRecreate"
+// DCDTRoleNFTRecreate represents the role which can recreate the token metadata
+const DCDTRoleNFTRecreate = "DCDTRoleNFTRecreate"
 
-// ESDTRoleNFTUpdate represents the role which can update the token metadata
-const ESDTRoleNFTUpdate = "ESDTRoleNFTUpdate"
+// DCDTRoleNFTUpdate represents the role which can update the token metadata
+const DCDTRoleNFTUpdate = "DCDTRoleNFTUpdate"
 
-// ESDTType defines the possible types in case of ESDT tokens
-type ESDTType uint32
+// DCDTType defines the possible types in case of DCDT tokens
+type DCDTType uint32
 
 const (
-	// Fungible defines the token type for ESDT fungible tokens
-	Fungible ESDTType = iota
-	// NonFungible defines the token type for ESDT non fungible tokens
+	// Fungible defines the token type for DCDT fungible tokens
+	Fungible DCDTType = iota
+	// NonFungible defines the token type for DCDT non fungible tokens
 	NonFungible
-	// NonFungibleV2 defines the token type for ESDT non fungible tokens
+	// NonFungibleV2 defines the token type for DCDT non fungible tokens
 	NonFungibleV2
-	// SemiFungible defines the token type for ESDT semi fungible tokens
+	// SemiFungible defines the token type for DCDT semi fungible tokens
 	SemiFungible
-	// MetaFungible defines the token type for ESDT meta fungible tokens
+	// MetaFungible defines the token type for DCDT meta fungible tokens
 	MetaFungible
-	// DynamicNFT defines the token type for ESDT dynamic NFT tokens
+	// DynamicNFT defines the token type for DCDT dynamic NFT tokens
 	DynamicNFT
-	// DynamicSFT defines the token type for ESDT dynamic SFT tokens
+	// DynamicSFT defines the token type for DCDT dynamic SFT tokens
 	DynamicSFT
-	// DynamicMeta defines the token type for ESDT dynamic meta tokens
+	// DynamicMeta defines the token type for DCDT dynamic meta tokens
 	DynamicMeta
 )
 
 // String will convert number type in string
-func (t ESDTType) String() string {
+func (t DCDTType) String() string {
 	switch t {
 	case Fungible:
-		return FungibleESDT
+		return FungibleDCDT
 	case NonFungible:
-		return NonFungibleESDT
+		return NonFungibleDCDT
 	case NonFungibleV2:
-		return NonFungibleESDTv2
+		return NonFungibleDCDTv2
 	case SemiFungible:
-		return SemiFungibleESDT
+		return SemiFungibleDCDT
 	case MetaFungible:
-		return MetaESDT
+		return MetaDCDT
 	case DynamicNFT:
-		return DynamicNFTESDT
+		return DynamicNFTDCDT
 	case DynamicSFT:
-		return DynamicSFTESDT
+		return DynamicSFTDCDT
 	case DynamicMeta:
-		return DynamicMetaESDT
+		return DynamicMetaDCDT
 	default:
 		return "Unknown"
 	}
 }
 
-// FungibleESDT defines the string for the token type of fungible ESDT
-const FungibleESDT = "FungibleESDT"
+// FungibleDCDT defines the string for the token type of fungible DCDT
+const FungibleDCDT = "FungibleDCDT"
 
-// NonFungibleESDT defines the string for the token type of non fungible ESDT
-const NonFungibleESDT = "NonFungibleESDT"
+// NonFungibleDCDT defines the string for the token type of non fungible DCDT
+const NonFungibleDCDT = "NonFungibleDCDT"
 
-// NonFungibleESDTv2 defines the string for the token type of non fungible ESDT
-const NonFungibleESDTv2 = "NonFungibleESDTv2"
+// NonFungibleDCDTv2 defines the string for the token type of non fungible DCDT
+const NonFungibleDCDTv2 = "NonFungibleDCDTv2"
 
-// MetaESDT defines the string for the token type of meta ESDT
-const MetaESDT = "MetaESDT"
+// MetaDCDT defines the string for the token type of meta DCDT
+const MetaDCDT = "MetaDCDT"
 
-// SemiFungibleESDT defines the string for the token type of semi fungible ESDT
-const SemiFungibleESDT = "SemiFungibleESDT"
+// SemiFungibleDCDT defines the string for the token type of semi fungible DCDT
+const SemiFungibleDCDT = "SemiFungibleDCDT"
 
-// Dynamic is the prefix used for dynamic ESDT tokens
+// Dynamic is the prefix used for dynamic DCDT tokens
 const Dynamic = "Dynamic"
 
-// DynamicNFTESDT defines the string for the token type of dynamic NFT ESDT
-const DynamicNFTESDT = Dynamic + NonFungibleESDT
+// DynamicNFTDCDT defines the string for the token type of dynamic NFT DCDT
+const DynamicNFTDCDT = Dynamic + NonFungibleDCDT
 
-// DynamicSFTESDT defines the string for the token type of dynamic SFT ESDT
-const DynamicSFTESDT = Dynamic + SemiFungibleESDT
+// DynamicSFTDCDT defines the string for the token type of dynamic SFT DCDT
+const DynamicSFTDCDT = Dynamic + SemiFungibleDCDT
 
-// DynamicMetaESDT defines the string for the token type of dynamic meta ESDT
-const DynamicMetaESDT = Dynamic + MetaESDT
+// DynamicMetaDCDT defines the string for the token type of dynamic meta DCDT
+const DynamicMetaDCDT = Dynamic + MetaDCDT
 
 // MaxRoyalty defines 100% as uint32
 const MaxRoyalty = uint32(10000)
@@ -278,19 +278,19 @@ const RelayedTransactionV2 = "relayedTxV2"
 const SCDeployInitFunctionName = "_init"
 
 // ProtectedKeyPrefix is the key prefix which is protected from writing in the trie - only for special builtin functions
-const ProtectedKeyPrefix = "E" + "L" + "R" + "O" + "N" + "D"
+const ProtectedKeyPrefix = "N" + "U" + "M" + "B" + "A" + "T"
 
 // DelegationSystemSCKey is the key under which there is data in case of system delegation smart contracts
 const DelegationSystemSCKey = "delegation"
 
-// ESDTKeyIdentifier is the key prefix for esdt tokens
-const ESDTKeyIdentifier = "esdt"
+// DCDTKeyIdentifier is the key prefix for dcdt tokens
+const DCDTKeyIdentifier = "dcdt"
 
-// ESDTRoleIdentifier is the key prefix for esdt role identifier
-const ESDTRoleIdentifier = "role"
+// DCDTRoleIdentifier is the key prefix for dcdt role identifier
+const DCDTRoleIdentifier = "role"
 
-// ESDTNFTLatestNonceIdentifier is the key prefix for esdt latest nonce identifier
-const ESDTNFTLatestNonceIdentifier = "nonce"
+// DCDTNFTLatestNonceIdentifier is the key prefix for dcdt latest nonce identifier
+const DCDTNFTLatestNonceIdentifier = "nonce"
 
 // GuardiansKeyIdentifier is the key prefix for guardians
 const GuardiansKeyIdentifier = "guardians"
@@ -312,14 +312,14 @@ const MaxBufferSizeToSendTrieNodes = 1 << 18 //256KB
 // MaxUserNameLength represents the maximum number of bytes a UserName can have
 const MaxUserNameLength = 32
 
-// MinLenArgumentsESDTTransfer defines the min length of arguments for the ESDT transfer
-const MinLenArgumentsESDTTransfer = 2
+// MinLenArgumentsDCDTTransfer defines the min length of arguments for the DCDT transfer
+const MinLenArgumentsDCDTTransfer = 2
 
-// MinLenArgumentsESDTNFTTransfer defines the minimum length for esdt nft transfer
-const MinLenArgumentsESDTNFTTransfer = 4
+// MinLenArgumentsDCDTNFTTransfer defines the minimum length for dcdt nft transfer
+const MinLenArgumentsDCDTNFTTransfer = 4
 
-// MaxLenForESDTIssueMint defines the maximum length in bytes for the issued/minted balance
-const MaxLenForESDTIssueMint = 100
+// MaxLenForDCDTIssueMint defines the maximum length in bytes for the issued/minted balance
+const MaxLenForDCDTIssueMint = 100
 
 // BaseOperationCostString represents the field name for base operation costs
 const BaseOperationCostString = "BaseOperationCost"
@@ -327,8 +327,8 @@ const BaseOperationCostString = "BaseOperationCost"
 // BuiltInCostString represents the field name for built in operation costs
 const BuiltInCostString = "BuiltInCost"
 
-// ESDTSCAddress is the hard-coded address for esdt issuing smart contract
-var ESDTSCAddress = []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 255, 255}
+// DCDTSCAddress is the hard-coded address for dcdt issuing smart contract
+var DCDTSCAddress = []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 255, 255}
 
 // SCDeployIdentifier is the identifier for a smart contract deploy
 const SCDeployIdentifier = "SCDeploy"
@@ -336,7 +336,7 @@ const SCDeployIdentifier = "SCDeploy"
 // SCUpgradeIdentifier is the identifier for a smart contract upgrade
 const SCUpgradeIdentifier = "SCUpgrade"
 
-// WriteLogIdentifier is the identifier for the information log that is generated by a smart contract call/esdt transfer
+// WriteLogIdentifier is the identifier for the information log that is generated by a smart contract call/dcdt transfer
 const WriteLogIdentifier = "writeLog"
 
 // SignalErrorOperation is the identifier for the log that is generated when a smart contract is executed but return an error
@@ -354,7 +354,7 @@ const GasRefundForRelayerMessage = "gas refund for relayer"
 // InitialVersionOfTransaction defines the initial version for a transaction
 const InitialVersionOfTransaction = uint32(1)
 
-// DefaultAddressPrefix is the default hrp of MultiversX/Elrond
+// DefaultAddressPrefix is the default hrp of Dharitri/Numbat
 const DefaultAddressPrefix = "erd"
 
 // TopicRequestSuffix represents the topic name suffix for requests

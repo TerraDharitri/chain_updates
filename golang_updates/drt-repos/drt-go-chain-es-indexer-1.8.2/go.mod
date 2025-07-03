@@ -1,4 +1,4 @@
-module github.com/multiversx/mx-chain-es-indexer-go
+module github.com/TerraDharitri/drt-go-chain-es-indexer
 
 go 1.20
 
@@ -7,10 +7,10 @@ require (
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/google/uuid v1.6.0
-	github.com/multiversx/mx-chain-communication-go v1.2.0
-	github.com/multiversx/mx-chain-core-go v1.3.1
-	github.com/multiversx/mx-chain-logger-go v1.0.15
-	github.com/multiversx/mx-chain-vm-common-go v1.5.16
+	github.com/TerraDharitri/drt-go-chain-communication v1.2.0
+	github.com/TerraDharitri/drt-go-chain-core v1.3.1
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.15
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.5.16
 	github.com/prometheus/client_model v0.4.0
 	github.com/prometheus/common v0.37.0
 	github.com/stretchr/testify v1.10.0

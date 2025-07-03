@@ -1,7 +1,7 @@
 import requests
 from config import DEFAULT_PROXY
 from helpers import base64_to_hex
-from multiversx_sdk_core import Address
+from dharitri_sdk_core import Address
 
 
 def get_delegation_contract_address_from_tx(tx_hash):

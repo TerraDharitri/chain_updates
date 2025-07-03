@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"net/http"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
 )
 
 const (
@@ -192,12 +192,12 @@ func (tcp *transactionCostProcessor) processScResult(
 		return nil, err
 	}
 
-	ignoreSCRWithESDTTransferNoSCCall := scr.Function == "" && len(scr.Tokens) > 0
+	ignoreSCRWithDCDTTransferNoSCCall := scr.Function == "" && len(scr.Tokens) > 0
 
 	shouldIgnoreSCR := receiverShardID == scrReceiverShardID
 	shouldIgnoreSCR = shouldIgnoreSCR || (scrReceiverShardID == senderShardID && scr.CallType == vm.DirectCall)
 	shouldIgnoreSCR = shouldIgnoreSCR || scrSenderShardID == core.MetachainShardId
-	shouldIgnoreSCR = shouldIgnoreSCR || ignoreSCRWithESDTTransferNoSCCall
+	shouldIgnoreSCR = shouldIgnoreSCR || ignoreSCRWithDCDTTransferNoSCCall
 	if shouldIgnoreSCR {
 		return nil, nil
 	}

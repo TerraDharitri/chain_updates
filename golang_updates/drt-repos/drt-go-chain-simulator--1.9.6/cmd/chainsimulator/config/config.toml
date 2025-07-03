@@ -14,10 +14,10 @@
         initial-epoch = 0
         # initial-nonce when the chain simulator will start
         initial-nonce = 0
-        # mx-chain-go-repo will be used to fetch the node configs folder
-        mx-chain-go-repo = "https://github.com/multiversx/mx-chain-go"
-        # mx-chain-proxy-go-repo will be used to fetch the proxy configs folder
-        mx-chain-proxy-go-repo = "https://github.com/multiversx/mx-chain-proxy-go"
+        # drt-go-chain-repo will be used to fetch the node configs folder
+        drt-go-chain-repo = "https://github.com/TerraDharitri/drt-go-chain"
+        # drt-go-chain-proxy-repo will be used to fetch the proxy configs folder
+        drt-go-chain-proxy-repo = "https://github.com/TerraDharitri/drt-go-chain-proxy"
     [config.logs]
         log-file-life-span-in-mb = 1024 # 1GB
         log-file-life-span-in-sec = 432000 # 5 days

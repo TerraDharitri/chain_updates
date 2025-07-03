@@ -3,7 +3,7 @@ package process
 import (
 	"bytes"
 
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 )
 
 // ElasticClientHandler defines what an elastic client should be able to do
@@ -41,7 +41,7 @@ type AccountsGetterHandler interface {
 	GetLegacyDelegatorsAccounts() (map[string]*data.AccountInfoWithStakeValues, error)
 	GetValidatorsAccounts() (map[string]*data.AccountInfoWithStakeValues, error)
 	GetDelegatorsAccounts() (map[string]*data.AccountInfoWithStakeValues, error)
-	GetLKMEXStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error)
+	GetLKMOAStakeAccounts() (map[string]*data.AccountInfoWithStakeValues, error)
 	GetAccountsWithEnergy(currentEpoch uint32) (map[string]*data.AccountInfoWithStakeValues, *data.BlockInfo, error)
 }
 

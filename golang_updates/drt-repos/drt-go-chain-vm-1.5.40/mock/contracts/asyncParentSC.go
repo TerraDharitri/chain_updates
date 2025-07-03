@@ -5,11 +5,11 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
 // test variables
@@ -103,9 +103,9 @@ func SimpleCallbackMock(instanceMock *mock.InstanceMock, config interface{}) {
 		instance := mock.GetMockInstance(host)
 		arguments := host.Runtime().Arguments()
 
-		for _, esdtTransfer := range host.Runtime().GetVMInput().ESDTTransfers {
-			host.Output().Finish(esdtTransfer.ESDTTokenName)
-			host.Output().Finish(esdtTransfer.ESDTValue.Bytes())
+		for _, dcdtTransfer := range host.Runtime().GetVMInput().DCDTTransfers {
+			host.Output().Finish(dcdtTransfer.DCDTTokenName)
+			host.Output().Finish(dcdtTransfer.DCDTValue.Bytes())
 		}
 
 		err := host.Metering().UseGasBounded(testConfig.GasUsedByCallback)

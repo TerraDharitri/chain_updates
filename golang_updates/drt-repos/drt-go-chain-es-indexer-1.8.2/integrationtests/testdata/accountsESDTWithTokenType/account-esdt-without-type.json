@@ -1,5 +1,5 @@
 {
-	"address": "erd1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qn8lslf",
+	"address": "drt1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qwmgnuh",
 	"balance": "1000",
 	"balanceNum": 1e-15,
 	"token": "TTTT-abcd",
@@ -7,7 +7,7 @@
 	"tokenNonce": 2,
 	"properties": "3032",
 	"data": {
-		"creator": "erd1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qn8lslf",
+		"creator": "drt1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qwmgnuh",
 		"nonEmptyURIs": false,
 		"whiteListedStorage": false
 	},

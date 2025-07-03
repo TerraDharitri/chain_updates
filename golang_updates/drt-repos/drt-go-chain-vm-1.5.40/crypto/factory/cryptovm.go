@@ -1,11 +1,11 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/crypto/hashing"
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing/bls"
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing/ed25519"
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing/secp256"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/hashing"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing/bls"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing/ed25519"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing/secp256"
 )
 
 // NewVMCrypto returns a composite struct containing VMCrypto functionality implementations

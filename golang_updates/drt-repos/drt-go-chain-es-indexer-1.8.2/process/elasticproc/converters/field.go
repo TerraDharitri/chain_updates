@@ -1,6 +1,6 @@
 package converters
 
-import "github.com/multiversx/mx-chain-es-indexer-go/data"
+import "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 
 // TruncateFieldIfExceedsMaxLength will truncate the provided field if the max length exceeds
 func TruncateFieldIfExceedsMaxLength(field string) string {

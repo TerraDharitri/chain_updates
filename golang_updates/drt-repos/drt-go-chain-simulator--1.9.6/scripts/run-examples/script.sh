@@ -38,11 +38,11 @@ run_python_script ../../examples/staking staking.py
 # run adder example
 run_python_script ../../examples/contracts/adder/ adder.py
 
-# run wrapped egld example
-run_python_script ../../examples/contracts/wrappedegld wrapped-egld.py
+# run wrapped rewa example
+run_python_script ../../examples/contracts/wrappedrewa wrapped-rewa.py
 
-# run esdt create example
-run_python_script ../../examples/esdt/ issue-fungible.py
+# run dcdt create example
+run_python_script ../../examples/dcdt/ issue-fungible.py
 
 # run move balance example
 run_python_script ../../examples/movebalance move-balance.py
@@ -53,8 +53,8 @@ run_python_script ../../examples/generateBlocks epoch-reached.py
 # run set state examples
 run_python_script ../../examples/setState code-metadata.py
 
-# run deploy with issue esdt
-run_python_script ../../examples/contracts/issue-esdt-with-contract issue-with-contract.py
+# run deploy with issue dcdt
+run_python_script ../../examples/contracts/issue-dcdt-with-contract issue-with-contract.py
 
 # run deploy SC with custom crypto primitives in VM
 run_python_script ../../examples/contracts/basic-features-crypto basic-features-crypto.py

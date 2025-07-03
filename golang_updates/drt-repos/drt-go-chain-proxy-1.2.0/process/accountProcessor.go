@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/observer/availabilityCommon"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer/availabilityCommon"
 )
 
 // addressPath defines the address path at which the nodes answer
@@ -185,8 +185,8 @@ func (ap *AccountProcessor) GetValueForKey(address string, key string, options c
 	return "", WrapObserversError(apiResponse.Error)
 }
 
-// GetESDTTokenData returns the token data for a token with the given name
-func (ap *AccountProcessor) GetESDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+// GetDCDTTokenData returns the token data for a token with the given name
+func (ap *AccountProcessor) GetDCDTTokenData(address string, key string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 	availability := ap.availabilityProvider.AvailabilityForAccountQueryOptions(options)
 	observers, err := ap.getObserversForAddress(address, availability, options.ForcedShardID)
 	if err != nil {
@@ -195,11 +195,11 @@ func (ap *AccountProcessor) GetESDTTokenData(address string, key string, options
 
 	apiResponse := data.GenericAPIResponse{}
 	for _, observer := range observers {
-		apiPath := addressPath + address + "/esdt/" + key
+		apiPath := addressPath + address + "/dcdt/" + key
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, err := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if err == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
-			log.Info("account ESDT token data",
+			log.Info("account DCDT token data",
 				"address", address,
 				"token", key,
 				"shard ID", observer.ShardId,
@@ -212,14 +212,14 @@ func (ap *AccountProcessor) GetESDTTokenData(address string, key string, options
 			return &apiResponse, nil
 		}
 
-		log.Error("account get ESDT token data", "observer", observer.Address, "address", address, "error", err.Error())
+		log.Error("account get DCDT token data", "observer", observer.Address, "address", address, "error", err.Error())
 	}
 
 	return nil, WrapObserversError(apiResponse.Error)
 }
 
-// GetESDTsWithRole returns the token identifiers where the given address has the given role assigned
-func (ap *AccountProcessor) GetESDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+// GetDCDTsWithRole returns the token identifiers where the given address has the given role assigned
+func (ap *AccountProcessor) GetDCDTsWithRole(address string, role string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 	availability := ap.availabilityProvider.AvailabilityForAccountQueryOptions(options)
 	observers, err := ap.proc.GetObservers(core.MetachainShardId, availability)
 	if err != nil {
@@ -232,7 +232,7 @@ func (ap *AccountProcessor) GetESDTsWithRole(address string, role string, option
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, err := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if err == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
-			log.Info("account ESDTs with role",
+			log.Info("account DCDTs with role",
 				"address", address,
 				"role", role,
 				"shard ID", observer.ShardId,
@@ -245,14 +245,14 @@ func (ap *AccountProcessor) GetESDTsWithRole(address string, role string, option
 			return &apiResponse, nil
 		}
 
-		log.Error("account get ESDTs with role", "observer", observer.Address, "address", address, "role", role, "error", err.Error())
+		log.Error("account get DCDTs with role", "observer", observer.Address, "address", address, "role", role, "error", err.Error())
 	}
 
 	return nil, WrapObserversError(apiResponse.Error)
 }
 
-// GetESDTsRoles returns all the tokens and their roles for a given address
-func (ap *AccountProcessor) GetESDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+// GetDCDTsRoles returns all the tokens and their roles for a given address
+func (ap *AccountProcessor) GetDCDTsRoles(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 	availability := ap.availabilityProvider.AvailabilityForAccountQueryOptions(options)
 	observers, err := ap.proc.GetObservers(core.MetachainShardId, availability)
 	if err != nil {
@@ -265,7 +265,7 @@ func (ap *AccountProcessor) GetESDTsRoles(address string, options common.Account
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, errGet := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if errGet == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
-			log.Info("account ESDTs roles",
+			log.Info("account DCDTs roles",
 				"address", address,
 				"shard ID", observer.ShardId,
 				"observer", observer.Address,
@@ -277,7 +277,7 @@ func (ap *AccountProcessor) GetESDTsRoles(address string, options common.Account
 			return &apiResponse, nil
 		}
 
-		log.Error("account get ESDTs roles", "observer", observer.Address, "address", address, "error", errGet.Error())
+		log.Error("account get DCDTs roles", "observer", observer.Address, "address", address, "error", errGet.Error())
 	}
 
 	return nil, WrapObserversError(apiResponse.Error)
@@ -317,8 +317,8 @@ func (ap *AccountProcessor) GetNFTTokenIDsRegisteredByAddress(address string, op
 	return nil, WrapObserversError(apiResponse.Error)
 }
 
-// GetESDTNftTokenData returns the nft token data for a token with the given identifier and nonce
-func (ap *AccountProcessor) GetESDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+// GetDCDTNftTokenData returns the nft token data for a token with the given identifier and nonce
+func (ap *AccountProcessor) GetDCDTNftTokenData(address string, key string, nonce uint64, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 	availability := ap.availabilityProvider.AvailabilityForAccountQueryOptions(options)
 	observers, err := ap.getObserversForAddress(address, availability, options.ForcedShardID)
 	if err != nil {
@@ -332,7 +332,7 @@ func (ap *AccountProcessor) GetESDTNftTokenData(address string, key string, nonc
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, err := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if err == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
-			log.Info("account ESDT NFT token data",
+			log.Info("account DCDT NFT token data",
 				"address", address,
 				"token", key,
 				"shard ID", observer.ShardId,
@@ -345,14 +345,14 @@ func (ap *AccountProcessor) GetESDTNftTokenData(address string, key string, nonc
 			return &apiResponse, nil
 		}
 
-		log.Error("account get ESDT nft token data", "observer", observer.Address, "address", address, "error", err.Error())
+		log.Error("account get DCDT nft token data", "observer", observer.Address, "address", address, "error", err.Error())
 	}
 
 	return nil, WrapObserversError(apiResponse.Error)
 }
 
-// GetAllESDTTokens returns all the tokens for a given address
-func (ap *AccountProcessor) GetAllESDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
+// GetAllDCDTTokens returns all the tokens for a given address
+func (ap *AccountProcessor) GetAllDCDTTokens(address string, options common.AccountQueryOptions) (*data.GenericAPIResponse, error) {
 	availability := ap.availabilityProvider.AvailabilityForAccountQueryOptions(options)
 	observers, err := ap.getObserversForAddress(address, availability, options.ForcedShardID)
 	if err != nil {
@@ -361,11 +361,11 @@ func (ap *AccountProcessor) GetAllESDTTokens(address string, options common.Acco
 
 	apiResponse := data.GenericAPIResponse{}
 	for _, observer := range observers {
-		apiPath := addressPath + address + "/esdt"
+		apiPath := addressPath + address + "/dcdt"
 		apiPath = common.BuildUrlWithAccountQueryOptions(apiPath, options)
 		respCode, err := ap.proc.CallGetRestEndPoint(observer.Address, apiPath, &apiResponse)
 		if err == nil || respCode == http.StatusBadRequest || respCode == http.StatusInternalServerError {
-			log.Info("account all ESDT tokens",
+			log.Info("account all DCDT tokens",
 				"address", address,
 				"shard ID", observer.ShardId,
 				"observer", observer.Address,
@@ -377,7 +377,7 @@ func (ap *AccountProcessor) GetAllESDTTokens(address string, options common.Acco
 			return &apiResponse, nil
 		}
 
-		log.Error("account get all ESDT tokens", "observer", observer.Address, "address", address, "error", err.Error())
+		log.Error("account get all DCDT tokens", "observer", observer.Address, "address", address, "error", err.Error())
 	}
 
 	return nil, WrapObserversError(apiResponse.Error)

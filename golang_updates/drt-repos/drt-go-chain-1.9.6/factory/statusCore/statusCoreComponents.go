@@ -9,7 +9,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain/common/statistics/disabled"
 	"github.com/TerraDharitri/drt-go-chain/common/statistics/machine"
 	"github.com/TerraDharitri/drt-go-chain/config"
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/node/external"
 	"github.com/TerraDharitri/drt-go-chain/node/metrics"
@@ -70,10 +70,10 @@ func NewStatusCoreComponentsFactory(args StatusCoreComponentsFactoryArgs) (*stat
 
 func checkArgs(args StatusCoreComponentsFactoryArgs) error {
 	if check.IfNil(args.CoreComp) {
-		return errorsMx.ErrNilCoreComponents
+		return errorsDrt.ErrNilCoreComponents
 	}
 	if check.IfNil(args.CoreComp.EconomicsData()) {
-		return errorsMx.ErrNilEconomicsData
+		return errorsDrt.ErrNilEconomicsData
 	}
 
 	return nil

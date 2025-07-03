@@ -1,8 +1,8 @@
 package disabled
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data"
 )
 
 // EpochStartNotifier represents a disabled struct that implements the EpochStartNotifier interface

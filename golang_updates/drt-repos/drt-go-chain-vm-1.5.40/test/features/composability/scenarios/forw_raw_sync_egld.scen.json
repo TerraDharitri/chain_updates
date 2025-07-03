@@ -11,12 +11,12 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -26,7 +26,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "egldValue": "1000",
+                "rewaValue": "1000",
                 "function": "call_execute_on_dest_context",
                 "arguments": [
                     "sc:vault",
@@ -83,7 +83,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "egldValue": "1000",
+                "rewaValue": "1000",
                 "function": "call_execute_on_dest_context_twice",
                 "arguments": [
                     "sc:vault",

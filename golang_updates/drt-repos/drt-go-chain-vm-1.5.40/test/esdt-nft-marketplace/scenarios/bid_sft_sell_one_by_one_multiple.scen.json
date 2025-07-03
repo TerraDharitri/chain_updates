@@ -12,7 +12,7 @@
             "tx": {
                 "from": "address:first_bidder",
                 "to": "sc:marketplace",
-                "egldValue": "500",
+                "rewaValue": "500",
                 "function": "buySft",
                 "arguments": [
                     "1",
@@ -42,10 +42,10 @@
                 "address:nft_creator": {
                     "nonce": "0",
                     "balance": "100",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
@@ -54,7 +54,7 @@
                 "address:seller": {
                     "nonce": "1",
                     "balance": "350",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-123456": {
                             "instances": [
                                 {
@@ -71,7 +71,7 @@
                 "address:first_bidder": {
                     "nonce": "*",
                     "balance": "500",
-                    "esdt": {
+                    "dcdt": {
                         "str:SFT-123456": {
                             "instances": [
                                 {
@@ -93,7 +93,7 @@
                 "sc:marketplace": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:SFT-123456": {
                             "instances": [
                                 {
@@ -112,7 +112,7 @@
                             "00-auctioned_token": "nested:str:SFT-123456|u64:1",
                             "01-nr_auctioned_tokens": "biguint:5",
                             "02-auction_type": "u8:3",
-                            "04-payment_token": "nested:str:EGLD|u64:0",
+                            "04-payment_token": "nested:str:REWA|u64:0",
                             "05-min_bid": "biguint:100",
                             "06-max_bid": "u8:1|biguint:100",
                             "07-start_time": "u64:123,000",
@@ -124,7 +124,7 @@
                             "13-creator_royalties_percentage": "biguint:2000"
                         }
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

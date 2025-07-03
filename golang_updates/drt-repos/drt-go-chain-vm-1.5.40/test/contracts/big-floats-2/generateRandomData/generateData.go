@@ -10,7 +10,7 @@ import (
 	"os"
 	"strconv"
 
-	twos "github.com/multiversx/mx-components-big-int/twos-complement"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
 
 const numberOfDataSets = 10000

@@ -5,8 +5,8 @@
     "processingTypeOnDestination": "BuiltInFunctionCall",
     "hash": "a4823050d2396540b17bd9290523973763142c9f655bb26cd9e33f359b6d73ad",
     "value": "0",
-    "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-    "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+    "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+    "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
     "gasPrice": 1000000000,
     "gasLimit": 550000000,
     "gasUsed": 550000000,
@@ -15,10 +15,10 @@
     "sourceShard": 0,
     "destinationShard": 0,
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "signalError",
           "topics": [
             "geQz5PeDGewXN9wviXwiSXnafo8GYO6dOYXGHRviLjw="
@@ -33,22 +33,22 @@
       "TKN-11d0d0-05",
       "TKN-11d0d0-06"
     ],
-    "esdtValues": [
+    "dcdtValues": [
       "1",
       "1",
       "1"
     ],
     "receivers": [
-      "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty"
+      "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6"
     ],
     "receiversShardIDs": [
       0,
       0,
       0
     ],
-    "operation": "MultiESDTNFTTransfer",
+    "operation": "MultiDCDTNFTTransfer",
     "initiallyPaidFee": "5852440000000000",
     "fee": "5852440000000000",
     "options": 0

@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 // DBAccountsHandlerStub -
@@ -12,7 +12,7 @@ type DBAccountsHandlerStub struct {
 }
 
 // GetAccounts -
-func (dba *DBAccountsHandlerStub) GetAccounts(_ map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountESDT) {
+func (dba *DBAccountsHandlerStub) GetAccounts(_ map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountDCDT) {
 	return nil, nil
 }
 
@@ -21,8 +21,8 @@ func (dba *DBAccountsHandlerStub) PrepareRegularAccountsMap(_ uint64, _ []*data.
 	return nil
 }
 
-// PrepareAccountsMapESDT -
-func (dba *DBAccountsHandlerStub) PrepareAccountsMapESDT(_ uint64, _ []*data.AccountESDT, _ data.CountTags, _ uint32) (map[string]*data.AccountInfo, data.TokensHandler) {
+// PrepareAccountsMapDCDT -
+func (dba *DBAccountsHandlerStub) PrepareAccountsMapDCDT(_ uint64, _ []*data.AccountDCDT, _ data.CountTags, _ uint32) (map[string]*data.AccountInfo, data.TokensHandler) {
 	return nil, nil
 }
 
@@ -48,8 +48,8 @@ func (dba *DBAccountsHandlerStub) SerializeAccounts(_ map[string]*data.AccountIn
 	return nil
 }
 
-// SerializeAccountsESDT -
-func (dba *DBAccountsHandlerStub) SerializeAccountsESDT(_ map[string]*data.AccountInfo, _ []*data.NFTDataUpdate, _ *data.BufferSlice, _ string) error {
+// SerializeAccountsDCDT -
+func (dba *DBAccountsHandlerStub) SerializeAccountsDCDT(_ map[string]*data.AccountInfo, _ []*data.NFTDataUpdate, _ *data.BufferSlice, _ string) error {
 	return nil
 }
 

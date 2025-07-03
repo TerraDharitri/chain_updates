@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "MultiversX Gateway API",
-    "description": "![MultiversX](/mvx-icon.png)\n\nThe documentation describes the endpoints that are available on the mx-chain-proxy-go project. \n\nGithub URL: `https://github.com/multiversx/mx-chain-proxy-go`\n\nThis is used on `gateway.multiversx.com` while the public api (`api.multiversx.com`) is a wrapper over it.\n\nThis API is organized around REST principles, so if you've interacted with RESTful APIs before, many of the concepts will look familiar.\n\n## Request / Response Format\n\nJSON will be returned for all responses, including errors. Empty or blank fields are omitted. Requests with a message body use JSON as well. Successful requests will return a `2xx` HTTP status.\n\nThe general structure of a response is:\n``` JSON\n{\n  data  anything\n  error string\n  code  string\n}\n```\nWhere:\n- data: the expected result if the request was successful. `null` otherwise\n- error: if the request failed, the reason will be returned in this field. empty otherwise\n- code: the internal code for the request. can be `successful`, `internal_issue` or `bad_request`\n",
+    "title": "Dharitri Gateway API",
+    "description": "![Dharitri](/mvx-icon.png)\n\nThe documentation describes the endpoints that are available on the drt-go-chain-proxy project. \n\nGithub URL: `https://github.com/TerraDharitri/drt-go-chain-proxy`\n\nThis is used on `gateway.dharitri.org` while the public api (`api.dharitri.org`) is a wrapper over it.\n\nThis API is organized around REST principles, so if you've interacted with RESTful APIs before, many of the concepts will look familiar.\n\n## Request / Response Format\n\nJSON will be returned for all responses, including errors. Empty or blank fields are omitted. Requests with a message body use JSON as well. Successful requests will return a `2xx` HTTP status.\n\nThe general structure of a response is:\n``` JSON\n{\n  data  anything\n  error string\n  code  string\n}\n```\nWhere:\n- data: the expected result if the request was successful. `null` otherwise\n- error: if the request failed, the reason will be returned in this field. empty otherwise\n- code: the internal code for the request. can be `successful`, `internal_issue` or `bad_request`\n",
     "version": "1.1.0"
   },
   "paths": {
@@ -311,12 +311,12 @@
         }
       }
     },
-    "/address/{address}/esdt": {
+    "/address/{address}/dcdt": {
       "get": {
         "tags": [
           "address"
         ],
-        "summary": "returns all ESDT tokens that the provided address interacted with",
+        "summary": "returns all DCDT tokens that the provided address interacted with",
         "parameters": [
           {
             "name": "address",
@@ -335,7 +335,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddressEsdtTokens"
+                  "$ref": "#/components/schemas/AddressDcdtTokens"
                 }
               }
             }
@@ -343,7 +343,7 @@
         }
       }
     },
-    "/address/{address}/esdts/roles": {
+    "/address/{address}/dcdts/roles": {
       "get": {
         "tags": [
           "address"
@@ -367,7 +367,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddressEsdtTokens"
+                  "$ref": "#/components/schemas/AddressDcdtTokens"
                 }
               }
             }
@@ -375,7 +375,7 @@
         }
       }
     },
-    "/address/{address}/esdts-with-role/{role}": {
+    "/address/{address}/dcdts-with-role/{role}": {
       "get": {
         "tags": [
           "address"
@@ -409,7 +409,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddressEsdtTokens"
+                  "$ref": "#/components/schemas/AddressDcdtTokens"
                 }
               }
             }
@@ -417,12 +417,12 @@
         }
       }
     },
-    "/address/{address}/esdt/{tokenIdentifier}": {
+    "/address/{address}/dcdt/{tokenIdentifier}": {
       "get": {
         "tags": [
           "address"
         ],
-        "summary": "returns all ESDT tokens that the provided address interacted with",
+        "summary": "returns all DCDT tokens that the provided address interacted with",
         "parameters": [
           {
             "name": "address",
@@ -451,7 +451,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddressEsdtToken"
+                  "$ref": "#/components/schemas/AddressDcdtToken"
                 }
               }
             }
@@ -534,7 +534,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddressEsdtTokenData"
+                  "$ref": "#/components/schemas/AddressDcdtTokenData"
                 }
               }
             }
@@ -899,12 +899,12 @@
         }
       }
     },
-    "/network/esdts": {
+    "/network/dcdts": {
       "get": {
         "tags": [
           "network"
         ],
-        "summary": "returns the names of all the issued ESDTs",
+        "summary": "returns the names of all the issued DCDTs",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -919,12 +919,12 @@
         }
       }
     },
-    "/network/esdt/fungible-tokens": {
+    "/network/dcdt/fungible-tokens": {
       "get": {
         "tags": [
           "network"
         ],
-        "summary": "returns the names of all the issued FungibleESDTs",
+        "summary": "returns the names of all the issued FungibleDCDTs",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -939,12 +939,12 @@
         }
       }
     },
-    "/network/esdt/semi-fungible-tokens": {
+    "/network/dcdt/semi-fungible-tokens": {
       "get": {
         "tags": [
           "network"
         ],
-        "summary": "returns the names of all the issued SemiFungibleESDTs",
+        "summary": "returns the names of all the issued SemiFungibleDCDTs",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -959,12 +959,12 @@
         }
       }
     },
-    "/network/esdt/non-fungible-tokens": {
+    "/network/dcdt/non-fungible-tokens": {
       "get": {
         "tags": [
           "network"
         ],
-        "summary": "returns the names of all the issued NonFungibleESDTs",
+        "summary": "returns the names of all the issued NonFungibleDCDTs",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -979,7 +979,7 @@
         }
       }
     },
-    "/network/esdt/supply/{token}": {
+    "/network/dcdt/supply/{token}": {
       "get": {
         "tags": [
           "network"
@@ -1468,7 +1468,7 @@
               },
               "example": {
                 "rootHash": "e5f837612ad09de7c26ff411f0b36ffc33a8b80d4db3f07a369b405eb499a353",
-                "address": "erd12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqxkalsa",
+                "address": "drt12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqm22unr",
                 "proof": [
                   "e5f837612ad09de7c26ff411f0b36ffc33a8b80d4db3f07a369b405eb499a353"
                 ]
@@ -1852,8 +1852,8 @@
               "example": {
                 "nonce": 0,
                 "value": "999",
-                "receiver": "erd12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqxkalsa",
-                "sender": "erd14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqlkc36j",
+                "receiver": "drt12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqm22unr",
+                "sender": "drt14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqz20jev",
                 "gasPrice": 1000000000,
                 "gasLimit": 50000,
                 "data": "dGVzdA==",
@@ -1896,8 +1896,8 @@
               "example": {
                 "nonce": 0,
                 "value": "999",
-                "receiver": "erd12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqxkalsa",
-                "sender": "erd14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqlkc36j",
+                "receiver": "drt12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqm22unr",
+                "sender": "drt14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqz20jev",
                 "gasPrice": 1000000000,
                 "gasLimit": 50000,
                 "data": "dGVzdA==",
@@ -1940,8 +1940,8 @@
               "example": {
                 "nonce": 0,
                 "value": "999",
-                "receiver": "erd12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqxkalsa",
-                "sender": "erd14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqlkc36j",
+                "receiver": "drt12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqm22unr",
+                "sender": "drt14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqz20jev",
                 "gasPrice": 1000000000,
                 "gasLimit": 50000,
                 "data": "dGVzdA==",
@@ -2282,8 +2282,8 @@
               "example": {
                 "nonce": 0,
                 "value": "999",
-                "receiver": "erd12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqxkalsa",
-                "sender": "erd14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqlkc36j",
+                "receiver": "drt12dnfhej64s6c56ka369gkyj3hwv5ms0y5rxgsk2k7hkd2vuk7rvqm22unr",
+                "sender": "drt14t6l0x27w4d4354sqfm40wuv9p0r49uzl9598eka290x9kws2nvqz20jev",
                 "gasPrice": 1000000000,
                 "gasLimit": 50000,
                 "data": "dGVzdA==",
@@ -2415,8 +2415,8 @@
                 "$ref": "#/components/schemas/VmValuesRequest"
               },
               "example": {
-                "scAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
-                "funcName": "getAllESDTTokens"
+                "scAddress": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
+                "funcName": "getAllDCDTTokens"
               }
             }
           }
@@ -2448,8 +2448,8 @@
                 "$ref": "#/components/schemas/VmValuesRequest"
               },
               "example": {
-                "scAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
-                "funcName": "getAllESDTTokens"
+                "scAddress": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
+                "funcName": "getAllDCDTTokens"
               }
             }
           }
@@ -2481,8 +2481,8 @@
                 "$ref": "#/components/schemas/VmValuesRequest"
               },
               "example": {
-                "scAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
-                "funcName": "getAllESDTTokens"
+                "scAddress": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
+                "funcName": "getAllDCDTTokens"
               }
             }
           }
@@ -2514,8 +2514,8 @@
                 "$ref": "#/components/schemas/VmValuesRequest"
               },
               "example": {
-                "scAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
-                "funcName": "getAllESDTTokens"
+                "scAddress": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
+                "funcName": "getAllDCDTTokens"
               }
             }
           }
@@ -2536,8 +2536,8 @@
     }
   },
   "externalDocs": {
-    "description": "MultiversX Docs",
-    "url": "https://docs.multiversx.com"
+    "description": "Dharitri Docs",
+    "url": "https://docs.dharitri.org"
   },
   "servers": [],
   "components": {
@@ -2872,7 +2872,7 @@
           }
         }
       },
-      "AddressEsdtTokensData": {
+      "AddressDcdtTokensData": {
         "type": "object",
         "properties": {
           "tokens": {
@@ -2883,13 +2883,13 @@
           }
         }
       },
-      "AddressEsdtTokens": {
+      "AddressDcdtTokens": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AddressEsdtTokensData"
+              "$ref": "#/components/schemas/AddressDcdtTokensData"
             }
           },
           "error": {
@@ -2900,7 +2900,7 @@
           }
         }
       },
-      "AddressEsdtTokenData": {
+      "AddressDcdtTokenData": {
         "type": "object",
         "properties": {
           "tokenIdentifier": {
@@ -2914,13 +2914,13 @@
           }
         }
       },
-      "AddressEsdtToken": {
+      "AddressDcdtToken": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AddressEsdtTokenData"
+              "$ref": "#/components/schemas/AddressDcdtTokenData"
             }
           },
           "error": {

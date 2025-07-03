@@ -8,7 +8,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -17,16 +17,16 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:forwarder2": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -36,7 +36,7 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -60,7 +60,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTLocalBurn",
+                        "endpoint": "str:DCDTLocalBurn",
                         "topics": [
                             "str:FUNG-0001",
                             "0",
@@ -104,7 +104,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -113,17 +113,17 @@
                                 }
                             ],
                             "roles": [
-                                "ESDTRoleLocalBurn"
+                                "DCDTRoleLocalBurn"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:forwarder2": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-0001": {
                             "instances": [
                                 {
@@ -133,7 +133,7 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

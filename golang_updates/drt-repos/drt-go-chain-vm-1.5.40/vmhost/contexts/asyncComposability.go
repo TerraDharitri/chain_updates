@@ -1,8 +1,8 @@
 package contexts
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 // NotifyChildIsComplete is called for the parent when an async child is completed (callback included)

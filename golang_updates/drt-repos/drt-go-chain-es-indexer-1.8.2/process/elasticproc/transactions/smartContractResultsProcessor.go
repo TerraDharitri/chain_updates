@@ -5,15 +5,15 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	"github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	indexerData "github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	indexerData "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
 )
 
 type smartContractResultsProcessor struct {
@@ -143,15 +143,15 @@ func (proc *smartContractResultsProcessor) prepareSmartContractResult(
 			"value", scr.Value, "hash", scrHashHex, "error", err)
 	}
 
-	esdtValuesNum, err := proc.balanceConverter.ComputeSliceOfStringsAsFloat(res.ESDTValues)
+	dcdtValuesNum, err := proc.balanceConverter.ComputeSliceOfStringsAsFloat(res.DCDTValues)
 	if err != nil {
-		log.Warn("smartContractResultsProcessor.prepareSmartContractResult cannot compute scr esdt values as num",
-			"esdt values", res.ESDTValues, "hash", scrHashHex, "error", err)
+		log.Warn("smartContractResultsProcessor.prepareSmartContractResult cannot compute scr dcdt values as num",
+			"dcdt values", res.DCDTValues, "hash", scrHashHex, "error", err)
 	}
 
-	var esdtValues []string
-	if areESDTValuesOK(res.ESDTValues) {
-		esdtValues = res.ESDTValues
+	var dcdtValues []string
+	if areDCDTValuesOK(res.DCDTValues) {
+		dcdtValues = res.DCDTValues
 	}
 
 	feeInfo := getFeeInfo(scrInfo)
@@ -180,8 +180,8 @@ func (proc *smartContractResultsProcessor) prepareSmartContractResult(
 		ReceiverShard:      receiverShard,
 		Operation:          res.Operation,
 		Function:           converters.TruncateFieldIfExceedsMaxLength(res.Function),
-		ESDTValues:         esdtValues,
-		ESDTValuesNum:      esdtValuesNum,
+		DCDTValues:         dcdtValues,
+		DCDTValuesNum:      dcdtValuesNum,
 		Tokens:             converters.TruncateSliceElementsIfExceedsMaxLength(res.Tokens),
 		Receivers:          receiversAddr,
 		ReceiversShardIDs:  res.ReceiversShardID,

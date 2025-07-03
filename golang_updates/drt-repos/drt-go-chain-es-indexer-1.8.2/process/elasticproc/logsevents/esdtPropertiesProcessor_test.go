@@ -6,32 +6,32 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tokeninfo"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tokeninfo"
 	"github.com/stretchr/testify/require"
 )
 
-func TestEsdtPropertiesProcCreateRoleShouldWork(t *testing.T) {
+func TestDcdtPropertiesProcCreateRoleShouldWork(t *testing.T) {
 	t.Parallel()
 
-	esdtPropProc := newEsdtPropertiesProcessor(&mock.PubkeyConverterMock{})
+	dcdtPropProc := newDcdtPropertiesProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(core.BuiltInFunctionSetESDTRole),
-		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.ESDTRoleNFTCreate)},
+		Identifier: []byte(core.BuiltInFunctionSetDCDTRole),
+		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.DCDTRoleNFTCreate)},
 	}
 
 	tokenRolesAndProperties := tokeninfo.NewTokenRolesAndProperties()
-	esdtPropProc.processEvent(&argsProcessEvent{
+	dcdtPropProc.processEvent(&argsProcessEvent{
 		event:                   event,
 		tokenRolesAndProperties: tokenRolesAndProperties,
 	})
 
 	expected := map[string][]*tokeninfo.RoleData{
-		core.ESDTRoleNFTCreate: {
+		core.DCDTRoleNFTCreate: {
 			{
 				Token:   "MYTOKEN-abcd",
 				Set:     true,
@@ -42,25 +42,25 @@ func TestEsdtPropertiesProcCreateRoleShouldWork(t *testing.T) {
 	require.Equal(t, expected, tokenRolesAndProperties.GetRoles())
 }
 
-func TestEsdtPropertiesProcTransferCreateRole(t *testing.T) {
+func TestDcdtPropertiesProcTransferCreateRole(t *testing.T) {
 	t.Parallel()
 
-	esdtPropProc := newEsdtPropertiesProcessor(&mock.PubkeyConverterMock{})
+	dcdtPropProc := newDcdtPropertiesProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(core.BuiltInFunctionESDTNFTCreateRoleTransfer),
+		Identifier: []byte(core.BuiltInFunctionDCDTNFTCreateRoleTransfer),
 		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(strconv.FormatBool(true))},
 	}
 
 	tokenRolesAndProperties := tokeninfo.NewTokenRolesAndProperties()
-	esdtPropProc.processEvent(&argsProcessEvent{
+	dcdtPropProc.processEvent(&argsProcessEvent{
 		event:                   event,
 		tokenRolesAndProperties: tokenRolesAndProperties,
 	})
 
 	expected := map[string][]*tokeninfo.RoleData{
-		core.ESDTRoleNFTCreate: {
+		core.DCDTRoleNFTCreate: {
 			{
 				Token:   "MYTOKEN-abcd",
 				Set:     true,
@@ -71,10 +71,10 @@ func TestEsdtPropertiesProcTransferCreateRole(t *testing.T) {
 	require.Equal(t, expected, tokenRolesAndProperties.GetRoles())
 }
 
-func TestEsdtPropertiesProcUpgradeProperties(t *testing.T) {
+func TestDcdtPropertiesProcUpgradeProperties(t *testing.T) {
 	t.Parallel()
 
-	esdtPropProc := newEsdtPropertiesProcessor(&mock.PubkeyConverterMock{})
+	dcdtPropProc := newDcdtPropertiesProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
@@ -83,7 +83,7 @@ func TestEsdtPropertiesProcUpgradeProperties(t *testing.T) {
 	}
 
 	tokenRolesAndProperties := tokeninfo.NewTokenRolesAndProperties()
-	esdtPropProc.processEvent(&argsProcessEvent{
+	dcdtPropProc.processEvent(&argsProcessEvent{
 		event:                   event,
 		tokenRolesAndProperties: tokenRolesAndProperties,
 	})
@@ -108,7 +108,7 @@ func TestCheckRolesBytes(t *testing.T) {
 	rolesBytes := [][]byte{role1, role2}
 	require.False(t, checkRolesBytes(rolesBytes))
 
-	role1 = []byte("ESDTRoleNFTCreate")
+	role1 = []byte("DCDTRoleNFTCreate")
 	rolesBytes = [][]byte{role1}
 	require.True(t, checkRolesBytes(rolesBytes))
 }

@@ -6,16 +6,16 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/hashing/blake2b"
-	er "github.com/multiversx/mx-chain-scenario-go/scenario/expression/reconstructor"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/hostCore"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing/blake2b"
+	er "github.com/TerraDharitri/drt-go-chain-scenario/scenario/expression/reconstructor"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/hostCore"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -46,7 +46,7 @@ func newPureFunctionExecutor() (*pureFunctionExecutor, error) {
 
 	blockGasLimit := uint64(10000000)
 	gasSchedule := config.MakeGasMapForTests()
-	esdtTransferParser, _ := parsers.NewESDTTransferParser(worldmock.WorldMarshalizer)
+	dcdtTransferParser, _ := parsers.NewDCDTTransferParser(worldmock.WorldMarshalizer)
 	vm, err := hostCore.NewVMHost(
 		world,
 		&vmhost.VMHostParameters{
@@ -55,8 +55,8 @@ func newPureFunctionExecutor() (*pureFunctionExecutor, error) {
 			BlockGasLimit:             blockGasLimit,
 			GasSchedule:               gasSchedule,
 			BuiltInFuncContainer:      builtInFunctions.NewBuiltInFunctionContainer(),
-			ProtectedKeyPrefix:        []byte("E" + "L" + "R" + "O" + "N" + "D"),
-			ESDTTransferParser:        esdtTransferParser,
+			ProtectedKeyPrefix:        []byte("N" + "U" + "M" + "B" + "A" + "T"),
+			DCDTTransferParser:        dcdtTransferParser,
 			EpochNotifier:             &mock.EpochNotifierStub{},
 			EnableEpochsHandler:       worldmock.EnableEpochsHandlerStubNoFlags(),
 			WasmerSIGSEGVPassthrough:  false,

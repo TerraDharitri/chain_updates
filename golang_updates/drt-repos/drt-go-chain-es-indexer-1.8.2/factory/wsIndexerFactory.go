@@ -1,17 +1,17 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-communication-go/websocket/data"
-	factoryHost "github.com/multiversx/mx-chain-communication-go/websocket/factory"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	factoryHasher "github.com/multiversx/mx-chain-core-go/hashing/factory"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	factoryMarshaller "github.com/multiversx/mx-chain-core-go/marshal/factory"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/factory"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/wsindexer"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-communication/websocket/data"
+	factoryHost "github.com/TerraDharitri/drt-go-chain-communication/websocket/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	factoryHasher "github.com/TerraDharitri/drt-go-chain-core/hashing/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	factoryMarshaller "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/wsindexer"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var log = logger.GetOrCreate("elasticindexer")

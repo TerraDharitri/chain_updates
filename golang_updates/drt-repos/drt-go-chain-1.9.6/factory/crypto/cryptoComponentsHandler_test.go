@@ -3,7 +3,7 @@ package crypto_test
 import (
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	cryptoComp "github.com/TerraDharitri/drt-go-chain/factory/crypto"
 	"github.com/TerraDharitri/drt-go-chain/integrationTests/mock"
@@ -19,7 +19,7 @@ func TestManagedCryptoComponents(t *testing.T) {
 		t.Parallel()
 
 		managedCryptoComponents, err := cryptoComp.NewManagedCryptoComponents(nil)
-		require.Equal(t, errorsMx.ErrNilCryptoComponentsFactory, err)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponentsFactory, err)
 		require.Nil(t, managedCryptoComponents)
 	})
 	t.Run("invalid args should error", func(t *testing.T) {
@@ -86,7 +86,7 @@ func TestManagedCryptoComponents(t *testing.T) {
 		require.Nil(t, managedCryptoComponents.ManagedPeersHolder())
 		multiSigner, errGet := managedCryptoComponents.GetMultiSigner(0)
 		require.Nil(t, multiSigner)
-		require.Equal(t, errorsMx.ErrNilCryptoComponentsHolder, errGet)
+		require.Equal(t, errorsDrt.ErrNilCryptoComponentsHolder, errGet)
 
 		err = managedCryptoComponents.Create()
 		require.NoError(t, err)
@@ -128,7 +128,7 @@ func TestNewManagedCryptoComponents_CheckSubcomponents(t *testing.T) {
 	cryptoComponentsFactory, _ := cryptoComp.NewCryptoComponentsFactory(args)
 	managedCryptoComponents, err := cryptoComp.NewManagedCryptoComponents(cryptoComponentsFactory)
 	require.NoError(t, err)
-	require.Equal(t, errorsMx.ErrNilCryptoComponents, managedCryptoComponents.CheckSubcomponents())
+	require.Equal(t, errorsDrt.ErrNilCryptoComponents, managedCryptoComponents.CheckSubcomponents())
 
 	err = managedCryptoComponents.Create()
 	require.NoError(t, err)
@@ -144,7 +144,7 @@ func TestNewManagedCryptoComponents_SetMultiSignerContainer(t *testing.T) {
 	managedCryptoComponents, _ := cryptoComp.NewManagedCryptoComponents(cryptoComponentsFactory)
 	_ = managedCryptoComponents.Create()
 
-	require.Equal(t, errorsMx.ErrNilMultiSignerContainer, managedCryptoComponents.SetMultiSignerContainer(nil))
+	require.Equal(t, errorsDrt.ErrNilMultiSignerContainer, managedCryptoComponents.SetMultiSignerContainer(nil))
 	require.Nil(t, managedCryptoComponents.SetMultiSignerContainer(&mock.CryptoComponentsStub{}))
 }
 
@@ -174,7 +174,7 @@ func TestNewManagedCryptoComponents_IsInterfaceNil(t *testing.T) {
 	t.Parallel()
 
 	managedCryptoComponents, err := cryptoComp.NewManagedCryptoComponents(nil)
-	require.Equal(t, errorsMx.ErrNilCryptoComponentsFactory, err)
+	require.Equal(t, errorsDrt.ErrNilCryptoComponentsFactory, err)
 	require.True(t, managedCryptoComponents.IsInterfaceNil())
 
 	coreComponents := componentsMock.GetCoreComponents()

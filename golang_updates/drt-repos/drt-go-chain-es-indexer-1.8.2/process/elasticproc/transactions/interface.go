@@ -1,8 +1,8 @@
 package transactions
 
 import (
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	datafield "github.com/multiversx/mx-chain-vm-common-go/parsers/dataField"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	datafield "github.com/TerraDharitri/drt-go-chain-vm-common/parsers/dataField"
 )
 
 // DataFieldParser defines what a data field parser should be able to do

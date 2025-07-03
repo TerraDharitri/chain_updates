@@ -1,9 +1,9 @@
-module github.com/multiversx/mx-sdk-abi-go
+module github.com/TerraDharitri/drt-go-sdk-abi
 
 go 1.20
 
 require (
-	github.com/multiversx/mx-components-big-int v1.0.0
+	github.com/TerraDharitri/drt-go-bigint v1.0.0
 	github.com/stretchr/testify v1.7.1
 )
 

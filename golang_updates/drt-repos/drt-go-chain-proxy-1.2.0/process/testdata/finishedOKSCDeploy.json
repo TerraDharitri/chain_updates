@@ -5,8 +5,8 @@
     "processingTypeOnDestination": "SCDeployment",
     "hash": "a4823050d2396540b17bd9290523973763142c9f655bb26cd9e33f359b6d73ad",
     "value": "0",
-    "receiver": "erd1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq6gq4hu",
-    "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+    "receiver": "drt1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq85hk5z",
+    "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
     "gasPrice": 1000000000,
     "gasLimit": 550000000,
     "gasUsed": 550000000,
@@ -15,10 +15,10 @@
     "sourceShard": 0,
     "destinationShard": 0,
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "SCDeploy",
           "topics": [
             "AAAAAAAAAAAFAI/gqaFAmqjqwl6V7SHtxjqOsCioLjw="
@@ -26,7 +26,7 @@
           "data": null
         },
         {
-          "address": "erd1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq6gq4hu",
+          "address": "drt1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq85hk5z",
           "identifier": "writeLog",
           "topics": [
             "geQz5PeDGewXN9wviXwiSXnafo8GYO6dOYXGHRviLjw="

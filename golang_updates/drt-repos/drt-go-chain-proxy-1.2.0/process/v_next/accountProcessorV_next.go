@@ -1,7 +1,7 @@
 package v_next
 
 import (
-	"github.com/multiversx/mx-chain-proxy-go/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
 )
 
 // AccountProcessorV_next is the account processor for the version v_next

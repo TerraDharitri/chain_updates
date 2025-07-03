@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/testcommon/testexecutor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 	"github.com/stretchr/testify/require"
 )
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDelegationExecutor) stake(delegIndex int, amount *big.Int) error {

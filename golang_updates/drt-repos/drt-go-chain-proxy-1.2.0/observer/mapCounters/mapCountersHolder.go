@@ -3,8 +3,8 @@ package mapCounters
 import (
 	"errors"
 
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/observer/availabilityCommon"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer/availabilityCommon"
 )
 
 var (

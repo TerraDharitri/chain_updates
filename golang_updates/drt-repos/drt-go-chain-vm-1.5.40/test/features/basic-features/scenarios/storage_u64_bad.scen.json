@@ -11,7 +11,7 @@
                     "storage": {
                         "str:u64": "0x010000000000000000"
                     },
-                    "code": "mxsc:../output/basic-features.mxsc.json"
+                    "code": "drtsc:../output/basic-features.drtsc.json"
                 },
                 "address:an_account": {
                     "nonce": "0",

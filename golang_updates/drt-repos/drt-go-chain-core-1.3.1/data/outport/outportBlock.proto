@@ -2,18 +2,18 @@ syntax = "proto3";
 
 package proto;
 
-option go_package = "github.com/multiversx/mx-chain-core-go/data/outport;outport";
+option go_package = "github.com/TerraDharitri/drt-go-chain-core/data/outport;outport";
 option (gogoproto.stable_marshaler_all) = true;
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
-import "github.com/multiversx/mx-chain-core-go/data/block/block.proto";
-import "github.com/multiversx/mx-chain-core-go/data/block/headerProof.proto";
-import "github.com/multiversx/mx-chain-core-go/data/transaction/log.proto";
-import "github.com/multiversx/mx-chain-core-go/data/transaction/transaction.proto";
-import "github.com/multiversx/mx-chain-core-go/data/smartContractResult/smartContractResult.proto";
-import "github.com/multiversx/mx-chain-core-go/data/receipt/receipt.proto";
-import "github.com/multiversx/mx-chain-core-go/data/rewardTx/rewardTx.proto";
-import "github.com/multiversx/mx-chain-core-go/data/alteredAccount/alteredAccount.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/block/block.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/block/headerProof.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/transaction/log.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/transaction/transaction.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult/smartContractResult.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/receipt/receipt.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/rewardTx/rewardTx.proto";
+import "github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount/alteredAccount.proto";
 
 message OutportBlock {
   uint32                       ShardID                = 1 [(gogoproto.jsontag) = "shardID,omitempty"];
@@ -53,8 +53,8 @@ message TransactionPool {
 
 message FeeInfo {
   uint64 GasUsed        = 1 [(gogoproto.jsontag) = "gasUsed"];
-  bytes  Fee            = 2 [(gogoproto.jsontag) = "fee,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
-  bytes  InitialPaidFee = 3 [(gogoproto.jsontag) = "initialPaidFee,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster"];
+  bytes  Fee            = 2 [(gogoproto.jsontag) = "fee,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
+  bytes  InitialPaidFee = 3 [(gogoproto.jsontag) = "initialPaidFee,omitempty", (gogoproto.casttypewith) = "math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster"];
   uint64 GasRefunded    = 4 [(gogoproto.jsontag) = "gasRefunded,omitempty"];
   bool   HadRefund      = 5 [(gogoproto.jsontag) = "hadRefund,omitempty"];
 }

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	"github.com/TerraDharitri/drt-go-chain/factory/bootstrap"
 	componentsMock "github.com/TerraDharitri/drt-go-chain/testscommon/components"
@@ -30,7 +30,7 @@ func TestNewBootstrapComponentsFactory_NilFactory(t *testing.T) {
 	mbc, err := bootstrap.NewManagedBootstrapComponents(nil)
 
 	require.Nil(t, mbc)
-	require.Equal(t, errorsMx.ErrNilBootstrapComponentsFactory, err)
+	require.Equal(t, errorsDrt.ErrNilBootstrapComponentsFactory, err)
 }
 
 func TestManagedBootstrapComponents_MethodsNoCreate(t *testing.T) {
@@ -40,7 +40,7 @@ func TestManagedBootstrapComponents_MethodsNoCreate(t *testing.T) {
 	bcf, _ := bootstrap.NewBootstrapComponentsFactory(args)
 	mbc, _ := bootstrap.NewManagedBootstrapComponents(bcf)
 	err := mbc.CheckSubcomponents()
-	require.Equal(t, errorsMx.ErrNilBootstrapComponentsHolder, err)
+	require.Equal(t, errorsDrt.ErrNilBootstrapComponentsHolder, err)
 
 	assert.Nil(t, mbc.EpochStartBootstrapper())
 	assert.Nil(t, mbc.EpochBootstrapParams())
@@ -84,7 +84,7 @@ func TestManagedBootstrapComponents_CreateNilInternalMarshalizer(t *testing.T) {
 	coreComponents.IntMarsh = nil
 
 	err := mbc.Create()
-	require.True(t, errors.Is(err, errorsMx.ErrBootstrapDataComponentsFactoryCreate))
+	require.True(t, errors.Is(err, errorsDrt.ErrBootstrapDataComponentsFactoryCreate))
 }
 
 func TestManagedBootstrapComponents_Close(t *testing.T) {

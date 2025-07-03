@@ -1,11 +1,11 @@
-module github.com/multiversx/mx-chain-es-indexer-go/tools/clusters-checker
+module github.com/TerraDharitri/drt-go-chain-es-indexer/tools/clusters-checker
 
 go 1.17
 
 require (
 	github.com/elastic/go-elasticsearch/v7 v7.12.0
-	github.com/multiversx/mx-chain-core-go v1.1.30
-	github.com/multiversx/mx-chain-logger-go v1.0.11
+	github.com/TerraDharitri/drt-go-chain-core v1.1.30
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.11
 	github.com/pelletier/go-toml v1.9.3
 	github.com/tidwall/gjson v1.14.0
 	github.com/urfave/cli v1.22.5

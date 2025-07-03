@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/mocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/mocks"
 	"github.com/stretchr/testify/require"
 	"github.com/tidwall/gjson"
 )
@@ -34,9 +34,9 @@ func TestReadDelegationLegacyStateFromFileAndExtractData(t *testing.T) {
 	fmt.Println(len(res))
 
 	// check random address
-	info := res["erd1q5h0tjdkgl4pkn57qnljjgsamzvx548t5s02636wnynmtqmevv2q52lxdw"]
+	info := res["drt1q5h0tjdkgl4pkn57qnljjgsamzvx548t5s02636wnynmtqmevv2qfkg9ws"]
 	require.Equal(t, "35000000000000000000", info.UnDelegateLegacy)
 
-	info = res["erd13wanstz0wmjv0ashn2760cl2a2l5y6gwz2lay270347ujshm9unsvt73fn"]
+	info = res["drt13wanstz0wmjv0ashn2760cl2a2l5y6gwz2lay270347ujshm9uns3hfj2d"]
 	require.Equal(t, "323053985724926356758", info.DelegationLegacyActive)
 }

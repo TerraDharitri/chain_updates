@@ -15,13 +15,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/data"
 )
 
 var log = logger.GetOrCreate("testing")
@@ -42,18 +42,18 @@ func NewTestHttpServer() *TestHttpServer {
 }
 
 func (ths *TestHttpServer) processRequest(rw http.ResponseWriter, req *http.Request) {
-	if strings.Contains(req.URL.Path, "/esdtnft/") {
-		ths.processRequestGetEsdtNftTokenData(rw, req)
+	if strings.Contains(req.URL.Path, "/dcdtnft/") {
+		ths.processRequestGetDcdtNftTokenData(rw, req)
 		return
 	}
 
-	if strings.Contains(req.URL.Path, "/esdt/") {
-		ths.processRequestGetEsdtTokenData(rw, req)
+	if strings.Contains(req.URL.Path, "/dcdt/") {
+		ths.processRequestGetDcdtTokenData(rw, req)
 		return
 	}
 
-	if strings.Contains(req.URL.Path, "/esdt") {
-		ths.processRequestGetAllEsdtTokens(rw, req)
+	if strings.Contains(req.URL.Path, "/dcdt") {
+		ths.processRequestGetAllDcdtTokens(rw, req)
 		return
 	}
 
@@ -139,7 +139,7 @@ func (ths *TestHttpServer) processRequestAddress(rw http.ResponseWriter, req *ht
 	log.LogIfError(err)
 }
 
-func (ths *TestHttpServer) processRequestGetEsdtTokenData(rw http.ResponseWriter, _ *http.Request) {
+func (ths *TestHttpServer) processRequestGetDcdtTokenData(rw http.ResponseWriter, _ *http.Request) {
 	type tkn struct {
 		Name       string `json:"tokenName"`
 		Balance    string `json:"balance"`
@@ -147,7 +147,7 @@ func (ths *TestHttpServer) processRequestGetEsdtTokenData(rw http.ResponseWriter
 	}
 	response := data.GenericAPIResponse{
 		Data: gin.H{"tokenData": tkn{
-			Name:       "testESDTtkn",
+			Name:       "testDCDTtkn",
 			Balance:    "999",
 			Properties: "11",
 		}},
@@ -160,7 +160,7 @@ func (ths *TestHttpServer) processRequestGetEsdtTokenData(rw http.ResponseWriter
 	log.LogIfError(err)
 }
 
-func (ths *TestHttpServer) processRequestGetEsdtNftTokenData(rw http.ResponseWriter, _ *http.Request) {
+func (ths *TestHttpServer) processRequestGetDcdtNftTokenData(rw http.ResponseWriter, _ *http.Request) {
 	nftData := struct {
 		TokenIdentifier string   `json:"tokenIdentifier"`
 		Balance         string   `json:"balance"`
@@ -176,7 +176,7 @@ func (ths *TestHttpServer) processRequestGetEsdtNftTokenData(rw http.ResponseWri
 		Balance:         "1000000",
 		Properties:      "1",
 		Name:            "name",
-		Creator:         "erd1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zy0llugszknfpv",
+		Creator:         "drt1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zy0llugsl2y2zj",
 		Royalties:       "10000",
 		Hash:            []byte("hash"),
 		URIs:            [][]byte{[]byte("uri")},
@@ -194,9 +194,9 @@ func (ths *TestHttpServer) processRequestGetEsdtNftTokenData(rw http.ResponseWri
 	log.LogIfError(err)
 }
 
-func (ths *TestHttpServer) processRequestGetAllEsdtTokens(rw http.ResponseWriter, _ *http.Request) {
+func (ths *TestHttpServer) processRequestGetAllDcdtTokens(rw http.ResponseWriter, _ *http.Request) {
 	response := data.GenericAPIResponse{
-		Data:  gin.H{"tokens": []string{"testESDTtkn", "testESDTtkn2"}},
+		Data:  gin.H{"tokens": []string{"testDCDTtkn", "testDCDTtkn2"}},
 		Error: "",
 		Code:  data.ReturnCodeSuccess,
 	}
@@ -371,13 +371,13 @@ func (ths *TestHttpServer) processRequestTransactionSimulation(rw http.ResponseW
 				Status: "executed",
 				ScResults: map[string]*transaction.ApiSmartContractResult{
 					"scRHash": {
-						SndAddr: "erd111",
-						RcvAddr: "erd122",
+						SndAddr: "drt111",
+						RcvAddr: "drt122",
 					},
 				},
 				Receipts: map[string]*transaction.ApiReceipt{
 					"rcptHash": {
-						SndAddr: "erd111",
+						SndAddr: "drt111",
 						Value:   big.NewInt(10),
 					},
 				},

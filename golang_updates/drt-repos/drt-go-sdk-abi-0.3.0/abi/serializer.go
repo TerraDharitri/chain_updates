@@ -18,8 +18,8 @@ type ArgsNewSerializer struct {
 }
 
 // NewSerializer creates a new serializer.
-// The serializer follows the rules of the MultiversX Serialization format:
-// https://docs.multiversx.com/developers/data/serialization-overview
+// The serializer follows the rules of the Dharitri Serialization format:
+// https://docs.dharitri.org/developers/data/serialization-overview
 func NewSerializer(args ArgsNewSerializer) (*serializer, error) {
 	if args.PartsSeparator == "" {
 		return nil, errors.New("cannot create serializer: parts separator must not be empty")
@@ -66,7 +66,7 @@ func (s *serializer) doSerialize(partsHolder *partsHolder, inputValues []any) er
 		case *OptionalValue:
 			if i != len(inputValues)-1 {
 				// Usage of multiple optional values is not recommended:
-				// https://docs.multiversx.com/developers/data/multi-values
+				// https://docs.dharitri.org/developers/data/multi-values
 				// Thus, here, we disallow them.
 				return errors.New("an optional value must be last among input values")
 			}
@@ -130,7 +130,7 @@ func (s *serializer) doDeserialize(partsHolder *partsHolder, outputValues []any)
 		case *OptionalValue:
 			if i != len(outputValues)-1 {
 				// Usage of multiple optional values is not recommended:
-				// https://docs.multiversx.com/developers/data/multi-values
+				// https://docs.dharitri.org/developers/data/multi-values
 				// Thus, here, we disallow them.
 				return errors.New("an optional value must be last among output values")
 			}

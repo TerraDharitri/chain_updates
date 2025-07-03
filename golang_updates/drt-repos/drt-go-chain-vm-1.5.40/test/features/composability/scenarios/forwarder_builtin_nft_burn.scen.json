@@ -7,7 +7,7 @@
                 "address:a_user": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -21,7 +21,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -31,16 +31,16 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:forwarder2": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -51,7 +51,7 @@
                             "lastNonce": "1"
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -76,7 +76,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTNFTBurn",
+                        "endpoint": "str:DCDTNFTBurn",
                         "topics": [
                             "str:NFT-000001",
                             "1",
@@ -118,7 +118,7 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -134,7 +134,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -144,17 +144,17 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "sc:forwarder2": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -166,7 +166,7 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

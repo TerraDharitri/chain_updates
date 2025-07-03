@@ -3,12 +3,12 @@ package dataindexer
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -167,7 +167,7 @@ func TestDataIndexer_RevertIndexedBlock(t *testing.T) {
 			countMap[2]++
 			return nil
 		},
-		RemoveAccountsESDTCalled: func(headerTimestamp uint64) error {
+		RemoveAccountsDCDTCalled: func(headerTimestamp uint64) error {
 			countMap[3]++
 			return nil
 		},

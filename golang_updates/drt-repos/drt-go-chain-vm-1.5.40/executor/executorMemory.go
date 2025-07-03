@@ -3,7 +3,7 @@ package executor
 import (
 	"fmt"
 
-	"github.com/multiversx/mx-chain-vm-go/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
 )
 
 // MemPtr indicates that an argument refers to a location in WASM memory.

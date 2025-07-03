@@ -13,8 +13,8 @@
         "hash": "SCR-hash1",
         "nonce": 15,
         "value": 0,
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "gasLimit": 0,
         "gasPrice": 0,
         "callType": 0,
@@ -23,10 +23,10 @@
       }
     ],
     "logs":{
-      "address":"erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address":"drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events":[
         {
-          "address":"erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address":"drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier":"signalError",
           "topics":null,
           "data":null
@@ -35,7 +35,7 @@
     },
     "status": "success",
     "receivers": [
-      "erd10n9fqy3gvqn4s6f053cpy4wknc7ctmxeu80zc5rr8aw9nzww9qesj03tma"
+      "drt10n9fqy3gvqn4s6f053cpy4wknc7ctmxeu80zc5rr8aw9nzww9qes0nxgcr"
     ],
     "receiversShardIDs": [
       1
@@ -54,8 +54,8 @@
       "processingTypeOnSource": "MoveBalance",
       "processingTypeOnDestination": "MoveBalance",
       "hash": "SCR-hash1",
-      "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "returnMessage": "lower nonce in transaction",
       "sourceShard": 1,
       "destinationShard": 1,

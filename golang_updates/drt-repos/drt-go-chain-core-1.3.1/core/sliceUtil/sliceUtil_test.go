@@ -3,7 +3,7 @@ package sliceUtil_test
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/sliceUtil"
+	"github.com/TerraDharitri/drt-go-chain-core/core/sliceUtil"
 	"github.com/stretchr/testify/assert"
 )
 

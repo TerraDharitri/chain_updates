@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	logger "github.com/multiversx/mx-chain-logger-go"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var log = logger.GetOrCreate("indexer/client/requests")

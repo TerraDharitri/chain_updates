@@ -4,22 +4,22 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 
-func TestIssueESDTProcessor(t *testing.T) {
+func TestIssueDCDTProcessor(t *testing.T) {
 	t.Parallel()
 
-	esdtIssueProc := newESDTIssueProcessor(&mock.PubkeyConverterMock{})
+	dcdtIssueProc := newDCDTIssueProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(issueNonFungibleESDTFunc),
-		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleESDT)},
+		Identifier: []byte(issueNonFungibleDCDTFunc),
+		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleDCDT)},
 	}
 	args := &argsProcessEvent{
 		timestamp:   1234,
@@ -27,14 +27,14 @@ func TestIssueESDTProcessor(t *testing.T) {
 		selfShardID: core.MetachainShardId,
 	}
 
-	res := esdtIssueProc.processEvent(args)
+	res := dcdtIssueProc.processEvent(args)
 
 	require.Equal(t, &data.TokenInfo{
 		Token:        "MYTOKEN-abcd",
 		Name:         "my-token",
 		Ticker:       "MYTOKEN",
 		Timestamp:    time.Duration(1234),
-		Type:         core.NonFungibleESDT,
+		Type:         core.NonFungibleDCDT,
 		Issuer:       "61646472",
 		CurrentOwner: "61646472",
 		OwnersHistory: []*data.OwnerData{
@@ -47,15 +47,15 @@ func TestIssueESDTProcessor(t *testing.T) {
 	}, res.tokenInfo)
 }
 
-func TestIssueESDTProcessor_TransferOwnership(t *testing.T) {
+func TestIssueDCDTProcessor_TransferOwnership(t *testing.T) {
 	t.Parallel()
 
-	esdtIssueProc := newESDTIssueProcessor(&mock.PubkeyConverterMock{})
+	dcdtIssueProc := newDCDTIssueProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
 		Identifier: []byte(transferOwnershipFunc),
-		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleESDT), []byte("newOwner")},
+		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleDCDT), []byte("newOwner")},
 	}
 	args := &argsProcessEvent{
 		timestamp:   1234,
@@ -63,14 +63,14 @@ func TestIssueESDTProcessor_TransferOwnership(t *testing.T) {
 		selfShardID: core.MetachainShardId,
 	}
 
-	res := esdtIssueProc.processEvent(args)
+	res := dcdtIssueProc.processEvent(args)
 
 	require.Equal(t, &data.TokenInfo{
 		Token:        "MYTOKEN-abcd",
 		Name:         "my-token",
 		Ticker:       "MYTOKEN",
 		Timestamp:    time.Duration(1234),
-		Type:         core.NonFungibleESDT,
+		Type:         core.NonFungibleDCDT,
 		Issuer:       "61646472",
 		CurrentOwner: "6e65774f776e6572",
 		OwnersHistory: []*data.OwnerData{
@@ -84,15 +84,15 @@ func TestIssueESDTProcessor_TransferOwnership(t *testing.T) {
 	}, res.tokenInfo)
 }
 
-func TestIssueESDTProcessor_EventWithShardID0ShouldBeIgnored(t *testing.T) {
+func TestIssueDCDTProcessor_EventWithShardID0ShouldBeIgnored(t *testing.T) {
 	t.Parallel()
 
-	esdtIssueProc := newESDTIssueProcessor(&mock.PubkeyConverterMock{})
+	dcdtIssueProc := newDCDTIssueProcessor(&mock.PubkeyConverterMock{})
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
 		Identifier: []byte(transferOwnershipFunc),
-		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleESDT), []byte("newOwner")},
+		Topics:     [][]byte{[]byte("MYTOKEN-abcd"), []byte("my-token"), []byte("MYTOKEN"), []byte(core.NonFungibleDCDT), []byte("newOwner")},
 	}
 	args := &argsProcessEvent{
 		timestamp:   1234,
@@ -100,6 +100,6 @@ func TestIssueESDTProcessor_EventWithShardID0ShouldBeIgnored(t *testing.T) {
 		selfShardID: 0,
 	}
 
-	res := esdtIssueProc.processEvent(args)
+	res := dcdtIssueProc.processEvent(args)
 	require.False(t, res.processed)
 }

@@ -17,7 +17,7 @@
             "tx": {
                 "from": "address:participant1",
                 "to": "sc:ping-pong",
-                "egldValue": "500,000,000,000",
+                "rewaValue": "500,000,000,000",
                 "function": "ping",
                 "arguments": [
                     "str:optional data, which we ignore"
@@ -62,7 +62,7 @@
                         "str:userStatus|0x0000001": "1",
                         "str:user_count": "1"
                     },
-                    "code": "mxsc:../output/ping-pong-egld.mxsc.json"
+                    "code": "drtsc:../output/ping-pong-rewa.drtsc.json"
                 }
             }
         }

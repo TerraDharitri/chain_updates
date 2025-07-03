@@ -10,12 +10,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -26,12 +26,12 @@ func TestNFTUpdateMetadata(t *testing.T) {
 	require.Nil(t, err)
 
 	bigUri := bytes.Repeat([]byte("a"), 50000)
-	esdtCreateData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtCreateData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			URIs: [][]byte{[]byte("uri"), []byte("uri"), bigUri, bigUri, bigUri},
 		},
 	}
-	marshalizedCreate, _ := json.Marshal(esdtCreateData)
+	marshalizedCreate, _ := json.Marshal(dcdtCreateData)
 
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
@@ -44,7 +44,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 	body := &dataBlock.Body{}
 
 	// CREATE NFT data
-	address := "erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7"
+	address := "drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -53,7 +53,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(1).Bytes(), marshalizedCreate},
 						},
 						nil,
@@ -80,7 +80,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTAddURI),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTAddURI),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("uri"), bigUri},
 						},
 						nil,
@@ -101,7 +101,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTAddURI),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTAddURI),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("uri"), bigUri},
 						},
 						nil,
@@ -128,7 +128,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTUpdateAttributes),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTUpdateAttributes),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("tags:test,free,fun;description:This is a test description for an awesome nft;metadata:metadata-test")},
 						},
 						nil,
@@ -156,7 +156,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTUpdateAttributes),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTUpdateAttributes),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("something")},
 						},
 						nil,
@@ -183,7 +183,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTFreeze),
+							Identifier: []byte(core.BuiltInFunctionDCDTFreeze),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("something")},
 						},
 						nil,
@@ -209,7 +209,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTUnFreeze),
+							Identifier: []byte(core.BuiltInFunctionDCDTUnFreeze),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("something")},
 						},
 						nil,
@@ -235,7 +235,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTSetNewURIs),
+							Identifier: []byte(core.DCDTSetNewURIs),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), []byte("uri"), []byte("uri"), []byte("uri"), []byte("uri"), []byte("uri")},
 						},
 						nil,
@@ -253,7 +253,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 	require.JSONEq(t, readExpectedResult("./testdata/updateNFT/token-after-set-new-uris.json"), string(genericResponse.Docs[0].Source))
 
 	// new creator
-	newCreator := "erd12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfqrwpdx0"
+	newCreator := "drt12m3x8jp6dl027pj5f2nw6ght2cyhhjfrs86cdwsa8xn83r375qfq7jkw93"
 	pool = &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -262,7 +262,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(newCreator),
-							Identifier: []byte(core.ESDTModifyCreator),
+							Identifier: []byte(core.DCDTModifyCreator),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes()},
 						},
 						nil,
@@ -288,7 +288,7 @@ func TestNFTUpdateMetadata(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTModifyRoyalties),
+							Identifier: []byte(core.DCDTModifyRoyalties),
 							Topics:     [][]byte{[]byte("NFT-abcd"), big.NewInt(14).Bytes(), big.NewInt(0).Bytes(), big.NewInt(100).Bytes()},
 						},
 						nil,
@@ -312,13 +312,13 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
-	esdtCreateData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtCreateData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Name: []byte("token-token-token"),
 			URIs: [][]byte{[]byte("uri"), []byte("uri")},
 		},
 	}
-	marshalizedCreate, _ := json.Marshal(esdtCreateData)
+	marshalizedCreate, _ := json.Marshal(dcdtCreateData)
 
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
@@ -331,7 +331,7 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 	body := &dataBlock.Body{}
 
 	// CREATE NFT data
-	address := "erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7"
+	address := "drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -340,7 +340,7 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics:     [][]byte{[]byte("NEW-abcd"), big.NewInt(100).Bytes(), big.NewInt(1).Bytes(), marshalizedCreate},
 						},
 						nil,
@@ -359,8 +359,8 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 	require.JSONEq(t, readExpectedResult("./testdata/updateNFT/token-before-recreate.json"), string(genericResponse.Docs[0].Source))
 
 	// RECREATE
-	reCreate := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	reCreate := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Name: []byte("token"),
 			URIs: [][]byte{[]byte("uri")},
 			Hash: []byte("hash"),
@@ -376,7 +376,7 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTMetaDataRecreate),
+							Identifier: []byte(core.DCDTMetaDataRecreate),
 							Topics:     [][]byte{[]byte("NEW-abcd"), big.NewInt(100).Bytes(), big.NewInt(0).Bytes(), marshalizedReCreate},
 						},
 						nil,
@@ -394,8 +394,8 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 	require.JSONEq(t, readExpectedResult("./testdata/updateNFT/token-after-recreate.json"), string(genericResponse.Docs[0].Source))
 
 	// UPDATE
-	update := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	update := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Name: []byte("token-second"),
 			URIs: [][]byte{[]byte("uri")},
 			Hash: []byte("hash"),
@@ -411,7 +411,7 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTMetaDataUpdate),
+							Identifier: []byte(core.DCDTMetaDataUpdate),
 							Topics:     [][]byte{[]byte("NEW-abcd"), big.NewInt(100).Bytes(), big.NewInt(0).Bytes(), marshalizedUpdate},
 						},
 						nil,
@@ -429,19 +429,19 @@ func TestCreateNFTAndMetaDataRecreate(t *testing.T) {
 	require.JSONEq(t, readExpectedResult("./testdata/updateNFT/token-after-update.json"), string(genericResponse.Docs[0].Source))
 }
 
-func TestMultipleESDTMetadataRecreate(t *testing.T) {
+func TestMultipleDCDTMetadataRecreate(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
-	esdtCreateData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtCreateData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Name: []byte("YELLOW"),
 			URIs: [][]byte{[]byte("uri"), []byte("uri")},
 		},
 	}
-	marshalizedCreate, _ := json.Marshal(esdtCreateData)
+	marshalizedCreate, _ := json.Marshal(dcdtCreateData)
 
 	esProc, err := CreateElasticProcessor(esClient)
 	require.Nil(t, err)
@@ -454,7 +454,7 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 	body := &dataBlock.Body{}
 
 	// CREATE NFT data
-	address := "erd1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks6k5th7"
+	address := "drt1w7jyzuj6cv4ngw8luhlkakatjpmjh3ql95lmxphd3vssc4vpymks82rg5q"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -463,7 +463,7 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics:     [][]byte{[]byte("COLORS-df0e82"), big.NewInt(1).Bytes(), big.NewInt(1).Bytes(), marshalizedCreate},
 						},
 						nil,
@@ -476,7 +476,7 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
 							Topics:     [][]byte{[]byte("COLORS-df0e82"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), marshalizedCreate},
 						},
 						nil,
@@ -489,8 +489,8 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 	require.Nil(t, err)
 
 	// RECREATE
-	reCreate := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	reCreate := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Name: []byte("GREEN"),
 			URIs: [][]byte{[]byte("uri")},
 			Hash: []byte("hash"),
@@ -506,7 +506,7 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTMetaDataRecreate),
+							Identifier: []byte(core.DCDTMetaDataRecreate),
 							Topics:     [][]byte{[]byte("COLORS-df0e82"), big.NewInt(1).Bytes(), big.NewInt(0).Bytes(), marshalizedReCreate},
 						},
 						nil,
@@ -519,7 +519,7 @@ func TestMultipleESDTMetadataRecreate(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.ESDTMetaDataRecreate),
+							Identifier: []byte(core.DCDTMetaDataRecreate),
 							Topics:     [][]byte{[]byte("COLORS-df0e82"), big.NewInt(2).Bytes(), big.NewInt(0).Bytes(), marshalizedReCreate},
 						},
 						nil,

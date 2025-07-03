@@ -8,12 +8,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/clusters-checker/pkg/checkers"
-	"github.com/multiversx/mx-chain-es-indexer-go/tools/clusters-checker/pkg/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/clusters-checker/pkg/checkers"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/tools/clusters-checker/pkg/config"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
 	"github.com/pelletier/go-toml"
 	"github.com/urfave/cli"
 )
@@ -54,8 +54,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

@@ -12,7 +12,7 @@
             "version": "0.0.0"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.54.4"
         }
     },
@@ -1062,7 +1062,7 @@
                 ]
             }
         ],
-        "esdtAttributes": [],
+        "dcdtAttributes": [],
         "hasCallback": false,
         "types": {
             "LargeBoxedByteArray": {

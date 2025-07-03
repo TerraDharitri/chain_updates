@@ -1,3 +1,3 @@
-# mx-chain-core-go
+# drt-go-chain-core
 
-mx-chain-go common components and data that can be used in other repositories as well
+drt-go-chain common components and data that can be used in other repositories as well

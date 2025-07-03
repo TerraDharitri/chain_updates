@@ -80,7 +80,7 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../output/multisig.mxsc.json"
+                    "code": "drtsc:../output/multisig.drtsc.json"
                 },
                 "+": ""
             }
@@ -169,7 +169,7 @@
                     "storage": {
                         "str:sum": "1234"
                     },
-                    "code": "mxsc:../test-contracts/adder.mxsc.json"
+                    "code": "drtsc:../test-contracts/adder.drtsc.json"
                 },
                 "+": ""
             }
@@ -307,7 +307,7 @@
                     "storage": {
                         "str:sum": "2468"
                     },
-                    "code": "mxsc:../test-contracts/adder.mxsc.json"
+                    "code": "drtsc:../test-contracts/adder.drtsc.json"
                 },
                 "+": ""
             }

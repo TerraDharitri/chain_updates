@@ -3,12 +3,12 @@ package data
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 )
 
 const (
-	metaESDT        = "MetaESDT"
-	dynamicMetaESDT = "DynamicMetaESDT"
+	metaDCDT        = "MetaDCDT"
+	dynamicMetaDCDT = "DynamicMetaDCDT"
 )
 
 // NFTDataUpdate will contain the update information for an NFT or SFT
@@ -90,10 +90,10 @@ type TokensHandler interface {
 	Add(tokenInfo *TokenInfo)
 	Len() int
 	AddTypeAndOwnerFromResponse(res *ResponseTokens)
-	PutTypeAndOwnerInAccountsESDT(accountsESDT map[string]*AccountInfo)
+	PutTypeAndOwnerInAccountsDCDT(accountsDCDT map[string]*AccountInfo)
 	GetAllTokens() []string
 	GetAll() []*TokenInfo
-	GetAllWithoutMetaESDT() []*TokenInfo
+	GetAllWithoutMetaDCDT() []*TokenInfo
 	IsInterfaceNil() bool
 }
 
@@ -128,11 +128,11 @@ func (ti *tokensInfo) GetAll() []*TokenInfo {
 	return tokens
 }
 
-// GetAllWithoutMetaESDT will return all tokens except metaESDT tokens
-func (ti *tokensInfo) GetAllWithoutMetaESDT() []*TokenInfo {
+// GetAllWithoutMetaDCDT will return all tokens except metaDCDT tokens
+func (ti *tokensInfo) GetAllWithoutMetaDCDT() []*TokenInfo {
 	tokens := make([]*TokenInfo, 0)
 	for _, tokenData := range ti.tokensInfo {
-		if tokenData.Type == metaESDT || tokenData.Type == dynamicMetaESDT {
+		if tokenData.Type == metaDCDT || tokenData.Type == dynamicMetaDCDT {
 			continue
 		}
 
@@ -185,16 +185,16 @@ func (ti *tokensInfo) AddTypeAndOwnerFromResponse(res *ResponseTokens) {
 	}
 }
 
-// PutTypeAndOwnerInAccountsESDT will put in the provided accounts ESDT map token type and current owner
-func (ti *tokensInfo) PutTypeAndOwnerInAccountsESDT(accountsESDT map[string]*AccountInfo) {
-	for _, accountESDT := range accountsESDT {
-		tokenData, ok := ti.tokensInfo[accountESDT.TokenIdentifier]
+// PutTypeAndOwnerInAccountsDCDT will put in the provided accounts DCDT map token type and current owner
+func (ti *tokensInfo) PutTypeAndOwnerInAccountsDCDT(accountsDCDT map[string]*AccountInfo) {
+	for _, accountDCDT := range accountsDCDT {
+		tokenData, ok := ti.tokensInfo[accountDCDT.TokenIdentifier]
 		if !ok {
 			continue
 		}
 
-		accountESDT.Type = tokenData.Type
-		accountESDT.CurrentOwner = tokenData.CurrentOwner
+		accountDCDT.Type = tokenData.Type
+		accountDCDT.CurrentOwner = tokenData.CurrentOwner
 	}
 }
 

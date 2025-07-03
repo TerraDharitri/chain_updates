@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	dataIndexer "github.com/multiversx/mx-chain-es-indexer-go/data"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
+	dataIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
 	"github.com/tidwall/gjson"
 )
 

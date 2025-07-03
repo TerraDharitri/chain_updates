@@ -1,4 +1,4 @@
-module github.com/multiversx/mx-chain-proxy-go
+module github.com/TerraDharitri/drt-go-chain-proxy
 
 go 1.20
 
@@ -7,10 +7,10 @@ require (
 	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-contrib/static v0.0.1
 	github.com/gin-gonic/gin v1.10.0
-	github.com/multiversx/mx-chain-core-go v1.3.0
-	github.com/multiversx/mx-chain-crypto-go v1.2.12
-	github.com/multiversx/mx-chain-es-indexer-go v1.8.0
-	github.com/multiversx/mx-chain-logger-go v1.0.15
+	github.com/TerraDharitri/drt-go-chain-core v1.3.0
+	github.com/TerraDharitri/drt-go-chain-core v1.2.12
+	github.com/TerraDharitri/drt-go-chain-es-indexer v1.8.0
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.15
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.10.0
 	github.com/urfave/cli v1.22.16

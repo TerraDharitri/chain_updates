@@ -3,7 +3,7 @@ package heartbeat_test
 import (
 	"testing"
 
-	errorsMx "github.com/TerraDharitri/drt-go-chain/errors"
+	errorsDrt "github.com/TerraDharitri/drt-go-chain/errors"
 	"github.com/TerraDharitri/drt-go-chain/factory"
 	heartbeatComp "github.com/TerraDharitri/drt-go-chain/factory/heartbeat"
 	"github.com/stretchr/testify/assert"
@@ -21,7 +21,7 @@ func TestNewManagedHeartbeatV2Components(t *testing.T) {
 
 	mhc, err := heartbeatComp.NewManagedHeartbeatV2Components(nil)
 	assert.Nil(t, mhc)
-	assert.Equal(t, errorsMx.ErrNilHeartbeatV2ComponentsFactory, err)
+	assert.Equal(t, errorsDrt.ErrNilHeartbeatV2ComponentsFactory, err)
 
 	args := createMockHeartbeatV2ComponentsFactoryArgs()
 	hcf, _ := heartbeatComp.NewHeartbeatV2ComponentsFactory(args)
@@ -70,7 +70,7 @@ func TestManagedHeartbeatV2Components_CheckSubcomponents(t *testing.T) {
 	hcf, _ := heartbeatComp.NewHeartbeatV2ComponentsFactory(args)
 	mhc, _ := heartbeatComp.NewManagedHeartbeatV2Components(hcf)
 	assert.NotNil(t, mhc)
-	assert.Equal(t, errorsMx.ErrNilHeartbeatV2Components, mhc.CheckSubcomponents())
+	assert.Equal(t, errorsDrt.ErrNilHeartbeatV2Components, mhc.CheckSubcomponents())
 
 	err := mhc.Create()
 	assert.NoError(t, err)

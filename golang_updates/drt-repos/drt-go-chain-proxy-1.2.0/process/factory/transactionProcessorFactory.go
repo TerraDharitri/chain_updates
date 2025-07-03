@@ -1,13 +1,13 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-proxy-go/facade"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/logsevents"
-	"github.com/multiversx/mx-chain-proxy-go/process/txcost"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/logsevents"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/txcost"
 )
 
 // CreateTransactionProcessor will return the transaction processor needed for current settings

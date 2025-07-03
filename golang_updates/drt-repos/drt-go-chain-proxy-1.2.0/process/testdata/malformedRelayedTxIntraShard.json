@@ -4,8 +4,8 @@
     "processingTypeOnSource": "RelayedTx",
     "processingTypeOnDestination": "RelayedTx",
     "hash": "a4823050d2396540b17bd9290523973763142c9f655bb26cd9e33f359b6d73ad",
-    "receiver": "erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th",
-    "sender": "erd1kyaqzaprcdnv4luvanah0gfxzzsnpaygsy6pytrexll2urtd05ts9vegu7",
+    "receiver": "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf",
+    "sender": "drt1kyaqzaprcdnv4luvanah0gfxzzsnpaygsy6pytrexll2urtd05tscswtlq",
     "gasPrice": 1000000000,
     "gasLimit": 11052000,
     "gasUsed": 11052000,
@@ -16,7 +16,7 @@
     "notarizedAtDestinationInMetaHash":"02d38e178073d1af3b77c2dc87da50f8139e00b468c436fc04f22879acf5a45f",
     "status": "success",
     "receivers": [
-      "erd1kyaqzaprcdnv4luvanah0gfxzzsnpaygsy6pytrexll2urtd05ts9vegu7"
+      "drt1kyaqzaprcdnv4luvanah0gfxzzsnpaygsy6pytrexll2urtd05tscswtlq"
     ],
     "receiversShardIDs": [
       1

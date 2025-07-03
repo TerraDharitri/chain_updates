@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	dtosc "github.com/multiversx/mx-chain-simulator-go/pkg/dtos"
+	dtosc "github.com/TerraDharitri/drt-go-chain-simulator/pkg/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
 )
 
 // SimulatorFacade defines what a simulator facade should be able to do

@@ -12,7 +12,7 @@
                 "address:other_seller": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:BBIT-1b9bb6": {
                             "instances": [
                                 {
@@ -46,7 +46,7 @@
             "tx": {
                 "from": "address:other_seller",
                 "to": "sc:marketplace",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:BBIT-1b9bb6",
                         "nonce": "1",
@@ -79,7 +79,7 @@
                 "address:other_seller": {
                     "nonce": "1",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:BBIT-1b9bb6": {}
                     },
                     "storage": {}
@@ -87,7 +87,7 @@
                 "sc:marketplace": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:BBIT-1b9bb6": {
                             "instances": [
                                 {
@@ -123,7 +123,7 @@
                             "13-creator_royalties_percentage": "biguint:1000"
                         }
                     },
-                    "code": "file:../output/esdt-nft-marketplace.wasm"
+                    "code": "file:../output/dcdt-nft-marketplace.wasm"
                 },
                 "+": ""
             }

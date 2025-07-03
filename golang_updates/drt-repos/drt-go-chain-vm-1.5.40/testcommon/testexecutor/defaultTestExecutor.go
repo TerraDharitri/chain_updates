@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
-	"github.com/multiversx/mx-chain-vm-go/wasmer2"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 )
 
 // EnvVMEXECUTOR is the name of the environment variable that controls the default test executor

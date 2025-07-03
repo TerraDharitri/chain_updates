@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 	"github.com/stretchr/testify/require"
 )
 

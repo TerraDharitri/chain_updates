@@ -4,22 +4,22 @@
     "processingTypeOnSource": "SCInvoking",
     "processingTypeOnDestination": "SCInvoking",
     "hash": "a4823050d2396540b17bd9290523973763142c9f655bb26cd9e33f359b6d73ad",
-    "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-    "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+    "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+    "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
     "data": "ZG9fZGVwbG95QDAwMDAwMDAwMDAwMDAwMDAwNTAwRkIxNUE1MEZGNUQ2MEQyQUI5NjA3MTgyRDdCQjM2MjlEQThFNkQxOEEwMTJAQTlGNkE4MUFBN0RBNzY3OEE5NTg1NTgyOURBMjVFM0EyOTI3OUJDM0QwQjQ0QTg4RjI1MUMxNkFEM0JFQUNEQw==",
     "smartContractResults": [
       {
         "hash": "SCR-hash1",
-        "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-        "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+        "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+        "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
         "operation": "transfer"
       }
     ],
     "logs": {
-      "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "transferValueOnly",
           "topics": [
             "AAAAAAAAAAAFAAc2sq9MjfurX+5zluCpV5y58QqNoBI=",
@@ -29,7 +29,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "SCDeploy",
           "topics": [
             "AAAAAAAAAAAFAPiodj5xVGTYTcUG7NG4iLn/T/TUoBI=",
@@ -38,7 +38,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "writeLog",
           "topics": [
             "VuJjyDpv3q8GVEqm7SLrVgl7ySOB9Ya6HTmmeI4+oBI=",
@@ -61,8 +61,8 @@
       "processingTypeOnSource": "MoveBalance",
       "processingTypeOnDestination": "MoveBalance",
       "hash": "SCR-hash1",
-      "receiver": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-      "sender": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+      "receiver": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+      "sender": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
       "status": "success",
       "operation": "transfer",
       "fee": "0",

@@ -6,7 +6,7 @@
         url = "localhost:22111"
         # This flag describes the mode to start the WebSocket connector. Can be "client" or "server"
         mode = "server"
-        # Possible values: json, gogo protobuf. Should be compatible with mx-chain-node outport driver config
+        # Possible values: json, gogo protobuf. Should be compatible with drt-chain-node outport driver config
         data-marshaller-type = "json"
         # Retry duration (receive/send ack signal) in seconds
         retry-duration-in-seconds = 5

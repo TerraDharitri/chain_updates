@@ -11,22 +11,22 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-SFTABC": {
                             "lastNonce": "2",
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-SFTABC": {
                             "instances": [
                                 {
@@ -40,7 +40,7 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         },
@@ -83,23 +83,23 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-SFTABC": {
                             "lastNonce": "4",
                             "roles": [
-                                "ESDTRoleNFTCreate",
-                                "ESDTRoleNFTAddQuantity",
-                                "ESDTRoleNFTBurn"
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
                             ]
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:TEST-SFTABC": {
                             "instances": [
                                 {
@@ -130,7 +130,7 @@
                         },
                         "str:callback_payments.len": "2"
                     },
-                    "code": "mxsc:../forwarder-raw/output/forwarder-raw.mxsc.json"
+                    "code": "drtsc:../forwarder-raw/output/forwarder-raw.drtsc.json"
                 }
             }
         }

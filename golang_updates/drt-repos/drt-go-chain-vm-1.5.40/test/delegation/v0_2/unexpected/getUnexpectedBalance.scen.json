@@ -74,7 +74,7 @@
             "tx": {
                 "from": "''someone_______________________s2",
                 "to": "sc:delegation",
-                "egldValue": "50,000"
+                "rewaValue": "50,000"
             }
         },
         {

@@ -8,12 +8,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -33,8 +33,8 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
-	address2 := "erd1suhxyflu4w4pqdxmushpxzc6a3qszr89m8uswzqcvyh0mh9mzxwqdwkm0x"
+	address1 := "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
+	address2 := "drt1suhxyflu4w4pqdxmushpxzc6a3qszr89m8uswzqcvyh0mh9mzxwqsjpcvc"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -45,7 +45,7 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("TOK-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleESDT)},
+							Topics:     [][]byte{[]byte("TOK-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleDCDT)},
 						},
 						{
 							Address:    decodeAddress(address1),
@@ -78,8 +78,8 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionSetESDTRole),
-							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.ESDTRoleNFTCreate), []byte(core.ESDTRoleNFTBurn)},
+							Identifier: []byte(core.BuiltInFunctionSetDCDTRole),
+							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.DCDTRoleNFTCreate), []byte(core.DCDTRoleNFTBurn)},
 						},
 						nil,
 					},
@@ -108,12 +108,12 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreateRoleTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreateRoleTransfer),
 							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte("false")},
 						},
 						{
 							Address:    decodeAddress(address2),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreateRoleTransfer),
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreateRoleTransfer),
 							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte("true")},
 						},
 					},
@@ -142,8 +142,8 @@ func TestIssueTokenAndSetRole(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionUnSetESDTRole),
-							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.ESDTRoleNFTBurn)},
+							Identifier: []byte(core.BuiltInFunctionUnSetDCDTRole),
+							Topics:     [][]byte{[]byte("TOK-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.DCDTRoleNFTBurn)},
 						},
 						nil,
 					},
@@ -179,7 +179,7 @@ func TestIssueSetRolesEventAndAfterTokenIssue(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+	address1 := "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
 	// SET ROLES
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
@@ -190,8 +190,8 @@ func TestIssueSetRolesEventAndAfterTokenIssue(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address1),
-							Identifier: []byte(core.BuiltInFunctionSetESDTRole),
-							Topics:     [][]byte{[]byte("TTT-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.ESDTRoleNFTCreate), []byte(core.ESDTRoleNFTBurn)},
+							Identifier: []byte(core.BuiltInFunctionSetDCDTRole),
+							Topics:     [][]byte{[]byte("TTT-abcd"), big.NewInt(0).Bytes(), big.NewInt(0).Bytes(), []byte(core.DCDTRoleNFTCreate), []byte(core.DCDTRoleNFTBurn)},
 						},
 						nil,
 					},
@@ -221,7 +221,7 @@ func TestIssueSetRolesEventAndAfterTokenIssue(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("TTT-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleESDT)},
+							Topics:     [][]byte{[]byte("TTT-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleDCDT)},
 						},
 						nil,
 					},

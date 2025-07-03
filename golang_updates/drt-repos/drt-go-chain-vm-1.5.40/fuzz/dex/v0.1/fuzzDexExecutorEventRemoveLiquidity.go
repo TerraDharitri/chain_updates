@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"math/rand"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDexExecutor) removeLiquidity(r *rand.Rand, statistics *eventsStatistics) error {
@@ -46,7 +46,7 @@ func (pfe *fuzzDexExecutor) removeLiquidity(r *rand.Rand, statistics *eventsStat
 			"to": "%s",
 			"value": "0",
 			"function": "removeLiquidity",
-			"esdt": {
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d"
 			},

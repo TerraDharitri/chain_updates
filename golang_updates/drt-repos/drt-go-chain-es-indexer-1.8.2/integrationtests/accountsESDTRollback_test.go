@@ -10,30 +10,30 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
-func TestAccountsESDTDeleteOnRollback(t *testing.T) {
+func TestAccountsDCDTDeleteOnRollback(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
 	require.Nil(t, err)
 
-	esdtToken := &esdt.ESDigitalToken{
+	dcdtToken := &dcdt.DCDigitalToken{
 		Value:      big.NewInt(1000),
 		Properties: []byte("3032"),
-		TokenMetaData: &esdt.MetaData{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: []byte("creator"),
 		},
 	}
-	addr := "erd1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzsnq0am3"
+	addr := "drt1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzswuc7c0"
 	coreAlteredAccounts := map[string]*alteredAccount.AlteredAccount{
 		addr: {
 			Address: addr,
@@ -55,7 +55,7 @@ func TestAccountsESDTDeleteOnRollback(t *testing.T) {
 	require.Nil(t, err)
 
 	// CREATE SEMI-FUNGIBLE TOKEN
-	esdtDataBytes, _ := json.Marshal(esdtToken)
+	dcdtDataBytes, _ := json.Marshal(dcdtToken)
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -64,8 +64,8 @@ func TestAccountsESDTDeleteOnRollback(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(addr),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("TOKEN-eeee"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("TOKEN-eeee"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -86,15 +86,15 @@ func TestAccountsESDTDeleteOnRollback(t *testing.T) {
 
 	ids := []string{fmt.Sprintf("%s-TOKEN-eeee-02", addr)}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTRollback/account-after-create.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTRollback/account-after-create.json"), string(genericResponse.Docs[0].Source))
 
 	// DO ROLLBACK
-	err = esProc.RemoveAccountsESDT(5040, 2)
+	err = esProc.RemoveAccountsDCDT(5040, 2)
 	require.Nil(t, err)
 
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
 	require.False(t, genericResponse.Docs[0].Found)
 }

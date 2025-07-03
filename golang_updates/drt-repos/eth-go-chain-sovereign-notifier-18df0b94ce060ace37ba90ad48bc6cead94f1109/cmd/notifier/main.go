@@ -7,14 +7,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/closing"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/closing"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
 	"github.com/urfave/cli"
 
-	"github.com/multiversx/eth-chain-sovereign-notifier-go/config"
-	"github.com/multiversx/eth-chain-sovereign-notifier-go/factory"
+	"github.com/TerraDharitri/eth-chain-sovereign-notifier-go/config"
+	"github.com/TerraDharitri/eth-chain-sovereign-notifier-go/factory"
 )
 
 var log = logger.GetOrCreate("eth-chain-sovereign-notifier")
@@ -31,7 +31,7 @@ const (
 func main() {
 	app := cli.NewApp()
 	app.Name = "Ethereum sovereign chain notifier"
-	app.Usage = "The Ethereum Notifier is a Go-based application designed to bridge Ethereum and a MultiversX sovereign" +
+	app.Usage = "The Ethereum Notifier is a Go-based application designed to bridge Ethereum and a Dharitri sovereign" +
 		" chain by monitoring Ethereum blockchain events and relaying them to the sovereign chain in real-time." +
 		" It subscribes to new block headers and specific smart contract events, correlating events with their respective" +
 		" blocks, and sends structured notifications to the sovereign chain for further processing."
@@ -42,8 +42,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The MultiversX Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 

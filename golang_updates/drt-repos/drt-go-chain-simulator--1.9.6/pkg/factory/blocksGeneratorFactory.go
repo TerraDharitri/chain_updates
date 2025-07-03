@@ -1,9 +1,9 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-simulator-go/config"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/process"
-	"github.com/multiversx/mx-chain-simulator-go/pkg/process/disabled"
+	"github.com/TerraDharitri/drt-go-chain-simulator/config"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/process"
+	"github.com/TerraDharitri/drt-go-chain-simulator/pkg/process/disabled"
 )
 
 // CreateBlocksGenerator creates a new instance of block generator

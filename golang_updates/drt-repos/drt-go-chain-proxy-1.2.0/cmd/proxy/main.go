@@ -11,31 +11,31 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/core/sharding"
-	hasherFactory "github.com/multiversx/mx-chain-core-go/hashing/factory"
-	marshalFactory "github.com/multiversx/mx-chain-core-go/marshal/factory"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-logger-go/file"
-	"github.com/multiversx/mx-chain-proxy-go/api"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/config"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/metrics"
-	"github.com/multiversx/mx-chain-proxy-go/observer"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/cache"
-	processFactory "github.com/multiversx/mx-chain-proxy-go/process/factory"
-	"github.com/multiversx/mx-chain-proxy-go/testing"
-	versionsFactory "github.com/multiversx/mx-chain-proxy-go/versions/factory"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/core/sharding"
+	hasherFactory "github.com/TerraDharitri/drt-go-chain-core/hashing/factory"
+	marshalFactory "github.com/TerraDharitri/drt-go-chain-core/marshal/factory"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-logger/file"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/config"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/metrics"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/cache"
+	processFactory "github.com/TerraDharitri/drt-go-chain-proxy/process/factory"
+	"github.com/TerraDharitri/drt-go-chain-proxy/testing"
+	versionsFactory "github.com/TerraDharitri/drt-go-chain-proxy/versions/factory"
 	"github.com/urfave/cli"
 )
 
 const (
 	defaultLogsPath      = "logs"
-	logFilePrefix        = "mx-chain-proxy-go"
+	logFilePrefix        = "drt-go-chain-proxy"
 	logFileLifeSpanInSec = 86400
 	logFileMaxSizeInMB   = 1024
 	addressHRP           = "erd"
@@ -175,9 +175,9 @@ func main() {
 
 	app := cli.NewApp()
 	cli.AppHelpTemplate = proxyHelpTemplate
-	app.Name = "Multiversx Node Proxy CLI App"
+	app.Name = "Dharitri Node Proxy CLI App"
 	app.Version = fmt.Sprintf("%s/%s/%s-%s", appVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
-	app.Usage = "This is the entry point for starting a new Multiversx node proxy"
+	app.Usage = "This is the entry point for starting a new Dharitri node proxy"
 	app.Flags = []cli.Flag{
 		configurationFile,
 		credentialsConfigFile,
@@ -194,8 +194,8 @@ func main() {
 	}
 	app.Authors = []cli.Author{
 		{
-			Name:  "The Multiversx Team",
-			Email: "contact@multiversx.com",
+			Name:  "The Dharitri Team",
+			Email: "contact@dharitri.org",
 		},
 	}
 
@@ -533,7 +533,7 @@ func createVersionsRegistry(
 		return nil, err
 	}
 
-	esdtSuppliesProc, err := process.NewESDTSupplyProcessor(bp, scQueryProc)
+	dcdtSuppliesProc, err := process.NewDCDTSupplyProcessor(bp, scQueryProc)
 	if err != nil {
 		return nil, err
 	}
@@ -561,7 +561,7 @@ func createVersionsRegistry(
 		ValidatorStatisticsProcessor: valStatsProc,
 		ProofProcessor:               proofProc,
 		PubKeyConverter:              pubKeyConverter,
-		ESDTSuppliesProcessor:        esdtSuppliesProc,
+		DCDTSuppliesProcessor:        dcdtSuppliesProc,
 		StatusProcessor:              statusProc,
 		AboutInfoProcessor:           aboutInfoProc,
 	}

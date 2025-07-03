@@ -1,8 +1,8 @@
 package observer
 
 import (
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/config"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/config"
 )
 
 var log = logger.GetOrCreate("observer")

@@ -143,7 +143,7 @@ func (writer *cgoWriter) writeCgoFunctions(out *eiGenWriter, eiMetadata *EIMetad
 import (
 	"unsafe"
 
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 `)

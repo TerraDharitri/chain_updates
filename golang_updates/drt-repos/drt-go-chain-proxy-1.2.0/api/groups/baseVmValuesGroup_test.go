@@ -12,11 +12,11 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	apiErrors "github.com/multiversx/mx-chain-proxy-go/api/errors"
-	"github.com/multiversx/mx-chain-proxy-go/api/groups"
-	"github.com/multiversx/mx-chain-proxy-go/api/mock"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	apiErrors "github.com/TerraDharitri/drt-go-chain-proxy/api/errors"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/groups"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/mock"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 	"github.com/stretchr/testify/require"
 )
 
@@ -40,7 +40,7 @@ type vmOutputGenericResponse struct {
 }
 
 const vmValuesPath = "/vm-values"
-const DummyScAddress = "erd1l453hd0gt5gzdp7czpuall8ggt2dcv5zwmfdf3sd3lguxseux2fsmsgldz"
+const DummyScAddress = "drt1l453hd0gt5gzdp7czpuall8ggt2dcv5zwmfdf3sd3lguxseux2fsxvluwu"
 
 func TestNewVmValuesGroup_WrongFacadeShouldErr(t *testing.T) {
 	wrongFacade := &mock.WrongFacade{}

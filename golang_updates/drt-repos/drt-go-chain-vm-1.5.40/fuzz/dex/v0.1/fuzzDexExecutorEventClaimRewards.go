@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"strconv"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDexExecutor) claimRewards(r *rand.Rand, statistics *eventsStatistics) error {
@@ -64,7 +64,7 @@ func (pfe *fuzzDexExecutor) claimRewards(r *rand.Rand, statistics *eventsStatist
 			"to": "%s",
 			"value": "0",
 			"function": "claimRewards",
-			"esdt": {
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d",
 				"nonce": "%d"

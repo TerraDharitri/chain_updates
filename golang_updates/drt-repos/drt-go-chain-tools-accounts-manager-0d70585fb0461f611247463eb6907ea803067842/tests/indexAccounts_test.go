@@ -5,11 +5,11 @@ import (
 	"math/rand"
 	"testing"
 
-	dataIndexer "github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/elasticClient"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/process"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/process/accountsIndexer"
+	dataIndexer "github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/elasticClient"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/process"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/process/accountsIndexer"
 	"github.com/stretchr/testify/require"
 )
 

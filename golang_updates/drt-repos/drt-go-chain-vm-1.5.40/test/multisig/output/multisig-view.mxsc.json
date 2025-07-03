@@ -12,7 +12,7 @@
             "version": "1.0.0"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.54.4"
         }
     },
@@ -27,7 +27,7 @@
             "docs": [
                 "The external view init prepares a contract that looks in another contract's storage.",
                 "It takes a single argument, the other contract's address",
-                "You won't find this constructors' definition in the contract, it gets injected automatically by the framework. See `multiversx_sc::external_view_contract`."
+                "You won't find this constructors' definition in the contract, it gets injected automatically by the framework. See `dharitri_sc::external_view_contract`."
             ],
             "inputs": [
                 {
@@ -298,7 +298,7 @@
                         "indexed": true
                     },
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
@@ -333,7 +333,7 @@
                         "indexed": true
                     },
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
@@ -363,7 +363,7 @@
                         "indexed": true
                     },
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
@@ -403,7 +403,7 @@
                         "indexed": true
                     },
                     {
-                        "name": "egld_value",
+                        "name": "rewa_value",
                         "type": "BigUint",
                         "indexed": true
                     },
@@ -430,7 +430,7 @@
                 ]
             }
         ],
-        "esdtAttributes": [],
+        "dcdtAttributes": [],
         "hasCallback": false,
         "types": {
             "Action": {
@@ -578,7 +578,7 @@
                         "type": "Address"
                     },
                     {
-                        "name": "egld_amount",
+                        "name": "rewa_amount",
                         "type": "BigUint"
                     },
                     {

@@ -11,17 +11,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
-func TestIndexAccountESDTWithTokenType(t *testing.T) {
+func TestIndexAccountDCDTWithTokenType(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
@@ -38,7 +38,7 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 		TimeStamp: 5040,
 	}
 
-	address := "erd1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzsnq0am3"
+	address := "drt1sqy2ywvswp09ef7qwjhv8zwr9kzz3xas6y2ye5nuryaz0wcnfzzswuc7c0"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -49,7 +49,7 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 						{
 							Address:    decodeAddress(address),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("SEMI-abcd"), []byte("SEMI-token"), []byte("SEM"), []byte(core.SemiFungibleESDT)},
+							Topics:     [][]byte{[]byte("SEMI-abcd"), []byte("SEMI-token"), []byte("SEM"), []byte(core.SemiFungibleDCDT)},
 						},
 						nil,
 					},
@@ -65,7 +65,7 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 	genericResponse := &GenericResponse{}
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/token-after-issue.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/token-after-issue.json"), string(genericResponse.Docs[0].Source))
 
 	// ################ CREATE SEMI FUNGIBLE TOKEN ##########################
 	coreAlteredAccounts := map[string]*alteredAccount.AlteredAccount{
@@ -94,12 +94,12 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 		ShardID:   2,
 	}
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: []byte("creator"),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	pool = &outport.TransactionPool{
 		Logs: []*outport.LogData{
@@ -110,8 +110,8 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("SEMI-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("SEMI-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -125,13 +125,13 @@ func TestIndexAccountESDTWithTokenType(t *testing.T) {
 
 	ids = []string{fmt.Sprintf("%s-SEMI-abcd-02", address)}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/account-esdt.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/account-dcdt.json"), string(genericResponse.Docs[0].Source))
 
 }
 
-func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) {
+func TestIndexAccountDCDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
@@ -140,7 +140,7 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 	// ################ CREATE SEMI FUNGIBLE TOKEN #########################
 	body := &dataBlock.Body{}
 
-	address := "erd1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qn8lslf"
+	address := "drt1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qwmgnuh"
 	coreAlteredAccounts := map[string]*alteredAccount.AlteredAccount{
 		address: {
 			Address: address,
@@ -152,7 +152,7 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 					Balance:    "1000",
 					Properties: "3032",
 					MetaData: &alteredAccount.TokenMetaData{
-						Creator: "erd1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qn8lslf",
+						Creator: "drt1l29zsl2dqq988kvr2y0xlfv9ydgnvhzkatfd8ccalpag265pje8qwmgnuh",
 					},
 				},
 			},
@@ -167,12 +167,12 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 		ShardID:   2,
 	}
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: decodeAddress(address),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
@@ -183,8 +183,8 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 					Events: []*transaction.Event{
 						{
 							Address:    decodeAddress(address),
-							Identifier: []byte(core.BuiltInFunctionESDTNFTCreate),
-							Topics:     [][]byte{[]byte("TTTT-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+							Identifier: []byte(core.BuiltInFunctionDCDTNFTCreate),
+							Topics:     [][]byte{[]byte("TTTT-abcd"), big.NewInt(2).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 						},
 						nil,
 					},
@@ -198,9 +198,9 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 
 	ids := []string{fmt.Sprintf("%s-TTTT-abcd-02", address)}
 	genericResponse := &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/account-esdt-without-type.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/account-dcdt-without-type.json"), string(genericResponse.Docs[0].Source))
 
 	time.Sleep(time.Second)
 
@@ -224,7 +224,7 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 						{
 							Address:    decodeAddress(address),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("TTTT-abcd"), []byte("TTTT-token"), []byte("SEM"), []byte(core.SemiFungibleESDT)},
+							Topics:     [][]byte{[]byte("TTTT-abcd"), []byte("TTTT-token"), []byte("SEM"), []byte(core.SemiFungibleDCDT)},
 						},
 						nil,
 					},
@@ -240,17 +240,17 @@ func TestIndexAccountESDTWithTokenTypeShardFirstAndMetachainAfter(t *testing.T) 
 	genericResponse = &GenericResponse{}
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/semi-fungible-token.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/semi-fungible-token.json"), string(genericResponse.Docs[0].Source))
 
 	ids = []string{fmt.Sprintf("%s-TTTT-abcd-02", address)}
 	genericResponse = &GenericResponse{}
-	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsESDTIndex, true, genericResponse)
+	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.AccountsDCDTIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/account-esdt-with-type.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/account-dcdt-with-type.json"), string(genericResponse.Docs[0].Source))
 
 	ids = []string{"TTTT-abcd-02"}
 	genericResponse = &GenericResponse{}
 	err = esClient.DoMultiGet(context.Background(), ids, indexerdata.TokensIndex, true, genericResponse)
 	require.Nil(t, err)
-	require.JSONEq(t, readExpectedResult("./testdata/accountsESDTWithTokenType/semi-fungible-token-after-create.json"), string(genericResponse.Docs[0].Source))
+	require.JSONEq(t, readExpectedResult("./testdata/accountsDCDTWithTokenType/semi-fungible-token-after-create.json"), string(genericResponse.Docs[0].Source))
 }

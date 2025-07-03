@@ -28,10 +28,10 @@
         "gasPrice": 1000000000,
         "callType": 2,
         "logs": {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "events": [
             {
-              "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+              "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
               "identifier": "signalError",
               "topics": [
                 "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw=",
@@ -40,7 +40,7 @@
               "data": "QDc1NzM2NTcyMjA2NTcyNzI2Zjcy"
             },
             {
-              "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+              "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
               "identifier": "internalVMErrors",
               "topics": [
                 "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw=",
@@ -56,16 +56,16 @@
         "hash": "SCR-hash3",
         "nonce": 0,
         "value": 0,
-        "receiver": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
-        "data": "ESDTSetBurnRoleForAll@544553544e46542d643964353463",
+        "receiver": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
+        "data": "DCDTSetBurnRoleForAll@544553544e46542d643964353463",
         "gasLimit": 0,
         "gasPrice": 1000000000,
         "callType": 0,
         "logs": {
-          "address": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
+          "address": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
           "events": [
             {
-              "address": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
+              "address": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
               "identifier": "completedTxEvent",
               "topics": [
                 "wKBOwHdmkwlfOX1V9tL1ocCqdnUxqRB9pHnp42I1jDM="
@@ -78,10 +78,10 @@
       }
     ],
     "logs": {
-      "address": "erd1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqwjme9g",
+      "address": "drt1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqnwv6xk",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "transferValueOnly",
           "topics": [
             "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw="
@@ -89,7 +89,7 @@
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "writeLog",
           "topics": [
             "qfaoGqfadnipWFWCnaJeOiknm8PQtEqI8lHBatO+rNw="
@@ -117,7 +117,7 @@
       "round": 2098204,
       "epoch": 1747,
       "value": "50000000000000000",
-      "receiver": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+      "receiver": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
       "gasPrice": 1000000000,
       "gasLimit": 71450835,
       "gasUsed": 432500,
@@ -126,10 +126,10 @@
       "destinationShard": 4294967295,
       "miniblockType": "SmartContractResultBlock",
       "logs": {
-        "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+        "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
         "events": [
           {
-            "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+            "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
             "identifier": "upgradeProperties",
             "topics": [
               "VEVTVE5GVC1kOWQ1NGM="
@@ -137,7 +137,7 @@
             "data": null
           },
           {
-            "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+            "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
             "identifier": "issueNonFungible",
             "topics": [
               "VEVTVE5GVC1kOWQ1NGM="
@@ -162,7 +162,7 @@
       "round": 2098206,
       "epoch": 1747,
       "value": "0",
-      "sender": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+      "sender": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
       "gasPrice": 1000000000,
       "gasLimit": 21450835,
       "gasUsed": 21450835,
@@ -171,10 +171,10 @@
       "destinationShard": 0,
       "miniblockType": "SmartContractResultBlock",
       "logs": {
-        "address": "erd1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqwjme9g",
+        "address": "drt1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqnwv6xk",
         "events": [
           {
-            "address": "erd1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqwjme9g",
+            "address": "drt1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqnwv6xk",
             "identifier": "signalError",
             "topics": [
               "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw=",
@@ -183,7 +183,7 @@
             "data": "QDc1NzM2NTcyMjA2NTcyNzI2Zjcy"
           },
           {
-            "address": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+            "address": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
             "identifier": "internalVMErrors",
             "topics": [
               "AAAAAAAAAAAFAO35sGZxo0ZbVHvE2+fsC6LrtfskrNw=",
@@ -205,8 +205,8 @@
       "processingTypeOnDestination": "BuiltInFunctionCall",
       "hash": "SCR-hash3",
       "nonce": 0,
-      "receiver": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
-      "sender": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+      "receiver": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
+      "sender": "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez",
       "gasPrice": 1000000000,
       "gasUsed": 125000,
       "data": "RVNEVFNldEJ1cm5Sb2xlRm9yQWxsQDU0NDU1MzU0NGU0NjU0MmQ2NDM5NjQzNTM0NjM=",
@@ -215,10 +215,10 @@
       "blockNonce": 2095246,
       "miniblockType": "SmartContractResultBlock",
       "logs": {
-        "address": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
+        "address": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
         "events": [
           {
-            "address": "erd1llllllllllllllllllllllllllllllllllllllllllllllllluqq2m3f0f",
+            "address": "drt1llllllllllllllllllllllllllllllllllllllllllllllllluqqh8x2vh",
             "identifier": "completedTxEvent",
             "topics": [
               "wKBOwHdmkwlfOX1V9tL1ocCqdnUxqRB9pHnp42I1jDM="

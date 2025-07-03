@@ -1,6 +1,6 @@
 ## Chain Simulator Examples
 
-In these examples, we are mostly going to use the [Python SDK](https://github.com/multiversx/mx-sdk-py).
+In these examples, we are mostly going to use the [Python SDK](https://github.com/TerraDharitri/drt-py-sdk).
 
 Before starting, make sure you have Python installed on your machine. We recommend using `Python 3.11` or greater, but the sdk should work with any version greater than `3.8`.
 

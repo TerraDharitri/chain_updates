@@ -4,10 +4,10 @@ import (
 	"encoding/hex"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 type operationsProcessor struct {
@@ -77,7 +77,7 @@ func setCanBeIgnoredField(scr *data.ScResult) {
 		return
 	}
 
-	isNFTTransferOrMultiTransfer := core.BuiltInFunctionESDTNFTTransfer == scr.Operation || core.BuiltInFunctionMultiESDTNFTTransfer == scr.Operation
+	isNFTTransferOrMultiTransfer := core.BuiltInFunctionDCDTNFTTransfer == scr.Operation || core.BuiltInFunctionMultiDCDTNFTTransfer == scr.Operation
 	isSCAddr := core.IsSmartContractAddress(scr.SenderAddressBytes)
 	if isNFTTransferOrMultiTransfer && !isSCAddr {
 		scr.CanBeIgnored = true

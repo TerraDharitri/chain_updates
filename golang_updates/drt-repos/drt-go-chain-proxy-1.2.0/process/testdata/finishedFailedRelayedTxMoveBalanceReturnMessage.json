@@ -8,8 +8,8 @@
     "round": 66,
     "epoch": 3,
     "value": "0",
-    "receiver": "erd1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfszrp64a",
-    "sender": "erd1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsq5zx75",
+    "receiver": "drt1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfsllkekr",
+    "sender": "drt1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsag49a2",
     "gasPrice": 1000000000,
     "gasLimit": 1132000,
     "gasUsed": 1132000,
@@ -33,8 +33,8 @@
         "hash": "7cfde9ad5ead518ec768607a3ac992763f5afdcf31e603fdd56418c7ffe19774",
         "nonce": 0,
         "value": 0,
-        "receiver": "erd1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsq5zx75",
-        "sender": "erd1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfszrp64a",
+        "receiver": "drt1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsag49a2",
+        "sender": "drt1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfsllkekr",
         "prevTxHash": "6c9d9eaf8928257c8019c56d56a9c0273e6428de00b96a584077778a5128be6a",
         "originalTxHash": "6c9d9eaf8928257c8019c56d56a9c0273e6428de00b96a584077778a5128be6a",
         "gasLimit": 0,
@@ -46,7 +46,7 @@
     ],
     "status": "success",
     "receivers": [
-      "erd1aduqqezzw0u3j7tywlq3mrl0yn4z6f6vytdju8gg0neq38fauyzsa5yy6r"
+      "drt1aduqqezzw0u3j7tywlq3mrl0yn4z6f6vytdju8gg0neq38fauyzsqgn8ea"
     ],
     "receiversShardIDs": [
       1
@@ -69,8 +69,8 @@
       "round": 66,
       "epoch": 3,
       "value": "0",
-      "receiver": "erd1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsq5zx75",
-      "sender": "erd1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfszrp64a",
+      "receiver": "drt1u39p5ld7qjg5qz8tnj2zr2ntvqeskzryu3fnh343uux2xlxzk6dsag49a2",
+      "sender": "drt1ykqd64fxxpp4wsz0v7sjqem038wfpzlljhx4mhwx8w9lcxmdzcfsllkekr",
       "gasUsed": 50000,
       "previousTransactionHash": "6c9d9eaf8928257c8019c56d56a9c0273e6428de00b96a584077778a5128be6a",
       "originalTransactionHash": "6c9d9eaf8928257c8019c56d56a9c0273e6428de00b96a584077778a5128be6a",

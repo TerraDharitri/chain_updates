@@ -3,8 +3,8 @@ package wasmer2
 import (
 	"unsafe"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 var _ executor.Executor = (*Wasmer2Executor)(nil)

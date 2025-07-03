@@ -22,11 +22,11 @@
             "id": "deploy",
             "tx": {
                 "from": "address:my_address",
-                "contractCode": "mxsc:../output/crowdfunding-esdt.mxsc.json",
+                "contractCode": "drtsc:../output/crowdfunding-dcdt.drtsc.json",
                 "arguments": [
                     "500,000,000,000",
                     "123,000",
-                    "str:EGLD"
+                    "str:REWA"
                 ],
                 "gasLimit": "5,000,000",
                 "gasPrice": "0"
@@ -52,9 +52,9 @@
                     "storage": {
                         "str:target": "500,000,000,000",
                         "str:deadline": "123,000",
-                        "str:tokenIdentifier": "str:EGLD"
+                        "str:tokenIdentifier": "str:REWA"
                     },
-                    "code": "mxsc:../output/crowdfunding-esdt.mxsc.json"
+                    "code": "drtsc:../output/crowdfunding-dcdt.drtsc.json"
                 }
             }
         }

@@ -1,11 +1,11 @@
 package factory
 
 import (
+	"crypto"
 	"errors"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-proxy-go/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
 )
 
 var errNotEnabled = errors.New("faucet not enabled")

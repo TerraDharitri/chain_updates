@@ -7,7 +7,7 @@
                 "address:a_user": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -17,7 +17,7 @@
                             ],
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     }
@@ -25,12 +25,12 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -40,7 +40,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "esdtValue": [
+                "dcdtValue": [
                     {
                         "tokenIdentifier": "str:NFT-000001",
                         "nonce": "5",
@@ -60,7 +60,7 @@
                 "logs": [
                     {
                         "address": "sc:forwarder",
-                        "endpoint": "str:ESDTNFTTransfer",
+                        "endpoint": "str:DCDTNFTTransfer",
                         "topics": [
                             "str:NFT-000001",
                             "5",
@@ -69,7 +69,7 @@
                         ],
                         "data": [
                             "str:AsyncCall",
-                            "str:ESDTNFTTransfer",
+                            "str:DCDTNFTTransfer",
                             "str:NFT-000001",
                             "5",
                             "1",
@@ -115,11 +115,11 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "lastNonce": "1",
                             "roles": [
-                                "ESDTRoleNFTCreate"
+                                "DCDTRoleNFTCreate"
                             ]
                         }
                     },
@@ -129,7 +129,7 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:NFT-000001": {
                             "instances": [
                                 {
@@ -142,13 +142,13 @@
                     "storage": {
                         "str:call_counts|nested:str:accept_funds": "1"
                     },
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 },
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         }

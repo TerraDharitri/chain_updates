@@ -3,10 +3,10 @@ package groups
 import (
 	"strings"
 
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/config"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-es-indexer-go/api/shared"
-	"github.com/multiversx/mx-chain-es-indexer-go/config"
-	logger "github.com/multiversx/mx-chain-logger-go"
 )
 
 var log = logger.GetOrCreate("api/groups")

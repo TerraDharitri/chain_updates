@@ -8,13 +8,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tags"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tags"
 	"github.com/stretchr/testify/require"
 )
 
@@ -64,9 +64,9 @@ func TestAccountsProcessor_GetAccountsWithNil(t *testing.T) {
 
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 
-	regularAccounts, esdtAccounts := ap.GetAccounts(nil)
+	regularAccounts, dcdtAccounts := ap.GetAccounts(nil)
 	require.Len(t, regularAccounts, 0)
-	require.Len(t, esdtAccounts, 0)
+	require.Len(t, dcdtAccounts, 0)
 }
 
 func TestAccountsProcessor_PrepareRegularAccountsMapWithNil(t *testing.T) {
@@ -78,14 +78,14 @@ func TestAccountsProcessor_PrepareRegularAccountsMapWithNil(t *testing.T) {
 	require.Len(t, accountsInfo, 0)
 }
 
-func TestGetESDTInfo(t *testing.T) {
+func TestGetDCDTInfo(t *testing.T) {
 	t.Parallel()
 
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
 	tokenIdentifier := "token-001"
-	wrapAccount := &data.AccountESDT{
+	wrapAccount := &data.AccountDCDT{
 		Account: &alteredAccount.AlteredAccount{
 			Address: "",
 			Balance: "1000",
@@ -100,20 +100,20 @@ func TestGetESDTInfo(t *testing.T) {
 		},
 		TokenIdentifier: tokenIdentifier,
 	}
-	balance, prop, _, err := ap.getESDTInfo(wrapAccount)
+	balance, prop, _, err := ap.getDCDTInfo(wrapAccount)
 	require.Nil(t, err)
 	require.Equal(t, big.NewInt(1000), balance)
 	require.Equal(t, "6f6b", prop)
 }
 
-func TestGetESDTInfoNFT(t *testing.T) {
+func TestGetDCDTInfoNFT(t *testing.T) {
 	t.Parallel()
 
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
 	tokenIdentifier := "token-001"
-	wrapAccount := &data.AccountESDT{
+	wrapAccount := &data.AccountDCDT{
 		Account: &alteredAccount.AlteredAccount{
 			Address: "",
 			Balance: "1",
@@ -131,13 +131,13 @@ func TestGetESDTInfoNFT(t *testing.T) {
 		IsNFTOperation:  true,
 		NFTNonce:        10,
 	}
-	balance, prop, _, err := ap.getESDTInfo(wrapAccount)
+	balance, prop, _, err := ap.getDCDTInfo(wrapAccount)
 	require.Nil(t, err)
 	require.Equal(t, big.NewInt(1), balance)
 	require.Equal(t, "6f6b", prop)
 }
 
-func TestGetESDTInfoNFTWithMetaData(t *testing.T) {
+func TestGetDCDTInfoNFTWithMetaData(t *testing.T) {
 	t.Parallel()
 
 	pubKeyConverter := mock.NewPubkeyConverterMock(32)
@@ -148,7 +148,7 @@ func TestGetESDTInfoNFTWithMetaData(t *testing.T) {
 	creator := "010101"
 
 	tokenIdentifier := "token-001"
-	wrapAccount := &data.AccountESDT{
+	wrapAccount := &data.AccountDCDT{
 		Account: &alteredAccount.AlteredAccount{
 			Address: "",
 			Balance: "1",
@@ -172,7 +172,7 @@ func TestGetESDTInfoNFTWithMetaData(t *testing.T) {
 		IsNFTOperation:  true,
 		NFTNonce:        10,
 	}
-	balance, prop, metaData, err := ap.getESDTInfo(wrapAccount)
+	balance, prop, metaData, err := ap.getDCDTInfo(wrapAccount)
 	require.Nil(t, err)
 	require.Equal(t, big.NewInt(1), balance)
 	require.Equal(t, "6f6b", prop)
@@ -184,7 +184,7 @@ func TestGetESDTInfoNFTWithMetaData(t *testing.T) {
 	}, metaData)
 }
 
-func TestAccountsProcessor_GetAccountsEGLDAccounts(t *testing.T) {
+func TestAccountsProcessor_GetAccountsREWAAccounts(t *testing.T) {
 	t.Parallel()
 
 	addr := "aaaabbbb"
@@ -195,8 +195,8 @@ func TestAccountsProcessor_GetAccountsEGLDAccounts(t *testing.T) {
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
-	accounts, esdtAccounts := ap.GetAccounts(alteredAccountsMap)
-	require.Equal(t, 0, len(esdtAccounts))
+	accounts, dcdtAccounts := ap.GetAccounts(alteredAccountsMap)
+	require.Equal(t, 0, len(dcdtAccounts))
 	require.Equal(t, []*data.Account{
 		{
 			UserAccount: acc,
@@ -204,7 +204,7 @@ func TestAccountsProcessor_GetAccountsEGLDAccounts(t *testing.T) {
 	}, accounts)
 }
 
-func TestAccountsProcessor_GetAccountsESDTAccount(t *testing.T) {
+func TestAccountsProcessor_GetAccountsDCDTAccount(t *testing.T) {
 	t.Parallel()
 
 	addr := "aaaabbbb"
@@ -223,14 +223,14 @@ func TestAccountsProcessor_GetAccountsESDTAccount(t *testing.T) {
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
-	accounts, esdtAccounts := ap.GetAccounts(alteredAccountsMap)
+	accounts, dcdtAccounts := ap.GetAccounts(alteredAccountsMap)
 	require.Equal(t, 0, len(accounts))
-	require.Equal(t, []*data.AccountESDT{
+	require.Equal(t, []*data.AccountDCDT{
 		{Account: acc, TokenIdentifier: "token"},
-	}, esdtAccounts)
+	}, dcdtAccounts)
 }
 
-func TestAccountsProcessor_GetAccountsESDTAccountNewAccountShouldBeInRegularAccounts(t *testing.T) {
+func TestAccountsProcessor_GetAccountsDCDTAccountNewAccountShouldBeInRegularAccounts(t *testing.T) {
 	t.Parallel()
 
 	addr := "aaaabbbb"
@@ -247,18 +247,18 @@ func TestAccountsProcessor_GetAccountsESDTAccountNewAccountShouldBeInRegularAcco
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
-	accounts, esdtAccounts := ap.GetAccounts(alteredAccountsMap)
+	accounts, dcdtAccounts := ap.GetAccounts(alteredAccountsMap)
 	require.Equal(t, 1, len(accounts))
-	require.Equal(t, []*data.AccountESDT{
+	require.Equal(t, []*data.AccountDCDT{
 		{Account: acc, TokenIdentifier: "token"},
-	}, esdtAccounts)
+	}, dcdtAccounts)
 
 	require.Equal(t, []*data.Account{
 		{UserAccount: acc, IsSender: false},
 	}, accounts)
 }
 
-func TestAccountsProcessor_PrepareAccountsMapEGLD(t *testing.T) {
+func TestAccountsProcessor_PrepareAccountsMapREWA(t *testing.T) {
 	t.Parallel()
 
 	addrBytes := bytes.Repeat([]byte{0}, 32)
@@ -275,7 +275,7 @@ func TestAccountsProcessor_PrepareAccountsMapEGLD(t *testing.T) {
 		},
 	}
 
-	egldAccount := &data.Account{
+	rewaAccount := &data.Account{
 		UserAccount: account,
 		IsSender:    false,
 	}
@@ -285,7 +285,7 @@ func TestAccountsProcessor_PrepareAccountsMapEGLD(t *testing.T) {
 
 	balanceNum, _ := balanceConverter.ComputeBalanceAsFloat(big.NewInt(1000))
 
-	res := ap.PrepareRegularAccountsMap(123, []*data.Account{egldAccount}, 0)
+	res := ap.PrepareRegularAccountsMap(123, []*data.Account{rewaAccount}, 0)
 	require.Equal(t, &data.AccountInfo{
 		Address:         addr,
 		Nonce:           1,
@@ -300,7 +300,7 @@ func TestAccountsProcessor_PrepareAccountsMapEGLD(t *testing.T) {
 		res[addr])
 }
 
-func TestAccountsProcessor_PrepareAccountsMapESDT(t *testing.T) {
+func TestAccountsProcessor_PrepareAccountsMapDCDT(t *testing.T) {
 	t.Parallel()
 
 	addr := "aaaabbbb"
@@ -331,13 +331,13 @@ func TestAccountsProcessor_PrepareAccountsMapESDT(t *testing.T) {
 	ap, _ := NewAccountsProcessor(mock.NewPubkeyConverterMock(32), balanceConverter)
 	require.NotNil(t, ap)
 
-	accountsESDT := []*data.AccountESDT{
+	accountsDCDT := []*data.AccountDCDT{
 		{Account: account, TokenIdentifier: "token", IsNFTOperation: true, NFTNonce: 15},
 		{Account: account, TokenIdentifier: "token", IsNFTOperation: true, NFTNonce: 16},
 	}
 
 	tagsCount := tags.NewTagsCount()
-	res, _ := ap.PrepareAccountsMapESDT(123, accountsESDT, tagsCount, 0)
+	res, _ := ap.PrepareAccountsMapDCDT(123, accountsDCDT, tagsCount, 0)
 	require.Len(t, res, 2)
 
 	balanceNum, _ := balanceConverter.ComputeBalanceAsFloat(big.NewInt(1000))

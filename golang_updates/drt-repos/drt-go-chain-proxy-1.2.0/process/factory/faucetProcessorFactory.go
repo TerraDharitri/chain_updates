@@ -3,12 +3,12 @@ package factory
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/facade"
-	"github.com/multiversx/mx-chain-proxy-go/faucet"
-	"github.com/multiversx/mx-chain-proxy-go/process"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade"
+	"github.com/TerraDharitri/drt-go-chain-proxy/faucet"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
 )
 
 var log = logger.GetOrCreate("process/factory")

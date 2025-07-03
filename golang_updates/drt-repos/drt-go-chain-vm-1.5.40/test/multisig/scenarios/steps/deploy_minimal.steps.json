@@ -5,7 +5,7 @@
             "id": "multisig-deploy",
             "tx": {
                 "from": "address:owner",
-                "contractCode": "mxsc:../../output/multisig.mxsc.json",
+                "contractCode": "drtsc:../../output/multisig.drtsc.json",
                 "arguments": [
                     "0",
                     "address:alice"

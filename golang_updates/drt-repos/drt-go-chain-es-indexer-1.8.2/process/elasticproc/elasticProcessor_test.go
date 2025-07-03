@@ -7,24 +7,24 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	coreData "github.com/multiversx/mx-chain-core-go/data"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/accounts"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/block"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/logsevents"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/miniblocks"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/operations"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/statistics"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/tags"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/transactions"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/validators"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	coreData "github.com/TerraDharitri/drt-go-chain-core/data"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/accounts"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/block"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/logsevents"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/miniblocks"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/operations"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/statistics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/tags"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/transactions"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/validators"
 	"github.com/stretchr/testify/require"
 )
 
@@ -583,8 +583,8 @@ func TestElasticProcessor_IndexAlteredAccounts(t *testing.T) {
 		},
 	}
 	elasticSearchProc := newElasticsearchProcessor(dbWriter, arguments)
-	elasticSearchProc.enabledIndexes[dataindexer.AccountsESDTIndex] = struct{}{}
-	elasticSearchProc.enabledIndexes[dataindexer.AccountsESDTHistoryIndex] = struct{}{}
+	elasticSearchProc.enabledIndexes[dataindexer.AccountsDCDTIndex] = struct{}{}
+	elasticSearchProc.enabledIndexes[dataindexer.AccountsDCDTHistoryIndex] = struct{}{}
 
 	buffSlice := data.NewBufferSlice(data.DefaultMaxBulkSize)
 	tagsCount := tags.NewTagsCount()

@@ -3,7 +3,7 @@ package data
 import (
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
 )
 
 // Block is a structure containing all the fields that need

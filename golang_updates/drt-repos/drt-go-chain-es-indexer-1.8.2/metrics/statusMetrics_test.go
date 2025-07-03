@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
 	"github.com/stretchr/testify/require"
 )
 

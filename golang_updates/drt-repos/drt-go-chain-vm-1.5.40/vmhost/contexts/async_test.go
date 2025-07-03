@@ -5,20 +5,20 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-scenario-go/worldmock"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/builtInFunctions"
-	"github.com/multiversx/mx-chain-vm-common-go/parsers"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto/factory"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	contextmock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/testcommon/testexecutor"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/builtInFunctions"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/parsers"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/factory"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -33,11 +33,11 @@ var marshalizer = &marshal.GogoProtoMarshalizer{}
 
 func makeAsyncContext(t testing.TB, host vmhost.VMHost, address []byte) *asyncContext {
 	callParser := parsers.NewCallArgsParser()
-	esdtParser, _ := parsers.NewESDTTransferParser(worldmock.WorldMarshalizer)
+	dcdtParser, _ := parsers.NewDCDTTransferParser(worldmock.WorldMarshalizer)
 	async, err := NewAsyncContext(
 		host,
 		callParser,
-		esdtParser,
+		dcdtParser,
 		marshalizer,
 	)
 	require.Nil(t, err)
@@ -702,7 +702,7 @@ func TestAsyncContext_CreateCallbackInput_DestinationCallSuccessful(t *testing.T
 	require.Equal(t, expectedInput, callbackInput)
 }
 
-func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoESDTTransfer_WithReturnData(t *testing.T) {
+func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoDCDTTransfer_WithReturnData(t *testing.T) {
 
 	lastTransfer := &vmcommon.OutputTransfer{
 		Value: big.NewInt(2),
@@ -716,12 +716,12 @@ func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoESDTTransfer_Wi
 	expectedInput := defaultCallbackInputBobToAlice(originalVMInput)
 	expectedInput.GasProvided = expectedGasProvided
 	expectedInput.CallValue = big.NewInt(0)
-	expectedInput.ESDTTransfers = nil
+	expectedInput.DCDTTransfers = nil
 	callbackInput.AsyncArguments = nil
 	require.Equal(t, expectedInput, callbackInput)
 }
 
-func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoESDTTransfer_NoReturnData(t *testing.T) {
+func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoDCDTTransfer_NoReturnData(t *testing.T) {
 
 	lastTransfer := &vmcommon.OutputTransfer{
 		Value: big.NewInt(2),
@@ -737,31 +737,31 @@ func TestAsyncContext_CreateCallbackInput_LastTransfer_ValueAndNoESDTTransfer_No
 	expectedInput.Arguments = [][]byte{{0}}
 	expectedInput.GasProvided = expectedGasProvided
 	expectedInput.CallValue = big.NewInt(2)
-	expectedInput.ESDTTransfers = nil
+	expectedInput.DCDTTransfers = nil
 	callbackInput.AsyncArguments = nil
 	require.Equal(t, expectedInput, callbackInput)
 }
 
-func TestAsyncContext_CreateCallbackInput_LastTransferValueAndESDTTransfer_WithReturnData(t *testing.T) {
+func TestAsyncContext_CreateCallbackInput_LastTransferValueAndDCDTTransfer_WithReturnData(t *testing.T) {
 	originalVMInput, callbackInput, expectedGasProvided := createCallbackInput(t,
 		&vmcommon.OutputTransfer{
 			Value: big.NewInt(2),
-			Data:  []byte("ESDTTransfer@6d696975746f6b656e@05"),
+			Data:  []byte("DCDTTransfer@6d696975746f6b656e@05"),
 		})
 
 	expectedInput := defaultCallbackInputBobToAlice(originalVMInput)
 	expectedInput.GasProvided = expectedGasProvided
 	expectedInput.CallValue = big.NewInt(0)
-	expectedInput.ESDTTransfers = nil
+	expectedInput.DCDTTransfers = nil
 	callbackInput.AsyncArguments = nil
 	require.Equal(t, expectedInput, callbackInput)
 }
 
-func TestAsyncContext_CreateCallbackInput_LastTransferValueAndESDTTransfer_NoReturnData(t *testing.T) {
+func TestAsyncContext_CreateCallbackInput_LastTransferValueAndDCDTTransfer_NoReturnData(t *testing.T) {
 
 	lastTransfer := &vmcommon.OutputTransfer{
 		Value: big.NewInt(2),
-		Data:  []byte("ESDTTransfer@6d696975746f6b656e@05"),
+		Data:  []byte("DCDTTransfer@6d696975746f6b656e@05"),
 	}
 	vmOutput := createDefaultVMOutput(lastTransfer)
 	vmOutput.ReturnData = nil
@@ -774,27 +774,27 @@ func TestAsyncContext_CreateCallbackInput_LastTransferValueAndESDTTransfer_NoRet
 	expectedInput.Arguments = [][]byte{{0}}
 	expectedInput.GasProvided = expectedGasProvided
 	expectedInput.CallValue = big.NewInt(2)
-	expectedInput.ESDTTransfers = []*vmcommon.ESDTTransfer{
+	expectedInput.DCDTTransfers = []*vmcommon.DCDTTransfer{
 		{
-			ESDTTokenName: []byte("miiutoken"),
-			ESDTValue:     big.NewInt(5),
+			DCDTTokenName: []byte("miiutoken"),
+			DCDTValue:     big.NewInt(5),
 		},
 	}
 	callbackInput.AsyncArguments = nil
 	require.Equal(t, expectedInput, callbackInput)
 }
 
-func TestAsyncContext_CreateCallbackInput_LastTransferValueAndESDTTransferWithCall(t *testing.T) {
+func TestAsyncContext_CreateCallbackInput_LastTransferValueAndDCDTTransferWithCall(t *testing.T) {
 	originalVMInput, callbackInput, expectedGasProvided := createCallbackInput(t,
 		&vmcommon.OutputTransfer{
 			Value: big.NewInt(2),
-			Data:  []byte("ESDTTransfer@6d696975746f6b656e@05@6d696975"),
+			Data:  []byte("DCDTTransfer@6d696975746f6b656e@05@6d696975"),
 		})
 
 	expectedInput := defaultCallbackInputBobToAlice(originalVMInput)
 	expectedInput.GasProvided = expectedGasProvided
 	expectedInput.CallValue = big.NewInt(0)
-	expectedInput.ESDTTransfers = nil
+	expectedInput.DCDTTransfers = nil
 	callbackInput.AsyncArguments = nil
 	require.Equal(t, expectedInput, callbackInput)
 }

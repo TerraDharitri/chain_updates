@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -53,14 +53,14 @@ func TestBlocksProcessor_GetBlocksByRound_InvalidCallGetRestEndPoint_ExpectZeroF
 				return []*data.NodeData{
 					{
 						ShardId: 0,
-						Address: "erd1a",
+						Address: "drt1a",
 					},
 				}, nil
 			case 1:
 				return []*data.NodeData{
 					{
 						ShardId: 1,
-						Address: "erd1b",
+						Address: "drt1b",
 					},
 				}, nil
 			default:
@@ -106,18 +106,18 @@ func TestBlocksProcessor_GetBlocksByRound_TwoBlocks_ThreeObservers_OneObserverGe
 				return []*data.NodeData{
 					{
 						ShardId: 0,
-						Address: "erd1a",
+						Address: "drt1a",
 					},
 					{
 						ShardId: 0,
-						Address: "erd1b",
+						Address: "drt1b",
 					},
 				}, nil
 			case 1:
 				return []*data.NodeData{
 					{
 						ShardId: 1,
-						Address: "erd1c",
+						Address: "drt1c",
 					},
 				}, nil
 			default:
@@ -128,13 +128,13 @@ func TestBlocksProcessor_GetBlocksByRound_TwoBlocks_ThreeObservers_OneObserverGe
 			return []uint32{0, 1}
 		},
 		CallGetRestEndPointCalled: func(address string, path string, value interface{}) (int, error) {
-			if address == "erd1b" {
+			if address == "drt1b" {
 				response := value.(*data.BlockApiResponse)
 				response.Data = data.BlockApiResponsePayload{Block: block1}
 
 				return 200, nil
 			}
-			if address == "erd1c" {
+			if address == "drt1c" {
 				response := value.(*data.BlockApiResponse)
 				response.Data = data.BlockApiResponsePayload{Block: block2}
 

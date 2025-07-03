@@ -2,9 +2,9 @@
 package vmhost
 
 import (
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // VMVersion returns the current vm version
@@ -127,8 +127,8 @@ const (
 	// built-in function, which is executed half in-shard, half cross-shard
 	AsyncBuiltinFuncCrossShard
 
-	// ESDTTransferOnCallBack indicated that the async call is actually a callback with ESDT transfer
-	ESDTTransferOnCallBack
+	// DCDTTransferOnCallBack indicated that the async call is actually a callback with DCDT transfer
+	DCDTTransferOnCallBack
 
 	// AsyncUnknown indicates that the async call cannot be executed locally, and
 	// must be forwarded to the destination account
@@ -202,7 +202,7 @@ type VMHostParameters struct {
 	BlockGasLimit                       uint64
 	GasSchedule                         config.GasScheduleMap
 	BuiltInFuncContainer                vmcommon.BuiltInFunctionContainer
-	ESDTTransferParser                  vmcommon.ESDTTransferParser
+	DCDTTransferParser                  vmcommon.DCDTTransferParser
 	ProtectedKeyPrefix                  []byte
 	WasmerSIGSEGVPassthrough            bool
 	EpochNotifier                       vmcommon.EpochNotifier
@@ -296,12 +296,12 @@ func (ac *AsyncGeneratedCall) IsInterfaceNil() bool {
 	return ac == nil
 }
 
-// ESDTTransfersArgs defines the structure for ESDTTransferArgs, used in TransferAndExecute
-type ESDTTransfersArgs struct {
+// DCDTTransfersArgs defines the structure for DCDTTransferArgs, used in TransferAndExecute
+type DCDTTransfersArgs struct {
 	Destination      []byte
 	OriginalCaller   []byte
 	Sender           []byte
-	Transfers        []*vmcommon.ESDTTransfer
+	Transfers        []*vmcommon.DCDTTransfer
 	Function         string
 	Arguments        [][]byte
 	SenderForExec    []byte

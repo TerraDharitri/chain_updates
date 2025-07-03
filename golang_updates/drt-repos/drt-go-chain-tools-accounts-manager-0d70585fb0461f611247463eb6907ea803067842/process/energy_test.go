@@ -5,11 +5,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/config"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/core"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/data"
-	"github.com/multiversx/mx-chain-tools-accounts-manager-go/mocks"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/config"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/core"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/data"
+	"github.com/TerraDharitri/drt-go-chain-tools-accounts-manager/mocks"
 	"github.com/stretchr/testify/require"
 )
 
@@ -26,7 +26,7 @@ func TestExtractAddressesAndEnergy(t *testing.T) {
 	require.Nil(t, err)
 	require.NotNil(t, res)
 
-	resNegativeEnergy := res["erd1ytknlprw8lyfn9x5yn0e0c8wtttkzumzm5z7dp4ynadnhq26aczslsh9q7"]
+	resNegativeEnergy := res["drt1ytknlprw8lyfn9x5yn0e0c8wtttkzumzm5z7dp4ynadnhq26aczszvqxrq"]
 	require.Equal(t, &data.AccountInfoWithStakeValues{
 		StakeInfo: data.StakeInfo{
 			Energy:    "-2613000000000000000000",
@@ -49,7 +49,7 @@ func TestExtractAddressesAndEnergy(t *testing.T) {
 				TotalLockedTokens: "32000000000000000000",
 			},
 		},
-	}, res["erd10f7nnvqk8xvyd50f2sc5p4e0ru4alf99p3v7zfe4uvenra2esges39a9x7"])
+	}, res["drt10f7nnvqk8xvyd50f2sc5p4e0ru4alf99p3v7zfe4uvenra2esgesve2x9q"])
 
 	require.Equal(t, &data.AccountInfoWithStakeValues{
 		StakeInfo: data.StakeInfo{
@@ -61,7 +61,7 @@ func TestExtractAddressesAndEnergy(t *testing.T) {
 				TotalLockedTokens: "25000000000000000000",
 			},
 		},
-	}, res["erd1ejjwyzrdj053vcs5nhupxn6kha8audf4mla6tth9339zmcx52w5q7djae2"])
+	}, res["drt1ejjwyzrdj053vcs5nhupxn6kha8audf4mla6tth9339zmcx52w5qr39765"])
 
 	require.Equal(t, &data.AccountInfoWithStakeValues{
 		StakeInfo: data.StakeInfo{
@@ -73,7 +73,7 @@ func TestExtractAddressesAndEnergy(t *testing.T) {
 				TotalLockedTokens: "505000000000000000000000",
 			},
 		},
-	}, res["erd1yhhzgv5ql3h8gppy5286grre23vfgw68tnth7dmcl8ywpd9puluqlcvvw9"])
+	}, res["drt1yhhzgv5ql3h8gppy5286grre23vfgw68tnth7dmcl8ywpd9puluqzym0dm"])
 
 	require.Equal(t, &data.AccountInfoWithStakeValues{
 		StakeInfo: data.StakeInfo{
@@ -85,7 +85,7 @@ func TestExtractAddressesAndEnergy(t *testing.T) {
 				TotalLockedTokens: "26996989052191430771",
 			},
 		},
-	}, res["erd188lxgu4m889yht73t3svs4lxknfqtv2vgymgzz283x6wv4hw9nwq0cgw0v"])
+	}, res["drt188lxgu4m889yht73t3svs4lxknfqtv2vgymgzz283x6wv4hw9nwqjyldvj"])
 
 }
 

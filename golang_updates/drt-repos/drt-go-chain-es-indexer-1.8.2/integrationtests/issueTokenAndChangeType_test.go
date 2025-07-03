@@ -8,12 +8,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	indexerdata "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	indexerdata "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -33,7 +33,7 @@ func TestIssueTokenAndChangeToDynamic(t *testing.T) {
 		ShardID:   core.MetachainShardId,
 	}
 
-	address1 := "erd1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqqgvxprv"
+	address1 := "drt1k04pxr6c0gvlcx4rd5fje0a4uy33axqxwz0fpcrgtfdy3nrqauqq4s3zqj"
 	pool := &outport.TransactionPool{
 		Logs: []*outport.LogData{
 			{
@@ -44,7 +44,7 @@ func TestIssueTokenAndChangeToDynamic(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("issueSemiFungible"),
-							Topics:     [][]byte{[]byte("CON-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleESDT)},
+							Topics:     [][]byte{[]byte("CON-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.SemiFungibleDCDT)},
 						},
 						{
 							Address:    decodeAddress(address1),
@@ -78,7 +78,7 @@ func TestIssueTokenAndChangeToDynamic(t *testing.T) {
 						{
 							Address:    decodeAddress(address1),
 							Identifier: []byte("changeToDynamic"),
-							Topics:     [][]byte{[]byte("CON-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.DynamicSFTESDT)},
+							Topics:     [][]byte{[]byte("CON-abcd"), []byte("semi-token"), []byte("SEMI"), []byte(core.DynamicSFTDCDT)},
 						},
 						nil,
 					},

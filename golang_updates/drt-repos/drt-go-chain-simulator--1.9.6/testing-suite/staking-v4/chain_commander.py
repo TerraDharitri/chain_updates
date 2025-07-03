@@ -8,10 +8,10 @@ import time
 from core.validatorKey import ValidatorKey
 
 
-def send_egld_to_address(egld_amount, erd_address):
+def send_rewa_to_address(rewa_amount, erd_address):
     details = {
         'address': f'{erd_address}',
-        'balance': f'{egld_amount}'
+        'balance': f'{rewa_amount}'
     }
 
     details_list = [details]

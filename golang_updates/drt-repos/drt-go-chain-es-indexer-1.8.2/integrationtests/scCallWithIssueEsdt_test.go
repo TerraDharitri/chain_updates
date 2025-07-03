@@ -8,17 +8,17 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	dataBlock "github.com/multiversx/mx-chain-core-go/data/block"
-	"github.com/multiversx/mx-chain-core-go/data/outport"
-	"github.com/multiversx/mx-chain-core-go/data/smartContractResult"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	indexerData "github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	dataBlock "github.com/TerraDharitri/drt-go-chain-core/data/block"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/smartContractResult"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	indexerData "github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
 	"github.com/stretchr/testify/require"
 )
 
-func TestScCallIntraShardWithIssueESDT(t *testing.T) {
+func TestScCallIntraShardWithIssueDCDT(t *testing.T) {
 	setLogLevelDebug()
 
 	esClient, err := createESClient(esURL)
@@ -50,8 +50,8 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 		},
 	}
 
-	sndAddress := "erd148m2sx48mfm8322c2kpfmgj78g5j0x7r6z6y4z8j28qk45a74nwq5pq2ts"
-	contractAddress := "erd1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqwjme9g"
+	sndAddress := "drt148m2sx48mfm8322c2kpfmgj78g5j0x7r6z6y4z8j28qk45a74nwqfahfgw"
+	contractAddress := "drt1qqqqqqqqqqqqqpgqahumqen35dr9k4rmcnd70mqt5t4mt7ey4nwqnwv6xk"
 	tx := &transaction.Transaction{
 		Nonce:    46,
 		SndAddr:  decodeAddress(sndAddress),
@@ -62,11 +62,11 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 		Value:    big.NewInt(50000000000000000),
 	}
 
-	esdtSystemSC := "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
-	scrWithIssueESDT := &smartContractResult.SmartContractResult{
+	dcdtSystemSC := "drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls6prdez"
+	scrWithIssueDCDT := &smartContractResult.SmartContractResult{
 		Nonce:          0,
 		SndAddr:        decodeAddress(contractAddress),
-		RcvAddr:        decodeAddress(esdtSystemSC),
+		RcvAddr:        decodeAddress(dcdtSystemSC),
 		OriginalTxHash: txHash,
 		PrevTxHash:     txHash,
 		Data:           []byte("issueNonFungible@4d79546573744e667464@544553544e4654@63616e467265657a65@74727565@63616e57697065@74727565@63616e5061757365@74727565@63616e4368616e67654f776e6572@66616c7365@63616e55706772616465@66616c7365@63616e4164645370656369616c526f6c6573@74727565@58f638"),
@@ -82,7 +82,7 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 		},
 	}
 
-	scrInfoWithIssue := &outport.SCRInfo{SmartContractResult: scrWithIssueESDT, FeeInfo: &outport.FeeInfo{}}
+	scrInfoWithIssue := &outport.SCRInfo{SmartContractResult: scrWithIssueDCDT, FeeInfo: &outport.FeeInfo{}}
 	pool := &outport.TransactionPool{
 		Transactions: map[string]*outport.TxInfo{
 			hex.EncodeToString(txHash): txInfo,
@@ -106,7 +106,7 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	require.Nil(t, err)
 
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/tx-after-execution-on-source-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/tx-after-execution-on-source-shard.json"),
 		string(genericResponse.Docs[0].Source),
 	)
 
@@ -115,7 +115,7 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	require.Nil(t, err)
 
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/scr-with-issue-executed-on-source-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/scr-with-issue-executed-on-source-shard.json"),
 		string(genericResponse.Docs[0].Source),
 	)
 
@@ -145,7 +145,7 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	scrWithCallBack := &smartContractResult.SmartContractResult{
 		Nonce:          0,
 		Value:          big.NewInt(0),
-		SndAddr:        decodeAddress(esdtSystemSC),
+		SndAddr:        decodeAddress(dcdtSystemSC),
 		RcvAddr:        decodeAddress(contractAddress),
 		Data:           []byte("@00@544553544e46542d643964353463"),
 		OriginalTxHash: txHash,
@@ -168,11 +168,11 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	require.Nil(t, err)
 
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/scr-with-issue-executed-on-destination-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/scr-with-issue-executed-on-destination-shard.json"),
 		string(genericResponse.Docs[0].Source),
 	)
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/scr-with-callback-executed-on-source.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/scr-with-callback-executed-on-source.json"),
 		string(genericResponse.Docs[1].Source),
 	)
 
@@ -221,7 +221,7 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	require.Nil(t, err)
 
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/tx-after-execution-of-callback-on-destination-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/tx-after-execution-of-callback-on-destination-shard.json"),
 		string(genericResponse.Docs[0].Source),
 	)
 
@@ -230,11 +230,11 @@ func TestScCallIntraShardWithIssueESDT(t *testing.T) {
 	require.Nil(t, err)
 
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/tx-in-op-index-execution-of-callback-on-destination-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/tx-in-op-index-execution-of-callback-on-destination-shard.json"),
 		string(genericResponse.Docs[0].Source),
 	)
 	require.JSONEq(t,
-		readExpectedResult("./testdata/scCallWithIssueEsdt/scr-with-callback-executed-on-destination-shard.json"),
+		readExpectedResult("./testdata/scCallWithIssueDcdt/scr-with-callback-executed-on-destination-shard.json"),
 		string(genericResponse.Docs[1].Source),
 	)
 }

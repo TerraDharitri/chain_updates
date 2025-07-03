@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"math/rand"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 func (pfe *fuzzDexExecutor) swap(r *rand.Rand, statistics *eventsStatistics) error {
@@ -53,7 +53,7 @@ func (pfe *fuzzDexExecutor) swapFixedInput(user string, swapPair SwapPair, amoun
 			"to": "%s",
 			"value": "0",
 			"function": "swapTokensFixedInput",
-			"esdt": {
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d"
 			},
@@ -145,7 +145,7 @@ func (pfe *fuzzDexExecutor) swapFixedOutput(user string, swapPair SwapPair, amou
 			"to": "%s",
 			"value": "0",
 			"function": "swapTokensFixedOutput",
-			"esdt": {
+			"dcdt": {
 				"tokenIdentifier": "str:%s",
 				"value": "%d"
 			},

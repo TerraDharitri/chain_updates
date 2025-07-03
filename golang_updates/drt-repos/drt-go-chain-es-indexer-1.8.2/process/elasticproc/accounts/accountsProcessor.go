@@ -6,13 +6,13 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	logger "github.com/multiversx/mx-chain-logger-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
 )
 
 var log = logger.GetOrCreate("indexer/process/accounts")
@@ -41,26 +41,26 @@ func NewAccountsProcessor(
 	}, nil
 }
 
-// GetAccounts will get accounts for regular operations and esdt operations
-func (ap *accountsProcessor) GetAccounts(coreAlteredAccounts map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountESDT) {
+// GetAccounts will get accounts for regular operations and dcdt operations
+func (ap *accountsProcessor) GetAccounts(coreAlteredAccounts map[string]*alteredAccount.AlteredAccount) ([]*data.Account, []*data.AccountDCDT) {
 	regularAccountsToIndex := make([]*data.Account, 0)
-	accountsToIndexESDT := make([]*data.AccountESDT, 0)
+	accountsToIndexDCDT := make([]*data.AccountDCDT, 0)
 
 	for _, alteredAccount := range coreAlteredAccounts {
-		regularAccounts, esdtAccounts := splitAlteredAccounts(alteredAccount)
+		regularAccounts, dcdtAccounts := splitAlteredAccounts(alteredAccount)
 
 		regularAccountsToIndex = append(regularAccountsToIndex, regularAccounts...)
-		accountsToIndexESDT = append(accountsToIndexESDT, esdtAccounts...)
+		accountsToIndexDCDT = append(accountsToIndexDCDT, dcdtAccounts...)
 	}
 
-	return regularAccountsToIndex, accountsToIndexESDT
+	return regularAccountsToIndex, accountsToIndexDCDT
 }
 
 func splitAlteredAccounts(
 	account *alteredAccount.AlteredAccount,
-) ([]*data.Account, []*data.AccountESDT) {
+) ([]*data.Account, []*data.AccountDCDT) {
 	regularAccountsToIndex := make([]*data.Account, 0)
-	accountsToIndexESDT := make([]*data.AccountESDT, 0)
+	accountsToIndexDCDT := make([]*data.AccountDCDT, 0)
 
 	isSender, balanceChanged := false, false
 	if account.AdditionalData != nil {
@@ -69,7 +69,7 @@ func splitAlteredAccounts(
 		log.Debug("accountsProcessor.splitAlteredAccounts - nil additional data")
 	}
 
-	//if the balance of the ESDT receiver is 0 the receiver is a new account most probably, and we should index it
+	//if the balance of the DCDT receiver is 0 the receiver is a new account most probably, and we should index it
 	ignoreAddress := !balanceChanged && notZeroBalance(account.Balance) && !isSender
 	if !ignoreAddress {
 		regularAccountsToIndex = append(regularAccountsToIndex, &data.Account{
@@ -79,21 +79,21 @@ func splitAlteredAccounts(
 	}
 
 	for _, info := range account.Tokens {
-		accountESDT := &data.AccountESDT{
+		accountDCDT := &data.AccountDCDT{
 			Account:         account,
 			TokenIdentifier: info.Identifier,
 			NFTNonce:        info.Nonce,
 			IsSender:        isSender,
 		}
 		if info.AdditionalData != nil {
-			accountESDT.IsNFTCreate = info.AdditionalData.IsNFTCreate
+			accountDCDT.IsNFTCreate = info.AdditionalData.IsNFTCreate
 		}
 
-		accountsToIndexESDT = append(accountsToIndexESDT, accountESDT)
+		accountsToIndexDCDT = append(accountsToIndexDCDT, accountDCDT)
 
 	}
 
-	return regularAccountsToIndex, accountsToIndexESDT
+	return regularAccountsToIndex, accountsToIndexDCDT
 }
 
 func notZeroBalance(balance string) bool {
@@ -177,51 +177,51 @@ func (ap *accountsProcessor) addDeveloperRewardsInAccount(additionalData *altere
 	account.DeveloperRewardsNum = developerRewardsNum
 }
 
-// PrepareAccountsMapESDT will prepare a map of accounts with ESDT tokens
-func (ap *accountsProcessor) PrepareAccountsMapESDT(
+// PrepareAccountsMapDCDT will prepare a map of accounts with DCDT tokens
+func (ap *accountsProcessor) PrepareAccountsMapDCDT(
 	timestamp uint64,
-	accounts []*data.AccountESDT,
+	accounts []*data.AccountDCDT,
 	tagsCount data.CountTags,
 	shardID uint32,
 ) (map[string]*data.AccountInfo, data.TokensHandler) {
 	tokensData := data.NewTokensInfo()
-	accountsESDTMap := make(map[string]*data.AccountInfo)
-	for _, accountESDT := range accounts {
-		address := accountESDT.Account.Address
+	accountsDCDTMap := make(map[string]*data.AccountInfo)
+	for _, accountDCDT := range accounts {
+		address := accountDCDT.Account.Address
 		addressBytes, err := ap.addressPubkeyConverter.Decode(address)
 		if err != nil {
-			log.Warn("accountsProcessor.PrepareAccountsMapESDT: cannot decode address", "address", address, "error", err)
+			log.Warn("accountsProcessor.PrepareAccountsMapDCDT: cannot decode address", "address", address, "error", err)
 			continue
 		}
-		balance, properties, tokenMetaData, err := ap.getESDTInfo(accountESDT)
+		balance, properties, tokenMetaData, err := ap.getDCDTInfo(accountDCDT)
 		if err != nil {
-			log.Warn("accountsProcessor.PrepareAccountsMapESDT: cannot get esdt info from account",
+			log.Warn("accountsProcessor.PrepareAccountsMapDCDT: cannot get dcdt info from account",
 				"address", address,
 				"error", err.Error())
 			continue
 		}
 
-		if tokenMetaData != nil && accountESDT.IsNFTCreate {
+		if tokenMetaData != nil && accountDCDT.IsNFTCreate {
 			tagsCount.ParseTags(tokenMetaData.Tags)
 		}
 
-		tokenIdentifier := converters.ComputeTokenIdentifier(accountESDT.TokenIdentifier, accountESDT.NFTNonce)
+		tokenIdentifier := converters.ComputeTokenIdentifier(accountDCDT.TokenIdentifier, accountDCDT.NFTNonce)
 		balanceNum, err := ap.balanceConverter.ConvertBigValueToFloat(balance)
 		if err != nil {
-			log.Warn("accountsProcessor.PrepareAccountsMapESDT: cannot compute esdt balance as num",
+			log.Warn("accountsProcessor.PrepareAccountsMapDCDT: cannot compute dcdt balance as num",
 				"balance", balance, "address", address, "error", err, "token", tokenIdentifier)
 		}
 
 		acc := &data.AccountInfo{
 			Address:         address,
-			TokenName:       accountESDT.TokenIdentifier,
+			TokenName:       accountDCDT.TokenIdentifier,
 			TokenIdentifier: tokenIdentifier,
-			TokenNonce:      accountESDT.NFTNonce,
+			TokenNonce:      accountDCDT.NFTNonce,
 			Balance:         balance.String(),
 			BalanceNum:      balanceNum,
 			Properties:      properties,
 			Frozen:          isFrozen(properties),
-			IsSender:        accountESDT.IsSender,
+			IsSender:        accountDCDT.IsSender,
 			IsSmartContract: core.IsSmartContractAddress(addressBytes),
 			Data:            tokenMetaData,
 			Timestamp:       time.Duration(timestamp),
@@ -229,23 +229,23 @@ func (ap *accountsProcessor) PrepareAccountsMapESDT(
 		}
 
 		if acc.TokenNonce == 0 {
-			acc.Type = core.FungibleESDT
+			acc.Type = core.FungibleDCDT
 		}
 
-		keyInMap := fmt.Sprintf("%s-%s-%d", acc.Address, acc.TokenName, accountESDT.NFTNonce)
-		accountsESDTMap[keyInMap] = acc
+		keyInMap := fmt.Sprintf("%s-%s-%d", acc.Address, acc.TokenName, accountDCDT.NFTNonce)
+		accountsDCDTMap[keyInMap] = acc
 
 		if acc.Balance == "0" || acc.Balance == "" {
 			continue
 		}
 
 		tokensData.Add(&data.TokenInfo{
-			Token:      accountESDT.TokenIdentifier,
+			Token:      accountDCDT.TokenIdentifier,
 			Identifier: tokenIdentifier,
 		})
 	}
 
-	return accountsESDTMap, tokensData
+	return accountsDCDTMap, tokensData
 }
 
 // PrepareAccountsHistory will prepare a map of accounts history balance from a map of accounts
@@ -274,17 +274,17 @@ func (ap *accountsProcessor) PrepareAccountsHistory(
 	return accountsMap
 }
 
-func (ap *accountsProcessor) getESDTInfo(accountESDT *data.AccountESDT) (*big.Int, string, *data.TokenMetaData, error) {
-	if accountESDT.TokenIdentifier == "" {
+func (ap *accountsProcessor) getDCDTInfo(accountDCDT *data.AccountDCDT) (*big.Int, string, *data.TokenMetaData, error) {
+	if accountDCDT.TokenIdentifier == "" {
 		return big.NewInt(0), "", nil, nil
 	}
-	if accountESDT.IsNFTOperation && accountESDT.NFTNonce == 0 {
+	if accountDCDT.IsNFTOperation && accountDCDT.NFTNonce == 0 {
 		return big.NewInt(0), "", nil, nil
 	}
 
 	accountTokenData := &alteredAccount.AccountTokenData{}
-	for _, tokenData := range accountESDT.Account.Tokens {
-		if tokenData.Identifier == accountESDT.TokenIdentifier && tokenData.Nonce == accountESDT.NFTNonce {
+	for _, tokenData := range accountDCDT.Account.Tokens {
+		if tokenData.Identifier == accountDCDT.TokenIdentifier && tokenData.Nonce == accountDCDT.NFTNonce {
 			accountTokenData = tokenData
 		}
 	}

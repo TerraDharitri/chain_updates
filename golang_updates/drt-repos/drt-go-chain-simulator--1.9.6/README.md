@@ -1,8 +1,8 @@
-# mx-chain-simulator-go
+# drt-go-chain-simulator
 
 ## Overview
 
-`mx-chain-simulator-go` is a binary that provides all the [mx-chain-proxy-go](https://github.com/multiversx/mx-chain-proxy-go) endpoints 
+`drt-go-chain-simulator` is a binary that provides all the [drt-go-chain-proxy](https://github.com/TerraDharitri/drt-go-chain-proxy) endpoints 
 and includes additional endpoints for specific operations. 
 
 This simulator is designed to replicate the behavior of a local testnet. Unlike a traditional testnet,
@@ -14,14 +14,14 @@ Blocks are promptly generated through a dedicated endpoint whenever users initia
 
 ## Features
 
-- Implements all `mx-chain-proxy-go` endpoints.
+- Implements all `drt-go-chain-proxy` endpoints.
 - Extra endpoints for specific operations.
 - Simulates the behavior of a local testnet without a consensus group.
 
 
 ## API Documentation
 
-`mx-chain-simulator-go` includes all the [proxy endpoints](https://github.com/multiversx/mx-chain-proxy-go#rest-api-endpoints)
+`drt-go-chain-simulator` includes all the [proxy endpoints](https://github.com/TerraDharitri/drt-go-chain-proxy#rest-api-endpoints)
 
 
 ### Additionally, the simulator offers custom endpoints:
@@ -146,12 +146,12 @@ This endpoint returns the initial wallets (address and private key hex encoded).
 {
   "data": {
     "initialWalletWithStake": {
-      "address": "erd18e5tqg3x2fvh2f3g2747639erk...",
+      "address": "drt18e5tqg3x2fvh2f3g2747639erk...",
       "privateKeyHex": "7ce93f48840c4a67fdcdc97c..."
     },
     "shardWallets": {
       "0": {
-        "address": "erd1844ch276gqfmhjgj8jjca4akpf...",
+        "address": "drt1844ch276gqfmhjgj8jjca4akpf...",
         "privateKeyHex": "2024e8a0f202ae3536d336c3..."
       },
       // ... additional wallet entries
@@ -256,20 +256,20 @@ Example:
 ```
 [
 	{
-		"address": "erd1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3syjszx5",
+		"address": "drt1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3sew8p92",
 		"balance": "431271308732096033771131",
 		"code": "0061736d010000000129086000006000017f60027f7f017f60027f7f0060017f0060037f7f7f017f60037f7f7f0060017f017f0290020b03656e7619626967496e74476574556e7369676e6564417267756d656e74000303656e760f6765744e756d417267756d656e7473000103656e760b7369676e616c4572726f72000303656e76126d42756666657253746f726167654c6f6164000203656e76176d427566666572546f426967496e74556e7369676e6564000203656e76196d42756666657246726f6d426967496e74556e7369676e6564000203656e76136d42756666657253746f7261676553746f7265000203656e760f6d4275666665725365744279746573000503656e760e636865636b4e6f5061796d656e74000003656e7614626967496e7446696e697368556e7369676e6564000403656e7609626967496e744164640006030b0a010104070301000000000503010003060f027f0041a080080b7f0041a080080b074607066d656d6f7279020004696e697400110667657453756d00120361646400130863616c6c4261636b00140a5f5f646174615f656e6403000b5f5f686561705f6261736503010aca010a0e01017f4100100c2200100020000b1901017f419c8008419c800828020041016b220036020020000b1400100120004604400f0b4180800841191002000b16002000100c220010031a2000100c220010041a20000b1401017f100c2202200110051a2000200210061a0b1301017f100c220041998008410310071a20000b1401017f10084101100d100b210010102000100f0b0e0010084100100d1010100e10090b2201037f10084101100d100b210110102202100e220020002001100a20022000100f0b0300010b0b2f0200418080080b1c77726f6e67206e756d626572206f6620617267756d656e747373756d00419c80080b049cffffff",
 		"rootHash": "76cr5Jhn6HmBcDUMIzikEpqFgZxIrOzgNkTHNatXzC4=",
 		"codeMetadata": "BQY=",
 		"codeHash": "n9EviPlHS6EV+3Xp0YqP28T0IUfeAFRFBIRC1Jw6pyU=",
 		"developerReward": "5401004999998",
-		"ownerAddress": "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		"ownerAddress": "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		"keys": {
 			"73756d": "0a"
 		}
 	},
 	{
-		"address": "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		"address": "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		"balance": "431271308732096033771131"
 	}
 	// ...additional state for another address
@@ -317,20 +317,20 @@ Example:
 ```
 [
 	{
-		"address": "erd1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3syjszx5",
+		"address": "drt1qqqqqqqqqqqqqpgqmzzm05jeav6d5qvna0q2pmcllelkz8xddz3sew8p92",
 		"balance": "431271308732096033771131",
 		"code": "0061736d010000000129086000006000017f60027f7f017f60027f7f0060017f0060037f7f7f017f60037f7f7f0060017f017f0290020b03656e7619626967496e74476574556e7369676e6564417267756d656e74000303656e760f6765744e756d417267756d656e7473000103656e760b7369676e616c4572726f72000303656e76126d42756666657253746f726167654c6f6164000203656e76176d427566666572546f426967496e74556e7369676e6564000203656e76196d42756666657246726f6d426967496e74556e7369676e6564000203656e76136d42756666657253746f7261676553746f7265000203656e760f6d4275666665725365744279746573000503656e760e636865636b4e6f5061796d656e74000003656e7614626967496e7446696e697368556e7369676e6564000403656e7609626967496e744164640006030b0a010104070301000000000503010003060f027f0041a080080b7f0041a080080b074607066d656d6f7279020004696e697400110667657453756d00120361646400130863616c6c4261636b00140a5f5f646174615f656e6403000b5f5f686561705f6261736503010aca010a0e01017f4100100c2200100020000b1901017f419c8008419c800828020041016b220036020020000b1400100120004604400f0b4180800841191002000b16002000100c220010031a2000100c220010041a20000b1401017f100c2202200110051a2000200210061a0b1301017f100c220041998008410310071a20000b1401017f10084101100d100b210010102000100f0b0e0010084100100d1010100e10090b2201037f10084101100d100b210110102202100e220020002001100a20022000100f0b0300010b0b2f0200418080080b1c77726f6e67206e756d626572206f6620617267756d656e747373756d00419c80080b049cffffff",
 		"rootHash": "76cr5Jhn6HmBcDUMIzikEpqFgZxIrOzgNkTHNatXzC4=",
 		"codeMetadata": "BQY=",
 		"codeHash": "n9EviPlHS6EV+3Xp0YqP28T0IUfeAFRFBIRC1Jw6pyU=",
 		"developerReward": "5401004999998",
-		"ownerAddress": "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		"ownerAddress": "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		"keys": {
 			"73756d": "0a"
 		}
 	},
 	{
-		"address": "erd1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsqj8x97",
+		"address": "drt1ss6u80ruas2phpmr82r42xnkd6rxy40g9jl69frppl4qez9w2jpsaws9xq",
 		"balance": "431271308732096033771131"
 	}
 	// ...additional state for another address
@@ -463,10 +463,10 @@ The **_[config.toml](./cmd/chainsimulator/config/config.toml)_** file:
         initial-nonce = 0
         # initial-epoch specifies with what epoch the chain simulator will start
         initial-epoch = 0
-        # mx-chain-go-repo will be used to fetch the node configs folder
-        mx-chain-go-repo = "https://github.com/multiversx/mx-chain-go"
-        # mx-chain-proxy-go-repo will be used to fetch the proxy configs folder
-        mx-chain-proxy-go-repo = "https://github.com/multiversx/mx-chain-proxy-go"
+        # drt-go-chain-repo will be used to fetch the node configs folder
+        drt-go-chain-repo = "https://github.com/TerraDharitri/drt-go-chain"
+        # drt-go-chain-proxy-repo will be used to fetch the proxy configs folder
+        drt-go-chain-proxy-repo = "https://github.com/TerraDharitri/drt-go-chain-proxy"
     [config.logs]
         log-file-life-span-in-mb = 1024 # 1GB
         log-file-life-span-in-sec = 432000 # 5 days
@@ -480,7 +480,7 @@ The **_[config.toml](./cmd/chainsimulator/config/config.toml)_** file:
 ```
 
 There is also an optional configuration file called `nodeOverride.toml` that can be used to alter specific configuration options 
-for the nodes that assemble the chain simulator. The override mechanism is the same as the one found on the mx-chain-go, prefs.toml file.
+for the nodes that assemble the chain simulator. The override mechanism is the same as the one found on the drt-go-chain, prefs.toml file.
 In this tool, the flag option called `--node-override-config` can load more than one override toml file by specifying the paths separated 
 by the `,` character. Example: `--node-override-config ./config/override1.toml,./config/override2.toml`. The default 
 `./config/nodeOverrideDefault.toml` file is added automatically.
@@ -535,6 +535,6 @@ To enable the host driver in the chain simulator, follow these steps:
 
 ## Contribution
 
-Contributions to the mx-chain-simulator-go module are welcomed. Whether you're interested in improving its features, 
+Contributions to the drt-go-chain-simulator module are welcomed. Whether you're interested in improving its features, 
 extending its capabilities, or addressing issues, your contributions can help the 
 community make the module even more robust.

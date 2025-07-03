@@ -8,17 +8,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	dtoc "github.com/multiversx/mx-chain-simulator-go/pkg/dtos"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	dtoc "github.com/TerraDharitri/drt-go-chain-simulator/pkg/dtos"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
 )
 
 const (
-	errMsgTargetEpochLowerThanCurrentEpoch  = "target epoch must be greater than current epoch"
-	errMsgAccountNotFound                   = "account was not found")
+	errMsgTargetEpochLowerThanCurrentEpoch = "target epoch must be greater than current epoch"
+	errMsgAccountNotFound                  = "account was not found"
+)
 
 var log = logger.GetOrCreate("simulator/facade")
 

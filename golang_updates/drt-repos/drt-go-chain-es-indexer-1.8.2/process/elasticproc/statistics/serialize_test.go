@@ -3,7 +3,7 @@ package statistics
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/outport"
+	"github.com/TerraDharitri/drt-go-chain-core/data/outport"
 	"github.com/stretchr/testify/require"
 )
 

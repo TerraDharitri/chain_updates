@@ -3,7 +3,7 @@ package testcommon
 import (
 	"sort"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 )
 
 // CrossShardCall -

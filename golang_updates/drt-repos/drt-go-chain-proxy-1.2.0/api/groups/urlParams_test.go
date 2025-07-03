@@ -6,9 +6,9 @@ import (
 	"net/url"
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-proxy-go/common"
 	"github.com/stretchr/testify/require"
 )
 

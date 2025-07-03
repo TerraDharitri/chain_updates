@@ -1,21 +1,21 @@
 package factory
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/dataindexer"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/accounts"
-	blockProc "github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/block"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/converters"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/logsevents"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/miniblocks"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/operations"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/statistics"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/templatesAndPolicies"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/transactions"
-	"github.com/multiversx/mx-chain-es-indexer-go/process/elasticproc/validators"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/dataindexer"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/accounts"
+	blockProc "github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/block"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/converters"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/logsevents"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/miniblocks"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/operations"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/statistics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/templatesAndPolicies"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/transactions"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/process/elasticproc/validators"
 )
 
 // ArgElasticProcessorFactory is struct that is used to store all components that are needed to create an elastic processor factory

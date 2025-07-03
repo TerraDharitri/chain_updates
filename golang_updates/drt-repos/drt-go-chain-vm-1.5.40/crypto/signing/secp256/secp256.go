@@ -5,9 +5,10 @@ import (
 	"crypto/elliptic"
 	"crypto/sha256"
 	"errors"
-	"github.com/multiversx/mx-chain-vm-go/crypto/hashing"
-	"github.com/multiversx/mx-chain-vm-go/crypto/signing"
 	"math/big"
+
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/hashing"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto/signing"
 
 	"github.com/btcsuite/btcd/btcec/v2"
 	"github.com/btcsuite/btcd/btcec/v2/ecdsa"

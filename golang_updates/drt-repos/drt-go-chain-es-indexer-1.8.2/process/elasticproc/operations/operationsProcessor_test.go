@@ -3,8 +3,8 @@ package operations
 import (
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 	"github.com/stretchr/testify/require"
 )
 
@@ -66,7 +66,7 @@ func TestOperationsProcessor_ShouldIgnoreSCRs(t *testing.T) {
 			Data: []byte("@6f6b"),
 		},
 		{
-			Operation:          "ESDTNFTTransfer",
+			Operation:          "DCDTNFTTransfer",
 			SenderAddressBytes: []byte("sender"),
 		},
 	}

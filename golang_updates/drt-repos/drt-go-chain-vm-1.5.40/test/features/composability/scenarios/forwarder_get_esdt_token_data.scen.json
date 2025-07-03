@@ -1,5 +1,5 @@
 {
-    "name": "load local esdt token data",
+    "name": "load local dcdt token data",
     "steps": [
         {
             "step": "setState",
@@ -7,7 +7,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FUNG-00001": "100",
                         "str:FUNGFROZEN-00002": {
                             "instances": [
@@ -36,7 +36,7 @@
                             "frozen": "true"
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 },
                 "address:other": {
                     "nonce": "0",
@@ -49,7 +49,7 @@
             "id": "fungible-simple",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "sc:forwarder",
                     "str:FUNG-00001",
@@ -76,7 +76,7 @@
             "id": "fungible-simple-is-frozen",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "is_esdt_frozen",
+                "function": "is_dcdt_frozen",
                 "arguments": [
                     "sc:forwarder",
                     "str:FUNG-00001",
@@ -95,7 +95,7 @@
             "id": "fungible-data-frozen",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "sc:forwarder",
                     "str:FUNGFROZEN-00002",
@@ -122,7 +122,7 @@
             "id": "fungible-simple-is-frozen",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "is_esdt_frozen",
+                "function": "is_dcdt_frozen",
                 "arguments": [
                     "sc:forwarder",
                     "str:FUNGFROZEN-00002",
@@ -141,7 +141,7 @@
             "id": "sft-attributes",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "sc:forwarder",
                     "str:SFT-00003",
@@ -171,7 +171,7 @@
             "id": "missing-account",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "address:missing-account",
                     "str:FUNG-00001",
@@ -198,7 +198,7 @@
             "id": "missing-token",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "address:other",
                     "str:FUNG-00001",
@@ -225,7 +225,7 @@
             "id": "missing-nonce",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "get_esdt_token_data",
+                "function": "get_dcdt_token_data",
                 "arguments": [
                     "sc:forwarder",
                     "str:SFT-00003",
@@ -252,7 +252,7 @@
             "id": "sft-is-paused",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "is_esdt_paused",
+                "function": "is_dcdt_paused",
                 "arguments": [
                     "str:SFT-00003"
                 ]
@@ -269,7 +269,7 @@
             "id": "sft-is-paused",
             "tx": {
                 "to": "sc:forwarder",
-                "function": "is_esdt_limited_transfer",
+                "function": "is_dcdt_limited_transfer",
                 "arguments": [
                     "str:SFT-00003"
                 ]

@@ -8,8 +8,8 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	github_com_multiversx_mx_chain_core_go_data "github.com/multiversx/mx-chain-core-go/data"
-	github_com_multiversx_mx_chain_core_go_data_vm "github.com/multiversx/mx-chain-core-go/data/vm"
+	github_com_TerraDharitri_drt_go_chain_core_data "github.com/TerraDharitri/drt-go-chain-core/data"
+	github_com_TerraDharitri_drt_go_chain_core_data_vm "github.com/TerraDharitri/drt-go-chain-core/data/vm"
 	io "io"
 	math "math"
 	math_big "math/big"
@@ -31,18 +31,18 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type SmartContractResult struct {
 	Nonce          uint64                                                  `protobuf:"varint,1,opt,name=Nonce,proto3" json:"nonce"`
-	Value          *math_big.Int                                           `protobuf:"bytes,2,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"value"`
+	Value          *math_big.Int                                           `protobuf:"bytes,2,opt,name=Value,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"value"`
 	RcvAddr        []byte                                                  `protobuf:"bytes,3,opt,name=RcvAddr,proto3" json:"receiver"`
 	SndAddr        []byte                                                  `protobuf:"bytes,4,opt,name=SndAddr,proto3" json:"sender"`
 	RelayerAddr    []byte                                                  `protobuf:"bytes,5,opt,name=RelayerAddr,proto3" json:"relayer"`
-	RelayedValue   *math_big.Int                                           `protobuf:"bytes,6,opt,name=RelayedValue,proto3,casttypewith=math/big.Int;github.com/multiversx/mx-chain-core-go/data.BigIntCaster" json:"relayedValue"`
+	RelayedValue   *math_big.Int                                           `protobuf:"bytes,6,opt,name=RelayedValue,proto3,casttypewith=math/big.Int;github.com/TerraDharitri/drt-go-chain-core/data.BigIntCaster" json:"relayedValue"`
 	Code           []byte                                                  `protobuf:"bytes,7,opt,name=Code,proto3" json:"code,omitempty"`
 	Data           []byte                                                  `protobuf:"bytes,8,opt,name=Data,proto3" json:"data,omitempty"`
 	PrevTxHash     []byte                                                  `protobuf:"bytes,9,opt,name=PrevTxHash,proto3" json:"prevTxHash"`
 	OriginalTxHash []byte                                                  `protobuf:"bytes,10,opt,name=OriginalTxHash,proto3" json:"originalTxHash"`
 	GasLimit       uint64                                                  `protobuf:"varint,11,opt,name=GasLimit,proto3" json:"gasLimit"`
 	GasPrice       uint64                                                  `protobuf:"varint,12,opt,name=GasPrice,proto3" json:"gasPrice"`
-	CallType       github_com_multiversx_mx_chain_core_go_data_vm.CallType `protobuf:"varint,13,opt,name=CallType,proto3,casttype=github.com/multiversx/mx-chain-core-go/data/vm.CallType" json:"callType"`
+	CallType       github_com_TerraDharitri_drt_go_chain_core_data_vm.CallType `protobuf:"varint,13,opt,name=CallType,proto3,casttype=github.com/TerraDharitri/drt-go-chain-core/data/vm.CallType" json:"callType"`
 	CodeMetadata   []byte                                                  `protobuf:"bytes,14,opt,name=CodeMetadata,proto3" json:"codeMetadata,omitempty"`
 	ReturnMessage  []byte                                                  `protobuf:"bytes,15,opt,name=ReturnMessage,proto3" json:"returnMessage,omitempty"`
 	OriginalSender []byte                                                  `protobuf:"bytes,16,opt,name=OriginalSender,proto3" json:"originalSender,omitempty"`
@@ -160,7 +160,7 @@ func (m *SmartContractResult) GetGasPrice() uint64 {
 	return 0
 }
 
-func (m *SmartContractResult) GetCallType() github_com_multiversx_mx_chain_core_go_data_vm.CallType {
+func (m *SmartContractResult) GetCallType() github_com_TerraDharitri_drt_go_chain_core_data_vm.CallType {
 	if m != nil {
 		return m.CallType
 	}
@@ -260,7 +260,7 @@ func (this *SmartContractResult) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.Value, that1.Value) {
 			return false
 		}
@@ -275,7 +275,7 @@ func (this *SmartContractResult) Equal(that interface{}) bool {
 		return false
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		if !__caster.Equal(this.RelayedValue, that1.RelayedValue) {
 			return false
 		}
@@ -432,7 +432,7 @@ func (m *SmartContractResult) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x3a
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.RelayedValue)
 		i -= size
 		if _, err := __caster.MarshalTo(m.RelayedValue, dAtA[i:]); err != nil {
@@ -464,7 +464,7 @@ func (m *SmartContractResult) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		size := __caster.Size(m.Value)
 		i -= size
 		if _, err := __caster.MarshalTo(m.Value, dAtA[i:]); err != nil {
@@ -503,7 +503,7 @@ func (m *SmartContractResult) Size() (n int) {
 		n += 1 + sovSmartContractResult(uint64(m.Nonce))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.Value)
 		n += 1 + l + sovSmartContractResult(uint64(l))
 	}
@@ -520,7 +520,7 @@ func (m *SmartContractResult) Size() (n int) {
 		n += 1 + l + sovSmartContractResult(uint64(l))
 	}
 	{
-		__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+		__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 		l = __caster.Size(m.RelayedValue)
 		n += 1 + l + sovSmartContractResult(uint64(l))
 	}
@@ -681,7 +681,7 @@ func (m *SmartContractResult) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -821,7 +821,7 @@ func (m *SmartContractResult) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			{
-				__caster := &github_com_multiversx_mx_chain_core_go_data.BigIntCaster{}
+				__caster := &github_com_TerraDharitri_drt_go_chain_core_data.BigIntCaster{}
 				if tmp, err := __caster.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 					return err
 				} else {
@@ -1017,7 +1017,7 @@ func (m *SmartContractResult) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.CallType |= github_com_multiversx_mx_chain_core_go_data_vm.CallType(b&0x7F) << shift
+				m.CallType |= github_com_TerraDharitri_drt_go_chain_core_data_vm.CallType(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

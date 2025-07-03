@@ -81,7 +81,7 @@
             "tx": {
                 "from": "''endless_sack_of_erd___________s1",
                 "to": "''node_address__________________s1",
-                "egldValue": "1,000,000,000,000"
+                "rewaValue": "1,000,000,000,000"
             }
         },
         {
@@ -91,7 +91,7 @@
             "tx": {
                 "from": "''node_address__________________s1",
                 "to": "sc:delegation",
-                "egldValue": "1,000,000,000,000",
+                "rewaValue": "1,000,000,000,000",
                 "function": "purchaseStake",
                 "arguments": [
                     "''delegator_1___________________s1"

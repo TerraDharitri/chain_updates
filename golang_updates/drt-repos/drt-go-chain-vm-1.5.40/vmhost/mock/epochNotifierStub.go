@@ -1,8 +1,8 @@
 package mock
 
 import (
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 // EpochNotifierStub -
@@ -27,8 +27,8 @@ func (ens *EpochNotifierStub) IsGlobalMintBurnFlagEnabled() bool {
 	return true
 }
 
-// IsESDTTransferRoleFlagEnabled -
-func (ens *EpochNotifierStub) IsESDTTransferRoleFlagEnabled() bool {
+// IsDCDTTransferRoleFlagEnabled -
+func (ens *EpochNotifierStub) IsDCDTTransferRoleFlagEnabled() bool {
 	return true
 }
 
@@ -42,8 +42,8 @@ func (ens *EpochNotifierStub) IsCheckCorrectTokenIDForTransferRoleFlagEnabled() 
 	return true
 }
 
-// IsMultiESDTTransferFixOnCallBackFlagEnabled -
-func (ens *EpochNotifierStub) IsMultiESDTTransferFixOnCallBackFlagEnabled() bool {
+// IsMultiDCDTTransferFixOnCallBackFlagEnabled -
+func (ens *EpochNotifierStub) IsMultiDCDTTransferFixOnCallBackFlagEnabled() bool {
 	return true
 }
 
@@ -147,13 +147,13 @@ func (ens *EpochNotifierStub) IsTransferToMetaFlagEnabled() bool {
 	return true
 }
 
-// IsESDTNFTImprovementV1FlagEnabled -
-func (ens *EpochNotifierStub) IsESDTNFTImprovementV1FlagEnabled() bool {
+// IsDCDTNFTImprovementV1FlagEnabled -
+func (ens *EpochNotifierStub) IsDCDTNFTImprovementV1FlagEnabled() bool {
 	return true
 }
 
-// MultiESDTTransferAsyncCallBackEnableEpoch -
-func (ens *EpochNotifierStub) MultiESDTTransferAsyncCallBackEnableEpoch() uint32 {
+// MultiDCDTTransferAsyncCallBackEnableEpoch -
+func (ens *EpochNotifierStub) MultiDCDTTransferAsyncCallBackEnableEpoch() uint32 {
 	return 0
 }
 

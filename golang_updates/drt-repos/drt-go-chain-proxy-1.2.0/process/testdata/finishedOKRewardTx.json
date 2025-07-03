@@ -5,7 +5,7 @@
     "processingTypeOnDestination": "MoveBalance",
     "hash": "191a0bf2d29559181da9d93bfd35f8b9f136122006d10b51096fec6be65fb25d",
     "value": "586698853111273957",
-    "receiver": "erd1kkcvtdc6j235d9x830hlz8xc4vvz3q63mlhqykw5nq8f2t0tfx7sx4jhhj",
+    "receiver": "drt1kkcvtdc6j235d9x830hlz8xc4vvz3q63mlhqykw5nq8f2t0tfx7smf955v",
     "sender": "metachain",
     "gasUsed": 50000,
     "sourceShard": 4294967295,

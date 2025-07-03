@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
-	"github.com/multiversx/mx-chain-core-go/hashing"
-	"github.com/multiversx/mx-chain-core-go/marshal"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/hashing"
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 )
 
 // ConvertBytes converts the input bytes in a readable string using multipliers (k, M, G)
@@ -178,31 +178,31 @@ func ConvertToEvenHexBigInt(value *big.Int) string {
 	return str
 }
 
-// ConvertESDTTypeToUint32 converts the esdt type to uint32
-func ConvertESDTTypeToUint32(esdtType string) (uint32, error) {
+// ConvertDCDTTypeToUint32 converts the dcdt type to uint32
+func ConvertDCDTTypeToUint32(esdtType string) (uint32, error) {
 	switch esdtType {
-	case FungibleESDT:
+	case FungibleDCDT:
 		return uint32(Fungible), nil
-	case NonFungibleESDT:
+	case NonFungibleDCDT:
 		return uint32(NonFungible), nil
-	case NonFungibleESDTv2:
+	case NonFungibleDCDTv2:
 		return uint32(NonFungibleV2), nil
-	case MetaESDT:
+	case MetaDCDT:
 		return uint32(MetaFungible), nil
-	case SemiFungibleESDT:
+	case SemiFungibleDCDT:
 		return uint32(SemiFungible), nil
-	case DynamicNFTESDT:
+	case DynamicNFTDCDT:
 		return uint32(DynamicNFT), nil
-	case DynamicSFTESDT:
+	case DynamicSFTDCDT:
 		return uint32(DynamicSFT), nil
-	case DynamicMetaESDT:
+	case DynamicMetaDCDT:
 		return uint32(DynamicMeta), nil
 	default:
-		return math.MaxUint32, fmt.Errorf("invalid esdt type: %s", esdtType)
+		return math.MaxUint32, fmt.Errorf("invalid dcdt type: %s", esdtType)
 	}
 }
 
-// IsDynamicESDT returns true if the esdt type is dynamic
-func IsDynamicESDT(esdtType uint32) bool {
+// IsDynamicDCDT returns true if the dcdt type is dynamic
+func IsDynamicDCDT(esdtType uint32) bool {
 	return esdtType == uint32(DynamicNFT) || esdtType == uint32(DynamicSFT) || esdtType == uint32(DynamicMeta)
 }

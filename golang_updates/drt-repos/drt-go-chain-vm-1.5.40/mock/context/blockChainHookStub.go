@@ -3,8 +3,8 @@ package mock
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 var _ vmcommon.BlockchainHook = (*BlockchainHookStub)(nil)
@@ -35,7 +35,7 @@ type BlockchainHookStub struct {
 	GetCompiledCodeCalled                   func(codeHash []byte) (bool, []byte)
 	SaveCompiledCodeCalled                  func(codeHash []byte, code []byte)
 	GetCodeCalled                           func(account vmcommon.UserAccountHandler) []byte
-	GetESDTTokenCalled                      func(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error)
+	GetDCDTTokenCalled                      func(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error)
 	GetSnapshotCalled                       func() int
 	RevertToSnapshotCalled                  func(snapshot int) error
 	ExecuteSmartContractCallOnOtherVMCalled func(input *vmcommon.ContractCallInput) (*vmcommon.VMOutput, error)
@@ -185,12 +185,12 @@ func (b *BlockchainHookStub) GetUserAccount(address []byte) (vmcommon.UserAccoun
 	return nil, nil
 }
 
-// GetESDTToken mocked method
-func (b *BlockchainHookStub) GetESDTToken(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error) {
-	if b.GetESDTTokenCalled != nil {
-		return b.GetESDTTokenCalled(address, tokenID, nonce)
+// GetDCDTToken mocked method
+func (b *BlockchainHookStub) GetDCDTToken(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error) {
+	if b.GetDCDTTokenCalled != nil {
+		return b.GetDCDTTokenCalled(address, tokenID, nonce)
 	}
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, nil
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, nil
 }
 
 // GetCode mocked method

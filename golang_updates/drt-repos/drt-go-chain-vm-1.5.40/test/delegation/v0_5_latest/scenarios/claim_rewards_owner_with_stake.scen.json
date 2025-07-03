@@ -50,7 +50,7 @@
             "tx": {
                 "from": "address:endless_sack_of_erd",
                 "to": "address:node_address",
-                "egldValue": "100,000,000,000,000"
+                "rewaValue": "100,000,000,000,000"
             }
         },
         {
@@ -59,7 +59,7 @@
             "tx": {
                 "from": "address:node_address",
                 "to": "sc:delegation",
-                "egldValue": "100,000,000,000,000",
+                "rewaValue": "100,000,000,000,000",
                 "function": "stake",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -90,7 +90,7 @@
             "id": "validatorReward-1",
             "tx": {
                 "to": "sc:delegation",
-                "egldValue": "100,000,000"
+                "rewaValue": "100,000,000"
             }
         },
         {
@@ -119,7 +119,7 @@
             "id": "validatorReward-2",
             "tx": {
                 "to": "sc:delegation",
-                "egldValue": "100,000,000"
+                "rewaValue": "100,000,000"
             }
         },
         {

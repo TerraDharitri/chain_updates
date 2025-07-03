@@ -88,7 +88,7 @@ func TestShardShouldNotProposeAndExecuteTwoBlocksInSameRound(t *testing.T) {
 //  2. proposer will have those 3 transactions in its pools and will propose a block
 //  3. another node will be able to sync the proposed block (and request - receive) the 2 transactions that
 //     will end up in the block (one valid and one invalid)
-//  4. the non-executable transaction will not be immediately removed from the proposer's pool. See MX-16200.
+//  4. the non-executable transaction will not be immediately removed from the proposer's pool. See DRT-16200.
 func TestShardShouldProposeBlockContainingInvalidTransactions(t *testing.T) {
 	if testing.Short() {
 		t.Skip("this is not a short test")
@@ -205,7 +205,7 @@ func testStateOnNodes(t *testing.T, nodes []*integrationTests.TestProcessorNode,
 	_, ok = proposer.DataPool.Transactions().SearchFirstData(hashes[txInvalidIdx])
 	assert.False(t, ok)
 
-	// Not removed from mempool (see MX-16200).
+	// Not removed from mempool (see DRT-16200).
 	_, ok = proposer.DataPool.Transactions().SearchFirstData(hashes[txDeletedIdx])
 	assert.True(t, ok)
 }

@@ -1,7 +1,7 @@
 package wasmer
 
 import (
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // OpcodeCount is the number of opcodes that we account for when setting gas costs.

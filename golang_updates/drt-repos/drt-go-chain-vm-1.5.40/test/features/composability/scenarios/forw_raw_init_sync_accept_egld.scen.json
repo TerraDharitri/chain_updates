@@ -10,7 +10,7 @@
                 "sc:vault": {
                     "nonce": "0",
                     "balance": "0",
-                    "code": "mxsc:../vault/output/vault.mxsc.json"
+                    "code": "drtsc:../vault/output/vault.drtsc.json"
                 }
             },
             "newAddresses": [
@@ -26,8 +26,8 @@
             "id": "deploy",
             "tx": {
                 "from": "address:owner",
-                "egldValue": "1000",
-                "contractCode": "mxsc:../forwarder-raw/output/forwarder-raw-init-sync-call.mxsc.json",
+                "rewaValue": "1000",
+                "contractCode": "drtsc:../forwarder-raw/output/forwarder-raw-init-sync-call.drtsc.json",
                 "arguments": [
                     "sc:vault",
                     "str:accept_funds"

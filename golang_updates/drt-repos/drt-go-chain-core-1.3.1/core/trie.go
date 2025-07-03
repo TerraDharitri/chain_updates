@@ -3,7 +3,7 @@ package core
 import (
 	"strconv"
 
-	"github.com/multiversx/mx-chain-core-go/core/check"
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 )
 
 // TrieNodeVersion defines the version of the trie node

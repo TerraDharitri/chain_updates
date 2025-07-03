@@ -8,19 +8,19 @@ import (
 	"path"
 	"time"
 
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/process"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/api"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/config"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/metrics"
-	"github.com/multiversx/mx-chain-proxy-go/observer"
-	processProxy "github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/cache"
-	processFactory "github.com/multiversx/mx-chain-proxy-go/process/factory"
-	versionsFactory "github.com/multiversx/mx-chain-proxy-go/versions/factory"
-	proxy2 "github.com/multiversx/mx-chain-simulator-go/pkg/proxy"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/config"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/metrics"
+	"github.com/TerraDharitri/drt-go-chain-proxy/observer"
+	processProxy "github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/cache"
+	processFactory "github.com/TerraDharitri/drt-go-chain-proxy/process/factory"
+	versionsFactory "github.com/TerraDharitri/drt-go-chain-proxy/versions/factory"
+	proxy2 "github.com/TerraDharitri/drt-go-chain-simulator/pkg/proxy"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/process"
 )
 
 var log = logger.GetOrCreate("proxy")
@@ -153,7 +153,7 @@ func CreateProxy(args ArgsProxy) (*ArgsOutputProxy, error) {
 		return nil, err
 	}
 
-	esdtSuppliesProc, err := processProxy.NewESDTSupplyProcessor(bp, scQueryProc)
+	dcdtSuppliesProc, err := processProxy.NewDCDTSupplyProcessor(bp, scQueryProc)
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +181,7 @@ func CreateProxy(args ArgsProxy) (*ArgsOutputProxy, error) {
 		ValidatorStatisticsProcessor: valStatsProc,
 		ProofProcessor:               proofProc,
 		PubKeyConverter:              pubKeyConverter,
-		ESDTSuppliesProcessor:        esdtSuppliesProc,
+		DCDTSuppliesProcessor:        dcdtSuppliesProc,
 		StatusProcessor:              statusProc,
 		AboutInfoProcessor:           aboutInfoProc,
 	}

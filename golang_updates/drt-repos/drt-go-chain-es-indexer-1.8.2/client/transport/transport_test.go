@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/multiversx/mx-chain-es-indexer-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/core/request"
-	"github.com/multiversx/mx-chain-es-indexer-go/metrics"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/core/request"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/metrics"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 

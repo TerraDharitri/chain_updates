@@ -4,18 +4,18 @@ import (
 	"fmt"
 	"math/big"
 
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-common-go/txDataBuilder"
-	"github.com/multiversx/mx-chain-vm-go/executor"
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	test "github.com/multiversx/mx-chain-vm-go/testcommon"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
-	"github.com/multiversx/mx-chain-vm-go/vmhost/vmhooks"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm-common/txDataBuilder"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
 )
 
-// ExecESDTTransferAndCallChild is an exposed mock contract method
-func ExecESDTTransferAndCallChild(instanceMock *mock.InstanceMock, config interface{}) {
-	instanceMock.AddMockMethod("execESDTTransferAndCall", func() *mock.InstanceMock {
+// ExecDCDTTransferAndCallChild is an exposed mock contract method
+func ExecDCDTTransferAndCallChild(instanceMock *mock.InstanceMock, config interface{}) {
+	instanceMock.AddMockMethod("execDCDTTransferAndCall", func() *mock.InstanceMock {
 		testConfig := config.(*test.TestConfig)
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
@@ -35,8 +35,8 @@ func ExecESDTTransferAndCallChild(instanceMock *mock.InstanceMock, config interf
 		input.CallerAddr = host.Runtime().GetContextAddress()
 		input.GasProvided = testConfig.GasProvidedToChild
 		input.Arguments = [][]byte{
-			test.ESDTTestTokenName,
-			big.NewInt(int64(testConfig.ESDTTokensToTransfer)).Bytes(),
+			test.DCDTTestTokenName,
+			big.NewInt(int64(testConfig.DCDTTokensToTransfer)).Bytes(),
 		}
 		input.Arguments = append(input.Arguments, arguments[2:]...)
 		input.RecipientAddr = arguments[0]
@@ -51,9 +51,9 @@ func ExecESDTTransferAndCallChild(instanceMock *mock.InstanceMock, config interf
 	})
 }
 
-// ExecESDTTransferWithAPICall is an exposed mock contract method
-func ExecESDTTransferWithAPICall(instanceMock *mock.InstanceMock, config interface{}) {
-	instanceMock.AddMockMethod("execESDTTransferWithAPICall", func() *mock.InstanceMock {
+// ExecDCDTTransferWithAPICall is an exposed mock contract method
+func ExecDCDTTransferWithAPICall(instanceMock *mock.InstanceMock, config interface{}) {
+	instanceMock.AddMockMethod("execDCDTTransferWithAPICall", func() *mock.InstanceMock {
 		testConfig := config.(*test.TestConfig)
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
@@ -73,8 +73,8 @@ func ExecESDTTransferWithAPICall(instanceMock *mock.InstanceMock, config interfa
 		input.CallerAddr = host.Runtime().GetContextAddress()
 		input.GasProvided = testConfig.GasProvidedToChild
 		input.Arguments = [][]byte{
-			test.ESDTTestTokenName,
-			big.NewInt(int64(testConfig.ESDTTokensToTransfer)).Bytes(),
+			test.DCDTTestTokenName,
+			big.NewInt(int64(testConfig.DCDTTokensToTransfer)).Bytes(),
 			arguments[2],
 		}
 		input.RecipientAddr = arguments[0]
@@ -82,17 +82,17 @@ func ExecESDTTransferWithAPICall(instanceMock *mock.InstanceMock, config interfa
 		functionName := arguments[1]
 		args := [][]byte{arguments[2]}
 
-		transfer := &vmcommon.ESDTTransfer{
-			ESDTValue:      big.NewInt(int64(testConfig.ESDTTokensToTransfer)),
-			ESDTTokenName:  test.ESDTTestTokenName,
-			ESDTTokenType:  0,
-			ESDTTokenNonce: 0,
+		transfer := &vmcommon.DCDTTransfer{
+			DCDTValue:      big.NewInt(int64(testConfig.DCDTTokensToTransfer)),
+			DCDTTokenName:  test.DCDTTestTokenName,
+			DCDTTokenType:  0,
+			DCDTTokenNonce: 0,
 		}
 
-		vmhooks.TransferESDTNFTExecuteWithTypedArgs(
+		vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
 			host,
 			input.RecipientAddr,
-			[]*vmcommon.ESDTTransfer{transfer},
+			[]*vmcommon.DCDTTransfer{transfer},
 			int64(testConfig.GasProvidedToChild),
 			functionName,
 			args)
@@ -101,9 +101,9 @@ func ExecESDTTransferWithAPICall(instanceMock *mock.InstanceMock, config interfa
 	})
 }
 
-// ExecESDTTransferAndAsyncCallChild is an exposed mock contract method
-func ExecESDTTransferAndAsyncCallChild(instanceMock *mock.InstanceMock, config interface{}) {
-	instanceMock.AddMockMethod("execESDTTransferAndAsyncCall", func() *mock.InstanceMock {
+// ExecDCDTTransferAndAsyncCallChild is an exposed mock contract method
+func ExecDCDTTransferAndAsyncCallChild(instanceMock *mock.InstanceMock, config interface{}) {
+	instanceMock.AddMockMethod("execDCDTTransferAndAsyncCall", func() *mock.InstanceMock {
 		testConfig := config.(*test.TestConfig)
 		host := instanceMock.Host
 		instance := mock.GetMockInstance(host)
@@ -131,8 +131,8 @@ func ExecESDTTransferAndAsyncCallChild(instanceMock *mock.InstanceMock, config i
 		callData := txDataBuilder.NewBuilder()
 		// function to be called on child
 		callData.Func(string(builtInFunction))
-		callData.Bytes(test.ESDTTestTokenName)
-		callData.Bytes(big.NewInt(int64(testConfig.ESDTTokensToTransfer)).Bytes())
+		callData.Bytes(test.DCDTTestTokenName)
+		callData.Bytes(big.NewInt(int64(testConfig.DCDTTokensToTransfer)).Bytes())
 		callData.Bytes(functionToCallOnChild)
 		callData.Bytes(numberOfBackTransfers)
 

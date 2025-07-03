@@ -538,7 +538,7 @@ func (bh *BlockChainHookImpl) IsSmartContract(address []byte) bool {
 	return core.IsSmartContractAddress(address)
 }
 
-// IsPayable checks whether the provided address can receive ERD or not
+// IsPayable checks whether the provided address can receive DRT or not
 func (bh *BlockChainHookImpl) IsPayable(sndAddress []byte, recvAddress []byte) (bool, error) {
 	if core.IsSystemAccountAddress(recvAddress) {
 		return false, nil

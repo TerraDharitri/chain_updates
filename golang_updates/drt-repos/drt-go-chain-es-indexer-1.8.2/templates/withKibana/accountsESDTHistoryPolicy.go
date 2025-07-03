@@ -1,9 +1,9 @@
 package withKibana
 
-// AccountsESDTHistoryPolicy will hold the configuration for the accountsesdthistory index policy
-var AccountsESDTHistoryPolicy = Object{
+// AccountsDCDTHistoryPolicy will hold the configuration for the accountsdcdthistory index policy
+var AccountsDCDTHistoryPolicy = Object{
 	"policy": Object{
-		"description":   "Open distro policy for the accountsesdthistory elastic index.",
+		"description":   "Open distro policy for the accountsdcdthistory elastic index.",
 		"default_state": "hot",
 		"states": Array{
 			Object{
@@ -37,7 +37,7 @@ var AccountsESDTHistoryPolicy = Object{
 			},
 		},
 		"ism_template": Object{
-			"index_patterns": Array{"accountsesdthistory-*"},
+			"index_patterns": Array{"accountsdcdthistory-*"},
 			"priority":       100,
 		},
 	},

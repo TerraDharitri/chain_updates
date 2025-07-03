@@ -5,16 +5,16 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core/pubkeyConverter"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	crypto "github.com/multiversx/mx-chain-crypto-go"
-	"github.com/multiversx/mx-chain-crypto-go/signing"
-	"github.com/multiversx/mx-chain-crypto-go/signing/ed25519"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/facade"
-	"github.com/multiversx/mx-chain-proxy-go/facade/mock"
+	crypto "github.com/TerraDharitri/drt-go-chain-core"
+	"github.com/TerraDharitri/drt-go-chain-core/core/pubkeyConverter"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	"github.com/TerraDharitri/drt-go-chain-core/signing"
+	"github.com/TerraDharitri/drt-go-chain-core/signing/ed25519"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade"
+	"github.com/TerraDharitri/drt-go-chain-proxy/facade/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -42,7 +42,7 @@ func TestNewProxyFacade_NilActionsProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -67,7 +67,7 @@ func TestNewProxyFacade_NilAccountProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -92,7 +92,7 @@ func TestNewProxyFacade_NilTransactionProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -117,7 +117,7 @@ func TestNewProxyFacade_NilGetValuesProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -142,7 +142,7 @@ func TestNewProxyFacade_NilNodeGroupProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -167,7 +167,7 @@ func TestNewProxyFacade_NilValStatsProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -192,7 +192,7 @@ func TestNewProxyFacade_NilFaucetProcShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -217,7 +217,7 @@ func TestNewProxyFacade_NilNodeProcessor(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -242,7 +242,7 @@ func TestNewProxyFacade_NilBlocksProcessor(t *testing.T) {
 		nil,
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -267,7 +267,7 @@ func TestNewProxyFacade_NilProofProcessor(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		nil,
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -292,7 +292,7 @@ func TestNewProxyFacade_NilStatusProcessorShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		nil,
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -317,7 +317,7 @@ func TestNewProxyFacade_NilAboutInfoProcessorShouldErr(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		nil,
 	)
@@ -342,7 +342,7 @@ func TestNewProxyFacade_ShouldWork(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -390,7 +390,7 @@ func TestNewProxyFacade_GetBlocksByRound(t *testing.T) {
 		},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -427,7 +427,7 @@ func TestProxyFacade_GetAccount(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -460,7 +460,7 @@ func TestProxyFacade_SendTransaction(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -492,7 +492,7 @@ func TestProxyFacade_SimulateTransaction(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -550,7 +550,7 @@ func TestProxyFacade_SendUserFunds(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -582,7 +582,7 @@ func TestProxyFacade_GetDataValue(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -620,7 +620,7 @@ func TestProxyFacade_GetHeartbeatData(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -655,7 +655,7 @@ func TestProxyFacade_ReloadObservers(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -690,7 +690,7 @@ func TestProxyFacade_ReloadFullHistoryObservers(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -729,7 +729,7 @@ func TestProxyFacade_GetBlockByHash(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -769,7 +769,7 @@ func TestProxyFacade_GetBlockByNonce(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -811,7 +811,7 @@ func TestProxyFacade_GetInternalBlockByHash(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -851,7 +851,7 @@ func TestProxyFacade_GetInternalBlockByNonce(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -891,7 +891,7 @@ func TestProxyFacade_GetInternalMiniBlockByHash(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -929,7 +929,7 @@ func TestProxyFacade_GetRatingsConfig(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -994,7 +994,7 @@ func TestProxyFacade_GetTransactionsPool(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -1048,7 +1048,7 @@ func TestProxyFacade_GetGasConfigs(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)
@@ -1085,7 +1085,7 @@ func TestProxyFacade_GetWaitingEpochsLeftForPublicKey(t *testing.T) {
 		&mock.BlocksProcessorStub{},
 		&mock.ProofProcessorStub{},
 		publicKeyConverter,
-		&mock.ESDTSuppliesProcessorStub{},
+		&mock.DCDTSuppliesProcessorStub{},
 		&mock.StatusProcessorStub{},
 		&mock.AboutInfoProcessorStub{},
 	)

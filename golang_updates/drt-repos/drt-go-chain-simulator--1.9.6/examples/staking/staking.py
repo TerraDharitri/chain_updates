@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import (Address, DelegationTransactionsOutcomeParser,
+from dharitri_sdk import (Address, DelegationTransactionsOutcomeParser,
                             ProxyNetworkProvider, TransactionOnNetwork,
                             TransactionsFactoryConfig,
                             TransferTransactionsFactory, UserSecretKey)
@@ -28,7 +28,7 @@ def main():
     # call proxy faucet
     data: dict[str, Any] = {
         "receiver": f"{address.to_bech32()}",
-        "value": 20000000000000000000000  # 20k eGLD
+        "value": 20000000000000000000000  # 20k rEWA
     }
     provider.do_post_generic("transaction/send-user-funds", data)
     provider.do_post_generic(f"{GENERATE_BLOCKS_URL}/1", {})
@@ -44,15 +44,15 @@ def main():
 
     # ################## create a staking provider
     system_delegation_manager = Address.new_from_bech32(
-        "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6"
+        "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv"
     )
     config = TransactionsFactoryConfig(provider.get_network_config().chain_id)
     tx_factory = TransferTransactionsFactory(config)
-    amount_egld = 1250000000000000000000  # 1250 egld
+    amount_rewa = 1250000000000000000000  # 1250 rewa
     call_transaction = tx_factory.create_transaction_for_native_token_transfer(
         sender=address,
         receiver=system_delegation_manager,
-        native_amount=amount_egld,
+        native_amount=amount_rewa,
         data="createNewDelegationContract@00@0ea1"
     )
     call_transaction.gas_limit = 65000000
@@ -136,13 +136,13 @@ def main():
     time.sleep(0.5)
     provider.do_post_generic(f"{GENERATE_BLOCKS_UNTIL_TX_PROCESSED}/{tx_hash.hex()}", {})
 
-    # check if the owner receive more than 5 egld in rewards
+    # check if the owner receive more than 5 rewa in rewards
     claim_reward_tx = get_tx_and_verify_status(provider, tx_hash.hex())
-    one_egld = 1000000000000000000
+    one_rewa = 1000000000000000000
     rewards_value = claim_reward_tx.smart_contract_results[0].raw.get("value", 0)
-    if rewards_value < one_egld:
+    if rewards_value < one_rewa:
         sys.exit(f"owner of the delegation contract didn't receive the expected amount of rewards: expected more than "
-                 f"1 EGLD, received: {rewards_value}")
+                 f"1 REWA, received: {rewards_value}")
 
     print(f"owner has received rewards, received rewards: {rewards_value}")
 

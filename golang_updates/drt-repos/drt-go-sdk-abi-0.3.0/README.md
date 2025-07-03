@@ -1,3 +1,3 @@
-# mx-sdk-abi-go
+# drt-go-sdk-abi
 
-ABI components and ABI-aware codecs for interacting with MultiversX smart contracts (using Go).
+ABI components and ABI-aware codecs for interacting with Dharitri smart contracts (using Go).

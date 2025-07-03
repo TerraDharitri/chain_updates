@@ -6,14 +6,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/alteredAccount"
-	"github.com/multiversx/mx-chain-core-go/data/api"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-proxy-go/common"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	"github.com/multiversx/mx-chain-proxy-go/process"
-	"github.com/multiversx/mx-chain-proxy-go/process/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/alteredAccount"
+	"github.com/TerraDharitri/drt-go-chain-core/data/api"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-proxy/common"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process"
+	"github.com/TerraDharitri/drt-go-chain-proxy/process/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -974,7 +974,7 @@ func TestBlockProcessor_GetAlteredAccountsByNonce(t *testing.T) {
 	t.Parallel()
 
 	requestedShardID := uint32(1)
-	alteredAcc := &alteredAccount.AlteredAccount{Address: "erd1q"}
+	alteredAcc := &alteredAccount.AlteredAccount{Address: "drt1q"}
 
 	t.Run("could not get observers, should return error", func(t *testing.T) {
 		t.Parallel()
@@ -1061,7 +1061,7 @@ func TestBlockProcessor_GetAlteredAccountsByHash(t *testing.T) {
 	t.Parallel()
 
 	requestedShardID := uint32(1)
-	alteredAcc := &alteredAccount.AlteredAccount{Address: "erd1q"}
+	alteredAcc := &alteredAccount.AlteredAccount{Address: "drt1q"}
 
 	t.Run("could not get observers, should return error", func(t *testing.T) {
 		t.Parallel()
@@ -1148,8 +1148,8 @@ func TestBlockProcessor_GetHyperBlockByNonceWithAlteredAccounts(t *testing.T) {
 	t.Parallel()
 
 	observerAddr := "observerAddress"
-	alteredAcc1 := &alteredAccount.AlteredAccount{Address: "erd1q"}
-	alteredAcc2 := &alteredAccount.AlteredAccount{Address: "erd1w"}
+	alteredAcc1 := &alteredAccount.AlteredAccount{Address: "drt1q"}
+	alteredAcc2 := &alteredAccount.AlteredAccount{Address: "drt1w"}
 
 	callGetEndpointCt := 0
 	getObserversCt := 0
@@ -1265,8 +1265,8 @@ func TestBlockProcessor_GetHyperBlockByHashWithAlteredAccounts(t *testing.T) {
 	t.Parallel()
 
 	observerAddr := "observerAddress"
-	alteredAcc1 := &alteredAccount.AlteredAccount{Address: "erd1q"}
-	alteredAcc2 := &alteredAccount.AlteredAccount{Address: "erd1w"}
+	alteredAcc1 := &alteredAccount.AlteredAccount{Address: "drt1q"}
+	alteredAcc2 := &alteredAccount.AlteredAccount{Address: "drt1w"}
 
 	callGetEndpointCt := 0
 	getObserversCt := 0

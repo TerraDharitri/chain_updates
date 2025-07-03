@@ -6,11 +6,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/transaction"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
-	"github.com/multiversx/mx-chain-es-indexer-go/mock"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/transaction"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/mock"
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,7 +19,7 @@ func TestProcessNFTProperties_Update(t *testing.T) {
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte("ESDTNFTUpdateAttributes"),
+		Identifier: []byte("DCDTNFTUpdateAttributes"),
 		Topics:     [][]byte{[]byte("TOUC-aaaa"), big.NewInt(1).Bytes(), nil, []byte("new-something")},
 	}
 	args := &argsProcessEvent{
@@ -43,7 +43,7 @@ func TestProcessNFTProperties_AddUris(t *testing.T) {
 
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte("ESDTNFTAddURI"),
+		Identifier: []byte("DCDTNFTAddURI"),
 		Topics:     [][]byte{[]byte("TOUC-aaaa"), big.NewInt(1).Bytes(), nil, []byte("uri1"), []byte("uri2")},
 	}
 	args := &argsProcessEvent{
@@ -65,18 +65,18 @@ func TestProcessNFTProperties_AddUris(t *testing.T) {
 func TestProcessNFTMetaDataRecreate(t *testing.T) {
 	nftsPropertiesP := newNFTsPropertiesProcessor(&mock.PubkeyConverterMock{}, &mock.MarshalizerMock{})
 
-	esdtData := &esdt.ESDigitalToken{
-		TokenMetaData: &esdt.MetaData{
+	dcdtData := &dcdt.DCDigitalToken{
+		TokenMetaData: &dcdt.MetaData{
 			Creator: []byte("creator"),
 		},
 	}
-	esdtDataBytes, _ := json.Marshal(esdtData)
+	dcdtDataBytes, _ := json.Marshal(dcdtData)
 
 	nonce := uint64(19)
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte(core.ESDTMetaDataRecreate),
-		Topics:     [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(nonce).Bytes(), big.NewInt(1).Bytes(), esdtDataBytes},
+		Identifier: []byte(core.DCDTMetaDataRecreate),
+		Topics:     [][]byte{[]byte("my-token"), big.NewInt(0).SetUint64(nonce).Bytes(), big.NewInt(1).Bytes(), dcdtDataBytes},
 	}
 	args := &argsProcessEvent{
 		timestamp: 1234,
@@ -95,7 +95,7 @@ func TestProcessNFTProperties_FreezeAndUnFreeze(t *testing.T) {
 	// freeze
 	event := &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte("ESDTFreeze"),
+		Identifier: []byte("DCDTFreeze"),
 		Topics:     [][]byte{[]byte("TOUC-aaaa"), big.NewInt(1).Bytes(), nil, []byte("something")},
 	}
 	args := &argsProcessEvent{
@@ -112,7 +112,7 @@ func TestProcessNFTProperties_FreezeAndUnFreeze(t *testing.T) {
 	// unFreeze
 	event = &transaction.Event{
 		Address:    []byte("addr"),
-		Identifier: []byte("ESDTUnFreeze"),
+		Identifier: []byte("DCDTUnFreeze"),
 		Topics:     [][]byte{[]byte("TOUC-aaaa"), big.NewInt(1).Bytes(), nil, []byte("something")},
 	}
 	args = &argsProcessEvent{
@@ -129,14 +129,14 @@ func TestProcessPauseAndUnPauseEvent(t *testing.T) {
 	npp := &nftsPropertiesProc{}
 
 	// test pause event
-	result := npp.processPauseAndUnPauseEvent(core.BuiltInFunctionESDTPause, "token1")
+	result := npp.processPauseAndUnPauseEvent(core.BuiltInFunctionDCDTPause, "token1")
 	require.True(t, result.processed, "Expected processed to be true")
 	require.Equal(t, "token1", result.updatePropNFT.Identifier, "Expected identifier to be token1")
 	require.True(t, result.updatePropNFT.Pause, "Expected pause to be true")
 	require.False(t, result.updatePropNFT.UnPause, "Expected unpause to be false")
 
 	// test unpause event
-	result = npp.processPauseAndUnPauseEvent(core.BuiltInFunctionESDTUnPause, "token2")
+	result = npp.processPauseAndUnPauseEvent(core.BuiltInFunctionDCDTUnPause, "token2")
 	require.True(t, result.processed, "Expected processed to be true")
 	require.Equal(t, "token2", result.updatePropNFT.Identifier, "Expected identifier to be token2")
 	require.False(t, result.updatePropNFT.Pause, "Expected pause to be false")

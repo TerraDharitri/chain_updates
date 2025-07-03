@@ -2,8 +2,9 @@ package state
 
 import (
 	"fmt"
-	"github.com/TerraDharitri/mx-chain-core-go/core/check"
-	chainData "github.com/TerraDharitri/mx-chain-core-go/data"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core/check"
+	chainData "github.com/TerraDharitri/drt-go-chain-core/data"
 	"github.com/TerraDharitri/drt-go-chain/common"
 	"github.com/TerraDharitri/drt-go-chain/config"
 	"github.com/TerraDharitri/drt-go-chain/dataRetriever"
@@ -44,7 +45,7 @@ type stateComponentsFactory struct {
 	chainHandler             chainData.ChainHandler
 }
 
-// stateComponents struct holds the state components of the Dharitri protocol
+// stateComponents struct holds the state components of the DharitrI protocol
 type stateComponents struct {
 	peerAccounts             state.AccountsAdapter
 	accountsAdapter          state.AccountsAdapter

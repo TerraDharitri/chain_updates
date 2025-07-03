@@ -5,13 +5,13 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/config"
-	"github.com/multiversx/mx-chain-vm-go/crypto"
-	"github.com/multiversx/mx-chain-vm-go/executor"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/config"
+	"github.com/TerraDharitri/drt-go-chain-vm/crypto"
+	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 )
 
 // StateStack defines the functionality for working with a state stack
@@ -42,7 +42,7 @@ type VMHost interface {
 	Storage() StorageContext
 	EnableEpochsHandler() EnableEpochsHandler
 
-	ExecuteESDTTransfer(transfersArgs *ESDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error)
+	ExecuteDCDTTransfer(transfersArgs *DCDTTransfersArgs, callType vm.CallType) (*vmcommon.VMOutput, uint64, error)
 	CreateNewContract(input *vmcommon.ContractCreateInput, createContractCallType int) ([]byte, error)
 	ExecuteOnSameContext(input *vmcommon.ContractCallInput) error
 	ExecuteOnDestContext(input *vmcommon.ContractCallInput) (*vmcommon.VMOutput, bool, error)
@@ -96,7 +96,7 @@ type BlockchainContext interface {
 	IsPayable(sndAddress, rcvAddress []byte) (bool, error)
 	SaveCompiledCode(codeHash []byte, code []byte)
 	GetCompiledCode(codeHash []byte) (bool, []byte)
-	GetESDTToken(address []byte, tokenID []byte, nonce uint64) (*esdt.ESDigitalToken, error)
+	GetDCDTToken(address []byte, tokenID []byte, nonce uint64) (*dcdt.DCDigitalToken, error)
 	IsLimitedTransfer(tokenID []byte) bool
 	IsPaused(tokenID []byte) bool
 	GetUserAccount(address []byte) (vmcommon.UserAccountHandler, error)
@@ -162,7 +162,7 @@ type RuntimeContext interface {
 	GetAllErrors() error
 
 	ValidateCallbackName(callbackName string) error
-	
+
 	IsReservedFunctionName(functionName string) bool
 
 	HasFunction(functionName string) bool
@@ -223,9 +223,9 @@ type ManagedTypesContext interface {
 	ManagedMapGet(mMapHandle int32, keyHandle int32, outValueHandle int32) error
 	ManagedMapRemove(mMapHandle int32, keyHandle int32, outValueHandle int32) error
 	ManagedMapContains(mMapHandle int32, keyHandle int32) (bool, error)
-	GetBackTransfers() ([]*vmcommon.ESDTTransfer, *big.Int)
+	GetBackTransfers() ([]*vmcommon.DCDTTransfer, *big.Int)
 	AddValueOnlyBackTransfer(value *big.Int)
-	AddBackTransfers(transfers []*vmcommon.ESDTTransfer)
+	AddBackTransfers(transfers []*vmcommon.DCDTTransfer)
 	PopBackTransferIfAsyncCallBack(vmInput *vmcommon.ContractCallInput)
 }
 
@@ -243,7 +243,7 @@ type OutputContext interface {
 	WriteLogWithIdentifier(address []byte, topics [][]byte, data [][]byte, identifier []byte)
 	TransferValueOnly(destination []byte, sender []byte, value *big.Int, checkPayable bool) error
 	Transfer(destination []byte, sender []byte, gasLimit uint64, gasLocked uint64, value *big.Int, asyncData []byte, input []byte, callType vm.CallType) error
-	TransferESDT(transfersArgs *ESDTTransfersArgs, callInput *vmcommon.ContractCallInput) (uint64, error)
+	TransferDCDT(transfersArgs *DCDTTransfersArgs, callInput *vmcommon.ContractCallInput) (uint64, error)
 	GetRefund() uint64
 	SetRefund(refund uint64)
 	ReturnCode() vmcommon.ReturnCode

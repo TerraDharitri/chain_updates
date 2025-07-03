@@ -16,15 +16,15 @@
       "address": "a4823050d2396540b17bd9290523973763142c9f655bb26cd9e33f359b6d73ad",
       "events": [
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
-          "identifier": "ESDTNFTTransfer",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
+          "identifier": "DCDTNFTTransfer",
           "topics": [
             "V0FSUC05YWIzMjI="
           ],
           "data": null
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "signalError",
           "topics": [
             "PcsDekGLvCoXOQRSrs9OWLbpCiUYjTapCfGPuKVbdl8="
@@ -32,7 +32,7 @@
           "data": "QDY1Nzg2NTYzNzU3NDY5NmY2ZTIwNjY2MTY5NmM2NTY0"
         },
         {
-          "address": "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty",
+          "address": "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6",
           "identifier": "internalVMErrors",
           "topics": [
             "AAAAAAAAAAAFAAfCb7p+cp8llHG2CSInNKwxoB1Qdl8="
@@ -45,16 +45,16 @@
     "tokens": [
       "TKN-9ab322-01"
     ],
-    "esdtValues": [
+    "dcdtValues": [
       "1"
     ],
     "receivers": [
-      "erd1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90pspgvqty"
+      "drt1adfmxhyczrl2t97yx92v5nywqyse0c7qh4xs0p4artg2utnu90psu5mrg6"
     ],
     "receiversShardIDs": [
       1
     ],
-    "operation": "ESDTNFTTransfer",
+    "operation": "DCDTNFTTransfer",
     "function": "call",
     "initiallyPaidFee": "407005000000000",
     "fee": "407005000000000",

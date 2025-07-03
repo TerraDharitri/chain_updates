@@ -1,9 +1,9 @@
 {
-  "logAddress": "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99",
-  "identifier": "ESDTTransfer",
-  "address": "erd1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qtlgy99",
+  "logAddress": "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm",
+  "identifier": "DCDTTransfer",
+  "address": "drt1ju8pkvg57cwdmjsjx58jlmnuf4l9yspstrhr9tgsrt98n9edpm2qkrl8xm",
   "topics": [
-    "455344542d61626364",
+    "444344542d61626364",
     "",
     "01"
   ],

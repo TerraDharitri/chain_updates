@@ -3,38 +3,38 @@ package logsevents
 import (
 	"unicode"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 )
 
 const (
 	tokenTopicsIndex            = 0
 	propertyPairStep            = 2
-	esdtPropertiesStartIndex    = 2
+	dcdtPropertiesStartIndex    = 2
 	minTopicsPropertiesAndRoles = 4
 	upgradePropertiesEvent      = "upgradeProperties"
 )
 
-type esdtPropertiesProc struct {
+type dcdtPropertiesProc struct {
 	pubKeyConverter            core.PubkeyConverter
 	rolesOperationsIdentifiers map[string]struct{}
 }
 
-func newEsdtPropertiesProcessor(pubKeyConverter core.PubkeyConverter) *esdtPropertiesProc {
-	return &esdtPropertiesProc{
+func newDcdtPropertiesProcessor(pubKeyConverter core.PubkeyConverter) *dcdtPropertiesProc {
+	return &dcdtPropertiesProc{
 		pubKeyConverter: pubKeyConverter,
 		rolesOperationsIdentifiers: map[string]struct{}{
-			core.BuiltInFunctionSetESDTRole:                 {},
-			core.BuiltInFunctionUnSetESDTRole:               {},
-			core.BuiltInFunctionESDTNFTCreateRoleTransfer:   {},
+			core.BuiltInFunctionSetDCDTRole:                 {},
+			core.BuiltInFunctionUnSetDCDTRole:               {},
+			core.BuiltInFunctionDCDTNFTCreateRoleTransfer:   {},
 			upgradePropertiesEvent:                          {},
-			vmcommon.BuiltInFunctionESDTUnSetBurnRoleForAll: {},
-			vmcommon.BuiltInFunctionESDTSetBurnRoleForAll:   {},
+			vmcommon.BuiltInFunctionDCDTUnSetBurnRoleForAll: {},
+			vmcommon.BuiltInFunctionDCDTSetBurnRoleForAll:   {},
 		},
 	}
 }
 
-func (epp *esdtPropertiesProc) processEvent(args *argsProcessEvent) argOutputProcessEvent {
+func (epp *dcdtPropertiesProc) processEvent(args *argsProcessEvent) argOutputProcessEvent {
 	identifier := string(args.event.GetIdentifier())
 	_, ok := epp.rolesOperationsIdentifiers[identifier]
 	if !ok {
@@ -52,7 +52,7 @@ func (epp *esdtPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 		return epp.extractTokenProperties(args)
 	}
 
-	if identifier == core.BuiltInFunctionESDTNFTCreateRoleTransfer {
+	if identifier == core.BuiltInFunctionDCDTNFTCreateRoleTransfer {
 		return epp.extractDataNFTCreateRoleTransfer(args)
 	}
 
@@ -70,12 +70,12 @@ func (epp *esdtPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 		}
 	}
 
-	shouldAddRole := identifier == core.BuiltInFunctionSetESDTRole || identifier == vmcommon.BuiltInFunctionESDTSetBurnRoleForAll
+	shouldAddRole := identifier == core.BuiltInFunctionSetDCDTRole || identifier == vmcommon.BuiltInFunctionDCDTSetBurnRoleForAll
 
 	addrBech := epp.pubKeyConverter.SilentEncode(args.event.GetAddress(), log)
 	for _, roleBytes := range rolesBytes {
 		addr := addrBech
-		if string(roleBytes) == vmcommon.ESDTRoleBurnForAll {
+		if string(roleBytes) == vmcommon.DCDTRoleBurnForAll {
 			addr = ""
 		}
 
@@ -87,21 +87,21 @@ func (epp *esdtPropertiesProc) processEvent(args *argsProcessEvent) argOutputPro
 	}
 }
 
-func (epp *esdtPropertiesProc) extractDataNFTCreateRoleTransfer(args *argsProcessEvent) argOutputProcessEvent {
+func (epp *dcdtPropertiesProc) extractDataNFTCreateRoleTransfer(args *argsProcessEvent) argOutputProcessEvent {
 	topics := args.event.GetTopics()
 
 	addrBech := epp.pubKeyConverter.SilentEncode(args.event.GetAddress(), log)
 	shouldAddCreateRole := bytesToBool(topics[3])
-	args.tokenRolesAndProperties.AddRole(string(topics[tokenTopicsIndex]), addrBech, core.ESDTRoleNFTCreate, shouldAddCreateRole)
+	args.tokenRolesAndProperties.AddRole(string(topics[tokenTopicsIndex]), addrBech, core.DCDTRoleNFTCreate, shouldAddCreateRole)
 
 	return argOutputProcessEvent{
 		processed: true,
 	}
 }
 
-func (epp *esdtPropertiesProc) extractTokenProperties(args *argsProcessEvent) argOutputProcessEvent {
+func (epp *dcdtPropertiesProc) extractTokenProperties(args *argsProcessEvent) argOutputProcessEvent {
 	topics := args.event.GetTopics()
-	properties := topics[esdtPropertiesStartIndex:]
+	properties := topics[dcdtPropertiesStartIndex:]
 	propertiesMap := make(map[string]bool)
 	for i := 0; i < len(properties); i += propertyPairStep {
 		property := string(properties[i])

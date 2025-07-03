@@ -1,4 +1,4 @@
-#include "../mxvm/context.h"
+#include "../drtvm/context.h"
 
 byte array[] = "this is some random string of bytes";
 i64 arrayLength = 35;

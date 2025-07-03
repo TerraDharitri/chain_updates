@@ -6,15 +6,15 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/TerraDharitri/drt-go-chain-core/marshal"
+	logger "github.com/TerraDharitri/drt-go-chain-logger"
+	"github.com/TerraDharitri/drt-go-chain-proxy/api/shared"
+	"github.com/TerraDharitri/drt-go-chain-proxy/data"
+	dtosc "github.com/TerraDharitri/drt-go-chain-simulator/pkg/dtos"
+	"github.com/TerraDharitri/drt-go-chain/api/logs"
+	"github.com/TerraDharitri/drt-go-chain/node/chainSimulator/dtos"
 	"github.com/btcsuite/websocket"
 	"github.com/gin-gonic/gin"
-	"github.com/multiversx/mx-chain-core-go/marshal"
-	"github.com/multiversx/mx-chain-go/api/logs"
-	"github.com/multiversx/mx-chain-go/node/chainSimulator/dtos"
-	logger "github.com/multiversx/mx-chain-logger-go"
-	"github.com/multiversx/mx-chain-proxy-go/api/shared"
-	"github.com/multiversx/mx-chain-proxy-go/data"
-	dtosc "github.com/multiversx/mx-chain-simulator-go/pkg/dtos"
 )
 
 var log = logger.GetOrCreate("pkg/proxy/api")

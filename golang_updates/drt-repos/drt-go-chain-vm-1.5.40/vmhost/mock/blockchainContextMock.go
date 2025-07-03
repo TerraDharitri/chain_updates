@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/esdt"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/dcdt"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var _ vmhost.BlockchainContext = (*BlockchainContextMock)(nil)
@@ -168,9 +168,9 @@ func (b *BlockchainContextMock) GetCompiledCode(_ []byte) (bool, []byte) {
 	return true, make([]byte, 0)
 }
 
-// GetESDTToken -
-func (b *BlockchainContextMock) GetESDTToken(_ []byte, _ []byte, _ uint64) (*esdt.ESDigitalToken, error) {
-	return &esdt.ESDigitalToken{Value: big.NewInt(0)}, nil
+// GetDCDTToken -
+func (b *BlockchainContextMock) GetDCDTToken(_ []byte, _ []byte, _ uint64) (*dcdt.DCDigitalToken, error) {
+	return &dcdt.DCDigitalToken{Value: big.NewInt(0)}, nil
 }
 
 // GetUserAccount -

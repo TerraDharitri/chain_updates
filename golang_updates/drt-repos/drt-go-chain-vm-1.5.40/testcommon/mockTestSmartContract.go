@@ -3,8 +3,8 @@ package testcommon
 import (
 	"testing"
 
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 var WasmVirtualMachine = []byte{5, 0}
@@ -34,8 +34,8 @@ type TestConfig struct {
 	TransferToVault           int64
 	TransferFromChildToParent int64
 
-	ESDTTokensToTransfer         uint64
-	CallbackESDTTokensToTransfer uint64
+	DCDTTokensToTransfer         uint64
+	CallbackDCDTTokensToTransfer uint64
 
 	ChildCalls          int
 	RecursiveChildCalls int

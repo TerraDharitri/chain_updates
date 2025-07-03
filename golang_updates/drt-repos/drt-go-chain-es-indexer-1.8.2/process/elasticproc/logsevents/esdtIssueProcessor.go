@@ -4,49 +4,49 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/multiversx/mx-chain-core-go/core"
-	"github.com/multiversx/mx-chain-es-indexer-go/data"
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-es-indexer/data"
 )
 
 const (
 	numIssueLogTopics = 4
 
-	issueFungibleESDTFunc          = "issue"
-	issueSemiFungibleESDTFunc      = "issueSemiFungible"
-	issueNonFungibleESDTFunc       = "issueNonFungible"
-	registerMetaESDTFunc           = "registerMetaESDT"
-	changeSFTToMetaESDTFunc        = "changeSFTToMetaESDT"
-	changeToDynamicESDTFunc        = "changeToDynamic"
+	issueFungibleDCDTFunc          = "issue"
+	issueSemiFungibleDCDTFunc      = "issueSemiFungible"
+	issueNonFungibleDCDTFunc       = "issueNonFungible"
+	registerMetaDCDTFunc           = "registerMetaDCDT"
+	changeSFTToMetaDCDTFunc        = "changeSFTToMetaDCDT"
+	changeToDynamicDCDTFunc        = "changeToDynamic"
 	transferOwnershipFunc          = "transferOwnership"
 	registerAndSetRolesFunc        = "registerAndSetAllRoles"
 	registerDynamicFunc            = "registerDynamic"
 	registerAndSetRolesDynamicFunc = "registerAndSetAllRolesDynamic"
 )
 
-type esdtIssueProcessor struct {
+type dcdtIssueProcessor struct {
 	pubkeyConverter            core.PubkeyConverter
 	issueOperationsIdentifiers map[string]struct{}
 }
 
-func newESDTIssueProcessor(pubkeyConverter core.PubkeyConverter) *esdtIssueProcessor {
-	return &esdtIssueProcessor{
+func newDCDTIssueProcessor(pubkeyConverter core.PubkeyConverter) *dcdtIssueProcessor {
+	return &dcdtIssueProcessor{
 		pubkeyConverter: pubkeyConverter,
 		issueOperationsIdentifiers: map[string]struct{}{
-			issueFungibleESDTFunc:          {},
-			issueSemiFungibleESDTFunc:      {},
-			issueNonFungibleESDTFunc:       {},
-			registerMetaESDTFunc:           {},
-			changeSFTToMetaESDTFunc:        {},
+			issueFungibleDCDTFunc:          {},
+			issueSemiFungibleDCDTFunc:      {},
+			issueNonFungibleDCDTFunc:       {},
+			registerMetaDCDTFunc:           {},
+			changeSFTToMetaDCDTFunc:        {},
 			transferOwnershipFunc:          {},
 			registerAndSetRolesFunc:        {},
 			registerDynamicFunc:            {},
 			registerAndSetRolesDynamicFunc: {},
-			changeToDynamicESDTFunc:        {},
+			changeToDynamicDCDTFunc:        {},
 		},
 	}
 }
 
-func (eip *esdtIssueProcessor) processEvent(args *argsProcessEvent) argOutputProcessEvent {
+func (eip *dcdtIssueProcessor) processEvent(args *argsProcessEvent) argOutputProcessEvent {
 	if args.selfShardID != core.MetachainShardId {
 		return argOutputProcessEvent{}
 	}
@@ -101,7 +101,7 @@ func (eip *esdtIssueProcessor) processEvent(args *argsProcessEvent) argOutputPro
 		Properties: &data.TokenProperties{},
 	}
 
-	if identifierStr == changeToDynamicESDTFunc {
+	if identifierStr == changeToDynamicDCDTFunc {
 		tokenInfo.ChangeToDynamic = true
 	}
 

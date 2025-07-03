@@ -3,15 +3,15 @@ package contexts
 import (
 	"math/big"
 
-	"github.com/multiversx/mx-chain-core-go/data/vm"
-	vmcommon "github.com/multiversx/mx-chain-vm-common-go"
-	"github.com/multiversx/mx-chain-vm-go/math"
-	"github.com/multiversx/mx-chain-vm-go/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
+	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
+	"github.com/TerraDharitri/drt-go-chain-vm/math"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 )
 
 type lastTransferInfo struct {
 	callValue         *big.Int
-	lastESDTTransfers []*vmcommon.ESDTTransfer
+	lastDCDTTransfers []*vmcommon.DCDTTransfer
 }
 
 func (context *asyncContext) executeAsyncLocalCalls() error {
@@ -289,7 +289,7 @@ func (context *asyncContext) createCallbackInput(
 			OriginalTxHash:       runtime.GetOriginalTxHash(),
 			PrevTxHash:           runtime.GetPrevTxHash(),
 			ReturnCallAfterError: returnWithError,
-			ESDTTransfers:        lastTransferInfo.lastESDTTransfers,
+			DCDTTransfers:        lastTransferInfo.lastDCDTTransfers,
 		},
 		RecipientAddr: caller,
 		Function:      callbackFunction,
@@ -303,7 +303,7 @@ func (context *asyncContext) extractLastTransferWithoutData(caller []byte, vmOut
 	callValue := big.NewInt(0)
 	emptyLastTransferInfo := lastTransferInfo{
 		callValue:         big.NewInt(0),
-		lastESDTTransfers: nil,
+		lastDCDTTransfers: nil,
 	}
 
 	callBackReceiver := context.host.Runtime().GetContextAddress()
@@ -317,12 +317,12 @@ func (context *asyncContext) extractLastTransferWithoutData(caller []byte, vmOut
 		callValue.Set(lastOutTransfer.Value)
 	}
 
-	var lastESDTTransfers []*vmcommon.ESDTTransfer
+	var lastDCDTTransfers []*vmcommon.DCDTTransfer
 	functionName, args, err := context.callArgsParser.ParseData(string(lastOutTransfer.Data))
 	if err != nil {
 		return lastTransferInfo{
 			callValue:         callValue,
-			lastESDTTransfers: lastESDTTransfers,
+			lastDCDTTransfers: lastDCDTTransfers,
 		}
 	}
 
@@ -330,18 +330,18 @@ func (context *asyncContext) extractLastTransferWithoutData(caller []byte, vmOut
 	if !builtInFunction {
 		return lastTransferInfo{
 			callValue:         callValue,
-			lastESDTTransfers: lastESDTTransfers,
+			lastDCDTTransfers: lastDCDTTransfers,
 		}
 	}
 
-	parsedESDTTransfers, err := context.esdtTransferParser.ParseESDTTransfers(lastOutTransfer.SenderAddress, caller, functionName, args)
-	if err == nil && parsedESDTTransfers.CallFunction == "" {
-		lastESDTTransfers = parsedESDTTransfers.ESDTTransfers
+	parsedDCDTTransfers, err := context.dcdtTransferParser.ParseDCDTTransfers(lastOutTransfer.SenderAddress, caller, functionName, args)
+	if err == nil && parsedDCDTTransfers.CallFunction == "" {
+		lastDCDTTransfers = parsedDCDTTransfers.DCDTTransfers
 	}
 
 	return lastTransferInfo{
 		callValue:         callValue,
-		lastESDTTransfers: lastESDTTransfers,
+		lastDCDTTransfers: lastDCDTTransfers,
 	}
 }
 

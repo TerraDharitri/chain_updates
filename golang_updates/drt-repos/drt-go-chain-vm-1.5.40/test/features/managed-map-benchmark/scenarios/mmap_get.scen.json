@@ -15,7 +15,7 @@
                         "str:key|u32:2": "",
                         "str:value|u32:2": "str:value2"
                     },
-                    "code": "mxsc:../output/managed-map-benchmark.mxsc.json"
+                    "code": "drtsc:../output/managed-map-benchmark.drtsc.json"
                 },
                 "address:an-account": {
                     "nonce": "0"

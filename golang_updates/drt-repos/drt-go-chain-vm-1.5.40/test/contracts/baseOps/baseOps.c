@@ -1,4 +1,4 @@
-#include "../mxvm/context.h"
+#include "../drtvm/context.h"
 
 byte msg_ok[] = "ok";
 byte msg_not_ok[] = "not ok";

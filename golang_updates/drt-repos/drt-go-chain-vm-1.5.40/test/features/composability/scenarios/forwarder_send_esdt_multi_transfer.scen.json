@@ -11,7 +11,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "1000",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "1000",
                         "str:NFT-123456": {
                             "instances": [
@@ -30,7 +30,7 @@
                             ]
                         }
                     },
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -41,7 +41,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "function": "send_esdt_direct_multi_transfer",
+                "function": "send_dcdt_direct_multi_transfer",
                 "arguments": [
                     "address:a_user",
                     "str:FWD-TOKEN",
@@ -68,7 +68,7 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "300"
                     },
                     "storage": {},
@@ -77,7 +77,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "1000",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "700",
                         "str:NFT-123456": {
                             "instances": [
@@ -97,7 +97,7 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
@@ -108,7 +108,7 @@
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "function": "send_esdt_direct_multi_transfer",
+                "function": "send_dcdt_direct_multi_transfer",
                 "arguments": [
                     "address:a_user",
                     "str:FWD-TOKEN",
@@ -138,7 +138,7 @@
                 "address:a_user": {
                     "nonce": "*",
                     "balance": "0",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "800",
                         "str:NFT-123456": {
                             "instances": [
@@ -163,7 +163,7 @@
                 "sc:forwarder": {
                     "nonce": "0",
                     "balance": "1000",
-                    "esdt": {
+                    "dcdt": {
                         "str:FWD-TOKEN": "200",
                         "str:SFT-456789": {
                             "instances": [
@@ -175,21 +175,21 @@
                         }
                     },
                     "storage": {},
-                    "code": "mxsc:../forwarder/output/forwarder.mxsc.json"
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
                 }
             }
         },
         {
             "step": "scCall",
-            "id": "EGLD-test",
+            "id": "REWA-test",
             "comment": "send all types",
             "tx": {
                 "from": "address:a_user",
                 "to": "sc:forwarder",
-                "function": "send_esdt_direct_multi_transfer",
+                "function": "send_dcdt_direct_multi_transfer",
                 "arguments": [
                     "address:a_user",
-                    "str:EGLD",
+                    "str:REWA",
                     "0",
                     "1000"
                 ],

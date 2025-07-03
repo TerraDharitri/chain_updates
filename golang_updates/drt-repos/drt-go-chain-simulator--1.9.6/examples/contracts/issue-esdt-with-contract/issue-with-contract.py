@@ -2,7 +2,7 @@ import sys
 import time
 from pathlib import Path
 
-from multiversx_sdk import (ProxyNetworkProvider,
+from dharitri_sdk import (ProxyNetworkProvider,
                             SmartContractTransactionsFactory,
                             SmartContractTransactionsOutcomeParser,
                             TransactionsFactoryConfig, UserSecretKey)
@@ -27,7 +27,7 @@ def main():
     data = {"receiver": f"{address.to_bech32()}"}
     provider.do_post_generic("transaction/send-user-funds", data)
 
-    # generate blocks until smart contract deploys & ESDTs are enabled
+    # generate blocks until smart contract deploys & DCDTs are enabled
     provider.do_post_generic(f"{GENERATE_BLOCKS_UNTIL_EPOCH_REACHED_URL}/1", {})
 
     config = TransactionsFactoryConfig(provider.get_network_config().chain_id)

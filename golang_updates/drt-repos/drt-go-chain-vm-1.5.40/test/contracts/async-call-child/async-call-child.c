@@ -1,6 +1,6 @@
-#include "../mxvm/context.h"
-#include "../mxvm/bigInt.h"
-#include "../mxvm/test_utils.h"
+#include "../drtvm/context.h"
+#include "../drtvm/bigInt.h"
+#include "../drtvm/test_utils.h"
 
 byte childKey[] =  "childKey........................";
 byte childData[] = "childData";

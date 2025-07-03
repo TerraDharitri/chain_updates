@@ -1,6 +1,6 @@
 import sys
 
-from multiversx_sdk import (ProxyNetworkProvider, Token,
+from dharitri_sdk import (ProxyNetworkProvider, Token,
                             TokenManagementTransactionsFactory,
                             TokenManagementTransactionsOutcomeParser,
                             TransactionsFactoryConfig, UserSecretKey)
@@ -22,7 +22,7 @@ def main():
     data = {"receiver": f"{address.to_bech32()}"}
     provider.do_post_generic("transaction/send-user-funds", data)
 
-    # generate blocks until ESDTs are enabled
+    # generate blocks until DCDTs are enabled
     provider.do_post_generic(f"{GENERATE_BLOCKS_UNTIL_EPOCH_REACHED_URL}/1", {})
 
     # create transaction config and factory

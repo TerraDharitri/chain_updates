@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	mock "github.com/multiversx/mx-chain-vm-go/mock/context"
-	"github.com/multiversx/mx-chain-vm-go/wasmer"
+	mock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
 	"github.com/stretchr/testify/require"
 )
 
