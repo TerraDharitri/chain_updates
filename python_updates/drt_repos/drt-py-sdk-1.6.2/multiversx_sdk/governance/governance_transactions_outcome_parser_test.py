@@ -1,11 +1,11 @@
 import base64
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_on_network import TransactionEvent
-from multiversx_sdk.governance.governance_transactions_outcome_parser import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_on_network import TransactionEvent
+from dharitri_sdk.governance.governance_transactions_outcome_parser import (
     GovernanceTransactionsOutcomeParser,
 )
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
 

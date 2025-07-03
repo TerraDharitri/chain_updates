@@ -3,7 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 
-from multiversx_sdk_cli.errors import KnownError
+from dharitri_sdk_cli.errors import KnownError
 
 logger = logging.getLogger("docker")
 

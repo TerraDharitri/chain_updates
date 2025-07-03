@@ -1,8 +1,8 @@
 from typing import Any, Callable, Optional, Union
 
-from multiversx_sdk.abi.interface import IPayloadHolder, ISingleValue
-from multiversx_sdk.abi.multi_value import MultiValue
-from multiversx_sdk.abi.shared import convert_native_value_to_list
+from dharitri_sdk.abi.interface import IPayloadHolder, ISingleValue
+from dharitri_sdk.abi.multi_value import MultiValue
+from dharitri_sdk.abi.shared import convert_native_value_to_list
 
 
 class CountedVariadicValues(IPayloadHolder):

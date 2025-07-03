@@ -1,13 +1,13 @@
 from enum import Enum
 from typing import Optional, cast
 
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.fields import Field
-from multiversx_sdk.abi.interface import ISingleValue
-from multiversx_sdk.abi.small_int_values import U64Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.abi.struct_value import StructValue
-from multiversx_sdk.core.address import Address
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.fields import Field
+from dharitri_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.small_int_values import U64Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.struct_value import StructValue
+from dharitri_sdk.core.address import Address
 
 
 class ProposeTransferExecuteInput:
@@ -19,16 +19,16 @@ class ProposeTransferExecuteInput:
         opt_gas_limit: Optional[int] = None,
     ) -> None:
         self.to = to
-        self.egld_amount = native_transfer_amount
+        self.rewa_amount = native_transfer_amount
         self.function_call = function_call
         self.opt_gas_limit = opt_gas_limit
 
 
-class ProposeTransferExecuteEsdtInput:
+class ProposeTransferExecuteDcdtInput:
     def __init__(
         self,
         to: Address,
-        tokens: list["EsdtTokenPayment"],
+        tokens: list["DcdtTokenPayment"],
         function_call: list[bytes],
         opt_gas_limit: Optional[int] = None,
     ) -> None:
@@ -50,7 +50,7 @@ class ProposeAsyncCallInput:
         self.opt_gas_limit = opt_gas_limit or 0
 
 
-class EsdtTokenPayment(StructValue):
+class DcdtTokenPayment(StructValue):
     def __init__(self, token_identifier: str, token_nonce: int, amount: int) -> None:
         super().__init__(
             [
@@ -119,7 +119,7 @@ class ChangeQuorum(Action):
         self.quorum = quorum
 
 
-class SendTransferExecuteEgld(Action):
+class SendTransferExecuteRewa(Action):
     discriminant = 5
 
     def __init__(self, data: "CallActionData") -> None:
@@ -130,30 +130,30 @@ class CallActionData:
     def __init__(
         self,
         to: Address,
-        egld_amount: int,
+        rewa_amount: int,
         endpoint_name: str,
         arguments: list[bytes],
         opt_gas_limit: Optional[int] = None,
     ):
         self.to = to
-        self.egld_amount = egld_amount
+        self.rewa_amount = rewa_amount
         self.endpoint_name = endpoint_name
         self.arguments = arguments
         self.opt_gas_limit = opt_gas_limit
 
 
-class SendTransferExecuteEsdt(Action):
+class SendTransferExecuteDcdt(Action):
     discriminant = 6
 
-    def __init__(self, data: "EsdtTransferExecuteData") -> None:
+    def __init__(self, data: "DcdtTransferExecuteData") -> None:
         self.data = data
 
 
-class EsdtTransferExecuteData:
+class DcdtTransferExecuteData:
     def __init__(
         self,
         to: Address,
-        tokens: list[EsdtTokenPayment],
+        tokens: list[DcdtTokenPayment],
         opt_gas_limit: Optional[int],
         endpoint_name: str,
         arguments: list[bytes],

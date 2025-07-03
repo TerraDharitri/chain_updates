@@ -3,20 +3,20 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.abi_definition import AbiDefinition
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.small_int_values import U64Value
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_events_parser import TransactionEventsParser
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.abi_definition import AbiDefinition
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.small_int_values import U64Value
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_events_parser import TransactionEventsParser
+from dharitri_sdk.core.transaction_on_network import (
     TransactionEvent,
     TransactionLogs,
     find_events_by_first_topic,
     find_events_by_identifier,
 )
-from multiversx_sdk.network_providers import ApiNetworkProvider
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.network_providers import ApiNetworkProvider
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_smart_contract_result,
     get_empty_transaction_on_network,
 )
@@ -25,7 +25,7 @@ testdata = Path(__file__).parent.parent / "testutils" / "testdata"
 
 
 def test_parse_events_minimalistic():
-    abi = Abi.load(testdata / "esdt-safe.abi.json")
+    abi = Abi.load(testdata / "dcdt-safe.abi.json")
     parser = TransactionEventsParser(abi=abi)
     values = parser.parse_events(
         events=[
@@ -43,8 +43,8 @@ def test_parse_events_minimalistic():
     assert values[0] == SimpleNamespace(batch_id=42, tx_id=43)
 
 
-def test_parse_esdt_safe_deposit_event():
-    abi = Abi.load(testdata / "esdt-safe.abi.json")
+def test_parse_dcdt_safe_deposit_event():
+    abi = Abi.load(testdata / "dcdt-safe.abi.json")
     parser = TransactionEventsParser(abi=abi)
 
     transaction = get_empty_transaction_on_network()
@@ -80,7 +80,7 @@ def test_parse_esdt_safe_deposit_event():
         dest_address=Address.new_from_bech32(
             "erd1wfkv9495dhtt6a9yepxsyu2mlpw2ua333j4cr0qfulpxr4q5nfnshgyqun"
         ).get_public_key(),
-        tokens=[SimpleNamespace(token_identifier="WEGLD-01e49d", token_nonce=0, amount=100)],
+        tokens=[SimpleNamespace(token_identifier="WREWA-01e49d", token_nonce=0, amount=100)],
         event_data=SimpleNamespace(
             tx_nonce=987,
             opt_function=None,
@@ -129,13 +129,13 @@ def test_parse_multisig_start_perform_action():
                     to=Address.new_from_bech32(
                         "erd1qqqqqqqqqqqqqpgq6qr0w0zzyysklfneh32eqp2cf383zc89d8sstnkl60"
                     ).get_public_key(),
-                    egld_amount=0,
+                    rewa_amount=0,
                     opt_gas_limit=None,
                     endpoint_name=b"add",
                     arguments=[bytes.fromhex("07")],
                 ),
                 "__discriminant__": 5,
-                "__name__": "SendTransferExecuteEgld",
+                "__name__": "SendTransferExecuteRewa",
             }
         ),
         signers=[
@@ -198,8 +198,8 @@ def test_parse_event_with_multi_values():
     assert parsed == SimpleNamespace(a=[42, "test", 43, "test"], b=["test", 44], c=42)
 
 
-def test_parse_esdt_safe_deposit_event_without_first_topic():
-    abi = Abi.load(testdata / "esdt-safe.abi.json")
+def test_parse_dcdt_safe_deposit_event_without_first_topic():
+    abi = Abi.load(testdata / "dcdt-safe.abi.json")
     parser = TransactionEventsParser(abi=abi)
 
     transaction = get_empty_transaction_on_network()
@@ -235,7 +235,7 @@ def test_parse_esdt_safe_deposit_event_without_first_topic():
         dest_address=Address.new_from_bech32(
             "erd1wfkv9495dhtt6a9yepxsyu2mlpw2ua333j4cr0qfulpxr4q5nfnshgyqun"
         ).get_public_key(),
-        tokens=[SimpleNamespace(token_identifier="WEGLD-01e49d", token_nonce=0, amount=100)],
+        tokens=[SimpleNamespace(token_identifier="WREWA-01e49d", token_nonce=0, amount=100)],
         event_data=SimpleNamespace(
             tx_nonce=987,
             opt_function=None,
@@ -247,19 +247,19 @@ def test_parse_esdt_safe_deposit_event_without_first_topic():
 
 @pytest.mark.networkInteraction
 def test_multisig_start_perform_action():
-    api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+    api = ApiNetworkProvider("https://devnet-api.dharitri.org")
 
     # Test was set up as follows:
     # Deploy multisig
-    # mxpy contract deploy --bytecode=./multisig-full.wasm --gas-limit=100000000 --recall-nonce --arguments 2 erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx --proxy=https://devnet-gateway.multiversx.com --pem=erd1test.pem --send
+    # drtpy contract deploy --bytecode=./multisig-full.wasm --gas-limit=100000000 --recall-nonce --arguments 2 erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx --proxy=https://devnet-gateway.dharitri.org --pem=erd1test.pem --send
     # Call "proposeTransferExecute"
-    # mxpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function proposeTransferExecute --gas-limit=20000000 --recall-nonce --arguments erd1r69gk66fmedhhcg24g2c5kn2f2a5k4kvpr6jfw67dn2lyydd8cfswy6ede 1000000000000000000 0x00 --proxy=https://devnet-gateway.multiversx.com --pem=alice.pem --send
+    # drtpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function proposeTransferExecute --gas-limit=20000000 --recall-nonce --arguments erd1r69gk66fmedhhcg24g2c5kn2f2a5k4kvpr6jfw67dn2lyydd8cfswy6ede 1000000000000000000 0x00 --proxy=https://devnet-gateway.dharitri.org --pem=alice.pem --send
     # Call "sign"
-    # mxpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function sign --gas-limit=20000000 --recall-nonce --arguments 1 --proxy=https://devnet-gateway.multiversx.com --pem=bob.pem --send
+    # drtpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function sign --gas-limit=20000000 --recall-nonce --arguments 1 --proxy=https://devnet-gateway.dharitri.org --pem=bob.pem --send
     # Call "deposit"
-    # mxpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function deposit --gas-limit=20000000 --recall-nonce --value 1000000000000000000 --proxy=https://devnet-gateway.multiversx.com --pem=alice.pem --send
+    # drtpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function deposit --gas-limit=20000000 --recall-nonce --value 1000000000000000000 --proxy=https://devnet-gateway.dharitri.org --pem=alice.pem --send
     # Call "performAction"
-    # mxpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function performAction --gas-limit=20000000 --recall-nonce --arguments 1 --proxy=https://devnet-gateway.multiversx.com --pem=alice.pem --send
+    # drtpy contract call erd1qqqqqqqqqqqqqpgqnquyu4atwjz89p8vd8k0k7sz5qaeyfj2396qmek84v --function performAction --gas-limit=20000000 --recall-nonce --arguments 1 --proxy=https://devnet-gateway.dharitri.org --pem=alice.pem --send
     transaction_on_network = api.get_transaction("6651b983d494d69d94ce3efb3ae1604480af7c17780ab58daa09a9e5cc1d86c8")
 
     abi = Abi.load(testdata / "multisig-full.abi.json")
@@ -278,14 +278,14 @@ def test_multisig_start_perform_action():
                         "to": Address.new_from_bech32(
                             "erd1r69gk66fmedhhcg24g2c5kn2f2a5k4kvpr6jfw67dn2lyydd8cfswy6ede"
                         ).get_public_key(),
-                        "egld_amount": 1000000000000000000,
+                        "rewa_amount": 1000000000000000000,
                         "opt_gas_limit": None,
                         "endpoint_name": b"",
                         "arguments": [],
                     }
                 ),
                 "__discriminant__": 5,
-                "__name__": "SendTransferExecuteEgld",
+                "__name__": "SendTransferExecuteRewa",
             },
         ),
         signers=[

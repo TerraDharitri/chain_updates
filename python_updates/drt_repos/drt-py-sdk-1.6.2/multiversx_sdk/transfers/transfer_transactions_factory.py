@@ -1,16 +1,16 @@
 from typing import Optional
 
-from multiversx_sdk.builders.token_transfers_data_builder import (
+from dharitri_sdk.builders.token_transfers_data_builder import (
     TokenTransfersDataBuilder,
 )
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core import Address, TokenComputer, TokenTransfer, Transaction
-from multiversx_sdk.core.constants import EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER
-from multiversx_sdk.core.errors import BadUsageError
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core import Address, TokenComputer, TokenTransfer, Transaction
+from dharitri_sdk.core.constants import REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER
+from dharitri_sdk.core.errors import BadUsageError
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
-ADDITIONAL_GAS_FOR_ESDT_TRANSFER = 100000
-ADDITIONAL_GAS_FOR_ESDT_NFT_TRANSFER = 800000
+ADDITIONAL_GAS_FOR_DCDT_TRANSFER = 100000
+ADDITIONAL_GAS_FOR_DCDT_NFT_TRANSFER = 800000
 
 
 class TransferTransactionsFactory:
@@ -37,7 +37,7 @@ class TransferTransactionsFactory:
             amount=native_amount,
         ).build()
 
-    def create_transaction_for_esdt_token_transfer(
+    def create_transaction_for_dcdt_token_transfer(
         self, sender: Address, receiver: Address, token_transfers: list[TokenTransfer]
     ) -> Transaction:
         if not token_transfers:
@@ -61,25 +61,25 @@ class TransferTransactionsFactory:
         self, sender: Address, receiver: Address, transfer: TokenTransfer
     ) -> tuple[list[str], int, Address]:
         if self.token_computer.is_fungible(transfer.token):
-            if transfer.token.identifier == EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER:
-                data_parts = self._data_args_builder.build_args_for_multi_esdt_nft_transfer(receiver, [transfer])
-                gas = self.config.gas_limit_multi_esdt_nft_transfer + ADDITIONAL_GAS_FOR_ESDT_NFT_TRANSFER
+            if transfer.token.identifier == REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER:
+                data_parts = self._data_args_builder.build_args_for_multi_dcdt_nft_transfer(receiver, [transfer])
+                gas = self.config.gas_limit_multi_dcdt_nft_transfer + ADDITIONAL_GAS_FOR_DCDT_NFT_TRANSFER
                 return data_parts, gas, sender
             else:
-                data_parts = self._data_args_builder.build_args_for_esdt_transfer(transfer)
-                gas = self.config.gas_limit_esdt_transfer + ADDITIONAL_GAS_FOR_ESDT_TRANSFER
+                data_parts = self._data_args_builder.build_args_for_dcdt_transfer(transfer)
+                gas = self.config.gas_limit_dcdt_transfer + ADDITIONAL_GAS_FOR_DCDT_TRANSFER
                 return data_parts, gas, receiver
 
-        data_parts = self._data_args_builder.build_args_for_single_esdt_nft_transfer(transfer, receiver)
-        gas = self.config.gas_limit_esdt_nft_transfer + ADDITIONAL_GAS_FOR_ESDT_NFT_TRANSFER
+        data_parts = self._data_args_builder.build_args_for_single_dcdt_nft_transfer(transfer, receiver)
+        gas = self.config.gas_limit_dcdt_nft_transfer + ADDITIONAL_GAS_FOR_DCDT_NFT_TRANSFER
         return data_parts, gas, sender
 
     def _multi_transfer(
         self, sender: Address, receiver: Address, token_transfers: list[TokenTransfer]
     ) -> tuple[list[str], int, Address]:
-        data_parts = self._data_args_builder.build_args_for_multi_esdt_nft_transfer(receiver, token_transfers)
+        data_parts = self._data_args_builder.build_args_for_multi_dcdt_nft_transfer(receiver, token_transfers)
         gas = (
-            self.config.gas_limit_multi_esdt_nft_transfer * len(token_transfers) + ADDITIONAL_GAS_FOR_ESDT_NFT_TRANSFER
+            self.config.gas_limit_multi_dcdt_nft_transfer * len(token_transfers) + ADDITIONAL_GAS_FOR_DCDT_NFT_TRANSFER
         )
         return data_parts, gas, sender
 
@@ -92,7 +92,7 @@ class TransferTransactionsFactory:
         data: Optional[bytes] = None,
     ) -> Transaction:
         if token_transfers and data:
-            raise BadUsageError("Can't set data field when sending esdt tokens")
+            raise BadUsageError("Can't set data field when sending dcdt tokens")
 
         if (native_amount and not token_transfers) or data:
             native_amount = native_amount if native_amount else 0
@@ -108,6 +108,6 @@ class TransferTransactionsFactory:
         native_transfer = TokenTransfer.new_from_native_amount(native_amount) if native_amount else None
         token_transfers.append(native_transfer) if native_transfer else None
 
-        return self.create_transaction_for_esdt_token_transfer(
+        return self.create_transaction_for_dcdt_token_transfer(
             sender=sender, receiver=receiver, token_transfers=token_transfers
         )

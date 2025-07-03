@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core.transaction_on_network import TransactionEvent
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core.transaction_on_network import TransactionEvent
 
 
 class TransactionEventsParser:
@@ -9,8 +9,8 @@ class TransactionEventsParser:
         self.abi = abi
         # By default, we consider that the first topic is the event identifier.
         # This is true for log entries emitted by smart contracts:
-        # https://github.com/multiversx/mx-chain-vm-go/blob/v1.5.27/vmhost/contexts/output.go#L270
-        # https://github.com/multiversx/mx-chain-vm-go/blob/v1.5.27/vmhost/contexts/output.go#L283
+        # https://github.com/TerraDharitri/mx-chain-vm-go/blob/v1.5.27/vmhost/contexts/output.go#L270
+        # https://github.com/TerraDharitri/mx-chain-vm-go/blob/v1.5.27/vmhost/contexts/output.go#L283
         self.first_topic_as_identifier = first_topic_as_identifier
 
     def parse_events(self, events: list[TransactionEvent]) -> list[SimpleNamespace]:

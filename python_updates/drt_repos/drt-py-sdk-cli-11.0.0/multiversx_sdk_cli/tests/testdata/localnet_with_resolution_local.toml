@@ -5,8 +5,8 @@ round_duration_milliseconds = 3000
 
 [software.mx_chain_go]
 resolution = "local"
-local_path = "~/multiversx-sdk/sandbox/mx-chain-go"
+local_path = "~/dharitri-sdk/sandbox/mx-chain-go"
 
 [software.mx_chain_proxy_go]
 resolution = "local"
-local_path = "~/multiversx-sdk/sandbox/mx-chain-proxy-go"
+local_path = "~/dharitri-sdk/sandbox/mx-chain-proxy-go"

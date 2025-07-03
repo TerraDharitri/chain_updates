@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
-from multiversx_sdk.wallet.validator_pem import ValidatorPEM
-from multiversx_sdk.wallet.validator_signer import ValidatorSigner
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.wallet.validator_pem import ValidatorPEM
+from dharitri_sdk.wallet.validator_signer import ValidatorSigner
 
 
 class ValidatorsSigners:

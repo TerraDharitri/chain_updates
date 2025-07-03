@@ -1,8 +1,8 @@
 import io
 from typing import Any, cast
 
-from multiversx_sdk.abi.shared import read_bytes_exactly
-from multiversx_sdk.core.code_metadata import CODE_METADATA_LENGTH, CodeMetadata
+from dharitri_sdk.abi.shared import read_bytes_exactly
+from dharitri_sdk.core.code_metadata import CODE_METADATA_LENGTH, CodeMetadata
 
 
 class CodeMetadataValue:

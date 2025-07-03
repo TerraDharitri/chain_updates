@@ -2,14 +2,14 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.accounts import Account
-from multiversx_sdk.accounts.ledger_account import LedgerAccount
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.entrypoints.entrypoints import DevnetEntrypoint, NetworkEntrypoint
-from multiversx_sdk.entrypoints.errors import InvalidNetworkProviderKindError
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.accounts import Account
+from dharitri_sdk.accounts.ledger_account import LedgerAccount
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.entrypoints.entrypoints import DevnetEntrypoint, NetworkEntrypoint
+from dharitri_sdk.entrypoints.errors import InvalidNetworkProviderKindError
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
 
 testutils = Path(__file__).parent.parent / "testutils"
 
@@ -179,55 +179,55 @@ class TestEntrypoint:
 
     def test_initialize_entrypoint(self):
         entrypoint = NetworkEntrypoint(
-            network_provider_url="https://devnet-api.multiversx.com",
+            network_provider_url="https://devnet-api.dharitri.org",
             network_provider_kind="api",
             chain_id="D",
         )
         assert entrypoint.chain_id == "D"
         assert isinstance(entrypoint.network_provider, ApiNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-api.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-api.dharitri.org"
 
         entrypoint = NetworkEntrypoint(
-            network_provider_url="https://devnet-gateway.multiversx.com",
+            network_provider_url="https://devnet-gateway.dharitri.org",
             network_provider_kind="proxy",
             chain_id="D",
         )
         assert entrypoint.chain_id == "D"
         assert isinstance(entrypoint.network_provider, ProxyNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-gateway.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-gateway.dharitri.org"
 
         with pytest.raises(InvalidNetworkProviderKindError):
             entrypoint = NetworkEntrypoint(
-                network_provider_url="https://devnet-gateway.multiversx.com",
+                network_provider_url="https://devnet-gateway.dharitri.org",
                 network_provider_kind="test",
             )
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         entrypoint = NetworkEntrypoint(network_provider=api)
         assert entrypoint.chain_id is None
         assert isinstance(entrypoint.network_provider, ApiNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-api.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-api.dharitri.org"
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         entrypoint = NetworkEntrypoint(network_provider=api, chain_id="D")
         assert entrypoint.chain_id == "D"
         assert isinstance(entrypoint.network_provider, ApiNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-api.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-api.dharitri.org"
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         entrypoint = NetworkEntrypoint.new_from_network_provider(api)
         assert entrypoint.chain_id is None
         assert isinstance(entrypoint.network_provider, ApiNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-api.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-api.dharitri.org"
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         entrypoint = NetworkEntrypoint.new_from_network_provider(network_provider=api, chain_id="D")
         assert entrypoint.chain_id == "D"
         assert isinstance(entrypoint.network_provider, ApiNetworkProvider)
-        assert entrypoint.network_provider.url == "https://devnet-api.multiversx.com"
+        assert entrypoint.network_provider.url == "https://devnet-api.dharitri.org"
 
     def test_ensure_chain_id_is_correctly_fetched(self):
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         entrypoint = NetworkEntrypoint.new_from_network_provider(api)
 
         _ = entrypoint.create_delegation_controller()

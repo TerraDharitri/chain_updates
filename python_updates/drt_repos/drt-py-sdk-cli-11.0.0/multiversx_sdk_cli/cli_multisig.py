@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Action,
     ActionFullInfo,
     AddBoardMember,
@@ -12,32 +12,32 @@ from multiversx_sdk import (
     AddressComputer,
     CallActionData,
     ChangeQuorum,
-    EsdtTokenPayment,
-    EsdtTransferExecuteData,
+    DcdtTokenPayment,
+    DcdtTransferExecuteData,
     MultisigController,
     ProxyNetworkProvider,
     RemoveUser,
     SCDeployFromSource,
     SCUpgradeFromSource,
     SendAsyncCall,
-    SendTransferExecuteEgld,
-    SendTransferExecuteEsdt,
+    SendTransferExecuteRewa,
+    SendTransferExecuteDcdt,
     Transaction,
     TransactionsFactoryConfig,
 )
-from multiversx_sdk.abi import Abi
+from dharitri_sdk.abi import Abi
 
-from multiversx_sdk_cli import cli_shared, utils
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared, utils
+from dharitri_sdk_cli.args_validation import (
     validate_broadcast_args,
     validate_chain_id_args,
     validate_proxy_argument,
     validate_transaction_args,
 )
-from multiversx_sdk_cli.cli_output import CLIOutputBuilder
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.constants import NUMBER_OF_SHARDS
-from multiversx_sdk_cli.multisig import MultisigWrapper
+from dharitri_sdk_cli.cli_output import CLIOutputBuilder
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.constants import NUMBER_OF_SHARDS
+from dharitri_sdk_cli.multisig import MultisigWrapper
 
 logger = logging.getLogger("cli.multisig")
 
@@ -81,7 +81,7 @@ def setup_parser(args: list[str], subparsers: Any) -> Any:
         subparsers,
         "multisig",
         "deposit",
-        f"Deposit native tokens (EGLD) or ESDT tokens into a Multisig Smart Contract.{output_description}",
+        f"Deposit native tokens (REWA) or DCDT tokens into a Multisig Smart Contract.{output_description}",
     )
     cli_shared.add_token_transfers_args(sub)
     _add_common_args(args=args, sub=sub, with_contract_arg=True, with_receiver_arg=False)
@@ -184,7 +184,7 @@ def setup_parser(args: list[str], subparsers: Any) -> Any:
         subparsers,
         "multisig",
         "transfer-and-execute",
-        f"Propose transferring EGLD and optionally calling a smart contract.{output_description}",
+        f"Propose transferring REWA and optionally calling a smart contract.{output_description}",
     )
     sub.add_argument(
         "--opt-gas-limit",
@@ -201,8 +201,8 @@ def setup_parser(args: list[str], subparsers: Any) -> Any:
     sub = cli_shared.add_command_subparser(
         subparsers,
         "multisig",
-        "transfer-and-execute-esdt",
-        f"Propose transferring ESDTs and optionally calling a smart contract.{output_description}",
+        "transfer-and-execute-dcdt",
+        f"Propose transferring DCDTs and optionally calling a smart contract.{output_description}",
     )
     cli_shared.add_token_transfers_args(sub)
     sub.add_argument(
@@ -215,7 +215,7 @@ def setup_parser(args: list[str], subparsers: Any) -> Any:
     _add_arguments_arg(sub)
     _add_common_args(args=args, sub=sub, with_contract_arg=True, with_receiver_arg=True)
 
-    sub.set_defaults(func=transfer_and_execute_esdt)
+    sub.set_defaults(func=transfer_and_execute_dcdt)
 
     sub = cli_shared.add_command_subparser(
         subparsers,
@@ -966,7 +966,7 @@ def transfer_and_execute(args: Any):
     _send_or_simulate(tx, contract, args)
 
 
-def transfer_and_execute_esdt(args: Any):
+def transfer_and_execute_dcdt(args: Any):
     _ensure_args(args)
 
     if int(args.value) != 0:
@@ -994,7 +994,7 @@ def transfer_and_execute_esdt(args: Any):
     arguments, should_prepare_args = _get_contract_arguments(args)
     token_transfers = cli_shared.prepare_token_transfers(args.token_transfers)
 
-    tx = multisig.prepare_transfer_execute_esdt_transaction(
+    tx = multisig.prepare_transfer_execute_dcdt_transaction(
         owner=sender,
         nonce=sender.nonce,
         contract=contract,
@@ -1733,10 +1733,10 @@ def _convert_action_to_dict(action: Action) -> dict[str, Any]:
         return _convert_remove_user_to_dict(action)
     elif isinstance(action, ChangeQuorum):
         return _convert_change_quorum_to_dict(action)
-    elif isinstance(action, SendTransferExecuteEgld):
-        return _convert_send_transfer_execute_egld_to_dict(action)
-    elif isinstance(action, SendTransferExecuteEsdt):
-        return _convert_send_transfer_execute_esdt_to_dict(action)
+    elif isinstance(action, SendTransferExecuteRewa):
+        return _convert_send_transfer_execute_rewa_to_dict(action)
+    elif isinstance(action, SendTransferExecuteDcdt):
+        return _convert_send_transfer_execute_dcdt_to_dict(action)
     elif isinstance(action, SendAsyncCall):
         return _convert_send_async_call_to_dict(action)
     elif isinstance(action, SCDeployFromSource):
@@ -1779,9 +1779,9 @@ def _convert_change_quorum_to_dict(action: ChangeQuorum) -> dict[str, Any]:
     }
 
 
-def _convert_send_transfer_execute_egld_to_dict(action: SendTransferExecuteEgld) -> dict[str, Any]:
+def _convert_send_transfer_execute_rewa_to_dict(action: SendTransferExecuteRewa) -> dict[str, Any]:
     return {
-        "type": "SendTransferExecuteEgld",
+        "type": "SendTransferExecuteRewa",
         "discriminant": action.discriminant,
         "callActionData": _convert_call_action_data_to_dict(action.data),
     }
@@ -1790,22 +1790,22 @@ def _convert_send_transfer_execute_egld_to_dict(action: SendTransferExecuteEgld)
 def _convert_call_action_data_to_dict(call_action_data: CallActionData) -> dict[str, Any]:
     return {
         "to": call_action_data.to.to_bech32(),
-        "egldAmount": call_action_data.egld_amount,
+        "rewaAmount": call_action_data.rewa_amount,
         "optGasLimit": call_action_data.opt_gas_limit,
         "endpointName": call_action_data.endpoint_name,
         "arguments": [arg.hex() for arg in call_action_data.arguments],
     }
 
 
-def _convert_send_transfer_execute_esdt_to_dict(action: SendTransferExecuteEsdt) -> dict[str, Any]:
+def _convert_send_transfer_execute_dcdt_to_dict(action: SendTransferExecuteDcdt) -> dict[str, Any]:
     return {
-        "type": "SendTransferExecuteEsdt",
+        "type": "SendTransferExecuteDcdt",
         "discriminant": action.discriminant,
-        "esdtTransferExecuteData": _convert_esdt_transfer_execute_data_to_dict(action.data),
+        "dcdtTransferExecuteData": _convert_dcdt_transfer_execute_data_to_dict(action.data),
     }
 
 
-def _convert_esdt_transfer_execute_data_to_dict(call_action_data: EsdtTransferExecuteData) -> dict[str, Any]:
+def _convert_dcdt_transfer_execute_data_to_dict(call_action_data: DcdtTransferExecuteData) -> dict[str, Any]:
     return {
         "to": call_action_data.to.to_bech32(),
         "tokens": _convert_tokens_to_dict(call_action_data.tokens),
@@ -1815,7 +1815,7 @@ def _convert_esdt_transfer_execute_data_to_dict(call_action_data: EsdtTransferEx
     }
 
 
-def _convert_tokens_to_dict(tokens: list[EsdtTokenPayment]) -> list[dict[str, Any]]:
+def _convert_tokens_to_dict(tokens: list[DcdtTokenPayment]) -> list[dict[str, Any]]:
     return [
         {
             "tokenIdentifier": token.fields[0].get_payload(),

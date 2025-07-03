@@ -3,10 +3,10 @@ import logging
 from collections import OrderedDict
 from typing import Any, Optional, Union
 
-from multiversx_sdk import Address, Transaction, TransactionOnNetwork
+from dharitri_sdk import Address, Transaction, TransactionOnNetwork
 
-from multiversx_sdk_cli import utils
-from multiversx_sdk_cli.utils import ISerializable
+from dharitri_sdk_cli import utils
+from dharitri_sdk_cli.utils import ISerializable
 
 logger = logging.getLogger("cli.output")
 

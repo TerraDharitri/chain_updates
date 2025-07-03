@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.governance.governance_transactions_factory import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.governance.governance_transactions_factory import (
     GovernanceTransactionsFactory,
 )
-from multiversx_sdk.governance.resources import VoteType
+from dharitri_sdk.governance.resources import VoteType
 
 
 class TestGovernanceTransactionsFactory:

@@ -1,4 +1,4 @@
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     GovernanceTransactionsFactory,
     Transaction,
@@ -6,9 +6,9 @@ from multiversx_sdk import (
     VoteType,
 )
 
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 
 class GovernanceWrapper(BaseTransactionsController):

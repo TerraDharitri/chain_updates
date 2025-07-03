@@ -2,17 +2,17 @@ from functools import cache
 from pathlib import Path
 from typing import Any, Optional
 
-from multiversx_sdk_cli.constants import SDK_PATH
-from multiversx_sdk_cli.errors import (
+from dharitri_sdk_cli.constants import SDK_PATH
+from dharitri_sdk_cli.errors import (
     AliasAlreadyExistsError,
     AliasProtectedError,
     InvalidAddressConfigValue,
     UnknownWalletAliasError,
 )
-from multiversx_sdk_cli.utils import read_json_file, write_json_file
+from dharitri_sdk_cli.utils import read_json_file, write_json_file
 
-LOCAL_WALLET_CONFIG_PATH = Path("wallets.mxpy.json").resolve()
-GLOBAL_WALLET_CONFIG_PATH = SDK_PATH / "wallets.mxpy.json"
+LOCAL_WALLET_CONFIG_PATH = Path("wallets.drtpy.json").resolve()
+GLOBAL_WALLET_CONFIG_PATH = SDK_PATH / "wallets.drtpy.json"
 
 
 def get_defaults() -> dict[str, str]:

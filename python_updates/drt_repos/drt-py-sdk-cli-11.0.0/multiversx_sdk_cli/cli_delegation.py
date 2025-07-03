@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     DelegationTransactionsOutcomeParser,
     ProxyNetworkProvider,
@@ -10,16 +10,16 @@ from multiversx_sdk import (
     ValidatorsSigners,
 )
 
-from multiversx_sdk_cli import cli_shared, errors, utils
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared, errors, utils
+from dharitri_sdk_cli.args_validation import (
     validate_broadcast_args,
     validate_chain_id_args,
     validate_nonce_args,
     validate_proxy_argument,
     validate_receiver_args,
 )
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.delegation import DelegationOperations
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.delegation import DelegationOperations
 
 
 def setup_parser(args: list[str], subparsers: Any) -> Any:
@@ -360,7 +360,7 @@ def setup_parser(args: list[str], subparsers: Any) -> Any:
         "--max-cap",
         required=True,
         type=int,
-        help="total delegation cap in EGLD, fully denominated. Use value 0 for uncapped",
+        help="total delegation cap in REWA, fully denominated. Use value 0 for uncapped",
     )
     sub.add_argument(
         "--fee",

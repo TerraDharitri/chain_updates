@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     Message,
     MessageComputer,

@@ -1,8 +1,8 @@
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.proto.transaction_serializer import ProtoSerializer
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.proto.transaction_serializer import ProtoSerializer
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 class TestProtoSerializer:

@@ -7,26 +7,26 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     Token,
     TokenComputer,
     Transaction,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.constants import METACHAIN_ID
-from multiversx_sdk.network_providers.account_awaiter import AccountAwaiter
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.constants import (
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.constants import METACHAIN_ID
+from dharitri_sdk.network_providers.account_awaiter import AccountAwaiter
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.constants import (
     BASE_USER_AGENT,
     DEFAULT_ACCOUNT_AWAITING_PATIENCE_IN_MILLISECONDS,
 )
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.network_providers.errors import (
     NetworkProviderError,
     TransactionFetchingError,
 )
-from multiversx_sdk.network_providers.http_resources import (
+from dharitri_sdk.network_providers.http_resources import (
     account_from_api_response,
     account_storage_entry_from_response,
     account_storage_from_response,
@@ -41,9 +41,9 @@ from multiversx_sdk.network_providers.http_resources import (
     transactions_from_send_multiple_response,
     vm_query_response_to_smart_contract_query_response,
 )
-from multiversx_sdk.network_providers.interface import INetworkProvider
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.network_providers.resources import (
+from dharitri_sdk.network_providers.interface import INetworkProvider
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.network_providers.resources import (
     AccountOnNetwork,
     AccountStorage,
     AccountStorageEntry,
@@ -56,13 +56,13 @@ from multiversx_sdk.network_providers.resources import (
     TokensCollectionMetadata,
     TransactionCostResponse,
 )
-from multiversx_sdk.network_providers.shared import (
+from dharitri_sdk.network_providers.shared import (
     convert_boolean_query_params_to_lowercase,
     convert_tx_hash_to_string,
 )
-from multiversx_sdk.network_providers.transaction_awaiter import TransactionAwaiter
-from multiversx_sdk.network_providers.user_agent import extend_user_agent
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.network_providers.transaction_awaiter import TransactionAwaiter
+from dharitri_sdk.network_providers.user_agent import extend_user_agent
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
@@ -243,7 +243,7 @@ class ApiNetworkProvider(INetworkProvider):
     def get_token_of_account(self, address: Address, token: Token) -> TokenAmountOnNetwork:
         """
         Fetches the balance of an account, for a given token.
-        Able to handle both fungible and non-fungible tokens (NFTs, SFTs, MetaESDTs).
+        Able to handle both fungible and non-fungible tokens (NFTs, SFTs, MetaDCDTs).
         """
         if token.nonce:
             identifier = TokenComputer().compute_extended_identifier(token)

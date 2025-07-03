@@ -2,8 +2,8 @@ import logging
 import os
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.config_env import (
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.config_env import (
     create_new_env,
     delete_env,
     delete_value,
@@ -15,15 +15,15 @@ from multiversx_sdk_cli.config_env import (
     set_active,
     set_value,
 )
-from multiversx_sdk_cli.utils import dump_out_json
-from multiversx_sdk_cli.ux import confirm_continuation
+from dharitri_sdk_cli.utils import dump_out_json
+from dharitri_sdk_cli.ux import confirm_continuation
 
 logger = logging.getLogger("cli.config_env")
 
 
 def setup_parser(subparsers: Any) -> Any:
     parser = cli_shared.add_group_subparser(
-        subparsers, "config-env", "Configure MultiversX CLI to use specific environment values."
+        subparsers, "config-env", "Configure Dharitri CLI to use specific environment values."
     )
     subparsers = parser.add_subparsers()
 
@@ -80,7 +80,7 @@ def setup_parser(subparsers: Any) -> Any:
         subparsers,
         "config-env",
         "remove",
-        "Deletes an environment from the env file. Use `mxpy config-env switch` to switch to another env.",
+        "Deletes an environment from the env file. Use `drtpy config-env switch` to switch to another env.",
     )
     _add_env_arg(sub)
     sub.set_defaults(func=remove_env_entry)

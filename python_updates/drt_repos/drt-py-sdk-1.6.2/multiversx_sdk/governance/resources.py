@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from multiversx_sdk.core.address import Address
+from dharitri_sdk.core.address import Address
 
 
 class VoteType(Enum):

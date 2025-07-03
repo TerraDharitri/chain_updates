@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 
 def test_sign_tx():

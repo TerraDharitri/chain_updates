@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from multiversx_sdk.wallet.constants import USER_SEED_LENGTH
-from multiversx_sdk.wallet.pem_entry import PemEntry
+from dharitri_sdk.wallet.constants import USER_SEED_LENGTH
+from dharitri_sdk.wallet.pem_entry import PemEntry
 
 testwallets = Path(__file__).parent.parent / "testutils" / "testwallets"
 

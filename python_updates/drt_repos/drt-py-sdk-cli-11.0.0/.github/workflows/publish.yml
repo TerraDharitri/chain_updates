@@ -39,7 +39,7 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
 
-  deploy-mxpy:
+  deploy-drtpy:
     runs-on: ubuntu-latest
     needs: deploy-mx-sdk-py-cli  # Ensure main package is published first
 
@@ -56,13 +56,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install build
 
-    - name: Change package name for mxpy
-      run: sed -i 's/name = "multiversx-sdk-cli"/name = "mxpy"/' pyproject.toml
+    - name: Change package name for drtpy
+      run: sed -i 's/name = "dharitri-sdk-cli"/name = "drtpy"/' pyproject.toml
 
-    - name: Build and publish mxpy package
+    - name: Build and publish drtpy package
       run: python -m build
 
-    - name: Publish mxpy package
+    - name: Publish drtpy package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
         user: __token__

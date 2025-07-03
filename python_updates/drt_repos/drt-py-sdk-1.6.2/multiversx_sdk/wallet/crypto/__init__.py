@@ -1,6 +1,6 @@
-from multiversx_sdk.wallet.crypto import decryptor, encryptor
-from multiversx_sdk.wallet.crypto.encrypted_data import EncryptedData
-from multiversx_sdk.wallet.crypto.randomness import Randomness
+from dharitri_sdk.wallet.crypto import decryptor, encryptor
+from dharitri_sdk.wallet.crypto.encrypted_data import EncryptedData
+from dharitri_sdk.wallet.crypto.randomness import Randomness
 
 __all__ = [
     "EncryptedData",

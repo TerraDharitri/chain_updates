@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 testdata_path = Path(__file__).parent / "testdata"
 testdata_out = Path(__file__).parent / "testdata-out"
@@ -111,7 +111,7 @@ def test_create_multi_transfer_transaction(capsys: Any):
     )
 
 
-def test_create_multi_transfer_transaction_with_single_egld_transfer(capsys: Any):
+def test_create_multi_transfer_transaction_with_single_rewa_transfer(capsys: Any):
     return_code = main(
         [
             "tx",
@@ -125,7 +125,7 @@ def test_create_multi_transfer_transaction_with_single_egld_transfer(capsys: Any
             "--gas-limit",
             "1300000",
             "--token-transfers",
-            "EGLD-000000",
+            "REWA-000000",
             "1000000000000000000",
             "--chain",
             "T",
@@ -137,7 +137,7 @@ def test_create_multi_transfer_transaction_with_single_egld_transfer(capsys: Any
     data = tx_json["emittedTransactionData"]
     assert (
         data
-        == "MultiESDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@01@45474c442d303030303030@@0de0b6b3a7640000"
+        == "MultiDCDTNFTTransfer@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8@01@45474c442d303030303030@@0de0b6b3a7640000"
     )
 
 

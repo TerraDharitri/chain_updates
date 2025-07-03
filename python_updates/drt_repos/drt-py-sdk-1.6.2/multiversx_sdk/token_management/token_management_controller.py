@@ -1,18 +1,18 @@
 from typing import Optional, Protocol, Union
 
-from multiversx_sdk.core import Address, Transaction, TransactionOnNetwork
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.network_providers.resources import AwaitingOptions
-from multiversx_sdk.token_management.token_management_transactions_factory import (
+from dharitri_sdk.core import Address, Transaction, TransactionOnNetwork
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.network_providers.resources import AwaitingOptions
+from dharitri_sdk.token_management.token_management_transactions_factory import (
     TokenManagementTransactionsFactory,
     TokenType,
 )
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser import (
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser import (
     TokenManagementTransactionsOutcomeParser,
 )
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser_types import (
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser_types import (
     AddQuantityOutcome,
     BurnOutcome,
     BurnQuantityOutcome,
@@ -29,7 +29,7 @@ from multiversx_sdk.token_management.token_management_transactions_outcome_parse
     PauseOutcome,
     RegisterAndSetAllRolesOutcome,
     RegisterDynamicOutcome,
-    RegisterMetaEsdtOutcome,
+    RegisterMetaDcdtOutcome,
     SetNewUrisOutcome,
     SetSpecialRoleOutcome,
     UnFreezeOutcome,
@@ -204,7 +204,7 @@ class TokenManagementController(BaseController):
         transaction = self.network_provider.await_transaction_completed(transaction_hash)
         return self.parse_issue_non_fungible(transaction)
 
-    def create_transaction_for_registering_meta_esdt(
+    def create_transaction_for_registering_meta_dcdt(
         self,
         sender: IAccount,
         nonce: int,
@@ -223,7 +223,7 @@ class TokenManagementController(BaseController):
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        transaction = self.factory.create_transaction_for_registering_meta_esdt(
+        transaction = self.factory.create_transaction_for_registering_meta_dcdt(
             sender=sender.address,
             token_name=token_name,
             token_ticker=token_ticker,
@@ -248,12 +248,12 @@ class TokenManagementController(BaseController):
 
         return transaction
 
-    def parse_register_meta_esdt(self, transaction_on_network: TransactionOnNetwork) -> list[RegisterMetaEsdtOutcome]:
-        return self.parser.parse_register_meta_esdt(transaction_on_network)
+    def parse_register_meta_dcdt(self, transaction_on_network: TransactionOnNetwork) -> list[RegisterMetaDcdtOutcome]:
+        return self.parser.parse_register_meta_dcdt(transaction_on_network)
 
-    def await_completed_register_meta_esdt(self, transaction_hash: Union[str, bytes]) -> list[RegisterMetaEsdtOutcome]:
+    def await_completed_register_meta_dcdt(self, transaction_hash: Union[str, bytes]) -> list[RegisterMetaDcdtOutcome]:
         transaction = self.network_provider.await_transaction_completed(transaction_hash)
-        return self.parse_register_meta_esdt(transaction)
+        return self.parse_register_meta_dcdt(transaction)
 
     def create_transaction_for_registering_and_setting_roles(
         self,
@@ -370,7 +370,7 @@ class TokenManagementController(BaseController):
         token_identifier: str,
         add_role_local_mint: bool = False,
         add_role_local_burn: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
         gas_limit: Optional[int] = None,
@@ -382,7 +382,7 @@ class TokenManagementController(BaseController):
             token_identifier=token_identifier,
             add_role_local_mint=add_role_local_mint,
             add_role_local_burn=add_role_local_burn,
-            add_role_esdt_transfer_role=add_role_esdt_transfer_role,
+            add_role_dcdt_transfer_role=add_role_dcdt_transfer_role,
         )
 
         transaction.guardian = guardian
@@ -415,7 +415,7 @@ class TokenManagementController(BaseController):
         token_identifier: str,
         remove_role_local_mint: bool = False,
         remove_role_local_burn: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
         gas_limit: Optional[int] = None,
@@ -427,7 +427,7 @@ class TokenManagementController(BaseController):
             token_identifier=token_identifier,
             remove_role_local_mint=remove_role_local_mint,
             remove_role_local_burn=remove_role_local_burn,
-            remove_role_esdt_transfer_role=remove_role_esdt_transfer_role,
+            remove_role_dcdt_transfer_role=remove_role_dcdt_transfer_role,
         )
 
         transaction.guardian = guardian
@@ -450,11 +450,11 @@ class TokenManagementController(BaseController):
         add_role_nft_create: bool = False,
         add_role_nft_burn: bool = False,
         add_role_nft_add_quantity: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         add_role_nft_update: bool = False,
-        add_role_esdt_modify_royalties: bool = False,
-        add_role_esdt_set_new_uri: bool = False,
-        add_role_esdt_modify_creator: bool = False,
+        add_role_dcdt_modify_royalties: bool = False,
+        add_role_dcdt_set_new_uri: bool = False,
+        add_role_dcdt_modify_creator: bool = False,
         add_role_nft_recreate: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
@@ -468,11 +468,11 @@ class TokenManagementController(BaseController):
             add_role_nft_create=add_role_nft_create,
             add_role_nft_burn=add_role_nft_burn,
             add_role_nft_add_quantity=add_role_nft_add_quantity,
-            add_role_esdt_transfer_role=add_role_esdt_transfer_role,
+            add_role_dcdt_transfer_role=add_role_dcdt_transfer_role,
             add_role_nft_update=add_role_nft_update,
-            add_role_esdt_modify_royalties=add_role_esdt_modify_royalties,
-            add_role_esdt_set_new_uri=add_role_esdt_set_new_uri,
-            add_role_esdt_modify_creator=add_role_esdt_modify_creator,
+            add_role_dcdt_modify_royalties=add_role_dcdt_modify_royalties,
+            add_role_dcdt_set_new_uri=add_role_dcdt_set_new_uri,
+            add_role_dcdt_modify_creator=add_role_dcdt_modify_creator,
             add_role_nft_recreate=add_role_nft_recreate,
         )
 
@@ -506,11 +506,11 @@ class TokenManagementController(BaseController):
         token_identifier: str,
         remove_role_nft_burn: bool = False,
         remove_role_nft_add_quantity: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         remove_role_nft_update: bool = False,
-        remove_role_esdt_modify_royalties: bool = False,
-        remove_role_esdt_set_new_uri: bool = False,
-        remove_role_esdt_modify_creator: bool = False,
+        remove_role_dcdt_modify_royalties: bool = False,
+        remove_role_dcdt_set_new_uri: bool = False,
+        remove_role_dcdt_modify_creator: bool = False,
         remove_role_nft_recreate: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
@@ -523,11 +523,11 @@ class TokenManagementController(BaseController):
             token_identifier=token_identifier,
             remove_role_nft_burn=remove_role_nft_burn,
             remove_role_nft_add_quantity=remove_role_nft_add_quantity,
-            remove_role_esdt_transfer_role=remove_role_esdt_transfer_role,
+            remove_role_dcdt_transfer_role=remove_role_dcdt_transfer_role,
             remove_role_nft_update=remove_role_nft_update,
-            remove_role_esdt_modify_royalties=remove_role_esdt_modify_royalties,
-            remove_role_esdt_set_new_uri=remove_role_esdt_set_new_uri,
-            remove_role_esdt_modify_creator=remove_role_esdt_modify_creator,
+            remove_role_dcdt_modify_royalties=remove_role_dcdt_modify_royalties,
+            remove_role_dcdt_set_new_uri=remove_role_dcdt_set_new_uri,
+            remove_role_dcdt_modify_creator=remove_role_dcdt_modify_creator,
             remove_role_nft_recreate=remove_role_nft_recreate,
         )
 
@@ -542,7 +542,7 @@ class TokenManagementController(BaseController):
 
         return transaction
 
-    def create_transaction_for_setting_special_role_on_meta_esdt(
+    def create_transaction_for_setting_special_role_on_meta_dcdt(
         self,
         sender: IAccount,
         nonce: int,
@@ -551,20 +551,20 @@ class TokenManagementController(BaseController):
         add_role_nft_create: bool = False,
         add_role_nft_burn: bool = False,
         add_role_nft_add_quantity: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        transaction = self.factory.create_transaction_for_setting_special_role_on_meta_esdt(
+        transaction = self.factory.create_transaction_for_setting_special_role_on_meta_dcdt(
             sender=sender.address,
             user=user,
             token_identifier=token_identifier,
             add_role_nft_create=add_role_nft_create,
             add_role_nft_burn=add_role_nft_burn,
             add_role_nft_add_quantity=add_role_nft_add_quantity,
-            add_role_esdt_transfer_role=add_role_esdt_transfer_role,
+            add_role_dcdt_transfer_role=add_role_dcdt_transfer_role,
         )
         transaction.guardian = guardian
         transaction.relayer = relayer
@@ -577,18 +577,18 @@ class TokenManagementController(BaseController):
 
         return transaction
 
-    def parse_set_special_role_on_meta_esdt(
+    def parse_set_special_role_on_meta_dcdt(
         self, transaction_on_network: TransactionOnNetwork
     ) -> list[SetSpecialRoleOutcome]:
         return self.parser.parse_set_special_role(transaction_on_network)
 
-    def await_completed_set_special_role_on_meta_esdt(
+    def await_completed_set_special_role_on_meta_dcdt(
         self, transaction_hash: Union[str, bytes]
     ) -> list[SetSpecialRoleOutcome]:
         transaction = self.network_provider.await_transaction_completed(transaction_hash)
-        return self.parse_set_special_role_on_meta_esdt(transaction)
+        return self.parse_set_special_role_on_meta_dcdt(transaction)
 
-    def create_transaction_for_unsetting_special_role_on_meta_esdt(
+    def create_transaction_for_unsetting_special_role_on_meta_dcdt(
         self,
         sender: IAccount,
         user: Address,
@@ -596,19 +596,19 @@ class TokenManagementController(BaseController):
         token_identifier: str,
         remove_role_nft_burn: bool = False,
         remove_role_nft_add_quantity: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        transaction = self.factory.create_transaction_for_unsetting_special_role_on_meta_esdt(
+        transaction = self.factory.create_transaction_for_unsetting_special_role_on_meta_dcdt(
             sender=sender.address,
             user=user,
             token_identifier=token_identifier,
             remove_role_nft_burn=remove_role_nft_burn,
             remove_role_nft_add_quantity=remove_role_nft_add_quantity,
-            remove_role_esdt_transfer_role=remove_role_esdt_transfer_role,
+            remove_role_dcdt_transfer_role=remove_role_dcdt_transfer_role,
         )
 
         transaction.guardian = guardian
@@ -632,7 +632,7 @@ class TokenManagementController(BaseController):
         add_role_nft_burn: bool = False,
         add_role_nft_update_attributes: bool = False,
         add_role_nft_add_uri: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
         gas_limit: Optional[int] = None,
@@ -646,7 +646,7 @@ class TokenManagementController(BaseController):
             add_role_nft_burn=add_role_nft_burn,
             add_role_nft_update_attributes=add_role_nft_update_attributes,
             add_role_nft_add_uri=add_role_nft_add_uri,
-            add_role_esdt_transfer_role=add_role_esdt_transfer_role,
+            add_role_dcdt_transfer_role=add_role_dcdt_transfer_role,
         )
 
         transaction.guardian = guardian
@@ -680,11 +680,11 @@ class TokenManagementController(BaseController):
         remove_role_nft_burn: bool = False,
         remove_role_nft_update_attributes: bool = False,
         remove_role_nft_remove_uri: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         remove_role_nft_update: bool = False,
-        remove_role_esdt_modify_royalties: bool = False,
-        remove_role_esdt_set_new_uri: bool = False,
-        remove_role_esdt_modify_creator: bool = False,
+        remove_role_dcdt_modify_royalties: bool = False,
+        remove_role_dcdt_set_new_uri: bool = False,
+        remove_role_dcdt_modify_creator: bool = False,
         remove_role_nft_recreate: bool = False,
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
@@ -698,11 +698,11 @@ class TokenManagementController(BaseController):
             remove_role_nft_burn=remove_role_nft_burn,
             remove_role_nft_update_attributes=remove_role_nft_update_attributes,
             remove_role_nft_remove_uri=remove_role_nft_remove_uri,
-            remove_role_esdt_transfer_role=remove_role_esdt_transfer_role,
+            remove_role_dcdt_transfer_role=remove_role_dcdt_transfer_role,
             remove_role_nft_update=remove_role_nft_update,
-            remove_role_esdt_modify_royalties=remove_role_esdt_modify_royalties,
-            remove_role_esdt_set_new_uri=remove_role_esdt_set_new_uri,
-            remove_role_esdt_modify_creator=remove_role_esdt_modify_creator,
+            remove_role_dcdt_modify_royalties=remove_role_dcdt_modify_royalties,
+            remove_role_dcdt_set_new_uri=remove_role_dcdt_set_new_uri,
+            remove_role_dcdt_modify_creator=remove_role_dcdt_modify_creator,
             remove_role_nft_recreate=remove_role_nft_recreate,
         )
 
@@ -1313,7 +1313,7 @@ class TokenManagementController(BaseController):
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        """The following token types cannot be changed to dynamic: FungibleESDT, NonFungibleESDT, NonFungibleESDTv2"""
+        """The following token types cannot be changed to dynamic: FungibleDCDT, NonFungibleDCDT, NonFungibleDCDTv2"""
         transaction = self.factory.create_transaction_for_changing_token_to_dynamic(
             sender=sender.address,
             token_identifier=token_identifier,
@@ -1544,7 +1544,7 @@ class TokenManagementController(BaseController):
 
         return transaction
 
-    def create_transaction_for_changing_sft_to_meta_esdt(
+    def create_transaction_for_changing_sft_to_meta_dcdt(
         self,
         sender: IAccount,
         nonce: int,
@@ -1555,7 +1555,7 @@ class TokenManagementController(BaseController):
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        transaction = self.factory.create_transaction_for_changing_sft_to_meta_esdt(
+        transaction = self.factory.create_transaction_for_changing_sft_to_meta_dcdt(
             sender=sender.address, collection=collection, num_decimals=num_decimals
         )
 

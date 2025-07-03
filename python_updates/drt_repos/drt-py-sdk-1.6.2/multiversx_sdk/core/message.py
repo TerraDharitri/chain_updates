@@ -2,8 +2,8 @@ from typing import Any, Dict, Optional
 
 from Cryptodome.Hash import keccak
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import (
     DEFAULT_MESSAGE_VERSION,
     SDK_PY_SIGNER,
     UNKNOWN_SIGNER,
@@ -29,7 +29,7 @@ class Message:
 class MessageComputer:
     """
     Also see:
-     - https://github.com/multiversx/mx-sdk-js-core/blob/v11.2.0/src/signableMessage.ts
+     - https://github.com/TerraDharitri/mx-sdk-js-core/blob/v11.2.0/src/signableMessage.ts
      - https://eips.ethereum.org/EIPS/eip-712 (in the past, it served as a basis for the implementation)
     """
 
@@ -37,7 +37,7 @@ class MessageComputer:
         pass
 
     def compute_bytes_for_signing(self, message: Message) -> bytes:
-        PREFIX = bytes.fromhex("17456c726f6e64205369676e6564204d6573736167653a0a")
+        PREFIX = bytes.fromhex("174e756d626174205369676e6564204d6573736167653a0a")
         size = str(len(message.data)).encode()
         content = PREFIX + size + message.data
         content_hash = keccak.new(digest_bits=256).update(content).digest()

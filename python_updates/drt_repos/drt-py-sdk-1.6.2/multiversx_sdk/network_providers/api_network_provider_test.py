@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     Token,
     Transaction,
@@ -9,19 +9,19 @@ from multiversx_sdk.core import (
     TransactionOnNetwork,
     TransactionStatus,
 )
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.constants import BASE_USER_AGENT
-from multiversx_sdk.network_providers.http_resources import account_from_api_response
-from multiversx_sdk.network_providers.resources import TokenAmountOnNetwork
-from multiversx_sdk.network_providers.user_agent import extend_user_agent
-from multiversx_sdk.smart_contracts.smart_contract_query import SmartContractQuery
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.constants import BASE_USER_AGENT
+from dharitri_sdk.network_providers.http_resources import account_from_api_response
+from dharitri_sdk.network_providers.resources import TokenAmountOnNetwork
+from dharitri_sdk.network_providers.user_agent import extend_user_agent
+from dharitri_sdk.smart_contracts.smart_contract_query import SmartContractQuery
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 @pytest.mark.networkInteraction
 class TestApi:
-    api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+    api = ApiNetworkProvider("https://devnet-api.dharitri.org")
 
     def test_get_network_config(self):
         result = self.api.get_network_config()
@@ -407,7 +407,7 @@ class TestApi:
 
         assert result.collection == "NFTEST-ec88b8"
         assert result.owner == "erd1487vz5m4zpxjyqw4flwa3xhnkzg4yrr3mkzf5sf0zgt94hjprc8qazcccl"
-        assert result.type == "NonFungibleESDT"
+        assert result.type == "NonFungibleDCDT"
         assert result.decimals == 0
 
     def test_do_get_generic(self):
@@ -437,15 +437,15 @@ class TestApi:
 
         response = requests.get(self.api.url + "/network/config", **config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/api/unknown"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/api/unknown"
 
         # using the new instantiated provider with user agent
         config = NetworkProviderConfig(client_name="test-client")
-        api = ApiNetworkProvider(url="https://devnet-api.multiversx.com", config=config)
+        api = ApiNetworkProvider(url="https://devnet-api.dharitri.org", config=config)
 
         response = requests.get(api.url + "/network/config", **api.config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/api/test-client"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/api/test-client"
 
     def test_query_contract_without_return_data(self):
         query = SmartContractQuery(
@@ -458,15 +458,15 @@ class TestApi:
 
     def test_same_config_with_multiple_network_providers(self):
         config = NetworkProviderConfig(client_name="test-client")
-        api = ApiNetworkProvider(url="https://devnet-api.multiversx.com", config=config)
+        api = ApiNetworkProvider(url="https://devnet-api.dharitri.org", config=config)
 
         response = requests.get(api.url + "/network/config", **api.config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/api/test-client"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/api/test-client"
 
         # create new network provider with old config, we don't alter the config anymore
-        api = ApiNetworkProvider(url="https://devnet-api.multiversx.com", config=config)
-        assert api.config.requests_options.get("headers", {}).get("User-Agent") == "multiversx-sdk-py/api/test-client"
+        api = ApiNetworkProvider(url="https://devnet-api.dharitri.org", config=config)
+        assert api.config.requests_options.get("headers", {}).get("User-Agent") == "dharitri-sdk-py/api/test-client"
 
     def test_get_transactions(self):
         address = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")

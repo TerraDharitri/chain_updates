@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.transaction import Transaction
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.transaction import Transaction
 
 
 class TestBaseController:

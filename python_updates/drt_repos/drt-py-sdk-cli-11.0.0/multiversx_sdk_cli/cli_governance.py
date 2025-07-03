@@ -1,6 +1,6 @@
 from typing import Any
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     DelegatedVoteInfo,
     GovernanceConfig,
@@ -10,15 +10,15 @@ from multiversx_sdk import (
     TransactionsFactoryConfig,
 )
 
-from multiversx_sdk_cli import cli_shared, utils
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared, utils
+from dharitri_sdk_cli.args_validation import (
     validate_broadcast_args,
     validate_chain_id_args,
     validate_proxy_argument,
 )
-from multiversx_sdk_cli.cli_output import CLIOutputBuilder
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.governance import GovernanceWrapper
+from dharitri_sdk_cli.cli_output import CLIOutputBuilder
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.governance import GovernanceWrapper
 
 
 def setup_parser(args: list[str], subparsers: Any) -> Any:

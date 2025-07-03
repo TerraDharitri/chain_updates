@@ -2,24 +2,24 @@ import threading
 import time
 from typing import Any, Callable, Optional, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionLogs,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.transaction_status import TransactionStatus
-from multiversx_sdk.network_providers.resources import AccountOnNetwork, AwaitingOptions
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.network_providers.resources import AccountOnNetwork, AwaitingOptions
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
-from multiversx_sdk.testutils.utils import create_account_egld_balance
+from dharitri_sdk.testutils.utils import create_account_rewa_balance
 
 
 class MockNetworkProvider:
@@ -34,7 +34,7 @@ class MockNetworkProvider:
             raw={},
             address=MockNetworkProvider.alice,
             nonce=0,
-            balance=create_account_egld_balance(1000),
+            balance=create_account_rewa_balance(1000),
             is_guarded=False,
         )
 
@@ -42,7 +42,7 @@ class MockNetworkProvider:
             raw={},
             address=MockNetworkProvider.bob,
             nonce=5,
-            balance=create_account_egld_balance(500),
+            balance=create_account_rewa_balance(500),
             is_guarded=False,
         )
 
@@ -50,7 +50,7 @@ class MockNetworkProvider:
             raw={},
             address=MockNetworkProvider.carol,
             nonce=42,
-            balance=create_account_egld_balance(300),
+            balance=create_account_rewa_balance(300),
             is_guarded=False,
         )
 
@@ -136,7 +136,7 @@ class MockNetworkProvider:
                 if isinstance(point, TimelinePointMarkCompleted):
 
                     def mark_account_condition_reached(account: AccountOnNetwork):
-                        account.balance = account.balance + create_account_egld_balance(7)
+                        account.balance = account.balance + create_account_rewa_balance(7)
 
                     self.mock_update_account(address, mark_account_condition_reached)
 

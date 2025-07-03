@@ -2,22 +2,22 @@ import io
 from types import SimpleNamespace
 from typing import Any, Callable, Optional
 
-from multiversx_sdk.abi.constants import (
+from dharitri_sdk.abi.constants import (
     ENUM_DISCRIMINANT_FIELD_NAME,
     ENUM_NAME_FIELD_NAME,
 )
-from multiversx_sdk.abi.fields import (
+from dharitri_sdk.abi.fields import (
     Field,
     decode_fields_nested,
     encode_fields_nested,
     set_fields_from_dictionary,
     set_fields_from_list,
 )
-from multiversx_sdk.abi.shared import (
+from dharitri_sdk.abi.shared import (
     convert_native_value_to_dictionary,
     convert_native_value_to_list,
 )
-from multiversx_sdk.abi.small_int_values import U8Value
+from dharitri_sdk.abi.small_int_values import U8Value
 
 
 class EnumValue:

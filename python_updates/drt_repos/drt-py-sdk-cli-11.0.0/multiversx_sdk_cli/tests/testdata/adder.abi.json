@@ -13,7 +13,7 @@
             "gitVersion": "v0.45.2.1-reproducible-337-g5478c6e"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.51.1"
         }
     },
@@ -66,7 +66,7 @@
             "outputs": []
         }
     ],
-    "esdtAttributes": [],
+    "dcdtAttributes": [],
     "hasCallback": false,
     "types": {}
 }

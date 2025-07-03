@@ -1,6 +1,6 @@
 import io
 
-from multiversx_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.interface import ISingleValue
 
 
 class Codec:

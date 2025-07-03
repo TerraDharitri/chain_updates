@@ -2,8 +2,8 @@ import logging
 import os
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.config_wallet import (
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.config_wallet import (
     create_new_wallet_config,
     delete_alias,
     delete_config_value,
@@ -14,15 +14,15 @@ from multiversx_sdk_cli.config_wallet import (
     set_value,
     switch_wallet,
 )
-from multiversx_sdk_cli.utils import dump_out_json
-from multiversx_sdk_cli.ux import confirm_continuation
+from dharitri_sdk_cli.utils import dump_out_json
+from dharitri_sdk_cli.ux import confirm_continuation
 
 logger = logging.getLogger("cli.config_wallet")
 
 
 def setup_parser(subparsers: Any) -> Any:
     parser = cli_shared.add_group_subparser(
-        subparsers, "config-wallet", "Configure MultiversX CLI to use a default wallet."
+        subparsers, "config-wallet", "Configure Dharitri CLI to use a default wallet."
     )
     subparsers = parser.add_subparsers()
 

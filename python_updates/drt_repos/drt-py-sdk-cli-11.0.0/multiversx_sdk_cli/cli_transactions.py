@@ -2,10 +2,10 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import Address, ProxyNetworkProvider, TransactionComputer
+from dharitri_sdk import Address, ProxyNetworkProvider, TransactionComputer
 
-from multiversx_sdk_cli import cli_shared, utils
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared, utils
+from dharitri_sdk_cli.args_validation import (
     ensure_relayer_wallet_args_are_provided,
     validate_broadcast_args,
     validate_chain_id_args,
@@ -13,11 +13,11 @@ from multiversx_sdk_cli.args_validation import (
     validate_proxy_argument,
     validate_receiver_args,
 )
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.cli_output import CLIOutputBuilder
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.errors import BadUsage, IncorrectWalletError, NoWalletProvided
-from multiversx_sdk_cli.transactions import (
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.cli_output import CLIOutputBuilder
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.errors import BadUsage, IncorrectWalletError, NoWalletProvided
+from dharitri_sdk_cli.transactions import (
     TransactionsController,
     load_transaction_from_file,
 )

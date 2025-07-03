@@ -1,7 +1,7 @@
 from typing import Any, Dict
 
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
-from multiversx_sdk_cli.localnet.nodes_setup_json import CHAIN_ID
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.nodes_setup_json import CHAIN_ID
 
 ConfigDict = Dict[str, Any]
 
@@ -64,15 +64,15 @@ def patch_enable_epochs(data: ConfigDict, config: ConfigRoot):
     enable_epochs["RepairCallbackEnableEpoch"] = 0
     enable_epochs["ReturnDataToLastTransferEnableEpoch"] = 0
     enable_epochs["SenderInOutTransferEnableEpoch"] = 0
-    enable_epochs["ESDTEnableEpoch"] = 0
+    enable_epochs["DCDTEnableEpoch"] = 0
     enable_epochs["IncrementSCRNonceInMultiTransferEnableEpoch"] = 0
-    enable_epochs["ESDTMultiTransferEnableEpoch"] = 0
+    enable_epochs["DCDTMultiTransferEnableEpoch"] = 0
     enable_epochs["GlobalMintBurnDisableEpoch"] = 0
-    enable_epochs["ESDTTransferRoleEnableEpoch"] = 0
+    enable_epochs["DCDTTransferRoleEnableEpoch"] = 0
     enable_epochs["BuiltInFunctionOnMetaEnableEpoch"] = 0
-    enable_epochs["MultiESDTTransferFixOnCallBackOnEnableEpoch"] = 0
-    enable_epochs["ESDTNFTCreateOnMultiShard"] = 0
-    enable_epochs["MetaESDTSetEnableEpoch"] = 0
+    enable_epochs["MultiDCDTTransferFixOnCallBackOnEnableEpoch"] = 0
+    enable_epochs["DCDTNFTCreateOnMultiShard"] = 0
+    enable_epochs["MetaDCDTSetEnableEpoch"] = 0
     enable_epochs["DelegationManagerEnableEpoch"] = 0
 
     max_nodes_change_enable_epoch = enable_epochs["MaxNodesChangeEnableEpoch"]

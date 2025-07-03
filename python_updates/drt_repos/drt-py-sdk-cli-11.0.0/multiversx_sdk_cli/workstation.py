@@ -1,8 +1,8 @@
 import sys
 from pathlib import Path
 
-from multiversx_sdk_cli import utils
-from multiversx_sdk_cli.constants import SDK_PATH
+from dharitri_sdk_cli import utils
+from dharitri_sdk_cli.constants import SDK_PATH
 
 
 def get_tools_folder() -> Path:

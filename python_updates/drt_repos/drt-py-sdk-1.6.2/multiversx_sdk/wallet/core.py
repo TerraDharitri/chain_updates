@@ -4,8 +4,8 @@ import struct
 
 from mnemonic import Mnemonic
 
-from multiversx_sdk.wallet.constants import BIP39_LANGUAGE
-from multiversx_sdk.wallet.errors import InvalidMnemonicError
+from dharitri_sdk.wallet.constants import BIP39_LANGUAGE
+from dharitri_sdk.wallet.errors import InvalidMnemonicError
 
 # TODO: Rename "core.py" to "bip39.py".
 

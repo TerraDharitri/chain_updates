@@ -1,8 +1,8 @@
 import pytest
 
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
     SmartContractTransactionsOutcomeParser,
 )
 
@@ -11,7 +11,7 @@ from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser i
 class TestSmartContractDeployDevnet:
     parser = SmartContractTransactionsOutcomeParser()
     network_config = NetworkProviderConfig(client_name="mx-sdk-py/tests")
-    provider = ProxyNetworkProvider(url="https://devnet-gateway.multiversx.com", config=network_config)
+    provider = ProxyNetworkProvider(url="https://devnet-gateway.dharitri.org", config=network_config)
 
     def test_parse_deploy_transaction_1(self):
         tx_hash = "5d2ff2af8eb3fe7f2acb7e29c0436854b4c6c44de02878b6afff582888024a55"

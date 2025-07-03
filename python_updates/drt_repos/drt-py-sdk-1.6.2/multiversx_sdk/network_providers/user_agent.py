@@ -1,8 +1,8 @@
 import logging
 from typing import Any
 
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.constants import UNKNOWN_CLIENT_NAME
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.constants import UNKNOWN_CLIENT_NAME
 
 logger = logging.getLogger("user_agent")
 

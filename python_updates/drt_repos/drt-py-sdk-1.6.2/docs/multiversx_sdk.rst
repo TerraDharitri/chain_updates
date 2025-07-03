@@ -1,4 +1,4 @@
-multiversx\_sdk package
+dharitri\_sdk package
 =======================
 
 Subpackages
@@ -7,29 +7,29 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   multiversx_sdk.abi
-   multiversx_sdk.account_management
-   multiversx_sdk.accounts
-   multiversx_sdk.builders
-   multiversx_sdk.core
-   multiversx_sdk.delegation
-   multiversx_sdk.entrypoints
-   multiversx_sdk.governance
-   multiversx_sdk.ledger
-   multiversx_sdk.multisig
-   multiversx_sdk.native_auth
-   multiversx_sdk.network_providers
-   multiversx_sdk.relayed
-   multiversx_sdk.smart_contracts
-   multiversx_sdk.token_management
-   multiversx_sdk.transfers
-   multiversx_sdk.validators
-   multiversx_sdk.wallet
+   dharitri_sdk.abi
+   dharitri_sdk.account_management
+   dharitri_sdk.accounts
+   dharitri_sdk.builders
+   dharitri_sdk.core
+   dharitri_sdk.delegation
+   dharitri_sdk.entrypoints
+   dharitri_sdk.governance
+   dharitri_sdk.ledger
+   dharitri_sdk.multisig
+   dharitri_sdk.native_auth
+   dharitri_sdk.network_providers
+   dharitri_sdk.relayed
+   dharitri_sdk.smart_contracts
+   dharitri_sdk.token_management
+   dharitri_sdk.transfers
+   dharitri_sdk.validators
+   dharitri_sdk.wallet
 
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk
+.. automodule:: dharitri_sdk
    :members:
    :show-inheritance:
    :undoc-members:

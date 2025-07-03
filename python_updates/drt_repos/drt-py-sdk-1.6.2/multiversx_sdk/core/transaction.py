@@ -1,8 +1,8 @@
 import base64
 from typing import Any, Optional, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import (
     TRANSACTION_MIN_GAS_PRICE,
     TRANSACTION_OPTIONS_DEFAULT,
     TRANSACTION_VERSION_DEFAULT,

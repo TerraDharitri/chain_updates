@@ -1,19 +1,19 @@
 import base64
 from pathlib import Path
 
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.governance.governance_controller import GovernanceController
-from multiversx_sdk.governance.resources import VoteType
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.governance.governance_controller import GovernanceController
+from dharitri_sdk.governance.resources import VoteType
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQueryResponse,
 )
-from multiversx_sdk.testutils.mock_network_provider import MockNetworkProvider
+from dharitri_sdk.testutils.mock_network_provider import MockNetworkProvider
 
 
 class TestGovernanceController:
-    proxy = ProxyNetworkProvider("https://devnet-gateway.multiversx.com")
+    proxy = ProxyNetworkProvider("https://devnet-gateway.dharitri.org")
     controller = GovernanceController(chain_id="D", network_provider=proxy)
     commit_hash = "1db734c0315f9ec422b88f679ccfe3e0197b9d67"
     governance_address = "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrlllsrujgla"

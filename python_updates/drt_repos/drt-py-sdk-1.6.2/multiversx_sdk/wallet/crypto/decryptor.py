@@ -3,12 +3,12 @@ from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
-from multiversx_sdk.wallet.crypto.constants import (
+from dharitri_sdk.wallet.crypto.constants import (
     CIPHER_ALGORITHM_AES_128_CTR,
     KEY_DERIVATION_FUNCTION_SCRYPT,
 )
-from multiversx_sdk.wallet.crypto.encrypted_data import EncryptedData
-from multiversx_sdk.wallet.errors import (
+from dharitri_sdk.wallet.crypto.encrypted_data import EncryptedData
+from dharitri_sdk.wallet.errors import (
     InvalidKeystoreFilePasswordError,
     UnknownCipherError,
     UnknownDerivationFunctionError,
@@ -17,7 +17,7 @@ from multiversx_sdk.wallet.errors import (
 
 def decrypt(encrypted_data: EncryptedData, password: str) -> bytes:
     """
-    Also see: https://github.com/multiversx/mx-sdk-js-wallet/blob/main/src/crypto/decryptor.ts
+    Also see: https://github.com/TerraDharitri/mx-sdk-js-wallet/blob/main/src/crypto/decryptor.ts
     """
     backend = default_backend()
 

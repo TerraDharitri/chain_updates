@@ -1,13 +1,13 @@
-multiversx\_sdk.adapters package
+dharitri\_sdk.adapters package
 ================================
 
 Submodules
 ----------
 
-multiversx\_sdk.adapters.query\_runner\_adapter module
+dharitri\_sdk.adapters.query\_runner\_adapter module
 ------------------------------------------------------
 
-.. automodule:: multiversx_sdk.adapters.query_runner_adapter
+.. automodule:: dharitri_sdk.adapters.query_runner_adapter
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ multiversx\_sdk.adapters.query\_runner\_adapter module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.adapters
+.. automodule:: dharitri_sdk.adapters
    :members:
    :undoc-members:
    :show-inheritance:

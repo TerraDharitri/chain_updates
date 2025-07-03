@@ -1,7 +1,7 @@
 from typing import Any, Dict, List
 
-from multiversx_sdk_cli.localnet import wallets
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet import wallets
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
 
 CHAIN_ID = "localnet"
 

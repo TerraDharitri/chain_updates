@@ -4,9 +4,9 @@ from os import path
 from pathlib import Path
 from typing import List
 
-import multiversx_sdk_cli.utils as utils
-from multiversx_sdk_cli.errors import KnownError
-from multiversx_sdk_cli.localnet import (
+import dharitri_sdk_cli.utils as utils
+from dharitri_sdk_cli.errors import KnownError
+from dharitri_sdk_cli.localnet import (
     genesis_json,
     genesis_smart_contracts_json,
     libraries,
@@ -15,7 +15,7 @@ from multiversx_sdk_cli.localnet import (
     p2p_toml,
     wallets,
 )
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
 
 logger = logging.getLogger("localnet")
 
@@ -26,7 +26,7 @@ def configure(configfile: Path):
     config = ConfigRoot.from_file(configfile)
 
     if config.root().exists():
-        error_message = f"Localnet folder already exists: {config.root()}. Perhaps run 'mxpy localnet clean' first?"
+        error_message = f"Localnet folder already exists: {config.root()}. Perhaps run 'drtpy localnet clean' first?"
         logger.error(error_message)
         raise KnownError(error_message)
 
@@ -174,7 +174,7 @@ def copy_config_to_proxy(config: ConfigRoot):
     shutil.copytree(config_prototype / "apiConfig", proxy_config / "apiConfig")
 
     # Removed in newer versions:
-    # https://github.com/multiversx/mx-chain-proxy-go/pull/454
+    # https://github.com/TerraDharitri/mx-chain-proxy-go/pull/454
     if (config_prototype / "external.toml").exists():
         shutil.copy(config_prototype / "external.toml", proxy_config)
 

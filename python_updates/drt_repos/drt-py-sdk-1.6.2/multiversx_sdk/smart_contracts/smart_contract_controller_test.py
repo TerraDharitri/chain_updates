@@ -2,22 +2,22 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.small_int_values import U32Value, U64Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import CONTRACT_DEPLOY_ADDRESS_HEX
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_controller import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.small_int_values import U32Value, U64Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import CONTRACT_DEPLOY_ADDRESS_HEX
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_controller import (
     SmartContractController,
 )
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
-from multiversx_sdk.testutils.mock_network_provider import MockNetworkProvider
+from dharitri_sdk.testutils.mock_network_provider import MockNetworkProvider
 
 
 class TestSmartContractQueriesController:
@@ -117,7 +117,7 @@ class TestSmartContractQueriesController:
         assert query.value is None
 
     def test_create_query_with_arguments_with_abi(self):
-        abi = Abi.load(self.testdata / "lottery-esdt.abi.json")
+        abi = Abi.load(self.testdata / "lottery-dcdt.abi.json")
         controller = SmartContractController(chain_id="D", network_provider=MockNetworkProvider(), abi=abi)
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqsnwuj85zv7t0wnxfetyqqyjvvg444lpk7uasxv8ktx")
         function = "getLotteryInfo"
@@ -173,7 +173,7 @@ class TestSmartContractQueriesController:
         assert parsed == ["abba".encode()]
 
     def test_parse_query_response_with_abi(self):
-        abi = Abi.load(self.testdata / "lottery-esdt.abi.json")
+        abi = Abi.load(self.testdata / "lottery-dcdt.abi.json")
         controller = SmartContractController(chain_id="D", network_provider=MockNetworkProvider(), abi=abi)
 
         response = SmartContractQueryResponse(
@@ -198,7 +198,7 @@ class TestSmartContractQueriesController:
 
     @pytest.mark.networkInteraction
     def test_run_query_on_network(self):
-        provider = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        provider = ApiNetworkProvider("https://devnet-api.dharitri.org")
         controller = SmartContractController(chain_id="D", network_provider=provider)
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqsnwuj85zv7t0wnxfetyqqyjvvg444lpk7uasxv8ktx")
         function = "getSum"
@@ -212,7 +212,7 @@ class TestSmartContractQueriesController:
 
     @pytest.mark.networkInteraction
     def test_query_on_network(self):
-        provider = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        provider = ApiNetworkProvider("https://devnet-api.dharitri.org")
         controller = SmartContractController(chain_id="D", network_provider=provider)
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqsnwuj85zv7t0wnxfetyqqyjvvg444lpk7uasxv8ktx")
         function = "getSum"

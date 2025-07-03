@@ -1,9 +1,9 @@
 import logging
 from typing import Any
 
-from multiversx_sdk import LedgerApp
+from dharitri_sdk import LedgerApp
 
-from multiversx_sdk_cli import cli_shared
+from dharitri_sdk_cli import cli_shared
 
 logger = logging.getLogger("cli.ledger")
 
@@ -26,7 +26,7 @@ def setup_parser(subparsers: Any) -> Any:
         subparsers,
         "ledger",
         "version",
-        "Get the version of the MultiversX App for Ledger",
+        "Get the version of the Dharitri App for Ledger",
     )
     sub.set_defaults(func=print_version)
 
@@ -43,5 +43,5 @@ def print_addresses(args: Any):
 
 def print_version(args: Any):
     ledger_app = LedgerApp()
-    print("MultiversX App version: " + ledger_app.get_version())
+    print("Dharitri App version: " + ledger_app.get_version())
     ledger_app.close()

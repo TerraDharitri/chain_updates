@@ -1,19 +1,19 @@
 import logging
 from typing import Any, Optional
 
-from multiversx_sdk import Address
-from multiversx_sdk import NetworkProviderError as SDKNetworkProviderError
-from multiversx_sdk import ProxyNetworkProvider, Token, TokenComputer
+from dharitri_sdk import Address
+from dharitri_sdk import NetworkProviderError as SDKNetworkProviderError
+from dharitri_sdk import ProxyNetworkProvider, Token, TokenComputer
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.config_env import MxpyEnv
-from multiversx_sdk_cli.errors import (
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.config_env import DrtpyEnv
+from dharitri_sdk_cli.errors import (
     ArgumentsNotProvidedError,
     BadUsage,
     NetworkProviderError,
 )
-from multiversx_sdk_cli.utils import dump_out_json
+from dharitri_sdk_cli.utils import dump_out_json
 
 logger = logging.getLogger("cli.get")
 
@@ -60,7 +60,7 @@ def setup_parser(subparsers: Any) -> Any:
         "--identifier",
         type=str,
         required=True,
-        help="the token identifier. Works for ESDT and NFT. (e.g. FNG-123456, NFT-987654-0a)",
+        help="the token identifier. Works for DCDT and NFT. (e.g. FNG-123456, NFT-987654-0a)",
     )
     sub.set_defaults(func=get_token)
 
@@ -221,7 +221,7 @@ def _get_address_from_alias_or_config(alias: Optional[str], hrp: str) -> Address
 
 def _get_proxy(args: Any) -> ProxyNetworkProvider:
     if not args.proxy:
-        env = MxpyEnv.from_active_env()
+        env = DrtpyEnv.from_active_env()
         if env.proxy_url:
             logger.info(f"Using proxy URL from config: {env.proxy_url}")
             args.proxy = env.proxy_url

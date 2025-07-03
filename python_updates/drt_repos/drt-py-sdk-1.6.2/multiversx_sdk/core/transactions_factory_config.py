@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.constants import ESDT_CONTRACT_ADDRESS_HEX
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.constants import DCDT_CONTRACT_ADDRESS_HEX
 
 
 @dataclass
@@ -16,21 +16,21 @@ class TransactionsFactoryConfig:
     # Configuration for token operations
     gas_limit_issue: int = 60_000_000
     gas_limit_toggle_burn_role_globally: int = 60_000_000
-    gas_limit_esdt_local_mint: int = 300_000
-    gas_limit_esdt_local_burn: int = 300_000
+    gas_limit_dcdt_local_mint: int = 300_000
+    gas_limit_dcdt_local_burn: int = 300_000
     gas_limit_set_special_role: int = 60_000_000
     gas_limit_pausing: int = 60_000_000
     gas_limit_freezing: int = 60_000_000
     gas_limit_wiping: int = 60_000_000
-    gas_limit_esdt_nft_create: int = 3_000_000
-    gas_limit_esdt_nft_update_attributes: int = 50_000
-    gas_limit_esdt_nft_add_quantity: int = 50_000
-    gas_limit_esdt_nft_burn: int = 50_000
+    gas_limit_dcdt_nft_create: int = 3_000_000
+    gas_limit_dcdt_nft_update_attributes: int = 50_000
+    gas_limit_dcdt_nft_add_quantity: int = 50_000
+    gas_limit_dcdt_nft_burn: int = 50_000
     gas_limit_store_per_byte: int = 10_000
-    gas_limit_esdt_modify_royalties: int = 60_000_000
+    gas_limit_dcdt_modify_royalties: int = 60_000_000
     gas_limit_set_new_uris: int = 60_000_000
-    gas_limit_esdt_modify_creator: int = 60_000_000
-    gas_limit_esdt_metadata_update: int = 60_000_000
+    gas_limit_dcdt_modify_creator: int = 60_000_000
+    gas_limit_dcdt_metadata_update: int = 60_000_000
     gas_limit_nft_metadata_recreate: int = 60_000_000
     gas_limit_nft_change_to_dynamic: int = 60_000_000
     gas_limit_update_token_id: int = 60_000_000
@@ -39,13 +39,13 @@ class TransactionsFactoryConfig:
     gas_limit_transfer_ownership: int = 60_000_000
     gas_limit_freeze_single_nft: int = 60_000_000
     gas_limit_unfreeze_single_nft: int = 60_000_000
-    gas_limit_change_sft_to_meta_esdt: int = 60_000_000
+    gas_limit_change_sft_to_meta_dcdt: int = 60_000_000
     gas_limit_transfer_nft_create_role: int = 60_000_000
     gas_limit_stop_nft_create: int = 60_000_000
     gas_limit_wipe_single_nft: int = 60_000_000
-    gas_limit_esdt_nft_add_uri: int = 10_000_000
-    esdt_contract_address: Address = field(
-        default_factory=lambda: Address.new_from_hex(value=ESDT_CONTRACT_ADDRESS_HEX)
+    gas_limit_dcdt_nft_add_uri: int = 10_000_000
+    dcdt_contract_address: Address = field(
+        default_factory=lambda: Address.new_from_hex(value=DCDT_CONTRACT_ADDRESS_HEX)
     )
 
     # Configuration for delegation operations
@@ -58,9 +58,9 @@ class TransactionsFactoryConfig:
     additional_gas_for_delegation_operations: int = 10_000_000
 
     # Configuration for token transfers
-    gas_limit_esdt_transfer: int = 200_000
-    gas_limit_esdt_nft_transfer: int = 200_000
-    gas_limit_multi_esdt_nft_transfer: int = 200_000
+    gas_limit_dcdt_transfer: int = 200_000
+    gas_limit_dcdt_nft_transfer: int = 200_000
+    gas_limit_multi_dcdt_nft_transfer: int = 200_000
 
     # Configuration for account operations
     gas_limit_save_key_value: int = 100_000

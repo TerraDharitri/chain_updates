@@ -82,7 +82,7 @@ testVerifyContract(){
 
     command_response=$(${CLI} contract verify erd1qqqqqqqqqqqqqpgquzmh78klkqwt0p4rjys0qtp3la07gz4d396qn50nnm \
                         --verifier-url=http://localhost:7777 --packaged-src=testdata/dummy.json \
-                        --pem=testdata/walletKey.pem --docker-image=multiversx/sdk-rust-contract-builder:v4.0.0)
+                        --pem=testdata/walletKey.pem --docker-image=dharitri/sdk-rust-contract-builder:v4.0.0)
 
     result_curl=$(echo $query_response | awk -F ": " '{ print $2 }' | awk -F'"' '{print $2}')
     result_cli=$(echo $command_response | awk -F ": " '{ print $2 }' | awk -F'"' '{print $2}')
@@ -100,9 +100,9 @@ testVerifyContract(){
 testReproducibleBuild() {
     echo "testReproducibleBuild"
 
-    wget -O ${SANDBOX}/example.zip https://github.com/multiversx/mx-reproducible-contract-build-example-sc/archive/refs/tags/v0.2.1.zip || return 1
+    wget -O ${SANDBOX}/example.zip https://github.com/TerraDharitri/mx-reproducible-contract-build-example-sc/archive/refs/tags/v0.2.1.zip || return 1
     unzip ${SANDBOX}/example.zip -d ${SANDBOX} || return 1
-    ${CLI} contract reproducible-build ${SANDBOX}/mx-reproducible-contract-build-example-sc-0.2.1 --docker-image=multiversx/sdk-rust-contract-builder:v4.1.2 --no-docker-interactive --no-docker-tty || return 1
+    ${CLI} contract reproducible-build ${SANDBOX}/mx-reproducible-contract-build-example-sc-0.2.1 --docker-image=dharitri/sdk-rust-contract-builder:v4.1.2 --no-docker-interactive --no-docker-tty || return 1
     assertFileExists ${SANDBOX}/mx-reproducible-contract-build-example-sc-0.2.1/output-docker/artifacts.json || return 1
 }
 

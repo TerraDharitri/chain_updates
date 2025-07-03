@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.string_value import StringValue
 
 
 def test_set_payload_and_get_payload():

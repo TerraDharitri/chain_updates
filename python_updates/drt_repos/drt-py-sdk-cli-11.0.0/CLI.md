@@ -2,24 +2,24 @@
 
 ## Overview
 
-**mxpy** exposes a number of CLI **commands**, organized within **groups**.
+**drtpy** exposes a number of CLI **commands**, organized within **groups**.
 
 
 ```
-$ mxpy --help
-usage: mxpy [-h] [-v] [--verbose] COMMAND-GROUP [-h] COMMAND ...
+$ drtpy --help
+usage: drtpy [-h] [-v] [--verbose] COMMAND-GROUP [-h] COMMAND ...
 
 -----------
 DESCRIPTION
 -----------
-mxpy is part of the multiversx-sdk and consists of Command Line Tools and Python SDK
+drtpy is part of the dharitri-sdk and consists of Command Line Tools and Python SDK
 for interacting with the Blockchain (in general) and with Smart Contracts (in particular).
 
-mxpy targets a broad audience of users and developers.
+drtpy targets a broad audience of users and developers.
 
 See:
- - https://docs.multiversx.com/sdk-and-tools/sdk-py
- - https://docs.multiversx.com/sdk-and-tools/sdk-py/mxpy-cli
+ - https://docs.dharitri.org/sdk-and-tools/sdk-py
+ - https://docs.dharitri.org/sdk-and-tools/sdk-py/drtpy-cli
 
 
 COMMAND GROUPS:
@@ -35,23 +35,23 @@ TOP-LEVEL OPTIONS:
 ----------------------
 COMMAND GROUPS summary
 ----------------------
-config-wallet                  Configure MultiversX CLI to use a default wallet.
+config-wallet                  Configure Dharitri CLI to use a default wallet.
 contract                       Deploy, upgrade and interact with Smart Contracts
 tx                             Create and broadcast Transactions
 validator                      Stake, UnStake, UnBond, Unjail and other actions useful for Validators
 ledger                         Get Ledger App addresses and version
 wallet                         Create wallet, derive secret key from mnemonic, bech32 address helpers etc.
 validator-wallet               Create a validator wallet, sign and verify messages and convert a validator wallet to a hex secret key.
-deps                           Manage dependencies or multiversx-sdk modules
-config                         Configure MultiversX CLI (default values etc.)
+deps                           Manage dependencies or dharitri-sdk modules
+config                         Configure Dharitri CLI (default values etc.)
 localnet                       Set up, start and control localnets
 data                           Data manipulation omnitool
 staking-provider               Staking provider omnitool
 dns                            Operations related to the Domain Name Service
-faucet                         Get xEGLD on Devnet or Testnet
+faucet                         Get xREWA on Devnet or Testnet
 multisig                       Deploy and interact with the Multisig Smart Contract
 governance                     Propose, vote and interact with the governance contract.
-config-env                     Configure MultiversX CLI to use specific environment values.
+config-env                     Configure Dharitri CLI to use specific environment values.
 get                            Get info from the network.
 
 ```
@@ -59,8 +59,8 @@ get                            Get info from the network.
 
 
 ```
-$ mxpy contract --help
-usage: mxpy contract COMMAND [-h] ...
+$ drtpy contract --help
+usage: drtpy contract COMMAND [-h] ...
 
 Deploy, upgrade and interact with Smart Contracts
 
@@ -87,8 +87,8 @@ build                          Build a Smart Contract project. This command is D
 
 
 ```
-$ mxpy contract deploy --help
-usage: mxpy contract deploy [-h] ...
+$ drtpy contract deploy --help
+usage: drtpy contract deploy [-h] ...
 
 Deploy a Smart Contract.
 
@@ -182,8 +182,8 @@ options:
 
 
 ```
-$ mxpy contract call --help
-usage: mxpy contract call [-h] ...
+$ drtpy contract call --help
+usage: drtpy contract call [-h] ...
 
 Interact with a Smart Contract (execute function).
 
@@ -251,7 +251,7 @@ options:
                                                   E.g. [{ 'to': 'erd1...', 'amount': 10000000000 }]
   --token-transfers TOKEN_TRANSFERS [TOKEN_TRANSFERS ...]
                                                   token transfers for transfer & execute, as [token, amount] E.g.
-                                                  --token-transfers NFT-123456-0a 1 ESDT-987654 100000000
+                                                  --token-transfers NFT-123456-0a 1 DCDT-987654 100000000
   --wait-result                                   signal to wait for the transaction result - only valid if --send is
                                                   set
   --timeout TIMEOUT                               max num of seconds to wait for result - only valid if --wait-result is
@@ -280,8 +280,8 @@ options:
 
 
 ```
-$ mxpy contract upgrade --help
-usage: mxpy contract upgrade [-h] ...
+$ drtpy contract upgrade --help
+usage: drtpy contract upgrade [-h] ...
 
 Upgrade a previously-deployed Smart Contract.
 
@@ -378,8 +378,8 @@ options:
 
 
 ```
-$ mxpy contract query --help
-usage: mxpy contract query [-h] ...
+$ drtpy contract query --help
+usage: drtpy contract query [-h] ...
 
 Query a Smart Contract (call a pure function)
 
@@ -402,8 +402,8 @@ options:
 
 
 ```
-$ mxpy contract verify --help
-usage: mxpy contract verify [-h] ...
+$ drtpy contract verify --help
+usage: drtpy contract verify [-h] ...
 
 Verify the authenticity of the code of a deployed Smart Contract
 
@@ -433,8 +433,8 @@ options:
 
 
 ```
-$ mxpy contract unverify --help
-usage: mxpy contract unverify [-h] ...
+$ drtpy contract unverify --help
+usage: drtpy contract unverify [-h] ...
 
 Unverify a previously verified Smart Contract
 
@@ -461,8 +461,8 @@ options:
 
 
 ```
-$ mxpy contract reproducible-build --help
-usage: mxpy contract reproducible-build [-h] ...
+$ drtpy contract reproducible-build --help
+usage: drtpy contract reproducible-build [-h] ...
 
 Build a Smart Contract and get the same output as a previously built Smart Contract
 
@@ -491,8 +491,8 @@ options:
 
 
 ```
-$ mxpy tx --help
-usage: mxpy tx COMMAND [-h] ...
+$ drtpy tx --help
+usage: drtpy tx COMMAND [-h] ...
 
 Create and broadcast Transactions
 
@@ -515,8 +515,8 @@ relay                          Relay a previously saved transaction.
 
 
 ```
-$ mxpy tx new --help
-usage: mxpy tx new [-h] ...
+$ drtpy tx new --help
+usage: drtpy tx new [-h] ...
 
 Create a new transaction.
 
@@ -561,7 +561,7 @@ options:
   --data-file DATA_FILE                           a file containing transaction data
   --token-transfers TOKEN_TRANSFERS [TOKEN_TRANSFERS ...]
                                                   token transfers for transfer & execute, as [token, amount] E.g.
-                                                  --token-transfers NFT-123456-0a 1 ESDT-987654 100000000
+                                                  --token-transfers NFT-123456-0a 1 DCDT-987654 100000000
   --outfile OUTFILE                               where to save the output (signed transaction, hash) (default: stdout)
   --send                                          ✓ whether to broadcast the transaction (default: False)
   --simulate                                      whether to simulate the transaction (default: False)
@@ -592,8 +592,8 @@ options:
 
 
 ```
-$ mxpy tx send --help
-usage: mxpy tx send [-h] ...
+$ drtpy tx send --help
+usage: drtpy tx send [-h] ...
 
 Send a previously saved transaction.
 
@@ -621,8 +621,8 @@ options:
 
 
 ```
-$ mxpy tx sign --help
-usage: mxpy tx sign [-h] ...
+$ drtpy tx sign --help
+usage: drtpy tx sign [-h] ...
 
 Sign a previously saved transaction.
 
@@ -678,8 +678,8 @@ options:
 
 
 ```
-$ mxpy tx relay --help
-usage: mxpy tx relay [-h] ...
+$ drtpy tx relay --help
+usage: drtpy tx relay [-h] ...
 
 Relay a previously saved transaction.
 
@@ -717,8 +717,8 @@ options:
 
 
 ```
-$ mxpy validator --help
-usage: mxpy validator COMMAND [-h] ...
+$ drtpy validator --help
+usage: drtpy validator COMMAND [-h] ...
 
 Stake, UnStake, UnBond, Unjail and other actions useful for Validators
 
@@ -749,8 +749,8 @@ restake-unstaked-nodes         It will reStake UnStaked nodes
 
 
 ```
-$ mxpy validator stake --help
-usage: mxpy validator stake [-h] ...
+$ drtpy validator stake --help
+usage: drtpy validator stake [-h] ...
 
 Stake value into the Network
 
@@ -805,8 +805,8 @@ options:
 
 
 ```
-$ mxpy validator unstake --help
-usage: mxpy validator unstake [-h] ...
+$ drtpy validator unstake --help
+usage: drtpy validator unstake [-h] ...
 
 Unstake value
 
@@ -859,8 +859,8 @@ options:
 
 
 ```
-$ mxpy validator unjail --help
-usage: mxpy validator unjail [-h] ...
+$ drtpy validator unjail --help
+usage: drtpy validator unjail [-h] ...
 
 Unjail a Validator Node
 
@@ -913,8 +913,8 @@ options:
 
 
 ```
-$ mxpy validator unbond --help
-usage: mxpy validator unbond [-h] ...
+$ drtpy validator unbond --help
+usage: drtpy validator unbond [-h] ...
 
 Unbond tokens for a bls key
 
@@ -967,8 +967,8 @@ options:
 
 
 ```
-$ mxpy validator change-reward-address --help
-usage: mxpy validator change-reward-address [-h] ...
+$ drtpy validator change-reward-address --help
+usage: drtpy validator change-reward-address [-h] ...
 
 Change the reward address
 
@@ -1021,8 +1021,8 @@ options:
 
 
 ```
-$ mxpy validator claim --help
-usage: mxpy validator claim [-h] ...
+$ drtpy validator claim --help
+usage: drtpy validator claim [-h] ...
 
 Claim rewards
 
@@ -1074,8 +1074,8 @@ options:
 
 
 ```
-$ mxpy validator unstake-nodes --help
-usage: mxpy validator unstake-nodes [-h] ...
+$ drtpy validator unstake-nodes --help
+usage: drtpy validator unstake-nodes [-h] ...
 
 Unstake-nodes will unstake nodes for provided bls keys
 
@@ -1128,8 +1128,8 @@ options:
 
 
 ```
-$ mxpy validator unstake-tokens --help
-usage: mxpy validator unstake-tokens [-h] ...
+$ drtpy validator unstake-tokens --help
+usage: drtpy validator unstake-tokens [-h] ...
 
 This command will un-stake the given amount (if value is greater than the existing topUp value, it will unStake one or several nodes)
 
@@ -1182,8 +1182,8 @@ options:
 
 
 ```
-$ mxpy validator unbond-nodes --help
-usage: mxpy validator unbond-nodes [-h] ...
+$ drtpy validator unbond-nodes --help
+usage: drtpy validator unbond-nodes [-h] ...
 
 It will unBond nodes
 
@@ -1236,8 +1236,8 @@ options:
 
 
 ```
-$ mxpy validator unbond-tokens --help
-usage: mxpy validator unbond-tokens [-h] ...
+$ drtpy validator unbond-tokens --help
+usage: drtpy validator unbond-tokens [-h] ...
 
 It will unBond tokens, if provided value is bigger that topUp value will unBond nodes
 
@@ -1290,8 +1290,8 @@ options:
 
 
 ```
-$ mxpy validator clean-registered-data --help
-usage: mxpy validator clean-registered-data [-h] ...
+$ drtpy validator clean-registered-data --help
+usage: drtpy validator clean-registered-data [-h] ...
 
 Deletes duplicated keys from registered data
 
@@ -1343,8 +1343,8 @@ options:
 
 
 ```
-$ mxpy validator restake-unstaked-nodes --help
-usage: mxpy validator restake-unstaked-nodes [-h] ...
+$ drtpy validator restake-unstaked-nodes --help
+usage: drtpy validator restake-unstaked-nodes [-h] ...
 
 It will reStake UnStaked nodes
 
@@ -1397,8 +1397,8 @@ options:
 
 
 ```
-$ mxpy staking-provider --help
-usage: mxpy staking-provider COMMAND [-h] ...
+$ drtpy staking-provider --help
+usage: drtpy staking-provider COMMAND [-h] ...
 
 Staking provider omnitool
 
@@ -1436,8 +1436,8 @@ make-delegation-contract-from-validator Create a delegation contract from valida
 
 
 ```
-$ mxpy staking-provider create-new-delegation-contract --help
-usage: mxpy staking-provider create-new-delegation-contract [-h] ...
+$ drtpy staking-provider create-new-delegation-contract --help
+usage: drtpy staking-provider create-new-delegation-contract [-h] ...
 
 Create a new delegation system smart contract, transferred value must be greater than baseIssuingCost + min deposit value
 
@@ -1491,8 +1491,8 @@ options:
 
 
 ```
-$ mxpy staking-provider get-contract-address --help
-usage: mxpy staking-provider get-contract-address [-h] ...
+$ drtpy staking-provider get-contract-address --help
+usage: drtpy staking-provider get-contract-address [-h] ...
 
 Get create contract address by transaction hash
 
@@ -1506,8 +1506,8 @@ options:
 
 
 ```
-$ mxpy staking-provider add-nodes --help
-usage: mxpy staking-provider add-nodes [-h] ...
+$ drtpy staking-provider add-nodes --help
+usage: drtpy staking-provider add-nodes [-h] ...
 
 Add new nodes must be called by the contract owner
 
@@ -1561,8 +1561,8 @@ options:
 
 
 ```
-$ mxpy staking-provider remove-nodes --help
-usage: mxpy staking-provider remove-nodes [-h] ...
+$ drtpy staking-provider remove-nodes --help
+usage: drtpy staking-provider remove-nodes [-h] ...
 
 Remove nodes must be called by the contract owner
 
@@ -1617,8 +1617,8 @@ options:
 
 
 ```
-$ mxpy staking-provider stake-nodes --help
-usage: mxpy staking-provider stake-nodes [-h] ...
+$ drtpy staking-provider stake-nodes --help
+usage: drtpy staking-provider stake-nodes [-h] ...
 
 Stake nodes must be called by the contract owner
 
@@ -1673,8 +1673,8 @@ options:
 
 
 ```
-$ mxpy staking-provider unbond-nodes --help
-usage: mxpy staking-provider unbond-nodes [-h] ...
+$ drtpy staking-provider unbond-nodes --help
+usage: drtpy staking-provider unbond-nodes [-h] ...
 
 Unbond nodes must be called by the contract owner
 
@@ -1729,8 +1729,8 @@ options:
 
 
 ```
-$ mxpy staking-provider unstake-nodes --help
-usage: mxpy staking-provider unstake-nodes [-h] ...
+$ drtpy staking-provider unstake-nodes --help
+usage: drtpy staking-provider unstake-nodes [-h] ...
 
 Unstake nodes must be called by the contract owner
 
@@ -1785,8 +1785,8 @@ options:
 
 
 ```
-$ mxpy staking-provider unjail-nodes --help
-usage: mxpy staking-provider unjail-nodes [-h] ...
+$ drtpy staking-provider unjail-nodes --help
+usage: drtpy staking-provider unjail-nodes [-h] ...
 
 Unjail nodes must be called by the contract owner
 
@@ -1841,8 +1841,8 @@ options:
 
 
 ```
-$ mxpy staking-provider delegate --help
-usage: mxpy staking-provider delegate [-h] ...
+$ drtpy staking-provider delegate --help
+usage: drtpy staking-provider delegate [-h] ...
 
 Delegate funds to a delegation contract
 
@@ -1895,8 +1895,8 @@ options:
 
 
 ```
-$ mxpy staking-provider claim-rewards --help
-usage: mxpy staking-provider claim-rewards [-h] ...
+$ drtpy staking-provider claim-rewards --help
+usage: drtpy staking-provider claim-rewards [-h] ...
 
 Claim the rewards earned for delegating
 
@@ -1949,8 +1949,8 @@ options:
 
 
 ```
-$ mxpy staking-provider redelegate-rewards --help
-usage: mxpy staking-provider redelegate-rewards [-h] ...
+$ drtpy staking-provider redelegate-rewards --help
+usage: drtpy staking-provider redelegate-rewards [-h] ...
 
 Redelegate the rewards earned for delegating
 
@@ -2003,8 +2003,8 @@ options:
 
 
 ```
-$ mxpy staking-provider undelegate --help
-usage: mxpy staking-provider undelegate [-h] ...
+$ drtpy staking-provider undelegate --help
+usage: drtpy staking-provider undelegate [-h] ...
 
 Undelegate funds from a delegation contract
 
@@ -2057,8 +2057,8 @@ options:
 
 
 ```
-$ mxpy staking-provider withdraw --help
-usage: mxpy staking-provider withdraw [-h] ...
+$ drtpy staking-provider withdraw --help
+usage: drtpy staking-provider withdraw [-h] ...
 
 Withdraw funds from a delegation contract
 
@@ -2111,8 +2111,8 @@ options:
 
 
 ```
-$ mxpy staking-provider change-service-fee --help
-usage: mxpy staking-provider change-service-fee [-h] ...
+$ drtpy staking-provider change-service-fee --help
+usage: drtpy staking-provider change-service-fee [-h] ...
 
 Change service fee must be called by the contract owner
 
@@ -2166,8 +2166,8 @@ options:
 
 
 ```
-$ mxpy staking-provider modify-delegation-cap --help
-usage: mxpy staking-provider modify-delegation-cap [-h] ...
+$ drtpy staking-provider modify-delegation-cap --help
+usage: drtpy staking-provider modify-delegation-cap [-h] ...
 
 Modify delegation cap must be called by the contract owner
 
@@ -2221,8 +2221,8 @@ options:
 
 
 ```
-$ mxpy staking-provider automatic-activation --help
-usage: mxpy staking-provider automatic-activation [-h] ...
+$ drtpy staking-provider automatic-activation --help
+usage: drtpy staking-provider automatic-activation [-h] ...
 
 Automatic activation must be called by the contract owner
 
@@ -2277,8 +2277,8 @@ options:
 
 
 ```
-$ mxpy staking-provider redelegate-cap --help
-usage: mxpy staking-provider redelegate-cap [-h] ...
+$ drtpy staking-provider redelegate-cap --help
+usage: drtpy staking-provider redelegate-cap [-h] ...
 
 Redelegate cap must be called by the contract owner
 
@@ -2333,8 +2333,8 @@ options:
 
 
 ```
-$ mxpy staking-provider set-metadata --help
-usage: mxpy staking-provider set-metadata [-h] ...
+$ drtpy staking-provider set-metadata --help
+usage: drtpy staking-provider set-metadata [-h] ...
 
 Set metadata must be called by the contract owner
 
@@ -2390,14 +2390,14 @@ options:
 
 
 ```
-$ mxpy staking-provider make-delegation-contract-from-validator --help
-usage: mxpy staking-provider make-delegation-contract-from-validator [-h] ...
+$ drtpy staking-provider make-delegation-contract-from-validator --help
+usage: drtpy staking-provider make-delegation-contract-from-validator [-h] ...
 
 Create a delegation contract from validator data. Must be called by the node operator
 
 options:
   -h, --help                                     show this help message and exit
-  --max-cap MAX_CAP                              total delegation cap in EGLD, fully denominated. Use value 0 for
+  --max-cap MAX_CAP                              total delegation cap in REWA, fully denominated. Use value 0 for
                                                  uncapped
   --fee FEE                                      service fee as hundredths of percents. (e.g. a service fee of 37.45
                                                  percent is expressed by the integer 3745)
@@ -2447,8 +2447,8 @@ options:
 
 
 ```
-$ mxpy wallet --help
-usage: mxpy wallet COMMAND [-h] ...
+$ drtpy wallet --help
+usage: drtpy wallet COMMAND [-h] ...
 
 Create wallet, derive secret key from mnemonic, bech32 address helpers etc.
 
@@ -2472,8 +2472,8 @@ verify-message                 Verify a previously signed message
 
 
 ```
-$ mxpy wallet new --help
-usage: mxpy wallet new [-h] ...
+$ drtpy wallet new --help
+usage: drtpy wallet new [-h] ...
 
 Create a new wallet and print its mnemonic; optionally save as password-protected JSON (recommended) or PEM (not recommended)
 
@@ -2492,8 +2492,8 @@ options:
 
 
 ```
-$ mxpy wallet convert --help
-usage: mxpy wallet convert [-h] ...
+$ drtpy wallet convert --help
+usage: drtpy wallet convert [-h] ...
 
 Convert a wallet from one format to another
 
@@ -2516,8 +2516,8 @@ options:
 
 
 ```
-$ mxpy wallet bech32 --help
-usage: mxpy wallet bech32 [-h] ...
+$ drtpy wallet bech32 --help
+usage: drtpy wallet bech32 [-h] ...
 
 Helper for encoding and decoding bech32 addresses
 
@@ -2535,8 +2535,8 @@ options:
 
 
 ```
-$ mxpy wallet sign-message --help
-usage: mxpy wallet sign-message [-h] ...
+$ drtpy wallet sign-message --help
+usage: drtpy wallet sign-message [-h] ...
 
 Sign a message
 
@@ -2559,8 +2559,8 @@ options:
 
 
 ```
-$ mxpy wallet verify-message --help
-usage: mxpy wallet verify-message [-h] ...
+$ drtpy wallet verify-message --help
+usage: drtpy wallet verify-message [-h] ...
 
 Verify a previously signed message
 
@@ -2575,8 +2575,8 @@ options:
 
 
 ```
-$ mxpy validator-wallet --help
-usage: mxpy validator-wallet COMMAND [-h] ...
+$ drtpy validator-wallet --help
+usage: drtpy validator-wallet COMMAND [-h] ...
 
 Create a validator wallet, sign and verify messages and convert a validator wallet to a hex secret key.
 
@@ -2599,8 +2599,8 @@ convert                        Convert a validator pem file to a hex secret key.
 
 
 ```
-$ mxpy validator-wallet new --help
-usage: mxpy validator-wallet new [-h] ...
+$ drtpy validator-wallet new --help
+usage: drtpy validator-wallet new [-h] ...
 
 Create a new validator wallet and save it as a PEM file.
 
@@ -2613,8 +2613,8 @@ options:
 
 
 ```
-$ mxpy validator-wallet convert --help
-usage: mxpy validator-wallet convert [-h] ...
+$ drtpy validator-wallet convert --help
+usage: drtpy validator-wallet convert [-h] ...
 
 Convert a validator pem file to a hex secret key.
 
@@ -2628,8 +2628,8 @@ options:
 
 
 ```
-$ mxpy validator-wallet sign-message --help
-usage: mxpy validator-wallet sign-message [-h] ...
+$ drtpy validator-wallet sign-message --help
+usage: drtpy validator-wallet sign-message [-h] ...
 
 Sign a message.
 
@@ -2644,8 +2644,8 @@ options:
 
 
 ```
-$ mxpy validator-wallet verify-message-signature --help
-usage: mxpy validator-wallet verify-message-signature [-h] ...
+$ drtpy validator-wallet verify-message-signature --help
+usage: drtpy validator-wallet verify-message-signature [-h] ...
 
 Verify a previously signed message.
 
@@ -2660,8 +2660,8 @@ options:
 
 
 ```
-$ mxpy localnet --help
-usage: mxpy localnet COMMAND [-h] ...
+$ drtpy localnet --help
+usage: drtpy localnet COMMAND [-h] ...
 
 Set up, start and control localnets
 
@@ -2676,8 +2676,8 @@ OPTIONS:
 
 
 ```
-$ mxpy localnet setup --help
-usage: mxpy localnet setup [-h] ...
+$ drtpy localnet setup --help
+usage: drtpy localnet setup [-h] ...
 
 Set up a localnet (runs 'prerequisites', 'build' and 'config' in one go)
 
@@ -2690,8 +2690,8 @@ options:
 
 
 ```
-$ mxpy localnet new --help
-usage: mxpy localnet new [-h] ...
+$ drtpy localnet new --help
+usage: drtpy localnet new [-h] ...
 
 Create a new localnet configuration
 
@@ -2704,8 +2704,8 @@ options:
 
 
 ```
-$ mxpy localnet prerequisites --help
-usage: mxpy localnet prerequisites [-h] ...
+$ drtpy localnet prerequisites --help
+usage: drtpy localnet prerequisites [-h] ...
 
 Download and verify the prerequisites for running a localnet
 
@@ -2718,8 +2718,8 @@ options:
 
 
 ```
-$ mxpy localnet build --help
-usage: mxpy localnet build [-h] ...
+$ drtpy localnet build --help
+usage: drtpy localnet build [-h] ...
 
 Build necessary software for running a localnet
 
@@ -2734,8 +2734,8 @@ options:
 
 
 ```
-$ mxpy localnet config --help
-usage: mxpy localnet config [-h] ...
+$ drtpy localnet config --help
+usage: drtpy localnet config [-h] ...
 
 Configure a localnet (required before starting it the first time or after clean)
 
@@ -2748,8 +2748,8 @@ options:
 
 
 ```
-$ mxpy localnet start --help
-usage: mxpy localnet start [-h] ...
+$ drtpy localnet start --help
+usage: drtpy localnet start [-h] ...
 
 Start a localnet
 
@@ -2763,8 +2763,8 @@ options:
 
 
 ```
-$ mxpy localnet clean --help
-usage: mxpy localnet clean [-h] ...
+$ drtpy localnet clean --help
+usage: drtpy localnet clean [-h] ...
 
 Erase the currently configured localnet (must be already stopped)
 
@@ -2777,10 +2777,10 @@ options:
 
 
 ```
-$ mxpy deps --help
-usage: mxpy deps COMMAND [-h] ...
+$ drtpy deps --help
+usage: drtpy deps COMMAND [-h] ...
 
-Manage dependencies or multiversx-sdk modules
+Manage dependencies or dharitri-sdk modules
 
 COMMANDS:
   {install,check}
@@ -2791,7 +2791,7 @@ OPTIONS:
 ----------------
 COMMANDS summary
 ----------------
-install                        Install dependencies or multiversx-sdk modules.
+install                        Install dependencies or dharitri-sdk modules.
 check                          Check whether a dependency is installed.
 
 ```
@@ -2799,10 +2799,10 @@ check                          Check whether a dependency is installed.
 
 
 ```
-$ mxpy deps install --help
-usage: mxpy deps install [-h] ...
+$ drtpy deps install --help
+usage: drtpy deps install [-h] ...
 
-Install dependencies or multiversx-sdk modules.
+Install dependencies or dharitri-sdk modules.
 
 positional arguments:
   {all,golang,testwallets}  the dependency to install
@@ -2816,8 +2816,8 @@ options:
 
 
 ```
-$ mxpy deps check --help
-usage: mxpy deps check [-h] ...
+$ drtpy deps check --help
+usage: drtpy deps check [-h] ...
 
 Check whether a dependency is installed.
 
@@ -2832,10 +2832,10 @@ options:
 
 
 ```
-$ mxpy config --help
-usage: mxpy config COMMAND [-h] ...
+$ drtpy config --help
+usage: drtpy config COMMAND [-h] ...
 
-Configure MultiversX CLI (default values etc.)
+Configure Dharitri CLI (default values etc.)
 
 COMMANDS:
   {dump,get,set,delete,new,switch,list,reset}
@@ -2860,8 +2860,8 @@ reset                          Deletes the config file. Default config will be u
 
 
 ```
-$ mxpy config dump --help
-usage: mxpy config dump [-h] ...
+$ drtpy config dump --help
+usage: drtpy config dump [-h] ...
 
 Dumps the active configuration.
 
@@ -2874,8 +2874,8 @@ options:
 
 
 ```
-$ mxpy config get --help
-usage: mxpy config get [-h] ...
+$ drtpy config get --help
+usage: drtpy config get [-h] ...
 
 Gets a configuration value from the active configuration.
 
@@ -2890,8 +2890,8 @@ options:
 
 
 ```
-$ mxpy config set --help
-usage: mxpy config set [-h] ...
+$ drtpy config set --help
+usage: drtpy config set [-h] ...
 
 Sets a configuration value for the active configuration.
 
@@ -2907,8 +2907,8 @@ options:
 
 
 ```
-$ mxpy config new --help
-usage: mxpy config new [-h] ...
+$ drtpy config new --help
+usage: drtpy config new [-h] ...
 
 Creates a new configuration and sets it as the active configuration.
 
@@ -2924,8 +2924,8 @@ options:
 
 
 ```
-$ mxpy config switch --help
-usage: mxpy config switch [-h] ...
+$ drtpy config switch --help
+usage: drtpy config switch [-h] ...
 
 Switch to a different config.
 
@@ -2940,8 +2940,8 @@ options:
 
 
 ```
-$ mxpy config list --help
-usage: mxpy config list [-h] ...
+$ drtpy config list --help
+usage: drtpy config list [-h] ...
 
 List available configs
 
@@ -2953,8 +2953,8 @@ options:
 
 
 ```
-$ mxpy config reset --help
-usage: mxpy config reset [-h] ...
+$ drtpy config reset --help
+usage: drtpy config reset [-h] ...
 
 Deletes the config file. Default config will be used.
 
@@ -2966,8 +2966,8 @@ options:
 
 
 ```
-$ mxpy data --help
-usage: mxpy data COMMAND [-h] ...
+$ drtpy data --help
+usage: drtpy data COMMAND [-h] ...
 
 Data manipulation omnitool
 
@@ -2989,8 +2989,8 @@ load                           Loads a key-value pair from a storage partition
 
 
 ```
-$ mxpy data parse --help
-usage: mxpy data parse [-h] ...
+$ drtpy data parse --help
+usage: drtpy data parse [-h] ...
 
 Parses values from a given file
 
@@ -3004,8 +3004,8 @@ options:
 
 
 ```
-$ mxpy data store --help
-usage: mxpy data store [-h] ...
+$ drtpy data store --help
+usage: drtpy data store [-h] ...
 
 Stores a key-value pair within a partition
 
@@ -3021,8 +3021,8 @@ options:
 
 
 ```
-$ mxpy data load --help
-usage: mxpy data load [-h] ...
+$ drtpy data load --help
+usage: drtpy data load [-h] ...
 
 Loads a key-value pair from a storage partition
 
@@ -3037,10 +3037,10 @@ options:
 
 
 ```
-$ mxpy faucet --help
-usage: mxpy faucet COMMAND [-h] ...
+$ drtpy faucet --help
+usage: drtpy faucet COMMAND [-h] ...
 
-Get xEGLD on Devnet or Testnet
+Get xREWA on Devnet or Testnet
 
 COMMANDS:
   {request}
@@ -3051,17 +3051,17 @@ OPTIONS:
 ----------------
 COMMANDS summary
 ----------------
-request                        Request xEGLD.
+request                        Request xREWA.
 
 ```
 ### Faucet.Request
 
 
 ```
-$ mxpy faucet request --help
-usage: mxpy faucet request [-h] ...
+$ drtpy faucet request --help
+usage: drtpy faucet request [-h] ...
 
-Request xEGLD.
+Request xREWA.
 
 options:
   -h, --help                                 show this help message and exit
@@ -3084,13 +3084,13 @@ options:
 
 
 ```
-$ mxpy multisig --help
-usage: mxpy multisig COMMAND [-h] ...
+$ drtpy multisig --help
+usage: drtpy multisig COMMAND [-h] ...
 
 Deploy and interact with the Multisig Smart Contract
 
 COMMANDS:
-  {deploy,deposit,discard-action,discard-batch,add-board-member,add-proposer,remove-user,change-quorum,transfer-and-execute,transfer-and-execute-esdt,async-call,deploy-from-source,upgrade-from-source,sign-action,sign-batch,sign-and-perform,sign-batch-and-perform,unsign-action,unsign-batch,unsign-for-outdated-members,perform-action,perform-batch,get-quorum,get-num-board-members,get-num-groups,get-num-proposers,get-action-group,get-last-action-group-id,get-action-last-index,is-signed-by,is-quorum-reached,get-pending-actions,get-user-role,get-board-members,get-proposers,get-action-data,get-action-signers,get-action-signers-count,get-action-valid-signers-count,parse-propose-action}
+  {deploy,deposit,discard-action,discard-batch,add-board-member,add-proposer,remove-user,change-quorum,transfer-and-execute,transfer-and-execute-dcdt,async-call,deploy-from-source,upgrade-from-source,sign-action,sign-batch,sign-and-perform,sign-batch-and-perform,unsign-action,unsign-batch,unsign-for-outdated-members,perform-action,perform-batch,get-quorum,get-num-board-members,get-num-groups,get-num-proposers,get-action-group,get-last-action-group-id,get-action-last-index,is-signed-by,is-quorum-reached,get-pending-actions,get-user-role,get-board-members,get-proposers,get-action-data,get-action-signers,get-action-signers-count,get-action-valid-signers-count,parse-propose-action}
 
 OPTIONS:
   -h, --help            show this help message and exit
@@ -3099,15 +3099,15 @@ OPTIONS:
 COMMANDS summary
 ----------------
 deploy                         Deploy a Multisig Smart Contract.
-deposit                        Deposit native tokens (EGLD) or ESDT tokens into a Multisig Smart Contract.
+deposit                        Deposit native tokens (REWA) or DCDT tokens into a Multisig Smart Contract.
 discard-action                 Discard a proposed action. Signatures must be removed first via `unsign`.
 discard-batch                  Discard all the actions for the specified IDs.
 add-board-member               Propose adding a new board member.
 add-proposer                   Propose adding a new proposer.
 remove-user                    Propose removing a user from the Multisig Smart Contract.
 change-quorum                  Propose changing the quorum of the Multisig Smart Contract.
-transfer-and-execute           Propose transferring EGLD and optionally calling a smart contract.
-transfer-and-execute-esdt      Propose transferring ESDTs and optionally calling a smart contract.
+transfer-and-execute           Propose transferring REWA and optionally calling a smart contract.
+transfer-and-execute-dcdt      Propose transferring DCDTs and optionally calling a smart contract.
 async-call                     Propose a transaction in which the contract will perform an async call.
 deploy-from-source             Propose a smart contract deploy from a previously deployed smart contract.
 upgrade-from-source            Propose a smart contract upgrade from a previously deployed smart contract.
@@ -3144,8 +3144,8 @@ parse-propose-action           Parses the propose action transaction to extract 
 
 
 ```
-$ mxpy multisig deploy --help
-usage: mxpy multisig deploy [-h] ...
+$ drtpy multisig deploy --help
+usage: drtpy multisig deploy [-h] ...
 
 Deploy a Multisig Smart Contract.
 
@@ -3223,10 +3223,10 @@ options:
 
 
 ```
-$ mxpy multisig deposit --help
-usage: mxpy multisig deposit [-h] ...
+$ drtpy multisig deposit --help
+usage: drtpy multisig deposit [-h] ...
 
-Deposit native tokens (EGLD) or ESDT tokens into a Multisig Smart Contract.
+Deposit native tokens (REWA) or DCDT tokens into a Multisig Smart Contract.
 
 Output example:
 ===============
@@ -3245,7 +3245,7 @@ options:
   -h, --help                                      show this help message and exit
   --token-transfers TOKEN_TRANSFERS [TOKEN_TRANSFERS ...]
                                                   token transfers for transfer & execute, as [token, amount] E.g.
-                                                  --token-transfers NFT-123456-0a 1 ESDT-987654 100000000
+                                                  --token-transfers NFT-123456-0a 1 DCDT-987654 100000000
   --contract CONTRACT                             🖄 the bech32 address of the Multisig Smart Contract
   --abi ABI                                       the ABI file of the Multisig Smart Contract
   --outfile OUTFILE                               where to save the output (default: stdout)
@@ -3298,8 +3298,8 @@ options:
 
 
 ```
-$ mxpy multisig discard-action --help
-usage: mxpy multisig discard-action [-h] ...
+$ drtpy multisig discard-action --help
+usage: drtpy multisig discard-action [-h] ...
 
 Discard a proposed action. Signatures must be removed first via `unsign`.
 
@@ -3370,8 +3370,8 @@ options:
 
 
 ```
-$ mxpy multisig discard-batch --help
-usage: mxpy multisig discard-batch [-h] ...
+$ drtpy multisig discard-batch --help
+usage: drtpy multisig discard-batch [-h] ...
 
 Discard all the actions for the specified IDs.
 
@@ -3442,8 +3442,8 @@ options:
 
 
 ```
-$ mxpy multisig add-board-member --help
-usage: mxpy multisig add-board-member [-h] ...
+$ drtpy multisig add-board-member --help
+usage: drtpy multisig add-board-member [-h] ...
 
 Propose adding a new board member.
 
@@ -3514,8 +3514,8 @@ options:
 
 
 ```
-$ mxpy multisig add-proposer --help
-usage: mxpy multisig add-proposer [-h] ...
+$ drtpy multisig add-proposer --help
+usage: drtpy multisig add-proposer [-h] ...
 
 Propose adding a new proposer.
 
@@ -3586,8 +3586,8 @@ options:
 
 
 ```
-$ mxpy multisig remove-user --help
-usage: mxpy multisig remove-user [-h] ...
+$ drtpy multisig remove-user --help
+usage: drtpy multisig remove-user [-h] ...
 
 Propose removing a user from the Multisig Smart Contract.
 
@@ -3658,8 +3658,8 @@ options:
 
 
 ```
-$ mxpy multisig change-quorum --help
-usage: mxpy multisig change-quorum [-h] ...
+$ drtpy multisig change-quorum --help
+usage: drtpy multisig change-quorum [-h] ...
 
 Propose changing the quorum of the Multisig Smart Contract.
 
@@ -3731,10 +3731,10 @@ options:
 
 
 ```
-$ mxpy multisig transfer-and-execute --help
-usage: mxpy multisig transfer-and-execute [-h] ...
+$ drtpy multisig transfer-and-execute --help
+usage: drtpy multisig transfer-and-execute [-h] ...
 
-Propose transferring EGLD and optionally calling a smart contract.
+Propose transferring REWA and optionally calling a smart contract.
 
 Output example:
 ===============
@@ -3808,14 +3808,14 @@ options:
                                                  set
 
 ```
-### Multisig.TransferAndExecuteEsdt
+### Multisig.TransferAndExecuteDcdt
 
 
 ```
-$ mxpy multisig transfer-and-execute-esdt --help
-usage: mxpy multisig transfer-and-execute-esdt [-h] ...
+$ drtpy multisig transfer-and-execute-dcdt --help
+usage: drtpy multisig transfer-and-execute-dcdt [-h] ...
 
-Propose transferring ESDTs and optionally calling a smart contract.
+Propose transferring DCDTs and optionally calling a smart contract.
 
 Output example:
 ===============
@@ -3834,7 +3834,7 @@ options:
   -h, --help                                      show this help message and exit
   --token-transfers TOKEN_TRANSFERS [TOKEN_TRANSFERS ...]
                                                   token transfers for transfer & execute, as [token, amount] E.g.
-                                                  --token-transfers NFT-123456-0a 1 ESDT-987654 100000000
+                                                  --token-transfers NFT-123456-0a 1 DCDT-987654 100000000
   --opt-gas-limit OPT_GAS_LIMIT                   optional gas limit for the async call
   --contract-abi CONTRACT_ABI                     the ABI file of the contract to call
   --function FUNCTION                             the function to call
@@ -3897,8 +3897,8 @@ options:
 
 
 ```
-$ mxpy multisig async-call --help
-usage: mxpy multisig async-call [-h] ...
+$ drtpy multisig async-call --help
+usage: drtpy multisig async-call [-h] ...
 
 Propose a transaction in which the contract will perform an async call.
 
@@ -3919,7 +3919,7 @@ options:
   -h, --help                                      show this help message and exit
   --token-transfers TOKEN_TRANSFERS [TOKEN_TRANSFERS ...]
                                                   token transfers for transfer & execute, as [token, amount] E.g.
-                                                  --token-transfers NFT-123456-0a 1 ESDT-987654 100000000
+                                                  --token-transfers NFT-123456-0a 1 DCDT-987654 100000000
   --opt-gas-limit OPT_GAS_LIMIT                   optional gas limit for the async call
   --contract-abi CONTRACT_ABI                     the ABI file of the contract to call
   --function FUNCTION                             the function to call
@@ -3982,8 +3982,8 @@ options:
 
 
 ```
-$ mxpy multisig deploy-from-source --help
-usage: mxpy multisig deploy-from-source [-h] ...
+$ drtpy multisig deploy-from-source --help
+usage: drtpy multisig deploy-from-source [-h] ...
 
 Propose a smart contract deploy from a previously deployed smart contract.
 
@@ -4064,8 +4064,8 @@ options:
 
 
 ```
-$ mxpy multisig upgrade-from-source --help
-usage: mxpy multisig upgrade-from-source [-h] ...
+$ drtpy multisig upgrade-from-source --help
+usage: drtpy multisig upgrade-from-source [-h] ...
 
 Propose a smart contract upgrade from a previously deployed smart contract.
 
@@ -4147,8 +4147,8 @@ options:
 
 
 ```
-$ mxpy multisig sign-action --help
-usage: mxpy multisig sign-action [-h] ...
+$ drtpy multisig sign-action --help
+usage: drtpy multisig sign-action [-h] ...
 
 Sign a proposed action.
 
@@ -4219,8 +4219,8 @@ options:
 
 
 ```
-$ mxpy multisig sign-batch --help
-usage: mxpy multisig sign-batch [-h] ...
+$ drtpy multisig sign-batch --help
+usage: drtpy multisig sign-batch [-h] ...
 
 Sign a batch of actions.
 
@@ -4291,8 +4291,8 @@ options:
 
 
 ```
-$ mxpy multisig sign-and-perform --help
-usage: mxpy multisig sign-and-perform [-h] ...
+$ drtpy multisig sign-and-perform --help
+usage: drtpy multisig sign-and-perform [-h] ...
 
 Sign a proposed action and perform it. Works only if quorum is reached.
 
@@ -4363,8 +4363,8 @@ options:
 
 
 ```
-$ mxpy multisig sign-batch-and-perform --help
-usage: mxpy multisig sign-batch-and-perform [-h] ...
+$ drtpy multisig sign-batch-and-perform --help
+usage: drtpy multisig sign-batch-and-perform [-h] ...
 
 Sign a batch of actions and perform them. Works only if quorum is reached.
 
@@ -4435,8 +4435,8 @@ options:
 
 
 ```
-$ mxpy multisig unsign-action --help
-usage: mxpy multisig unsign-action [-h] ...
+$ drtpy multisig unsign-action --help
+usage: drtpy multisig unsign-action [-h] ...
 
 Unsign a proposed action.
 
@@ -4507,8 +4507,8 @@ options:
 
 
 ```
-$ mxpy multisig unsign-batch --help
-usage: mxpy multisig unsign-batch [-h] ...
+$ drtpy multisig unsign-batch --help
+usage: drtpy multisig unsign-batch [-h] ...
 
 Unsign a batch of actions.
 
@@ -4579,8 +4579,8 @@ options:
 
 
 ```
-$ mxpy multisig unsign-for-outdated-members --help
-usage: mxpy multisig unsign-for-outdated-members [-h] ...
+$ drtpy multisig unsign-for-outdated-members --help
+usage: drtpy multisig unsign-for-outdated-members [-h] ...
 
 Unsign an action for outdated board members.
 
@@ -4654,8 +4654,8 @@ options:
 
 
 ```
-$ mxpy multisig perform-action --help
-usage: mxpy multisig perform-action [-h] ...
+$ drtpy multisig perform-action --help
+usage: drtpy multisig perform-action [-h] ...
 
 Perform an action that has reached quorum.
 
@@ -4726,8 +4726,8 @@ options:
 
 
 ```
-$ mxpy multisig perform-batch --help
-usage: mxpy multisig perform-batch [-h] ...
+$ drtpy multisig perform-batch --help
+usage: drtpy multisig perform-batch [-h] ...
 
 Perform a batch of actions that has reached quorum.
 
@@ -4798,8 +4798,8 @@ options:
 
 
 ```
-$ mxpy multisig get-quorum --help
-usage: mxpy multisig get-quorum [-h] ...
+$ drtpy multisig get-quorum --help
+usage: drtpy multisig get-quorum [-h] ...
 
 Perform a smart contract query to get the quorum.
 
@@ -4814,8 +4814,8 @@ options:
 
 
 ```
-$ mxpy multisig get-num-board-members --help
-usage: mxpy multisig get-num-board-members [-h] ...
+$ drtpy multisig get-num-board-members --help
+usage: drtpy multisig get-num-board-members [-h] ...
 
 Perform a smart contract query to get the number of board members.
 
@@ -4830,8 +4830,8 @@ options:
 
 
 ```
-$ mxpy multisig get-num-groups --help
-usage: mxpy multisig get-num-groups [-h] ...
+$ drtpy multisig get-num-groups --help
+usage: drtpy multisig get-num-groups [-h] ...
 
 Perform a smart contract query to get the number of groups.
 
@@ -4846,8 +4846,8 @@ options:
 
 
 ```
-$ mxpy multisig get-num-proposers --help
-usage: mxpy multisig get-num-proposers [-h] ...
+$ drtpy multisig get-num-proposers --help
+usage: drtpy multisig get-num-proposers [-h] ...
 
 Perform a smart contract query to get the number of proposers.
 
@@ -4862,8 +4862,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-group --help
-usage: mxpy multisig get-action-group [-h] ...
+$ drtpy multisig get-action-group --help
+usage: drtpy multisig get-action-group [-h] ...
 
 Perform a smart contract query to get the actions in a group.
 
@@ -4879,8 +4879,8 @@ options:
 
 
 ```
-$ mxpy multisig get-last-action-group-id --help
-usage: mxpy multisig get-last-action-group-id [-h] ...
+$ drtpy multisig get-last-action-group-id --help
+usage: drtpy multisig get-last-action-group-id [-h] ...
 
 Perform a smart contract query to get the id of the last action in a group.
 
@@ -4895,8 +4895,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-last-index --help
-usage: mxpy multisig get-action-last-index [-h] ...
+$ drtpy multisig get-action-last-index --help
+usage: drtpy multisig get-action-last-index [-h] ...
 
 Perform a smart contract query to get the index of the last action.
 
@@ -4911,8 +4911,8 @@ options:
 
 
 ```
-$ mxpy multisig is-signed-by --help
-usage: mxpy multisig is-signed-by [-h] ...
+$ drtpy multisig is-signed-by --help
+usage: drtpy multisig is-signed-by [-h] ...
 
 Perform a smart contract query to check if an action is signed by a user.
 
@@ -4929,8 +4929,8 @@ options:
 
 
 ```
-$ mxpy multisig is-quorum-reached --help
-usage: mxpy multisig is-quorum-reached [-h] ...
+$ drtpy multisig is-quorum-reached --help
+usage: drtpy multisig is-quorum-reached [-h] ...
 
 Perform a smart contract query to check if an action has reached quorum.
 
@@ -4946,8 +4946,8 @@ options:
 
 
 ```
-$ mxpy multisig get-pending-actions --help
-usage: mxpy multisig get-pending-actions [-h] ...
+$ drtpy multisig get-pending-actions --help
+usage: drtpy multisig get-pending-actions [-h] ...
 
 Perform a smart contract query to get the pending actions full info.
 
@@ -4962,8 +4962,8 @@ options:
 
 
 ```
-$ mxpy multisig get-user-role --help
-usage: mxpy multisig get-user-role [-h] ...
+$ drtpy multisig get-user-role --help
+usage: drtpy multisig get-user-role [-h] ...
 
 Perform a smart contract query to get the role of a user.
 
@@ -4979,8 +4979,8 @@ options:
 
 
 ```
-$ mxpy multisig get-board-members --help
-usage: mxpy multisig get-board-members [-h] ...
+$ drtpy multisig get-board-members --help
+usage: drtpy multisig get-board-members [-h] ...
 
 Perform a smart contract query to get all the board members.
 
@@ -4995,8 +4995,8 @@ options:
 
 
 ```
-$ mxpy multisig get-proposers --help
-usage: mxpy multisig get-proposers [-h] ...
+$ drtpy multisig get-proposers --help
+usage: drtpy multisig get-proposers [-h] ...
 
 Perform a smart contract query to get all the proposers.
 
@@ -5011,8 +5011,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-data --help
-usage: mxpy multisig get-action-data [-h] ...
+$ drtpy multisig get-action-data --help
+usage: drtpy multisig get-action-data [-h] ...
 
 Perform a smart contract query to get the data of an action.
 
@@ -5028,8 +5028,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-signers --help
-usage: mxpy multisig get-action-signers [-h] ...
+$ drtpy multisig get-action-signers --help
+usage: drtpy multisig get-action-signers [-h] ...
 
 Perform a smart contract query to get the signers of an action.
 
@@ -5045,8 +5045,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-signers-count --help
-usage: mxpy multisig get-action-signers-count [-h] ...
+$ drtpy multisig get-action-signers-count --help
+usage: drtpy multisig get-action-signers-count [-h] ...
 
 Perform a smart contract query to get the number of signers of an action.
 
@@ -5062,8 +5062,8 @@ options:
 
 
 ```
-$ mxpy multisig get-action-valid-signers-count --help
-usage: mxpy multisig get-action-valid-signers-count [-h] ...
+$ drtpy multisig get-action-valid-signers-count --help
+usage: drtpy multisig get-action-valid-signers-count [-h] ...
 
 Perform a smart contract query to get the number of valid signers of an action.
 
@@ -5079,8 +5079,8 @@ options:
 
 
 ```
-$ mxpy multisig parse-propose-action --help
-usage: mxpy multisig parse-propose-action [-h] ...
+$ drtpy multisig parse-propose-action --help
+usage: drtpy multisig parse-propose-action [-h] ...
 
 Parses the propose action transaction to extract proposal ID.
 
@@ -5095,8 +5095,8 @@ options:
 
 
 ```
-$ mxpy governance --help
-usage: mxpy governance COMMAND [-h] ...
+$ drtpy governance --help
+usage: drtpy governance COMMAND [-h] ...
 
 Propose, vote and interact with the governance contract.
 
@@ -5125,8 +5125,8 @@ get-delegated-vote-info        Get info about a delegated vote.
 
 
 ```
-$ mxpy governance propose --help
-usage: mxpy governance propose [-h] ...
+$ drtpy governance propose --help
+usage: drtpy governance propose [-h] ...
 
 Create a new governance proposal.
 
@@ -5197,8 +5197,8 @@ options:
 
 
 ```
-$ mxpy governance vote --help
-usage: mxpy governance vote [-h] ...
+$ drtpy governance vote --help
+usage: drtpy governance vote [-h] ...
 
 Vote for a governance proposal.
 
@@ -5268,8 +5268,8 @@ options:
 
 
 ```
-$ mxpy governance close-proposal --help
-usage: mxpy governance close-proposal [-h] ...
+$ drtpy governance close-proposal --help
+usage: drtpy governance close-proposal [-h] ...
 
 Close a governance proposal.
 
@@ -5338,8 +5338,8 @@ options:
 
 
 ```
-$ mxpy governance clear-ended-proposals --help
-usage: mxpy governance clear-ended-proposals [-h] ...
+$ drtpy governance clear-ended-proposals --help
+usage: drtpy governance clear-ended-proposals [-h] ...
 
 Clear ended proposals.
 
@@ -5409,8 +5409,8 @@ options:
 
 
 ```
-$ mxpy governance claim-accumulated-fees --help
-usage: mxpy governance claim-accumulated-fees [-h] ...
+$ drtpy governance claim-accumulated-fees --help
+usage: drtpy governance claim-accumulated-fees [-h] ...
 
 Claim the accumulated fees.
 
@@ -5478,8 +5478,8 @@ options:
 
 
 ```
-$ mxpy governance change-config --help
-usage: mxpy governance change-config [-h] ...
+$ drtpy governance change-config --help
+usage: drtpy governance change-config [-h] ...
 
 Change the config of the contract.
 
@@ -5552,8 +5552,8 @@ options:
 
 
 ```
-$ mxpy governance get-voting-power --help
-usage: mxpy governance get-voting-power [-h] ...
+$ drtpy governance get-voting-power --help
+usage: drtpy governance get-voting-power [-h] ...
 
 Get the voting power of an user.
 
@@ -5580,8 +5580,8 @@ options:
 
 
 ```
-$ mxpy governance get-config --help
-usage: mxpy governance get-config [-h] ...
+$ drtpy governance get-config --help
+usage: drtpy governance get-config [-h] ...
 
 Get the config of the governance contract.
 
@@ -5607,8 +5607,8 @@ options:
 
 
 ```
-$ mxpy governance get-delegated-vote-info --help
-usage: mxpy governance get-delegated-vote-info [-h] ...
+$ drtpy governance get-delegated-vote-info --help
+usage: drtpy governance get-delegated-vote-info [-h] ...
 
 Get info about a delegated vote.
 
@@ -5636,10 +5636,10 @@ options:
 
 
 ```
-$ mxpy config-env --help
-usage: mxpy config-env COMMAND [-h] ...
+$ drtpy config-env --help
+usage: drtpy config-env COMMAND [-h] ...
 
-Configure MultiversX CLI to use specific environment values.
+Configure Dharitri CLI to use specific environment values.
 
 COMMANDS:
   {new,get,set,dump,delete,switch,list,remove,reset}
@@ -5657,7 +5657,7 @@ dump                           Dumps the active environment.
 delete                         Deletes an env value from the specified environment.
 switch                         Switch to a different environment.
 list                           List available environments
-remove                         Deletes an environment from the env file. Use `mxpy config-env switch` to move to another env.
+remove                         Deletes an environment from the env file. Use `drtpy config-env switch` to move to another env.
 reset                          Deletes the environment file. Default env will be used.
 
 ```
@@ -5665,8 +5665,8 @@ reset                          Deletes the environment file. Default env will be
 
 
 ```
-$ mxpy config-env new --help
-usage: mxpy config-env new [-h] ...
+$ drtpy config-env new --help
+usage: drtpy config-env new [-h] ...
 
 Creates a new environment and sets it as the active environment.
 
@@ -5682,8 +5682,8 @@ options:
 
 
 ```
-$ mxpy config-env set --help
-usage: mxpy config-env set [-h] ...
+$ drtpy config-env set --help
+usage: drtpy config-env set [-h] ...
 
 Sets an env value for the specified environment.
 
@@ -5700,8 +5700,8 @@ options:
 
 
 ```
-$ mxpy config-env get --help
-usage: mxpy config-env get [-h] ...
+$ drtpy config-env get --help
+usage: drtpy config-env get [-h] ...
 
 Gets an env value from the specified environment.
 
@@ -5717,8 +5717,8 @@ options:
 
 
 ```
-$ mxpy config-env dump --help
-usage: mxpy config-env dump [-h] ...
+$ drtpy config-env dump --help
+usage: drtpy config-env dump [-h] ...
 
 Dumps the active environment.
 
@@ -5731,8 +5731,8 @@ options:
 
 
 ```
-$ mxpy config-env switch --help
-usage: mxpy config-env switch [-h] ...
+$ drtpy config-env switch --help
+usage: drtpy config-env switch [-h] ...
 
 Switch to a different environment.
 
@@ -5745,8 +5745,8 @@ options:
 
 
 ```
-$ mxpy config-env list --help
-usage: mxpy config-env list [-h] ...
+$ drtpy config-env list --help
+usage: drtpy config-env list [-h] ...
 
 List available environments
 
@@ -5758,10 +5758,10 @@ options:
 
 
 ```
-$ mxpy config-env remove --help
-usage: mxpy config-env remove [-h] ...
+$ drtpy config-env remove --help
+usage: drtpy config-env remove [-h] ...
 
-Deletes an environment from the env file. Use `mxpy config-env switch` to move to another env.
+Deletes an environment from the env file. Use `drtpy config-env switch` to move to another env.
 
 options:
   -h, --help  show this help message and exit
@@ -5772,8 +5772,8 @@ options:
 
 
 ```
-$ mxpy config-env reset --help
-usage: mxpy config-env reset [-h] ...
+$ drtpy config-env reset --help
+usage: drtpy config-env reset [-h] ...
 
 Deletes the environment file. Default env will be used.
 
@@ -5785,10 +5785,10 @@ options:
 
 
 ```
-$ mxpy config-wallet --help
-usage: mxpy config-wallet COMMAND [-h] ...
+$ drtpy config-wallet --help
+usage: drtpy config-wallet COMMAND [-h] ...
 
-Configure MultiversX CLI to use a default wallet.
+Configure Dharitri CLI to use a default wallet.
 
 COMMANDS:
   {new,list,dump,get,set,delete,switch,remove,reset}
@@ -5814,8 +5814,8 @@ reset                          Deletes the config file. No default wallet will b
 
 
 ```
-$ mxpy config-wallet new --help
-usage: mxpy config-wallet new [-h] ...
+$ drtpy config-wallet new --help
+usage: drtpy config-wallet new [-h] ...
 
 Creates a new wallet config and sets it as the active wallet.
 
@@ -5831,8 +5831,8 @@ options:
 
 
 ```
-$ mxpy config-wallet list --help
-usage: mxpy config-wallet list [-h] ...
+$ drtpy config-wallet list --help
+usage: drtpy config-wallet list [-h] ...
 
 List configured wallets
 
@@ -5844,8 +5844,8 @@ options:
 
 
 ```
-$ mxpy config-wallet dump --help
-usage: mxpy config-wallet dump [-h] ...
+$ drtpy config-wallet dump --help
+usage: drtpy config-wallet dump [-h] ...
 
 Dumps the active wallet.
 
@@ -5857,8 +5857,8 @@ options:
 
 
 ```
-$ mxpy config-wallet get --help
-usage: mxpy config-wallet get [-h] ...
+$ drtpy config-wallet get --help
+usage: drtpy config-wallet get [-h] ...
 
 Gets a config value from the specified wallet.
 
@@ -5874,8 +5874,8 @@ options:
 
 
 ```
-$ mxpy config-wallet set --help
-usage: mxpy config-wallet set [-h] ...
+$ drtpy config-wallet set --help
+usage: drtpy config-wallet set [-h] ...
 
 Sets a config value for the specified wallet.
 
@@ -5892,8 +5892,8 @@ options:
 
 
 ```
-$ mxpy config-wallet switch --help
-usage: mxpy config-wallet switch [-h] ...
+$ drtpy config-wallet switch --help
+usage: drtpy config-wallet switch [-h] ...
 
 Switch to a different wallet.
 
@@ -5906,8 +5906,8 @@ options:
 
 
 ```
-$ mxpy config-wallet delete --help
-usage: mxpy config-wallet delete [-h] ...
+$ drtpy config-wallet delete --help
+usage: drtpy config-wallet delete [-h] ...
 
 Deletes a config value from the specified wallet.
 
@@ -5923,8 +5923,8 @@ options:
 
 
 ```
-$ mxpy config-wallet remove --help
-usage: mxpy config-wallet remove [-h] ...
+$ drtpy config-wallet remove --help
+usage: drtpy config-wallet remove [-h] ...
 
 Removes a wallet from the config using the alias. No default wallet will be set. Use `config-wallet switch` to set a new wallet.
 
@@ -5937,8 +5937,8 @@ options:
 
 
 ```
-$ mxpy config-wallet reset --help
-usage: mxpy config-wallet reset [-h] ...
+$ drtpy config-wallet reset --help
+usage: drtpy config-wallet reset [-h] ...
 
 Deletes the config file. No default wallet will be set.
 
@@ -5950,8 +5950,8 @@ options:
 
 
 ```
-$ mxpy get --help
-usage: mxpy get COMMAND [-h] ...
+$ drtpy get --help
+usage: drtpy get COMMAND [-h] ...
 
 Get info from the network.
 
@@ -5977,8 +5977,8 @@ network-status                 Get the network status.
 
 
 ```
-$ mxpy get account --help
-usage: mxpy get account [-h] ...
+$ drtpy get account --help
+usage: drtpy get account [-h] ...
 
 Get info about an account.
 
@@ -5994,8 +5994,8 @@ options:
 
 
 ```
-$ mxpy get storage --help
-usage: mxpy get storage [-h] ...
+$ drtpy get storage --help
+usage: drtpy get storage [-h] ...
 
 Get the storage (key-value pairs) of an account.
 
@@ -6010,8 +6010,8 @@ options:
 
 
 ```
-$ mxpy get storage-entry --help
-usage: mxpy get storage-entry [-h] ...
+$ drtpy get storage-entry --help
+usage: drtpy get storage-entry [-h] ...
 
 Get a specific storage entry (key-value pair) of an account.
 
@@ -6027,8 +6027,8 @@ options:
 
 
 ```
-$ mxpy get token --help
-usage: mxpy get token [-h] ...
+$ drtpy get token --help
+usage: drtpy get token [-h] ...
 
 Get a token of an account.
 
@@ -6037,15 +6037,15 @@ options:
   --alias ALIAS            the alias of the wallet if configured in address config
   --address ADDRESS        the bech32 address
   --proxy PROXY            the proxy url
-  --identifier IDENTIFIER  the token identifier. Works for ESDT and NFT. (e.g. FNG-123456, NFT-987654-0a)
+  --identifier IDENTIFIER  the token identifier. Works for DCDT and NFT. (e.g. FNG-123456, NFT-987654-0a)
 
 ```
 ### Get.Transaction
 
 
 ```
-$ mxpy get transaction --help
-usage: mxpy get transaction [-h] ...
+$ drtpy get transaction --help
+usage: drtpy get transaction [-h] ...
 
 Get a transaction from the network.
 

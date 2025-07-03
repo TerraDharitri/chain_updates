@@ -1,4 +1,4 @@
-multiversx\_sdk.core package
+dharitri\_sdk.core package
 ============================
 
 Subpackages
@@ -7,127 +7,127 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   multiversx_sdk.core.proto
+   dharitri_sdk.core.proto
 
 Submodules
 ----------
 
-multiversx\_sdk.core.address module
+dharitri\_sdk.core.address module
 -----------------------------------
 
-.. automodule:: multiversx_sdk.core.address
+.. automodule:: dharitri_sdk.core.address
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.base\_controller module
+dharitri\_sdk.core.base\_controller module
 --------------------------------------------
 
-.. automodule:: multiversx_sdk.core.base_controller
+.. automodule:: dharitri_sdk.core.base_controller
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.bech32 module
+dharitri\_sdk.core.bech32 module
 ----------------------------------
 
-.. automodule:: multiversx_sdk.core.bech32
+.. automodule:: dharitri_sdk.core.bech32
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.code\_metadata module
+dharitri\_sdk.core.code\_metadata module
 ------------------------------------------
 
-.. automodule:: multiversx_sdk.core.code_metadata
+.. automodule:: dharitri_sdk.core.code_metadata
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.config module
+dharitri\_sdk.core.config module
 ----------------------------------
 
-.. automodule:: multiversx_sdk.core.config
+.. automodule:: dharitri_sdk.core.config
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.errors module
+dharitri\_sdk.core.errors module
 ----------------------------------
 
-.. automodule:: multiversx_sdk.core.errors
+.. automodule:: dharitri_sdk.core.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.interfaces module
+dharitri\_sdk.core.interfaces module
 --------------------------------------
 
-.. automodule:: multiversx_sdk.core.interfaces
+.. automodule:: dharitri_sdk.core.interfaces
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.message module
+dharitri\_sdk.core.message module
 -----------------------------------
 
-.. automodule:: multiversx_sdk.core.message
+.. automodule:: dharitri_sdk.core.message
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.tokens module
+dharitri\_sdk.core.tokens module
 ----------------------------------
 
-.. automodule:: multiversx_sdk.core.tokens
+.. automodule:: dharitri_sdk.core.tokens
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transaction module
+dharitri\_sdk.core.transaction module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.core.transaction
+.. automodule:: dharitri_sdk.core.transaction
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transaction\_computer module
+dharitri\_sdk.core.transaction\_computer module
 -------------------------------------------------
 
-.. automodule:: multiversx_sdk.core.transaction_computer
+.. automodule:: dharitri_sdk.core.transaction_computer
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transaction\_events\_parser module
+dharitri\_sdk.core.transaction\_events\_parser module
 -------------------------------------------------------
 
-.. automodule:: multiversx_sdk.core.transaction_events_parser
+.. automodule:: dharitri_sdk.core.transaction_events_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transaction\_on\_network module
+dharitri\_sdk.core.transaction\_on\_network module
 ----------------------------------------------------
 
-.. automodule:: multiversx_sdk.core.transaction_on_network
+.. automodule:: dharitri_sdk.core.transaction_on_network
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transaction\_status module
+dharitri\_sdk.core.transaction\_status module
 -----------------------------------------------
 
-.. automodule:: multiversx_sdk.core.transaction_status
+.. automodule:: dharitri_sdk.core.transaction_status
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.core.transactions\_factory\_config module
+dharitri\_sdk.core.transactions\_factory\_config module
 ---------------------------------------------------------
 
-.. automodule:: multiversx_sdk.core.transactions_factory_config
+.. automodule:: dharitri_sdk.core.transactions_factory_config
    :members:
    :undoc-members:
    :show-inheritance:
@@ -135,7 +135,7 @@ multiversx\_sdk.core.transactions\_factory\_config module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.core
+.. automodule:: dharitri_sdk.core
    :members:
    :undoc-members:
    :show-inheritance:

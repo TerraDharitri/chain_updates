@@ -1,6 +1,6 @@
 from typing import Any, Protocol
 
-from multiversx_sdk import Address, Transaction
+from dharitri_sdk import Address, Transaction
 
 
 # fmt: off

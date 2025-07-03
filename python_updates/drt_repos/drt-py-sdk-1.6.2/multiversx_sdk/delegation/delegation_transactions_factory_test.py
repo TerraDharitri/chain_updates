@@ -1,8 +1,8 @@
-from multiversx_sdk.core import Address, TransactionsFactoryConfig
-from multiversx_sdk.core.constants import DELEGATION_MANAGER_SC_ADDRESS_HEX
-from multiversx_sdk.delegation import DelegationTransactionsFactory
-from multiversx_sdk.wallet import ValidatorSecretKey, ValidatorSigner
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.core import Address, TransactionsFactoryConfig
+from dharitri_sdk.core.constants import DELEGATION_MANAGER_SC_ADDRESS_HEX
+from dharitri_sdk.delegation import DelegationTransactionsFactory
+from dharitri_sdk.wallet import ValidatorSecretKey, ValidatorSigner
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class TestDelegationTransactionsFactory:
@@ -149,7 +149,7 @@ class TestDelegationTransactionsFactory:
             sender=sender,
             delegation_contract=delegation_contract,
             public_keys=public_keys,
-            amount=25000000000000000000,  # 2.5 egld
+            amount=25000000000000000000,  # 2.5 rewa
         )
 
         assert transaction.sender.to_bech32() == "erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"

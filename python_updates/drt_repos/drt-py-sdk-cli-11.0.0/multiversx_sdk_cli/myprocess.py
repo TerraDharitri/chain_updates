@@ -3,7 +3,7 @@ import subprocess
 from pathlib import Path
 from typing import Any, Optional, Union
 
-from multiversx_sdk_cli import errors
+from dharitri_sdk_cli import errors
 
 logger = logging.getLogger("myprocess")
 

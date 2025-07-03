@@ -3,19 +3,19 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     Message,
     MessageComputer,
     Transaction,
     TransactionComputer,
 )
-from multiversx_sdk.wallet.crypto.randomness import Randomness
-from multiversx_sdk.wallet.user_keys import UserSecretKey
-from multiversx_sdk.wallet.user_pem import UserPEM
-from multiversx_sdk.wallet.user_signer import UserSigner
-from multiversx_sdk.wallet.user_verifer import UserVerifier
-from multiversx_sdk.wallet.user_wallet import UserWallet
+from dharitri_sdk.wallet.crypto.randomness import Randomness
+from dharitri_sdk.wallet.user_keys import UserSecretKey
+from dharitri_sdk.wallet.user_pem import UserPEM
+from dharitri_sdk.wallet.user_signer import UserSigner
+from dharitri_sdk.wallet.user_verifer import UserVerifier
+from dharitri_sdk.wallet.user_wallet import UserWallet
 
 testwallets = Path(__file__).parent.parent / "testutils" / "testwallets"
 DUMMY_MNEMONIC = "moral volcano peasant pass circle pen over picture flat shop clap goat never lyrics gather prepare woman film husband gravity behind test tiger improve"
@@ -154,7 +154,7 @@ def test_user_wallet_encrypt_then_decrypt():
 
 def test_sign_transaction():
     """
-    Also see: https://github.com/multiversx/mx-chain-go/blob/master/examples/construction_test.go
+    Also see: https://github.com/TerraDharitri/mx-chain-go/blob/master/examples/construction_test.go
     """
 
     tx = Transaction(

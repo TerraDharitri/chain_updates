@@ -1,269 +1,269 @@
-multiversx\_sdk.abi package
+dharitri\_sdk.abi package
 ===========================
 
 Submodules
 ----------
 
-multiversx\_sdk.abi.abi module
+dharitri\_sdk.abi.abi module
 ------------------------------
 
-.. automodule:: multiversx_sdk.abi.abi
+.. automodule:: dharitri_sdk.abi.abi
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.abi\_definition module
+dharitri\_sdk.abi.abi\_definition module
 ------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.abi_definition
+.. automodule:: dharitri_sdk.abi.abi_definition
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.address\_value module
+dharitri\_sdk.abi.address\_value module
 -----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.address_value
+.. automodule:: dharitri_sdk.abi.address_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.array\_value module
+dharitri\_sdk.abi.array\_value module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.abi.array_value
+.. automodule:: dharitri_sdk.abi.array_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.bigint\_value module
+dharitri\_sdk.abi.bigint\_value module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.bigint_value
+.. automodule:: dharitri_sdk.abi.bigint_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.biguint\_value module
+dharitri\_sdk.abi.biguint\_value module
 -----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.biguint_value
+.. automodule:: dharitri_sdk.abi.biguint_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.bool\_value module
+dharitri\_sdk.abi.bool\_value module
 --------------------------------------
 
-.. automodule:: multiversx_sdk.abi.bool_value
+.. automodule:: dharitri_sdk.abi.bool_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.bytes\_value module
+dharitri\_sdk.abi.bytes\_value module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.abi.bytes_value
+.. automodule:: dharitri_sdk.abi.bytes_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.code\_metadata\_value module
+dharitri\_sdk.abi.code\_metadata\_value module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.code_metadata_value
+.. automodule:: dharitri_sdk.abi.code_metadata_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.codec module
+dharitri\_sdk.abi.codec module
 --------------------------------
 
-.. automodule:: multiversx_sdk.abi.codec
+.. automodule:: dharitri_sdk.abi.codec
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.counted\_variadic\_values module
+dharitri\_sdk.abi.counted\_variadic\_values module
 ----------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.counted_variadic_values
+.. automodule:: dharitri_sdk.abi.counted_variadic_values
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.enum\_value module
+dharitri\_sdk.abi.enum\_value module
 --------------------------------------
 
-.. automodule:: multiversx_sdk.abi.enum_value
+.. automodule:: dharitri_sdk.abi.enum_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.explicit\_enum\_value module
+dharitri\_sdk.abi.explicit\_enum\_value module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.explicit_enum_value
+.. automodule:: dharitri_sdk.abi.explicit_enum_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.fields module
+dharitri\_sdk.abi.fields module
 ---------------------------------
 
-.. automodule:: multiversx_sdk.abi.fields
+.. automodule:: dharitri_sdk.abi.fields
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.interface module
+dharitri\_sdk.abi.interface module
 ------------------------------------
 
-.. automodule:: multiversx_sdk.abi.interface
+.. automodule:: dharitri_sdk.abi.interface
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.list\_value module
+dharitri\_sdk.abi.list\_value module
 --------------------------------------
 
-.. automodule:: multiversx_sdk.abi.list_value
+.. automodule:: dharitri_sdk.abi.list_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.managed\_decimal\_signed\_value module
+dharitri\_sdk.abi.managed\_decimal\_signed\_value module
 ----------------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.managed_decimal_signed_value
+.. automodule:: dharitri_sdk.abi.managed_decimal_signed_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.managed\_decimal\_value module
+dharitri\_sdk.abi.managed\_decimal\_value module
 --------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.managed_decimal_value
+.. automodule:: dharitri_sdk.abi.managed_decimal_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.multi\_value module
+dharitri\_sdk.abi.multi\_value module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.abi.multi_value
+.. automodule:: dharitri_sdk.abi.multi_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.option\_value module
+dharitri\_sdk.abi.option\_value module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.option_value
+.. automodule:: dharitri_sdk.abi.option_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.optional\_value module
+dharitri\_sdk.abi.optional\_value module
 ------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.optional_value
+.. automodule:: dharitri_sdk.abi.optional_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.parts module
+dharitri\_sdk.abi.parts module
 --------------------------------
 
-.. automodule:: multiversx_sdk.abi.parts
+.. automodule:: dharitri_sdk.abi.parts
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.serializer module
+dharitri\_sdk.abi.serializer module
 -------------------------------------
 
-.. automodule:: multiversx_sdk.abi.serializer
+.. automodule:: dharitri_sdk.abi.serializer
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.shared module
+dharitri\_sdk.abi.shared module
 ---------------------------------
 
-.. automodule:: multiversx_sdk.abi.shared
+.. automodule:: dharitri_sdk.abi.shared
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.small\_int\_values module
+dharitri\_sdk.abi.small\_int\_values module
 ---------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.small_int_values
+.. automodule:: dharitri_sdk.abi.small_int_values
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.string\_value module
+dharitri\_sdk.abi.string\_value module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.string_value
+.. automodule:: dharitri_sdk.abi.string_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.struct\_value module
+dharitri\_sdk.abi.struct\_value module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.struct_value
+.. automodule:: dharitri_sdk.abi.struct_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.token\_identifier\_value module
+dharitri\_sdk.abi.token\_identifier\_value module
 ---------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.token_identifier_value
+.. automodule:: dharitri_sdk.abi.token_identifier_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.tuple\_value module
+dharitri\_sdk.abi.tuple\_value module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.abi.tuple_value
+.. automodule:: dharitri_sdk.abi.tuple_value
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.type\_formula module
+dharitri\_sdk.abi.type\_formula module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.abi.type_formula
+.. automodule:: dharitri_sdk.abi.type_formula
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.type\_formula\_parser module
+dharitri\_sdk.abi.type\_formula\_parser module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.type_formula_parser
+.. automodule:: dharitri_sdk.abi.type_formula_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.typesystem module
+dharitri\_sdk.abi.typesystem module
 -------------------------------------
 
-.. automodule:: multiversx_sdk.abi.typesystem
+.. automodule:: dharitri_sdk.abi.typesystem
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.abi.variadic\_values module
+dharitri\_sdk.abi.variadic\_values module
 -------------------------------------------
 
-.. automodule:: multiversx_sdk.abi.variadic_values
+.. automodule:: dharitri_sdk.abi.variadic_values
    :members:
    :undoc-members:
    :show-inheritance:
@@ -271,7 +271,7 @@ multiversx\_sdk.abi.variadic\_values module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.abi
+.. automodule:: dharitri_sdk.abi
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     Token,
     Transaction,
@@ -9,19 +9,19 @@ from multiversx_sdk.core import (
     TransactionOnNetwork,
     TransactionStatus,
 )
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.constants import BASE_USER_AGENT
-from multiversx_sdk.network_providers.http_resources import block_from_response
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.network_providers.resources import TokenAmountOnNetwork
-from multiversx_sdk.network_providers.user_agent import extend_user_agent
-from multiversx_sdk.smart_contracts.smart_contract_query import SmartContractQuery
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.constants import BASE_USER_AGENT
+from dharitri_sdk.network_providers.http_resources import block_from_response
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.network_providers.resources import TokenAmountOnNetwork
+from dharitri_sdk.network_providers.user_agent import extend_user_agent
+from dharitri_sdk.smart_contracts.smart_contract_query import SmartContractQuery
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 @pytest.mark.networkInteraction
 class TestProxy:
-    proxy = ProxyNetworkProvider("https://devnet-gateway.multiversx.com")
+    proxy = ProxyNetworkProvider("https://devnet-gateway.dharitri.org")
 
     def test_get_network_config(self):
         result = self.proxy.get_network_config()
@@ -160,7 +160,7 @@ class TestProxy:
 
         assert result.collection == "NFTEST-ec88b8"
         assert result.owner == "erd1487vz5m4zpxjyqw4flwa3xhnkzg4yrr3mkzf5sf0zgt94hjprc8qazcccl"
-        assert result.type == "NonFungibleESDT"
+        assert result.type == "NonFungibleDCDT"
         assert result.decimals == 0
         assert len(result.raw["returnDataParts"])
 
@@ -424,26 +424,26 @@ class TestProxy:
 
         response = requests.get(self.proxy.url + "/network/config", **config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/proxy/unknown"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/proxy/unknown"
 
         # using the new instantiated provider with user agent
         config = NetworkProviderConfig(client_name="test-client")
-        proxy = ProxyNetworkProvider(url="https://devnet-gateway.multiversx.com", config=config)
+        proxy = ProxyNetworkProvider(url="https://devnet-gateway.dharitri.org", config=config)
 
         response = requests.get(proxy.url + "/network/config", **proxy.config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/proxy/test-client"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/proxy/test-client"
 
     def test_same_config_with_multiple_network_providers(self):
         config = NetworkProviderConfig(client_name="test-client")
-        proxy = ProxyNetworkProvider(url="https://devnet-gateway.multiversx.com", config=config)
+        proxy = ProxyNetworkProvider(url="https://devnet-gateway.dharitri.org", config=config)
 
         response = requests.get(proxy.url + "/network/config", **proxy.config.requests_options)
         headers = response.request.headers
-        assert headers.get("User-Agent") == "multiversx-sdk-py/proxy/test-client"
+        assert headers.get("User-Agent") == "dharitri-sdk-py/proxy/test-client"
 
         # create new network provider with old config, we don't alter the config anymore
-        proxy = ProxyNetworkProvider(url="https://devnet-gateway.multiversx.com", config=config)
+        proxy = ProxyNetworkProvider(url="https://devnet-gateway.dharitri.org", config=config)
         assert (
-            proxy.config.requests_options.get("headers", {}).get("User-Agent") == "multiversx-sdk-py/proxy/test-client"
+            proxy.config.requests_options.get("headers", {}).get("User-Agent") == "dharitri-sdk-py/proxy/test-client"
         )

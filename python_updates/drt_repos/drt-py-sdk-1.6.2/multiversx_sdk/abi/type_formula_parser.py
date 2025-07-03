@@ -1,6 +1,6 @@
 from typing import Any
 
-from multiversx_sdk.abi.type_formula import TypeFormula
+from dharitri_sdk.abi.type_formula import TypeFormula
 
 
 class TypeFormulaParser:

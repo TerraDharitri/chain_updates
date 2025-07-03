@@ -1,31 +1,31 @@
 from pathlib import Path
 from typing import Any, Optional, Protocol, Sequence, Union
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.typesystem import is_list_of_bytes, is_list_of_typed_values
-from multiversx_sdk.core import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.typesystem import is_list_of_bytes, is_list_of_typed_values
+from dharitri_sdk.core import (
     Address,
     TokenTransfer,
     Transaction,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.network_providers.resources import AwaitingOptions
-from multiversx_sdk.smart_contracts.errors import SmartContractQueryError
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.network_providers.resources import AwaitingOptions
+from dharitri_sdk.smart_contracts.errors import SmartContractQueryError
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_factory import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_factory import (
     SmartContractTransactionsFactory,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
     SmartContractTransactionsOutcomeParser,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
     ParsedSmartContractCallOutcome,
     SmartContractDeployOutcome,
 )

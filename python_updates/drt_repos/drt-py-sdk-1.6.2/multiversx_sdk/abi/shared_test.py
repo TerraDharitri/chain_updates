@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.shared import (
+from dharitri_sdk.abi.shared import (
     convert_native_value_to_dictionary,
     convert_native_value_to_list,
 )

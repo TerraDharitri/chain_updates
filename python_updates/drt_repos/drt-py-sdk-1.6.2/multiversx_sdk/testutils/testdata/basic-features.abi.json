@@ -13,7 +13,7 @@
             "gitVersion": "v0.53.0-3-g49a82cb19"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.53.0"
         }
     },
@@ -4893,7 +4893,7 @@
             "name": "issue_fungible_default_callback",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -4911,7 +4911,7 @@
             "name": "issue_fungible_custom_callback",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -4929,7 +4929,7 @@
             "name": "issue_and_set_all_roles_fungible",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -4956,7 +4956,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -4975,7 +4975,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -5032,7 +5032,7 @@
             "name": "issue_and_set_all_roles_meta",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -5068,7 +5068,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -5091,7 +5091,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -5110,7 +5110,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -5133,7 +5133,7 @@
             ],
             "outputs": [
                 {
-                    "type": "EsdtTokenPayment"
+                    "type": "DcdtTokenPayment"
                 }
             ]
         },
@@ -5535,12 +5535,12 @@
             ]
         },
         {
-            "name": "token_identifier_egld",
+            "name": "token_identifier_rewa",
             "mutability": "mutable",
             "inputs": [],
             "outputs": [
                 {
-                    "type": "EgldOrEsdtTokenIdentifier"
+                    "type": "RewaOrDcdtTokenIdentifier"
                 }
             ]
         },
@@ -5550,7 +5550,7 @@
             "inputs": [
                 {
                     "name": "token_id",
-                    "type": "EgldOrEsdtTokenIdentifier"
+                    "type": "RewaOrDcdtTokenIdentifier"
                 }
             ],
             "outputs": [
@@ -5575,10 +5575,10 @@
             ]
         },
         {
-            "name": "returns_egld_decimal",
+            "name": "returns_rewa_decimal",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [],
             "outputs": [
@@ -6029,7 +6029,7 @@
             ]
         }
     ],
-    "esdtAttributes": [],
+    "dcdtAttributes": [],
     "hasCallback": true,
     "types": {
         "CodecErrorTestType": {
@@ -6055,7 +6055,7 @@
                 }
             ]
         },
-        "EsdtTokenPayment": {
+        "DcdtTokenPayment": {
             "type": "struct",
             "fields": [
                 {
@@ -6075,7 +6075,7 @@
         "ExampleEnumSimple": {
             "type": "enum",
             "docs": [
-                "Copied from multiversx-sc serialization tests."
+                "Copied from dharitri-sc serialization tests."
             ],
             "variants": [
                 {
@@ -6102,7 +6102,7 @@
         "ExampleEnumWithFields": {
             "type": "enum",
             "docs": [
-                "Copied from multiversx-sc serialization tests."
+                "Copied from dharitri-sc serialization tests."
             ],
             "variants": [
                 {

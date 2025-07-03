@@ -3,10 +3,10 @@ import subprocess
 from pathlib import Path
 from typing import Dict, List
 
-from multiversx_sdk_cli import dependencies, utils, workstation
-from multiversx_sdk_cli.errors import KnownError
-from multiversx_sdk_cli.localnet import libraries
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli import dependencies, utils, workstation
+from dharitri_sdk_cli.errors import KnownError
+from dharitri_sdk_cli.localnet import libraries
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
 
 logger = logging.getLogger("localnet")
 
@@ -60,7 +60,7 @@ def _copy_wasmer_libs(config: ConfigRoot, destination: Path):
 def _get_chain_vm_go_folder_name(config: ConfigRoot) -> str:
     go_mod = config.software.mx_chain_go.get_path_within_source(Path("go.mod"))
     lines = utils.read_lines(go_mod)
-    line = [line for line in lines if "github.com/multiversx/mx-chain-vm-go" in line][0]
+    line = [line for line in lines if "github.com/TerraDharitri/mx-chain-vm-go" in line][0]
     parts = line.split()
     return f"{parts[0]}@{parts[1]}"
 
@@ -70,7 +70,7 @@ def _set_rpath(cmd_path: Path):
     Set the rpath of the executable to the current directory, on a best-effort basis.
 
     For other occurrences of this approach, see:
-     - https://github.com/multiversx/mx-chain-scenario-cli-go/blob/master/.github/workflows/on_release_attach_artifacts.yml
+     - https://github.com/TerraDharitri/mx-chain-scenario-cli-go/blob/master/.github/workflows/on_release_attach_artifacts.yml
     """
 
     if not workstation.is_osx():

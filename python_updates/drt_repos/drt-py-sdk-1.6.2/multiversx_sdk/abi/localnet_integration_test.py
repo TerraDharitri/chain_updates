@@ -3,14 +3,14 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi, AbiDefinition
-from multiversx_sdk.abi.managed_decimal_value import ManagedDecimalValue
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_controller import (
+from dharitri_sdk.abi.abi import Abi, AbiDefinition
+from dharitri_sdk.abi.managed_decimal_value import ManagedDecimalValue
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_controller import (
     SmartContractController,
 )
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 @pytest.mark.skip("Requires localnet")
@@ -24,9 +24,9 @@ class TestLocalnetInteraction:
             {
                 "endpoints": [
                     {
-                        "name": "returns_egld_decimal",
+                        "name": "returns_rewa_decimal",
                         "mutability": "mutable",
-                        "payableInTokens": ["EGLD"],
+                        "payableInTokens": ["REWA"],
                         "inputs": [],
                         "outputs": [{"type": "ManagedDecimal<18>"}],
                     },
@@ -91,18 +91,18 @@ class TestLocalnetInteraction:
 
         contract = deploy_outcome.contracts[0].address
 
-        # return egld decimals
-        return_egld_transaction = sc_controller.create_transaction_for_execute(
+        # return rewa decimals
+        return_rewa_transaction = sc_controller.create_transaction_for_execute(
             sender=alice,
             nonce=alice.get_nonce_then_increment(),
             contract=contract,
             gas_limit=100_000_000,
-            function="returns_egld_decimal",
+            function="returns_rewa_decimal",
             arguments=[],
             native_transfer_amount=1,
         )
 
-        tx_hash = proxy.send_transaction(return_egld_transaction)
+        tx_hash = proxy.send_transaction(return_rewa_transaction)
         outcome = sc_controller.await_completed_execute(tx_hash)
         assert outcome.return_code == "ok"
         assert len(outcome.values) == 1

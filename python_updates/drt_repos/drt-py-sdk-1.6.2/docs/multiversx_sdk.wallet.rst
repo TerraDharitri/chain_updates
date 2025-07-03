@@ -1,4 +1,4 @@
-multiversx\_sdk.wallet package
+dharitri\_sdk.wallet package
 ==============================
 
 Subpackages
@@ -7,128 +7,128 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   multiversx_sdk.wallet.crypto
-   multiversx_sdk.wallet.libraries
+   dharitri_sdk.wallet.crypto
+   dharitri_sdk.wallet.libraries
 
 Submodules
 ----------
 
-multiversx\_sdk.wallet.core module
+dharitri\_sdk.wallet.core module
 ----------------------------------
 
-.. automodule:: multiversx_sdk.wallet.core
+.. automodule:: dharitri_sdk.wallet.core
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.errors module
+dharitri\_sdk.wallet.errors module
 ------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.errors
+.. automodule:: dharitri_sdk.wallet.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.interfaces module
+dharitri\_sdk.wallet.interfaces module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.interfaces
+.. automodule:: dharitri_sdk.wallet.interfaces
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.keypair module
+dharitri\_sdk.wallet.keypair module
 -------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.keypair
+.. automodule:: dharitri_sdk.wallet.keypair
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.mnemonic module
+dharitri\_sdk.wallet.mnemonic module
 --------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.mnemonic
+.. automodule:: dharitri_sdk.wallet.mnemonic
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.pem\_entry module
+dharitri\_sdk.wallet.pem\_entry module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.pem_entry
+.. automodule:: dharitri_sdk.wallet.pem_entry
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.user\_keys module
+dharitri\_sdk.wallet.user\_keys module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.user_keys
+.. automodule:: dharitri_sdk.wallet.user_keys
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.user\_pem module
+dharitri\_sdk.wallet.user\_pem module
 ---------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.user_pem
+.. automodule:: dharitri_sdk.wallet.user_pem
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.user\_signer module
+dharitri\_sdk.wallet.user\_signer module
 ------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.user_signer
+.. automodule:: dharitri_sdk.wallet.user_signer
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.user\_verifer module
+dharitri\_sdk.wallet.user\_verifer module
 -------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.user_verifer
+.. automodule:: dharitri_sdk.wallet.user_verifer
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.user\_wallet module
+dharitri\_sdk.wallet.user\_wallet module
 ------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.user_wallet
+.. automodule:: dharitri_sdk.wallet.user_wallet
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.validator\_keys module
+dharitri\_sdk.wallet.validator\_keys module
 ---------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.validator_keys
+.. automodule:: dharitri_sdk.wallet.validator_keys
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.validator\_pem module
+dharitri\_sdk.wallet.validator\_pem module
 --------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.validator_pem
+.. automodule:: dharitri_sdk.wallet.validator_pem
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.validator\_signer module
+dharitri\_sdk.wallet.validator\_signer module
 -----------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.validator_signer
+.. automodule:: dharitri_sdk.wallet.validator_signer
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.wallet.validator\_verifier module
+dharitri\_sdk.wallet.validator\_verifier module
 -------------------------------------------------
 
-.. automodule:: multiversx_sdk.wallet.validator_verifier
+.. automodule:: dharitri_sdk.wallet.validator_verifier
    :members:
    :undoc-members:
    :show-inheritance:
@@ -136,7 +136,7 @@ multiversx\_sdk.wallet.validator\_verifier module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.wallet
+.. automodule:: dharitri_sdk.wallet
    :members:
    :undoc-members:
    :show-inheritance:

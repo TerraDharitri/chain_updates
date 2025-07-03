@@ -151,7 +151,7 @@ def is_arg_present(args: list[str], key: str) -> bool:
 
 
 def log_explorer(name: str, explorer: str, path: str, details: str):
-    logger.info(f"View this {name} in the MultiversX Explorer: {explorer}/{path}/{details}")
+    logger.info(f"View this {name} in the Dharitri Explorer: {explorer}/{path}/{details}")
 
 
 def log_explorer_contract_address(chain: str, address: str, explorer_url: Optional[str] = ""):
@@ -174,9 +174,9 @@ def log_explorer_transaction(chain: str, transaction_hash: str, explorer_url: Op
 
 def get_explorer_by_chain_id(chain_id: str) -> str:
     explorers_by_chain_id = {
-        "1": "https://explorer.multiversx.com",
-        "T": "https://testnet-explorer.multiversx.com",
-        "D": "https://devnet-explorer.multiversx.com",
+        "1": "https://explorer.dharitri.org",
+        "T": "https://testnet-explorer.dharitri.org",
+        "D": "https://devnet-explorer.dharitri.org",
     }
 
     try:

@@ -3,29 +3,29 @@ import webbrowser
 from enum import Enum
 from typing import Any
 
-from multiversx_sdk import Message, NativeAuthClient, NativeAuthClientConfig
+from dharitri_sdk import Message, NativeAuthClient, NativeAuthClientConfig
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.errors import ArgumentsNotProvidedError, BadUserInput
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.errors import ArgumentsNotProvidedError, BadUserInput
 
 logger = logging.getLogger("cli.faucet")
 
 
 class WebWalletUrls(Enum):
-    DEVNET = "https://devnet-wallet.multiversx.com"
-    TESTNET = "https://testnet-wallet.multiversx.com"
+    DEVNET = "https://devnet-wallet.dharitri.org"
+    TESTNET = "https://testnet-wallet.dharitri.org"
 
 
 class ApiUrls(Enum):
-    DEVNET = "https://devnet-api.multiversx.com"
-    TESTNET = "https://testnet-api.multiversx.com"
+    DEVNET = "https://devnet-api.dharitri.org"
+    TESTNET = "https://testnet-api.dharitri.org"
 
 
 def setup_parser(args: list[str], subparsers: Any) -> Any:
-    parser = cli_shared.add_group_subparser(subparsers, "faucet", "Get xEGLD on Devnet or Testnet")
+    parser = cli_shared.add_group_subparser(subparsers, "faucet", "Get xREWA on Devnet or Testnet")
     subparsers = parser.add_subparsers()
 
-    sub = cli_shared.add_command_subparser(subparsers, "faucet", "request", "Request xEGLD.")
+    sub = cli_shared.add_command_subparser(subparsers, "faucet", "request", "Request xREWA.")
     cli_shared.add_wallet_args(args, sub)
     sub.add_argument("--chain", choices=["D", "T"], help="the chain identifier")
     sub.add_argument("--api", type=str, help="custom api url for the native auth client")

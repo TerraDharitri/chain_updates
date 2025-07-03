@@ -1,6 +1,6 @@
 from typing import Optional
 
-from multiversx_sdk.core.address import Address
+from dharitri_sdk.core.address import Address
 
 
 class SmartContractQuery:

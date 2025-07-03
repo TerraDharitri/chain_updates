@@ -1,9 +1,9 @@
 import mnemonic
 
-from multiversx_sdk.wallet import core
-from multiversx_sdk.wallet.constants import BIP39_LANGUAGE, BIP39_STRENGTH
-from multiversx_sdk.wallet.errors import InvalidAddressIndexError, InvalidMnemonicError
-from multiversx_sdk.wallet.user_keys import UserSecretKey
+from dharitri_sdk.wallet import core
+from dharitri_sdk.wallet.constants import BIP39_LANGUAGE, BIP39_STRENGTH
+from dharitri_sdk.wallet.errors import InvalidAddressIndexError, InvalidMnemonicError
+from dharitri_sdk.wallet.user_keys import UserSecretKey
 
 
 class Mnemonic:

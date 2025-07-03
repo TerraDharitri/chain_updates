@@ -5,8 +5,8 @@ from typing import Any, Optional
 import pytest
 import requests
 
-from multiversx_sdk.native_auth.config import NativeAuthServerConfig
-from multiversx_sdk.native_auth.errors import (
+from dharitri_sdk.native_auth.config import NativeAuthServerConfig
+from dharitri_sdk.native_auth.errors import (
     NativeAuthInvalidBlockHashError,
     NativeAuthInvalidConfigError,
     NativeAuthInvalidImpersonateError,
@@ -17,7 +17,7 @@ from multiversx_sdk.native_auth.errors import (
     NativeAuthOriginNotAcceptedError,
     NativeAuthTokenExpiredError,
 )
-from multiversx_sdk.native_auth.native_auth_server import NativeAuthServer
+from dharitri_sdk.native_auth.native_auth_server import NativeAuthServer
 
 
 def mock(mocker: Any, code: int, response: Any, text_response: str = ""):
@@ -52,17 +52,17 @@ class TestNativeAuthServer:
     TOKEN = f"aHR0cHM6Ly9hcGkubXVsdGl2ZXJzeC5jb20.{BLOCK_HASH}.{TTL}.e30"
     ACCESS_TOKEN = "ZXJkMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXF6MHBwZ2w.YUhSMGNITTZMeTloY0drdWJYVnNkR2wyWlhKemVDNWpiMjAuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5lMzA.906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d"
     BLOCK_TIMESTAMP = 1671009408
-    ORIGIN = "https://api.multiversx.com"
+    ORIGIN = "https://api.dharitri.org"
 
     MULTISIG_ACCESS_TOKEN = "ZXJkMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXF6MHBwZ2w.YUhSMGNITTZMeTloY0drdWJYVnNkR2wyWlhKemVDNWpiMjAuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5leUp0ZFd4MGFYTnBaeUk2SW1WeVpERnhjWEZ4Y1hGeGNYRnhjWEZ4Y0dkeE9UUTBhRGRvTm0xamEzYzJjVEJrTTJjeU1qTmphbm8wZVhSMmEyVnVPRFoxTURCemVqZGpZWEozSW4w.b38b3766de5fcc9f66b1bb65662404238b1eddad18436bea39a694db591dc27bc2a66c62c4dfec3ce09021de83d324cd5f4e49a329833c67baafdd71ab2f750b"
     IMPERSONATE_ACCESS_TOKEN = "ZXJkMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXF6MHBwZ2w.YUhSMGNITTZMeTloY0drdWJYVnNkR2wyWlhKemVDNWpiMjAuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5leUpwYlhCbGNuTnZibUYwWlNJNkltVnlaREZ4Y1hGeGNYRnhjWEZ4Y1hGeGNHZHhPVFEwYURkb05tMWphM2MyY1RCa00yY3lNak5qYW5vMGVYUjJhMlZ1T0RaMU1EQnplamRqWVhKM0luMA.91c5ee2f4020f0c1f098331760c6963b6b300dc3002d9caa9479d8d1509edf4c44ee518d8f19506830232d76b5baeee5ab6f442354dac69a35e69c290b638d04"
     MULTISIG_ADDRESS = "erd1qqqqqqqqqqqqqpgq944h7h6mckw6q0d3g223cjz4ytvken86u00sz7carw"
 
     default_config = NativeAuthServerConfig(
-        api_url="https://api.multiversx.com",
-        accepted_origins=["https://api.multiversx.com"],
+        api_url="https://api.dharitri.org",
+        accepted_origins=["https://api.dharitri.org"],
         max_expiry_seconds=86400,
-        validate_impersonate_url="https://extras-api.multiversx.com/impersonate/allowed",
+        validate_impersonate_url="https://extras-api.dharitri.org/impersonate/allowed",
     )
 
     def test_simple_decode(self, mocker: Any):
@@ -222,7 +222,7 @@ class TestNativeAuthServer:
         config.accepted_origins = ["other-origin"]
 
         with pytest.raises(
-            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.multiversx.com is not accepted.")
+            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.dharitri.org is not accepted.")
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
@@ -390,7 +390,7 @@ class TestNativeAuthServer:
         mock_side_effect(mocker, responses)
 
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["*.multiversx.com"]
+        config.accepted_origins = ["*.dharitri.org"]
         server = NativeAuthServer(config)
         result = server.validate(self.ACCESS_TOKEN)
 
@@ -402,20 +402,20 @@ class TestNativeAuthServer:
 
     def test_two_wildacards_not_accepted(self):
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["*.multiversx*.com"]
+        config.accepted_origins = ["*.dharitri*.com"]
 
         with pytest.raises(
-            NativeAuthInvalidWildcardOriginError, match=re.escape("Invalid wildcard origin: *.multiversx*.com")
+            NativeAuthInvalidWildcardOriginError, match=re.escape("Invalid wildcard origin: *.dharitri*.com")
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
 
     def test_wildacard_validation_protocol_not_accepted(self):
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["www.*.multiversx.com"]
+        config.accepted_origins = ["www.*.dharitri.org"]
 
         with pytest.raises(
-            NativeAuthInvalidWildcardOriginError, match=re.escape("Invalid wildcard origin: www.*.multiversx.com")
+            NativeAuthInvalidWildcardOriginError, match=re.escape("Invalid wildcard origin: www.*.dharitri.org")
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
@@ -439,7 +439,7 @@ class TestNativeAuthServer:
         config.accepted_origins = ["*.test.com"]
 
         with pytest.raises(
-            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.multiversx.com is not accepted.")
+            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.dharitri.org is not accepted.")
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
@@ -460,7 +460,7 @@ class TestNativeAuthServer:
         mock_side_effect(mocker, responses)
 
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["https://*.multiversx.com"]
+        config.accepted_origins = ["https://*.dharitri.org"]
 
         server = NativeAuthServer(config)
         result = server.validate(self.ACCESS_TOKEN)
@@ -487,10 +487,10 @@ class TestNativeAuthServer:
         mock_side_effect(mocker, responses)
 
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["http://*.multiversx.com"]
+        config.accepted_origins = ["http://*.dharitri.org"]
 
         with pytest.raises(
-            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.multiversx.com is not accepted.")
+            NativeAuthOriginNotAcceptedError, match=re.escape("The origin: https://api.dharitri.org is not accepted.")
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
@@ -543,7 +543,7 @@ class TestNativeAuthServer:
         config.is_origin_accepted = lambda origin: origin != self.ORIGIN
 
         with pytest.raises(
-            NativeAuthOriginNotAcceptedError, match="The origin: https://api.multiversx.com is not accepted."
+            NativeAuthOriginNotAcceptedError, match="The origin: https://api.dharitri.org is not accepted."
         ):
             server = NativeAuthServer(config)
             server.validate(self.ACCESS_TOKEN)
@@ -750,7 +750,7 @@ class TestNativeAuthServer:
         mock_side_effect(mocker, responses)
 
         config = deepcopy(self.default_config)
-        config.accepted_origins = ["http://*.multiversx.com"]
+        config.accepted_origins = ["http://*.dharitri.org"]
 
         server = NativeAuthServer(config)
         is_valid = server.is_valid(self.ACCESS_TOKEN)

@@ -1,5 +1,5 @@
-from multiversx_sdk.relayed.relayed_controller import RelayedController
-from multiversx_sdk.relayed.relayed_transactions_factory import (
+from dharitri_sdk.relayed.relayed_controller import RelayedController
+from dharitri_sdk.relayed.relayed_transactions_factory import (
     RelayedTransactionsFactory,
 )
 

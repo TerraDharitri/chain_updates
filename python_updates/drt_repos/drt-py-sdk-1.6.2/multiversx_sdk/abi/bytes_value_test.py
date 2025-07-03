@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.bytes_value import BytesValue
 
 
 def test_set_payload_and_get_payload():

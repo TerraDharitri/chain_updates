@@ -3,18 +3,18 @@ import re
 
 import pytest
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.errors import ParseTransactionOnNetworkError
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.errors import ParseTransactionOnNetworkError
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionEvent,
     TransactionLogs,
 )
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
-from multiversx_sdk.testutils.utils import base64_topics_to_bytes
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser import (
+from dharitri_sdk.testutils.utils import base64_topics_to_bytes
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser import (
     TokenManagementTransactionsOutcomeParser,
 )
 
@@ -96,7 +96,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         second_event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTSetBurnRoleForAll",
+            identifier="DCDTSetBurnRoleForAll",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -147,14 +147,14 @@ class TestTokenManagementTransactionsOutcomeParser:
         assert len(outcome) == 1
         assert outcome[0].token_identifier == identifier
 
-    def test_parse_register_meta_esdt(self):
+    def test_parse_register_meta_dcdt(self):
         identifier = "METATEST-e05d11"
         identifier_base64 = base64.b64encode(identifier.encode()).decode()
         encoded_topics = [identifier_base64, "TUVURVNU", "TUVUQVRFU1Q=", "TWV0YUVTRFQ="]
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="registerMetaESDT",
+            identifier="registerMetaDCDT",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -165,7 +165,7 @@ class TestTokenManagementTransactionsOutcomeParser:
             [event],
         )
 
-        outcome = self.parser.parse_register_meta_esdt(tx)
+        outcome = self.parser.parse_register_meta_dcdt(tx)
         assert len(outcome) == 1
         assert outcome[0].token_identifier == identifier
 
@@ -174,7 +174,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         first_identifier_base64 = base64.b64encode(first_identifier.encode()).decode()
         second_identifier = "TST-123456"
         second_identifier_base64 = base64.b64encode(second_identifier.encode()).decode()
-        roles = ["ESDTRoleLocalMint", "ESDTRoleLocalBurn"]
+        roles = ["DCDTRoleLocalMint", "DCDTRoleLocalBurn"]
         encoded_topics = [
             first_identifier_base64,
             "TE1BTw==",
@@ -219,7 +219,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         first_result_event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTSetRole",
+            identifier="DCDTSetRole",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -234,7 +234,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         second_result_event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTSetRole",
+            identifier="DCDTSetRole",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -265,7 +265,7 @@ class TestTokenManagementTransactionsOutcomeParser:
     def test_parse_set_special_role(self):
         identifier = "METATEST-e05d11"
         identifier_base64 = base64.b64encode(identifier.encode()).decode()
-        roles = ["ESDTRoleNFTCreate", "ESDTRoleNFTAddQuantity", "ESDTRoleNFTBurn"]
+        roles = ["DCDTRoleNFTCreate", "DCDTRoleNFTAddQuantity", "DCDTRoleNFTBurn"]
         encoded_roles = [
             identifier_base64,
             "",
@@ -277,7 +277,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTSetRole",
+            identifier="DCDTSetRole",
             topics=base64_topics_to_bytes(encoded_roles),
             data=b"",
             additional_data=[],
@@ -308,7 +308,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTNFTCreate",
+            identifier="DCDTNFTCreate",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -334,7 +334,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTLocalMint",
+            identifier="DCDTLocalMint",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -361,7 +361,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTLocalBurn",
+            identifier="DCDTLocalBurn",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -385,7 +385,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTPause",
+            identifier="DCDTPause",
             topics=base64_topics_to_bytes([identifier_base64]),
             data=b"",
             additional_data=[],
@@ -406,7 +406,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTUnPause",
+            identifier="DCDTUnPause",
             topics=base64_topics_to_bytes([identifier_base64]),
             data=b"",
             additional_data=[],
@@ -436,7 +436,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-            identifier="ESDTFreeze",
+            identifier="DCDTFreeze",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -477,7 +477,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-            identifier="ESDTUnFreeze",
+            identifier="DCDTUnFreeze",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -518,7 +518,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"),
-            identifier="ESDTWipe",
+            identifier="DCDTWipe",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -554,7 +554,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTNFTUpdateAttributes",
+            identifier="DCDTNFTUpdateAttributes",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -580,7 +580,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTNFTAddQuantity",
+            identifier="DCDTNFTAddQuantity",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -606,7 +606,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTNFTBurn",
+            identifier="DCDTNFTBurn",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -633,7 +633,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTModifyRoyalties",
+            identifier="DCDTModifyRoyalties",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -663,7 +663,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTSetNewURIs",
+            identifier="DCDTSetNewURIs",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -694,7 +694,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTModifyCreator",
+            identifier="DCDTModifyCreator",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -730,7 +730,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTMetaDataUpdate",
+            identifier="DCDTMetaDataUpdate",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -767,7 +767,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         event = TransactionEvent(
             raw={},
             address=Address.new_from_bech32("erd18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawq553rt2"),
-            identifier="ESDTMetaDataRecreate",
+            identifier="DCDTMetaDataRecreate",
             topics=base64_topics_to_bytes(encoded_topics),
             data=b"",
             additional_data=[],
@@ -791,7 +791,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         identifier = "LKXOXNO-503365"
         token_name = "LKXOXNO"
         ticker = "LKXOXNO"
-        token_type = "DynamicMetaESDT"
+        token_type = "DynamicMetaDCDT"
 
         encoded_topics = [
             base64.b64encode(identifier.encode()).decode(),
@@ -828,7 +828,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         identifier = "TEST-9bbb21"
         token_name = "TESTNFT"
         ticker = "TEST"
-        token_type = "DynamicNonFungibleESDT"
+        token_type = "DynamicNonFungibleDCDT"
 
         encoded_topics = [
             base64.b64encode(identifier.encode()).decode(),
@@ -865,7 +865,7 @@ class TestTokenManagementTransactionsOutcomeParser:
         identifier = "TEST-9bbb21"
         token_name = "TESTNFT"
         ticker = "TEST"
-        token_type = "DynamicNonFungibleESDT"
+        token_type = "DynamicNonFungibleDCDT"
 
         encoded_topics = [
             base64.b64encode(identifier.encode()).decode(),

@@ -1,29 +1,29 @@
-multiversx\_sdk.relayed package
+dharitri\_sdk.relayed package
 ===============================
 
 Submodules
 ----------
 
-multiversx\_sdk.relayed.errors module
+dharitri\_sdk.relayed.errors module
 -------------------------------------
 
-.. automodule:: multiversx_sdk.relayed.errors
+.. automodule:: dharitri_sdk.relayed.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.relayed.relayed\_controller module
+dharitri\_sdk.relayed.relayed\_controller module
 --------------------------------------------------
 
-.. automodule:: multiversx_sdk.relayed.relayed_controller
+.. automodule:: dharitri_sdk.relayed.relayed_controller
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.relayed.relayed\_transactions\_factory module
+dharitri\_sdk.relayed.relayed\_transactions\_factory module
 -------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.relayed.relayed_transactions_factory
+.. automodule:: dharitri_sdk.relayed.relayed_transactions_factory
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +31,7 @@ multiversx\_sdk.relayed.relayed\_transactions\_factory module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.relayed
+.. automodule:: dharitri_sdk.relayed
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,8 +1,8 @@
 import io
 from typing import Any
 
-from multiversx_sdk.abi.constants import NUM_BYTES_IN_64_BITS
-from multiversx_sdk.abi.shared import read_bytes_exactly
+from dharitri_sdk.abi.constants import NUM_BYTES_IN_64_BITS
+from dharitri_sdk.abi.shared import read_bytes_exactly
 
 
 class SmallUIntValue:

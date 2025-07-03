@@ -8,15 +8,15 @@
             "short": "rustc 1.75.0-nightly (42b1224e9 2023-10-15)"
         },
         "contractCrate": {
-            "name": "esdt-safe",
+            "name": "dcdt-safe",
             "version": "0.0.0"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.43.5"
         }
     },
-    "name": "EsdtSafe",
+    "name": "DcdtSafe",
     "constructor": {
         "inputs": [
             {
@@ -40,7 +40,7 @@
         },
         {
             "docs": [
-                "Create an Elrond -> Sovereign transaction."
+                "Create an Numbat -> Sovereign transaction."
             ],
             "name": "deposit",
             "mutability": "mutable",
@@ -62,7 +62,7 @@
         },
         {
             "docs": [
-                "Claim funds for failed Elrond -> Sovereign transactions.",
+                "Claim funds for failed Numbat -> Sovereign transactions.",
                 "These are not sent automatically to prevent the contract getting stuck.",
                 "For example, if the receiver is a SC, a frozen account, etc."
             ],
@@ -76,7 +76,7 @@
             ],
             "outputs": [
                 {
-                    "type": "List<EsdtTokenPayment>"
+                    "type": "List<DcdtTokenPayment>"
                 }
             ]
         },
@@ -148,7 +148,7 @@
             "name": "registerToken",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -157,7 +157,7 @@
                 },
                 {
                     "name": "token_type",
-                    "type": "EsdtTokenType"
+                    "type": "DcdtTokenType"
                 },
                 {
                     "name": "token_display_name",
@@ -191,7 +191,7 @@
             "outputs": []
         },
         {
-            "name": "batchTransferEsdtToken",
+            "name": "batchTransferDcdtToken",
             "mutability": "mutable",
             "inputs": [
                 {
@@ -240,7 +240,7 @@
             "inputs": [],
             "outputs": [
                 {
-                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<EsdtTokenPayment>,List<StolenFromFrameworkEsdtTokenData>,Option<TransferData>>>>>",
+                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<DcdtTokenPayment>,List<StolenFromFrameworkDcdtTokenData>,Option<TransferData>>>>>",
                     "multi_result": true
                 }
             ]
@@ -251,7 +251,7 @@
             "inputs": [],
             "outputs": [
                 {
-                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<EsdtTokenPayment>,List<StolenFromFrameworkEsdtTokenData>,Option<TransferData>>>>>",
+                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<DcdtTokenPayment>,List<StolenFromFrameworkDcdtTokenData>,Option<TransferData>>>>>",
                     "multi_result": true
                 }
             ]
@@ -267,7 +267,7 @@
             ],
             "outputs": [
                 {
-                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<EsdtTokenPayment>,List<StolenFromFrameworkEsdtTokenData>,Option<TransferData>>>>>",
+                    "type": "optional<multi<u64,variadic<multi<u64,u64,Address,Address,List<DcdtTokenPayment>,List<StolenFromFrameworkDcdtTokenData>,Option<TransferData>>>>>",
                     "multi_result": true
                 }
             ]
@@ -377,7 +377,7 @@
                 },
                 {
                     "name": "tokens",
-                    "type": "List<EsdtTokenPayment>",
+                    "type": "List<DcdtTokenPayment>",
                     "indexed": true
                 },
                 {
@@ -559,7 +559,7 @@
                 }
             ]
         },
-        "EsdtTokenPayment": {
+        "DcdtTokenPayment": {
             "type": "struct",
             "fields": [
                 {
@@ -576,7 +576,7 @@
                 }
             ]
         },
-        "EsdtTokenType": {
+        "DcdtTokenType": {
             "type": "enum",
             "variants": [
                 {
@@ -601,12 +601,12 @@
                 }
             ]
         },
-        "StolenFromFrameworkEsdtTokenData": {
+        "StolenFromFrameworkDcdtTokenData": {
             "type": "struct",
             "fields": [
                 {
                     "name": "token_type",
-                    "type": "EsdtTokenType"
+                    "type": "DcdtTokenType"
                 },
                 {
                     "name": "amount",
@@ -663,11 +663,11 @@
                 },
                 {
                     "name": "tokens",
-                    "type": "List<EsdtTokenPayment>"
+                    "type": "List<DcdtTokenPayment>"
                 },
                 {
                     "name": "token_data",
-                    "type": "List<StolenFromFrameworkEsdtTokenData>"
+                    "type": "List<StolenFromFrameworkDcdtTokenData>"
                 },
                 {
                     "name": "opt_transfer_data",

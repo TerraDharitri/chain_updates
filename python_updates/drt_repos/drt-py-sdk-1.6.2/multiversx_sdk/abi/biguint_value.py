@@ -1,8 +1,8 @@
 import io
 from typing import Any
 
-from multiversx_sdk.abi.shared import decode_length, encode_length, read_bytes_exactly
-from multiversx_sdk.core.constants import INTEGER_MAX_NUM_BYTES
+from dharitri_sdk.abi.shared import decode_length, encode_length, read_bytes_exactly
+from dharitri_sdk.core.constants import INTEGER_MAX_NUM_BYTES
 
 
 class BigUIntValue:

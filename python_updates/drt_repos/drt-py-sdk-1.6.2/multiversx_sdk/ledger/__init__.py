@@ -1,3 +1,3 @@
-from multiversx_sdk.ledger.ledger_app import LedgerApp
+from dharitri_sdk.ledger.ledger_app import LedgerApp
 
 __all__ = ["LedgerApp"]

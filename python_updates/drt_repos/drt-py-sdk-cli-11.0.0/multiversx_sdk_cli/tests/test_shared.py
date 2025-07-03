@@ -1,4 +1,4 @@
-from multiversx_sdk_cli.cli_shared import prepare_token_transfers
+from dharitri_sdk_cli.cli_shared import prepare_token_transfers
 
 
 def test_prepare_token_tranfers():

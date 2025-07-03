@@ -5,8 +5,8 @@ from os import path
 from pathlib import Path
 from typing import Optional
 
-from multiversx_sdk_cli import config, downloader, errors, utils, workstation
-from multiversx_sdk_cli.dependencies.resolution import (
+from dharitri_sdk_cli import config, downloader, errors, utils, workstation
+from dharitri_sdk_cli.dependencies.resolution import (
     DependencyResolution,
     get_dependency_resolution,
 )
@@ -191,7 +191,7 @@ class GolangModule(StandaloneModule):
 class TestWalletsModule(StandaloneModule):
     def __init__(self, key: str):
         super().__init__(key, [])
-        self.organisation = "multiversx"
+        self.organisation = "dharitri"
         self.repo_name = "mx-sdk-testwallets"
 
     def _post_install(self, tag: str):

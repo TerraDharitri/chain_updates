@@ -1,11 +1,11 @@
 from typing import Any, Callable, Optional, Protocol, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import METACHAIN_ID
-from multiversx_sdk.core.tokens import Token
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.network_providers.resources import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import METACHAIN_ID
+from dharitri_sdk.core.tokens import Token
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.network_providers.resources import (
     AccountOnNetwork,
     AccountStorage,
     AccountStorageEntry,
@@ -17,7 +17,7 @@ from multiversx_sdk.network_providers.resources import (
     TokensCollectionMetadata,
     TransactionCostResponse,
 )
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )

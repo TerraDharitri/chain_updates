@@ -1,9 +1,9 @@
 from collections import OrderedDict
 from typing import Any, Protocol
 
-from multiversx_sdk import Transaction, TransactionOnNetwork
+from dharitri_sdk import Transaction, TransactionOnNetwork
 
-from multiversx_sdk_cli.utils import ISerializable
+from dharitri_sdk_cli.utils import ISerializable
 
 
 # fmt: off

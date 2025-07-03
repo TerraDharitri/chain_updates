@@ -1,12 +1,12 @@
 from typing import Optional
 
-from multiversx_sdk.account_management.account_transactions_factory import (
+from dharitri_sdk.account_management.account_transactions_factory import (
     AccountTransactionsFactory,
 )
-from multiversx_sdk.core import Address, Transaction
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.core import Address, Transaction
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
 
 class AccountController(BaseController):

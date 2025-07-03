@@ -1,6 +1,6 @@
 from typing import Any
 
-from multiversx_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.string_value import StringValue
 
 
 class ExplicitEnumValue(StringValue):

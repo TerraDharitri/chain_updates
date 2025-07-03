@@ -2,8 +2,8 @@ import logging
 from pathlib import Path
 from typing import Dict, List
 
-from multiversx_sdk_cli import config, errors
-from multiversx_sdk_cli.dependencies.modules import (
+from dharitri_sdk_cli import config, errors
+from dharitri_sdk_cli.dependencies.modules import (
     DependencyModule,
     GolangModule,
     TestWalletsModule,

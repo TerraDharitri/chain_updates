@@ -13,7 +13,7 @@
             "gitVersion": "v0.45.2.1-reproducible-309-ge0b3bbb"
         },
         "framework": {
-            "name": "multiversx-sc",
+            "name": "dharitri-sc",
             "version": "0.50.4"
         }
     },
@@ -250,7 +250,7 @@
         {
             "docs": [
                 "Propose a transaction in which the contract will perform a transfer-execute call.",
-                "Can send EGLD without calling anything.",
+                "Can send REWA without calling anything.",
                 "Can call smart contract endpoints directly.",
                 "Doesn't really work with builtin functions."
             ],
@@ -262,7 +262,7 @@
                     "type": "Address"
                 },
                 {
-                    "name": "egld_amount",
+                    "name": "rewa_amount",
                     "type": "BigUint"
                 },
                 {
@@ -282,7 +282,7 @@
             ]
         },
         {
-            "name": "proposeTransferExecuteEsdt",
+            "name": "proposeTransferExecuteDcdt",
             "mutability": "mutable",
             "inputs": [
                 {
@@ -291,7 +291,7 @@
                 },
                 {
                     "name": "tokens",
-                    "type": "List<EsdtTokenPayment>"
+                    "type": "List<DcdtTokenPayment>"
                 },
                 {
                     "name": "opt_gas_limit",
@@ -313,9 +313,9 @@
             "docs": [
                 "Propose a transaction in which the contract will perform an async call call.",
                 "Can call smart contract endpoints directly.",
-                "Can use ESDTTransfer/ESDTNFTTransfer/MultiESDTTransfer to send tokens, while also optionally calling endpoints.",
+                "Can use DCDTTransfer/DCDTNFTTransfer/MultiDCDTTransfer to send tokens, while also optionally calling endpoints.",
                 "Works well with builtin functions.",
-                "Cannot simply send EGLD directly without calling anything."
+                "Cannot simply send REWA directly without calling anything."
             ],
             "name": "proposeAsyncCall",
             "mutability": "mutable",
@@ -325,7 +325,7 @@
                     "type": "Address"
                 },
                 {
-                    "name": "egld_amount",
+                    "name": "rewa_amount",
                     "type": "BigUint"
                 },
                 {
@@ -599,7 +599,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -880,7 +880,7 @@
                     "indexed": true
                 },
                 {
-                    "name": "egld_value",
+                    "name": "rewa_value",
                     "type": "BigUint",
                     "indexed": true
                 },
@@ -902,7 +902,7 @@
             ]
         },
         {
-            "identifier": "performTransferExecuteEgld",
+            "identifier": "performTransferExecuteRewa",
             "inputs": [
                 {
                     "name": "action_id",
@@ -915,7 +915,7 @@
                     "indexed": true
                 },
                 {
-                    "name": "egld_value",
+                    "name": "rewa_value",
                     "type": "BigUint",
                     "indexed": true
                 },
@@ -937,7 +937,7 @@
             ]
         },
         {
-            "identifier": "performTransferExecuteEsdt",
+            "identifier": "performTransferExecuteDcdt",
             "inputs": [
                 {
                     "name": "action_id",
@@ -951,7 +951,7 @@
                 },
                 {
                     "name": "tokens",
-                    "type": "List<EsdtTokenPayment>",
+                    "type": "List<DcdtTokenPayment>",
                     "indexed": true
                 },
                 {
@@ -980,7 +980,7 @@
                     "indexed": true
                 },
                 {
-                    "name": "egld_value",
+                    "name": "rewa_value",
                     "type": "BigUint",
                     "indexed": true
                 },
@@ -1020,7 +1020,7 @@
                     "indexed": true
                 },
                 {
-                    "name": "egld_value",
+                    "name": "rewa_value",
                     "type": "BigUint",
                     "indexed": true
                 },
@@ -1047,7 +1047,7 @@
             ]
         }
     ],
-    "esdtAttributes": [],
+    "dcdtAttributes": [],
     "hasCallback": true,
     "types": {
         "Action": {
@@ -1098,7 +1098,7 @@
                     ]
                 },
                 {
-                    "name": "SendTransferExecuteEgld",
+                    "name": "SendTransferExecuteRewa",
                     "discriminant": 5,
                     "fields": [
                         {
@@ -1108,12 +1108,12 @@
                     ]
                 },
                 {
-                    "name": "SendTransferExecuteEsdt",
+                    "name": "SendTransferExecuteDcdt",
                     "discriminant": 6,
                     "fields": [
                         {
                             "name": "0",
-                            "type": "EsdtTransferExecuteData"
+                            "type": "DcdtTransferExecuteData"
                         }
                     ]
                 },
@@ -1222,7 +1222,7 @@
                     "type": "Address"
                 },
                 {
-                    "name": "egld_amount",
+                    "name": "rewa_amount",
                     "type": "BigUint"
                 },
                 {
@@ -1239,7 +1239,7 @@
                 }
             ]
         },
-        "EsdtTokenPayment": {
+        "DcdtTokenPayment": {
             "type": "struct",
             "fields": [
                 {
@@ -1256,7 +1256,7 @@
                 }
             ]
         },
-        "EsdtTransferExecuteData": {
+        "DcdtTransferExecuteData": {
             "type": "struct",
             "fields": [
                 {
@@ -1265,7 +1265,7 @@
                 },
                 {
                     "name": "tokens",
-                    "type": "List<EsdtTokenPayment>"
+                    "type": "List<DcdtTokenPayment>"
                 },
                 {
                     "name": "opt_gas_limit",

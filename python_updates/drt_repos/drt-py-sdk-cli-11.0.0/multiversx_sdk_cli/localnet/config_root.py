@@ -5,11 +5,11 @@ from typing import Any, Dict, List
 
 import toml
 
-from multiversx_sdk_cli.localnet import config_default
-from multiversx_sdk_cli.localnet.config_part import ConfigPart
-from multiversx_sdk_cli.localnet.config_sharding import Metashard, RegularShards
-from multiversx_sdk_cli.localnet.constants import METACHAIN_ID
-from multiversx_sdk_cli.localnet.node import Node
+from dharitri_sdk_cli.localnet import config_default
+from dharitri_sdk_cli.localnet.config_part import ConfigPart
+from dharitri_sdk_cli.localnet.config_sharding import Metashard, RegularShards
+from dharitri_sdk_cli.localnet.constants import METACHAIN_ID
+from dharitri_sdk_cli.localnet.node import Node
 
 logger = logging.getLogger("localnet")
 

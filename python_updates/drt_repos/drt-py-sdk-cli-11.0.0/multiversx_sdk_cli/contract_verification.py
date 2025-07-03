@@ -6,10 +6,10 @@ from pathlib import Path
 from typing import Any, Optional, Protocol
 
 import requests
-from multiversx_sdk import Address, Message
+from dharitri_sdk import Address, Message
 
-from multiversx_sdk_cli.errors import KnownError
-from multiversx_sdk_cli.utils import dump_out_json, read_json_file
+from dharitri_sdk_cli.errors import KnownError
+from dharitri_sdk_cli.utils import dump_out_json, read_json_file
 
 HTTP_REQUEST_TIMEOUT = 408
 HTTP_SUCCESS = 200

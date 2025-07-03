@@ -4,9 +4,9 @@ from typing import Optional
 import nacl.signing
 from nacl.exceptions import CryptoError
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.wallet.constants import USER_PUBKEY_LENGTH, USER_SEED_LENGTH
-from multiversx_sdk.wallet.errors import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.wallet.constants import USER_PUBKEY_LENGTH, USER_SEED_LENGTH
+from dharitri_sdk.wallet.errors import (
     InvalidPublicKeyLengthError,
     InvalidSecretKeyLengthError,
 )

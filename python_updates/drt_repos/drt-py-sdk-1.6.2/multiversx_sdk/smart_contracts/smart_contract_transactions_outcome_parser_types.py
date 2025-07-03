@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any
 
-from multiversx_sdk.core import Address
+from dharitri_sdk.core import Address
 
 
 @dataclass

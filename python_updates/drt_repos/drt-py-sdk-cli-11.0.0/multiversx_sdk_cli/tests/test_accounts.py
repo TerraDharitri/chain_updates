@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from multiversx_sdk import Account
+from dharitri_sdk import Account
 
 
 def test_load_account_from_keystore_without_kind():

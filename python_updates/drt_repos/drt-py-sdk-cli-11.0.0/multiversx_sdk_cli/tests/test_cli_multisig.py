@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 testdata = Path(__file__).parent / "testdata"
 user = testdata / "testUser.pem"
@@ -87,7 +87,7 @@ def test_deposit_native_token(capsys: Any):
     assert data == "deposit"
 
 
-def test_deposit_esdt(capsys: Any):
+def test_deposit_dcdt(capsys: Any):
     return_code = main(
         [
             "multisig",
@@ -123,7 +123,7 @@ def test_deposit_esdt(capsys: Any):
     data = base64.b64decode(data).decode()
     assert (
         data
-        == f"MultiESDTNFTTransfer@{contract_address_hex}@02@4d59544b4e2d613538346639@@0186a0@5346542d316263323631@01@01@6465706f736974"
+        == f"MultiDCDTNFTTransfer@{contract_address_hex}@02@4d59544b4e2d613538346639@@0186a0@5346542d316263323631@01@01@6465706f736974"
     )
 
 
@@ -463,11 +463,11 @@ def test_transfer_and_execute_without_execute(capsys: Any):
     )
 
 
-def test_transfer_and_execute_esdt(capsys: Any):
+def test_transfer_and_execute_dcdt(capsys: Any):
     return_code = main(
         [
             "multisig",
-            "transfer-and-execute-esdt",
+            "transfer-and-execute-dcdt",
             "--contract",
             str(contract_address),
             "--abi",
@@ -503,7 +503,7 @@ def test_transfer_and_execute_esdt(capsys: Any):
     data = base64.b64decode(data).decode()
     assert (
         data
-        == "proposeTransferExecuteEsdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
+        == "proposeTransferExecuteDcdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
     )
 
 

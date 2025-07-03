@@ -1,6 +1,6 @@
 import pytest
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 
 def test_deps_install_testwallets():

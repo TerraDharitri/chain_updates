@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
 
-from multiversx_sdk.wallet.validator_keys import ValidatorSecretKey
-from multiversx_sdk.wallet.validator_pem import ValidatorPEM
-from multiversx_sdk.wallet.validator_signer import ValidatorSigner
-from multiversx_sdk.wallet.validator_verifier import ValidatorVerifier
+from dharitri_sdk.wallet.validator_keys import ValidatorSecretKey
+from dharitri_sdk.wallet.validator_pem import ValidatorPEM
+from dharitri_sdk.wallet.validator_signer import ValidatorSigner
+from dharitri_sdk.wallet.validator_verifier import ValidatorVerifier
 
 testwallets = Path(__file__).parent.parent / "testutils" / "testwallets"
 

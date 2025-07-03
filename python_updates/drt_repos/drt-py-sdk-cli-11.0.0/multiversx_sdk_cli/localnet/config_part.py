@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Dict
 
-from multiversx_sdk_cli.errors import UnknownConfigurationError
+from dharitri_sdk_cli.errors import UnknownConfigurationError
 
 logger = logging.getLogger("localnet")
 

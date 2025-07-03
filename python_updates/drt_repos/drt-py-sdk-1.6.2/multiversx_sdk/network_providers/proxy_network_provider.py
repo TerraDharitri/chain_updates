@@ -9,24 +9,24 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.constants import ESDT_CONTRACT_ADDRESS_HEX, METACHAIN_ID
-from multiversx_sdk.core.tokens import Token
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.core.transaction_status import TransactionStatus
-from multiversx_sdk.network_providers.account_awaiter import AccountAwaiter
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.constants import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.constants import DCDT_CONTRACT_ADDRESS_HEX, METACHAIN_ID
+from dharitri_sdk.core.tokens import Token
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.network_providers.account_awaiter import AccountAwaiter
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.constants import (
     BASE_USER_AGENT,
     DEFAULT_ACCOUNT_AWAITING_PATIENCE_IN_MILLISECONDS,
 )
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.network_providers.errors import (
     NetworkProviderError,
     TransactionFetchingError,
 )
-from multiversx_sdk.network_providers.http_resources import (
+from dharitri_sdk.network_providers.http_resources import (
     account_from_proxy_response,
     account_storage_entry_from_response,
     account_storage_from_response,
@@ -44,8 +44,8 @@ from multiversx_sdk.network_providers.http_resources import (
     transactions_from_send_multiple_response,
     vm_query_response_to_smart_contract_query_response,
 )
-from multiversx_sdk.network_providers.interface import INetworkProvider
-from multiversx_sdk.network_providers.resources import (
+from dharitri_sdk.network_providers.interface import INetworkProvider
+from dharitri_sdk.network_providers.resources import (
     AccountOnNetwork,
     AccountStorage,
     AccountStorageEntry,
@@ -59,13 +59,13 @@ from multiversx_sdk.network_providers.resources import (
     TokensCollectionMetadata,
     TransactionCostResponse,
 )
-from multiversx_sdk.network_providers.shared import (
+from dharitri_sdk.network_providers.shared import (
     convert_boolean_query_params_to_lowercase,
     convert_tx_hash_to_string,
 )
-from multiversx_sdk.network_providers.transaction_awaiter import TransactionAwaiter
-from multiversx_sdk.network_providers.user_agent import extend_user_agent
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.network_providers.transaction_awaiter import TransactionAwaiter
+from dharitri_sdk.network_providers.user_agent import extend_user_agent
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
@@ -270,10 +270,10 @@ class ProxyNetworkProvider(INetworkProvider):
     def get_token_of_account(self, address: Address, token: Token) -> TokenAmountOnNetwork:
         """
         Fetches the balance of an account, for a given token.
-        Able to handle both fungible and non-fungible tokens (NFTs, SFTs, MetaESDTs).
+        Able to handle both fungible and non-fungible tokens (NFTs, SFTs, MetaDCDTs).
         """
         if token.nonce == 0:
-            response = self.do_get_generic(f"address/{address.to_bech32()}/esdt/{token.identifier}")
+            response = self.do_get_generic(f"address/{address.to_bech32()}/dcdt/{token.identifier}")
         else:
             response = self.do_get_generic(f"address/{address.to_bech32()}/nft/{token.identifier}/nonce/{token.nonce}")
 
@@ -284,7 +284,7 @@ class ProxyNetworkProvider(INetworkProvider):
         Fetches the balances of an account, for all fungible tokens held by the account.
         Pagination isn't explicitly handled by a basic network provider, but can be achieved by using `do_get_generic`.
         """
-        response = self.do_get_generic(f"address/{address.to_bech32()}/esdt")
+        response = self.do_get_generic(f"address/{address.to_bech32()}/dcdt")
         all_tokens = token_amounts_from_proxy_response(response.to_dictionary())
 
         return [token for token in all_tokens if token.token.nonce == 0]
@@ -294,7 +294,7 @@ class ProxyNetworkProvider(INetworkProvider):
         Fetches the balances of an account, for all non-fungible tokens held by the account.
         Pagination isn't explicitly handled by a basic network provider, but can be achieved by using `do_get_generic`.
         """
-        response = self.do_get_generic(f"address/{address.to_bech32()}/esdt")
+        response = self.do_get_generic(f"address/{address.to_bech32()}/dcdt")
         all_tokens = token_amounts_from_proxy_response(response.to_dictionary())
 
         return [token for token in all_tokens if token.token.nonce > 0]
@@ -303,7 +303,7 @@ class ProxyNetworkProvider(INetworkProvider):
         """Fetches the definition of a fungible token."""
         encoded_identifier = token_identifier.encode()
         query = SmartContractQuery(
-            contract=Address.new_from_hex(ESDT_CONTRACT_ADDRESS_HEX, self.address_hrp),
+            contract=Address.new_from_hex(DCDT_CONTRACT_ADDRESS_HEX, self.address_hrp),
             function="getTokenProperties",
             arguments=[encoded_identifier],
         )
@@ -317,7 +317,7 @@ class ProxyNetworkProvider(INetworkProvider):
         """Fetches the definition of a tokens collection."""
         encoded_identifier = collection_name.encode()
         query = SmartContractQuery(
-            contract=Address.new_from_hex(ESDT_CONTRACT_ADDRESS_HEX, self.address_hrp),
+            contract=Address.new_from_hex(DCDT_CONTRACT_ADDRESS_HEX, self.address_hrp),
             function="getTokenProperties",
             arguments=[encoded_identifier],
         )

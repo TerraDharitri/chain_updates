@@ -4,7 +4,7 @@ import platform
 from pathlib import Path
 from typing import Optional
 
-from multiversx_sdk.wallet.errors import LibraryNotFoundError, UnsupportedOSError
+from dharitri_sdk.wallet.errors import LibraryNotFoundError, UnsupportedOSError
 
 
 class BLSFacade:

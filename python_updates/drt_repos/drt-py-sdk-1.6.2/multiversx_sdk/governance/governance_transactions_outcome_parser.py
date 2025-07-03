@@ -1,17 +1,17 @@
 from typing import Optional
 
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.transaction_on_network import (
     TransactionEvent,
     TransactionOnNetwork,
     find_events_by_identifier,
 )
-from multiversx_sdk.governance.resources import (
+from dharitri_sdk.governance.resources import (
     CloseProposalOutcome,
     DelegateVoteOutcome,
     NewProposalOutcome,

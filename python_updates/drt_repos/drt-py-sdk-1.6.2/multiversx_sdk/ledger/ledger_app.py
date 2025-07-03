@@ -1,19 +1,19 @@
 from enum import Enum
 
-from multiversx_sdk.ledger.config import LedgerAppConfiguration
-from multiversx_sdk.ledger.errors import LedgerError
+from dharitri_sdk.ledger.config import LedgerAppConfiguration
+from dharitri_sdk.ledger.errors import LedgerError
 
 CLA = 0xED
-CONNECTION_ERROR_MSG = "check if device is plugged in, unlocked and on MultiversX app"
+CONNECTION_ERROR_MSG = "check if device is plugged in, unlocked and on Dharitri app"
 
-# account index is always 0 for MultiversX
+# account index is always 0 for Dharitri
 DEFAULT_ACCOUNT_INDEX = 0
 
 
 class Instructions(Enum):
     SIGN_HASH_TX_INS = 0x07
     SIGN_MESSAGE_INS = 0x06
-    PROVIDE_ESDT_INFO_INS = 0x08
+    PROVIDE_DCDT_INFO_INS = 0x08
     GET_ADDRESS_AUTH_TOKEN_INS = 0x09
 
 
@@ -32,7 +32,7 @@ class LedgerApp:
         except ImportError as e:
             raise ImportError(
                 "The ledgercomm package is not installed. Please install it using "
-                "pip install multiversx_sdk[ledger]."
+                "pip install dharitri_sdk[ledger]."
             ) from e
 
         try:

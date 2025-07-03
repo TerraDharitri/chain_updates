@@ -2,8 +2,8 @@ import re
 
 import pytest
 
-from multiversx_sdk.abi.code_metadata_value import CodeMetadataValue
-from multiversx_sdk.core.code_metadata import CodeMetadata
+from dharitri_sdk.abi.code_metadata_value import CodeMetadataValue
+from dharitri_sdk.core.code_metadata import CodeMetadata
 
 
 def test_new_from_code_metadata():

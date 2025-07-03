@@ -5,13 +5,13 @@ from typing import Optional, Union
 
 import requests
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.message import Message, MessageComputer
-from multiversx_sdk.native_auth.config import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.message import Message, MessageComputer
+from dharitri_sdk.native_auth.config import (
     NativeAuthCacheInterface,
     NativeAuthServerConfig,
 )
-from multiversx_sdk.native_auth.constants import (
+from dharitri_sdk.native_auth.constants import (
     ACCESS_TOKEN_COMPONENTS_SEPARATOR,
     CACHE_VALUE_IMPERSONATED,
     CACHE_VALUE_NOT_IMPERSONATED,
@@ -20,7 +20,7 @@ from multiversx_sdk.native_auth.constants import (
     ONE_HOUR_IN_SECONDS,
     ONE_ROUND_IN_SECONDS,
 )
-from multiversx_sdk.native_auth.errors import (
+from dharitri_sdk.native_auth.errors import (
     NativeAuthInvalidBlockHashError,
     NativeAuthInvalidConfigError,
     NativeAuthInvalidImpersonateError,
@@ -31,12 +31,12 @@ from multiversx_sdk.native_auth.errors import (
     NativeAuthOriginNotAcceptedError,
     NativeAuthTokenExpiredError,
 )
-from multiversx_sdk.native_auth.resources import (
+from dharitri_sdk.native_auth.resources import (
     NativeAuthDecoded,
     NativeAuthValidateResult,
     WildcardOrigin,
 )
-from multiversx_sdk.wallet.user_keys import UserPublicKey
+from dharitri_sdk.wallet.user_keys import UserPublicKey
 
 
 class NativeAuthServer:

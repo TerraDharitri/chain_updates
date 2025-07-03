@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 parent = Path(__file__).parent
 alice = parent / "testdata" / "alice.pem"

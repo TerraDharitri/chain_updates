@@ -1,17 +1,17 @@
-from multiversx_sdk.core.address import Address, AddressComputer, AddressFactory
-from multiversx_sdk.core.code_metadata import CodeMetadata
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.message import Message, MessageComputer
-from multiversx_sdk.core.tokens import (
+from dharitri_sdk.core.address import Address, AddressComputer, AddressFactory
+from dharitri_sdk.core.code_metadata import CodeMetadata
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.message import Message, MessageComputer
+from dharitri_sdk.core.tokens import (
     Token,
     TokenComputer,
     TokenIdentifierParts,
     TokenTransfer,
 )
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.core.transaction_events_parser import TransactionEventsParser
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.core.transaction_events_parser import TransactionEventsParser
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionEvent,
     TransactionLogs,
@@ -20,7 +20,7 @@ from multiversx_sdk.core.transaction_on_network import (
     find_events_by_first_topic,
     find_events_by_identifier,
 )
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
 __all__ = [
     "Address",

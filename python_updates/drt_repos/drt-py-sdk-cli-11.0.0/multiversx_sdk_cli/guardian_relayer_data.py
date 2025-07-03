@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from multiversx_sdk import Address
+from dharitri_sdk import Address
 
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.interfaces import IAccount
 
 
 @dataclass

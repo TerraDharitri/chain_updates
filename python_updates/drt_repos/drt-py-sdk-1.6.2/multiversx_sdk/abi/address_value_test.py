@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.core.address import Address
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.core.address import Address
 
 
 def test_set_payload_and_get_payload():

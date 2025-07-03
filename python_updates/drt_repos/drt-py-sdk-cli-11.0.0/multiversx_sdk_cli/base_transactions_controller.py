@@ -1,8 +1,8 @@
 import logging
 from typing import Any, Optional, Union
 
-from multiversx_sdk import Address, LedgerAccount, Transaction, TransactionComputer
-from multiversx_sdk.abi import (
+from dharitri_sdk import Address, LedgerAccount, Transaction, TransactionComputer
+from dharitri_sdk.abi import (
     AddressValue,
     BigUIntValue,
     BoolValue,
@@ -10,8 +10,8 @@ from multiversx_sdk.abi import (
     StringValue,
 )
 
-from multiversx_sdk_cli.config_env import get_address_hrp
-from multiversx_sdk_cli.constants import (
+from dharitri_sdk_cli.config_env import get_address_hrp
+from dharitri_sdk_cli.constants import (
     ADDRESS_PREFIX,
     EXTRA_GAS_LIMIT_FOR_GUARDED_TRANSACTIONS,
     EXTRA_GAS_LIMIT_FOR_RELAYED_TRANSACTIONS,
@@ -21,10 +21,10 @@ from multiversx_sdk_cli.constants import (
     STR_PREFIX,
     TRUE_STR_LOWER,
 )
-from multiversx_sdk_cli.cosign_transaction import cosign_transaction
-from multiversx_sdk_cli.errors import BadUserInput, TransactionSigningError
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.cosign_transaction import cosign_transaction
+from dharitri_sdk_cli.errors import BadUserInput, TransactionSigningError
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 logger = logging.getLogger("base_controller")
 
@@ -139,7 +139,7 @@ class BaseTransactionsController:
                 args.append(StringValue(arg[len(STR_PREFIX) :]))
             else:
                 raise BadUserInput(
-                    f"Unknown argument type for argument: `{arg}`. Use `mxpy contract <sub-command> --help` to check all supported arguments"
+                    f"Unknown argument type for argument: `{arg}`. Use `drtpy contract <sub-command> --help` to check all supported arguments"
                 )
 
         return args

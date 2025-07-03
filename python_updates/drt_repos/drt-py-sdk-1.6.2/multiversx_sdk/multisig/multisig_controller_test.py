@@ -1,32 +1,32 @@
 import base64
 from pathlib import Path
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.tokens import Token, TokenTransfer
-from multiversx_sdk.multisig.multisig_controller import MultisigController
-from multiversx_sdk.multisig.resources import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.tokens import Token, TokenTransfer
+from dharitri_sdk.multisig.multisig_controller import MultisigController
+from dharitri_sdk.multisig.resources import (
     AddBoardMember,
     AddProposer,
     ChangeQuorum,
-    EsdtTokenPayment,
+    DcdtTokenPayment,
     RemoveUser,
     SCDeployFromSource,
     SCUpgradeFromSource,
     SendAsyncCall,
-    SendTransferExecuteEgld,
-    SendTransferExecuteEsdt,
+    SendTransferExecuteRewa,
+    SendTransferExecuteDcdt,
     UserRole,
 )
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQueryResponse,
 )
-from multiversx_sdk.testutils.mock_network_provider import MockNetworkProvider
-from multiversx_sdk.testutils.utils import create_network_providers_config
+from dharitri_sdk.testutils.mock_network_provider import MockNetworkProvider
+from dharitri_sdk.testutils.utils import create_network_providers_config
 
 
 class TestMultisigController:
@@ -35,7 +35,7 @@ class TestMultisigController:
     multisig_bytecode = (testdata / "multisig-full.wasm").read_bytes()
     multisig_abi = Abi.load(testdata / "multisig-full.abi.json")
     network_provider = ApiNetworkProvider(
-        url="https://devnet-api.multiversx.com", config=create_network_providers_config()
+        url="https://devnet-api.dharitri.org", config=create_network_providers_config()
     )
     controller = MultisigController(chain_id="D", network_provider=network_provider, abi=multisig_abi)
     john = Account.new_from_pem(testwallets / "user.pem")
@@ -70,7 +70,7 @@ class TestMultisigController:
             nonce=self.john.get_nonce_then_increment(),
             contract=self.contract,
             gas_limit=60_000_000,
-            native_token_amount=1000000000000000000,  # 1 EGLD
+            native_token_amount=1000000000000000000,  # 1 REWA
         )
         assert transaction.sender == self.john.address
         assert transaction.receiver == Address.new_from_bech32(
@@ -81,7 +81,7 @@ class TestMultisigController:
         assert transaction.chain_id == "D"
         assert transaction.data.decode() == "deposit"
 
-    def test_deposit_esdt(self):
+    def test_deposit_dcdt(self):
         transaction = self.controller.create_transaction_for_deposit(
             sender=self.john,
             nonce=self.john.get_nonce_then_increment(),
@@ -99,7 +99,7 @@ class TestMultisigController:
         assert transaction.chain_id == "D"
         assert (
             transaction.data.decode()
-            == f"MultiESDTNFTTransfer@{self.contract.to_hex()}@02@4d59544b4e2d613538346639@@0186a0@5346542d316263323631@01@01@6465706f736974"
+            == f"MultiDCDTNFTTransfer@{self.contract.to_hex()}@02@4d59544b4e2d613538346639@@0186a0@5346542d316263323631@01@01@6465706f736974"
         )
 
     def test_discard_action(self):
@@ -373,7 +373,7 @@ class TestMultisigController:
         assert response == proposers
 
     def test_get_action_data(self):
-        """Get action data for SendTransferExecuteEgld"""
+        """Get action data for SendTransferExecuteRewa"""
 
         network_provider = MockNetworkProvider()
         controller = MultisigController(chain_id="D", network_provider=network_provider, abi=self.multisig_abi)
@@ -391,13 +391,13 @@ class TestMultisigController:
         network_provider.mock_query_contract_on_function("getActionData", contract_query_response)
 
         response = controller.get_action_data(contract=self.contract, action_id=42)
-        assert isinstance(response, SendTransferExecuteEgld)
+        assert isinstance(response, SendTransferExecuteRewa)
         assert response.data.to == Address.new_from_bech32(
             "erd1qqqqqqqqqqqqqpgq6qr0w0zzyysklfneh32eqp2cf383zc89d8sstnkl60"
         )
         assert response.data.endpoint_name == "add"
         assert response.data.arguments == [b"\x07"]
-        assert response.data.egld_amount == 42
+        assert response.data.rewa_amount == 42
         assert response.data.opt_gas_limit is None
 
     def test_get_pending_action_full_info(self):
@@ -449,10 +449,10 @@ class TestMultisigController:
         )
         assert response.data.endpoint_name == "add"
         assert response.data.arguments == [b"\x07"]
-        assert response.data.egld_amount == 0
+        assert response.data.rewa_amount == 0
         assert response.data.opt_gas_limit == 5_000_000
 
-    def test_get_action_data_for_send_transfer_execute_esdt(self):
+    def test_get_action_data_for_send_transfer_execute_dcdt(self):
         network_provider = MockNetworkProvider()
         controller = MultisigController(chain_id="D", network_provider=network_provider, abi=self.multisig_abi)
 
@@ -471,13 +471,13 @@ class TestMultisigController:
         network_provider.mock_query_contract_on_function("getActionData", contract_query_response)
 
         response = controller.get_action_data(contract=self.contract, action_id=42)
-        assert isinstance(response, SendTransferExecuteEsdt)
+        assert isinstance(response, SendTransferExecuteDcdt)
         assert response.data.to == Address.new_from_bech32(
             "erd1qqqqqqqqqqqqqpgqfxlljcaalgl2qfcnxcsftheju0ts36kvl3ts3qkewe"
         )
         assert response.data.endpoint_name == "distribute"
         assert response.data.arguments == []
-        assert response.data.tokens == [EsdtTokenPayment("ALICE-5627f1", 0, 10)]
+        assert response.data.tokens == [DcdtTokenPayment("ALICE-5627f1", 0, 10)]
         assert response.data.opt_gas_limit == 5_000_000
 
     def test_get_action_data_for_add_board_member(self):
@@ -753,7 +753,7 @@ class TestMultisigController:
             == "proposeTransferExecute@0000000000000000050078d29632acb15998003f615d0a51261353d8041d3e13@0de0b6b3a7640000@0100000000000f4240@616464@07"
         )
 
-    def test_propose_transfer_egld_without_execute(self):
+    def test_propose_transfer_rewa_without_execute(self):
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgq0rffvv4vk9vesqplv9ws55fxzdfaspqa8cfszy2hms")
         amount = 1000000000000000000
 
@@ -775,10 +775,10 @@ class TestMultisigController:
             == "proposeTransferExecute@0000000000000000050078d29632acb15998003f615d0a51261353d8041d3e13@0de0b6b3a7640000@"
         )
 
-    def test_propose_transfer_execute_esdt(self):
+    def test_propose_transfer_execute_dcdt(self):
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqfxlljcaalgl2qfcnxcsftheju0ts36kvl3ts3qkewe")
 
-        transaction = self.controller.create_transaction_for_propose_transfer_execute_esdt(
+        transaction = self.controller.create_transaction_for_propose_transfer_execute_dcdt(
             sender=self.john,
             nonce=self.john.get_nonce_then_increment(),
             contract=self.contract,
@@ -796,7 +796,7 @@ class TestMultisigController:
         assert transaction.chain_id == "D"
         assert (
             transaction.data.decode()
-            == "proposeTransferExecuteEsdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
+            == "proposeTransferExecuteDcdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
         )
 
     def test_propose_async_call(self):

@@ -1,6 +1,6 @@
 {
     "include": [
-        "multiversx_sdk"
+        "dharitri_sdk"
     ],
     "exclude": [
         "**/__pycache__"

@@ -2,10 +2,10 @@ from typing import Optional
 
 from Cryptodome.Hash import keccak
 
-from multiversx_sdk.core import bech32
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.constants import METACHAIN_ID
-from multiversx_sdk.core.errors import BadAddressError, BadPubkeyLengthError
+from dharitri_sdk.core import bech32
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.constants import METACHAIN_ID
+from dharitri_sdk.core.errors import BadAddressError, BadPubkeyLengthError
 
 SC_HEX_PUBKEY_PREFIX = "0" * 16
 PUBKEY_LENGTH = 32

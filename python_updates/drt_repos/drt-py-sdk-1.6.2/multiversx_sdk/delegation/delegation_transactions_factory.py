@@ -1,14 +1,14 @@
 from typing import Sequence
 
-from multiversx_sdk.abi import Serializer
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core import Address, Transaction
-from multiversx_sdk.core.constants import DELEGATION_MANAGER_SC_ADDRESS_HEX
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.delegation.errors import ListsLengthMismatchError
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.abi import Serializer
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core import Address, Transaction
+from dharitri_sdk.core.constants import DELEGATION_MANAGER_SC_ADDRESS_HEX
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.delegation.errors import ListsLengthMismatchError
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class DelegationTransactionsFactory:

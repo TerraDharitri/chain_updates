@@ -1,12 +1,12 @@
 from typing import Any, Union
 
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.core.constants import (
-    EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER,
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.core.constants import (
+    REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER,
     TOKEN_RANDOM_SEQUENCE_LENGTH,
 )
-from multiversx_sdk.core.errors import BadUsageError, InvalidTokenIdentifierError
+from dharitri_sdk.core.errors import BadUsageError, InvalidTokenIdentifierError
 
 
 class Token:
@@ -31,7 +31,7 @@ class TokenTransfer:
 
     @staticmethod
     def new_from_native_amount(amount: int) -> "TokenTransfer":
-        native_token = Token(EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER)
+        native_token = Token(REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER)
         return TokenTransfer(native_token, amount)
 
     def __eq__(self, other: Any) -> bool:
@@ -165,7 +165,7 @@ class TokenComputer:
     def _check_if_extended_identifier_was_provided(self, token_prefx: Union[str, None], token_parts: list[str]) -> None:
         # this is for the identifiers of fungible tokens
         MIN_EXTENDED_IDENTIFIER_LENGTH_IF_SPLIT = 2
-        # this is for the identifiers of nft, sft and meta-esdt
+        # this is for the identifiers of nft, sft and meta-dcdt
         MAX_EXTENDED_IDENTIFIER_LENGTH_IF_SPLIT = 3 if not token_prefx else 4
 
         if (

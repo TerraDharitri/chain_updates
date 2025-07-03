@@ -1,17 +1,17 @@
 import time
 from typing import Callable, Optional, Protocol, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.network_providers.constants import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.network_providers.constants import (
     DEFAULT_ACCOUNT_AWAITING_PATIENCE_IN_MILLISECONDS,
     DEFAULT_ACCOUNT_AWAITING_POLLING_TIMEOUT_IN_MILLISECONDS,
     DEFAULT_ACCOUNT_AWAITING_TIMEOUT_IN_MILLISECONDS,
     ONE_SECOND_IN_MILLISECONDS,
 )
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.network_providers.errors import (
     ExpectedAccountConditionNotReachedError,
 )
-from multiversx_sdk.network_providers.resources import AccountOnNetwork
+from dharitri_sdk.network_providers.resources import AccountOnNetwork
 
 
 class IAccountFetcher(Protocol):

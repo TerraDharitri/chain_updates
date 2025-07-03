@@ -1,28 +1,28 @@
 from typing import Optional, Protocol, Sequence, Union
 
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     Transaction,
     TransactionOnNetwork,
     TransactionsFactoryConfig,
 )
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.delegation.delegation_transactions_factory import (
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.delegation.delegation_transactions_factory import (
     DelegationTransactionsFactory,
 )
-from multiversx_sdk.delegation.delegation_transactions_outcome_parser import (
+from dharitri_sdk.delegation.delegation_transactions_outcome_parser import (
     DelegationTransactionsOutcomeParser,
 )
-from multiversx_sdk.delegation.delegation_transactions_outcome_parser_types import (
+from dharitri_sdk.delegation.delegation_transactions_outcome_parser_types import (
     ClaimRewardsOutcome,
     CreateNewDelegationContractOutcome,
     DelegateOutcome,
     RedelegateRewardsOutcome,
     UndelegateOutcome,
 )
-from multiversx_sdk.network_providers.resources import AwaitingOptions
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.network_providers.resources import AwaitingOptions
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 # fmt: off

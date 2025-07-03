@@ -2,19 +2,19 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.cli import main
 
 
 def test_empty_wallet_config(capsys: Any, monkeypatch: Any, tmp_path: Path):
-    test_file = tmp_path / "wallets.mxpy.json"
+    test_file = tmp_path / "wallets.drtpy.json"
     test_file.write_text("{}")
 
-    import multiversx_sdk_cli.config_wallet
+    import dharitri_sdk_cli.config_wallet
 
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
-    multiversx_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
+    dharitri_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
 
     return_code = main(
         [
@@ -60,14 +60,14 @@ def test_empty_wallet_config(capsys: Any, monkeypatch: Any, tmp_path: Path):
 
 def test_without_address_config(capsys: Any, monkeypatch: Any, tmp_path: Path):
     # Ensure the address config file does not exist; if the actual name is used, when running the tests locally, it will fail with a different error message
-    test_file = tmp_path / "test-wallets.mxpy.json"
+    test_file = tmp_path / "test-wallets.drtpy.json"
     assert not test_file.exists()
 
-    import multiversx_sdk_cli.config_wallet
+    import dharitri_sdk_cli.config_wallet
 
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
-    multiversx_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
+    dharitri_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
 
     return_code = main(
         [
@@ -112,8 +112,8 @@ def test_without_address_config(capsys: Any, monkeypatch: Any, tmp_path: Path):
 
 
 def test_incomplete_address_config(capsys: Any, monkeypatch: Any, tmp_path: Path):
-    test_file = tmp_path / "wallets.mxpy.json"
-    import multiversx_sdk_cli.config_wallet
+    test_file = tmp_path / "wallets.drtpy.json"
+    import dharitri_sdk_cli.config_wallet
 
     json_file = {
         "active": "alice",
@@ -125,9 +125,9 @@ def test_incomplete_address_config(capsys: Any, monkeypatch: Any, tmp_path: Path
     }
     test_file.write_text(json.dumps(json_file))
 
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
-    multiversx_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "GLOBAL_WALLET_CONFIG_PATH", test_file)
+    dharitri_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
 
     return_code = main(
         [
@@ -185,8 +185,8 @@ def test_incomplete_address_config(capsys: Any, monkeypatch: Any, tmp_path: Path
     }
     test_file.write_text(json.dumps(json_file))
 
-    monkeypatch.setattr(multiversx_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
-    multiversx_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
+    monkeypatch.setattr(dharitri_sdk_cli.config_wallet, "LOCAL_WALLET_CONFIG_PATH", test_file)
+    dharitri_sdk_cli.config_wallet.read_wallet_config_file.cache_clear()
 
     monkeypatch.setattr(cli_shared, "getpass", lambda *args, **kwargs: "")
 

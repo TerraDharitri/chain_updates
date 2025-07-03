@@ -1,19 +1,19 @@
 from pathlib import Path
 from typing import Optional, Union
 
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.abi.interface import ISingleValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import STAKING_SMART_CONTRACT_ADDRESS_HEX
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.validators.validators_signers import ValidatorsSigners
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import STAKING_SMART_CONTRACT_ADDRESS_HEX
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.validators.validators_signers import ValidatorsSigners
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class ValidatorsTransactionsFactory:

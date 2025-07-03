@@ -3,11 +3,11 @@ import os
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared, errors, utils, workstation
+from dharitri_sdk_cli import cli_shared, errors, utils, workstation
 
 logger = logging.getLogger("cli.data")
 
-DATA_FILENAME = "mxpy.data-storage.json"
+DATA_FILENAME = "drtpy.data-storage.json"
 
 
 def setup_parser(subparsers: Any) -> Any:

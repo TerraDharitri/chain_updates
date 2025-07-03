@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Any, Optional
 
-from multiversx_sdk.core import Address, Token, TransactionStatus
-from multiversx_sdk.network_providers.constants import (
+from dharitri_sdk.core import Address, Token, TransactionStatus
+from dharitri_sdk.network_providers.constants import (
     DEFAULT_TRANSACTION_AWAITING_PATIENCE_IN_MILLISECONDS,
     DEFAULT_TRANSACTION_AWAITING_POLLING_TIMEOUT_IN_MILLISECONDS,
     DEFAULT_TRANSACTION_AWAITING_TIMEOUT_IN_MILLISECONDS,

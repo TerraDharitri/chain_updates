@@ -18,7 +18,7 @@ NUMBER_OF_SHARDS = 3
 DEFAULT_GAS_PRICE = 1000000000
 MIN_GAS_LIMIT = 50000
 
-TCS_SERVICE_ID = "MultiversXTCSService"
+TCS_SERVICE_ID = "DharitriTCSService"
 EXTRA_GAS_LIMIT_FOR_GUARDED_TRANSACTIONS = 50_000
 EXTRA_GAS_LIMIT_FOR_RELAYED_TRANSACTIONS = 50_000
 
@@ -29,6 +29,6 @@ STR_PREFIX = "str:"
 ADDRESS_PREFIX = "addr:"
 MAINCHAIN_ADDRESS_HRP = "erd"
 
-SDK_PATH = Path("~/multiversx-sdk").expanduser().resolve()
+SDK_PATH = Path("~/dharitri-sdk").expanduser().resolve()
 
 LOG_LEVELS = ["debug", "info", "warning", "error"]

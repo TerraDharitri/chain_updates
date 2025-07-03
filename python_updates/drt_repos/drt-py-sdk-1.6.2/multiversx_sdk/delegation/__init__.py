@@ -1,11 +1,11 @@
-from multiversx_sdk.delegation.delegation_controller import DelegationController
-from multiversx_sdk.delegation.delegation_transactions_factory import (
+from dharitri_sdk.delegation.delegation_controller import DelegationController
+from dharitri_sdk.delegation.delegation_transactions_factory import (
     DelegationTransactionsFactory,
 )
-from multiversx_sdk.delegation.delegation_transactions_outcome_parser import (
+from dharitri_sdk.delegation.delegation_transactions_outcome_parser import (
     DelegationTransactionsOutcomeParser,
 )
-from multiversx_sdk.delegation.delegation_transactions_outcome_parser_types import (
+from dharitri_sdk.delegation.delegation_transactions_outcome_parser_types import (
     CreateNewDelegationContractOutcome,
 )
 

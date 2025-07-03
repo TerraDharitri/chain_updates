@@ -1,4 +1,4 @@
-from multiversx_sdk.abi.type_formula_parser import TypeFormulaParser
+from dharitri_sdk.abi.type_formula_parser import TypeFormulaParser
 
 
 def test_parse_expression():

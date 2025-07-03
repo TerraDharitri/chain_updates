@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 from typing import List
 
-from multiversx_sdk_cli.localnet.constants import FILE_MODE_EXECUTABLE
+from dharitri_sdk_cli.localnet.constants import FILE_MODE_EXECUTABLE
 
 logger = logging.getLogger("localnet")
 

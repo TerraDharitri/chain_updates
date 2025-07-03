@@ -1,12 +1,12 @@
 from typing import Optional
 
-from multiversx_sdk.core.constants import (
+from dharitri_sdk.core.constants import (
     EXTRA_GAS_LIMIT_FOR_GUARDED_TRANSACTIONS,
     EXTRA_GAS_LIMIT_FOR_RELAYED_TRANSACTIONS,
 )
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
 
 
 class BaseController:

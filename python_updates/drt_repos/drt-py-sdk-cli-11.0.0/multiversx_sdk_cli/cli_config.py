@@ -3,14 +3,14 @@ import os
 import sys
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared, config, utils
-from multiversx_sdk_cli.ux import confirm_continuation
+from dharitri_sdk_cli import cli_shared, config, utils
+from dharitri_sdk_cli.ux import confirm_continuation
 
 logger = logging.getLogger("cli.config")
 
 
 def setup_parser(subparsers: Any) -> Any:
-    parser = cli_shared.add_group_subparser(subparsers, "config", "Configure MultiversX CLI (default values etc.)")
+    parser = cli_shared.add_group_subparser(subparsers, "config", "Configure Dharitri CLI (default values etc.)")
     subparsers = parser.add_subparsers()
 
     sub = cli_shared.add_command_subparser(subparsers, "config", "dump", "Dumps the active configuration.")

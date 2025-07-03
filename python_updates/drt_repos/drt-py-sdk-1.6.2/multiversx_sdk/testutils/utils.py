@@ -1,13 +1,13 @@
 import base64
 from typing import List
 
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
 
-EGLD_NUM_DECIMALS = 18
+REWA_NUM_DECIMALS = 18
 
 
-def create_account_egld_balance(egld: int) -> int:
-    value_as_str = str(egld) + ("0" * EGLD_NUM_DECIMALS)
+def create_account_rewa_balance(rewa: int) -> int:
+    value_as_str = str(rewa) + ("0" * REWA_NUM_DECIMALS)
     return int(value_as_str)
 
 

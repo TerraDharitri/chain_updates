@@ -1,4 +1,4 @@
-from multiversx_sdk_cli.dependencies.install import (
+from dharitri_sdk_cli.dependencies.install import (
     get_all_deps,
     get_golang,
     get_module_by_key,

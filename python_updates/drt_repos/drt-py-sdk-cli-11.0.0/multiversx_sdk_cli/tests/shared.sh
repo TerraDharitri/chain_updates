@@ -7,10 +7,10 @@ function absolute_path() {
 export PYTHONPATH=$(absolute_path ../../)
 echo "PYTHONPATH = ${PYTHONPATH}"
 
-CLI="python3 -m multiversx_sdk_cli.cli"
+CLI="python3 -m dharitri_sdk_cli.cli"
 SANDBOX=./testdata-out/SANDBOX
-USERS=~/multiversx-sdk/testwallets/latest/users
-VALIDATORS=~/multiversx-sdk/testwallets/latest/validators
+USERS=~/dharitri-sdk/testwallets/latest/users
+VALIDATORS=~/dharitri-sdk/testwallets/latest/validators
 DENOMINATION="000000000000000000"
 PROXY="${PROXY:-http://localhost:7950}"
 CHAIN_ID="${CHAIN_ID:-localnet}"

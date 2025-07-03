@@ -1,18 +1,18 @@
 import base64
 from typing import Any, Optional, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.code_metadata import CodeMetadata
-from multiversx_sdk.core.tokens import Token
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.code_metadata import CodeMetadata
+from dharitri_sdk.core.tokens import Token
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionEvent,
     TransactionLogs,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.transaction_status import TransactionStatus
-from multiversx_sdk.network_providers.resources import (
+from dharitri_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.network_providers.resources import (
     AccountOnNetwork,
     AccountStorage,
     AccountStorageEntry,
@@ -25,7 +25,7 @@ from multiversx_sdk.network_providers.resources import (
     TokensCollectionMetadata,
     TransactionCostResponse,
 )
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )
@@ -518,7 +518,7 @@ def token_amount_from_api_response(raw_response: dict[str, Any]) -> TokenAmountO
 
 
 def token_amounts_from_proxy_response(raw_response: dict[str, Any]) -> list[TokenAmountOnNetwork]:
-    tokens = raw_response.get("esdts", {})
+    tokens = raw_response.get("dcdts", {})
     block_coordinates = _get_block_coordinates_from_raw_response(raw_response)
 
     result: list[TokenAmountOnNetwork] = []

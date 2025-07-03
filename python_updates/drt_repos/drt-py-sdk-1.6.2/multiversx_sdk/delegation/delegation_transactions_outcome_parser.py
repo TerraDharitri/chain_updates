@@ -1,12 +1,12 @@
-from multiversx_sdk.core import (
+from dharitri_sdk.core import (
     Address,
     TransactionEvent,
     TransactionOnNetwork,
     find_events_by_identifier,
 )
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.errors import ParseTransactionOnNetworkError
-from multiversx_sdk.delegation.delegation_transactions_outcome_parser_types import (
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.errors import ParseTransactionOnNetworkError
+from dharitri_sdk.delegation.delegation_transactions_outcome_parser_types import (
     ClaimRewardsOutcome,
     CreateNewDelegationContractOutcome,
     DelegateOutcome,

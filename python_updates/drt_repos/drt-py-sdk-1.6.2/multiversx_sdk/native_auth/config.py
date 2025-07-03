@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Callable, Optional, Protocol
 
-from multiversx_sdk.native_auth.constants import (
+from dharitri_sdk.native_auth.constants import (
     DEFAULT_API_URL,
     DEFAULT_EXPIRY_TIME_IN_SECONDS,
 )
@@ -41,7 +41,7 @@ class NativeAuthServerConfig:
     Configuration for Native Authentication.
 
     Attributes:
-        api_url: Optional API URL (default: https://api.multiversx.com).
+        api_url: Optional API URL (default: https://api.dharitri.org).
         accepted_origins: Mandatory list of accepted origins (must have at least one value).
         validate_impersonate_url: Optional endpoint for validating impersonation.
         validate_impersonate_callback: Optional callback function to validate impersonation.

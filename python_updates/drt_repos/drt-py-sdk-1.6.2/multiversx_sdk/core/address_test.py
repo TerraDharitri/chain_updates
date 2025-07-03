@@ -1,13 +1,13 @@
 import pytest
 
-from multiversx_sdk.core.address import (
+from dharitri_sdk.core.address import (
     Address,
     AddressComputer,
     AddressFactory,
     is_valid_bech32,
 )
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.errors import BadAddressError, BadPubkeyLengthError
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.errors import BadAddressError, BadPubkeyLengthError
 
 
 def test_address():

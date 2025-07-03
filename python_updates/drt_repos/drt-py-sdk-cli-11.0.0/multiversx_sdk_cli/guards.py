@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from multiversx_sdk_cli import errors
+from dharitri_sdk_cli import errors
 
 
 def is_file(input: Path):

@@ -9,10 +9,10 @@ from typing import Any, Coroutine, List
 from rich.console import Console
 from rich.table import Table
 
-from multiversx_sdk_cli import workstation
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
-from multiversx_sdk_cli.localnet.constants import NETWORK_MONITORING_INTERVAL_IN_SECONDS
-from multiversx_sdk_cli.localnet.step_config import (
+from dharitri_sdk_cli import workstation
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.constants import NETWORK_MONITORING_INTERVAL_IN_SECONDS
+from dharitri_sdk_cli.localnet.step_config import (
     copy_binaries_into_localnet_workspace,
 )
 

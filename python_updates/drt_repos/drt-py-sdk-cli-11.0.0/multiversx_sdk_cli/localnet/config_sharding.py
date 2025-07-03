@@ -1,6 +1,6 @@
 from typing import Any, Dict
 
-from multiversx_sdk_cli.localnet.config_part import ConfigPart
+from dharitri_sdk_cli.localnet.config_part import ConfigPart
 
 
 class Metashard(ConfigPart):

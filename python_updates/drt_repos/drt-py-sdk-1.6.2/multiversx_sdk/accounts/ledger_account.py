@@ -1,10 +1,10 @@
 import logging
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.message import Message
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.ledger.ledger_app import LedgerApp
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.message import Message
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.ledger.ledger_app import LedgerApp
 
 logger = logging.getLogger("ledger_account")
 

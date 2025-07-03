@@ -2,14 +2,14 @@ import logging
 from enum import Enum
 from typing import Optional
 
-from multiversx_sdk.abi import Serializer
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core import Address, Transaction
-from multiversx_sdk.core.errors import BadUsageError
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.abi import Serializer
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core import Address, Transaction
+from dharitri_sdk.core.errors import BadUsageError
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +72,7 @@ class TokenManagementTransactionsFactory:
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_issue,
             add_data_movement_gas=True,
@@ -85,7 +85,7 @@ class TokenManagementTransactionsFactory:
 ==========
 IMPORTANT!
 ==========
-You are about to issue (register) a new token. This will set the role "ESDTRoleBurnForAll" (globally).
+You are about to issue (register) a new token. This will set the role "DCDTRoleBurnForAll" (globally).
 Once the token is registered, you can unset this role by calling "unsetBurnRoleGlobally" (in a separate transaction)."""
         )
 
@@ -134,7 +134,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_issue,
             add_data_movement_gas=True,
@@ -186,14 +186,14 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_issue,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
 
-    def create_transaction_for_registering_meta_esdt(
+    def create_transaction_for_registering_meta_dcdt(
         self,
         sender: Address,
         token_name: str,
@@ -209,7 +209,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
     ) -> Transaction:
         self._notify_about_unsetting_burn_role_globally()
 
-        parts = ["registerMetaESDT"]
+        parts = ["registerMetaDCDT"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -240,7 +240,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_issue,
             add_data_movement_gas=True,
@@ -273,7 +273,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_issue,
             add_data_movement_gas=True,
@@ -289,7 +289,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_toggle_burn_role_globally,
             add_data_movement_gas=True,
@@ -307,7 +307,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_toggle_burn_role_globally,
             add_data_movement_gas=True,
@@ -321,7 +321,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_identifier: str,
         add_role_local_mint: bool = False,
         add_role_local_burn: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
     ) -> Transaction:
         parts = [
             "setSpecialRole",
@@ -331,9 +331,9 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleLocalMint")] if add_role_local_mint else []),
-                *([StringValue("ESDTRoleLocalBurn")] if add_role_local_burn else []),
-                *([StringValue("ESDTTransferRole")] if add_role_esdt_transfer_role else []),
+                *([StringValue("DCDTRoleLocalMint")] if add_role_local_mint else []),
+                *([StringValue("DCDTRoleLocalBurn")] if add_role_local_burn else []),
+                *([StringValue("DCDTTransferRole")] if add_role_dcdt_transfer_role else []),
             ]
         )
 
@@ -342,7 +342,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
@@ -356,7 +356,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_identifier: str,
         remove_role_local_mint: bool = False,
         remove_role_local_burn: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
     ) -> Transaction:
         parts = [
             "unSetSpecialRole",
@@ -366,9 +366,9 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleLocalMint")] if remove_role_local_mint else []),
-                *([StringValue("ESDTRoleLocalBurn")] if remove_role_local_burn else []),
-                *([StringValue("ESDTTransferRole")] if remove_role_esdt_transfer_role else []),
+                *([StringValue("DCDTRoleLocalMint")] if remove_role_local_mint else []),
+                *([StringValue("DCDTRoleLocalBurn")] if remove_role_local_burn else []),
+                *([StringValue("DCDTTransferRole")] if remove_role_dcdt_transfer_role else []),
             ]
         )
 
@@ -377,7 +377,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
@@ -392,11 +392,11 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         add_role_nft_create: bool = False,
         add_role_nft_burn: bool = False,
         add_role_nft_add_quantity: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         add_role_nft_update: bool = False,
-        add_role_esdt_modify_royalties: bool = False,
-        add_role_esdt_set_new_uri: bool = False,
-        add_role_esdt_modify_creator: bool = False,
+        add_role_dcdt_modify_royalties: bool = False,
+        add_role_dcdt_set_new_uri: bool = False,
+        add_role_dcdt_modify_creator: bool = False,
         add_role_nft_recreate: bool = False,
     ) -> Transaction:
         parts = [
@@ -407,15 +407,15 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleNFTCreate")] if add_role_nft_create else []),
-                *([StringValue("ESDTRoleNFTBurn")] if add_role_nft_burn else []),
-                *([StringValue("ESDTRoleNFTAddQuantity")] if add_role_nft_add_quantity else []),
-                *([StringValue("ESDTTransferRole")] if add_role_esdt_transfer_role else []),
-                *([StringValue("ESDTRoleNFTUpdate")] if add_role_nft_update else []),
-                *([StringValue("ESDTRoleModifyRoyalties")] if add_role_esdt_modify_royalties else []),
-                *([StringValue("ESDTRoleSetNewURI")] if add_role_esdt_set_new_uri else []),
-                *([StringValue("ESDTRoleModifyCreator")] if add_role_esdt_modify_creator else []),
-                *([StringValue("ESDTRoleNFTRecreate")] if add_role_nft_recreate else []),
+                *([StringValue("DCDTRoleNFTCreate")] if add_role_nft_create else []),
+                *([StringValue("DCDTRoleNFTBurn")] if add_role_nft_burn else []),
+                *([StringValue("DCDTRoleNFTAddQuantity")] if add_role_nft_add_quantity else []),
+                *([StringValue("DCDTTransferRole")] if add_role_dcdt_transfer_role else []),
+                *([StringValue("DCDTRoleNFTUpdate")] if add_role_nft_update else []),
+                *([StringValue("DCDTRoleModifyRoyalties")] if add_role_dcdt_modify_royalties else []),
+                *([StringValue("DCDTRoleSetNewURI")] if add_role_dcdt_set_new_uri else []),
+                *([StringValue("DCDTRoleModifyCreator")] if add_role_dcdt_modify_creator else []),
+                *([StringValue("DCDTRoleNFTRecreate")] if add_role_nft_recreate else []),
             ]
         )
 
@@ -424,7 +424,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
@@ -438,11 +438,11 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_identifier: str,
         remove_role_nft_burn: bool = False,
         remove_role_nft_add_quantity: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         remove_role_nft_update: bool = False,
-        remove_role_esdt_modify_royalties: bool = False,
-        remove_role_esdt_set_new_uri: bool = False,
-        remove_role_esdt_modify_creator: bool = False,
+        remove_role_dcdt_modify_royalties: bool = False,
+        remove_role_dcdt_set_new_uri: bool = False,
+        remove_role_dcdt_modify_creator: bool = False,
         remove_role_nft_recreate: bool = False,
     ) -> Transaction:
         parts = [
@@ -453,14 +453,14 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleNFTBurn")] if remove_role_nft_burn else []),
-                *([StringValue("ESDTRoleNFTAddQuantity")] if remove_role_nft_add_quantity else []),
-                *([StringValue("ESDTTransferRole")] if remove_role_esdt_transfer_role else []),
-                *([StringValue("ESDTRoleNFTUpdate")] if remove_role_nft_update else []),
-                *([StringValue("ESDTRoleModifyRoyalties")] if remove_role_esdt_modify_royalties else []),
-                *([StringValue("ESDTRoleSetNewURI")] if remove_role_esdt_set_new_uri else []),
-                *([StringValue("ESDTRoleModifyCreator")] if remove_role_esdt_modify_creator else []),
-                *([StringValue("ESDTRoleNFTRecreate")] if remove_role_nft_recreate else []),
+                *([StringValue("DCDTRoleNFTBurn")] if remove_role_nft_burn else []),
+                *([StringValue("DCDTRoleNFTAddQuantity")] if remove_role_nft_add_quantity else []),
+                *([StringValue("DCDTTransferRole")] if remove_role_dcdt_transfer_role else []),
+                *([StringValue("DCDTRoleNFTUpdate")] if remove_role_nft_update else []),
+                *([StringValue("DCDTRoleModifyRoyalties")] if remove_role_dcdt_modify_royalties else []),
+                *([StringValue("DCDTRoleSetNewURI")] if remove_role_dcdt_set_new_uri else []),
+                *([StringValue("DCDTRoleModifyCreator")] if remove_role_dcdt_modify_creator else []),
+                *([StringValue("DCDTRoleNFTRecreate")] if remove_role_nft_recreate else []),
             ]
         )
 
@@ -469,14 +469,14 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
 
-    def create_transaction_for_setting_special_role_on_meta_esdt(
+    def create_transaction_for_setting_special_role_on_meta_dcdt(
         self,
         sender: Address,
         user: Address,
@@ -484,7 +484,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         add_role_nft_create: bool = False,
         add_role_nft_burn: bool = False,
         add_role_nft_add_quantity: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
     ) -> Transaction:
         return self.create_transaction_for_setting_special_role_on_semi_fungible_token(
             sender,
@@ -493,17 +493,17 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             add_role_nft_create,
             add_role_nft_burn,
             add_role_nft_add_quantity,
-            add_role_esdt_transfer_role,
+            add_role_dcdt_transfer_role,
         )
 
-    def create_transaction_for_unsetting_special_role_on_meta_esdt(
+    def create_transaction_for_unsetting_special_role_on_meta_dcdt(
         self,
         sender: Address,
         user: Address,
         token_identifier: str,
         remove_role_nft_burn: bool = False,
         remove_role_nft_add_quantity: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
     ) -> Transaction:
         return self.create_transaction_for_unsetting_special_role_on_semi_fungible_token(
             sender,
@@ -511,7 +511,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             token_identifier,
             remove_role_nft_burn,
             remove_role_nft_add_quantity,
-            remove_role_esdt_transfer_role,
+            remove_role_dcdt_transfer_role,
         )
 
     def create_transaction_for_setting_special_role_on_non_fungible_token(
@@ -523,11 +523,11 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         add_role_nft_burn: bool = False,
         add_role_nft_update_attributes: bool = False,
         add_role_nft_add_uri: bool = False,
-        add_role_esdt_transfer_role: bool = False,
+        add_role_dcdt_transfer_role: bool = False,
         add_role_nft_update: bool = False,
-        add_role_esdt_modify_royalties: bool = False,
-        add_role_esdt_set_new_uri: bool = False,
-        add_role_esdt_modify_creator: bool = False,
+        add_role_dcdt_modify_royalties: bool = False,
+        add_role_dcdt_set_new_uri: bool = False,
+        add_role_dcdt_modify_creator: bool = False,
         add_role_nft_recreate: bool = False,
     ) -> Transaction:
         parts = [
@@ -538,16 +538,16 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleNFTCreate")] if add_role_nft_create else []),
-                *([StringValue("ESDTRoleNFTBurn")] if add_role_nft_burn else []),
-                *([StringValue("ESDTRoleNFTUpdateAttributes")] if add_role_nft_update_attributes else []),
-                *([StringValue("ESDTRoleNFTAddURI")] if add_role_nft_add_uri else []),
-                *([StringValue("ESDTTransferRole")] if add_role_esdt_transfer_role else []),
-                *([StringValue("ESDTRoleNFTUpdate")] if add_role_nft_update else []),
-                *([StringValue("ESDTRoleModifyRoyalties")] if add_role_esdt_modify_royalties else []),
-                *([StringValue("ESDTRoleSetNewURI")] if add_role_esdt_set_new_uri else []),
-                *([StringValue("ESDTRoleModifyCreator")] if add_role_esdt_modify_creator else []),
-                *([StringValue("ESDTRoleNFTRecreate")] if add_role_nft_recreate else []),
+                *([StringValue("DCDTRoleNFTCreate")] if add_role_nft_create else []),
+                *([StringValue("DCDTRoleNFTBurn")] if add_role_nft_burn else []),
+                *([StringValue("DCDTRoleNFTUpdateAttributes")] if add_role_nft_update_attributes else []),
+                *([StringValue("DCDTRoleNFTAddURI")] if add_role_nft_add_uri else []),
+                *([StringValue("DCDTTransferRole")] if add_role_dcdt_transfer_role else []),
+                *([StringValue("DCDTRoleNFTUpdate")] if add_role_nft_update else []),
+                *([StringValue("DCDTRoleModifyRoyalties")] if add_role_dcdt_modify_royalties else []),
+                *([StringValue("DCDTRoleSetNewURI")] if add_role_dcdt_set_new_uri else []),
+                *([StringValue("DCDTRoleModifyCreator")] if add_role_dcdt_modify_creator else []),
+                *([StringValue("DCDTRoleNFTRecreate")] if add_role_nft_recreate else []),
             ]
         )
 
@@ -556,7 +556,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
@@ -571,11 +571,11 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         remove_role_nft_burn: bool = False,
         remove_role_nft_update_attributes: bool = False,
         remove_role_nft_remove_uri: bool = False,
-        remove_role_esdt_transfer_role: bool = False,
+        remove_role_dcdt_transfer_role: bool = False,
         remove_role_nft_update: bool = False,
-        remove_role_esdt_modify_royalties: bool = False,
-        remove_role_esdt_set_new_uri: bool = False,
-        remove_role_esdt_modify_creator: bool = False,
+        remove_role_dcdt_modify_royalties: bool = False,
+        remove_role_dcdt_set_new_uri: bool = False,
+        remove_role_dcdt_modify_creator: bool = False,
         remove_role_nft_recreate: bool = False,
     ) -> Transaction:
         parts = [
@@ -586,15 +586,15 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
-                *([StringValue("ESDTRoleNFTBurn")] if remove_role_nft_burn else []),
-                *([StringValue("ESDTRoleNFTUpdateAttributes")] if remove_role_nft_update_attributes else []),
-                *([StringValue("ESDTRoleNFTAddURI")] if remove_role_nft_remove_uri else []),
-                *([StringValue("ESDTTransferRole")] if remove_role_esdt_transfer_role else []),
-                *([StringValue("ESDTRoleNFTUpdate")] if remove_role_nft_update else []),
-                *([StringValue("ESDTRoleModifyRoyalties")] if remove_role_esdt_modify_royalties else []),
-                *([StringValue("ESDTRoleSetNewURI")] if remove_role_esdt_set_new_uri else []),
-                *([StringValue("ESDTRoleModifyCreator")] if remove_role_esdt_modify_creator else []),
-                *([StringValue("ESDTRoleNFTRecreate")] if remove_role_nft_recreate else []),
+                *([StringValue("DCDTRoleNFTBurn")] if remove_role_nft_burn else []),
+                *([StringValue("DCDTRoleNFTUpdateAttributes")] if remove_role_nft_update_attributes else []),
+                *([StringValue("DCDTRoleNFTAddURI")] if remove_role_nft_remove_uri else []),
+                *([StringValue("DCDTTransferRole")] if remove_role_dcdt_transfer_role else []),
+                *([StringValue("DCDTRoleNFTUpdate")] if remove_role_nft_update else []),
+                *([StringValue("DCDTRoleModifyRoyalties")] if remove_role_dcdt_modify_royalties else []),
+                *([StringValue("DCDTRoleSetNewURI")] if remove_role_dcdt_set_new_uri else []),
+                *([StringValue("DCDTRoleModifyCreator")] if remove_role_dcdt_modify_creator else []),
+                *([StringValue("DCDTRoleNFTRecreate")] if remove_role_nft_recreate else []),
             ]
         )
 
@@ -603,7 +603,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_set_special_role,
             add_data_movement_gas=True,
@@ -624,7 +624,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         if not uris:
             raise BadUsageError("No URIs provided")
 
-        parts = ["ESDTNFTCreate"]
+        parts = ["DCDTNFTCreate"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -649,7 +649,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_nft_create + storage_gas_limit,
+            gas_limit=self._config.gas_limit_dcdt_nft_create + storage_gas_limit,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -660,7 +660,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_pausing,
             add_data_movement_gas=True,
@@ -673,7 +673,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_pausing,
             add_data_movement_gas=True,
@@ -681,7 +681,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         ).build()
 
     def create_transaction_for_freezing(self, sender: Address, user: Address, token_identifier: str) -> Transaction:
-        """Can be used for FungibleESDT"""
+        """Can be used for FungibleDCDT"""
         parts = [
             "freeze",
             self.serializer.serialize([StringValue(token_identifier)]),
@@ -691,7 +691,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_freezing,
             add_data_movement_gas=True,
@@ -699,7 +699,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         ).build()
 
     def create_transaction_for_unfreezing(self, sender: Address, user: Address, token_identifier: str) -> Transaction:
-        """Can be used for FungibleESDT"""
+        """Can be used for FungibleDCDT"""
         parts = [
             "unFreeze",
             self.serializer.serialize([StringValue(token_identifier)]),
@@ -709,7 +709,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_freezing,
             add_data_movement_gas=True,
@@ -726,7 +726,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_wiping,
             add_data_movement_gas=True,
@@ -737,7 +737,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         self, sender: Address, token_identifier: str, supply_to_mint: int
     ) -> Transaction:
         parts = [
-            "ESDTLocalMint",
+            "DCDTLocalMint",
             self.serializer.serialize([StringValue(token_identifier)]),
             self.serializer.serialize([BigUIntValue(supply_to_mint)]),
         ]
@@ -747,7 +747,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_local_mint,
+            gas_limit=self._config.gas_limit_dcdt_local_mint,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -756,7 +756,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         self, sender: Address, token_identifier: str, supply_to_burn: int
     ) -> Transaction:
         parts = [
-            "ESDTLocalBurn",
+            "DCDTLocalBurn",
             self.serializer.serialize([StringValue(token_identifier)]),
             self.serializer.serialize([BigUIntValue(supply_to_burn)]),
         ]
@@ -766,7 +766,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_local_burn,
+            gas_limit=self._config.gas_limit_dcdt_local_burn,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -778,7 +778,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_nonce: int,
         attributes: bytes,
     ) -> Transaction:
-        parts = ["ESDTNFTUpdateAttributes"]
+        parts = ["DCDTNFTUpdateAttributes"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -795,7 +795,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_nft_update_attributes,
+            gas_limit=self._config.gas_limit_dcdt_nft_update_attributes,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -807,7 +807,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_nonce: int,
         quantity_to_add: int,
     ) -> Transaction:
-        parts = ["ESDTNFTAddQuantity"]
+        parts = ["DCDTNFTAddQuantity"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -824,7 +824,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_nft_add_quantity,
+            gas_limit=self._config.gas_limit_dcdt_nft_add_quantity,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -836,7 +836,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_nonce: int,
         quantity_to_burn: int,
     ) -> Transaction:
-        parts = ["ESDTNFTBurn"]
+        parts = ["DCDTNFTBurn"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -853,7 +853,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_nft_burn,
+            gas_limit=self._config.gas_limit_dcdt_nft_burn,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -865,7 +865,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_nonce: int,
         new_royalties: int,
     ) -> Transaction:
-        parts = ["ESDTModifyRoyalties"]
+        parts = ["DCDTModifyRoyalties"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -882,7 +882,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_modify_royalties,
+            gas_limit=self._config.gas_limit_dcdt_modify_royalties,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -897,7 +897,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         if not new_uris:
             raise BadUsageError("No URIs provided")
 
-        parts = ["ESDTSetNewURIs"]
+        parts = ["DCDTSetNewURIs"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -923,7 +923,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         self, sender: Address, token_identifier: str, token_nonce: int
     ) -> Transaction:
         parts = [
-            "ESDTModifyCreator",
+            "DCDTModifyCreator",
             self.serializer.serialize([StringValue(token_identifier)]),
             self.serializer.serialize([BigUIntValue(token_nonce)]),
         ]
@@ -933,7 +933,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_modify_creator,
+            gas_limit=self._config.gas_limit_dcdt_modify_creator,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -949,7 +949,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         new_attributes: bytes,
         new_uris: list[str],
     ) -> Transaction:
-        parts = ["ESDTMetaDataUpdate"]
+        parts = ["DCDTMetaDataUpdate"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -970,7 +970,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=None,
-            gas_limit=self._config.gas_limit_esdt_metadata_update,
+            gas_limit=self._config.gas_limit_dcdt_metadata_update,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -986,7 +986,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         new_attributes: bytes,
         new_uris: list[str],
     ) -> Transaction:
-        parts = ["ESDTMetaDataRecreate"]
+        parts = ["DCDTMetaDataRecreate"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [
@@ -1013,7 +1013,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         ).build()
 
     def create_transaction_for_changing_token_to_dynamic(self, sender: Address, token_identifier: str) -> Transaction:
-        """The following token types cannot be changed to dynamic: FungibleESDT, NonFungibleESDT, NonFungibleESDTv2"""
+        """The following token types cannot be changed to dynamic: FungibleDCDT, NonFungibleDCDT, NonFungibleDCDTv2"""
         parts = [
             "changeToDynamic",
             self.serializer.serialize([StringValue(token_identifier)]),
@@ -1022,7 +1022,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_nft_change_to_dynamic,
             add_data_movement_gas=True,
@@ -1038,7 +1038,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=None,
             gas_limit=self._config.gas_limit_update_token_id,
             add_data_movement_gas=True,
@@ -1074,7 +1074,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_register_dynamic,
             add_data_movement_gas=True,
@@ -1110,7 +1110,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=self._config.issue_cost,
             gas_limit=self._config.gas_limit_register_dynamic,
             add_data_movement_gas=True,
@@ -1129,7 +1129,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_transfer_ownership,
             add_data_movement_gas=True,
@@ -1149,7 +1149,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_freeze_single_nft,
             add_data_movement_gas=True,
@@ -1169,18 +1169,18 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_unfreeze_single_nft,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
 
-    def create_transaction_for_changing_sft_to_meta_esdt(
+    def create_transaction_for_changing_sft_to_meta_dcdt(
         self, sender: Address, collection: str, num_decimals: int
     ) -> Transaction:
         parts = [
-            "changeSFTToMetaESDT",
+            "changeSFTToMetaDCDT",
             self.serializer.serialize([StringValue(collection)]),
             self.serializer.serialize([BigUIntValue(num_decimals)]),
         ]
@@ -1188,9 +1188,9 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
-            gas_limit=self._config.gas_limit_change_sft_to_meta_esdt,
+            gas_limit=self._config.gas_limit_change_sft_to_meta_dcdt,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()
@@ -1209,7 +1209,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_transfer_nft_create_role,
             add_data_movement_gas=True,
@@ -1225,7 +1225,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_stop_nft_create,
             add_data_movement_gas=True,
@@ -1245,7 +1245,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         return TransactionBuilder(
             config=self._config,
             sender=sender,
-            receiver=self._config.esdt_contract_address,
+            receiver=self._config.dcdt_contract_address,
             amount=0,
             gas_limit=self._config.gas_limit_wipe_single_nft,
             add_data_movement_gas=True,
@@ -1259,7 +1259,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
         token_nonce: int,
         uris: list[str],
     ) -> Transaction:
-        parts = ["ESDTNFTAddURI"]
+        parts = ["DCDTNFTAddURI"]
 
         serialized_parts = self.serializer.serialize_to_parts(
             [StringValue(token_identifier), BigUIntValue(token_nonce), *map(StringValue, uris)],
@@ -1272,7 +1272,7 @@ Once the token is registered, you can unset this role by calling "unsetBurnRoleG
             sender=sender,
             receiver=sender,
             amount=0,
-            gas_limit=self._config.gas_limit_esdt_nft_add_uri,
+            gas_limit=self._config.gas_limit_dcdt_nft_add_uri,
             add_data_movement_gas=True,
             data_parts=parts,
         ).build()

@@ -2,16 +2,16 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.tokens import Token, TokenTransfer
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.governance.resources import VoteType
-from multiversx_sdk.multisig.multisig_transactions_factory import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.tokens import Token, TokenTransfer
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.governance.resources import VoteType
+from dharitri_sdk.multisig.multisig_transactions_factory import (
     MultisigTransactionsFactory,
 )
 
@@ -161,7 +161,7 @@ class TestMultisigTransactionsFactory:
             sender=alice,
             contract=contract,
             gas_limit=60_000_000,
-            native_token_amount=1000000000000000000,  # 1 EGLD
+            native_token_amount=1000000000000000000,  # 1 REWA
         )
         assert transaction.sender == alice
         assert transaction.receiver == Address.new_from_bech32(
@@ -172,7 +172,7 @@ class TestMultisigTransactionsFactory:
         assert transaction.chain_id == "D"
         assert transaction.data.decode() == "deposit"
 
-    def test_deposit_esdt(self):
+    def test_deposit_dcdt(self):
         alice = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgq6kurkz43xq8t35kx9p8rvyz5kpxe9g7qd8ssefqjw8")
 
@@ -192,10 +192,10 @@ class TestMultisigTransactionsFactory:
         assert transaction.chain_id == "D"
         assert (
             transaction.data.decode()
-            == f"MultiESDTNFTTransfer@{contract.to_hex()}@02@4142434445462d313233343536@@0186a0@58595a5157452d393837363534@07@01@6465706f736974"
+            == f"MultiDCDTNFTTransfer@{contract.to_hex()}@02@4142434445462d313233343536@@0186a0@58595a5157452d393837363534@07@01@6465706f736974"
         )
 
-    def test_deposit_native_and_esdt(self):
+    def test_deposit_native_and_dcdt(self):
         alice = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgq6kurkz43xq8t35kx9p8rvyz5kpxe9g7qd8ssefqjw8")
 
@@ -216,7 +216,7 @@ class TestMultisigTransactionsFactory:
         assert transaction.chain_id == "D"
         assert (
             transaction.data.decode()
-            == f"MultiESDTNFTTransfer@{contract.to_hex()}@03@4142434445462d313233343536@@0186a0@58595a5157452d393837363534@07@01@45474c442d303030303030@@0de0b6b3a7640000@6465706f736974"
+            == f"MultiDCDTNFTTransfer@{contract.to_hex()}@03@4142434445462d313233343536@@0186a0@58595a5157452d393837363534@07@01@45474c442d303030303030@@0de0b6b3a7640000@6465706f736974"
         )
 
     def test_propose_transfer_and_execute(self):
@@ -247,12 +247,12 @@ class TestMultisigTransactionsFactory:
             == "proposeTransferExecute@0000000000000000050078d29632acb15998003f615d0a51261353d8041d3e13@0de0b6b3a7640000@0100000000000f4240@616464@07"
         )
 
-    def test_propose_transfer_esdt_and_execute(self):
+    def test_propose_transfer_dcdt_and_execute(self):
         alice = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         multisig = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgq6kurkz43xq8t35kx9p8rvyz5kpxe9g7qd8ssefqjw8")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqfxlljcaalgl2qfcnxcsftheju0ts36kvl3ts3qkewe")
 
-        transaction = self.abi_factory.create_transaction_for_propose_transfer_esdt_execute(
+        transaction = self.abi_factory.create_transaction_for_propose_transfer_dcdt_execute(
             sender=alice,
             contract=multisig,
             receiver=contract,
@@ -270,7 +270,7 @@ class TestMultisigTransactionsFactory:
         assert transaction.chain_id == "D"
         assert (
             transaction.data.decode()
-            == "proposeTransferExecuteEsdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
+            == "proposeTransferExecuteDcdt@0000000000000000050049bff963bdfa3ea02713362095df32e3d708eaccfc57@0000000c414c4943452d3536323766310000000000000000000000010a@0100000000004c4b40@64697374726962757465"
         )
 
     def test_propose_async_call(self):

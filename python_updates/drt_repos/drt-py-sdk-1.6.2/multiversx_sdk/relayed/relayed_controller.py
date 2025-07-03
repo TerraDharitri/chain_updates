@@ -1,10 +1,10 @@
 import logging
 
-from multiversx_sdk.core import Transaction
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.relayed.relayed_transactions_factory import (
+from dharitri_sdk.core import Transaction
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.relayed.relayed_transactions_factory import (
     RelayedTransactionsFactory,
 )
 

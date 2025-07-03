@@ -1,4 +1,4 @@
-from multiversx_sdk.wallet.libraries.bls_facade import BLSFacade
+from dharitri_sdk.wallet.libraries.bls_facade import BLSFacade
 
 
 def test_generate_public_key():

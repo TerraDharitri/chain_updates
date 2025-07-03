@@ -1,10 +1,10 @@
 from typing import Optional
 
-from multiversx_sdk.core import Address, TokenTransfer, Transaction
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.transfers.transfer_transactions_factory import (
+from dharitri_sdk.core import Address, TokenTransfer, Transaction
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.transfers.transfer_transactions_factory import (
     TransferTransactionsFactory,
 )
 
@@ -43,7 +43,7 @@ class TransfersController(BaseController):
 
         return transaction
 
-    def create_transaction_for_esdt_token_transfer(
+    def create_transaction_for_dcdt_token_transfer(
         self,
         sender: IAccount,
         nonce: int,
@@ -54,7 +54,7 @@ class TransfersController(BaseController):
         gas_limit: Optional[int] = None,
         gas_price: Optional[int] = None,
     ) -> Transaction:
-        transaction = self.factory.create_transaction_for_esdt_token_transfer(
+        transaction = self.factory.create_transaction_for_dcdt_token_transfer(
             sender=sender.address, receiver=receiver, token_transfers=token_transfers
         )
 

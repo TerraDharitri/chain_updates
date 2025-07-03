@@ -2,7 +2,7 @@ import json
 import logging
 from typing import Optional, Protocol, TextIO, Union
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     AwaitingOptions,
     TokenTransfer,
@@ -12,11 +12,11 @@ from multiversx_sdk import (
     TransferTransactionsFactory,
 )
 
-from multiversx_sdk_cli import errors
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.constants import MIN_GAS_LIMIT
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli import errors
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.constants import MIN_GAS_LIMIT
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 logger = logging.getLogger("transactions")
 

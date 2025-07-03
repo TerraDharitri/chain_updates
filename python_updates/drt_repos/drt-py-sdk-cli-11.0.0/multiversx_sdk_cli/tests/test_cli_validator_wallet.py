@@ -2,9 +2,9 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import ValidatorPEM
+from dharitri_sdk import ValidatorPEM
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 testdata_path = Path(__file__).parent / "testdata"
 testdata_out_path = Path(__file__).parent / "testdata-out"

@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 parent = Path(__file__).parent
 (parent / "testdata-out").mkdir(exist_ok=True)
@@ -25,7 +25,7 @@ def test_contract_deploy():
             "--pem",
             f"{parent}/testdata/testUser.pem",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--chain",
             "T",
             "--gas-limit",
@@ -53,7 +53,7 @@ def test_contract_upgrade():
             "--pem",
             f"{parent}/testdata/testUser.pem",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--chain",
             "T",
             "--gas-limit",
@@ -81,7 +81,7 @@ def test_contract_call():
             "--pem",
             f"{parent}/testdata/testUser.pem",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--chain",
             "T",
             "--gas-limit",
@@ -98,7 +98,7 @@ def test_contract_call():
 def test_contract_transfer_and_execute(capsys: Any):
     contract_address = "erd1qqqqqqqqqqqqqpgqv7sl6ws5dgwe5m04xtg0dvqyu2efz5a6d8ssxn4k9q"
     first_token = "NFT-123456-02"
-    second_token = "ESDT-987654"
+    second_token = "DCDT-987654"
 
     main(
         [
@@ -125,7 +125,7 @@ def test_contract_transfer_and_execute(capsys: Any):
     data = get_transaction_data(capsys)
     assert (
         data
-        == "ESDTNFTTransfer@4e46542d313233343536@02@01@0000000000000000050067a1fd3a146a1d9a6df532d0f6b004e2b29153ba69e1@616464@05"
+        == "DCDTNFTTransfer@4e46542d313233343536@02@01@0000000000000000050067a1fd3a146a1d9a6df532d0f6b004e2b29153ba69e1@616464@05"
     )
 
     # Clear the captured content
@@ -158,7 +158,7 @@ def test_contract_transfer_and_execute(capsys: Any):
     data = get_transaction_data(capsys)
     assert (
         data
-        == "MultiESDTNFTTransfer@0000000000000000050067a1fd3a146a1d9a6df532d0f6b004e2b29153ba69e1@02@4e46542d313233343536@02@01@455344542d393837363534@@64@616464@05"
+        == "MultiDCDTNFTTransfer@0000000000000000050067a1fd3a146a1d9a6df532d0f6b004e2b29153ba69e1@02@4e46542d313233343536@02@01@444344542d393837363534@@64@616464@05"
     )
 
 
@@ -177,7 +177,7 @@ def test_contract_flow(capsys: Any):
             "--gas-limit",
             "5000000",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--arguments",
             "0",
             "--send",
@@ -197,7 +197,7 @@ def test_contract_flow(capsys: Any):
             "--function",
             "getSum",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     response = get_query_response(capsys)
@@ -219,7 +219,7 @@ def test_contract_flow(capsys: Any):
             "--gas-limit",
             "5000000",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--arguments",
             "7",
             "--send",
@@ -238,7 +238,7 @@ def test_contract_flow(capsys: Any):
             "--function",
             "getSum",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     response = get_query_response(capsys)
@@ -260,7 +260,7 @@ def test_contract_flow(capsys: Any):
             "--gas-limit",
             "5000000",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--arguments",
             "0",
             "--send",
@@ -270,7 +270,7 @@ def test_contract_flow(capsys: Any):
 
 
 def test_contract_deploy_without_required_arguments():
-    """This test passes with an unaltered config. If proxy is set in the config, the test will fail due to mxpy fetching the nonce and the chain ID."""
+    """This test passes with an unaltered config. If proxy is set in the config, the test will fail due to drtpy fetching the nonce and the chain ID."""
     alice = f"{parent}/testdata/alice.pem"
     adder = f"{parent}/testdata/adder.wasm"
 
@@ -487,7 +487,7 @@ def test_contract_query(capsys: Any):
             "--gas-limit",
             "5000000",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--arguments",
             "0",
             "--send",
@@ -512,7 +512,7 @@ def test_contract_query(capsys: Any):
             "--gas-limit",
             "5000000",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
             "--arguments",
             "14",
             "--send",
@@ -533,7 +533,7 @@ def test_contract_query(capsys: Any):
             "--function",
             "getSummm",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     assert return_code
@@ -557,7 +557,7 @@ def test_contract_query(capsys: Any):
             "--abi",
             adder_abi,
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     assert return_code
@@ -579,7 +579,7 @@ def test_contract_query(capsys: Any):
             "--function",
             "getSum",
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     assert not return_code
@@ -600,7 +600,7 @@ def test_contract_query(capsys: Any):
             "--abi",
             adder_abi,
             "--proxy",
-            "https://testnet-api.multiversx.com",
+            "https://testnet-api.dharitri.org",
         ]
     )
     assert not return_code

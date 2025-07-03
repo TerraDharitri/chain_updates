@@ -6,18 +6,18 @@ from typing import Any
 
 from Cryptodome.Hash import keccak
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import (
     DIGEST_SIZE,
     HEX_ADDRESS_LENGTH,
     MIN_TRANSACTION_VERSION_THAT_SUPPORTS_OPTIONS,
     TRANSACTION_OPTIONS_TX_GUARDED,
     TRANSACTION_OPTIONS_TX_HASH_SIGN,
 )
-from multiversx_sdk.core.errors import BadUsageError, NotEnoughGasError
-from multiversx_sdk.core.interfaces import INetworkConfig
-from multiversx_sdk.core.proto.transaction_serializer import ProtoSerializer
-from multiversx_sdk.core.transaction import Transaction
+from dharitri_sdk.core.errors import BadUsageError, NotEnoughGasError
+from dharitri_sdk.core.interfaces import INetworkConfig
+from dharitri_sdk.core.proto.transaction_serializer import ProtoSerializer
+from dharitri_sdk.core.transaction import Transaction
 
 
 class TransactionComputer:

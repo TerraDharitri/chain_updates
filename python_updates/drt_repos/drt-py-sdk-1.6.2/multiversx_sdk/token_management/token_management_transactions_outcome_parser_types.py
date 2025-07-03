@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from multiversx_sdk.core import Address
+from dharitri_sdk.core import Address
 
 
 @dataclass
@@ -19,7 +19,7 @@ class IssueSemiFungibleOutcome:
 
 
 @dataclass
-class RegisterMetaEsdtOutcome:
+class RegisterMetaDcdtOutcome:
     token_identifier: str
 
 

@@ -3,16 +3,16 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import MIN_TRANSACTION_VERSION_THAT_SUPPORTS_OPTIONS
-from multiversx_sdk.core.errors import BadUsageError, NotEnoughGasError
-from multiversx_sdk.core.proto.transaction_serializer import ProtoSerializer
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.testutils.wallets import load_wallets
-from multiversx_sdk.wallet import UserSecretKey
-from multiversx_sdk.wallet.user_pem import UserPEM
-from multiversx_sdk.wallet.user_verifer import UserVerifier
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import MIN_TRANSACTION_VERSION_THAT_SUPPORTS_OPTIONS
+from dharitri_sdk.core.errors import BadUsageError, NotEnoughGasError
+from dharitri_sdk.core.proto.transaction_serializer import ProtoSerializer
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.wallet import UserSecretKey
+from dharitri_sdk.wallet.user_pem import UserPEM
+from dharitri_sdk.wallet.user_verifer import UserVerifier
 
 
 class NetworkConfig:

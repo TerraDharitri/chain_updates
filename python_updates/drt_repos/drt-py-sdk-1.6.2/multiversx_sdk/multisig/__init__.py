@@ -1,32 +1,32 @@
-from multiversx_sdk.multisig.multisig_controller import MultisigController
-from multiversx_sdk.multisig.multisig_transactions_factory import (
+from dharitri_sdk.multisig.multisig_controller import MultisigController
+from dharitri_sdk.multisig.multisig_transactions_factory import (
     MultisigTransactionsFactory,
 )
-from multiversx_sdk.multisig.multisig_transactions_outcome_parser import (
+from dharitri_sdk.multisig.multisig_transactions_outcome_parser import (
     MultisigTransactionsOutcomeParser,
 )
-from multiversx_sdk.multisig.resources import (
+from dharitri_sdk.multisig.resources import (
     Action,
     ActionFullInfo,
     AddBoardMember,
     AddProposer,
     CallActionData,
     ChangeQuorum,
-    EsdtTokenPayment,
-    EsdtTransferExecuteData,
+    DcdtTokenPayment,
+    DcdtTransferExecuteData,
     RemoveUser,
     SCDeployFromSource,
     SCUpgradeFromSource,
     SendAsyncCall,
-    SendTransferExecuteEgld,
-    SendTransferExecuteEsdt,
+    SendTransferExecuteRewa,
+    SendTransferExecuteDcdt,
     UserRole,
 )
 
 __all__ = [
     "MultisigTransactionsFactory",
     "Action",
-    "EsdtTokenPayment",
+    "DcdtTokenPayment",
     "MultisigTransactionsOutcomeParser",
     "MultisigController",
     "ActionFullInfo",
@@ -34,12 +34,12 @@ __all__ = [
     "AddProposer",
     "CallActionData",
     "ChangeQuorum",
-    "EsdtTransferExecuteData",
+    "DcdtTransferExecuteData",
     "RemoveUser",
     "SCDeployFromSource",
     "SCUpgradeFromSource",
     "SendAsyncCall",
-    "SendTransferExecuteEgld",
-    "SendTransferExecuteEsdt",
+    "SendTransferExecuteRewa",
+    "SendTransferExecuteDcdt",
     "UserRole",
 ]

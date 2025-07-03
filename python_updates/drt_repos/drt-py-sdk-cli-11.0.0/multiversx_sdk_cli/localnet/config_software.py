@@ -2,8 +2,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Dict
 
-from multiversx_sdk_cli.errors import KnownError
-from multiversx_sdk_cli.localnet.config_part import ConfigPart
+from dharitri_sdk_cli.errors import KnownError
+from dharitri_sdk_cli.localnet.config_part import ConfigPart
 
 
 class SoftwareResolution(Enum):

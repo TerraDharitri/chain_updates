@@ -1,7 +1,7 @@
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
 
 class AccountTransactionsFactory:

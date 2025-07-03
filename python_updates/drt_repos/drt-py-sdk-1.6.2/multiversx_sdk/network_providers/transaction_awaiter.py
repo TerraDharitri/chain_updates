@@ -2,14 +2,14 @@ import logging
 import time
 from typing import Callable, Optional, Protocol, Union
 
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.network_providers.constants import (
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.network_providers.constants import (
     DEFAULT_TRANSACTION_AWAITING_PATIENCE_IN_MILLISECONDS,
     DEFAULT_TRANSACTION_AWAITING_POLLING_TIMEOUT_IN_MILLISECONDS,
     DEFAULT_TRANSACTION_AWAITING_TIMEOUT_IN_MILLISECONDS,
     ONE_SECOND_IN_MILLISECONDS,
 )
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.network_providers.errors import (
     ExpectedTransactionStatusNotReachedError,
     TransactionFetchingError,
 )

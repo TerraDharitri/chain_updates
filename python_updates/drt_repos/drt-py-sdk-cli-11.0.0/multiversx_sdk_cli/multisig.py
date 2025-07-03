@@ -2,18 +2,18 @@ import logging
 from pathlib import Path
 from typing import Any, Optional
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     MultisigTransactionsFactory,
     TokenTransfer,
     Transaction,
     TransactionsFactoryConfig,
 )
-from multiversx_sdk.abi import Abi
+from dharitri_sdk.abi import Abi
 
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 logger = logging.getLogger("multisig")
 
@@ -373,7 +373,7 @@ class MultisigWrapper(BaseTransactionsController):
 
         return tx
 
-    def prepare_transfer_execute_esdt_transaction(
+    def prepare_transfer_execute_dcdt_transaction(
         self,
         owner: IAccount,
         nonce: int,
@@ -395,7 +395,7 @@ class MultisigWrapper(BaseTransactionsController):
         if should_prepare_args_for_factory:
             args = self._convert_args_to_typed_values(args)
 
-        tx = self._factory.create_transaction_for_propose_transfer_esdt_execute(
+        tx = self._factory.create_transaction_for_propose_transfer_dcdt_execute(
             sender=owner.address,
             contract=contract,
             receiver=receiver,

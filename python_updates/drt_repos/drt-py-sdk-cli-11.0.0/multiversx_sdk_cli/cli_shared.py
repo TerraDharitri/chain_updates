@@ -9,7 +9,7 @@ from getpass import getpass
 from pathlib import Path
 from typing import Any, Optional, Text, Union, cast
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Account,
     Address,
     ApiNetworkProvider,
@@ -21,25 +21,25 @@ from multiversx_sdk import (
     Transaction,
 )
 
-from multiversx_sdk_cli import config, utils
-from multiversx_sdk_cli.cli_output import CLIOutputBuilder
-from multiversx_sdk_cli.cli_password import (
+from dharitri_sdk_cli import config, utils
+from dharitri_sdk_cli.cli_output import CLIOutputBuilder
+from dharitri_sdk_cli.cli_password import (
     load_guardian_password,
     load_password,
     load_relayer_password,
 )
-from multiversx_sdk_cli.config_env import MxpyEnv, get_address_hrp
-from multiversx_sdk_cli.config_wallet import (
+from dharitri_sdk_cli.config_env import DrtpyEnv, get_address_hrp
+from dharitri_sdk_cli.config_wallet import (
     get_active_wallet,
     read_wallet_config_file,
     resolve_wallet_config_path,
 )
-from multiversx_sdk_cli.constants import (
+from dharitri_sdk_cli.constants import (
     DEFAULT_GAS_PRICE,
     DEFAULT_TX_VERSION,
     TCS_SERVICE_ID,
 )
-from multiversx_sdk_cli.errors import (
+from dharitri_sdk_cli.errors import (
     AddressConfigFileError,
     ArgumentsNotProvidedError,
     BadUsage,
@@ -49,20 +49,20 @@ from multiversx_sdk_cli.errors import (
     UnknownWalletAliasError,
     WalletError,
 )
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
-from multiversx_sdk_cli.simulation import Simulator
-from multiversx_sdk_cli.transactions import send_and_wait_for_result
-from multiversx_sdk_cli.utils import log_explorer_transaction
-from multiversx_sdk_cli.ux import confirm_continuation
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.simulation import Simulator
+from dharitri_sdk_cli.transactions import send_and_wait_for_result
+from dharitri_sdk_cli.utils import log_explorer_transaction
+from dharitri_sdk_cli.ux import confirm_continuation
 
 logger = logging.getLogger("cli_shared")
 
 
 trusted_cosigner_service_url_by_chain_id = {
-    "1": "https://tools.multiversx.com/guardian",
-    "D": "https://devnet-tools.multiversx.com/guardian",
-    "T": "https://testnet-tools.multiversx.com/guardian",
+    "1": "https://tools.dharitri.org/guardian",
+    "D": "https://devnet-tools.dharitri.org/guardian",
+    "T": "https://testnet-tools.dharitri.org/guardian",
 }
 
 
@@ -80,7 +80,7 @@ def wider_help_formatter(prog: Text):
 def add_group_subparser(subparsers: Any, group: str, description: str) -> Any:
     parser = subparsers.add_parser(
         group,
-        usage=f"mxpy {group} COMMAND [-h] ...",
+        usage=f"drtpy {group} COMMAND [-h] ...",
         description=description,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -106,7 +106,7 @@ COMMANDS summary
 def add_command_subparser(subparsers: Any, group: str, command: str, description: str):
     return subparsers.add_parser(
         command,
-        usage=f"mxpy {group} {command} [-h] ...",
+        usage=f"drtpy {group} {command} [-h] ...",
         description=description,
         formatter_class=wider_help_formatter,
     )
@@ -291,7 +291,7 @@ def add_token_transfers_args(sub: Any):
         "--token-transfers",
         nargs="+",
         help="token transfers for transfer & execute, as [token, amount] "
-        "E.g. --token-transfers NFT-123456-0a 1 ESDT-987654 100000000",
+        "E.g. --token-transfers NFT-123456-0a 1 DCDT-987654 100000000",
     )
 
 
@@ -698,7 +698,7 @@ def send_or_simulate(tx: Transaction, args: Any, dump_output: bool = True) -> CL
             utils.dump_out_json(output_transaction, outfile=outfile)
 
         if send_only and hash:
-            cli_config = MxpyEnv.from_active_env()
+            cli_config = DrtpyEnv.from_active_env()
             log_explorer_transaction(
                 chain=output_transaction["emittedTransaction"]["chainID"],
                 transaction_hash=output_transaction["emittedTransactionHash"],
@@ -709,7 +709,7 @@ def send_or_simulate(tx: Transaction, args: Any, dump_output: bool = True) -> CL
 
 
 def _confirm_continuation_if_required(tx: Transaction) -> None:
-    env = MxpyEnv.from_active_env()
+    env = DrtpyEnv.from_active_env()
 
     if env.ask_confirmation:
         transaction = tx.to_dictionary()
@@ -786,7 +786,7 @@ def set_proxy_from_config_if_not_provided(args: Any) -> None:
         if hasattr(args, "chain") and args.chain and hasattr(args, "nonce") and args.nonce is not None:
             return
 
-        env = MxpyEnv.from_active_env()
+        env = DrtpyEnv.from_active_env()
         if env.proxy_url:
             logger.info(f"Using proxy URL from config: {env.proxy_url}")
             args.proxy = env.proxy_url

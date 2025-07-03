@@ -1,17 +1,17 @@
 import base64
 from pathlib import Path
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_on_network import TransactionEvent
-from multiversx_sdk.multisig.multisig_transactions_outcome_parser import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_on_network import TransactionEvent
+from dharitri_sdk.multisig.multisig_transactions_outcome_parser import (
     MultisigTransactionsOutcomeParser,
 )
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
-from multiversx_sdk.testutils.utils import create_network_providers_config
+from dharitri_sdk.testutils.utils import create_network_providers_config
 
 
 class TestMultisigTransactionsOutcomeParser:
@@ -19,7 +19,7 @@ class TestMultisigTransactionsOutcomeParser:
     abi = Abi.load(testdata / "multisig-full.abi.json")
     parser = MultisigTransactionsOutcomeParser(abi)
     network_provider = ApiNetworkProvider(
-        url="https://devnet-api.multiversx.com", config=create_network_providers_config()
+        url="https://devnet-api.dharitri.org", config=create_network_providers_config()
     )
 
     def test_parse_deploy(self):

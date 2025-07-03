@@ -1,4 +1,4 @@
-from multiversx_sdk_cli.localnet import wallets
+from dharitri_sdk_cli.localnet import wallets
 
 
 def get_owner_of_genesis_contracts():

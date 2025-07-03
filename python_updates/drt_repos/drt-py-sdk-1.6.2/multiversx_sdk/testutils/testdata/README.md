@@ -15,12 +15,12 @@ DECLARE
     `_id`,
     'execute_success' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END
     AND `isScCall` = TRUE
-    AND ARRAY_LENGTH(`esdtValues`) = 0
+    AND ARRAY_LENGTH(`dcdtValues`) = 0
     AND `status` = 'success'
     AND RAND() < 0.25
   LIMIT
@@ -32,12 +32,12 @@ UNION ALL
     `_id`,
     'execute_error' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END
     AND `isScCall` = TRUE
-    AND ARRAY_LENGTH(`esdtValues`) = 0
+    AND ARRAY_LENGTH(`dcdtValues`) = 0
     AND `status` = 'fail'
     AND RAND() < 0.25
   LIMIT
@@ -49,12 +49,12 @@ UNION ALL
     `_id`,
     'transfer_execute_success' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END
     AND `isScCall` = TRUE
-    AND ARRAY_LENGTH(`esdtValues`) > 0
+    AND ARRAY_LENGTH(`dcdtValues`) > 0
     AND `status` = 'success'
     AND RAND() < 0.25
   LIMIT
@@ -66,12 +66,12 @@ UNION ALL
     `_id`,
     'transfer_execute_error' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END
     AND `isScCall` = TRUE
-    AND ARRAY_LENGTH(`esdtValues`) > 0
+    AND ARRAY_LENGTH(`dcdtValues`) > 0
     AND `status` = 'fail'
     AND RAND() < 0.25
   LIMIT
@@ -83,7 +83,7 @@ UNION ALL
     `_id`,
     'relayed_success' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END
@@ -99,7 +99,7 @@ UNION ALL
     `_id`,
     'relayed_error' `kind`
   FROM
-    `multiversx-blockchain-etl.crypto_multiversx_mainnet_eu.transactions`
+    `dharitri-blockchain-etl.crypto_dharitri_mainnet_eu.transactions`
   WHERE
     DATE(`timestamp`) >= TIMESTAMP_START
     AND DATE(`timestamp`) <= TIMESTAMP_END

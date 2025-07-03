@@ -1,4 +1,4 @@
-from multiversx_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
+from dharitri_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
 
 
 class KeyPair:

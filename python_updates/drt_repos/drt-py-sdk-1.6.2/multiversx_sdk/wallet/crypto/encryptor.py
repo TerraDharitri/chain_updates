@@ -3,21 +3,21 @@ from cryptography.hazmat.primitives import hashes, hmac
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
-from multiversx_sdk.wallet.crypto.constants import (
+from dharitri_sdk.wallet.crypto.constants import (
     CIPHER_ALGORITHM_AES_128_CTR,
     ENCRYPTOR_VERSION,
     KEY_DERIVATION_FUNCTION_SCRYPT,
 )
-from multiversx_sdk.wallet.crypto.encrypted_data import (
+from dharitri_sdk.wallet.crypto.encrypted_data import (
     EncryptedData,
     KeyDerivationParams,
 )
-from multiversx_sdk.wallet.interfaces import IRandomness
+from dharitri_sdk.wallet.interfaces import IRandomness
 
 
 def encrypt(data: bytes, password: str, randomness: IRandomness) -> EncryptedData:
     """
-    Also see: https://github.com/multiversx/mx-sdk-js-wallet/blob/main/src/crypto/encryptor.ts
+    Also see: https://github.com/TerraDharitri/mx-sdk-js-wallet/blob/main/src/crypto/encryptor.ts
     """
     backend = default_backend()
 

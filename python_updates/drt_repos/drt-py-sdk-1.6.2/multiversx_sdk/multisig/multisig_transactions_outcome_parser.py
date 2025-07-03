@@ -1,13 +1,13 @@
 from typing import Optional
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
     SmartContractTransactionsOutcomeParser,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
     ParsedSmartContractCallOutcome,
     SmartContractDeployOutcome,
 )

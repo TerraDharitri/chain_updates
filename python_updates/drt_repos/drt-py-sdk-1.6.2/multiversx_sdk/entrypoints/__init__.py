@@ -1,4 +1,4 @@
-from multiversx_sdk.entrypoints.entrypoints import (
+from dharitri_sdk.entrypoints.entrypoints import (
     DevnetEntrypoint,
     LocalnetEntrypoint,
     MainnetEntrypoint,

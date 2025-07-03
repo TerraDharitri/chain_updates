@@ -1,8 +1,8 @@
 import pytest
 
-from multiversx_sdk.core import Address
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.token_management.token_management_transactions_factory import (
+from dharitri_sdk.core import Address
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.token_management.token_management_transactions_factory import (
     TokenManagementTransactionsFactory,
     TokenType,
 )
@@ -102,8 +102,8 @@ def test_create_transaction_for_issuing_non_fungible():
     assert transaction.value == 50000000000000000
 
 
-def test_create_transaction_for_registering_meta_esdt():
-    transaction = factory.create_transaction_for_registering_meta_esdt(
+def test_create_transaction_for_registering_meta_dcdt():
+    transaction = factory.create_transaction_for_registering_meta_dcdt(
         sender=frank,
         token_name="FRANK",
         token_ticker="FRANK",
@@ -120,7 +120,7 @@ def test_create_transaction_for_registering_meta_esdt():
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "registerMetaESDT@4652414e4b@4652414e4b@0a@63616e467265657a65@74727565@63616e57697065@74727565@63616e5061757365@74727565@63616e5472616e736665724e4654437265617465526f6c65@74727565@63616e4368616e67654f776e6572@74727565@63616e55706772616465@66616c7365@63616e4164645370656369616c526f6c6573@66616c7365"
+        == "registerMetaDCDT@4652414e4b@4652414e4b@0a@63616e467265657a65@74727565@63616e57697065@74727565@63616e5061757365@74727565@63616e5472616e736665724e4654437265617465526f6c65@74727565@63616e4368616e67654f776e6572@74727565@63616e55706772616465@66616c7365@63616e4164645370656369616c526f6c6573@66616c7365"
     )
     assert transaction.sender == frank
     assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
@@ -136,15 +136,15 @@ def test_create_transaction_for_setting_special_role_on_non_fungible_token():
         add_role_nft_burn=False,
         add_role_nft_update_attributes=True,
         add_role_nft_add_uri=True,
-        add_role_esdt_transfer_role=False,
-        add_role_esdt_modify_creator=True,
+        add_role_dcdt_transfer_role=False,
+        add_role_dcdt_modify_creator=True,
         add_role_nft_recreate=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e4654437265617465@45534454526f6c654e465455706461746541747472696275746573@45534454526f6c654e4654416464555249@45534454526f6c654d6f6469667943726561746f72@45534454526f6c654e46545265637265617465"
+        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e4654437265617465@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465"
     )
     assert transaction.sender == frank
     assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
@@ -159,15 +159,15 @@ def test_create_transaction_for_unsetting_special_role_on_non_fungible_token():
         remove_role_nft_burn=False,
         remove_role_nft_update_attributes=True,
         remove_role_nft_remove_uri=True,
-        remove_role_esdt_transfer_role=False,
-        remove_role_esdt_modify_creator=True,
+        remove_role_dcdt_transfer_role=False,
+        remove_role_dcdt_modify_creator=True,
         remove_role_nft_recreate=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e465455706461746541747472696275746573@45534454526f6c654e4654416464555249@45534454526f6c654d6f6469667943726561746f72@45534454526f6c654e46545265637265617465"
+        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465"
     )
     assert transaction.sender == frank
     assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
@@ -179,13 +179,13 @@ def test_set_roles_on_nft():
         sender=frank,
         user=grace,
         token_identifier="FRANK-11ce3e",
-        add_role_esdt_transfer_role=True,
+        add_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@455344545472616e73666572526f6c65"
+        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@444344545472616e73666572526f6c65"
     )
     assert transaction.sender == frank
     assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
@@ -199,16 +199,16 @@ def test_set_roles_on_nft():
         add_role_nft_burn=True,
         add_role_nft_update_attributes=True,
         add_role_nft_update=True,
-        add_role_esdt_modify_royalties=True,
-        add_role_esdt_set_new_uri=True,
-        add_role_esdt_modify_creator=True,
+        add_role_dcdt_modify_royalties=True,
+        add_role_dcdt_set_new_uri=True,
+        add_role_dcdt_modify_creator=True,
         add_role_nft_recreate=True,
-        add_role_esdt_transfer_role=True,
+        add_role_dcdt_transfer_role=True,
         add_role_nft_add_uri=True,
     )
     assert (
         transaction.data.decode()
-        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e4654437265617465@45534454526f6c654e46544275726e@45534454526f6c654e465455706461746541747472696275746573@45534454526f6c654e4654416464555249@455344545472616e73666572526f6c65@45534454526f6c654e4654557064617465@45534454526f6c654d6f64696679526f79616c74696573@45534454526f6c655365744e6577555249@45534454526f6c654d6f6469667943726561746f72@45534454526f6c654e46545265637265617465"
+        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e4654437265617465@44434454526f6c654e46544275726e@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@444344545472616e73666572526f6c65@44434454526f6c654e4654557064617465@44434454526f6c654d6f64696679526f79616c74696573@44434454526f6c655365744e6577555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465"
     )
 
 
@@ -226,7 +226,7 @@ def test_create_transaction_for_creating_nft():
 
     assert transaction.data
     assert (
-        transaction.data.decode() == "ESDTNFTCreate@4652414e4b2d616139653864@01@74657374@03e8@61626261@74657374@61@62"
+        transaction.data.decode() == "DCDTNFTCreate@4652414e4b2d616139653864@01@74657374@03e8@61626261@74657374@61@62"
     )
     assert transaction.sender.to_bech32() == grace.to_bech32()
     assert transaction.receiver.to_bech32() == grace.to_bech32()
@@ -234,7 +234,7 @@ def test_create_transaction_for_creating_nft():
 
 
 def test_create_transaction_for_setting_special_role_on_fungible_token():
-    mint_role_as_hex = "ESDTRoleLocalMint".encode().hex()
+    mint_role_as_hex = "DCDTRoleLocalMint".encode().hex()
 
     transaction = factory.create_transaction_for_setting_special_role_on_fungible_token(
         sender=frank,
@@ -242,7 +242,7 @@ def test_create_transaction_for_setting_special_role_on_fungible_token():
         token_identifier="FRANK-11ce3e",
         add_role_local_mint=True,
         add_role_local_burn=False,
-        add_role_esdt_transfer_role=False,
+        add_role_dcdt_transfer_role=False,
     )
 
     assert transaction.data
@@ -255,7 +255,7 @@ def test_create_transaction_for_setting_special_role_on_fungible_token():
 
 
 def test_create_transaction_for_unsetting_special_role_on_fungible_token():
-    mint_role_as_hex = "ESDTRoleLocalMint".encode().hex()
+    mint_role_as_hex = "DCDTRoleLocalMint".encode().hex()
 
     transaction = factory.create_transaction_for_unsetting_special_role_on_fungible_token(
         sender=frank,
@@ -263,7 +263,7 @@ def test_create_transaction_for_unsetting_special_role_on_fungible_token():
         token_identifier="FRANK-11ce3e",
         remove_role_local_mint=True,
         remove_role_local_burn=False,
-        remove_role_esdt_transfer_role=False,
+        remove_role_dcdt_transfer_role=False,
     )
 
     assert transaction.data
@@ -276,9 +276,9 @@ def test_create_transaction_for_unsetting_special_role_on_fungible_token():
 
 
 def test_set_all_roles_on_fungible_token():
-    mint_role_as_hex = "ESDTRoleLocalMint".encode().hex()
-    burn_role_as_hex = "ESDTRoleLocalBurn".encode().hex()
-    transfer_role_as_hex = "ESDTTransferRole".encode().hex()
+    mint_role_as_hex = "DCDTRoleLocalMint".encode().hex()
+    burn_role_as_hex = "DCDTRoleLocalBurn".encode().hex()
+    transfer_role_as_hex = "DCDTTransferRole".encode().hex()
 
     transaction = factory.create_transaction_for_setting_special_role_on_fungible_token(
         sender=frank,
@@ -286,7 +286,7 @@ def test_set_all_roles_on_fungible_token():
         token_identifier="FRANK-11ce3e",
         add_role_local_mint=True,
         add_role_local_burn=True,
-        add_role_esdt_transfer_role=True,
+        add_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
@@ -306,13 +306,13 @@ def test_create_transaction_for_setting_special_role_on_semi_fungible_token():
         add_role_nft_create=True,
         add_role_nft_burn=True,
         add_role_nft_add_quantity=True,
-        add_role_esdt_transfer_role=True,
+        add_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e4654437265617465@45534454526f6c654e46544275726e@45534454526f6c654e46544164645175616e74697479@455344545472616e73666572526f6c65"
+        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e4654437265617465@44434454526f6c654e46544275726e@44434454526f6c654e46544164645175616e74697479@444344545472616e73666572526f6c65"
     )
     assert transaction.sender == frank
     assert transaction.value == 0
@@ -325,52 +325,52 @@ def test_create_transaction_for_unsetting_special_role_on_semi_fungible_token():
         token_identifier="FRANK-11ce3e",
         remove_role_nft_burn=True,
         remove_role_nft_add_quantity=True,
-        remove_role_esdt_transfer_role=True,
+        remove_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e46544275726e@45534454526f6c654e46544164645175616e74697479@455344545472616e73666572526f6c65"
+        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e46544275726e@44434454526f6c654e46544164645175616e74697479@444344545472616e73666572526f6c65"
     )
     assert transaction.sender == frank
     assert transaction.value == 0
 
 
-def test_create_transaction_for_setting_special_role_on_meta_esdt():
-    transaction = factory.create_transaction_for_setting_special_role_on_meta_esdt(
+def test_create_transaction_for_setting_special_role_on_meta_dcdt():
+    transaction = factory.create_transaction_for_setting_special_role_on_meta_dcdt(
         sender=frank,
         user=grace,
         token_identifier="FRANK-11ce3e",
         add_role_nft_create=True,
         add_role_nft_burn=True,
         add_role_nft_add_quantity=True,
-        add_role_esdt_transfer_role=True,
+        add_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e4654437265617465@45534454526f6c654e46544275726e@45534454526f6c654e46544164645175616e74697479@455344545472616e73666572526f6c65"
+        == "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e4654437265617465@44434454526f6c654e46544275726e@44434454526f6c654e46544164645175616e74697479@444344545472616e73666572526f6c65"
     )
     assert transaction.sender == frank
     assert transaction.value == 0
 
 
-def test_create_transaction_for_unsetting_special_role_on_meta_esdt():
-    transaction = factory.create_transaction_for_unsetting_special_role_on_meta_esdt(
+def test_create_transaction_for_unsetting_special_role_on_meta_dcdt():
+    transaction = factory.create_transaction_for_unsetting_special_role_on_meta_dcdt(
         sender=frank,
         user=grace,
         token_identifier="FRANK-11ce3e",
         remove_role_nft_burn=True,
         remove_role_nft_add_quantity=True,
-        remove_role_esdt_transfer_role=True,
+        remove_role_dcdt_transfer_role=True,
     )
 
     assert transaction.data
     assert (
         transaction.data.decode()
-        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@45534454526f6c654e46544275726e@45534454526f6c654e46544164645175616e74697479@455344545472616e73666572526f6c65"
+        == "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e46544275726e@44434454526f6c654e46544164645175616e74697479@444344545472616e73666572526f6c65"
     )
     assert transaction.sender == frank
     assert transaction.value == 0
@@ -438,7 +438,7 @@ def test_create_transaction_for_local_minting():
     )
 
     assert transaction.data
-    assert transaction.data.decode() == "ESDTLocalMint@4652414e4b2d313163653365@0a"
+    assert transaction.data.decode() == "DCDTLocalMint@4652414e4b2d313163653365@0a"
     assert transaction.sender == frank
     assert transaction.value == 0
 
@@ -449,7 +449,7 @@ def test_create_transaction_for_local_burning():
     )
 
     assert transaction.data
-    assert transaction.data.decode() == "ESDTLocalBurn@4652414e4b2d313163653365@0a"
+    assert transaction.data.decode() == "DCDTLocalBurn@4652414e4b2d313163653365@0a"
     assert transaction.sender == frank
     assert transaction.value == 0
 
@@ -463,7 +463,7 @@ def test_create_transaction_for_updating_attributes():
     )
 
     assert transaction.data
-    assert transaction.data.decode() == "ESDTNFTUpdateAttributes@4652414e4b2d313163653365@0a@74657374"
+    assert transaction.data.decode() == "DCDTNFTUpdateAttributes@4652414e4b2d313163653365@0a@74657374"
     assert transaction.sender == frank
     assert transaction.value == 0
 
@@ -477,7 +477,7 @@ def test_create_transaction_for_adding_quantity():
     )
 
     assert transaction.data
-    assert transaction.data.decode() == "ESDTNFTAddQuantity@4652414e4b2d313163653365@0a@0a"
+    assert transaction.data.decode() == "DCDTNFTAddQuantity@4652414e4b2d313163653365@0a@0a"
     assert transaction.sender == frank
     assert transaction.value == 0
 
@@ -491,7 +491,7 @@ def test_create_transaction_for_burning_quantity():
     )
 
     assert transaction.data
-    assert transaction.data.decode() == "ESDTNFTBurn@4652414e4b2d313163653365@0a@0a"
+    assert transaction.data.decode() == "DCDTNFTBurn@4652414e4b2d313163653365@0a@0a"
     assert transaction.sender == frank
     assert transaction.value == 0
 
@@ -537,7 +537,7 @@ def test_create_transaction_for_modifying_royalties():
         sender=alice, token_identifier="TEST-123456", token_nonce=1, new_royalties=1234
     )
 
-    assert transaction.data.decode() == "ESDTModifyRoyalties@544553542d313233343536@01@04d2"
+    assert transaction.data.decode() == "DCDTModifyRoyalties@544553542d313233343536@01@04d2"
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == alice.to_bech32()
     assert transaction.value == 0
@@ -552,7 +552,7 @@ def test_create_transaction_for_setting_new_uris():
         new_uris=["firstURI", "secondURI"],
     )
 
-    assert transaction.data.decode() == "ESDTSetNewURIs@544553542d313233343536@01@6669727374555249@7365636f6e64555249"
+    assert transaction.data.decode() == "DCDTSetNewURIs@544553542d313233343536@01@6669727374555249@7365636f6e64555249"
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == alice.to_bech32()
     assert transaction.value == 0
@@ -566,7 +566,7 @@ def test_create_transaction_for_modifying_creator():
         token_nonce=1,
     )
 
-    assert transaction.data.decode() == "ESDTModifyCreator@544553542d313233343536@01"
+    assert transaction.data.decode() == "DCDTModifyCreator@544553542d313233343536@01"
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == alice.to_bech32()
     assert transaction.value == 0
@@ -587,7 +587,7 @@ def test_create_transaction_for_updating_metadata():
 
     assert (
         transaction.data.decode()
-        == "ESDTMetaDataUpdate@544553542d313233343536@01@54657374@04d2@61626261@74657374@6669727374555249@7365636f6e64555249"
+        == "DCDTMetaDataUpdate@544553542d313233343536@01@54657374@04d2@61626261@74657374@6669727374555249@7365636f6e64555249"
     )
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == alice.to_bech32()
@@ -609,7 +609,7 @@ def test_create_transaction_for_recreating_metadata():
 
     assert (
         transaction.data.decode()
-        == "ESDTMetaDataRecreate@544553542d313233343536@01@54657374@04d2@61626261@74657374@6669727374555249@7365636f6e64555249"
+        == "DCDTMetaDataRecreate@544553542d313233343536@01@54657374@04d2@61626261@74657374@6669727374555249@7365636f6e64555249"
     )
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == alice.to_bech32()
@@ -762,14 +762,14 @@ def test_create_transaction_for_unfreezing_single_nft():
     assert transaction.gas_limit == 60_212_000
 
 
-def test_create_transaction_for_changing_sft_to_meta_esdt():
-    transaction = factory.create_transaction_for_changing_sft_to_meta_esdt(
+def test_create_transaction_for_changing_sft_to_meta_dcdt():
+    transaction = factory.create_transaction_for_changing_sft_to_meta_dcdt(
         sender=alice,
         collection="SFT-123456",
         num_decimals=6,
     )
 
-    assert transaction.data.decode() == "changeSFTToMetaESDT@5346542d313233343536@06"
+    assert transaction.data.decode() == "changeSFTToMetaDCDT@5346542d313233343536@06"
     assert transaction.sender == alice
     assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u"
     assert transaction.value == 0
@@ -826,7 +826,7 @@ def test_create_transaction_for_adding_uris():
         sender=alice, token_identifier="SFT-123456", token_nonce=10, uris=["firstURI", "secondURI"]
     )
 
-    assert transaction.data.decode() == "ESDTNFTAddURI@5346542d313233343536@0a@6669727374555249@7365636f6e64555249"
+    assert transaction.data.decode() == "DCDTNFTAddURI@5346542d313233343536@0a@6669727374555249@7365636f6e64555249"
     assert transaction.sender == alice
     assert transaction.receiver == alice
     assert transaction.value == 0

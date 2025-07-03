@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.validators.validators_controller import ValidatorsController
-from multiversx_sdk.validators.validators_signers import ValidatorsSigners
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.validators.validators_controller import ValidatorsController
+from dharitri_sdk.validators.validators_signers import ValidatorsSigners
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class TestValidatorsController:

@@ -1,17 +1,17 @@
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     DelegationTransactionsFactory,
     Transaction,
     TransactionsFactoryConfig,
     ValidatorPublicKey,
 )
-from multiversx_sdk.abi import BigUIntValue, Serializer
+from dharitri_sdk.abi import BigUIntValue, Serializer
 
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.config_env import get_address_hrp
-from multiversx_sdk_cli.errors import BadUsage
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.config_env import get_address_hrp
+from dharitri_sdk_cli.errors import BadUsage
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 DELEGATION_MANAGER_SC_ADDRESS_HEX = "000000000000000000010000000000000000000000000000000000000004ffff"
 

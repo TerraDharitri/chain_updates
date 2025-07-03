@@ -2,15 +2,15 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import CONTRACT_DEPLOY_ADDRESS_HEX
-from multiversx_sdk.core.tokens import Token, TokenTransfer
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.smart_contracts.errors import ArgumentSerializationError
-from multiversx_sdk.smart_contracts.smart_contract_transactions_factory import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import CONTRACT_DEPLOY_ADDRESS_HEX
+from dharitri_sdk.core.tokens import Token, TokenTransfer
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.smart_contracts.errors import ArgumentSerializationError
+from dharitri_sdk.smart_contracts.smart_contract_transactions_factory import (
     SmartContractTransactionsFactory,
 )
 
@@ -155,7 +155,7 @@ class TestSmartContractTransactionsFactory:
         function = "add"
         gas_limit = 6000000
         args = [U32Value(7)]
-        egld_amount = 1000000000000000000
+        rewa_amount = 1000000000000000000
 
         transaction = self.factory.create_transaction_for_execute(
             sender=sender,
@@ -163,7 +163,7 @@ class TestSmartContractTransactionsFactory:
             function=function,
             gas_limit=gas_limit,
             arguments=args,
-            native_transfer_amount=egld_amount,
+            native_transfer_amount=rewa_amount,
         )
 
         assert transaction.sender.to_bech32() == "erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th"
@@ -173,7 +173,7 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data.decode() == "add@07"
         assert transaction.value == 1000000000000000000
 
-    def test_create_transaction_for_execute_and_send_single_esdt(self):
+    def test_create_transaction_for_execute_and_send_single_dcdt(self):
         sender = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqhy6nl6zq07rnzry8uyh6rtyq0uzgtk3e69fqgtz9l4")
         function = "dummy"
@@ -195,16 +195,16 @@ class TestSmartContractTransactionsFactory:
         assert transaction.receiver.to_bech32() == "erd1qqqqqqqqqqqqqpgqhy6nl6zq07rnzry8uyh6rtyq0uzgtk3e69fqgtz9l4"
         assert transaction.gas_limit == gas_limit
         assert transaction.data
-        assert transaction.data.decode() == "ESDTTransfer@464f4f2d366365313762@0a@64756d6d79@07"
+        assert transaction.data.decode() == "DCDTTransfer@464f4f2d366365313762@0a@64756d6d79@07"
         assert transaction.value == 0
 
-    def test_create_transaction_for_execute_and_transfer_egld_as_single_token_tranfer(self):
+    def test_create_transaction_for_execute_and_transfer_rewa_as_single_token_tranfer(self):
         sender = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqhy6nl6zq07rnzry8uyh6rtyq0uzgtk3e69fqgtz9l4")
         function = "dummy"
         gas_limit = 6000000
         args = [U32Value(7)]
-        token = Token("EGLD-000000", 0)
+        token = Token("REWA-000000", 0)
         transfer = TokenTransfer(token, 10)
 
         transaction = self.factory.create_transaction_for_execute(
@@ -222,11 +222,11 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data
         assert (
             transaction.data.decode()
-            == "MultiESDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@01@45474c442d303030303030@@0a@64756d6d79@07"
+            == "MultiDCDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@01@45474c442d303030303030@@0a@64756d6d79@07"
         )
         assert transaction.value == 0
 
-    def test_create_transaction_for_execute_and_send_multiple_esdts(self):
+    def test_create_transaction_for_execute_and_send_multiple_dcdts(self):
         sender = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
         contract = Address.new_from_bech32("erd1qqqqqqqqqqqqqpgqak8zt22wl2ph4tswtyc39namqx6ysa2sd8ss4xmlj3")
         function = "dummy"
@@ -254,7 +254,7 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data
         assert (
             transaction.data.decode()
-            == "MultiESDTNFTTransfer@00000000000000000500ed8e25a94efa837aae0e593112cfbb01b448755069e1@02@464f4f2d366365313762@@0a@4241522d356263303866@@0c44@64756d6d79@07"
+            == "MultiDCDTNFTTransfer@00000000000000000500ed8e25a94efa837aae0e593112cfbb01b448755069e1@02@464f4f2d366365313762@@0a@4241522d356263303866@@0c44@64756d6d79@07"
         )
         assert transaction.value == 0
 
@@ -282,7 +282,7 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data
         assert (
             transaction.data.decode()
-            == "ESDTNFTTransfer@4e46542d313233343536@01@01@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@64756d6d79@07"
+            == "DCDTNFTTransfer@4e46542d313233343536@01@01@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@64756d6d79@07"
         )
         assert transaction.value == 0
 
@@ -313,7 +313,7 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data
         assert (
             transaction.data.decode()
-            == "MultiESDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@02@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@64756d6d79@07"
+            == "MultiDCDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@02@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@64756d6d79@07"
         )
         assert transaction.value == 0
 
@@ -345,7 +345,7 @@ class TestSmartContractTransactionsFactory:
         assert transaction.data
         assert (
             transaction.data.decode()
-            == "MultiESDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@03@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@45474c442d303030303030@@0de0b6b3a7640000@64756d6d79@07"
+            == "MultiDCDTNFTTransfer@00000000000000000500b9353fe8407f87310c87e12fa1ac807f0485da39d152@03@4e46542d313233343536@01@01@4e46542d313233343536@2a@01@45474c442d303030303030@@0de0b6b3a7640000@64756d6d79@07"
         )
         assert transaction.value == 0
 

@@ -1,11 +1,11 @@
 # mx-sdk-py
 
-The Python SDK for interacting with MultiversX. It's an all in one sdk that can be used to create transactions (including smart contract calls and deployments), sign and broadcast transactions, create wallets and many more.
+The Python SDK for interacting with Dharitri. It's an all in one sdk that can be used to create transactions (including smart contract calls and deployments), sign and broadcast transactions, create wallets and many more.
 
 ## Documentation
 
 - [Cookbook](./examples/v1.ipynb)
-- [Auto-generated documentation](https://multiversx.github.io/mx-sdk-py/)
+- [Auto-generated documentation](https://dharitri.github.io/mx-sdk-py/)
 
 ## Development setup
 
@@ -77,7 +77,7 @@ coverage html
 
 Each time a new module/submodule is added it needs to be added to the docs, as well. To do so `cd` in the root directory then run the following command:
 ```bash
-sphinx-apidoc -f -o docs/ multiversx_sdk/ '*_test.py' '*constants.py'
+sphinx-apidoc -f -o docs/ dharitri_sdk/ '*_test.py' '*constants.py'
 ```
 
 This command will regenerate the `.rst` files for each module, excluding the tests and the `constants.py` files.
@@ -87,7 +87,7 @@ Also, each time a new version is released, the [**conf.py**](/docs/conf.py) file
 ### Re-generate _protobuf_ files:
 
 ```
-protoc multiversx_sdk/core/proto/transaction.proto --python_out=. --pyi_out=.
+protoc dharitri_sdk/core/proto/transaction.proto --python_out=. --pyi_out=.
 ```
 
 Note that `protoc` must be installed beforehand. Use the same version as the one referenced in `requirements.txt`. For example, if we reference `protobuf==5.29.4` in `requirements.txt`, then use [protobuf v29.4](https://github.com/protocolbuffers/protobuf/releases/tag/v29.4).

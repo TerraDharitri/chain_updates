@@ -1,25 +1,25 @@
 import pytest
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.core.transaction_status import TransactionStatus
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.network_providers.errors import (
     ExpectedTransactionStatusNotReachedError,
 )
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.network_providers.transaction_awaiter import TransactionAwaiter
-from multiversx_sdk.testutils.mock_network_provider import (
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.network_providers.transaction_awaiter import TransactionAwaiter
+from dharitri_sdk.testutils.mock_network_provider import (
     MockNetworkProvider,
     TimelinePointMarkCompleted,
     TimelinePointWait,
 )
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 class TestTransactionAwaiter:
@@ -54,7 +54,7 @@ class TestTransactionAwaiter:
     @pytest.mark.networkInteraction
     def test_on_network(self):
         alice = load_wallets()["alice"]
-        proxy = ProxyNetworkProvider("https://devnet-api.multiversx.com")
+        proxy = ProxyNetworkProvider("https://devnet-api.dharitri.org")
         watcher = TransactionAwaiter(proxy)
         tx_computer = TransactionComputer()
 
@@ -101,7 +101,7 @@ class TestTransactionAwaiter:
         alice_address = Address.new_from_bech32(alice.label)
         bob = Address.new_from_bech32("erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx")
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         watcher = TransactionAwaiter(
             fetcher=api,
             polling_interval_in_milliseconds=1000,

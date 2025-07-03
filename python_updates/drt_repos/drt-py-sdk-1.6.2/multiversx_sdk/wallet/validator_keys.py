@@ -1,9 +1,9 @@
-from multiversx_sdk.wallet.constants import (
+from dharitri_sdk.wallet.constants import (
     VALIDATOR_PUBKEY_LENGTH,
     VALIDATOR_SECRETKEY_LENGTH,
 )
-from multiversx_sdk.wallet.errors import InvalidSecretKeyLengthError
-from multiversx_sdk.wallet.libraries.bls_facade import BLSFacade
+from dharitri_sdk.wallet.errors import InvalidSecretKeyLengthError
+from dharitri_sdk.wallet.libraries.bls_facade import BLSFacade
 
 
 class ValidatorSecretKey:

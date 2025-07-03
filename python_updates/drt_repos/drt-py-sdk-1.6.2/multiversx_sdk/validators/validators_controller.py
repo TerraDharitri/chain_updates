@@ -1,16 +1,16 @@
 from pathlib import Path
 from typing import Optional, Union
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.validators.validators_signers import ValidatorsSigners
-from multiversx_sdk.validators.validators_transactions_factory import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.validators.validators_signers import ValidatorsSigners
+from dharitri_sdk.validators.validators_transactions_factory import (
     ValidatorsTransactionsFactory,
 )
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class ValidatorsController(BaseController):

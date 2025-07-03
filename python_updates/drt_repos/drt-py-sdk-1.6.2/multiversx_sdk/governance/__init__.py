@@ -1,11 +1,11 @@
-from multiversx_sdk.governance.governance_controller import GovernanceController
-from multiversx_sdk.governance.governance_transactions_factory import (
+from dharitri_sdk.governance.governance_controller import GovernanceController
+from dharitri_sdk.governance.governance_transactions_factory import (
     GovernanceTransactionsFactory,
 )
-from multiversx_sdk.governance.governance_transactions_outcome_parser import (
+from dharitri_sdk.governance.governance_transactions_outcome_parser import (
     GovernanceTransactionsOutcomeParser,
 )
-from multiversx_sdk.governance.resources import (
+from dharitri_sdk.governance.resources import (
     CloseProposalOutcome,
     DelegatedVoteInfo,
     DelegateVoteOutcome,

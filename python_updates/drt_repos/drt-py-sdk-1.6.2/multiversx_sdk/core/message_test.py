@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import SDK_PY_SIGNER, UNKNOWN_SIGNER
-from multiversx_sdk.core.message import Message, MessageComputer
-from multiversx_sdk.wallet.user_signer import UserSigner
-from multiversx_sdk.wallet.user_verifer import UserVerifier
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import SDK_PY_SIGNER, UNKNOWN_SIGNER
+from dharitri_sdk.core.message import Message, MessageComputer
+from dharitri_sdk.wallet.user_signer import UserSigner
+from dharitri_sdk.wallet.user_verifer import UserVerifier
 
 parent = Path(__file__).parent.parent
 message_computer = MessageComputer()

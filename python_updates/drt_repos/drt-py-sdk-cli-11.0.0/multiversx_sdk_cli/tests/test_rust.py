@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from multiversx_sdk_cli import utils
+from dharitri_sdk_cli import utils
 
 logging.basicConfig(level=logging.INFO)
 

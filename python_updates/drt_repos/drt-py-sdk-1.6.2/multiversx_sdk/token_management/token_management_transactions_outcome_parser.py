@@ -1,13 +1,13 @@
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.errors import ParseTransactionOnNetworkError
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.errors import ParseTransactionOnNetworkError
+from dharitri_sdk.core.transaction_on_network import (
     TransactionEvent,
     TransactionOnNetwork,
     find_events_by_identifier,
 )
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser_types import (
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser_types import (
     AddQuantityOutcome,
     BurnOutcome,
     BurnQuantityOutcome,
@@ -24,7 +24,7 @@ from multiversx_sdk.token_management.token_management_transactions_outcome_parse
     PauseOutcome,
     RegisterAndSetAllRolesOutcome,
     RegisterDynamicOutcome,
-    RegisterMetaEsdtOutcome,
+    RegisterMetaDcdtOutcome,
     SetNewUrisOutcome,
     SetSpecialRoleOutcome,
     UnFreezeOutcome,
@@ -57,11 +57,11 @@ class TokenManagementTransactionsOutcomeParser:
         events = find_events_by_identifier(transaction, "issueSemiFungible")
         return [IssueSemiFungibleOutcome(self._extract_token_identifier(event)) for event in events]
 
-    def parse_register_meta_esdt(self, transaction: TransactionOnNetwork) -> list[RegisterMetaEsdtOutcome]:
+    def parse_register_meta_dcdt(self, transaction: TransactionOnNetwork) -> list[RegisterMetaDcdtOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "registerMetaESDT")
-        return [RegisterMetaEsdtOutcome(self._extract_token_identifier(event)) for event in events]
+        events = find_events_by_identifier(transaction, "registerMetaDCDT")
+        return [RegisterMetaDcdtOutcome(self._extract_token_identifier(event)) for event in events]
 
     def parse_register_and_set_all_roles(
         self, transaction: TransactionOnNetwork
@@ -69,11 +69,11 @@ class TokenManagementTransactionsOutcomeParser:
         self._ensure_no_error(transaction.logs.events)
 
         register_events = find_events_by_identifier(transaction, "registerAndSetAllRoles")
-        set_role_events = find_events_by_identifier(transaction, "ESDTSetRole")
+        set_role_events = find_events_by_identifier(transaction, "DCDTSetRole")
 
         if len(register_events) != len(set_role_events):
             raise ParseTransactionOnNetworkError(
-                "The number of `registerAndSetAllRoles` events and `ESDTSetRole` events do not match"
+                "The number of `registerAndSetAllRoles` events and `DCDTSetRole` events do not match"
             )
 
         result: list[RegisterAndSetAllRolesOutcome] = []
@@ -93,7 +93,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_set_special_role(self, transaction: TransactionOnNetwork) -> list[SetSpecialRoleOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTSetRole")
+        events = find_events_by_identifier(transaction, "DCDTSetRole")
         return [
             SetSpecialRoleOutcome(
                 user_address=event.address,
@@ -106,7 +106,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_nft_create(self, transaction: TransactionOnNetwork) -> list[NFTCreateOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTNFTCreate")
+        events = find_events_by_identifier(transaction, "DCDTNFTCreate")
 
         return [
             NFTCreateOutcome(
@@ -120,7 +120,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_local_mint(self, transaction: TransactionOnNetwork) -> list[MintOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTLocalMint")
+        events = find_events_by_identifier(transaction, "DCDTLocalMint")
         return [
             MintOutcome(
                 user_address=event.address,
@@ -134,7 +134,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_local_burn(self, transaction: TransactionOnNetwork) -> list[BurnOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTLocalBurn")
+        events = find_events_by_identifier(transaction, "DCDTLocalBurn")
         return [
             BurnOutcome(
                 user_address=event.address,
@@ -148,19 +148,19 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_pause(self, transaction: TransactionOnNetwork) -> list[PauseOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTPause")
+        events = find_events_by_identifier(transaction, "DCDTPause")
         return [PauseOutcome(self._extract_token_identifier(event)) for event in events]
 
     def parse_unpause(self, transaction: TransactionOnNetwork) -> list[UnPauseOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTUnPause")
+        events = find_events_by_identifier(transaction, "DCDTUnPause")
         return [UnPauseOutcome(self._extract_token_identifier(event)) for event in events]
 
     def parse_freeze(self, transaction: TransactionOnNetwork) -> list[FreezeOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTFreeze")
+        events = find_events_by_identifier(transaction, "DCDTFreeze")
         return [
             FreezeOutcome(
                 user_address=self._extract_address(event),
@@ -174,7 +174,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_unfreeze(self, transaction: TransactionOnNetwork) -> list[UnFreezeOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTUnFreeze")
+        events = find_events_by_identifier(transaction, "DCDTUnFreeze")
         return [
             UnFreezeOutcome(
                 user_address=self._extract_address(event),
@@ -188,7 +188,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_wipe(self, transaction: TransactionOnNetwork) -> list[WipeOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTWipe")
+        events = find_events_by_identifier(transaction, "DCDTWipe")
         return [
             WipeOutcome(
                 user_address=self._extract_address(event),
@@ -202,7 +202,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_update_attributes(self, transaction: TransactionOnNetwork) -> list[UpdateAttributesOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTNFTUpdateAttributes")
+        events = find_events_by_identifier(transaction, "DCDTNFTUpdateAttributes")
         return [
             UpdateAttributesOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -215,7 +215,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_add_quantity(self, transaction: TransactionOnNetwork) -> list[AddQuantityOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTNFTAddQuantity")
+        events = find_events_by_identifier(transaction, "DCDTNFTAddQuantity")
         return [
             AddQuantityOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -228,7 +228,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_burn_quantity(self, transaction: TransactionOnNetwork) -> list[BurnQuantityOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTNFTBurn")
+        events = find_events_by_identifier(transaction, "DCDTNFTBurn")
         return [
             BurnQuantityOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -241,7 +241,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_modify_royalties(self, transaction: TransactionOnNetwork) -> list[ModifyRoyaltiesOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTModifyRoyalties")
+        events = find_events_by_identifier(transaction, "DCDTModifyRoyalties")
         return [
             ModifyRoyaltiesOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -259,7 +259,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_set_new_uris(self, transaction: TransactionOnNetwork) -> list[SetNewUrisOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTSetNewURIs")
+        events = find_events_by_identifier(transaction, "DCDTSetNewURIs")
         return [
             SetNewUrisOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -277,7 +277,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_modify_creator(self, transaction: TransactionOnNetwork) -> list[ModifyCreatorOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTModifyCreator")
+        events = find_events_by_identifier(transaction, "DCDTModifyCreator")
         return [
             ModifyCreatorOutcome(
                 token_identifier=self._extract_token_identifier(event), nonce=self._extract_nonce(event)
@@ -288,7 +288,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_update_metadata(self, transaction: TransactionOnNetwork) -> list[UpdateMetadataOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTMetaDataUpdate")
+        events = find_events_by_identifier(transaction, "DCDTMetaDataUpdate")
         return [
             UpdateMetadataOutcome(
                 token_identifier=self._extract_token_identifier(event),
@@ -301,7 +301,7 @@ class TokenManagementTransactionsOutcomeParser:
     def parse_metadata_recreate(self, transaction: TransactionOnNetwork) -> list[MetadataRecreateOutcome]:
         self._ensure_no_error(transaction.logs.events)
 
-        events = find_events_by_identifier(transaction, "ESDTMetaDataRecreate")
+        events = find_events_by_identifier(transaction, "DCDTMetaDataRecreate")
         return [
             MetadataRecreateOutcome(
                 token_identifier=self._extract_token_identifier(event),

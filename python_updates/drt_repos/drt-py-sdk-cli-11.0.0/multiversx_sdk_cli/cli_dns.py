@@ -1,13 +1,13 @@
 from typing import Any
 
-from multiversx_sdk import ProxyNetworkProvider
+from dharitri_sdk import ProxyNetworkProvider
 from rich.console import Console
 from rich.table import Table
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.constants import ADDRESS_ZERO_HEX
-from multiversx_sdk_cli.dns import (
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.constants import ADDRESS_ZERO_HEX
+from dharitri_sdk_cli.dns import (
     compute_dns_address_for_shard_id,
     dns_address_for_name,
     name_hash,
@@ -17,7 +17,7 @@ from multiversx_sdk_cli.dns import (
     validate_name,
     version,
 )
-from multiversx_sdk_cli.errors import ArgumentsNotProvidedError
+from dharitri_sdk_cli.errors import ArgumentsNotProvidedError
 
 
 def setup_parser(args: list[str], subparsers: Any) -> Any:

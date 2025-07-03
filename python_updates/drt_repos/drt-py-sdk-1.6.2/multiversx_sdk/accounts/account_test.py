@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.message import Message
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.wallet.keypair import KeyPair
-from multiversx_sdk.wallet.user_keys import UserSecretKey
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.message import Message
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.wallet.keypair import KeyPair
+from dharitri_sdk.wallet.user_keys import UserSecretKey
 
 testwallets = Path(__file__).parent.parent / "testutils" / "testwallets"
 DUMMY_MNEMONIC = "moral volcano peasant pass circle pen over picture flat shop clap goat never lyrics gather prepare woman film husband gravity behind test tiger improve"
@@ -56,7 +56,7 @@ def test_account_nonce_holder():
 
 def test_sign_transaction():
     """
-    Also see: https://github.com/multiversx/mx-chain-go/blob/master/examples/construction_test.go
+    Also see: https://github.com/TerraDharitri/mx-chain-go/blob/master/examples/construction_test.go
     """
 
     tx = Transaction(

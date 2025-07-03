@@ -6,32 +6,32 @@ from argparse import ArgumentParser
 from typing import Any
 
 import argcomplete
-from multiversx_sdk import LibraryConfig
+from dharitri_sdk import LibraryConfig
 from rich.logging import RichHandler
 
-import multiversx_sdk_cli.cli_config
-import multiversx_sdk_cli.cli_config_env
-import multiversx_sdk_cli.cli_config_wallet
-import multiversx_sdk_cli.cli_contracts
-import multiversx_sdk_cli.cli_data
-import multiversx_sdk_cli.cli_delegation
-import multiversx_sdk_cli.cli_deps
-import multiversx_sdk_cli.cli_dns
-import multiversx_sdk_cli.cli_faucet
-import multiversx_sdk_cli.cli_get
-import multiversx_sdk_cli.cli_governance
-import multiversx_sdk_cli.cli_ledger
-import multiversx_sdk_cli.cli_localnet
-import multiversx_sdk_cli.cli_multisig
-import multiversx_sdk_cli.cli_transactions
-import multiversx_sdk_cli.cli_validator_wallet
-import multiversx_sdk_cli.cli_validators
-import multiversx_sdk_cli.cli_wallet
-import multiversx_sdk_cli.version
-from multiversx_sdk_cli import config, errors, utils, ux
-from multiversx_sdk_cli.cli_shared import set_proxy_from_config_if_not_provided
-from multiversx_sdk_cli.config_env import get_address_hrp
-from multiversx_sdk_cli.constants import LOG_LEVELS, SDK_PATH
+import dharitri_sdk_cli.cli_config
+import dharitri_sdk_cli.cli_config_env
+import dharitri_sdk_cli.cli_config_wallet
+import dharitri_sdk_cli.cli_contracts
+import dharitri_sdk_cli.cli_data
+import dharitri_sdk_cli.cli_delegation
+import dharitri_sdk_cli.cli_deps
+import dharitri_sdk_cli.cli_dns
+import dharitri_sdk_cli.cli_faucet
+import dharitri_sdk_cli.cli_get
+import dharitri_sdk_cli.cli_governance
+import dharitri_sdk_cli.cli_ledger
+import dharitri_sdk_cli.cli_localnet
+import dharitri_sdk_cli.cli_multisig
+import dharitri_sdk_cli.cli_transactions
+import dharitri_sdk_cli.cli_validator_wallet
+import dharitri_sdk_cli.cli_validators
+import dharitri_sdk_cli.cli_wallet
+import dharitri_sdk_cli.version
+from dharitri_sdk_cli import config, errors, utils, ux
+from dharitri_sdk_cli.cli_shared import set_proxy_from_config_if_not_provided
+from dharitri_sdk_cli.config_env import get_address_hrp
+from dharitri_sdk_cli.constants import LOG_LEVELS, SDK_PATH
 
 logger = logging.getLogger("cli")
 
@@ -85,32 +85,32 @@ def _do_main(cli_args: list[str]):
 
 def setup_parser(args: list[str]):
     parser = ArgumentParser(
-        prog="mxpy",
-        usage="mxpy [-h] [-v] [--verbose] COMMAND-GROUP [-h] COMMAND ...",
+        prog="drtpy",
+        usage="drtpy [-h] [-v] [--verbose] COMMAND-GROUP [-h] COMMAND ...",
         description="""
 -----------
 DESCRIPTION
 -----------
-mxpy is part of the multiversx-sdk and consists of Command Line Tools and Python SDK
+drtpy is part of the dharitri-sdk and consists of Command Line Tools and Python SDK
 for interacting with the Blockchain (in general) and with Smart Contracts (in particular).
 
-mxpy targets a broad audience of users and developers.
+drtpy targets a broad audience of users and developers.
 
 See:
- - https://docs.multiversx.com/sdk-and-tools/sdk-py
- - https://docs.multiversx.com/sdk-and-tools/sdk-py/mxpy-cli
+ - https://docs.dharitri.org/sdk-and-tools/sdk-py
+ - https://docs.dharitri.org/sdk-and-tools/sdk-py/drtpy-cli
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     parser._positionals.title = "COMMAND GROUPS"
     parser._optionals.title = "TOP-LEVEL OPTIONS"
-    version = multiversx_sdk_cli.version.get_version()
+    version = dharitri_sdk_cli.version.get_version()
     parser.add_argument(
         "-v",
         "--version",
         action="version",
-        version=f"MultiversX Python CLI (mxpy) {version}",
+        version=f"Dharitri Python CLI (drtpy) {version}",
     )
     parser.add_argument("--verbose", action="store_true", default=False)
     parser.add_argument(
@@ -124,24 +124,24 @@ See:
     subparsers = parser.add_subparsers()
     commands: list[Any] = []
 
-    commands.append(multiversx_sdk_cli.cli_config_wallet.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_contracts.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_transactions.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_validators.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_ledger.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_wallet.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_validator_wallet.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_deps.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_config.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_localnet.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_data.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_delegation.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_dns.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_faucet.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_multisig.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_governance.setup_parser(args, subparsers))
-    commands.append(multiversx_sdk_cli.cli_config_env.setup_parser(subparsers))
-    commands.append(multiversx_sdk_cli.cli_get.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_config_wallet.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_contracts.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_transactions.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_validators.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_ledger.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_wallet.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_validator_wallet.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_deps.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_config.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_localnet.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_data.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_delegation.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_dns.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_faucet.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_multisig.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_governance.setup_parser(args, subparsers))
+    commands.append(dharitri_sdk_cli.cli_config_env.setup_parser(subparsers))
+    commands.append(dharitri_sdk_cli.cli_get.setup_parser(subparsers))
 
     parser.epilog = """
 ----------------------

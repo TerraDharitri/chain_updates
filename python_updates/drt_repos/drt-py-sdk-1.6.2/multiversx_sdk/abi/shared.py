@@ -2,7 +2,7 @@ import io
 import struct
 from typing import Any, Tuple
 
-from multiversx_sdk.abi.constants import STRUCT_PACKING_FORMAT_FOR_UINT32
+from dharitri_sdk.abi.constants import STRUCT_PACKING_FORMAT_FOR_UINT32
 
 
 def encode_length(writer: io.BytesIO, length: int):

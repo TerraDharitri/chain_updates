@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 from typing import Any, Optional, Protocol, Union
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     AwaitingOptions,
     SmartContractController,
@@ -14,12 +14,12 @@ from multiversx_sdk import (
     TransactionOnNetwork,
     TransactionsFactoryConfig,
 )
-from multiversx_sdk.abi import Abi
+from dharitri_sdk.abi import Abi
 
-from multiversx_sdk_cli import errors
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli import errors
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
 
 logger = logging.getLogger("contracts")
 

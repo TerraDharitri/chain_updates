@@ -1,8 +1,8 @@
 import io
 from typing import Any, Callable, Optional
 
-from multiversx_sdk.abi.interface import ISingleValue
-from multiversx_sdk.abi.shared import convert_native_value_to_list
+from dharitri_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.shared import convert_native_value_to_list
 
 
 class ArrayValue:

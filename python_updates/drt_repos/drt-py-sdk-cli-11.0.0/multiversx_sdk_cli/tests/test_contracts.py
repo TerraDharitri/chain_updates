@@ -2,10 +2,10 @@ import logging
 from pathlib import Path
 
 from Cryptodome.Hash import keccak
-from multiversx_sdk import Account, Address, TransactionsFactoryConfig
+from dharitri_sdk import Account, Address, TransactionsFactoryConfig
 
-from multiversx_sdk_cli.contract_verification import _create_request_signature
-from multiversx_sdk_cli.contracts import SmartContract
+from dharitri_sdk_cli.contract_verification import _create_request_signature
+from dharitri_sdk_cli.contracts import SmartContract
 
 logging.basicConfig(level=logging.INFO)
 

@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 import requests
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     AddressComputer,
     Message,
@@ -14,24 +14,24 @@ from multiversx_sdk import (
     Transaction,
     TransactionsFactoryConfig,
 )
-from multiversx_sdk.abi import Abi
+from dharitri_sdk.abi import Abi
 
-from multiversx_sdk_cli import cli_shared, utils
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared, utils
+from dharitri_sdk_cli.args_validation import (
     validate_broadcast_args,
     validate_chain_id_args,
     validate_proxy_argument,
     validate_transaction_args,
 )
-from multiversx_sdk_cli.cli_output import CLIOutputBuilder
-from multiversx_sdk_cli.config import get_config_for_network_providers
-from multiversx_sdk_cli.config_env import MxpyEnv
-from multiversx_sdk_cli.constants import NUMBER_OF_SHARDS
-from multiversx_sdk_cli.contract_verification import trigger_contract_verification
-from multiversx_sdk_cli.contracts import SmartContract
-from multiversx_sdk_cli.docker import is_docker_installed, run_docker
-from multiversx_sdk_cli.errors import DockerMissingError
-from multiversx_sdk_cli.ux import show_warning
+from dharitri_sdk_cli.cli_output import CLIOutputBuilder
+from dharitri_sdk_cli.config import get_config_for_network_providers
+from dharitri_sdk_cli.config_env import DrtpyEnv
+from dharitri_sdk_cli.constants import NUMBER_OF_SHARDS
+from dharitri_sdk_cli.contract_verification import trigger_contract_verification
+from dharitri_sdk_cli.contracts import SmartContract
+from dharitri_sdk_cli.docker import is_docker_installed, run_docker
+from dharitri_sdk_cli.errors import DockerMissingError
+from dharitri_sdk_cli.ux import show_warning
 
 logger = logging.getLogger("cli.contracts")
 
@@ -310,8 +310,8 @@ def build(args: Any):
     message = """This command cannot build smart contracts anymore.
 
 The primary tool for building smart contracts is `sc-meta`.
-To install `sc-meta` check out the documentation: https://docs.multiversx.com/sdk-and-tools/troubleshooting/rust-setup.
-After installing, use the `sc-meta all build` command. To learn more about `sc-meta`, check out this page: https://docs.multiversx.com/developers/meta/sc-meta-cli/#calling-build."""
+To install `sc-meta` check out the documentation: https://docs.dharitri.org/sdk-and-tools/troubleshooting/rust-setup.
+After installing, use the `sc-meta all build` command. To learn more about `sc-meta`, check out this page: https://docs.dharitri.org/developers/meta/sc-meta-cli/#calling-build."""
     show_warning(message)
 
 
@@ -359,7 +359,7 @@ def deploy(args: Any):
 
     logger.info("Contract address: %s", contract_address.to_bech32())
 
-    cli_config = MxpyEnv.from_active_env()
+    cli_config = DrtpyEnv.from_active_env()
     utils.log_explorer_contract_address(args.chain, contract_address.to_bech32(), cli_config.explorer_url)
 
     _send_or_simulate(tx, contract_address, args)
@@ -506,7 +506,7 @@ def _send_or_simulate(tx: Transaction, contract_address: Address, args: Any):
 def verify(args: Any) -> None:
     if not args.skip_confirmation:
         response = input(
-            "Are you sure you want to verify the contract? This will publish the contract's source code, which will be displayed on the MultiversX Explorer (y/n): "
+            "Are you sure you want to verify the contract? This will publish the contract's source code, which will be displayed on the Dharitri Explorer (y/n): "
         )
         if response.lower() != "y":
             logger.info("Contract verification cancelled.")
@@ -587,4 +587,4 @@ def do_reproducible_build(args: Any):
 
     logger.info("Docker build ran successfully!")
     logger.info(f"Inspect summary of generated artifacts here: {artifacts_path}")
-    logger.info("You can deploy you Smart Contract, then verify it using the mxpy contract verify command")
+    logger.info("You can deploy you Smart Contract, then verify it using the drtpy contract verify command")

@@ -3,10 +3,10 @@ from collections import OrderedDict
 from pathlib import Path
 from typing import Dict, Tuple
 
-from multiversx_sdk import Account, ValidatorPEM
+from dharitri_sdk import Account, ValidatorPEM
 
-from multiversx_sdk_cli import errors, utils
-from multiversx_sdk_cli.workstation import get_tools_folder
+from dharitri_sdk_cli import errors, utils
+from dharitri_sdk_cli.workstation import get_tools_folder
 
 MAX_NUM_NODES = 12
 

@@ -4,9 +4,9 @@ from typing import Any, Optional
 
 import requests
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.native_auth.config import NativeAuthClientConfig
-from multiversx_sdk.native_auth.errors import NativeAuthClientError
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.native_auth.config import NativeAuthClientConfig
+from dharitri_sdk.native_auth.errors import NativeAuthClientError
 
 
 class NativeAuthClient:

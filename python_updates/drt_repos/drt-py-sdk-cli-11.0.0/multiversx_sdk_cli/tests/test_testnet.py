@@ -2,8 +2,8 @@ import os
 import sys
 from typing import Any, Dict
 
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
-from multiversx_sdk_cli.localnet.config_software import SoftwareResolution
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.config_software import SoftwareResolution
 
 sys.path = [os.getcwd() + "/.."] + sys.path
 
@@ -19,7 +19,7 @@ def test_override_config() -> None:
     assert config.software.mx_chain_go.resolution == SoftwareResolution.Remote
     assert (
         config.software.mx_chain_go.archive_url
-        == "https://github.com/multiversx/mx-chain-go/archive/refs/heads/master.zip"
+        == "https://github.com/TerraDharitri/mx-chain-go/archive/refs/heads/master.zip"
     )
 
     # Now partly override the config
@@ -35,7 +35,7 @@ def test_override_config() -> None:
         "port_proxy": 7951,
     }
     config_patch["software"] = {
-        "mx_chain_go": {"archive_url": "https://github.com/multiversx/mx-chain-go/archive/refs/tags/v1.5.1.zip"}
+        "mx_chain_go": {"archive_url": "https://github.com/TerraDharitri/mx-chain-go/archive/refs/tags/v1.5.1.zip"}
     }
 
     config.override(config_patch)
@@ -48,5 +48,5 @@ def test_override_config() -> None:
     assert config.software.mx_chain_go.resolution == SoftwareResolution.Remote
     assert (
         config.software.mx_chain_go.archive_url
-        == "https://github.com/multiversx/mx-chain-go/archive/refs/tags/v1.5.1.zip"
+        == "https://github.com/TerraDharitri/mx-chain-go/archive/refs/tags/v1.5.1.zip"
     )

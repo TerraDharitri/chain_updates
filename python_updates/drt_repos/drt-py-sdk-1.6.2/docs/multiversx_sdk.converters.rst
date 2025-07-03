@@ -1,21 +1,21 @@
-multiversx\_sdk.converters package
+dharitri\_sdk.converters package
 ==================================
 
 Submodules
 ----------
 
-multiversx\_sdk.converters.errors module
+dharitri\_sdk.converters.errors module
 ----------------------------------------
 
-.. automodule:: multiversx_sdk.converters.errors
+.. automodule:: dharitri_sdk.converters.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.converters.transactions\_converter module
+dharitri\_sdk.converters.transactions\_converter module
 ---------------------------------------------------------
 
-.. automodule:: multiversx_sdk.converters.transactions_converter
+.. automodule:: dharitri_sdk.converters.transactions_converter
    :members:
    :undoc-members:
    :show-inheritance:
@@ -23,7 +23,7 @@ multiversx\_sdk.converters.transactions\_converter module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.converters
+.. automodule:: dharitri_sdk.converters
    :members:
    :undoc-members:
    :show-inheritance:

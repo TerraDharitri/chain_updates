@@ -1,53 +1,53 @@
-multiversx\_sdk.smart\_contracts package
+dharitri\_sdk.smart\_contracts package
 ========================================
 
 Submodules
 ----------
 
-multiversx\_sdk.smart\_contracts.errors module
+dharitri\_sdk.smart\_contracts.errors module
 ----------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.errors
+.. automodule:: dharitri_sdk.smart_contracts.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.smart\_contracts.smart\_contract\_controller module
+dharitri\_sdk.smart\_contracts.smart\_contract\_controller module
 -------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.smart_contract_controller
+.. automodule:: dharitri_sdk.smart_contracts.smart_contract_controller
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.smart\_contracts.smart\_contract\_query module
+dharitri\_sdk.smart\_contracts.smart\_contract\_query module
 --------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.smart_contract_query
+.. automodule:: dharitri_sdk.smart_contracts.smart_contract_query
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.smart\_contracts.smart\_contract\_transactions\_factory module
+dharitri\_sdk.smart\_contracts.smart\_contract\_transactions\_factory module
 ------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.smart_contract_transactions_factory
+.. automodule:: dharitri_sdk.smart_contracts.smart_contract_transactions_factory
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.smart\_contracts.smart\_contract\_transactions\_outcome\_parser module
+dharitri\_sdk.smart\_contracts.smart\_contract\_transactions\_outcome\_parser module
 --------------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser
+.. automodule:: dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.smart\_contracts.smart\_contract\_transactions\_outcome\_parser\_types module
+dharitri\_sdk.smart\_contracts.smart\_contract\_transactions\_outcome\_parser\_types module
 ---------------------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types
+.. automodule:: dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types
    :members:
    :undoc-members:
    :show-inheritance:
@@ -55,7 +55,7 @@ multiversx\_sdk.smart\_contracts.smart\_contract\_transactions\_outcome\_parser\
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.smart_contracts
+.. automodule:: dharitri_sdk.smart_contracts
    :members:
    :undoc-members:
    :show-inheritance:

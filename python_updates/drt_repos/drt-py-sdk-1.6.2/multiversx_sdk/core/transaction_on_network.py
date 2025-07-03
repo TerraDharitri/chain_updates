@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Any, Callable
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_status import TransactionStatus
 
 
 @dataclass

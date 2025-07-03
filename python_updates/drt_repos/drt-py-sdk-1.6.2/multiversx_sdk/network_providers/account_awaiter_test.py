@@ -1,21 +1,21 @@
 import pytest
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.network_providers.account_awaiter import AccountAwaiter
-from multiversx_sdk.network_providers.api_network_provider import ApiNetworkProvider
-from multiversx_sdk.network_providers.errors import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.network_providers.account_awaiter import AccountAwaiter
+from dharitri_sdk.network_providers.api_network_provider import ApiNetworkProvider
+from dharitri_sdk.network_providers.errors import (
     ExpectedAccountConditionNotReachedError,
 )
-from multiversx_sdk.network_providers.resources import AccountOnNetwork
-from multiversx_sdk.testutils.mock_network_provider import (
+from dharitri_sdk.network_providers.resources import AccountOnNetwork
+from dharitri_sdk.testutils.mock_network_provider import (
     MockNetworkProvider,
     TimelinePointMarkCompleted,
     TimelinePointWait,
 )
-from multiversx_sdk.testutils.utils import create_account_egld_balance
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.testutils.utils import create_account_rewa_balance
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 class TestAccountAwaiter:
@@ -29,10 +29,10 @@ class TestAccountAwaiter:
 
     def test_await_on_balance_increase(self):
         alice = Address.new_from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th")
-        # alice account is created with 1000 EGLD
+        # alice account is created with 1000 REWA
         initial_balance = self.provider.get_account(alice).balance
 
-        # adds 7 EGLD to the account balance
+        # adds 7 REWA to the account balance
         self.provider.mock_account_balance_timeline_by_address(
             alice,
             [
@@ -44,10 +44,10 @@ class TestAccountAwaiter:
         )
 
         def condition(account: AccountOnNetwork):
-            return account.balance == initial_balance + create_account_egld_balance(7)
+            return account.balance == initial_balance + create_account_rewa_balance(7)
 
         account = self.watcher.await_on_condition(alice, condition)
-        assert account.balance == create_account_egld_balance(1007)
+        assert account.balance == create_account_rewa_balance(1007)
 
     @pytest.mark.networkInteraction
     def test_await_for_account_balance_increase_on_network(self):
@@ -55,7 +55,7 @@ class TestAccountAwaiter:
         alice_address = Address.new_from_bech32(alice.label)
         frank = Address.new_from_bech32("erd1kdl46yctawygtwg2k462307dmz2v55c605737dp3zkxh04sct7asqylhyv")
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         watcher = AccountAwaiter(fetcher=api)
         tx_computer = TransactionComputer()
         value = 100_000
@@ -86,7 +86,7 @@ class TestAccountAwaiter:
         alice_address = Address.new_from_bech32(alice.label)
         bob = Address.new_from_bech32("erd1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqzu66jx")
 
-        api = ApiNetworkProvider("https://devnet-api.multiversx.com")
+        api = ApiNetworkProvider("https://devnet-api.dharitri.org")
         watcher = AccountAwaiter(
             fetcher=api,
             polling_interval_in_milliseconds=1000,

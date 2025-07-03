@@ -1,7 +1,7 @@
 import io
 from typing import Any
 
-from multiversx_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.interface import ISingleValue
 
 
 class Field:

@@ -1,9 +1,9 @@
 import pytest
 
-from multiversx_sdk.abi.multi_value import MultiValue
-from multiversx_sdk.abi.optional_value import OptionalValue
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.multi_value import MultiValue
+from dharitri_sdk.abi.optional_value import OptionalValue
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.string_value import StringValue
 
 
 def test_set_payload_and_get_payload():

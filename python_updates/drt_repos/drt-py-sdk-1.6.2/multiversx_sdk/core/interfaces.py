@@ -1,7 +1,7 @@
 from typing import Protocol
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
 
 
 class INetworkConfig(Protocol):

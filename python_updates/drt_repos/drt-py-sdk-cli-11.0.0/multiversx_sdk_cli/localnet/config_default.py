@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from multiversx_sdk_cli.localnet.config_general import General
-from multiversx_sdk_cli.localnet.config_networking import Networking
-from multiversx_sdk_cli.localnet.config_sharding import Metashard, RegularShards
-from multiversx_sdk_cli.localnet.config_software import (
+from dharitri_sdk_cli.localnet.config_general import General
+from dharitri_sdk_cli.localnet.config_networking import Networking
+from dharitri_sdk_cli.localnet.config_sharding import Metashard, RegularShards
+from dharitri_sdk_cli.localnet.config_software import (
     Software,
     SoftwareChainGo,
     SoftwareChainProxyGo,
@@ -20,23 +20,23 @@ general = General(
 software = Software(
     mx_chain_go=SoftwareChainGo(
         resolution=SoftwareResolution.Remote,
-        archive_url="https://github.com/multiversx/mx-chain-go/archive/refs/heads/master.zip",
-        archive_download_folder=Path("~/multiversx-sdk") / "localnet_software_remote" / "downloaded" / "mx-chain-go",
-        archive_extraction_folder=Path("~/multiversx-sdk") / "localnet_software_remote" / "extracted" / "mx-chain-go",
-        local_path=Path("~/multiversx-sdk") / "localnet_software_local" / "mx-chain-go",
+        archive_url="https://github.com/TerraDharitri/mx-chain-go/archive/refs/heads/master.zip",
+        archive_download_folder=Path("~/dharitri-sdk") / "localnet_software_remote" / "downloaded" / "mx-chain-go",
+        archive_extraction_folder=Path("~/dharitri-sdk") / "localnet_software_remote" / "extracted" / "mx-chain-go",
+        local_path=Path("~/dharitri-sdk") / "localnet_software_local" / "mx-chain-go",
     ),
     mx_chain_proxy_go=SoftwareChainProxyGo(
         resolution=SoftwareResolution.Remote,
-        archive_url="https://github.com/multiversx/mx-chain-proxy-go/archive/refs/heads/master.zip",
-        archive_download_folder=Path("~/multiversx-sdk")
+        archive_url="https://github.com/TerraDharitri/mx-chain-proxy-go/archive/refs/heads/master.zip",
+        archive_download_folder=Path("~/dharitri-sdk")
         / "localnet_software_remote"
         / "downloaded"
         / "mx-chain-proxy-go",
-        archive_extraction_folder=Path("~/multiversx-sdk")
+        archive_extraction_folder=Path("~/dharitri-sdk")
         / "localnet_software_remote"
         / "extracted"
         / "mx-chain-proxy-go",
-        local_path=Path("~/multiversx-sdk") / "localnet_software_local" / "mx-chain-proxy-go",
+        local_path=Path("~/dharitri-sdk") / "localnet_software_local" / "mx-chain-proxy-go",
     ),
 )
 

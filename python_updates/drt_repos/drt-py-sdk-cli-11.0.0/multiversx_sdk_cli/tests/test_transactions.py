@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from multiversx_sdk import Account, Address
+from dharitri_sdk import Account, Address
 
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.transactions import TransactionsController
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.transactions import TransactionsController
 
 testdata = Path(__file__).parent / "testdata"
 

@@ -2,13 +2,13 @@ import io
 from decimal import Decimal, localcontext
 from typing import Any, Union
 
-from multiversx_sdk.abi.bigint_value import BigIntValue
-from multiversx_sdk.abi.constants import (
+from dharitri_sdk.abi.bigint_value import BigIntValue
+from dharitri_sdk.abi.constants import (
     LOCAL_CONTEXT_PRECISION_FOR_DECIMAL,
     U32_SIZE_IN_BYTES,
 )
-from multiversx_sdk.abi.shared import read_bytes_exactly
-from multiversx_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.shared import read_bytes_exactly
+from dharitri_sdk.abi.small_int_values import U32Value
 
 
 class ManagedDecimalSignedValue:

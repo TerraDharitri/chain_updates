@@ -1,12 +1,12 @@
 from pathlib import Path
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.validators.validators_signers import ValidatorsSigners
-from multiversx_sdk.validators.validators_transactions_factory import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.validators.validators_signers import ValidatorsSigners
+from dharitri_sdk.validators.validators_transactions_factory import (
     ValidatorsTransactionsFactory,
 )
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class TestValidatorsTransactionsFactory:

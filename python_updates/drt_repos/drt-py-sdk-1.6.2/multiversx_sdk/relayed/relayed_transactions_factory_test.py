@@ -1,12 +1,12 @@
 import pytest
 
-from multiversx_sdk.core import Address, Transaction, TransactionComputer
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.relayed.errors import InvalidInnerTransactionError
-from multiversx_sdk.relayed.relayed_transactions_factory import (
+from dharitri_sdk.core import Address, Transaction, TransactionComputer
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.relayed.errors import InvalidInnerTransactionError
+from dharitri_sdk.relayed.relayed_transactions_factory import (
     RelayedTransactionsFactory,
 )
-from multiversx_sdk.testutils.wallets import load_wallets
+from dharitri_sdk.testutils.wallets import load_wallets
 
 
 class TestRelayedTransactionsFactory:

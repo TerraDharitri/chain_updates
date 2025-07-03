@@ -1,6 +1,6 @@
 from typing import Any
 
-from multiversx_sdk_cli.errors import InvalidArgumentsError
+from dharitri_sdk_cli.errors import InvalidArgumentsError
 
 
 def validate_transaction_args(args: Any):

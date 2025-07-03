@@ -1,37 +1,37 @@
-multiversx\_sdk.governance package
+dharitri\_sdk.governance package
 ==================================
 
 Submodules
 ----------
 
-multiversx\_sdk.governance.governance\_controller module
+dharitri\_sdk.governance.governance\_controller module
 --------------------------------------------------------
 
-.. automodule:: multiversx_sdk.governance.governance_controller
+.. automodule:: dharitri_sdk.governance.governance_controller
    :members:
    :show-inheritance:
    :undoc-members:
 
-multiversx\_sdk.governance.governance\_transactions\_factory module
+dharitri\_sdk.governance.governance\_transactions\_factory module
 -------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.governance.governance_transactions_factory
+.. automodule:: dharitri_sdk.governance.governance_transactions_factory
    :members:
    :show-inheritance:
    :undoc-members:
 
-multiversx\_sdk.governance.governance\_transactions\_outcome\_parser module
+dharitri\_sdk.governance.governance\_transactions\_outcome\_parser module
 ---------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.governance.governance_transactions_outcome_parser
+.. automodule:: dharitri_sdk.governance.governance_transactions_outcome_parser
    :members:
    :show-inheritance:
    :undoc-members:
 
-multiversx\_sdk.governance.resources module
+dharitri\_sdk.governance.resources module
 -------------------------------------------
 
-.. automodule:: multiversx_sdk.governance.resources
+.. automodule:: dharitri_sdk.governance.resources
    :members:
    :show-inheritance:
    :undoc-members:
@@ -39,7 +39,7 @@ multiversx\_sdk.governance.resources module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.governance
+.. automodule:: dharitri_sdk.governance
    :members:
    :show-inheritance:
    :undoc-members:

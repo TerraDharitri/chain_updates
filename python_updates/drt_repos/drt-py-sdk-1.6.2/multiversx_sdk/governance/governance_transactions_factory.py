@@ -1,12 +1,12 @@
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.constants import GOVERNANCE_SMART_CONTRACT_ADDRESS_HEX
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.governance.resources import VoteType
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.constants import GOVERNANCE_SMART_CONTRACT_ADDRESS_HEX
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.governance.resources import VoteType
 
 # will be changed in the future when a formula on how gas is computed will be available
 EXTRA_GAS_LIMIT_FOR_VOTING_PROPOSAL = 100_000

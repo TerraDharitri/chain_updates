@@ -3,22 +3,22 @@ from functools import cache
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.constants import SDK_PATH
-from multiversx_sdk_cli.errors import (
+from dharitri_sdk_cli.constants import SDK_PATH
+from dharitri_sdk_cli.errors import (
     EnvironmentAlreadyExistsError,
     EnvironmentProtectedError,
     InvalidConfirmationSettingError,
     InvalidEnvironmentValue,
     UnknownEnvironmentError,
 )
-from multiversx_sdk_cli.utils import read_json_file, write_json_file
+from dharitri_sdk_cli.utils import read_json_file, write_json_file
 
-LOCAL_ENV_PATH = Path("env.mxpy.json").resolve()
-GLOBAL_ENV_PATH = SDK_PATH / "env.mxpy.json"
+LOCAL_ENV_PATH = Path("env.drtpy.json").resolve()
+GLOBAL_ENV_PATH = SDK_PATH / "env.drtpy.json"
 
 
 @dataclass
-class MxpyEnv:
+class DrtpyEnv:
     address_hrp: str
     proxy_url: str
     explorer_url: str
@@ -26,7 +26,7 @@ class MxpyEnv:
 
     @classmethod
     @cache
-    def from_active_env(cls) -> "MxpyEnv":
+    def from_active_env(cls) -> "DrtpyEnv":
         return cls(
             address_hrp=get_address_hrp(),
             proxy_url=get_proxy_url(),

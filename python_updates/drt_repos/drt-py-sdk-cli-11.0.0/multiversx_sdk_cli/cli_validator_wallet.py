@@ -2,12 +2,12 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import ValidatorPEM, ValidatorSecretKey, ValidatorSigner
+from dharitri_sdk import ValidatorPEM, ValidatorSecretKey, ValidatorSigner
 
-from multiversx_sdk_cli import cli_shared, utils
-from multiversx_sdk_cli.errors import BadUserInput
-from multiversx_sdk_cli.sign_verify import SignedMessage, sign_message_by_validator
-from multiversx_sdk_cli.ux import show_critical_error, show_message
+from dharitri_sdk_cli import cli_shared, utils
+from dharitri_sdk_cli.errors import BadUserInput
+from dharitri_sdk_cli.sign_verify import SignedMessage, sign_message_by_validator
+from dharitri_sdk_cli.ux import show_critical_error, show_message
 
 logger = logging.getLogger("cli.validator_wallet")
 

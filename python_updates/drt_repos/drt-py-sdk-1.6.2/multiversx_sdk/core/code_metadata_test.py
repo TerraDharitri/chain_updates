@@ -1,6 +1,6 @@
 import pytest
 
-from multiversx_sdk.core.code_metadata import CodeMetadata
+from dharitri_sdk.core.code_metadata import CodeMetadata
 
 
 def test_code_metadata_new_from_bytes():

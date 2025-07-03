@@ -1,29 +1,29 @@
-multiversx\_sdk.entrypoints package
+dharitri\_sdk.entrypoints package
 ===================================
 
 Submodules
 ----------
 
-multiversx\_sdk.entrypoints.config module
+dharitri\_sdk.entrypoints.config module
 -----------------------------------------
 
-.. automodule:: multiversx_sdk.entrypoints.config
+.. automodule:: dharitri_sdk.entrypoints.config
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.entrypoints.entrypoints module
+dharitri\_sdk.entrypoints.entrypoints module
 ----------------------------------------------
 
-.. automodule:: multiversx_sdk.entrypoints.entrypoints
+.. automodule:: dharitri_sdk.entrypoints.entrypoints
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.entrypoints.errors module
+dharitri\_sdk.entrypoints.errors module
 -----------------------------------------
 
-.. automodule:: multiversx_sdk.entrypoints.errors
+.. automodule:: dharitri_sdk.entrypoints.errors
    :members:
    :undoc-members:
    :show-inheritance:
@@ -31,7 +31,7 @@ multiversx\_sdk.entrypoints.errors module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.entrypoints
+.. automodule:: dharitri_sdk.entrypoints
    :members:
    :undoc-members:
    :show-inheritance:

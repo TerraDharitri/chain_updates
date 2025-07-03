@@ -4,10 +4,10 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Optional, Union
 
-from multiversx_sdk.wallet.crypto import EncryptedData, Randomness, decryptor, encryptor
-from multiversx_sdk.wallet.interfaces import IRandomness
-from multiversx_sdk.wallet.mnemonic import Mnemonic
-from multiversx_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
+from dharitri_sdk.wallet.crypto import EncryptedData, Randomness, decryptor, encryptor
+from dharitri_sdk.wallet.interfaces import IRandomness
+from dharitri_sdk.wallet.mnemonic import Mnemonic
+from dharitri_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
 
 
 class UserWalletKind(str, Enum):

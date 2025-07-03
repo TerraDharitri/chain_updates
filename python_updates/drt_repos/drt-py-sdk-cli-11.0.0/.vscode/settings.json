@@ -1,5 +1,5 @@
 {
-  "python.testing.pytestArgs": ["multiversx_sdk_cli"],
+  "python.testing.pytestArgs": ["dharitri_sdk_cli"],
   "python.testing.pytestEnabled": true,
   "editor.formatOnSave": true,
   "[python]": {

@@ -1,8 +1,8 @@
 import io
 from typing import Any
 
-from multiversx_sdk.abi.constants import FALS_AS_BYTE, TRUE_AS_BYTE
-from multiversx_sdk.abi.shared import read_bytes_exactly
+from dharitri_sdk.abi.constants import FALS_AS_BYTE, TRUE_AS_BYTE
+from dharitri_sdk.abi.shared import read_bytes_exactly
 
 
 class BoolValue:

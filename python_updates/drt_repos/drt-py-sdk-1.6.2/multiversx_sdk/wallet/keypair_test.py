@@ -1,8 +1,8 @@
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_computer import TransactionComputer
-from multiversx_sdk.wallet.keypair import KeyPair
-from multiversx_sdk.wallet.user_keys import UserSecretKey
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_computer import TransactionComputer
+from dharitri_sdk.wallet.keypair import KeyPair
+from dharitri_sdk.wallet.user_keys import UserSecretKey
 
 
 def test_create_keypair():
@@ -29,7 +29,7 @@ def test_create_keypair():
 
 def test_sign_and_verify_transaction():
     """
-    Also see: https://github.com/multiversx/mx-chain-go/blob/master/examples/construction_test.go
+    Also see: https://github.com/TerraDharitri/mx-chain-go/blob/master/examples/construction_test.go
     """
 
     tx = Transaction(

@@ -3,18 +3,18 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionEvent,
     TransactionLogs,
 )
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
     SmartContractTransactionsOutcomeParser,
 )
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_smart_contract_result,
     get_empty_transaction_logs,
     get_empty_transaction_on_network,
@@ -147,7 +147,7 @@ class TestSmartContractTransactionsOutcomeParser:
     @pytest.mark.networkInteraction
     def test_parse_successful_deploy(self):
         successful_tx_hash = "30bc4f262543e235b73ae6db7bcbf3a54513fe3c1ed7a86af688a8f0e7fe8655"
-        proxy = ProxyNetworkProvider("https://devnet-gateway.multiversx.com")
+        proxy = ProxyNetworkProvider("https://devnet-gateway.dharitri.org")
 
         tx_on_network = proxy.get_transaction(successful_tx_hash)
 
@@ -163,7 +163,7 @@ class TestSmartContractTransactionsOutcomeParser:
     @pytest.mark.networkInteraction
     def test_parse_failed_deploy(self):
         faied_tx_hash = "832780459c6c9589035dbbe5b8d1d86ca9674f4aab8379cbca9a94978e604ffd"
-        proxy = ProxyNetworkProvider("https://devnet-gateway.multiversx.com")
+        proxy = ProxyNetworkProvider("https://devnet-gateway.dharitri.org")
 
         tx_on_network = proxy.get_transaction(faied_tx_hash)
 
@@ -174,7 +174,7 @@ class TestSmartContractTransactionsOutcomeParser:
     @pytest.mark.networkInteraction
     def test_parse_sc_call(self):
         tx_hash = "8b599aa57d456aab573fcc1d5f409d4d00b897edbe1b7522a00604c0d64ea6cd"
-        proxy = ProxyNetworkProvider("https://devnet-gateway.multiversx.com")
+        proxy = ProxyNetworkProvider("https://devnet-gateway.dharitri.org")
 
         tx_on_network = proxy.get_transaction(tx_hash)
 

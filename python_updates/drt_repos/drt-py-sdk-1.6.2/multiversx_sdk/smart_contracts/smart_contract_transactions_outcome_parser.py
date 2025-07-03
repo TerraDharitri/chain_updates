@@ -1,16 +1,16 @@
 from enum import Enum
 from typing import Optional, Union
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core import (
     Address,
     SmartContractResult,
     TransactionEvent,
     TransactionOnNetwork,
     find_events_by_identifier,
 )
-from multiversx_sdk.core.constants import ARGS_SEPARATOR
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
+from dharitri_sdk.core.constants import ARGS_SEPARATOR
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
     DeployedSmartContract,
     ParsedSmartContractCallOutcome,
     SmartContractDeployOutcome,

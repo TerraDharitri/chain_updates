@@ -1,8 +1,8 @@
 import io
 from typing import Any, Protocol, cast
 
-from multiversx_sdk.abi.shared import read_bytes_exactly
-from multiversx_sdk.core.address import PUBKEY_LENGTH, Address
+from dharitri_sdk.abi.shared import read_bytes_exactly
+from dharitri_sdk.core.address import PUBKEY_LENGTH, Address
 
 
 class IAddress(Protocol):

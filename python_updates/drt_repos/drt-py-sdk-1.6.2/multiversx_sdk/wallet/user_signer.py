@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from multiversx_sdk.wallet.errors import CannotSignError
-from multiversx_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
-from multiversx_sdk.wallet.user_pem import UserPEM
-from multiversx_sdk.wallet.user_wallet import UserWallet
+from dharitri_sdk.wallet.errors import CannotSignError
+from dharitri_sdk.wallet.user_keys import UserPublicKey, UserSecretKey
+from dharitri_sdk.wallet.user_pem import UserPEM
+from dharitri_sdk.wallet.user_wallet import UserWallet
 
 
 class UserSigner:

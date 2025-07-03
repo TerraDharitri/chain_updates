@@ -1,7 +1,7 @@
 from decimal import Decimal
 
-from multiversx_sdk.abi.managed_decimal_value import ManagedDecimalValue
-from multiversx_sdk.abi.managed_decimal_signed_value import ManagedDecimalSignedValue
+from dharitri_sdk.abi.managed_decimal_value import ManagedDecimalValue
+from dharitri_sdk.abi.managed_decimal_signed_value import ManagedDecimalSignedValue
 
 
 class TestManagedDecimalValueTest:

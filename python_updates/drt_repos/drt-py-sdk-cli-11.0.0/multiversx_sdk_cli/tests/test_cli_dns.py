@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk_cli.cli import main
+from dharitri_sdk_cli.cli import main
 
 testdata_path = Path(__file__).parent / "testdata"
 
@@ -18,7 +18,7 @@ def test_prepare_relayed_dns_register_transaction(capsys: Any):
             "--pem",
             str(alice),
             "--name",
-            "alice.elrond",
+            "alice.numbat",
             "--nonce",
             "0",
             "--gas-limit",
@@ -54,7 +54,7 @@ def test_prepare_relayed_dns_register_transaction(capsys: Any):
         tx["relayerSignature"]
         == "e7b22c3f8e3cfa8f15038d3b59beabe3e4b2a0e40fdb40e57c39e762450ebe3cdf327bb66585c27e66480846b7487d5e78366959f6f09f10bb63e9b643c08f03"
     )
-    assert data == "register@616c6963652e656c726f6e64"
+    assert data == "register@616c6963652e6e756d626174"
 
 
 def get_output(capsys: Any):

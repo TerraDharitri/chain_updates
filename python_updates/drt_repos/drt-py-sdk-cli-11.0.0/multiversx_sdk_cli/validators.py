@@ -1,6 +1,6 @@
 from typing import Optional
 
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     Transaction,
     TransactionsFactoryConfig,
@@ -9,10 +9,10 @@ from multiversx_sdk import (
     ValidatorsTransactionsFactory,
 )
 
-from multiversx_sdk_cli.base_transactions_controller import BaseTransactionsController
-from multiversx_sdk_cli.guardian_relayer_data import GuardianRelayerData
-from multiversx_sdk_cli.interfaces import IAccount
-from multiversx_sdk_cli.transactions import TransactionsController
+from dharitri_sdk_cli.base_transactions_controller import BaseTransactionsController
+from dharitri_sdk_cli.guardian_relayer_data import GuardianRelayerData
+from dharitri_sdk_cli.interfaces import IAccount
+from dharitri_sdk_cli.transactions import TransactionsController
 
 
 class ValidatorsController(BaseTransactionsController):

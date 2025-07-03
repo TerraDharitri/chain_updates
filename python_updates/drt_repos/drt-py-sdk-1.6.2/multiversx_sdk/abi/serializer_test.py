@@ -2,21 +2,21 @@ from typing import cast
 
 import pytest
 
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.abi.counted_variadic_values import CountedVariadicValues
-from multiversx_sdk.abi.enum_value import EnumValue
-from multiversx_sdk.abi.fields import Field
-from multiversx_sdk.abi.list_value import ListValue
-from multiversx_sdk.abi.multi_value import MultiValue
-from multiversx_sdk.abi.option_value import OptionValue
-from multiversx_sdk.abi.optional_value import OptionalValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.small_int_values import U8Value, U16Value, U32Value, U64Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.abi.struct_value import StructValue
-from multiversx_sdk.abi.variadic_values import VariadicValues
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.counted_variadic_values import CountedVariadicValues
+from dharitri_sdk.abi.enum_value import EnumValue
+from dharitri_sdk.abi.fields import Field
+from dharitri_sdk.abi.list_value import ListValue
+from dharitri_sdk.abi.multi_value import MultiValue
+from dharitri_sdk.abi.option_value import OptionValue
+from dharitri_sdk.abi.optional_value import OptionalValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.small_int_values import U8Value, U16Value, U32Value, U64Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.struct_value import StructValue
+from dharitri_sdk.abi.variadic_values import VariadicValues
 
 alice_pub_key = bytes.fromhex("0139472eff6886771a982f3083da5d421f24c29181e63888228dc81ca60d69e1")
 bob_pub_key = bytes.fromhex("8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8")
@@ -450,7 +450,7 @@ def test_real_world_multisig_propose_batch():
 
     serializer = Serializer()
 
-    def create_esdt_token_payment(token_identifier: str, token_nonce: int, amount: int) -> StructValue:
+    def create_dcdt_token_payment(token_identifier: str, token_nonce: int, amount: int) -> StructValue:
         return StructValue(
             [
                 Field("token_identifier", StringValue(token_identifier)),
@@ -459,12 +459,12 @@ def test_real_world_multisig_propose_batch():
             ]
         )
 
-    # First action: SendTransferExecuteEgld
+    # First action: SendTransferExecuteRewa
     first_action = EnumValue(
         discriminant=5,
         fields=[
             Field("to", AddressValue(alice_pub_key)),
-            Field("egld_amount", BigUIntValue(one_quintillion)),
+            Field("rewa_amount", BigUIntValue(one_quintillion)),
             Field("opt_gas_limit", OptionValue(U64Value(15_000_000))),
             Field("endpoint_name", BytesValue(b"example")),
             Field(
@@ -479,7 +479,7 @@ def test_real_world_multisig_propose_batch():
         ],
     )
 
-    # Second action: SendTransferExecuteEsdt
+    # Second action: SendTransferExecuteDcdt
     second_action = EnumValue(
         discriminant=6,
         fields=[
@@ -488,8 +488,8 @@ def test_real_world_multisig_propose_batch():
                 "tokens",
                 ListValue(
                     [
-                        create_esdt_token_payment("beer", 0, one_quintillion),
-                        create_esdt_token_payment("chocolate", 0, one_quintillion),
+                        create_dcdt_token_payment("beer", 0, one_quintillion),
+                        create_dcdt_token_payment("chocolate", 0, one_quintillion),
                     ]
                 ),
             ),
@@ -550,7 +550,7 @@ def test_real_world_multisig_get_pending_action_full_info():
     group_id = U32Value()
 
     action_to = AddressValue()
-    action_egld_amount = BigUIntValue()
+    action_rewa_amount = BigUIntValue()
     action_gas_limit = U64Value()
     action_endpoint_name = BytesValue()
     action_arguments = ListValue(item_creator=lambda: BytesValue())
@@ -559,7 +559,7 @@ def test_real_world_multisig_get_pending_action_full_info():
         if discriminant == 5:
             return [
                 Field("to", action_to),
-                Field("egld_amount", action_egld_amount),
+                Field("rewa_amount", action_rewa_amount),
                 Field("opt_gas_limit", OptionValue(action_gas_limit)),
                 Field("endpoint_name", action_endpoint_name),
                 Field("arguments", action_arguments),
@@ -593,7 +593,7 @@ def test_real_world_multisig_get_pending_action_full_info():
     # result[0].action_data
     assert action.discriminant == 5
     assert action_to.value == alice_pub_key
-    assert action_egld_amount.value == one_quintillion
+    assert action_rewa_amount.value == one_quintillion
     assert action_gas_limit.value == 15_000_000
     assert action_endpoint_name.value == b"example"
     assert len(action_arguments.items) == 2

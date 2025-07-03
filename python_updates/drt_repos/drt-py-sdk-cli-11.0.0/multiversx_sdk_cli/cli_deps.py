@@ -1,21 +1,21 @@
 import logging
 from typing import Any
 
-from multiversx_sdk_cli import cli_shared, config, dependencies, errors
-from multiversx_sdk_cli.dependencies.install import get_deps_dict
-from multiversx_sdk_cli.dependencies.modules import DependencyModule
+from dharitri_sdk_cli import cli_shared, config, dependencies, errors
+from dharitri_sdk_cli.dependencies.install import get_deps_dict
+from dharitri_sdk_cli.dependencies.modules import DependencyModule
 
 logger = logging.getLogger("cli.deps")
 
 
 def setup_parser(subparsers: Any) -> Any:
-    parser = cli_shared.add_group_subparser(subparsers, "deps", "Manage dependencies or multiversx-sdk modules")
+    parser = cli_shared.add_group_subparser(subparsers, "deps", "Manage dependencies or dharitri-sdk modules")
     subparsers = parser.add_subparsers()
 
     choices = ["all"] + list(get_deps_dict().keys())
 
     sub = cli_shared.add_command_subparser(
-        subparsers, "deps", "install", "Install dependencies or multiversx-sdk modules."
+        subparsers, "deps", "install", "Install dependencies or dharitri-sdk modules."
     )
     sub.add_argument("name", choices=choices, help="the dependency to install")
     sub.add_argument(

@@ -1,22 +1,22 @@
 from typing import Any, Protocol
 
 from Cryptodome.Hash import keccak
-from multiversx_sdk import (
+from dharitri_sdk import (
     Address,
     AddressComputer,
     SmartContractQuery,
     SmartContractQueryResponse,
 )
 
-from multiversx_sdk_cli import cli_shared
-from multiversx_sdk_cli.args_validation import (
+from dharitri_sdk_cli import cli_shared
+from dharitri_sdk_cli.args_validation import (
     validate_broadcast_args,
     validate_chain_id_args,
     validate_transaction_args,
 )
-from multiversx_sdk_cli.config_env import get_address_hrp
-from multiversx_sdk_cli.constants import ADDRESS_ZERO_HEX
-from multiversx_sdk_cli.transactions import TransactionsController
+from dharitri_sdk_cli.config_env import get_address_hrp
+from dharitri_sdk_cli.constants import ADDRESS_ZERO_HEX
+from dharitri_sdk_cli.transactions import TransactionsController
 
 MaxNumShards = 256
 ShardIdentiferLen = 2

@@ -3,7 +3,7 @@ import sys
 
 import requests
 
-from multiversx_sdk_cli import errors
+from dharitri_sdk_cli import errors
 
 logger = logging.getLogger("downloader")
 

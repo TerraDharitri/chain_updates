@@ -1,30 +1,30 @@
 from pathlib import Path
 from typing import Any, Optional, Sequence, Union
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.abi.code_metadata_value import CodeMetadataValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.abi.typesystem import is_list_of_bytes, is_list_of_typed_values
-from multiversx_sdk.builders.token_transfers_data_builder import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.code_metadata_value import CodeMetadataValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.typesystem import is_list_of_bytes, is_list_of_typed_values
+from dharitri_sdk.builders.token_transfers_data_builder import (
     TokenTransfersDataBuilder,
 )
-from multiversx_sdk.builders.transaction_builder import TransactionBuilder
-from multiversx_sdk.core import (
+from dharitri_sdk.builders.transaction_builder import TransactionBuilder
+from dharitri_sdk.core import (
     Address,
     CodeMetadata,
     TokenComputer,
     TokenTransfer,
     Transaction,
 )
-from multiversx_sdk.core.constants import (
+from dharitri_sdk.core.constants import (
     CONTRACT_DEPLOY_ADDRESS_HEX,
-    EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER,
+    REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER,
     VM_TYPE_WASM_VM,
 )
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.smart_contracts.errors import ArgumentSerializationError
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.smart_contracts.errors import ArgumentSerializationError
 
 
 class SmartContractTransactionsFactory:
@@ -98,20 +98,20 @@ class SmartContractTransactionsFactory:
         if number_of_tokens == 1:
             transfer = token_transfers[0]
 
-            if transfer.token.identifier == EGLD_IDENTIFIER_FOR_MULTI_ESDTNFT_TRANSFER:
-                data_parts = self._data_args_builder.build_args_for_multi_esdt_nft_transfer(
+            if transfer.token.identifier == REWA_IDENTIFIER_FOR_MULTI_DCDTNFT_TRANSFER:
+                data_parts = self._data_args_builder.build_args_for_multi_dcdt_nft_transfer(
                     receiver=receiver, transfers=token_transfers
                 )
                 receiver = sender
             elif self.token_computer.is_fungible(transfer.token):
-                data_parts = self._data_args_builder.build_args_for_esdt_transfer(transfer=transfer)
+                data_parts = self._data_args_builder.build_args_for_dcdt_transfer(transfer=transfer)
             else:
-                data_parts = self._data_args_builder.build_args_for_single_esdt_nft_transfer(
+                data_parts = self._data_args_builder.build_args_for_single_dcdt_nft_transfer(
                     transfer=transfer, receiver=receiver
                 )
                 receiver = sender
         elif number_of_tokens > 1:
-            data_parts = self._data_args_builder.build_args_for_multi_esdt_nft_transfer(
+            data_parts = self._data_args_builder.build_args_for_multi_dcdt_nft_transfer(
                 receiver=receiver, transfers=token_transfers
             )
             receiver = sender

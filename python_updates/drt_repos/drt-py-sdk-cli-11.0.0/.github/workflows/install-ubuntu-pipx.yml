@@ -1,4 +1,4 @@
-name: Install mxpy using pipx (Ubuntu)
+name: Install drtpy using pipx (Ubuntu)
 
 on:
   pull_request:
@@ -29,9 +29,9 @@ jobs:
           sudo apt update
           sudo apt install pipx
           pipx ensurepath
-      - name: Install mxpy
+      - name: Install drtpy
         run: |
-          pipx install git+https://github.com/multiversx/mx-sdk-py-cli@$BRANCH_NAME
+          pipx install git+https://github.com/TerraDharitri/mx-sdk-py-cli@$BRANCH_NAME
       - name: Smoke test
         run: |
-          mxpy --version
+          drtpy --version

@@ -1,4 +1,4 @@
-from multiversx_sdk.wallet.validator_keys import ValidatorPublicKey
+from dharitri_sdk.wallet.validator_keys import ValidatorPublicKey
 
 
 class ValidatorVerifier:

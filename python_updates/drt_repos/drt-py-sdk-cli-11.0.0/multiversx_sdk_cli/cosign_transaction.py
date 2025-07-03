@@ -1,9 +1,9 @@
 from typing import Any
 
 import requests
-from multiversx_sdk import Transaction
+from dharitri_sdk import Transaction
 
-from multiversx_sdk_cli.errors import GuardianServiceError
+from dharitri_sdk_cli.errors import GuardianServiceError
 
 
 def cosign_transaction(transaction: Transaction, service_url: str, guardian_code: str):

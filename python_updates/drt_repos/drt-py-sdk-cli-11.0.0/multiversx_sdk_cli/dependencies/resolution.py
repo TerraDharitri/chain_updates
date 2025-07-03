@@ -1,6 +1,6 @@
 from enum import Enum
 
-from multiversx_sdk_cli import config
+from dharitri_sdk_cli import config
 
 
 class DependencyResolution(Enum):

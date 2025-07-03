@@ -1,24 +1,24 @@
 from typing import Optional, Protocol, Union
 
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.constants import GOVERNANCE_SMART_CONTRACT_ADDRESS_HEX
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.governance.governance_transactions_factory import (
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.constants import GOVERNANCE_SMART_CONTRACT_ADDRESS_HEX
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.governance.governance_transactions_factory import (
     GovernanceTransactionsFactory,
 )
-from multiversx_sdk.governance.governance_transactions_outcome_parser import (
+from dharitri_sdk.governance.governance_transactions_outcome_parser import (
     GovernanceTransactionsOutcomeParser,
 )
-from multiversx_sdk.governance.resources import (
+from dharitri_sdk.governance.resources import (
     CloseProposalOutcome,
     DelegatedVoteInfo,
     GovernanceConfig,
@@ -27,11 +27,11 @@ from multiversx_sdk.governance.resources import (
     VoteOutcome,
     VoteType,
 )
-from multiversx_sdk.network_providers.resources import AwaitingOptions
-from multiversx_sdk.smart_contracts.smart_contract_controller import (
+from dharitri_sdk.network_providers.resources import AwaitingOptions
+from dharitri_sdk.smart_contracts.smart_contract_controller import (
     SmartContractController,
 )
-from multiversx_sdk.smart_contracts.smart_contract_query import (
+from dharitri_sdk.smart_contracts.smart_contract_query import (
     SmartContractQuery,
     SmartContractQueryResponse,
 )

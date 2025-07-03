@@ -2,12 +2,12 @@ import re
 
 import pytest
 
-from multiversx_sdk.abi.fields import (
+from dharitri_sdk.abi.fields import (
     Field,
     set_fields_from_dictionary,
     set_fields_from_list,
 )
-from multiversx_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.small_int_values import U32Value
 
 
 def test_set_fields_from_dictionary():

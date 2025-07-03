@@ -1,12 +1,12 @@
 from typing import Optional, Union
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.account_management import AccountController
-from multiversx_sdk.account_management.account_transactions_factory import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.account_management import AccountController
+from dharitri_sdk.account_management.account_transactions_factory import (
     AccountTransactionsFactory,
 )
-from multiversx_sdk.accounts.account import Account
-from multiversx_sdk.core import (
+from dharitri_sdk.accounts.account import Account
+from dharitri_sdk.core import (
     Address,
     Message,
     MessageComputer,
@@ -14,50 +14,50 @@ from multiversx_sdk.core import (
     TransactionComputer,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.delegation import DelegationController
-from multiversx_sdk.delegation.delegation_transactions_factory import (
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.delegation import DelegationController
+from dharitri_sdk.delegation.delegation_transactions_factory import (
     DelegationTransactionsFactory,
 )
-from multiversx_sdk.entrypoints.config import (
+from dharitri_sdk.entrypoints.config import (
     DevnetEntrypointConfig,
     LocalnetEntrypointConfig,
     MainnetEntrypointConfig,
     TestnetEntrypointConfig,
 )
-from multiversx_sdk.entrypoints.errors import InvalidNetworkProviderKindError
-from multiversx_sdk.governance.governance_controller import GovernanceController
-from multiversx_sdk.governance.governance_transactions_factory import (
+from dharitri_sdk.entrypoints.errors import InvalidNetworkProviderKindError
+from dharitri_sdk.governance.governance_controller import GovernanceController
+from dharitri_sdk.governance.governance_transactions_factory import (
     GovernanceTransactionsFactory,
 )
-from multiversx_sdk.multisig.multisig_controller import MultisigController
-from multiversx_sdk.multisig.multisig_transactions_factory import (
+from dharitri_sdk.multisig.multisig_controller import MultisigController
+from dharitri_sdk.multisig.multisig_transactions_factory import (
     MultisigTransactionsFactory,
 )
-from multiversx_sdk.network_providers import ApiNetworkProvider, ProxyNetworkProvider
-from multiversx_sdk.network_providers.interface import INetworkProvider
-from multiversx_sdk.relayed.relayed_controller import RelayedController
-from multiversx_sdk.relayed.relayed_transactions_factory import (
+from dharitri_sdk.network_providers import ApiNetworkProvider, ProxyNetworkProvider
+from dharitri_sdk.network_providers.interface import INetworkProvider
+from dharitri_sdk.relayed.relayed_controller import RelayedController
+from dharitri_sdk.relayed.relayed_transactions_factory import (
     RelayedTransactionsFactory,
 )
-from multiversx_sdk.smart_contracts.smart_contract_controller import (
+from dharitri_sdk.smart_contracts.smart_contract_controller import (
     SmartContractController,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_factory import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_factory import (
     SmartContractTransactionsFactory,
 )
-from multiversx_sdk.token_management.token_management_controller import (
+from dharitri_sdk.token_management.token_management_controller import (
     TokenManagementController,
 )
-from multiversx_sdk.token_management.token_management_transactions_factory import (
+from dharitri_sdk.token_management.token_management_transactions_factory import (
     TokenManagementTransactionsFactory,
 )
-from multiversx_sdk.transfers.transfer_transactions_factory import (
+from dharitri_sdk.transfers.transfer_transactions_factory import (
     TransferTransactionsFactory,
 )
-from multiversx_sdk.transfers.transfers_controller import TransfersController
-from multiversx_sdk.wallet.user_keys import UserSecretKey
-from multiversx_sdk.wallet.user_verifer import UserVerifier
+from dharitri_sdk.transfers.transfers_controller import TransfersController
+from dharitri_sdk.wallet.user_keys import UserSecretKey
+from dharitri_sdk.wallet.user_verifer import UserVerifier
 
 
 class NetworkEntrypoint:
@@ -96,7 +96,7 @@ class NetworkEntrypoint:
         return Account(secret_key)
 
     def get_airdrop(self, address: Address) -> None:
-        """Get xEGLD tokens on Devnet or Testnet."""
+        """Get xREWA tokens on Devnet or Testnet."""
         raise NotImplementedError("The faucet is unavailable at the moment.")
 
     def verify_transaction_signature(self, transaction: Transaction) -> bool:

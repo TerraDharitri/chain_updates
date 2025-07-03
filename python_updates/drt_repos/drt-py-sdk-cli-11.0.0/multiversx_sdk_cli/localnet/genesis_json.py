@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
 
-from multiversx_sdk import Account
+from dharitri_sdk import Account
 
-from multiversx_sdk_cli.localnet import wallets
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
-from multiversx_sdk_cli.localnet.genesis import is_last_user
+from dharitri_sdk_cli.localnet import wallets
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.genesis import is_last_user
 
 ENTIRE_SUPPLY = 20000000000000000000000000
 # For localnet, we delegate for 1 node

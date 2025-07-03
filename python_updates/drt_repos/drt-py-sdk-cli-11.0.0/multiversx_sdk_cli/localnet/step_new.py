@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from multiversx_sdk_cli.localnet.config_root import ConfigRoot
+from dharitri_sdk_cli.localnet.config_root import ConfigRoot
 
 logger = logging.getLogger("localnet")
 

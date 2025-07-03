@@ -1,5 +1,5 @@
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.wallet.user_keys import UserPublicKey
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.wallet.user_keys import UserPublicKey
 
 
 class UserVerifier:

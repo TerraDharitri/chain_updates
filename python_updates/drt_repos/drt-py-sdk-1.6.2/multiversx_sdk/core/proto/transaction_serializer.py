@@ -1,7 +1,7 @@
-import multiversx_sdk.core.proto.transaction_pb2 as ProtoTransaction
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.serializer import Serializer
-from multiversx_sdk.core.transaction import Transaction
+import dharitri_sdk.core.proto.transaction_pb2 as ProtoTransaction
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.serializer import Serializer
+from dharitri_sdk.core.transaction import Transaction
 
 
 class ProtoSerializer:

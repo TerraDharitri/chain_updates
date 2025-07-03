@@ -3,11 +3,11 @@ import json
 import logging
 from typing import Any
 
-from multiversx_sdk.abi import AddressValue, BigUIntValue, Serializer
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.core import Address, Transaction
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.relayed.errors import InvalidInnerTransactionError
+from dharitri_sdk.abi import AddressValue, BigUIntValue, Serializer
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.core import Address, Transaction
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.relayed.errors import InvalidInnerTransactionError
 
 logger = logging.getLogger("relayed_transactions_factory")
 

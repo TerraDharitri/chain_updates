@@ -2,9 +2,9 @@ from typing import Any
 
 import pytest
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.native_auth.config import NativeAuthClientConfig
-from multiversx_sdk.native_auth.native_auth_client import NativeAuthClient
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.native_auth.config import NativeAuthClientConfig
+from dharitri_sdk.native_auth.native_auth_client import NativeAuthClient
 
 
 def mock(mocker: Any, code: int, response: Any):
@@ -30,7 +30,7 @@ class TestNativeAuthClient:
     SIGNATURE = "906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d"
     BLOCK_HASH = "ab459013b27fdc6fe98eed567bd0c1754e0628a4cc16883bf0170a29da37ad46"
     TTL = 86400
-    ORIGIN = "https://api.multiversx.com"
+    ORIGIN = "https://api.dharitri.org"
     TOKEN = f"aHR0cHM6Ly9hcGkubXVsdGl2ZXJzeC5jb20.{BLOCK_HASH}.{TTL}.e30"
     ACCESS_TOKEN = "ZXJkMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXF6MHBwZ2w.YUhSMGNITTZMeTloY0drdWJYVnNkR2wyWlhKemVDNWpiMjAuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5lMzA.906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d"
     INVALID_HASH_ERROR = "Validation failed for block hash 'hash'. Length should be 64."
@@ -80,12 +80,12 @@ class TestNativeAuthClientWithGateway:
     SIGNATURE = "906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d"
     BLOCK_HASH = "ab459013b27fdc6fe98eed567bd0c1754e0628a4cc16883bf0170a29da37ad46"
     TTL = 86400
-    ORIGIN = "https://api.multiversx.com"
+    ORIGIN = "https://api.dharitri.org"
     TOKEN = f"aHR0cHM6Ly9hcGkubXVsdGl2ZXJzeC5jb20.{BLOCK_HASH}.{TTL}.e30"
     ACCESS_TOKEN = "ZXJkMXFuazJ2bXVxeXdmcXRkbmttYXV2cG04bHMweGgwMGs4eGV1cHVhZjZjbTZjZDRyeDg5cXF6MHBwZ2w.YUhSMGNITTZMeTloY0drdWJYVnNkR2wyWlhKemVDNWpiMjAuYWI0NTkwMTNiMjdmZGM2ZmU5OGVlZDU2N2JkMGMxNzU0ZTA2MjhhNGNjMTY4ODNiZjAxNzBhMjlkYTM3YWQ0Ni44NjQwMC5lMzA.906e79d54e69e688680abee54ec0c49ce2561eb5abfd01865b31cb3ed738272c7cfc4fc8cc1c3590dd5757e622639b01a510945d7f7c9d1ceda20a50a817080d"
     LATEST_ROUND = 115656
     METASHARD = 4294967295
-    GATEWAY = "https://gateway.multiversx.com"
+    GATEWAY = "https://gateway.dharitri.org"
 
     def test_latest_block_should_return_signable_token(self, mocker: Any):
         responses = [

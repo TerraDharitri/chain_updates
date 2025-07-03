@@ -1,10 +1,10 @@
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionLogs,
     TransactionOnNetwork,
 )
-from multiversx_sdk.core.transaction_status import TransactionStatus
+from dharitri_sdk.core.transaction_status import TransactionStatus
 
 
 def get_empty_transaction_on_network() -> TransactionOnNetwork:

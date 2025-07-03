@@ -1,101 +1,101 @@
-multiversx\_sdk.network\_providers package
+dharitri\_sdk.network\_providers package
 ==========================================
 
 Submodules
 ----------
 
-multiversx\_sdk.network\_providers.account\_awaiter module
+dharitri\_sdk.network\_providers.account\_awaiter module
 ----------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.account_awaiter
+.. automodule:: dharitri_sdk.network_providers.account_awaiter
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.api\_network\_provider module
+dharitri\_sdk.network\_providers.api\_network\_provider module
 ----------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.api_network_provider
+.. automodule:: dharitri_sdk.network_providers.api_network_provider
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.config module
+dharitri\_sdk.network\_providers.config module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.config
+.. automodule:: dharitri_sdk.network_providers.config
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.errors module
+dharitri\_sdk.network\_providers.errors module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.errors
+.. automodule:: dharitri_sdk.network_providers.errors
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.http\_resources module
+dharitri\_sdk.network\_providers.http\_resources module
 ---------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.http_resources
+.. automodule:: dharitri_sdk.network_providers.http_resources
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.interface module
+dharitri\_sdk.network\_providers.interface module
 ---------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.interface
+.. automodule:: dharitri_sdk.network_providers.interface
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.proxy\_network\_provider module
+dharitri\_sdk.network\_providers.proxy\_network\_provider module
 ------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.proxy_network_provider
+.. automodule:: dharitri_sdk.network_providers.proxy_network_provider
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.resources module
+dharitri\_sdk.network\_providers.resources module
 ---------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.resources
+.. automodule:: dharitri_sdk.network_providers.resources
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.shared module
+dharitri\_sdk.network\_providers.shared module
 ------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.shared
+.. automodule:: dharitri_sdk.network_providers.shared
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.transaction\_awaiter module
+dharitri\_sdk.network\_providers.transaction\_awaiter module
 --------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.transaction_awaiter
+.. automodule:: dharitri_sdk.network_providers.transaction_awaiter
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.transaction\_decoder module
+dharitri\_sdk.network\_providers.transaction\_decoder module
 --------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.transaction_decoder
+.. automodule:: dharitri_sdk.network_providers.transaction_decoder
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.network\_providers.user\_agent module
+dharitri\_sdk.network\_providers.user\_agent module
 -----------------------------------------------------
 
-.. automodule:: multiversx_sdk.network_providers.user_agent
+.. automodule:: dharitri_sdk.network_providers.user_agent
    :members:
    :undoc-members:
    :show-inheritance:
@@ -103,7 +103,7 @@ multiversx\_sdk.network\_providers.user\_agent module
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.network_providers
+.. automodule:: dharitri_sdk.network_providers
    :members:
    :undoc-members:
    :show-inheritance:

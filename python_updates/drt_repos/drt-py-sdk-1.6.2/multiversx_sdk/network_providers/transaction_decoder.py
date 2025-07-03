@@ -1,10 +1,10 @@
 import binascii
 from typing import Any, Optional
 
-from multiversx_sdk.core import TokenTransfer
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.tokens import Token
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.core import TokenTransfer
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.tokens import Token
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
 
 
 class TransactionMetadata:
@@ -17,7 +17,7 @@ class TransactionMetadata:
         self.transfers: Optional[list[TokenTransfer]] = None
         self.transfer_messages: list[bytes] = []
         """
-        This property is set to the extra arguments passed to ESDTTransfer when transferring tokens to non-smart contract accounts.
+        This property is set to the extra arguments passed to DCDTTransfer when transferring tokens to non-smart contract accounts.
         """
 
     def to_dict(self) -> dict[str, Any]:
@@ -53,14 +53,14 @@ class TransactionMetadata:
 
 
 class TransactionDecoder:
-    """Can be used for decoding custom token transfers transactions (ESDTTransfer, NFTTransfer, MultiESDTNFTTransfer)."""
+    """Can be used for decoding custom token transfers transactions (DCDTTransfer, NFTTransfer, MultiDCDTNFTTransfer)."""
 
     def get_transaction_metadata(self, transaction: TransactionOnNetwork) -> TransactionMetadata:
         metadata = self.get_normal_transaction_metadata(transaction)
 
-        esdt_metadata = self.get_esdt_transaction_metadata(metadata)
-        if esdt_metadata:
-            return esdt_metadata
+        dcdt_metadata = self.get_dcdt_transaction_metadata(metadata)
+        if dcdt_metadata:
+            return dcdt_metadata
 
         nft_metadata = self.get_nft_transfer_metadata(metadata)
         if nft_metadata:
@@ -93,8 +93,8 @@ class TransactionDecoder:
 
         return metadata
 
-    def get_esdt_transaction_metadata(self, metadata: TransactionMetadata) -> Optional[TransactionMetadata]:
-        if metadata.function_name != "ESDTTransfer":
+    def get_dcdt_transaction_metadata(self, metadata: TransactionMetadata) -> Optional[TransactionMetadata]:
+        if metadata.function_name != "DCDTTransfer":
             return None
 
         args = metadata.function_args
@@ -134,7 +134,7 @@ class TransactionDecoder:
         if metadata.sender != metadata.receiver:
             return None
 
-        if metadata.function_name != "ESDTNFTTransfer":
+        if metadata.function_name != "DCDTNFTTransfer":
             return None
 
         args = metadata.function_args
@@ -175,7 +175,7 @@ class TransactionDecoder:
         if metadata.sender != metadata.receiver:
             return None
 
-        if metadata.function_name != "MultiESDTNFTTransfer":
+        if metadata.function_name != "MultiDCDTNFTTransfer":
             return None
 
         args = metadata.function_args

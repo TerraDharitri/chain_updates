@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from multiversx_sdk.network_providers.config import NetworkProviderConfig
-from multiversx_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
+from dharitri_sdk.network_providers.config import NetworkProviderConfig
+from dharitri_sdk.network_providers.proxy_network_provider import ProxyNetworkProvider
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser import (
     SmartContractTransactionsOutcomeParser,
 )
 
@@ -14,7 +14,7 @@ from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser i
 class TestSmartContractDeployMainnet:
     parser = SmartContractTransactionsOutcomeParser()
     network_config = NetworkProviderConfig(client_name="mx-sdk-py/tests")
-    provider = ProxyNetworkProvider(url="https://gateway.multiversx.com", config=network_config)
+    provider = ProxyNetworkProvider(url="https://gateway.dharitri.org", config=network_config)
 
     def test_should_parse_execute(self):
         records = self._load_records("execute_success")

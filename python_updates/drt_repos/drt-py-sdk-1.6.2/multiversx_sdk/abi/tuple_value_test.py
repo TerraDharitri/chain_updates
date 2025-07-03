@@ -2,9 +2,9 @@ import re
 
 import pytest
 
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.abi.tuple_value import TupleValue
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.tuple_value import TupleValue
 
 
 def test_set_payload_and_get_payload():

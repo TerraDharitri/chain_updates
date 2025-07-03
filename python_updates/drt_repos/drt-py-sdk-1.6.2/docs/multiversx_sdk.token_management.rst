@@ -1,37 +1,37 @@
-multiversx\_sdk.token\_management package
+dharitri\_sdk.token\_management package
 =========================================
 
 Submodules
 ----------
 
-multiversx\_sdk.token\_management.token\_management\_controller module
+dharitri\_sdk.token\_management.token\_management\_controller module
 ----------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.token_management.token_management_controller
+.. automodule:: dharitri_sdk.token_management.token_management_controller
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.token\_management.token\_management\_transactions\_factory module
+dharitri\_sdk.token\_management.token\_management\_transactions\_factory module
 ---------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.token_management.token_management_transactions_factory
+.. automodule:: dharitri_sdk.token_management.token_management_transactions_factory
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.token\_management.token\_management\_transactions\_outcome\_parser module
+dharitri\_sdk.token\_management.token\_management\_transactions\_outcome\_parser module
 -----------------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.token_management.token_management_transactions_outcome_parser
+.. automodule:: dharitri_sdk.token_management.token_management_transactions_outcome_parser
    :members:
    :undoc-members:
    :show-inheritance:
 
-multiversx\_sdk.token\_management.token\_management\_transactions\_outcome\_parser\_types module
+dharitri\_sdk.token\_management.token\_management\_transactions\_outcome\_parser\_types module
 ------------------------------------------------------------------------------------------------
 
-.. automodule:: multiversx_sdk.token_management.token_management_transactions_outcome_parser_types
+.. automodule:: dharitri_sdk.token_management.token_management_transactions_outcome_parser_types
    :members:
    :undoc-members:
    :show-inheritance:
@@ -39,7 +39,7 @@ multiversx\_sdk.token\_management.token\_management\_transactions\_outcome\_pars
 Module contents
 ---------------
 
-.. automodule:: multiversx_sdk.token_management
+.. automodule:: dharitri_sdk.token_management
    :members:
    :undoc-members:
    :show-inheritance:

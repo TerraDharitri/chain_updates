@@ -1,8 +1,8 @@
 from typing import Optional
 
-from multiversx_sdk.core import Address, Transaction
-from multiversx_sdk.core.constants import ARGS_SEPARATOR
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.core import Address, Transaction
+from dharitri_sdk.core.constants import ARGS_SEPARATOR
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
 
 
 class TransactionBuilder:

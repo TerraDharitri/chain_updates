@@ -1,7 +1,7 @@
 from typing import Any, Optional, Union
 
-from multiversx_sdk.abi.interface import IPayloadHolder, ISingleValue
-from multiversx_sdk.abi.multi_value import MultiValue
+from dharitri_sdk.abi.interface import IPayloadHolder, ISingleValue
+from dharitri_sdk.abi.multi_value import MultiValue
 
 
 class OptionalValue(IPayloadHolder):

@@ -3,14 +3,14 @@ from functools import cache
 from pathlib import Path
 from typing import Any
 
-from multiversx_sdk import NetworkProviderConfig
+from dharitri_sdk import NetworkProviderConfig
 
-from multiversx_sdk_cli import errors, utils
-from multiversx_sdk_cli.constants import LOG_LEVELS, SDK_PATH
-from multiversx_sdk_cli.ux import show_warning
+from dharitri_sdk_cli import errors, utils
+from dharitri_sdk_cli.constants import LOG_LEVELS, SDK_PATH
+from dharitri_sdk_cli.ux import show_warning
 
-LOCAL_CONFIG_PATH = Path("mxpy.json").resolve()
-GLOBAL_CONFIG_PATH = SDK_PATH / "mxpy.json"
+LOCAL_CONFIG_PATH = Path("drtpy.json").resolve()
+GLOBAL_CONFIG_PATH = SDK_PATH / "drtpy.json"
 
 
 def get_dependency_resolution(key: str) -> str:
@@ -133,9 +133,9 @@ def get_defaults() -> dict[str, Any]:
         "dependencies.golang.urlTemplate.osx": "https://golang.org/dl/{TAG}.darwin-amd64.tar.gz",
         "dependencies.golang.urlTemplate.windows": "https://golang.org/dl/{TAG}.windows-amd64.zip",
         "dependencies.testwallets.tag": "v1.0.0",
-        "dependencies.testwallets.urlTemplate.linux": "https://github.com/multiversx/mx-sdk-testwallets/archive/{TAG}.tar.gz",
-        "dependencies.testwallets.urlTemplate.osx": "https://github.com/multiversx/mx-sdk-testwallets/archive/{TAG}.tar.gz",
-        "dependencies.testwallets.urlTemplate.windows": "https://github.com/multiversx/mx-sdk-testwallets/archive/{TAG}.tar.gz",
+        "dependencies.testwallets.urlTemplate.linux": "https://github.com/TerraDharitri/mx-sdk-testwallets/archive/{TAG}.tar.gz",
+        "dependencies.testwallets.urlTemplate.osx": "https://github.com/TerraDharitri/mx-sdk-testwallets/archive/{TAG}.tar.gz",
+        "dependencies.testwallets.urlTemplate.windows": "https://github.com/TerraDharitri/mx-sdk-testwallets/archive/{TAG}.tar.gz",
         "github_api_token": "",
         "log_level": "info",
     }
@@ -187,4 +187,4 @@ def get_dependency_parent_directory(key: str) -> Path:
 
 
 def get_config_for_network_providers() -> NetworkProviderConfig:
-    return NetworkProviderConfig(client_name="mxpy")
+    return NetworkProviderConfig(client_name="drtpy")

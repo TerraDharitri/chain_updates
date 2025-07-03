@@ -2,12 +2,12 @@ from types import SimpleNamespace
 
 import pytest
 
-from multiversx_sdk.abi.array_value import ArrayValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.codec import Codec
-from multiversx_sdk.abi.fields import Field
-from multiversx_sdk.abi.small_int_values import U16Value, U32Value
-from multiversx_sdk.abi.struct_value import StructValue
+from dharitri_sdk.abi.array_value import ArrayValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.codec import Codec
+from dharitri_sdk.abi.fields import Field
+from dharitri_sdk.abi.small_int_values import U16Value, U32Value
+from dharitri_sdk.abi.struct_value import StructValue
 
 
 def test_set_payload_and_get_payload():

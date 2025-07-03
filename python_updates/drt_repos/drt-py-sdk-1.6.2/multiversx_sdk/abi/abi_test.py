@@ -6,24 +6,24 @@ from typing import Optional
 
 import pytest
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.abi.abi_definition import AbiDefinition, ParameterDefinition
-from multiversx_sdk.abi.address_value import AddressValue
-from multiversx_sdk.abi.bigint_value import BigIntValue
-from multiversx_sdk.abi.biguint_value import BigUIntValue
-from multiversx_sdk.abi.bytes_value import BytesValue
-from multiversx_sdk.abi.counted_variadic_values import CountedVariadicValues
-from multiversx_sdk.abi.enum_value import EnumValue, _EnumPayload
-from multiversx_sdk.abi.explicit_enum_value import ExplicitEnumValue
-from multiversx_sdk.abi.fields import Field
-from multiversx_sdk.abi.list_value import ListValue
-from multiversx_sdk.abi.managed_decimal_value import ManagedDecimalValue
-from multiversx_sdk.abi.option_value import OptionValue
-from multiversx_sdk.abi.small_int_values import U32Value, U64Value
-from multiversx_sdk.abi.string_value import StringValue
-from multiversx_sdk.abi.struct_value import StructValue
-from multiversx_sdk.abi.variadic_values import VariadicValues
-from multiversx_sdk.core.address import Address
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.abi.abi_definition import AbiDefinition, ParameterDefinition
+from dharitri_sdk.abi.address_value import AddressValue
+from dharitri_sdk.abi.bigint_value import BigIntValue
+from dharitri_sdk.abi.biguint_value import BigUIntValue
+from dharitri_sdk.abi.bytes_value import BytesValue
+from dharitri_sdk.abi.counted_variadic_values import CountedVariadicValues
+from dharitri_sdk.abi.enum_value import EnumValue, _EnumPayload
+from dharitri_sdk.abi.explicit_enum_value import ExplicitEnumValue
+from dharitri_sdk.abi.fields import Field
+from dharitri_sdk.abi.list_value import ListValue
+from dharitri_sdk.abi.managed_decimal_value import ManagedDecimalValue
+from dharitri_sdk.abi.option_value import OptionValue
+from dharitri_sdk.abi.small_int_values import U32Value, U64Value
+from dharitri_sdk.abi.string_value import StringValue
+from dharitri_sdk.abi.struct_value import StructValue
+from dharitri_sdk.abi.variadic_values import VariadicValues
+from dharitri_sdk.core.address import Address
 
 testdata = Path(__file__).parent.parent / "testutils" / "testdata"
 
@@ -176,7 +176,7 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
                     "__discriminant__": 5,
                     "0": {
                         "to": alice,
-                        "egld_amount": 1000000000000000000,
+                        "rewa_amount": 1000000000000000000,
                         "endpoint_name": "example",
                         "arguments": [bytes([0x03, 0x42]), bytes([0x07, 0x43])],
                         "opt_gas_limit": 15_000_000,
@@ -197,7 +197,7 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
                     "__discriminant__": 5,
                     "0": SimpleNamespace(
                         to=alice,
-                        egld_amount=1000000000000000000,
+                        rewa_amount=1000000000000000000,
                         endpoint_name="example",
                         arguments=[bytes([0x03, 0x42]), bytes([0x07, 0x43])],
                         opt_gas_limit=15_000_000,
@@ -214,13 +214,13 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
         def __init__(
             self,
             to: Address,
-            egld_amount: int,
+            rewa_amount: int,
             endpoint_name: str,
             arguments: list[bytes],
             opt_gas_limit: Optional[int] = None,
         ):
             self.to = to
-            self.egld_amount = egld_amount
+            self.rewa_amount = rewa_amount
             self.endpoint_name = endpoint_name
             self.arguments = arguments
             self.opt_gas_limit = opt_gas_limit
@@ -233,7 +233,7 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
                     "__discriminant__": 5,
                     "0": CallActionData(
                         to=alice,
-                        egld_amount=1000000000000000000,
+                        rewa_amount=1000000000000000000,
                         endpoint_name="example",
                         arguments=[bytes([0x03, 0x42]), bytes([0x07, 0x43])],
                         opt_gas_limit=15_000_000,
@@ -254,7 +254,7 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
                     "__discriminant__": 5,
                     "0": {
                         "to": AddressValue.new_from_address(alice),
-                        "egld_amount": 1000000000000000000,
+                        "rewa_amount": 1000000000000000000,
                         "endpoint_name": StringValue("example"),
                         "arguments": [bytes([0x03, 0x42]), bytes([0x07, 0x43])],
                         "opt_gas_limit": U64Value(15_000_000),
@@ -281,7 +281,7 @@ def test_encode_endpoint_input_parameters_multisig_propose_batch():
                                     [
                                         Field("to", AddressValue.new_from_address(alice)),
                                         Field(
-                                            "egld_amount",
+                                            "rewa_amount",
                                             BigUIntValue(1000000000000000000),
                                         ),
                                         Field(
@@ -335,7 +335,7 @@ def test_decode_endpoint_output_parameters_multisig_get_pending_action_full_info
         action_data_0.to
         == Address.from_bech32("erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th").get_public_key()
     )
-    assert action_data_0.egld_amount == 1000000000000000000
+    assert action_data_0.rewa_amount == 1000000000000000000
     assert action_data_0.opt_gas_limit == 15000000
     assert action_data_0.endpoint_name == b"example"
     assert action_data_0.arguments == [bytes([0x03, 0x42]), bytes([0x07, 0x43])]
@@ -466,7 +466,7 @@ def test_decode_custom_enum():
         SimpleNamespace(
             **{
                 "to": bytes.fromhex("00000000000000000500d006f73c4221216fa679bc559005584c4f1160e569e1"),
-                "egld_amount": 42,
+                "rewa_amount": 42,
                 "opt_gas_limit": None,
                 "endpoint_name": b"add",
                 "arguments": [bytes([0x07])],
@@ -474,7 +474,7 @@ def test_decode_custom_enum():
         ),
     )
     setattr(expected_output, "__discriminant__", 5)
-    setattr(expected_output, "__name__", "SendTransferExecuteEgld")
+    setattr(expected_output, "__name__", "SendTransferExecuteRewa")
     assert decoded_type == expected_output
 
 
@@ -484,5 +484,5 @@ def test_encode_custom_struct():
     with pytest.raises(Exception, match=re.escape('Missing custom type! No custom type found for name: "customType"')):
         abi.encode_custom_type("customType", [])
 
-    encoded = abi.encode_custom_type("EsdtTokenPayment", ["TEST-8b028f", 0, 10000])
+    encoded = abi.encode_custom_type("DcdtTokenPayment", ["TEST-8b028f", 0, 10000])
     assert encoded == "0000000b544553542d3862303238660000000000000000000000022710"

@@ -1,14 +1,14 @@
-from multiversx_sdk.token_management.token_management_controller import (
+from dharitri_sdk.token_management.token_management_controller import (
     TokenManagementController,
 )
-from multiversx_sdk.token_management.token_management_transactions_factory import (
+from dharitri_sdk.token_management.token_management_transactions_factory import (
     TokenManagementTransactionsFactory,
     TokenType,
 )
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser import (
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser import (
     TokenManagementTransactionsOutcomeParser,
 )
-from multiversx_sdk.token_management.token_management_transactions_outcome_parser_types import (
+from dharitri_sdk.token_management.token_management_transactions_outcome_parser_types import (
     AddQuantityOutcome,
     BurnOutcome,
     BurnQuantityOutcome,
@@ -25,7 +25,7 @@ from multiversx_sdk.token_management.token_management_transactions_outcome_parse
     PauseOutcome,
     RegisterAndSetAllRolesOutcome,
     RegisterDynamicOutcome,
-    RegisterMetaEsdtOutcome,
+    RegisterMetaDcdtOutcome,
     SetNewUrisOutcome,
     SetSpecialRoleOutcome,
     UnFreezeOutcome,
@@ -51,7 +51,7 @@ __all__ = [
     "NFTCreateOutcome",
     "PauseOutcome",
     "RegisterAndSetAllRolesOutcome",
-    "RegisterMetaEsdtOutcome",
+    "RegisterMetaDcdtOutcome",
     "SetSpecialRoleOutcome",
     "UnFreezeOutcome",
     "UnPauseOutcome",

@@ -1,45 +1,45 @@
 from pathlib import Path
 from typing import Any, Optional, Protocol, Union
 
-from multiversx_sdk.abi.abi import Abi
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.base_controller import BaseController
-from multiversx_sdk.core.config import LibraryConfig
-from multiversx_sdk.core.interfaces import IAccount
-from multiversx_sdk.core.tokens import TokenTransfer
-from multiversx_sdk.core.transaction import Transaction
-from multiversx_sdk.core.transaction_on_network import TransactionOnNetwork
-from multiversx_sdk.core.transactions_factory_config import TransactionsFactoryConfig
-from multiversx_sdk.multisig.multisig_transactions_factory import (
+from dharitri_sdk.abi.abi import Abi
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.base_controller import BaseController
+from dharitri_sdk.core.config import LibraryConfig
+from dharitri_sdk.core.interfaces import IAccount
+from dharitri_sdk.core.tokens import TokenTransfer
+from dharitri_sdk.core.transaction import Transaction
+from dharitri_sdk.core.transaction_on_network import TransactionOnNetwork
+from dharitri_sdk.core.transactions_factory_config import TransactionsFactoryConfig
+from dharitri_sdk.multisig.multisig_transactions_factory import (
     MultisigTransactionsFactory,
 )
-from multiversx_sdk.multisig.multisig_transactions_outcome_parser import (
+from dharitri_sdk.multisig.multisig_transactions_outcome_parser import (
     MultisigTransactionsOutcomeParser,
 )
-from multiversx_sdk.multisig.resources import (
+from dharitri_sdk.multisig.resources import (
     Action,
     ActionFullInfo,
     AddBoardMember,
     AddProposer,
     CallActionData,
     ChangeQuorum,
-    EsdtTokenPayment,
-    EsdtTransferExecuteData,
+    DcdtTokenPayment,
+    DcdtTransferExecuteData,
     RemoveUser,
     SCDeployFromSource,
     SCUpgradeFromSource,
     SendAsyncCall,
-    SendTransferExecuteEgld,
-    SendTransferExecuteEsdt,
+    SendTransferExecuteRewa,
+    SendTransferExecuteDcdt,
     UserRole,
 )
-from multiversx_sdk.network_providers.resources import AwaitingOptions
-from multiversx_sdk.smart_contracts import (
+from dharitri_sdk.network_providers.resources import AwaitingOptions
+from dharitri_sdk.smart_contracts import (
     SmartContractController,
     SmartContractQuery,
     SmartContractQueryResponse,
 )
-from multiversx_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
+from dharitri_sdk.smart_contracts.smart_contract_transactions_outcome_parser_types import (
     SmartContractDeployOutcome,
 )
 
@@ -395,7 +395,7 @@ class MultisigController(BaseController):
         relayer: Optional[Address] = None,
     ) -> Transaction:
         """Propose a transaction in which the contract will perform a transfer-execute call.
-        Can send EGLD without calling anything.
+        Can send REWA without calling anything.
         Can call smart contract endpoints directly.
         Doesn't really work with builtin functions."""
         transaction = self._factory.create_transaction_for_propose_transfer_execute(
@@ -420,7 +420,7 @@ class MultisigController(BaseController):
 
         return transaction
 
-    def create_transaction_for_propose_transfer_execute_esdt(
+    def create_transaction_for_propose_transfer_execute_dcdt(
         self,
         sender: IAccount,
         nonce: int,
@@ -436,7 +436,7 @@ class MultisigController(BaseController):
         guardian: Optional[Address] = None,
         relayer: Optional[Address] = None,
     ) -> Transaction:
-        transaction = self._factory.create_transaction_for_propose_transfer_esdt_execute(
+        transaction = self._factory.create_transaction_for_propose_transfer_dcdt_execute(
             sender=sender.address,
             contract=contract,
             receiver=receiver,
@@ -1045,15 +1045,15 @@ class MultisigController(BaseController):
         quorum = field_0
         return ChangeQuorum(quorum)
 
-    def _create_send_transfer_execute_egld_from_object(self, object: Any) -> SendTransferExecuteEgld:
+    def _create_send_transfer_execute_rewa_from_object(self, object: Any) -> SendTransferExecuteRewa:
         field_0 = getattr(object, "0")
         data = self._create_call_action_data_from_object(field_0)
-        return SendTransferExecuteEgld(data)
+        return SendTransferExecuteRewa(data)
 
-    def _create_send_transfer_execute_esdt_from_object(self, object: Any) -> SendTransferExecuteEsdt:
+    def _create_send_transfer_execute_dcdt_from_object(self, object: Any) -> SendTransferExecuteDcdt:
         field_0 = getattr(object, "0")
-        data = self._create_esdt_transfer_execute_data_from_object(field_0)
-        return SendTransferExecuteEsdt(data)
+        data = self._create_dcdt_transfer_execute_data_from_object(field_0)
+        return SendTransferExecuteDcdt(data)
 
     def _create_send_async_call_from_object(self, object: Any) -> SendAsyncCall:
         field_0 = getattr(object, "0")
@@ -1077,19 +1077,19 @@ class MultisigController(BaseController):
 
     def _create_call_action_data_from_object(self, object: Any) -> CallActionData:
         to = Address(object.to, self._address_hrp)
-        egld_amount = object.egld_amount
+        rewa_amount = object.rewa_amount
         endpoint_name = object.endpoint_name.decode()
         arguments = object.arguments
         opt_gas_limit = object.opt_gas_limit
-        return CallActionData(to, egld_amount, endpoint_name, arguments, opt_gas_limit)
+        return CallActionData(to, rewa_amount, endpoint_name, arguments, opt_gas_limit)
 
-    def _create_esdt_transfer_execute_data_from_object(self, object: Any) -> EsdtTransferExecuteData:
+    def _create_dcdt_transfer_execute_data_from_object(self, object: Any) -> DcdtTransferExecuteData:
         to = Address(object.to, self._address_hrp)
-        tokens = [EsdtTokenPayment(token.token_identifier, token.token_nonce, token.amount) for token in object.tokens]
+        tokens = [DcdtTokenPayment(token.token_identifier, token.token_nonce, token.amount) for token in object.tokens]
         opt_gas_limit = object.opt_gas_limit
         endpoint_name = bytes.fromhex(object.endpoint_name.decode()).decode()
         arguments = object.arguments
-        return EsdtTransferExecuteData(to, tokens, opt_gas_limit, endpoint_name, arguments)
+        return DcdtTransferExecuteData(to, tokens, opt_gas_limit, endpoint_name, arguments)
 
     def _create_action_from_object(self, object: Any) -> "Action":
         # The object is of type _EnumPayload, and its integer conversion is overridden to return the value of the __discriminant__ field.
@@ -1103,10 +1103,10 @@ class MultisigController(BaseController):
             return self._create_remove_user_from_object(object)
         elif discriminant == ChangeQuorum.discriminant:
             return self._create_change_quorum_from_object(object)
-        elif discriminant == SendTransferExecuteEgld.discriminant:
-            return self._create_send_transfer_execute_egld_from_object(object)
-        elif discriminant == SendTransferExecuteEsdt.discriminant:
-            return self._create_send_transfer_execute_esdt_from_object(object)
+        elif discriminant == SendTransferExecuteRewa.discriminant:
+            return self._create_send_transfer_execute_rewa_from_object(object)
+        elif discriminant == SendTransferExecuteDcdt.discriminant:
+            return self._create_send_transfer_execute_dcdt_from_object(object)
         elif discriminant == SendAsyncCall.discriminant:
             return self._create_send_async_call_from_object(object)
         elif discriminant == SCDeployFromSource.discriminant:

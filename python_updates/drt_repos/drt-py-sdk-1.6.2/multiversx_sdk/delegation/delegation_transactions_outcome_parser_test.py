@@ -1,16 +1,16 @@
 import base64
 
-from multiversx_sdk.core.address import Address
-from multiversx_sdk.core.transaction_on_network import (
+from dharitri_sdk.core.address import Address
+from dharitri_sdk.core.transaction_on_network import (
     SmartContractResult,
     TransactionEvent,
     TransactionLogs,
 )
-from multiversx_sdk.delegation import DelegationTransactionsOutcomeParser
-from multiversx_sdk.testutils.mock_transaction_on_network import (
+from dharitri_sdk.delegation import DelegationTransactionsOutcomeParser
+from dharitri_sdk.testutils.mock_transaction_on_network import (
     get_empty_transaction_on_network,
 )
-from multiversx_sdk.testutils.utils import base64_topics_to_bytes
+from dharitri_sdk.testutils.utils import base64_topics_to_bytes
 
 
 class TestDelegationTransactionsOutcomeParser:

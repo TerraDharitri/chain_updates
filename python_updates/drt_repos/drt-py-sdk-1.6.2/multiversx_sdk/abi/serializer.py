@@ -1,20 +1,20 @@
 from typing import Any, Sequence
 
-from multiversx_sdk.abi.codec import Codec
-from multiversx_sdk.abi.counted_variadic_values import CountedVariadicValues
-from multiversx_sdk.abi.interface import ISingleValue
-from multiversx_sdk.abi.multi_value import MultiValue
-from multiversx_sdk.abi.optional_value import OptionalValue
-from multiversx_sdk.abi.parts import PartsHolder
-from multiversx_sdk.abi.small_int_values import U32Value
-from multiversx_sdk.abi.variadic_values import VariadicValues
-from multiversx_sdk.core.constants import ARGS_SEPARATOR
+from dharitri_sdk.abi.codec import Codec
+from dharitri_sdk.abi.counted_variadic_values import CountedVariadicValues
+from dharitri_sdk.abi.interface import ISingleValue
+from dharitri_sdk.abi.multi_value import MultiValue
+from dharitri_sdk.abi.optional_value import OptionalValue
+from dharitri_sdk.abi.parts import PartsHolder
+from dharitri_sdk.abi.small_int_values import U32Value
+from dharitri_sdk.abi.variadic_values import VariadicValues
+from dharitri_sdk.core.constants import ARGS_SEPARATOR
 
 
 class Serializer:
     """
-    The serializer follows the rules of the MultiversX Serialization format:
-    https://docs.multiversx.com/developers/data/serialization-overview
+    The serializer follows the rules of the Dharitri Serialization format:
+    https://docs.dharitri.org/developers/data/serialization-overview
     """
 
     def __init__(self, parts_separator: str = ARGS_SEPARATOR):
@@ -41,7 +41,7 @@ class Serializer:
             if isinstance(value, OptionalValue):
                 if i != len(input_values) - 1:
                     # Usage of multiple optional values is not recommended:
-                    # https://docs.multiversx.com/developers/data/multi-values
+                    # https://docs.dharitri.org/developers/data/multi-values
                     # Thus, here, we disallow them.
                     raise ValueError("an optional value must be last among input values")
 
@@ -87,7 +87,7 @@ class Serializer:
             if isinstance(value, OptionalValue):
                 if i != len(output_values) - 1:
                     # Usage of multiple optional values is not recommended:
-                    # https://docs.multiversx.com/developers/data/multi-values
+                    # https://docs.dharitri.org/developers/data/multi-values
                     # Thus, here, we disallow them.
                     raise ValueError("an optional value must be last among output values")
 
