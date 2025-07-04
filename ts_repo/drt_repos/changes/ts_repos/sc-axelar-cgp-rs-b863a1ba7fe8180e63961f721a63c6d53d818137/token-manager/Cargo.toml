@@ -1,0 +1,18 @@
+[package]
+name = "token-manager"
+version = "0.0.0"
+authors = [ "you",]
+edition = "2018"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.dharitri-sc]
+version = "0.50.3"
+
+[dependencies.operatable]
+path = "../modules/operatable"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "0.50.3"

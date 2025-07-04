@@ -1,0 +1,68 @@
+<div class="flex flex-col gap-6">
+  <div class="flex gap-2 items-start">
+    <app-button
+      *ngIf="state === 'success' || state === 'error'"
+      dataTestId="closeTransactionSuccessBtn"
+      id="closeButton"
+      (onClick)="handleClear($event)"
+    >
+      <fa-icon [icon]="state === 'error' ? faRotateRight : faBroom"></fa-icon>
+    </app-button>
+
+    <app-button
+      *ngIf="state === 'pending'"
+      dataTestId="signMsgBtn"
+      (onClick)="handleSubmit()"
+      [disabled]="!message.trim()"
+    >
+      <fa-icon [icon]="faPen"></fa-icon> Sign
+    </app-button>
+  </div>
+
+  <app-output-container [className]="'p-0 border-0'">
+    <div *ngIf="state === 'pending'">
+      <textarea
+        [(ngModel)]="message"
+        placeholder="Write message here"
+        class="resize-none w-full h-32 rounded-lg focus:outline-none focus:border-blue-500 p-2 border border-gray-300"
+      ></textarea>
+    </div>
+
+    <div *ngIf="state === 'success' && signedMessage">
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col w-full">
+          <div class="flex flex-row w-full gap-2 mb-2">
+            <app-label>Signature:</app-label>
+            <textarea
+              readonly
+              class="flex-1 resize-none outline-none bg-transparent border border-gray-300 rounded p-2"
+              rows="2"
+              [value]="signature"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-row w-full gap-2 mb-2">
+            <app-label>Encoded message:</app-label>
+            <p class="flex-1 p-2 bg-gray-50 rounded">{{ encodedMessage }}</p>
+          </div>
+
+          <div class="flex flex-row w-full gap-2">
+            <app-label>Decoded message:</app-label>
+            <textarea
+              readonly
+              class="flex-1 resize-none outline-none text-green-700 bg-transparent border border-gray-300 rounded p-2"
+              rows="1"
+              [value]="decodedMessage"
+              placeholder="Decoded message"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="state === 'error'" class="text-red-600">
+      <p>Message could not be signed</p>
+      <p>Reason: An error occurred during signing</p>
+    </div>
+  </app-output-container>
+</div>

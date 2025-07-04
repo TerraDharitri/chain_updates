@@ -1,0 +1,54 @@
+:root {
+  // Default all the time
+
+  --box-shadow: 0 0.05rem 0.2rem 0.1rem rgb(27 70 194 / 12%);
+  --drop-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  --transition: all 0.2s ease-in-out;
+  --border-radius-high: 24px;
+  --border-radius-medium: 16px;
+  --border-radius-low: 8px;
+  --headings-font-family: #{$headings-font-family};
+  --font-headings-regular: 'Roobert Regular', 'Inter', Roboto, 'Helvetica Neue',
+    'Noto Sans', 'Liberation Sans', sans-serif;
+  --font-headings-semibold: 'Roobert SemiBold', 'Inter', Roboto,
+    'Helvetica Neue', 'Noto Sans', 'Liberation Sans', sans-serif;
+
+  --scrollbar-color-thumb: var(--neutral-700);
+  --scrollbar-color-thumb-hover: var(--neutral-600);
+  --scrollbar-color-track: transparent;
+
+  // Custom Color pallete
+  // Custom Common Variables
+  --muted: var(--neutral-400);
+  --muted-rgb: 212, 212, 212;
+  --card-bg: #{$card-bg};
+  --card-bg-rgb: 18, 18, 18;
+
+  --table-header: #1d1d1d;
+  --neutral-800-opacity-60: rgba(38, 38, 38, 0.6);
+  --border-color: rgba(38, 38, 38, 0.8);
+
+  --map-bg: #17201f;
+  --yellow-spotlight: #fcd64e;
+  --primary: #{$primary} !important;
+  // Project Specific Variables
+
+  // Overrides
+}
+
+// Temporary in order to avoid interferences from other packages
+.explorer {
+  --primary: #{$primary};
+  --primary-light: #{$primary-300};
+  --border-color: #{$border-color};
+  --card-bg: #{$card-bg};
+  --black: #{$black};
+  --light: #{$light};
+  --secondary: #{$secondary};
+  --card-bg: #{$card-bg};
+  --border-color: #{$border-color};
+  --warning: #{$warning};
+  --btn-blue: #{$primary};
+  --brown: #{$neutral-700};
+  --link-hover-color: #{$link-hover-color};
+}

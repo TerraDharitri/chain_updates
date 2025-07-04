@@ -1,0 +1,21 @@
+<app-output-container [isLoading]="isLoading">
+  <div class="flex flex-col text-black" data-testid="topInfo">
+    <p class="truncate">
+      <app-label>Address: </app-label>
+      <span data-testid="accountAddress">{{ address }}</span>
+    </p>
+
+    <p>
+      <app-label>Shard: </app-label> {{ shard }}
+    </p>
+
+    <p>
+      <app-label>Balance: </app-label>
+      <span data-testid="balance">{{ balance }}</span>
+    </p>
+
+    <p>
+      <app-label>Nonce: </app-label> {{ nonce }}
+    </p>
+  </div>
+</app-output-container> 

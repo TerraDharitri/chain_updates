@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "npm run build:gateway && npm run build:gas-service && npm run build:its && npm run build:token-manager && npm run build:ping-pong && npm run build:governance && npm run build:its-proxy",
+    "build:cgp": "npm run build:gateway && npm run build:gas-service",
+    "build:gateway": "cd gateway && mxpy contract build",
+    "build:gas-service": "cd gas-service && mxpy contract build",
+    "build:its": "cd interchain-token-service && mxpy contract build",
+    "build:token-manager": "cd token-manager && mxpy contract build",
+    "build:governance": "cd governance && mxpy contract build",
+    "build:ping-pong": "cd ping-pong-interchain && mxpy contract build",
+    "build:its-proxy": "cd interchain-token-service-proxy && mxpy contract build",
+    "test": "vitest run",
+    "test:cargo": "cargo test",
+    "test:all": "npm run build && npm run test && npm run test:cargo",
+    "typecheck": "tsc --noEmit",
+    "interact:devnet": "CHAIN=devnet tsx interact/index.ts",
+    "interact:testnet": "CHAIN=testnet tsx interact/index.ts",
+    "interact:mainnet": "CHAIN=mainnet tsx interact/index.ts"
+  },
+  "devDependencies": {
+    "@terradharitri/sdk-core": "^12.5.0",
+    "@terradharitri/sdk-wallet": "^4.2.0",
+    "@types/keccak": "^3.0.3",
+    "@types/node": "^18.16.18",
+    "ethers": "^6.9.0",
+    "commander": "^11.1.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4",
+    "vitest": "^0.33.0",
+    "xsuite": "0.0.101",
+    "keccak": "^3.0.3",
+    "@cosmjs/cosmwasm-stargate": "^0.32.4",
+    "prettier": "^3.4.2"
+  }
+}

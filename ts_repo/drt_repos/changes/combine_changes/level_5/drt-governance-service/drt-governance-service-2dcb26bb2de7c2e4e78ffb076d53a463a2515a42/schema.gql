@@ -1,0 +1,212 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+interface IAssets {
+  website: String
+  description: String
+  status: String
+  pngUrl: String
+  svgUrl: String
+  lockedAccounts: [String]
+  extraTokens: [String]
+}
+
+interface IRoles {
+  address: String
+  canMint: Boolean
+  canBurn: Boolean
+  roles: [String]
+}
+
+type AssetsModel implements IAssets {
+  website: String
+  description: String
+  status: String
+  pngUrl: String
+  svgUrl: String
+  lockedAccounts: [String]
+  extraTokens: [String]
+}
+
+type RolesModel implements IRoles {
+  address: String
+  canMint: Boolean
+  canBurn: Boolean
+  roles: [String]
+}
+
+type DcdtToken implements IDcdtToken {
+  identifier: String!
+  name: String!
+  ticker: String!
+  owner: String!
+  minted: String
+  burnt: String
+  initialMinted: String
+  decimals: Float!
+  price: String
+  supply: String
+  circulatingSupply: String
+  assets: IAssets
+  transactions: Int!
+  accounts: Int!
+  isPaused: Boolean!
+  canUpgrade: Boolean!
+  canMint: Boolean!
+  canBurn: Boolean!
+  canChangeOwner: Boolean!
+  canPause: Boolean!
+  canFreeze: Boolean!
+  canWipe: Boolean!
+  roles: IRoles
+  type: String
+  balance: String
+}
+
+interface IDcdtToken {
+  identifier: String!
+  name: String!
+  ticker: String!
+  owner: String!
+  minted: String
+  burnt: String
+  initialMinted: String
+  decimals: Float!
+  price: String
+  supply: String
+  circulatingSupply: String
+  assets: IAssets
+  transactions: Int!
+  accounts: Int!
+  isPaused: Boolean!
+  canUpgrade: Boolean!
+  canMint: Boolean!
+  canBurn: Boolean!
+  canChangeOwner: Boolean!
+  canPause: Boolean!
+  canFreeze: Boolean!
+  canWipe: Boolean!
+  roles: IRoles
+  type: String
+  balance: String
+}
+
+type ProposalVotes {
+  upVotes: String!
+  downVotes: String!
+  downVetoVotes: String!
+  abstainVotes: String!
+  totalVotes: String!
+  upPercentage: String!
+  downPercentage: String!
+  downVetoPercentage: String!
+  abstainPercentage: String!
+  quorum: String!
+}
+
+type GovernanceAction {
+  gasLimit: Int!
+  destAddress: String!
+  functionName: String!
+  arguments: [String!]!
+}
+
+type DcdtTokenPaymentModel {
+  tokenIdentifier: String!
+  tokenNonce: Float!
+  amount: String!
+}
+
+type GovernanceProposalModel {
+  contractAddress: String!
+  proposalId: Float!
+  proposer: String!
+  actions: [GovernanceAction!]!
+  description: GovernanceDescriptionVersions!
+  feePayment: DcdtTokenPaymentModel!
+  minimumQuorumPercentage: String!
+  votingDelayInBlocks: Int!
+  votingPeriodInBlocks: Int!
+  withdrawPercentageDefeated: Int!
+  totalQuorum: String!
+  proposalStartBlock: Int!
+  status: String!
+  rootHash: String!
+  votes: ProposalVotes!
+  hasVoted: Boolean!
+  userVoteType: Float!
+  userVotingPower: String!
+}
+
+union GovernanceDescriptionVersions = DescriptionV0 | DescriptionV1
+
+type DescriptionV0 {
+  title: String!
+  strapiId: Int!
+  version: Float!
+}
+
+type DescriptionV1 {
+  title: String!
+  strapiId: Int!
+  version: Float!
+  shortDescription: String!
+}
+
+type TransactionModel {
+  nonce: Float!
+  value: String!
+  sender: String!
+  receiver: String!
+  senderUsername: String
+  receiverUsername: String
+  gasPrice: Float!
+  gasLimit: Float!
+  data: String
+  chainID: String!
+  version: Float!
+  options: Float
+  guardian: String
+  signature: String
+  guardianSignature: String
+}
+
+type Query {
+  vote(contractAddress: String!, proposalId: Float!, vote: Float!): TransactionModel!
+  governanceContracts(identifiers: [String!], contracts: [String!], type: String): [GovernanceTypes!]!
+  maintenance: Boolean!
+}
+
+union GovernanceTypes = GovernanceTokenSnapshotContract | GovernanceEnergyContract
+
+type GovernanceTokenSnapshotContract {
+  address: String!
+  shard: Int!
+  minFeeForPropose: String!
+  quorum: String!
+  votingDelayInBlocks: Int!
+  votingPeriodInBlocks: Int!
+  feeToken: DcdtToken!
+  withdrawPercentageDefeated: Int!
+  proposals(proposalId: Int): [GovernanceProposalModel!]!
+  vetoPercentageLimit: Int!
+  votingPowerDecimals: Int!
+}
+
+type GovernanceEnergyContract {
+  address: String!
+  shard: Int!
+  minFeeForPropose: String!
+  quorum: String!
+  votingDelayInBlocks: Int!
+  votingPeriodInBlocks: Int!
+  feeToken: DcdtToken!
+  withdrawPercentageDefeated: Int!
+  proposals(proposalId: Int): [GovernanceProposalModel!]!
+  vetoPercentageLimit: Int!
+  votingPowerDecimals: Int!
+  minEnergyForPropose: String!
+  feesCollectorAddress: String!
+  energyFactoryAddress: String!
+}

@@ -1,0 +1,20 @@
+export const EscrowLockFundsEventMock = {
+    identifier: 'lockFunds',
+    address: 'drt1qqqqqqqqqqqqqpgqeh4yv09rmyg4xgn5ma03mvm4v5gndu8w2jps4r4jmd',
+    data: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAALWE1FWC1mZGEzNTUAAAAAAAAAAQAAAAoVLQLH4Ur2gAAAAAAAAAAABaA=',
+    topics: ['bG9ja19mdW5kc19ldmVudA=='],
+};
+
+export const EscrowWithdrawEventMock = {
+    identifier: 'withdraw',
+    address: 'drt1qqqqqqqqqqqqqpgqeh4yv09rmyg4xgn5ma03mvm4v5gndu8w2jps4r4jmd',
+    data: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAALWE1FWC1mZGEzNTUAAAAAAAAAAQAAAAoVLQLH4Ur2gAAAAAAAC1hNRVgtZmRhMzU1AAAAAAAAAAEAAAAKFS0Cx+FK9oAAAAAAAAAAAAWg',
+    topics: ['d2l0aGRyYXdfZXZlbnQ='],
+};
+
+export const EscrowCancelTransferEventMock = {
+    identifier: 'cancelTransfer',
+    address: 'drt1qqqqqqqqqqqqqpgqeh4yv09rmyg4xgn5ma03mvm4v5gndu8w2jps4r4jmd',
+    data: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAALWE1FWC1mZGEzNTUAAAAAAAAAAQAAAAoVLQLH4Ur2gAAAAAAAAAAABaA=',
+    topics: ['Y2FuY2VsX3RyYW5zZmVyX2V2ZW50'],
+};

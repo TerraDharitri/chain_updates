@@ -1,0 +1,54 @@
+// .dh   - Default Hidden
+// .q    - Qualified
+// .qv   - Qualified Visible
+// .nq   - Not Qualified
+// .nqv  - Not Qualified Visible
+.auction-list-table {
+  overflow-y: clip;
+  table {
+    overflow-y: clip;
+  }
+
+  tfoot {
+    td {
+      border-top-width: 1px;
+    }
+  }
+
+  .th-auction-nodes,
+  .th-dropped,
+  .th-qualified {
+    width: 12.5%;
+  }
+
+  tr {
+    &.dh {
+      visibility: collapse;
+      td {
+        border-bottom-width: 0;
+      }
+      &.q.qv,
+      &.nq.nqv {
+        visibility: visible;
+        td {
+          border-bottom-width: 1px;
+        }
+      }
+    }
+  }
+}
+
+body.explorer.webkit {
+  .auction-list-table {
+    tr {
+      &.dh {
+        display: none;
+        visibility: visible;
+        &.q.qv,
+        &.nq.nqv {
+          display: table-row;
+        }
+      }
+    }
+  }
+}

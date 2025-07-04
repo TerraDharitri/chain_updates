@@ -1,0 +1,181 @@
+network: 'testnet'
+metaChainShardId: 4294967295
+api:
+  public: true
+  publicPort: 3001
+  private: true
+  privatePort: 4001
+  websocket: true
+cron:
+  cacheWarmer: true
+  fastWarm: true
+  queueWorker: true
+  elasticUpdater: false
+flags:
+  useRequestCaching: true
+  useKeepAliveAgent: true
+  useTracing: false
+  useRequestLogging: false
+  useVmQueryTracing: false
+  processNfts: true
+  collectionPropertiesFromGateway: false
+features:
+  eventsNotifier:
+    enabled: false
+    port: 5674
+    url: 'amqp://guest:guest@127.0.0.1:5672'
+    exchange: 'all_events'
+    queue: 'api-process-logs-and-events'
+  guestCaching:
+    enabled: false
+    hitsThreshold: 100
+    ttl: 12
+  transactionPool:
+    enabled: false
+  transactionPoolWarmer:
+    enabled: false
+    cronExpression: '*/5 * * * * *'
+    ttlInSeconds: 60
+  updateCollectionExtraDetails:
+    enabled: false
+  updateAccountExtraDetails:
+    enabled: false
+  marketplace:
+    enabled: false
+    serviceUrl: 'https://testnet-nfts-graph.multiversx.com/graphql'
+  exchange:
+    enabled: false
+    serviceUrl: 'https://testnet-graph.xexchange.com/graphql'
+  dataApi:
+    enabled: false
+    serviceUrl: 'https://testnet-data-api.multiversx.com'
+  auth:
+    enabled: false
+    maxExpirySeconds: 86400
+    acceptedOrigins:
+      - ''
+    admins:
+      - ''
+    jwtSecret: ''
+  stakingV4:
+    enabled: false
+    cronExpression: '*/5 * * * * *'
+    activationEpoch: 1043
+  chainAndromeda:
+    enabled: false
+    activationEpoch: 4
+  nodeEpochsLeft:
+    enabled: false
+  transactionProcessor:
+    enabled: false
+    maxLookBehind: 100
+  transactionCompleted:
+    enabled: false
+    maxLookBehind: 100
+    logLevel: 'Error'
+  transactionBatch:
+    enabled: true
+    maxLookBehind: 100
+  deepHistory:
+    enabled: false
+    url: ''
+  elasticCircuitBreaker:
+    enabled: false
+    durationThresholdMs: 5000
+    failureCountThreshold: 5
+    resetTimeoutMs: 30000
+  statusChecker:
+    enabled: false
+    thresholds:
+      tokens: 100
+      nodes: 300
+      providers: 30
+      tokenSupplyCount: 1
+      tokenAssets: 1
+      tokenAccounts: 200
+      tokenTransactions: 100
+      nodeValidators: 3500
+  nftScamInfo:
+    enabled: false
+  processNfts:
+    enabled: false
+    nftQueueName: 'api-process-nfts'
+    deadLetterQueueName: 'api-process-nfts-dlq'
+  tps:
+    enabled: false
+    maxLookBehindNonces: 100
+  nodesFetch:
+    enabled: true
+    serviceUrl: 'https://testnet-api.multiversx.com'
+  tokensFetch:
+    enabled: true
+    serviceUrl: 'https://testnet-api.multiversx.com'
+  providersFetch:
+    enabled: true
+    serviceUrl: 'https://testnet-api.multiversx.com'
+  assetsFetch:
+    enabled: true
+    assetesUrl: 'https://tools.multiversx.com/assets-cdn'
+image:
+  width: 600
+  height: 600
+  type: 'png'
+aws:
+  s3KeyId: ''
+  s3Secret: ''
+  s3Bucket: 'testnet-media.elrond.com'
+  s3Region: ''
+urls:
+  self: 'https://testnet-api.multiversx.com'
+  elastic:
+    - 'https://testnet-index.multiversx.com'
+  gateway:
+    - 'https://testnet-gateway.multiversx.com'
+  verifier: 'https://play-api.multiversx.com'
+  redis: '127.0.0.1'
+  rabbitmq: 'amqp://127.0.0.1:5672'
+  providers: 'https://testnet-delegation-api.multiversx.com/providers'
+  delegation: 'https://testnet-delegation-api.multiversx.com'
+  media: 'https://testnet-media.elrond.com'
+  tmp: '/tmp'
+  ipfs: 'https://ipfs.io/ipfs'
+  socket: 'testnet-socket-api.multiversx.com'
+  maiarId: 'https://testnet-id-api.multiversx.com'
+database:
+  enabled: false
+  url: 'mongodb://127.0.0.1:27017/api?authSource=admin'
+  type: 'mysql'
+  host: 'localhost'
+  port: 3306
+  username: 'root'
+  password: 'root'
+  database: 'api'
+indexer:
+  type: 'elastic'
+  maxPagination: 10000
+caching:
+  cacheTtl: 6
+  processTtl: 600
+  poolLimit: 50
+  cacheDuration: 3
+keepAliveTimeout:
+  downstream: 61000
+  upstream: 60000
+contracts:
+  esdt: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u'
+  auction: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqplllst77y4l'
+  staking: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqllls0lczs7'
+  delegationManager: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqylllslmq6y6'
+  delegation: 'erd1qqqqqqqqqqqqqpgqp699jngundfqw07d8jzkepucvpzush6k3wvqyc44rx'
+  metabonding: 'erd1qqqqqqqqqqqqqpgq2l9w0qv98htrhdwuz6ppsw47tn3hhff3d8ssqqjpvu'
+inflation:
+  - 1952123
+  - 1746637
+  - 1541150
+  - 1335663
+  - 1130177
+  - 924690
+  - 719203
+nftProcess:
+  parallelism: 1
+  maxRetries: 3

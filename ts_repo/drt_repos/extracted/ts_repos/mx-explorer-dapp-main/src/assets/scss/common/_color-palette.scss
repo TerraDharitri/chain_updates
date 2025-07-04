@@ -1,0 +1,149 @@
+@import './../../../../node_modules/bootstrap/scss/functions';
+
+@import './variables/bootstrap-variables';
+
+@import './../../../../node_modules/bootstrap/scss/maps';
+@import './../../../../node_modules/bootstrap/scss/mixins';
+@import './../../../../node_modules/bootstrap/scss/utilities';
+
+// Possible entries
+
+// $slates,
+// $zincs,
+// $neutrals,
+// $stones,
+// $reds,
+// $oranges,
+// $ambers,
+// $yellows,
+// $limes,
+// $greens,
+// $emeralds,
+// $teals,
+// $cyans,
+// $skys,
+// $blues,
+// $indigos,
+// $violets,
+// $purples,
+// $fuchsias,
+// $pinks,
+// $roses,
+// $primarys,
+
+// Add css variables for the main palette colors
+$main-colors: map-merge-multiple(
+  $neutrals,
+  $reds,
+  $oranges,
+  $yellows,
+  $greens,
+  $teals,
+  $blues,
+  $violets,
+  $purples,
+  $primarys,
+  $cyans,
+  $ambers
+);
+$main-colors-rgb: map-loop($main-colors, to-rgb, '$value');
+
+// Generate helper classes like text-primary-200 and bg-primary-500
+$helper-colors: map-merge-multiple(
+  $neutrals,
+  $primarys,
+  $reds,
+  $greens,
+  $oranges,
+  $blues,
+  $cyans,
+  $ambers
+);
+$helper-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
+
+$helper-text-colors-rgb: map-loop($helper-colors, rgba-css-var, '$key', 'text');
+$helper-bg-colors-rgb: map-loop($helper-colors, rgba-css-var, '$key', 'bg');
+
+$utilities: map-merge-multiple(
+  $utilities,
+  (
+    'color':
+      map-merge(
+        map-get($utilities, 'color'),
+        (
+          property: color,
+          class: text,
+          local-vars: (
+            'text-opacity': 1
+          ),
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'color'), 'values'),
+              ($helper-text-colors-rgb)
+            )
+        )
+      )
+  ),
+  (
+    'background-color':
+      map-merge(
+        map-get($utilities, 'background-color'),
+        (
+          property: background-color,
+          class: bg,
+          local-vars: (
+            'bg-opacity': 1
+          ),
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'background-color'), 'values'),
+              ($helper-bg-colors-rgb)
+            )
+        )
+      )
+  ),
+  (
+    'opacity':
+      map-merge(
+        map-get($utilities, 'opacity'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'opacity'), 'values'),
+              ($opacities)
+            )
+        )
+      )
+  ),
+  (
+    'bg-opacity':
+      map-merge(
+        map-get($utilities, 'bg-opacity'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'bg-opacity'), 'values'),
+              ($opacities)
+            )
+        )
+      )
+  )
+);
+
+:root {
+  // Note: Custom variable values only support SassScript inside `#{}`.
+
+  // Colors
+  //
+  // Generate scss variables for used palettes
+
+  @each $color, $value in $main-colors {
+    --#{$prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in $main-colors-rgb {
+    --#{$prefix}#{$color}-rgb: #{$value};
+  }
+}
+
+@import './../../../../node_modules/bootstrap/scss/utilities/api';

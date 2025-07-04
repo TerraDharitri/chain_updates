@@ -1,0 +1,8 @@
+.page-hero {
+  &.applications-stats,
+  &.transactions-stats {
+    .card-header {
+      padding-bottom: 0 !important;
+    }
+  }
+}

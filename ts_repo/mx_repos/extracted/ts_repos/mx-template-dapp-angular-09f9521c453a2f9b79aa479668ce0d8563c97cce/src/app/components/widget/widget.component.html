@@ -1,0 +1,8 @@
+<app-card
+  [title]="widgetConfig.title"
+  [description]="widgetConfig.description"
+  [reference]="widgetConfig.reference"
+  [anchor]="widgetConfig.anchor"
+>
+  <ng-container *ngIf="widgetConfig.widget" [ngComponentOutlet]="widgetConfig.widget"></ng-container>
+</app-card> 

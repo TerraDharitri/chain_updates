@@ -1,0 +1,21 @@
+{
+  "DharitrI": {
+    "dcdtNftAddress": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqzlllsd5j0s2",
+    "nftMarketplaceAddress": "drt1qqqqqqqqqqqqqpgqra34kjj9zu6jvdldag72dyknnrh2ts9aj0wquf2mrf",
+    "issueNftCost": 50000000000000000,
+    "chainID": "1",
+    "version": 1,
+    "metaChainShardId": 4294967295,
+    "wegld": "WEGLD-bd4d79",
+    "mex": "MEX-455c57",
+    "lkmex": "LKMEX-aab910",
+    "usdc": "USDC-c76f1f",
+    "burnNftActivationEpoch": 795
+  },
+  "fileStorage": {
+    "host": "ipfs.infura.io",
+    "port": "5001",
+    "protocol": "https",
+    "cdnUrl": "https://ipfs.io/ipfs/"
+  }
+}

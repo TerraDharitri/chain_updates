@@ -1,0 +1,12 @@
+{
+    "dharitri": {
+        "chainID": "T"
+    },
+    "scAddress": {
+        "lockedAssetAddress": "drt1qqqqqqqqqqqqqpgqsn34ftz2g7822ta0dq3ddd57frup220q295q7jydjk",
+        "simpleLockAddress": [
+            "drt1qqqqqqqqqqqqqpgq0yyzn9yuk6jetcjy5zdzlum83hgsvq6r295qzy7q7p"
+        ],
+        "simpleLockEnergy": "drt1qqqqqqqqqqqqqpgq887a04xhpjnuzwrn5pfhygxtptf43q4l295qpesf8j"
+    }
+}

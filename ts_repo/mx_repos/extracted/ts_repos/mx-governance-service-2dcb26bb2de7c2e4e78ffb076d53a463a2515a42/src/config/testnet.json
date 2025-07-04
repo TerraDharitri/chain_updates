@@ -1,0 +1,12 @@
+{
+    "multiversx": {
+        "chainID": "T"
+    },
+    "scAddress": {
+        "lockedAssetAddress": "erd1qqqqqqqqqqqqqpgqsn34ftz2g7822ta0dq3ddd57frup220q295qrwnw3g",
+        "simpleLockAddress": [
+            "erd1qqqqqqqqqqqqqpgq0yyzn9yuk6jetcjy5zdzlum83hgsvq6r295qlcfral"
+        ],
+        "simpleLockEnergy": "erd1qqqqqqqqqqqqqpgq887a04xhpjnuzwrn5pfhygxtptf43q4l295qu982yv"
+    }
+}

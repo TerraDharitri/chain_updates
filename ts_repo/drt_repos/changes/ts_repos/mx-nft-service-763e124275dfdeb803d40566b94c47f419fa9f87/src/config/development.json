@@ -1,0 +1,18 @@
+{
+  "DharitrI": {
+    "esdtNftAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+    "nftMarketplaceAddress": "erd1qqqqqqqqqqqqqpgq9ac9zvc4ugzrgqaqjqgjdhvxxtx7wu2eu00sxezym3",
+    "issueNftCost": 50000000000000000,
+    "wegld": "WEGLD-d7c6bb",
+    "mex": "MEX-dc289c",
+    "lkmex": "LKMEX-3b7d9a",
+    "usdc": "USDC-8d4068",
+    "burnNftActivationEpoch": 0
+  },
+  "fileStorage": {
+    "host": "ipfs.infura.io",
+    "port": "5001",
+    "protocol": "https",
+    "cdnUrl": "https://ipfs.io/ipfs/"
+  }
+}

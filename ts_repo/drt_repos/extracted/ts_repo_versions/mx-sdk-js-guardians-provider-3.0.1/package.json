@@ -1,0 +1,31 @@
+{
+  "name": "@multiversx/sdk-guardians-provider",
+  "version": "3.0.1",
+  "description": "Co-Signing provider for MultiversX DApps",
+  "main": "out/index.js",
+  "types": "out/index.d.js",
+  "files": [
+    "out/**/*"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "pretest": "npm run compile",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "prepare": "npm run compile"
+  },
+  "author": "MultiversX",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "17.0.23",
+    "typescript": "5.0.3",
+    "@multiversx/sdk-core": ">= 14.0.1",
+    "axios": "1.6.5"
+  },
+  "peerDependencies": {
+    "@multiversx/sdk-core": ">= 14.0.1",
+    "axios": ">= 1.6.5"
+  }
+}

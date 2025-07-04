@@ -1,0 +1,33 @@
+{
+    "multiversx": {
+        "chainID": "D"
+    },
+    "scAddress": {
+        "lockedAssetAddress": "erd1qqqqqqqqqqqqqpgqxsy4k8fkqvllcvyrwhf80t97kyd32qfx0n4stue7cn",
+        "simpleLockAddress": [
+            "erd1qqqqqqqqqqqqqpgq2l97gw2j4wnlem4y2rx7dudqlssjtwpu0n4sd0u3w2"
+        ],
+        "simpleLockEnergy": "erd1qqqqqqqqqqqqqpgqfsdhdyyuyxlflc43axlvderg84ry7cfr0n4sf0nw6v"
+    },
+    "governance": {
+        "oldEnergy": {
+            "cvadratic": [
+            ]
+        },
+        "energy": {
+            "cvadratic": [
+                "erd1qqqqqqqqqqqqqpgqr632pd7r5wwflhcd4x9nlct2p3t56ss90n4sddca0m"
+            ]
+        },
+        "tokenSnapshot": {
+            "linear": [
+                "erd1qqqqqqqqqqqqqpgqk6wa4v0jhkcvr2fergtelh5kkyyw0hnmczfsr2mwce",
+                "erd1qqqqqqqqqqqqqpgqahutnw3r4s95gxz4keecvlyyl3wlsu2mdthq06swcp"
+            ],
+            "cvadratic": [
+                "erd1qqqqqqqqqqqqqpgqlmdp0vtxw3ahv0afnc2g7yra7x9ngmk8czfskcgkwr",
+                "erd1qqqqqqqqqqqqqpgqh0n6p4aeqkcreextvx9m7xptfy0a9lzzczfszamh3a"
+            ]
+        }
+    }
+}

@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "gas-service",
+    "gas-service/meta",
+    "gateway",
+    "gateway/meta",
+    "interchain-token-service",
+    "interchain-token-service/meta",
+    "ping-pong-interchain",
+    "ping-pong-interchain/meta",
+    "token-manager",
+    "token-manager/meta",
+    "governance",
+    "governance/meta",
+    "interchain-token-service-proxy",
+    "interchain-token-service-proxy/meta"
+]

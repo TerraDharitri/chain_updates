@@ -1,0 +1,17 @@
+.dapp-core-swap-form {
+  .dapp-core-swap-select-container {
+    .dapp-core-swap-select-option {
+      .token-symbol {
+        width: 3.25rem;
+        height: 3.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2b2d2e;
+        border-radius: 50%;
+        flex-shrink: 0;
+        border: 1px solid #49494d;
+      }
+    }
+  }
+}

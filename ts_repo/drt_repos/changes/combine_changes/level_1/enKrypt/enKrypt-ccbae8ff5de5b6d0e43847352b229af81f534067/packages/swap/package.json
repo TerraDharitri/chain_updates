@@ -1,0 +1,66 @@
+{
+  "name": "@enkryptcom/swap",
+  "version": "0.0.3",
+  "description": "Swap library for enkrypt",
+  "type": "module",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "publishConfig": {
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "lint": "prettier --write .",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "dependencies": {
+    "@enkryptcom/types": "workspace:^",
+    "@enkryptcom/utils": "workspace:^",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.2",
+    "bignumber.js": "^9.3.0",
+    "eventemitter3": "^5.0.1",
+    "isomorphic-ws": "^5.0.0",
+    "json-rpc-2.0": "^1.7.0",
+    "lodash": "^4.17.21",
+    "rango-sdk-basic": "^0.1.67",
+    "reconnecting-websocket": "^4.4.0",
+    "uuid": "^11.1.0",
+    "web3-eth": "^1.10.4",
+    "web3-utils": "^1.10.4",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.24",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-module-resolver": "^1.5.0",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "8.33.0",
+    "vitest": "^3.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enkryptcom/enKrypt/tree/main/packages/swap"
+  },
+  "keywords": [],
+  "author": "kvhnuke",
+  "license": "MIT"
+}

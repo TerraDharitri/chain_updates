@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup env
+        id: node-version
+        run: |
+          docker build -t enkrypt-build-container .
+          echo "NODE_VERSION=$(docker run --rm -v `pwd`:/home:rw enkrypt-build-container /bin/bash -c "node --version")" >> $GITHUB_OUTPUT
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - name: Cache yarn modules
+        uses: actions/cache@v4
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: yarn install
+        run: docker run --rm -v `pwd`:/home:rw --user "$(id -u):$(id -g)" enkrypt-build-container /bin/bash -c "yarn install --silent"
+
+      - name: Get release tag
+        id: get_release_tag
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+
+      - name: build
+        env:
+          VIRUS_TOTAL_API_KEY: ${{secrets.VIRUS_TOTAL_API_KEY}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          mkdir release
+          docker run --rm --user "$(id -u):$(id -g)" -v `pwd`:/home:rw enkrypt-build-container /bin/bash -c "yarn build:all"
+          docker run --rm --user "$(id -u):$(id -g)" -v `pwd`:/home:rw enkrypt-build-container /bin/bash -c "cd packages/extension && yarn build:chrome && yarn zip"
+          mv packages/extension/dist/release.zip release/enkrypt-chrome-edge-${{ steps.get_release_tag.outputs.VERSION }}.zip
+          docker run --rm --user "$(id -u):$(id -g)" -v `pwd`:/home:rw enkrypt-build-container /bin/bash -c "cd packages/extension && yarn build:opera && yarn zip"
+          mv packages/extension/dist/release.zip release/enkrypt-opera-${{ steps.get_release_tag.outputs.VERSION }}.zip
+          docker run --rm --user "$(id -u):$(id -g)" -v `pwd`:/home:rw enkrypt-build-container /bin/bash -c "cd packages/extension && yarn build:firefox && yarn zip"
+          mv packages/extension/dist/release.zip release/enkrypt-firefox-${{ steps.get_release_tag.outputs.VERSION }}.xpi
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: ${{ steps.get_release_tag.outputs.VERSION }}
+          files: |
+            release/*
