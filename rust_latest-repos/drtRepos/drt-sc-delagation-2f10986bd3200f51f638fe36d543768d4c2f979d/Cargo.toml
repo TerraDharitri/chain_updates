@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+  "node-storage",
+  "user-fund-storage",
+  
+  "auction-mock",
+  "auction-mock/meta",
+  "latest",
+  "latest/meta",
+
+  "interact",
+]

@@ -1,0 +1,34 @@
+[package]
+name = "dharitri-sc-meta-lib"
+version = "1.18.2"
+edition = "2021"
+
+authors = ["contact@dharitri.org"]
+license = "GPL-3.0-only"
+readme = "README.md"
+repository = "https://github.com/TerraDharitri/drt-rs-sdk"
+homepage = "https://dharitri.org/"
+documentation = "https://docs.dharitri.org/"
+description = "Dharitri smart contract meta-programming tools and build system"
+keywords = ["dharitri", "blockchain", "contract", "debug"]
+categories = ["cryptography::cryptocurrencies", "development-tools::debugging"]
+
+[dependencies]
+clap = { version = "4.4.7", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rustc_version = "0.4"
+toml = { version = "0.8.6", features = ["preserve_order"] }
+colored = "3.0"
+lazy_static = "1.4.0"
+convert_case = "0.8"
+hex = "0.4"
+wasmparser = "0.227"
+wasmprinter = "0.227"
+semver = "1.0.20"
+wat = "1.217.0"
+
+[dependencies.dharitri-sc]
+version = "=1.18.2"
+path = "../base"
+features = ["alloc", "num-bigint"]

@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+
+members = [
+  "chain-config",
+  "chain-config/meta",
+  "chain-factory",
+  "chain-factory/meta",
+  "fee-market",
+  "fee-market/meta",
+  "header-verifier",
+  "header-verifier/meta",
+  "sov-dcdt-safe",
+  "sov-dcdt-safe/meta",
+  "drt-dcdt-safe",
+  "drt-dcdt-safe/meta",
+  "testing-sc",
+  "testing-sc/meta",
+  "interactor",
+  "common/token-whitelist"
+]

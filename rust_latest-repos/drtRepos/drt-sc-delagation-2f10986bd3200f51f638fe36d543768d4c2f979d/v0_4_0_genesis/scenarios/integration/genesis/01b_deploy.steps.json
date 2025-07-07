@@ -1,0 +1,84 @@
+{
+    "name": "init",
+    "steps": [
+        {
+            "step": "setState",
+            "newAddresses": [
+                {
+                    "creatorAddress": "address:node_address",
+                    "creatorNonce": "0",
+                    "newAddress": "sc:delegation"
+                }
+            ]
+        },
+        {
+            "step": "scDeploy",
+            "txId": "deploy-1",
+            "tx": {
+                "from": "address:node_address",
+                "value": "0",
+                "contractCode": "file:../../../output/delegation_v0_4_genesis.wasm",
+                "arguments": [
+                    "sc:auction",
+                    "1",
+                    "0",
+                    "50",
+                    "60"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "set-stake-per-node",
+            "tx": {
+                "from": "address:node_address",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "setStakePerNode",
+                "arguments": [
+                    "111,000,000,000,000"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "set-fee",
+            "tx": {
+                "from": "address:node_address",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "setServiceFee",
+                "arguments": [
+                    "5000"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        }
+    ]
+}

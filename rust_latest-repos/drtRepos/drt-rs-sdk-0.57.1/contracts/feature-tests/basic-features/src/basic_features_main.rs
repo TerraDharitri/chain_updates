@@ -1,0 +1,116 @@
+#![no_std]
+
+dharitri_sc::imports!();
+
+pub mod basic_features_proxy;
+pub mod big_num_methods;
+pub mod big_num_operators;
+pub mod block_info_features;
+pub mod blockchain_api_features;
+pub mod codec_err_test;
+pub mod crypto_features;
+pub mod echo;
+pub mod echo_managed;
+pub mod rewa_decimal;
+pub mod elliptic_curve_features;
+pub mod event_features;
+pub mod macro_features;
+pub mod managed_address_features;
+pub mod managed_buffer_features;
+pub mod managed_decimal_features;
+pub mod managed_vec_features;
+pub mod non_zero_features;
+pub mod small_num_overflow_test_ops;
+pub mod special_roles_from_system_account;
+pub mod storage_direct_load;
+pub mod storage_direct_store;
+pub mod storage_mapper_address_to_id;
+pub mod storage_mapper_fungible_token;
+pub mod storage_mapper_get_at_address;
+pub mod storage_mapper_linked_list;
+pub mod storage_mapper_map;
+pub mod storage_mapper_map_storage;
+pub mod storage_mapper_non_fungible_token;
+pub mod storage_mapper_queue;
+pub mod storage_mapper_set;
+pub mod storage_mapper_single;
+pub mod storage_mapper_single_locked;
+pub mod storage_mapper_token_attributes;
+pub mod storage_mapper_unique_id_mapper;
+pub mod storage_mapper_unordered_set;
+pub mod storage_mapper_vec;
+pub mod storage_mapper_whitelist;
+pub mod storage_raw_api_features;
+pub mod struct_eq;
+pub mod token_identifier_features;
+pub mod types;
+
+#[dharitri_sc::contract]
+pub trait BasicFeatures:
+    big_num_methods::BigIntMethods
+    + big_num_operators::BigIntOperators
+    + block_info_features::BlockInfoFeatures
+    + blockchain_api_features::BlockchainApiFeatures
+    + codec_err_test::CodecErrorTest
+    + crypto_features::CryptoFeatures
+    + echo::EchoTypes
+    + echo_managed::EchoManagedTypes
+    + elliptic_curve_features::EllipticCurveFeatures
+    + event_features::EventFeatures
+    + macro_features::Macros
+    + managed_address_features::ManagedAddressFeatures
+    + managed_buffer_features::ManagedBufferFeatures
+    + managed_vec_features::ManagedVecFeatures
+    + storage_raw_api_features::StorageRawApiFeatures
+    + storage_direct_load::StorageLoadFeatures
+    + storage_direct_store::StorageStoreFeatures
+    + special_roles_from_system_account::RetrieveSpecialRoles
+    + storage_mapper_single_locked::SingleValueMapperLockedFeatures
+    + storage_mapper_address_to_id::AddressToIdMapperFeatures
+    + storage_mapper_linked_list::LinkedListMapperFeatures
+    + storage_mapper_queue::QueueMapperFeatures
+    + storage_mapper_map::MapMapperFeatures
+    + storage_mapper_map_storage::MapStorageMapperFeatures
+    + storage_mapper_set::SetMapperFeatures
+    + storage_mapper_single::SingleValueMapperFeatures
+    + storage_mapper_vec::VecMapperFeatures
+    + storage_mapper_token_attributes::TokenAttributesMapperFeatures
+    + storage_mapper_whitelist::StorageMapperWhitelistFeatures
+    + storage_mapper_fungible_token::FungibleTokenMapperFeatures
+    + storage_mapper_non_fungible_token::NonFungibleTokenMapperFeatures
+    + storage_mapper_unique_id_mapper::UniqueIdMapperFeatures
+    + storage_mapper_unordered_set::UnorderedSetMapperFeatures
+    + struct_eq::StructEquals
+    + small_num_overflow_test_ops::SmallIntOverflow
+    + token_identifier_features::TokenIdentifierFeatures
+    + non_zero_features::TypeFeatures
+    + rewa_decimal::RewaDecimal
+    + dharitri_sc_modules::default_issue_callbacks::DefaultIssueCallbacksModule
+    + storage_mapper_get_at_address::StorageMapperGetAtAddress
+    + managed_decimal_features::ManagedDecimalFeatures
+{
+    #[init]
+    fn init(&self) {}
+
+    #[endpoint(panicWithMessage)]
+    fn panic_with_message(&self) {
+        panic!("example panic message");
+    }
+
+    /// Operation that has caused issues in the past
+    #[endpoint]
+    fn count_ones(&self, arg: u64) -> u32 {
+        arg.count_ones()
+    }
+
+    #[endpoint]
+    fn endpoint_with_mutable_arg(&self, mut arg1: BigUint, arg2: u64, arg3: u32) -> BigUint {
+        arg1 += arg2;
+        arg1 += arg3;
+
+        arg1
+    }
+
+    #[storage_mapper("coolTree")]
+    fn cool_tree(&self) -> OrderedBinaryTreeMapper<Self::Api, BigUint>;
+}

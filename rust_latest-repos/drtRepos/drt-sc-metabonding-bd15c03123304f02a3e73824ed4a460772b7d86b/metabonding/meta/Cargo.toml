@@ -1,0 +1,15 @@
+[package]
+name = "metabonding-meta"
+version = "0.0.0"
+edition = "2018"
+publish = false
+authors = ["contact@dharitri.org"]
+
+[dev-dependencies]
+
+[dependencies.metabonding]
+path = ".."
+
+[dependencies.dharitri-sc-meta]
+version = "=0.50.5"
+default-features = false

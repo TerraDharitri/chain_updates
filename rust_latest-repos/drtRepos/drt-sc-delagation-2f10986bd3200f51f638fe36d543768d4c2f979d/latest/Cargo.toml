@@ -1,0 +1,26 @@
+[package]
+name = "delegation_latest"
+version = "0.5.8"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+
+[lib]
+path = "src/delegation_main.rs"
+
+[dependencies.node-storage]
+path = "../node-storage"
+
+[dependencies.user-fund-storage]
+path = "../user-fund-storage"
+
+[dependencies.dharitri-sc-modules]
+version = "=0.58.0"
+
+[dependencies.dharitri-sc]
+version = "=0.58.0"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=0.58.0"
+
+[dev-dependencies.auction-mock]
+path = "../auction-mock"

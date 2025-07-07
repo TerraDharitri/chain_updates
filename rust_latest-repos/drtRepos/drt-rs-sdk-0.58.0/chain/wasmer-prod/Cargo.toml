@@ -1,0 +1,33 @@
+[package]
+name = "dharitri-chain-vm-wasmer-prod"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+description = "Dharitri VM adapter for the Wasmer Production executor"
+
+[lib]
+path = "src/wasmer_prod.rs"
+
+[dependencies.dharitri-chain-core]
+version = "=0.15.0"
+path = "../core"
+
+
+[dependencies.dharitri-chain-vm]
+version = "=0.15.0"
+path = "../vm"
+
+[dependencies.dharitri-vm-executor]
+version = "1.0.5"
+
+
+[dependencies.dharitri-vm-executor-wasmer]
+version = "1.0.5"
+default-features = false
+features = ["dharitri-vm-executor-published"]
+git = "https://github.com/TerraDharitri/drt-rs-vm-executor"
+rev = "22399cad42d931e25fc1c51f4b24b691aebe876d"
+
+[workspace]
+members = ["."]

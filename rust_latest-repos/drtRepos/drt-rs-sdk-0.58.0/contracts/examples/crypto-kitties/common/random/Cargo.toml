@@ -1,0 +1,12 @@
+[package]
+name = "random"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.dharitri-sc]
+version = "0.58.0"
+path = "../../../../../framework/base"

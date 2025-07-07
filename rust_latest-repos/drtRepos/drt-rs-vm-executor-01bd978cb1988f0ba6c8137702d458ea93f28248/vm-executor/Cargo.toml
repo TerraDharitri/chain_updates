@@ -1,0 +1,20 @@
+[package]
+name = "dharitri-vm-executor"
+version = "1.0.5"
+edition = "2021"
+
+authors = ["contact@dharitri.org"]
+license = "GPL-3.0-only"
+readme = "README.md"
+repository = "https://github.com/TerraDharitri/drt-rs-vm-executor"
+homepage = "https://dharitri.org/"
+documentation = "https://docs.dharitri.org/"
+description = "Dharitri VM executor interface"
+keywords = ["dharitri", "blockchain", "VM"]
+categories = ["cryptography::cryptocurrencies"]
+
+[lib]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.7"

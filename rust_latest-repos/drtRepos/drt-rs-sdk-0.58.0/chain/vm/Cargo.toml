@@ -1,0 +1,48 @@
+[package]
+name = "dharitri-chain-vm"
+version = "0.15.0"
+edition = "2021"
+
+authors = ["contact@dharitri.org"]
+license = "GPL-3.0-only"
+readme = "README.md"
+repository = "https://github.com/TerraDharitri/drt-rs-sdk"
+homepage = "https://dharitri.org/"
+documentation = "https://docs.dharitri.org/"
+description = "Dharitri VM implementation and tooling"
+keywords = ["dharitri", "blockchain", "vm", "tools"]
+categories = ["cryptography::cryptocurrencies", "development-tools::debugging"]
+
+[features]
+# not supported when compiling to wasm
+wasm-incompatible = ["rand"]
+wasmer-experimental = ["dharitri-vm-executor-wasmer-experimental"]
+# default = ["wasmer-experimental"] ## uncomment for easier development
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+hex = "0.4"
+sha2 = "0.10.6"
+sha3 = "0.10.6"
+itertools = "0.14.0"
+hex-literal = "1.0"
+bitflags = "2.9"
+colored = "3.0"
+rand = { version = "0.8.5", optional = true }
+rand_seeder = "0.3.0"
+ed25519-dalek = "2.1.0"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+anyhow = "1.0"
+
+[dependencies.dharitri-chain-core]
+version = "=0.15.0"
+path = "../core"
+
+[dependencies.dharitri-vm-executor]
+version = "1.0.5"
+
+[dependencies.dharitri-vm-executor-wasmer-experimental]
+version = "1.0.5"
+optional = true

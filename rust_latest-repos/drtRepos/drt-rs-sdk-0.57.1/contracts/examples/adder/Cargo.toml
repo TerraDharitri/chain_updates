@@ -1,0 +1,17 @@
+[package]
+name = "adder"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/adder.rs"
+
+[dependencies.dharitri-sc]
+version = "1.18.2"
+path = "../../../framework/base"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "1.18.2"
+path = "../../../framework/scenario"

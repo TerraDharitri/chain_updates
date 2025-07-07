@@ -1,0 +1,98 @@
+{
+    "name": "stake pt 1",
+    "steps": [
+        {
+            "step": "scCall",
+            "txId": "delegator 1 stake 1",
+            "tx": {
+                "from": "address:delegator1",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "stakeGenesis",
+                "arguments": [
+                    "300,000,000,000,000"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "sc:delegation",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                        "topics": [
+                            "address:delegator1"
+                        ],
+                        "data": "300,000,000,000,000"
+                    }
+                ],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "delegator 2 stake 1",
+            "tx": {
+                "from": "address:delegator2",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "stakeGenesis",
+                "arguments": [
+                    "033,000,000,000,000"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "sc:delegation",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                        "topics": [
+                            "address:delegator2"
+                        ],
+                        "data": "033,000,000,000,000"
+                    }
+                ],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "delegator 3 stake 1",
+            "tx": {
+                "from": "address:delegator3",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "stakeGenesis",
+                "arguments": [
+                    "111,000,000,000,000"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "sc:delegation",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                        "topics": [
+                            "address:delegator3"
+                        ],
+                        "data": "111,000,000,000,000"
+                    }
+                ],
+                "gas": "*",
+                "refund": "*"
+            }
+        }
+    ]
+}

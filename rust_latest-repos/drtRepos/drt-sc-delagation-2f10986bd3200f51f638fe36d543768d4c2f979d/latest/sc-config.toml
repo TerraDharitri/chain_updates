@@ -1,0 +1,18 @@
+[contracts.full]
+name = "delegation_latest_full"
+add-labels = ["init"]
+
+[contracts.update]
+name = "delegation_latest_update"
+add-labels = ["upgrade"]
+
+[[proxy]]
+path = "../interact/src/latest_proxy.rs"
+
+[[proxy.path-rename]]
+from = "user_fund_storage::types::fund_item::FundItem"
+to = "user_fund_storage::types::FundItem"
+
+[[proxy.path-rename]]
+from = "dharitri_sc::types::io::operation_completion_status::OperationCompletionStatus"
+to = "dharitri_sc::types::OperationCompletionStatus"

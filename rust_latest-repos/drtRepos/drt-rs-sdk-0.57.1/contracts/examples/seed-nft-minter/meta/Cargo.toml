@@ -1,0 +1,16 @@
+[package]
+name = "seed-nft-minter-meta"
+version = "0.0.0"
+edition = "2021"
+publish = false
+authors = ["contact@dharitri.org"]
+
+[dev-dependencies]
+
+[dependencies.seed-nft-minter]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "1.18.2"
+path = "../../../../framework/meta-lib"
+default-features = false

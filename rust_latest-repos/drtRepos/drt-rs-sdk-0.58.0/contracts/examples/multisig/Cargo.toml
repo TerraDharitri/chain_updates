@@ -1,0 +1,27 @@
+[package]
+name = "multisig"
+version = "1.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/multisig.rs"
+
+[dependencies.dharitri-sc]
+version = "0.58.0"
+path = "../../../framework/base"
+
+[dependencies.dharitri-sc-modules]
+version = "0.58.0"
+path = "../../../contracts/modules"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "0.58.0"
+features = ["wasmer-experimental"]
+path = "../../../framework/scenario"
+
+[dev-dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+hex = "0.4"

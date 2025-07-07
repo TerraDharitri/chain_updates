@@ -1,0 +1,22 @@
+[package]
+name = "erc1155-marketplace"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+
+[dependencies.erc1155]
+path = "../erc1155"
+
+[dependencies.dharitri-sc]
+version = "1.18.2"
+path = "../../../../framework/base"
+features = ["alloc"]
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "1.18.2"
+path = "../../../../framework/scenario"

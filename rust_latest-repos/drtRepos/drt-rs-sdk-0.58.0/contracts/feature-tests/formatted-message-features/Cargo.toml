@@ -1,0 +1,19 @@
+[package]
+name = "formatted-message-features"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/formatted_message_features.rs"
+
+[dependencies.dharitri-sc]
+version = "0.58.0"
+path = "../../../framework/base"
+features = ["alloc"]
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "0.58.0"
+features = ["wasmer-experimental"]
+path = "../../../framework/scenario"
