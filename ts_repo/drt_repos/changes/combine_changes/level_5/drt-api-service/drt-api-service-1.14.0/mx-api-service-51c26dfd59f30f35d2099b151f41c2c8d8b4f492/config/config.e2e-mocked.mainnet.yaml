@@ -1,0 +1,78 @@
+network: 'mainnet'
+metaChainShardId: 4294967295
+api:
+  public: true
+  private: true
+  graphql: true
+features:
+  dataApi:
+    enabled: false
+    serviceUrl: 'https://data-api.dharitri.org'
+  auth:
+    enabled: false
+    maxExpirySeconds: 86400
+    acceptedOrigins:
+      - ''
+cron:
+  transactionProcessor: false
+  transactionProcessorMaxLookBehind: 1000
+  cacheWarmer: false
+flags:
+  useRequestCaching: true
+  useKeepAliveAgent: true
+  useTracing: false
+  collectionPropertiesFromGateway: false
+urls:
+  self: 'https://api.dharitri.org'
+  elastic:
+    - 'https://index.dharitri.org'
+  gateway:
+    - 'https://gateway.dharitri.org'
+  verifier: 'https://play-api.dharitri.org'
+  redis: '127.0.0.1'
+  rabbitmq: 'amqp://127.0.0.1:5672'
+  providers: 'https://internal-delegation-api.dharitri.org/providers'
+  delegation: 'https://delegation-api.dharitri.org'
+  media: 'https://media.dharitri.org'
+  durianId: 'https://id-api.dharitri.org'
+database:
+  enabled: false
+  url: 'mongodb://127.0.0.1:27017/api?authSource=admin'
+  host: 'localhost'
+  port: 3306
+  username: 'root'
+  password: 'root'
+  database: 'api'
+caching:
+  cacheTtl: 6
+  processTtl: 600
+  poolLimit: 10
+keepAliveTimeout:
+  downstream: 61000
+  upstream: 60000
+contracts:
+  dcdt: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqzlllsd5j0s2'
+  auction: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf'
+  staking: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqqllls9k7r6g'
+  delegationManager: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv'
+  delegation: 'drt1qqqqqqqqqqqqqpgqxwakt2g7u9atsnr03gqcgmhcv38pt7mkd94q8vqld4'
+  metabonding: 'drt1qqqqqqqqqqqqqpgq50dge6rrpcra4tp9hl57jl0893a4r2r72jpstdjq3v'
+inflation:
+  - 1952123
+  - 1746637
+  - 1541150
+  - 1335663
+  - 1130177
+  - 924690
+  - 719203
+security:
+  admins:
+  jwtSecret:
+test:
+  mockKeybases: true
+  mockNodes: true
+  mockTokens: true
+  mockPath: './src/test/mocks/'
+transaction-action:
+  moa:
+    microServiceUrl: 'https://graph.dharitrix.com/graphql'

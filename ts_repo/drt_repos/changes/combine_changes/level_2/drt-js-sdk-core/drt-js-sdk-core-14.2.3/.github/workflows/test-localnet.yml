@@ -1,0 +1,65 @@
+name: DharitrI Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  integration_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+    # Step 3: Install pipx (to manage Python tools)
+      - name: Install pipx
+        run: |
+          python3 -m pip install --user pipx
+          python3 -m pipx ensurepath
+          # Add the pipx binary location to PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+        shell: bash
+
+      # Step 4: Install drtpy (DharitrI Python SDK)
+      - name: Install drtpy (DharitrI SDK)
+        run: |
+          pipx install dharitri-sdk-cli --force
+
+      # Step 5: Set up DharitrI localnet using drtpy
+      - name: Set up DharitrI localnet
+        run: |
+          # Start the local testnet with drtpy
+          mkdir -p ~/localnet && cd ~/localnet
+          drtpy localnet setup --configfile=${GITHUB_WORKSPACE}/localnet.toml
+          nohup drtpy localnet start --configfile=${GITHUB_WORKSPACE}/localnet.toml > localnet.log 2>&1 & echo $! > localnet.pid
+          sleep 120 # Allow time for the testnet to fully start
+
+      # Step 6: Install Node.js and dependencies
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      # Step 7: Run integration tests
+      - name: Run integration tests
+        run: |
+          npm run tests-localnet
+
+      # Step 8: Stop the testnet using the stored PID
+      - name: Stop DharitrI local testnet
+        if: success() || failure()
+        run: |
+          kill $(cat localnet.pid) || echo "Testnet already stopped"

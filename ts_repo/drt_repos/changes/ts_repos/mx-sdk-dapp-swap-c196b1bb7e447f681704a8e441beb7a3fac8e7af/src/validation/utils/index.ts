@@ -1,0 +1,1 @@
+export { applyValidationSchemaRules } from './applyValidationSchemaRules';

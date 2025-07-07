@@ -1,0 +1,29 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - mvxNetwork
+    properties:
+      mvxNetwork:
+        type: string
+        enum: ["devnet", "testnet", "mainnet"]
+        default: devnet
+        description: "The MultiversX network to interact with, e.g., 'devnet', 'mainnet'."
+      mvxWallet:
+        type: string
+        description: "The absolute path to a PEM wallet. Will be used for signing transactions."
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'node', args: ['build/index.js'],
+      env: {
+        MVX_NETWORK: config.mvxNetwork,
+        MVX_WALLET: config.mvxWallet
+      }})
+  exampleConfig:
+    mvxNetwork: devnet
+    mvxWallet: /Users/user/wallet.pem

@@ -1,0 +1,104 @@
+{
+  "DharitrI": {
+    "chainID": "D",
+    "esdtNftAddress": "erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u",
+    "nftMarketplaceAddress": "erd1qqqqqqqqqqqqqpgqz8q2ggskllzh9dp5988uz42jn95pqeghu00s0mlgca",
+    "issueNftCost": 50000000000000000,
+    "pricePerByte": 1500,
+    "transferMinCost": 750000,
+    "minimumBidDifference": 10000000000000000,
+    "version": 1,
+    "proxyTimeout": 60000,
+    "timeoutLimit": 30000,
+    "keepAlive": true,
+    "keepAliveTimeout": 50000,
+    "keepAliveFreeSocketTimeout": 30000,
+    "keepAliveMaxSockets": 100,
+    "keepAliveMaxFreeSockets": 10,
+    "decimals": 18,
+    "egld": "EGLD",
+    "burnAddress": "erd1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqtv0gag",
+    "pemFileName": "wallet.pem",
+    "marketplacesIconsBaseUrl": "https://media.elrond.com/markets",
+    "ipfs": "ipfs.io/ipfs/",
+    "pinata": "pinata.cloud/ipfs",
+    "dwebLink": "https://dweb.link/ipfs"
+  },
+  "fileStorage": {
+    "host": "ipfs.infura.io",
+    "port": "5001",
+    "protocol": "https",
+    "cdnUrl": "https://ipfs.io/ipfs/"
+  },
+  "gas": {
+    "nftCreate": 10000000,
+    "nftTransfer": 1000000,
+    "startAuction": 18000000,
+    "endAuction": 12000000,
+    "bid": 11100000,
+    "buySft": 13000000,
+    "withdraw": 10100000,
+    "issueToken": 60000000,
+    "setRoles": 60000000,
+    "stopNFTCreate": 60000000,
+    "transferNFTCreateRole": 60000000,
+    "addBurnQuantity": 200000,
+    "buyTickets": 36000000,
+    "nftBurn": 10000000,
+    "issueCampaign": 70000000,
+    "deployMinter": 70000000
+  },
+  "cronJobs": {
+    "rarity": {
+      "collectionRaritiesToValidateEvery30m": 10,
+      "colectionRaritiesToUpdateEvery10s": 2,
+      "collectionRarityFlagsToValidateEvery10m": 10
+    },
+    "traits": {
+      "collectionTraitsToSetEvery1m": 10,
+      "collectionTraitsToValidateEvery5m": 10
+    }
+  },
+  "constants": {
+    "getNftsFromApiBatchSize": 250,
+    "getTokensFromApiBatchSize": 100,
+    "bulkUpdateElasticBatchSize": 100,
+    "getNftsFromElasticBatchSize": 250,
+    "getCollectionsFromElasticBatchSize": 100,
+    "nftsCountThresholdForTraitAndRarityIndexing": 100000,
+    "updateAllNftTraitsBatchSize": 10000,
+    "getNftsForScamInfoBatchSize": 100,
+    "elasticMaxBatch": 10000,
+    "dbBatch": 1000,
+    "complexityLevel": 200,
+    "getLogsFromElasticBatchSize": 1000,
+    "dbMaxTimestamp": 2147483647,
+    "defaultPageOffset": 0,
+    "defaultPageSize": 10,
+    "dbMaxDenominatedValue": 99999999999999999,
+    "dbMaxTagLength": 20
+  },
+  "elasticDictionary": {
+    "scamInfo": {
+      "typeKey": "nft_scamInfoType",
+      "infoKey": "nft_scamInfoDescription",
+      "manualVersionValue": "manual"
+    }
+  },
+  "genericDescriptions": {
+    "forBigCollections": [
+      "A collection of {size} uniquely inspiring NFTs.",
+      "A collection of {size} beautifully designed & minted NFTs.",
+      "A {size} piece, exquisitely crafted NFTs collection.",
+      "{size} magnificently designed and truly inspiring NFTs.",
+      "An alluring collection of {size} wonderfully minted NFTs."
+    ],
+    "forSmallCollections": [""],
+    "forAssets": [""]
+  },
+  "ports": {
+    "rarity": 6013,
+    "traits": 6015,
+    "scamInfo": 6016
+  }
+}

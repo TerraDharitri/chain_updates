@@ -1,0 +1,29 @@
+:host {
+  @apply mvx:flex mvx:flex-1 mvx:flex-col mvx:w-full;
+
+  .wallet-connect-download {
+    @apply mvx:flex mvx:flex-col mvx:items-center mvx:gap-3 mvx:w-full mvx:flex-1;
+
+    .wallet-connect-download-wrapper {
+      @apply mvx:flex mvx:my-auto mvx:drt-0 mvx:flex-col mvx:items-center;
+
+      .wallet-connect-download-qr {
+        @apply mvx:p-3 mvx:rounded-xl;
+        background-color: var(--mvx-white);
+      }
+
+      .wallet-connect-download-description {
+        @apply mvx:leading-5 mvx:font-medium mvx:text-base mvx:text-center mvx:mt-3;
+        color: var(--mvx-text-color-secondary);
+      }
+    }
+
+    .wallet-connect-download-options {
+      @apply mvx:h-60 mvx:flex mvx:flex-col mvx:gap-4 mvx:items-center mvx:justify-end mvx:my-auto mvx:drt-0;
+
+      .wallet-connect-download-option svg{
+        @apply mvx:cursor-pointer mvx:transition-all mvx:ease-in-out mvx:duration-200 mvx:rounded-lg mvx:p-3;
+      }
+    }
+  }
+}

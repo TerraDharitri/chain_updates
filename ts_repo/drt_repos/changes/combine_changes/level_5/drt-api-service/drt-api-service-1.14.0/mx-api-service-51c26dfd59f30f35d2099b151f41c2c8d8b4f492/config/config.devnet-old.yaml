@@ -1,0 +1,126 @@
+network: 'devnet-old'
+metaChainShardId: 4294967295
+api:
+  public: true
+  private: true
+cron:
+  transactionProcessor: true
+  transactionProcessorMaxLookBehind: 100
+  transactionCompleted: false
+  transactionCompletedMaxLookBehind: 100
+  transactionBatch: false
+  transactionBatchMaxLookBehind: 100
+  cacheWarmer: true
+  fastWarm: true
+  queueWorker: true
+  elasticUpdater: false
+  statusChecker: false
+flags:
+  useRequestCaching: true
+  useKeepAliveAgent: true
+  useTracing: false
+  useRequestLogging: false
+  useVmQueryTracing: false
+  processNfts: true
+  collectionPropertiesFromGateway: false
+features:
+  eventsNotifier:
+    enabled: false
+    port: 5674
+    url: 'amqp://guest:guest@127.0.0.1:5673'
+    exchange: 'all_events'
+    queue: 'api-process-logs-and-events'
+  guestCaching:
+    enabled: false
+    hitsThreshold: 100
+    ttl: 12
+  transactionPool:
+    enabled: true
+  transactionPoolWarmer:
+    enabled: true
+    cronExpression: '*/5 * * * * *'
+    ttlInSeconds: 60
+  updateCollectionExtraDetails:
+    enabled: false
+  marketplace:
+    enabled: false
+    serviceUrl: 'https://devnet-old-nfts-graph.dharitri.org/graphql'
+  exchange:
+    enabled: false
+    serviceUrl: 'https://devnet-old-graph.dharitrix.com/graphql'
+  dataApi:
+    enabled: false
+    serviceUrl: 'https://devnet-old-data-api.dharitri.org'
+  auth:
+    enabled: false
+    maxExpirySeconds: 86400
+    acceptedOrigins:
+      - ''
+    admins:
+      - ''
+    jwtSecret: ''
+  nodeEpochsLeft:
+    enabled: false
+image:
+  width: 600
+  height: 600
+  type: 'png'
+aws:
+  s3KeyId: ''
+  s3Secret: ''
+  s3Bucket: 'devnet-old-media.dharitri.org'
+  s3Region: ''
+urls:
+  self: 'https://devnet-old-api.dharitri.org'
+  elastic:
+    - 'https://devnet-old-index.dharitri.org'
+  gateway:
+    - 'https://devnet-old-gateway.dharitri.org'
+  verifier: 'https://play-api.dharitri.org'
+  redis: '127.0.0.1'
+  rabbitmq: 'amqp://127.0.0.1:5672'
+  providers: 'https://devnet-old-delegation-api.dharitri.org/providers'
+  delegation: 'https://devnet-old-delegation-api.dharitri.org'
+  media: 'https://devnet-old-media.dharitri.org'
+  tmp: '/tmp'
+  ipfs: 'https://ipfs.io/ipfs'
+  socket: 'devnet-socket-api.dharitri.org'
+  durianId: 'https://devnet-old-id-api.dharitri.org'
+  assetsCdn: 'https://tools.dharitri.org/assets-cdn'
+indexer:
+  type: 'elastic'
+  maxPagination: 10000
+database:
+  enabled: false
+  url: 'mongodb://127.0.0.1:27017/api?authSource=admin'
+  type: 'mysql'
+  host: 'localhost'
+  port: 3306
+  username: 'root'
+  password: 'root'
+  database: 'api'
+caching:
+  cacheTtl: 6
+  processTtl: 600
+  poolLimit: 50
+keepAliveTimeout:
+  downstream: 61000
+  upstream: 60000
+contracts:
+  dcdt: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqzlllsd5j0s2'
+  auction: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf'
+  staking: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqqllls9k7r6g'
+  delegationManager: 'drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv'
+  delegation: 'drt1qqqqqqqqqqqqqpgqp699jngundfqw07d8jzkepucvpzush6k3wvqeyzkqc'
+  metabonding: 'drt1qqqqqqqqqqqqqpgqkg7we73j769ew5we4yyx7uyvnn0nefqgd8ssxxm3m5'
+inflation:
+  - 1952123
+  - 1746637
+  - 1541150
+  - 1335663
+  - 1130177
+  - 924690
+  - 719203
+nftProcess:
+  parallelism: 1
+  maxRetries: 3

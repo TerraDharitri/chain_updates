@@ -1,0 +1,30 @@
+{
+  "name": "@multiversx/mcp",
+  "version": "1.0.3",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node scripts/addShebang.js"
+  },
+  "bin": {
+    "mx-mcp": "build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "description": "",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "@multiversx/sdk-core": "14.0.2",
+    "bignumber.js": "^9.1.2",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

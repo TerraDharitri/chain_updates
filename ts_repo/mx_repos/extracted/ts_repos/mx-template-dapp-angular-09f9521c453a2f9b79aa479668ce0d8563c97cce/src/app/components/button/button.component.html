@@ -1,0 +1,11 @@
+<button
+  [id]="id"
+  [disabled]="disabled"
+  (click)="onClick.emit($event)"
+  [class]="className"
+  [type]="type"
+  [attr.data-testid]="dataTestId"
+  [attr.data-cy]="dataCy"
+>
+  <ng-content></ng-content>
+</button> 

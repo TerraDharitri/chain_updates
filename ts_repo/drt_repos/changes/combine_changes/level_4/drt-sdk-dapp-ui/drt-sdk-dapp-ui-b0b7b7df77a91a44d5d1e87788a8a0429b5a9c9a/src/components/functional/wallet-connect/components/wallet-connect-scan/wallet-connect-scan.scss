@@ -1,0 +1,86 @@
+:host {
+  @apply mvx:flex mvx:flex-1 mvx:flex-col mvx:w-full;
+
+  .wallet-connect-scan {
+    @apply mvx:flex mvx:items-center mvx:flex-col mvx:gap-3 mvx:flex-1 mvx:w-full;
+
+    .wallet-connect-scan-qr {
+      @apply mvx:flex mvx:justify-center mvx:items-center mvx:mt-auto mvx:relative mvx:w-75 mvx:h-75;
+
+      .wallet-connect-scan-qr-embed {
+        @apply mvx:w-full mvx:h-auto mvx:absolute mvx:opacity-0 mvx:transition-all mvx:duration-200 mvx:p-3;
+        @apply mvx:ease-in-out mvx:pointer-events-none mvx:w-85 mvx:h-85;
+
+        &:before {
+          @apply mvx:pointer-events-none mvx:left-2 mvx:bottom-2 mvx:top-2 mvx:right-2 mvx:absolute;
+          content: '';
+          border: 8px solid var(--mvx-bg-color-primary);
+          content: '';
+          pointer-events: none;
+          border-radius: 16px;
+        }
+
+        svg {
+          @apply mvx:rounded-lg;
+
+          path {
+            stroke: var(--mvx-black);
+            fill: var(--mvx-white);
+          }
+        }
+
+        &.visible {
+          @apply mvx:opacity-100;
+        }
+      }
+    }
+
+    .wallet-connect-scan-wrapper {
+      @apply mvx:flex mvx:flex-col mvx:h-16 mvx:gap-4 mvx:items-center mvx:mb-auto;
+
+      .wallet-connect-scan-description {
+        @apply mvx:leading-5 mvx:font-medium mvx:text-base mvx:z-1;
+        color: var(--mvx-text-color-secondary);
+      }
+
+      .wallet-connect-scan-connect {
+        @apply mvx:font-medium mvx:leading-none mvx:sm:hidden mvx:transition-all mvx:duration-200 mvx:ease-in-out;
+        color: var(--mvx-text-accent-color);
+
+        &.disabled {
+          @apply mvx:pointer-events-none;
+          color: var(--mvx-text-color-secondary);
+        }
+      }
+    }
+
+    .wallet-connect-scan-download {
+      @apply mvx:rounded-xl mvx:w-full mvx:flex mvx:gap-6 mvx:items-center mvx:p-6 mvx:relative mvx:mt-16 mvx:h-44;
+      background: var(--mvx-bg-accent-color);
+
+      .wallet-connect-scan-download-wrapper {
+        @apply mvx:flex mvx:flex-col mvx:gap-4 mvx:items-start;
+
+        .wallet-connect-scan-download-title {
+          @apply mvx:text-base mvx:leading-5 mvx:font-medium;
+          color: var(--mvx-text-color-primary);
+        }
+
+        .wallet-connect-scan-download-button {
+          @apply mvx:rounded-lg mvx:text-xs mvx:leading-none mvx:text-center mvx:p-2 mvx:font-bold mvx:cursor-pointer;
+          @apply mvx:ease-in-out mvx:transition-all mvx:duration-200;
+          background: var(--mvx-button-bg-primary);
+          color: var(--mvx-button-text-primary);
+
+          &:hover {
+            @apply mvx:opacity-75;
+          }
+        }
+      }
+
+      .wallet-connect-scan-download-image {
+        @apply mvx:absolute mvx:right-0 mvx:bottom-0 mvx:max-h-50;
+      }
+    }
+  }
+}

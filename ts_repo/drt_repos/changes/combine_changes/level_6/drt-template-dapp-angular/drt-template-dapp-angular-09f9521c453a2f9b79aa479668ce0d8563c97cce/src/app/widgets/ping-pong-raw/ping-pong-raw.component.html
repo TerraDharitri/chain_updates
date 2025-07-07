@@ -1,0 +1,88 @@
+<div class="flex flex-col gap-6">
+  <!-- Loading Indicator -->
+  <div *ngIf="viewState.isLoading" class="flex justify-center">
+    <div
+      class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"
+    ></div>
+  </div>
+
+  <!-- Error Message -->
+  <div
+    *ngIf="viewState.error"
+    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+  >
+    {{ viewState.error }}
+    <button
+      (click)="clearError()"
+      class="float-right font-bold"
+      aria-label="Close error"
+    >
+      ×
+    </button>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex flex-col gap-2">
+    <div class="flex justify-start gap-2">
+      <app-button
+        [disabled]="!viewState.canPing || viewState.isLoading"
+        (click)="onSendPingTransaction()"
+        data-testid="btnPingRaw"
+        data-cy="transactionBtn"
+        [class.opacity-50]="!viewState.canPing || viewState.isLoading"
+      >
+        <fa-icon [icon]="faArrowUp" class="mr-1"></fa-icon>
+        Ping
+      </app-button>
+
+      <app-button
+        [disabled]="
+          !viewState.canPong || viewState.canPing || viewState.isLoading
+        "
+        (click)="onSendPongTransaction()"
+        data-testid="btnPongRaw"
+        data-cy="transactionBtn"
+        [class.opacity-50]="
+          !viewState.canPong || viewState.canPing || viewState.isLoading
+        "
+      >
+        <fa-icon [icon]="faArrowDown" class="mr-1"></fa-icon>
+        Pong
+      </app-button>
+    </div>
+  </div>
+
+  <!-- Output Container -->
+  <app-output-container>
+    <!-- Contract Address -->
+    <div class="mb-4">
+      <label class="font-semibold">Contract Address:</label>
+      <span class="ml-2 font-mono text-sm break-all">{{
+        contractAddress
+      }}</span>
+    </div>
+
+    <!-- Time Remaining -->
+    <div
+      *ngIf="!viewState.canPong && viewState.timeToPong != null"
+      class="mb-4"
+    >
+      <label class="font-semibold">Time remaining:</label>
+      <span class="ml-2 text-red-600 font-mono">{{
+        viewState.timeRemaining
+      }}</span>
+      <span class="ml-1">until able to pong</span>
+    </div>
+
+    <!-- Pong Ready -->
+    <div *ngIf="viewState.canPong" class="mb-4">
+      <span class="text-green-600 font-semibold">Ready to pong!</span>
+    </div>
+
+    <!-- Additional Output Component -->
+    <app-ping-pong-output
+      *ngIf="pendingTransactions.length > 0"
+      [transactions]="pendingTransactions"
+    />
+  </app-output-container>
+</div>

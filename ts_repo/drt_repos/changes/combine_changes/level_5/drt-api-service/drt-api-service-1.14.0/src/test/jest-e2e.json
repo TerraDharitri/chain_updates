@@ -1,0 +1,26 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": "../../",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$|.api-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "modulePaths": [
+    "<rootDir>"
+  ],
+  "collectCoverageFrom": [
+    "./src/**/*.(t|j)s",
+    "!./src/crons/**",
+    "!./src/decorators/**",
+    "!./src/interceptors/**",
+    "!./src/test/**",
+    "!./src/websockets/**"
+  ],
+  "coverageDirectory": "./coverage/e2e",
+  "testTimeout": 180000
+}

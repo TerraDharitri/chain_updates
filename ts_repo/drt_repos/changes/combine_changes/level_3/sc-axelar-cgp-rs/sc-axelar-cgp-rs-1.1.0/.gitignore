@@ -1,0 +1,15 @@
+# Numbat IDE
+**/node_modules
+**/output/**
+**/testnet/**
+**/wallets/**
+**/drtpy.data-storage.json
+**/*.interaction.json
+
+# Target
+**/target/**
+
+# VSCode
+.vscode
+
+wallet*.json

@@ -1,0 +1,33 @@
+{
+    "dharitri": {
+        "chainID": "D"
+    },
+    "scAddress": {
+        "lockedAssetAddress": "drt1qqqqqqqqqqqqqpgqxsy4k8fkqvllcvyrwhf80t97kyd32qfx0n4skqwamd",
+        "simpleLockAddress": [
+            "drt1qqqqqqqqqqqqqpgq2l97gw2j4wnlem4y2rx7dudqlssjtwpu0n4ssntjd5"
+        ],
+        "simpleLockEnergy": "drt1qqqqqqqqqqqqqpgqfsdhdyyuyxlflc43axlvderg84ry7cfr0n4s5nydej"
+    },
+    "governance": {
+        "oldEnergy": {
+            "cvadratic": [
+            ]
+        },
+        "energy": {
+            "cvadratic": [
+                "drt1qqqqqqqqqqqqqpgqr632pd7r5wwflhcd4x9nlct2p3t56ss90n4ss307v9"
+            ]
+        },
+        "tokenSnapshot": {
+            "linear": [
+                "drt1qqqqqqqqqqqqqpgqk6wa4v0jhkcvr2fergtelh5kkyyw0hnmczfs7kvdm8",
+                "drt1qqqqqqqqqqqqqpgqahutnw3r4s95gxz4keecvlyyl3wlsu2mdthqjx8dml"
+            ],
+            "cvadratic": [
+                "drt1qqqqqqqqqqqqqpgqlmdp0vtxw3ahv0afnc2g7yra7x9ngmk8czfstyl4da",
+                "drt1qqqqqqqqqqqqqpgqh0n6p4aeqkcreextvx9m7xptfy0a9lzzczfslpv5jr"
+            ]
+        }
+    }
+}

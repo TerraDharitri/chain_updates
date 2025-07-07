@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "jest",
+      "@testing-library/jest-dom",
+      "jest-environment-puppeteer"
+    ],
+    "baseUrl": "src",
+    "target": "ES5",
+    "useDefineForClassFields": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Node",
+    // "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "allowJs": true,
+    "esModuleInterop": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+  },
+  "include": ["src", "scripts", "assets"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

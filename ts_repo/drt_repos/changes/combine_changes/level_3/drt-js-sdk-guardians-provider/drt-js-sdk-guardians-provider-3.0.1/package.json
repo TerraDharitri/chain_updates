@@ -1,0 +1,31 @@
+{
+  "name": "@terradharitri/sdk-guardians-provider",
+  "version": "3.0.1",
+  "description": "Co-Signing provider for DharitrI DApps",
+  "main": "out/index.js",
+  "types": "out/index.d.js",
+  "files": [
+    "out/**/*"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "pretest": "npm run compile",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "prepare": "npm run compile"
+  },
+  "author": "DharitrI",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@types/node": "17.0.23",
+    "typescript": "5.0.3",
+    "@terradharitri/sdk-core": ">= 14.0.1",
+    "axios": "1.6.5"
+  },
+  "peerDependencies": {
+    "@terradharitri/sdk-core": ">= 14.0.1",
+    "axios": ">= 1.6.5"
+  }
+}

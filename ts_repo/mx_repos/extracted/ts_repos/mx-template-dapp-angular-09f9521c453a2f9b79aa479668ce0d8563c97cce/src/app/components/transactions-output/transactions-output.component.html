@@ -1,0 +1,7 @@
+<div class="flex flex-col gap-4">
+  <app-transaction-output
+    *ngFor="let transaction of transactions; trackBy: trackByHash"
+    [transaction]="transaction"
+  >
+  </app-transaction-output>
+</div>

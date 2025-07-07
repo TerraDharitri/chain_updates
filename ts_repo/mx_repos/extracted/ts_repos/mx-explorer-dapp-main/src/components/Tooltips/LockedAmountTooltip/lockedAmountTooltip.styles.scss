@@ -1,0 +1,32 @@
+.locked-amount-tooltip {
+  --tooltip-opacity: 1;
+  --tooltip-bg: var(--card-bg);
+
+  .tooltip-arrow {
+    &::before {
+      --tooltip-bg: var(--border-color);
+    }
+  }
+  .tooltip-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    max-width: none;
+    color: var(--body-color);
+
+    .locked-item {
+      .locked-item-label {
+        min-width: 8.5rem;
+        text-align: left;
+      }
+
+      &.small-labels {
+        .locked-item-label {
+          min-width: 4.5rem;
+        }
+      }
+    }
+  }
+}

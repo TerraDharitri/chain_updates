@@ -1,0 +1,54 @@
+.tokens,
+.tokens-meta {
+  .tokens-table {
+    .token-ticker {
+      width: fit-content;
+    }
+    .token-description {
+      max-width: 16rem;
+      @include media-breakpoint-up(md) {
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+    }
+    .side-link {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+.tokens-meta {
+  .tokens-table {
+    th,
+    td {
+      &:first-child {
+        width: 45%;
+      }
+      &:last-child {
+        max-width: 8rem;
+      }
+    }
+  }
+}
+.tokens {
+  .tokens-table {
+    th,
+    td {
+      min-width: 8%;
+      &:first-child {
+        width: 26%;
+      }
+      &:nth-child(n + 3) {
+        text-align: right;
+      }
+    }
+    th {
+      a:after {
+        border-bottom: 0;
+      }
+    }
+  }
+}
