@@ -1,0 +1,106 @@
+{
+    "name": "send_dcdt",
+    "gasSchedule": "v3",
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "sc:forwarder": {
+                    "nonce": "1000",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:SENDDCDT": "1,000"
+                    },
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
+                },
+                "address:an_account": {
+                    "nonce": "0",
+                    "balance": "0"
+                }
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "not-enough",
+            "tx": {
+                "from": "address:an_account",
+                "to": "sc:forwarder",
+                "function": "send_dcdt",
+                "arguments": [
+                    "address:an_account",
+                    "str:SENDDCDT",
+                    "10000"
+                ],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "*",
+                "message": "str:insufficient funds",
+                "logs": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "id": "send_dcdt-ok",
+            "tx": {
+                "from": "address:an_account",
+                "to": "sc:forwarder",
+                "function": "send_dcdt",
+                "arguments": [
+                    "address:an_account",
+                    "str:SENDDCDT",
+                    "200"
+                ],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "sc:forwarder",
+                        "endpoint": "str:DCDTTransfer",
+                        "topics": [
+                            "str:SENDDCDT",
+                            "0",
+                            "200",
+                            "address:an_account"
+                        ],
+                        "data": [
+                            "str:DirectCall",
+                            "str:DCDTTransfer",
+                            "str:SENDDCDT",
+                            "200"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "sc:forwarder": {
+                    "nonce": "1000",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:SENDDCDT": "800"
+                    },
+                    "storage": {},
+                    "code": "drtsc:../forwarder/output/forwarder.drtsc.json"
+                },
+                "address:an_account": {
+                    "nonce": "*",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:SENDDCDT": "200"
+                    },
+                    "storage": {},
+                    "code": ""
+                }
+            }
+        }
+    ]
+}

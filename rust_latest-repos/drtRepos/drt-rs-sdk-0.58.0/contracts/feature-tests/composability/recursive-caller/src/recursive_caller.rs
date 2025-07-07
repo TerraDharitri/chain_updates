@@ -1,0 +1,75 @@
+#![no_std]
+
+dharitri_sc::imports!();
+
+pub mod self_proxy;
+pub mod vault_proxy;
+
+/// Test contract for investigating async calls.
+#[dharitri_sc::contract]
+pub trait RecursiveCaller {
+    #[init]
+    fn init(&self) {}
+
+    #[endpoint]
+    fn recursive_send_funds(
+        &self,
+        to: &ManagedAddress,
+        token_identifier: &RewaOrDcdtTokenIdentifier,
+        amount: &BigUint,
+        counter: u32,
+    ) {
+        self.recursive_send_funds_event(to, token_identifier, amount, counter);
+
+        self.tx()
+            .to(to)
+            .typed(vault_proxy::VaultProxy)
+            .accept_funds()
+            .rewa_or_single_dcdt(token_identifier, 0, amount)
+            .callback(self.callbacks().recursive_send_funds_callback(
+                to,
+                token_identifier,
+                amount,
+                counter,
+            ))
+            .async_call_and_exit();
+    }
+
+    #[callback]
+    fn recursive_send_funds_callback(
+        &self,
+        to: &ManagedAddress,
+        token_identifier: &RewaOrDcdtTokenIdentifier,
+        amount: &BigUint,
+        counter: u32,
+    ) {
+        self.recursive_send_funds_callback_event(to, token_identifier, amount, counter);
+
+        if counter > 1 {
+            let self_address = self.blockchain().get_sc_address();
+            self.tx()
+                .to(&self_address)
+                .typed(self_proxy::RecursiveCallerProxy)
+                .recursive_send_funds(to, token_identifier, amount, counter - 1)
+                .async_call_and_exit()
+        }
+    }
+
+    #[event("recursive_send_funds")]
+    fn recursive_send_funds_event(
+        &self,
+        #[indexed] to: &ManagedAddress,
+        #[indexed] token_identifier: &RewaOrDcdtTokenIdentifier,
+        #[indexed] amount: &BigUint,
+        counter: u32,
+    );
+
+    #[event("recursive_send_funds_callback")]
+    fn recursive_send_funds_callback_event(
+        &self,
+        #[indexed] to: &ManagedAddress,
+        #[indexed] token_identifier: &RewaOrDcdtTokenIdentifier,
+        #[indexed] amount: &BigUint,
+        counter: u32,
+    );
+}

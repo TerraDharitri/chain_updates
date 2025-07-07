@@ -1,0 +1,19 @@
+[package]
+name = "energy-factory-mock"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.energy-query]
+path = "../common-modules/energy-query"
+
+[dependencies.dharitri-sc]
+version = "=0.53.2"
+features = ["dcdt-token-payment-legacy-decode"]
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=0.53.2"

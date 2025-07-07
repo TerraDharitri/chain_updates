@@ -1,0 +1,6 @@
+[contracts.main]
+name = "panic-message-features"
+panic-message = true
+
+[[proxy]]
+path = "tests/pmf_proxy.rs"

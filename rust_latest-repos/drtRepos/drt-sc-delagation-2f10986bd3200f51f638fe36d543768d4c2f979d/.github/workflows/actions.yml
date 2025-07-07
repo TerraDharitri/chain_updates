@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  contracts:
+    name: Contracts
+    uses: TerraDharitri/drt-sc-actions/.github/workflows/contracts.yml@v0.1.18
+    with:
+      rust-toolchain: stable
+      drt-go-scenario-version: v0.0.4
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

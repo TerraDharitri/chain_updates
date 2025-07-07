@@ -1,0 +1,69 @@
+{
+    "name": "distribution",
+    "steps": [
+        {
+            "step": "externalSteps",
+            "path": "add_liquidity_proxy.scen.json"
+        },
+        {
+            "step": "externalSteps",
+            "path": "steps/swap_wrewa.steps.json"
+        },
+        {
+            "step": "externalSteps",
+            "path": "steps/swap_wrewa.steps.json"
+        },
+        {
+            "step": "scCall",
+            "txId": "12",
+            "tx": {
+                "from": "address:user_with_wrewa1",
+                "to": "sc:proxy_dex_contract",
+                "dcdtValue": [
+                    {
+                        "tokenIdentifier": "str:WLPTOK-abcdef",
+                        "nonce": "0x01",
+                        "value": "9,000"
+                    }
+                ],
+                "function": "removeLiquidityProxy",
+                "arguments": [
+                    "sc:pair_contract",
+                    "100",
+                    "100"
+                ],
+                "gasLimit": "300,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "0",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:user_with_wrewa1": {
+                    "nonce": "*",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:LKMOA-abcdef": {
+                            "instances": [
+                                {
+                                    "nonce": "0x01",
+                                    "balance": "87,505"
+                                }
+                            ]
+                        },
+                        "str:WREWA-abcdef": "1,000,000,800"
+                    },
+                    "storage": {},
+                    "code": ""
+                },
+                "+": ""
+            }
+        }
+    ]
+}

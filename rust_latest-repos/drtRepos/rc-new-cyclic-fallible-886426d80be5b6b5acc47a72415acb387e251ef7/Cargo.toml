@@ -1,0 +1,11 @@
+[package]
+name = "rc-new-cyclic-fallible"
+version = "1.0.0"
+edition = "2021"
+
+authors = ["contact@dharitri.org"]
+license = "GPL-3.0-only"
+readme = "README.md"
+repository = "https://github.com/TerraDharitri/rc-new-cyclic-fallible"
+documentation = "https://github.com/TerraDharitri/rc-new-cyclic-fallible/blob/main/README.md"
+description = "Fallible variant of Rc::new_cyclic"

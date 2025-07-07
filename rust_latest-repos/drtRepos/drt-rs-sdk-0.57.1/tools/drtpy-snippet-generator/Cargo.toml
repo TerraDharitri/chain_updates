@@ -1,0 +1,20 @@
+[package]
+name = "drtpy-snippet-generator"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "drtpy-snippet-generator"
+path = "src/drtpy_snippet_generator.rs"
+
+[dependencies.dharitri-sc]
+version = "1.18.2"
+path = "../../framework/base"
+
+[dependencies]
+bech32 = "0.11"
+num-bigint = "0.4"
+num-traits = "0.2"
+hex = "0.4"

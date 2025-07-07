@@ -1,0 +1,21 @@
+[package]
+name = "queue-repeat"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/queue_repeat.rs"
+
+[dependencies.benchmark-common]
+path = "../benchmark-common"
+
+
+[dependencies.dharitri-sc]
+version = "1.18.2"
+path = "../../../../framework/base"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "1.18.2"
+path = "../../../../framework/scenario"

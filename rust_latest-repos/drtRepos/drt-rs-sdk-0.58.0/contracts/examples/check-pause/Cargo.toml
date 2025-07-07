@@ -1,0 +1,25 @@
+[package]
+name = "check-pause"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/check_pause.rs"
+
+[dev-dependencies]
+num-bigint = "0.4"
+
+[dependencies.dharitri-sc]
+version = "0.58.0"
+path = "../../../framework/base"
+
+[dependencies.dharitri-sc-modules]
+version = "0.58.0"
+path = "../../../contracts/modules"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "0.58.0"
+path = "../../../framework/scenario"
+

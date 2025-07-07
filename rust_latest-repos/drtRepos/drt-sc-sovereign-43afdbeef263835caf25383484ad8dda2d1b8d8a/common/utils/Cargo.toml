@@ -1,0 +1,18 @@
+[package]
+name = "utils"
+version = "0.1.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.structs]
+path = "../structs"
+
+[dependencies.error-messages]
+path = "../error-messages"
+
+[dependencies.dharitri-sc]
+version = "=0.57.1"
+features = ["dcdt-token-payment-legacy-decode"]

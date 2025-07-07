@@ -1,0 +1,15 @@
+[package]
+name = "auction-mock"
+version = "0.3.4"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+
+[dependencies.node-storage]
+path = "../node-storage"
+
+[dependencies.dharitri-sc]
+version = "=0.58.0"
+features = ["alloc"]
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=0.58.0"

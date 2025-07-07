@@ -1,0 +1,164 @@
+{
+    "name": "send some rewards",
+    "steps": [
+        {
+            "step": "validatorReward",
+            "txId": "validatorReward-1",
+            "comment": "reward value proportional to stake to make it easier to check, 50% are fees",
+            "tx": {
+                "to": "sc:delegation",
+                "value": "888,000,000"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "get-total-cumulated-1",
+            "tx": {
+                "from": "address:someone",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "getTotalCumulatedRewards",
+                "arguments": [],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "888,000,000"
+                ],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "claimable-0",
+            "tx": {
+                "from": "address:someone",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "getClaimableRewards",
+                "arguments": [
+                    "address:node_address"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "444,000,000"
+                ],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "claimable-1",
+            "tx": {
+                "from": "address:someone",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "getClaimableRewards",
+                "arguments": [
+                    "address:delegator1"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "300,000,000"
+                ],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "claimable-2",
+            "tx": {
+                "from": "address:someone",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "getClaimableRewards",
+                "arguments": [
+                    "address:delegator2"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    "033,000,000"
+                ],
+                "status": "",
+                "logs": [],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "delegator 1 claim 1",
+            "tx": {
+                "from": "address:delegator1",
+                "to": "sc:delegation",
+                "value": "0",
+                "function": "claimRewards",
+                "arguments": [],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [],
+                "status": "",
+                "logs": [
+                    {
+                        "address": "sc:delegation",
+                        "identifier": "0x000000000000000000000000000000000000000000000000000000000000000a",
+                        "topics": [
+                            "address:delegator1"
+                        ],
+                        "data": "300,000,000"
+                    }
+                ],
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "comment": "check that rewards were received",
+            "accounts": {
+                "sc:delegation": {
+                    "comment": "inactive stake (1,000,000) + unclaimed rewards",
+                    "nonce": "*",
+                    "balance": "588,000,000",
+                    "storage": "*",
+                    "code": "file:../../../output/delegation_v0_4_genesis.wasm"
+                },
+                "address:delegator1": {
+                    "nonce": "*",
+                    "balance": "300,000,000",
+                    "storage": {},
+                    "code": "",
+                    "asyncCallData": "str:delegation rewards claim"
+                },
+                "address:delegator2": {
+                    "nonce": "*",
+                    "balance": "0",
+                    "storage": {},
+                    "code": ""
+                },
+                "+": ""
+            }
+        }
+    ]
+}

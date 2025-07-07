@@ -1,0 +1,15 @@
+[package]
+name = "dcdt-system-sc-mock"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2018"
+publish = false
+
+[lib]
+path = "src/dcdt_system_sc_mock.rs"
+
+[dependencies.dharitri-sc]
+version = "=0.50.0"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=0.50.0"

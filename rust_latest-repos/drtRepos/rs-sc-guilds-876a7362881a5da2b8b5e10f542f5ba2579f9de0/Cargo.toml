@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+
+members = [
+  "guild-factory",
+  "guild-factory/meta",
+  "guild-sc",
+  "guild-sc/meta",
+  "guild-sc-config",
+  "guild-sc-config/meta",
+]

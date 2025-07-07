@@ -1,0 +1,30 @@
+[package]
+name = "connection"
+version = "0.0.0"
+publish = false
+edition = "2021"
+authors = ["contact@dharitri.org"]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.dharitri-sc]
+version = "=0.53.0"
+
+[dependencies.common-types]
+path = "../common/common-types"
+
+[dependencies.common-modules]
+path = "../common/common-modules"
+
+[dependencies.host]
+path = "../host"
+
+[dependencies.client-common]
+path = "../client-impls/client-common"
+
+[dev-dependencies]
+num-bigint = "0.4"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=0.53.0"

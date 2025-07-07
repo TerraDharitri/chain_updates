@@ -1,0 +1,26 @@
+[package]
+name = "kitty-genetic-alg"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+
+[dependencies.kitty]
+version = "0.0.0"
+path = "../common/kitty"
+
+[dependencies.random]
+version = "0.0.0"
+path = "../common/random"
+
+[dependencies.dharitri-sc]
+version = "0.58.0"
+path = "../../../../framework/base"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "0.58.0"
+path = "../../../../framework/scenario"

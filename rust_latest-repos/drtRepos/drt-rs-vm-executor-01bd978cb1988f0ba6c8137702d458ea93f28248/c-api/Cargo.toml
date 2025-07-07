@@ -1,0 +1,22 @@
+[package]
+name = "dharitri-vm-executor-c-api"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+meta = { path = "../meta" }
+dharitri-vm-executor = { path = "../vm-executor" }
+dharitri-vm-executor-wasmer = { path = "../vm-executor-wasmer" }
+
+lazy_static = "1.4"
+libc = { version = "^0.2", default-features = false }
+
+env_logger = "0.8.4"
+log = "0.4.14"
+
+[build-dependencies]
+cbindgen = "0.9"

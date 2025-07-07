@@ -1,0 +1,7 @@
+{
+    "terminal.integrated.environmentChangesIndicator": "on",
+    "rust-client.autoStartRls": false,
+    "rust-analyzer.linkedProjects": [
+        "./nft-minter-deployer/Cargo.toml"
+    ]
+}

@@ -1,0 +1,14 @@
+[package]
+name = "lottery-erc20-meta"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[dependencies.lottery-erc20]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "1.18.2"
+path = "../../../../../framework/meta-lib"
+default-features = false

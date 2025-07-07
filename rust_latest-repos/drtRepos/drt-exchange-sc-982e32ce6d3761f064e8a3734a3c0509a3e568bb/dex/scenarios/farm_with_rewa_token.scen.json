@@ -1,0 +1,118 @@
+{
+    "name": "farm with moa",
+    "steps": [
+        {
+            "step": "externalSteps",
+            "path": "steps/init_accounts.steps.json"
+        },
+        {
+            "step": "setState",
+            "accounts": {
+                "sc:rewa_farm_contract": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:FARM-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:farming_token_id": "str:WREWA-abcdef",
+                        "str:reward_token_id": "str:WREWA-abcdef",
+                        "str:farm_token_id": "str:FARM-abcdef",
+                        "str:router_address": "sc:router_contract",
+                        "str:state": "1"
+                    },
+                    "code": "file:../farm/output/farm.wasm"
+                }
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "enter farm",
+            "tx": {
+                "from": "address:user1",
+                "to": "sc:rewa_farm_contract",
+                "dcdtValue": [
+                    {
+                        "tokenIdentifier": "str:WREWA-abcdef",
+                        "value": "100,000,000"
+                    }
+                ],
+                "function": "enterFarm",
+                "arguments": [],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": [
+                    {
+                        "1-token_id": "nested:str:FARM-abcdef",
+                        "2-nonce": "u64:1",
+                        "3-amount": "biguint:100,000,000"
+                    },
+                    {
+                        "1-token_id": "nested:str:WREWA-abcdef",
+                        "2-nonce": "u64:0",
+                        "3-amount": "biguint:0"
+                    }
+                ],
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:user1": {
+                    "nonce": "*",
+                    "balance": "1,000,000,000,000,000,000,000,000,000,000",
+                    "dcdt": {
+                        "str:WREWA-abcdef": "4,900,000,000",
+                        "str:ALC-abcdef": "5,000,000,000",
+                        "str:BLC-abcdef": "5,000,000,000",
+                        "str:FARM-abcdef": {
+                            "instances": [
+                                {
+                                    "nonce": "0x01",
+                                    "balance": "100,000,000"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "sc:rewa_farm_contract": {
+                    "nonce": "*",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:WREWA-abcdef": "100,000,000",
+                        "str:FARM-abcdef": {
+                            "lastNonce": "1",
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:farm_token_id": "str:FARM-abcdef",
+                        "str:router_address": "sc:router_contract",
+                        "str:state": "1",
+                        "str:farming_token_id": "str:WREWA-abcdef",
+                        "str:reward_token_id": "str:WREWA-abcdef",
+                        "+": ""
+                    },
+                    "code": "file:../farm/output/farm.wasm"
+                },
+                "+": ""
+            }
+        }
+    ]
+}

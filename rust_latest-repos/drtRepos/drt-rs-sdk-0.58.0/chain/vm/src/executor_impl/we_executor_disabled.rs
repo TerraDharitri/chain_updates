@@ -1,0 +1,7 @@
+use dharitri_vm_executor::Executor;
+
+use crate::host::runtime::RuntimeWeakRef;
+
+pub fn new_experimental_executor(_runtime_ref: RuntimeWeakRef) -> Box<dyn Executor + Send + Sync> {
+    panic!("ExperimentalExecutor not available, need to activate features = [\"wasmer-experimental\"] in dharitri-sc-scenario or dharitri-chain-vm")
+}

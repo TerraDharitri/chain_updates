@@ -1,0 +1,19 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "dharitri-side/client",
+    "dharitri-side/client/meta",
+    "dharitri-side/client-impls/local-host",
+    "dharitri-side/client-impls/local-host/meta",
+    "dharitri-side/client-impls/mock",
+    "dharitri-side/client-impls/mock/meta",
+    "dharitri-side/client-impls/qbft",
+    "dharitri-side/client-impls/qbft/meta",
+    "dharitri-side/channel",
+    "dharitri-side/channel/meta",
+    "dharitri-side/connection",
+    "dharitri-side/connection/meta",
+    "dharitri-side/host",
+    "dharitri-side/host/meta"
+]
