@@ -33,7 +33,7 @@ They are:
 	- `dharitri-sdk-dapp`
 
 
-## [sc 0.58.0, codec 0.22.1, chain 0.15.0, sdk 0.10.0] - 2025-05-26
+## [sc 1.19.0, codec 1.19.0, chain 1.19.0, sdk 1.19.0] - 2025-05-26
 - Rust VM and debugger redesign:
 	- VM major refactoring: runtime, execution, debugger, VM hooks handler;
 	- Integration of the new executor interface: new instance, executor & VM hooks interfaces;
@@ -67,7 +67,7 @@ They are:
   - Fixed `ReturnsTxHash` result handler.
 - Enhanced `checkState` to allow partial key verification.
 
-## [sc 0.57.0, codec 0.22.0, chain 0.14.0, sdk 0.9.0, scenario-format 0.23.1] - 2025-03-11
+## [sc 0.57.0, codec 0.22.0, chain 0.14.0, sdk 0.9.0, scenario-format 1.19.0] - 2025-03-11
 - Newer compiler support:
 	- Dropped support for Rust compiler versions older than 1.83.
 	- Support and optimizations for using Rust 1.85.
@@ -210,7 +210,7 @@ They are:
   - Allow signature to be empty in TransactionOnNetwork;
   - Allow return data to be empty in VMOutputApi.
 
-## [sc 0.53.0 codec 0.21.0, vm 0.10.0, sdk 0.6.0, scenario-format 0.23.0] - 2024-09-04
+## [sc 0.53.0 codec 0.21.0, vm 1.19.0, sdk 0.6.0, scenario-format 0.23.0] - 2024-09-04
 - Unified syntax:
   -  Whitebox testing;
   -  Proxy fix for ManagedOption;
@@ -384,7 +384,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - Optimized `top_encode_number` function. It no longer contains branches or loops.
 - Removed reliance on Rust nightly features `is_sorted` and `slice_partition_dedup`.
 
-## [sc 0.47.1, codec 0.18.5, vm 0.8.1, scenario-format 0.22.1] - 2024-01-29
+## [sc 0.47.1, codec 0.18.5, vm 0.8.1, scenario-format 1.19.0] - 2024-01-29
 - Blockchain hooks: `get_code_metadata`, `is_builtin_function`.
 - Support for `drtsc:` syntax in scenarios.
 - Updated dependencies.
@@ -614,7 +614,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - New utility functions: `self.send().dcdt_local_burn_multi(...`, `self.blockchain().get_token_attributes(...)`.
 - Updated all crates to Rust 2021.
 
-## [numbat-wasm 0.37.0, numbat-codec 0.15.0] - 2022-12-09
+## [numbat-wasm 0.37.0, numbat-codec 1.19.0] - 2022-12-09
 - Multi-contract build system:
 	- build system refactor;
 	- `multicontract.toml` config system with labels,
@@ -679,7 +679,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 ## [numbat-wasm 0.33.1, denali 0.15.1] - 2022-06-24
 - CodecSelf for BigInt
 
-## [numbat-wasm 0.33.0, denali 0.15.0] - 2022-06-20
+## [numbat-wasm 0.33.0, denali 1.19.0] - 2022-06-20
 - Removed the data field for direct REWA & DCDT transfers.
 - Testing and debugging environment aligned with VM version 1.4.53.
 - Call value and token data infrastructure additional cleanup.
@@ -720,7 +720,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - Fixed behavior of blockchain API `get_dcdt_token_data`.
 - Git tag/commit info in ABI (fixed & reintroduced).
 
-## [numbat-wasm 0.30.0, numbat-codec 0.10.0] - 2022-03-17
+## [numbat-wasm 0.30.0, numbat-codec 1.19.0] - 2022-03-17
 - Feature flags in `numbat-wasm`:
 	- `alloc` allows contracts to use the heap allocator. It is not a hard restriction, there is still access to the implementations of the heap-allocated types, but they are not imported. Some methods are only available with this flag.
 	- `ei-1-1` allows contracts to use VM endpoints that are not yet available on the mainnet.
@@ -808,18 +808,18 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - New hook for DCDT local roles
 - Only-owner module annotation
 
-## [numbat-wasm 0.23.1, numbat-codec 0.8.3] - 2021-11-25
+## [numbat-wasm 1.19.0, numbat-codec 0.8.3] - 2021-11-25
 - `ArrayVec` serialization
 - `ManagedAddress` additional conversions
 
 ## [numbat-wasm 0.23.0] - 2021-11-23
 - Static access to API. Static thread-local context stack in the debugger.
 
-## [numbat-wasm 0.22.11] - 2021-11-17
+## [numbat-wasm 1.19.01] - 2021-11-17
 - Derive `ManagedVecItem` generics fix
 - Constructor can reside in module
 
-## [numbat-wasm 0.22.10] - 2021-11-12
+## [numbat-wasm 1.19.00] - 2021-11-12
 - `ManagedMultiResultVec` push accepts multi result
 
 ## [numbat-wasm 0.22.9] - 2021-11-12
@@ -855,7 +855,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - `UnorderedSetMapper`
 - `IgnoreVarArgs` variadic argument type that ignores input
 
-## [numbat-wasm 0.22.1] - 2021-11-04
+## [numbat-wasm 1.19.0] - 2021-11-04
 - Made the generated code in `wasm/lib.rs` more compact with the use of macros.
 
 ## [numbat-wasm 0.22.0] - 2021-11-02
@@ -891,7 +891,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 - Added missing managed methods in blockchain API: `is_smart_contract`, `get_shard_of_address`, `get_balance`.
 - Improved preprocessor substitutions: `ManagedAddress`, `TokenIdentifier`.
 
-## [numbat-wasm 0.20.0, numbat-codec 0.7.0, denali 0.10.0] - 2021-10-02
+## [numbat-wasm 0.20.0, numbat-codec 0.7.0, denali 1.19.0] - 2021-10-02
 - Managed callback handling
 - Managed async call result
 - ManagedVec improvements, deserialization fix
@@ -996,7 +996,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 ## [numbat-wasm 0.15.1] - 2021-04-30
 - Mitigating nested sync calls with Send API `execute_on_dest_context_raw_custom_result_range`
 
-## [numbat-wasm 0.15.0, numbat-codec 0.5.2] - 2021-04-19
+## [numbat-wasm 1.19.0, numbat-codec 0.5.2] - 2021-04-19
 - ABI
 	- Constructor representation
 	- Simplified ABI syntax for tuples and fixed-size arrays
@@ -1106,7 +1106,7 @@ First pre-release of the unified syntax. Syntax not yet stabilized, should only 
 ## [numbat-wasm 0.10.1, numbat-codec 0.4.1, denali 0.4.1] - 2020-12-23
 - Minor fixes, support for strings
 
-## [numbat-wasm 0.10.0, numbat-codec 0.4.0] - 2020-12-21
+## [numbat-wasm 1.19.0, numbat-codec 0.4.0] - 2020-12-21
 - Codec derive
 - ABI generation framework
 - New example contracts
