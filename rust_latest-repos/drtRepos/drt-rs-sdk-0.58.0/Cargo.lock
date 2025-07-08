@@ -1088,7 +1088,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-chain-core"
-version = "0.15.0"
+version = "1.19.0"
 dependencies = [
  "bitflags 2.9.1",
  "dharitri-sc-codec",
@@ -1096,7 +1096,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-chain-scenario-format"
-version = "0.23.1"
+version = "1.19.0"
 dependencies = [
  "bech32",
  "hex",
@@ -1109,7 +1109,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-chain-vm"
-version = "0.15.0"
+version = "1.19.0"
 dependencies = [
  "anyhow",
  "bitflags 2.9.1",
@@ -1133,7 +1133,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "bitflags 2.9.1",
  "dharitri-chain-core",
@@ -1147,7 +1147,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-codec"
-version = "0.22.1"
+version = "1.19.0"
 dependencies = [
  "arrayvec",
  "bitflags 2.9.1",
@@ -1158,7 +1158,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-codec-derive"
-version = "0.22.1"
+version = "1.19.0"
 dependencies = [
  "hex",
  "proc-macro2",
@@ -1168,7 +1168,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-derive"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "hex",
  "proc-macro2",
@@ -1179,7 +1179,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-meta"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "bip39",
  "clap",
@@ -1204,7 +1204,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-meta-lib"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "clap",
  "colored 3.0.0",
@@ -1224,14 +1224,14 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-modules"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "dharitri-sc",
 ]
 
 [[package]]
 name = "dharitri-sc-price-aggregator"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "dharitri-sc",
  "dharitri-sc-modules",
@@ -1251,7 +1251,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-scenario"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "base64",
  "bech32",
@@ -1276,7 +1276,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-snippets"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "anyhow",
  "base64",
@@ -1296,14 +1296,14 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-wasm-adapter"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "dharitri-sc",
 ]
 
 [[package]]
 name = "dharitri-sc-wrewa-swap"
-version = "0.58.0"
+version = "1.19.0"
 dependencies = [
  "dharitri-sc",
  "dharitri-sc-modules",
@@ -1321,7 +1321,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sdk"
-version = "0.10.0"
+version = "1.19.0"
 dependencies = [
  "aes",
  "anyhow",
@@ -1349,7 +1349,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sdk-dapp"
-version = "0.10.0"
+version = "1.19.0"
 dependencies = [
  "anyhow",
  "dharitri-sdk",
@@ -1366,7 +1366,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sdk-http"
-version = "0.10.0"
+version = "1.19.0"
 dependencies = [
  "anyhow",
  "dharitri-sdk",

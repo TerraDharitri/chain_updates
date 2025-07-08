@@ -21,6 +21,66 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5c8214115b7bf84099f1309324e63141d4c5d7cc26862f97a0a857dbefe165bd"
 
 [[package]]
+name = "dharitri-chain-core"
+version = "1.19.0"
+dependencies = [
+ "bitflags",
+ "dharitri-sc-codec",
+]
+
+[[package]]
+name = "dharitri-sc"
+version = "1.19.0"
+dependencies = [
+ "bitflags",
+ "dharitri-chain-core",
+ "dharitri-sc-codec",
+ "dharitri-sc-derive",
+ "generic-array",
+ "hex-literal",
+ "num-traits",
+ "unwrap-infallible",
+]
+
+[[package]]
+name = "dharitri-sc-codec"
+version = "1.19.0"
+dependencies = [
+ "arrayvec",
+ "bitflags",
+ "dharitri-sc-codec-derive",
+ "unwrap-infallible",
+]
+
+[[package]]
+name = "dharitri-sc-codec-derive"
+version = "1.19.0"
+dependencies = [
+ "hex",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "dharitri-sc-derive"
+version = "1.19.0"
+dependencies = [
+ "hex",
+ "proc-macro2",
+ "quote",
+ "radix_trie",
+ "syn",
+]
+
+[[package]]
+name = "dharitri-sc-wasm-adapter"
+version = "1.19.0"
+dependencies = [
+ "dharitri-sc",
+]
+
+[[package]]
 name = "endian-type"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -37,8 +97,8 @@ dependencies = [
 name = "forwarder-wasm"
 version = "0.0.0"
 dependencies = [
- "forwarder",
  "dharitri-sc-wasm-adapter",
+ "forwarder",
 ]
 
 [[package]]
@@ -58,69 +118,9 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hex-literal"
-version = "0.4.1"
+version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6fe2267d4ed49bc07b63801559be28c718ea06c4738b7a03c94df7386d2cde46"
-
-[[package]]
-name = "dharitri-chain-core"
-version = "0.14.0"
-dependencies = [
- "bitflags",
- "dharitri-sc-codec",
-]
-
-[[package]]
-name = "dharitri-sc"
-version = "0.57.1"
-dependencies = [
- "bitflags",
- "generic-array",
- "hex-literal",
- "dharitri-chain-core",
- "dharitri-sc-codec",
- "dharitri-sc-derive",
- "num-traits",
- "unwrap-infallible",
-]
-
-[[package]]
-name = "dharitri-sc-codec"
-version = "0.22.0"
-dependencies = [
- "arrayvec",
- "bitflags",
- "dharitri-sc-codec-derive",
- "unwrap-infallible",
-]
-
-[[package]]
-name = "dharitri-sc-codec-derive"
-version = "0.22.0"
-dependencies = [
- "hex",
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "dharitri-sc-derive"
-version = "0.57.1"
-dependencies = [
- "hex",
- "proc-macro2",
- "quote",
- "radix_trie",
- "syn",
-]
-
-[[package]]
-name = "dharitri-sc-wasm-adapter"
-version = "0.57.1"
-dependencies = [
- "dharitri-sc",
-]
+checksum = "bcaaec4551594c969335c98c903c1397853d4198408ea609190f420500f6be71"
 
 [[package]]
 name = "nibble_vec"

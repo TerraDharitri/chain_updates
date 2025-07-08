@@ -1,6 +1,6 @@
 [package]
 name = "dharitri-sc"
-version = "0.58.0"
+version = "1.19.0"
 edition = "2021"
 rust-version = "1.83"
 
@@ -31,14 +31,14 @@ unwrap-infallible = "0.1.5"
 generic-array = "1.2.0"
 
 [dependencies.dharitri-sc-derive]
-version = "=0.58.0"
+version = "=1.19.0"
 path = "../derive"
 
 [dependencies.dharitri-sc-codec]
-version = "=0.22.1"
+version = "=1.19.0"
 path = "../../data/codec"
 features = ["derive"]
 
 [dependencies.dharitri-chain-core]
-version = "=0.15.0"
+version = "=1.19.0"
 path = "../../chain/core"

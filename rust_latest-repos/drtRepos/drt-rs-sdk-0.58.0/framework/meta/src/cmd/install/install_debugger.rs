@@ -40,7 +40,7 @@ fn install_lldb_extension() -> io::Result<()> {
 
 async fn install_script(custom_path: Option<PathBuf>) {
     let repo_temp_download = RepoSource::download_from_github(
-        crate::cmd::template::RepoVersion::Master,
+        crate::cmd::template::RepoVersion::Main,
         std::env::temp_dir(),
     )
     .await;

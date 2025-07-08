@@ -1,6 +1,6 @@
 [package]
 name = "dharitri-sc-meta-lib"
-version = "0.58.0"
+version = "1.19.0"
 edition = "2021"
 
 authors = ["contact@dharitri.org"]
@@ -29,6 +29,6 @@ semver = "1.0.20"
 wat = "1.217.0"
 
 [dependencies.dharitri-sc]
-version = "=0.58.0"
+version = "=1.19.0"
 path = "../base"
 features = ["alloc", "num-bigint"]
