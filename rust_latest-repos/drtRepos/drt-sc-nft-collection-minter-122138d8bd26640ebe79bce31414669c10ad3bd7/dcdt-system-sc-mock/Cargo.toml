@@ -9,7 +9,7 @@ publish = false
 path = "src/dcdt_system_sc_mock.rs"
 
 [dependencies.dharitri-sc]
-version = "=0.50.0"
+version = "=1.11.10"
 
 [dev-dependencies.dharitri-sc-scenario]
-version = "=0.50.0"
+version = "=1.11.10"

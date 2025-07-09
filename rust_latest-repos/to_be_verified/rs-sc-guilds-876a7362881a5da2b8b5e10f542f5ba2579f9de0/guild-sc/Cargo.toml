@@ -10,56 +10,56 @@ path = "src/lib.rs"
 
 [dependencies.farm]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.utils]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.token_send]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.permissions_module]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.math]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.mergeable]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.fixed-supply-token]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.pair]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.common_structs]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.common_errors]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dependencies.guild-sc-config]
 path = "../guild-sc-config"
 
 [dependencies.dharitri-sc]
-version = "=0.52.3"
+version = "=1.13.6"
 features = ["dcdt-token-payment-legacy-decode"]
 
 [dependencies.dharitri-sc-modules]
-version = "=0.52.3"
+version = "=1.13.6"
 
 [dev-dependencies]
 num-bigint = "0.4.2"
 
 [dev-dependencies.dharitri-sc-scenario]
-version = "=0.52.3"
+version = "=1.13.6"

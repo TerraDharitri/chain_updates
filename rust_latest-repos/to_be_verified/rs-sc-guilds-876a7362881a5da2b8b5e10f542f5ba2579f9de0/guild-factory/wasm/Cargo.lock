@@ -237,6 +237,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "guild-factory"
+version = "0.0.0"
+dependencies = [
+ "common_structs",
+ "guild-sc",
+ "guild-sc-config",
+ "dharitri-sc",
+ "dharitri-sc-modules",
+ "utils",
+]
+
+[[package]]
+name = "guild-factory-wasm"
+version = "0.0.0"
+dependencies = [
+ "guild-factory",
+ "dharitri-sc-wasm-adapter",
+]
+
+[[package]]
 name = "guild-sc"
 version = "0.0.0"
 dependencies = [
@@ -261,14 +281,6 @@ version = "0.0.0"
 dependencies = [
  "common_structs",
  "dharitri-sc",
-]
-
-[[package]]
-name = "guild-sc-wasm"
-version = "0.0.0"
-dependencies = [
- "guild-sc",
- "dharitri-sc-wasm-adapter",
 ]
 
 [[package]]
@@ -330,7 +342,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc"
-version = "0.52.3"
+version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "526760b1d6236c011285b264a70a0a9dd3b3dbc53c3b5f76932f4bcfd3a8910c"
 dependencies = [
@@ -367,7 +379,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-derive"
-version = "0.52.3"
+version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3557f2f12640a8a07fa6af66cc2a13b188c5b61bed72db22fe631fb3a60c3e96"
 dependencies = [
@@ -380,7 +392,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-modules"
-version = "0.52.3"
+version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "61f5c29c6044f3dc9e866858feee625d7fae5604a68ac7bd66dec683eee97563"
 dependencies = [
@@ -389,7 +401,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-wasm-adapter"
-version = "0.52.3"
+version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed13aaca9cbdbc6911174cd3029e750a7563d85dd3daaa1107b1fd31c7f17245"
 dependencies = [

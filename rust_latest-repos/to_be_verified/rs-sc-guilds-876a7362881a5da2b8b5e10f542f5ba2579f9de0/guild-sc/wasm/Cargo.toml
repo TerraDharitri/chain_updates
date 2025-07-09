@@ -5,7 +5,7 @@
 # ##########################################
 
 [package]
-name = "guild-factory-wasm"
+name = "guild-sc-wasm"
 version = "0.0.0"
 edition = "2021"
 publish = false
@@ -24,11 +24,11 @@ overflow-checks = false
 [profile.dev]
 panic = "abort"
 
-[dependencies.guild-factory]
+[dependencies.guild-sc]
 path = ".."
 
 [dependencies.dharitri-sc-wasm-adapter]
-version = "=0.52.3"
+version = "=1.13.6"
 
 [workspace]
 members = ["."]

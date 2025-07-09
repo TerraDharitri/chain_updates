@@ -12,7 +12,7 @@ path = "src/lib.rs"
 path = "../nft-minter"
 
 [dependencies.dharitri-sc]
-version = "=0.50.0"
+version = "=1.11.10"
 
 [dev-dependencies]
 num-bigint = "0.4.2"
@@ -23,4 +23,4 @@ hex = "0.4"
 path = "../dcdt-system-sc-mock"
 
 [dev-dependencies.dharitri-sc-scenario]
-version = "=0.50.0"
+version = "=1.11.10"

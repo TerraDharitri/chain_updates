@@ -9,14 +9,14 @@ publish = false
 path = "src/lib.rs"
 
 [dependencies.dharitri-sc]
-version = "=0.52.3"
+version = "=1.13.6"
 
 [dependencies.common_structs]
 git = "https://github.com/TerraDharitri/drt-sc-exchange"
-rev = "5712bb3"
+rev = "8ad8661"
 
 [dev-dependencies]
 num-bigint = "0.4"
 
 [dev-dependencies.dharitri-sc-scenario]
-version = "=0.52.3"
+version = "=1.13.6"
