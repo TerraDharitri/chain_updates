@@ -1,0 +1,14 @@
+[package]
+name = "chain-config-meta"
+version = "0.1.0"
+edition = "2021"
+publish = false
+authors = ["contact@dharitri.org"]
+
+[dev-dependencies]
+
+[dependencies.chain-config]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "=1.19.0"

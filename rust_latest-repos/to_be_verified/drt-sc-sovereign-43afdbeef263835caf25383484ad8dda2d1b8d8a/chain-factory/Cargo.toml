@@ -1,0 +1,27 @@
+[package]
+name = "chain-factory"
+version = "0.1.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dev-dependencies]
+num-bigint = "0.4.2"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=1.19.0"
+
+[dependencies.dharitri-sc]
+version = "=1.19.0"
+
+[dependencies.utils]
+path = "../common/utils"
+
+[dependencies.chain-config]
+path = "../chain-config"
+
+[dependencies.error-messages]
+path = "../common/error-messages"

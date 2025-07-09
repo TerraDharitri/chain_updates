@@ -1,0 +1,12 @@
+[package]
+name = "client-meta"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies.client]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "=1.14.0"
+default-features = false

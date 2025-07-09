@@ -1,0 +1,12 @@
+[package]
+name = "channel-meta"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies.channel]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "=1.14.0"
+default-features = false
