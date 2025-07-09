@@ -12,10 +12,10 @@ path = "src/lib.rs"
 path = "../nft-minter"
 
 [dependencies.dharitri-sc]
-version = "=0.50.0"
+version = "=1.11.10"
 
 [dependencies.dharitri-sc-modules]
-version = "=0.50.0"
+version = "=1.11.10"
 
 [dev-dependencies.dharitri-sc-scenario]
-version = "=0.50.0"
+version = "=1.11.10"

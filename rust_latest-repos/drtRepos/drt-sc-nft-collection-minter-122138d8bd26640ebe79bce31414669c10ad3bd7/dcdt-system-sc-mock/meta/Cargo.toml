@@ -9,5 +9,5 @@ publish = false
 path = ".."
 
 [dependencies.dharitri-sc-meta]
-version = "=0.50.0"
+version = "=1.11.10"
 default-features = false

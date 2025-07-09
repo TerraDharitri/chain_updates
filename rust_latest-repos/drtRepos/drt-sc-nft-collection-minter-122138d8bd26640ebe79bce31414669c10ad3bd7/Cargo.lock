@@ -469,7 +469,7 @@ dependencies = [
 
 [[package]]
 name = "either"
-version = "1.11.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a47c1c47d2f5964e29c61246e81db715514cd532db6b5116a25ea3c03d6780a2"
 
@@ -1015,7 +1015,7 @@ checksum = "b59072fa0624b55ae5ae3fa6bfa91515bbeb4ac440214bc4a509e2c8806d6e9f"
 
 [[package]]
 name = "dharitri-sc"
-version = "0.50.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c9624cfb01497bf386d6b8837fa8e6785d45c8d4e122ba9c31060ecf5fce413"
 dependencies = [
@@ -1053,7 +1053,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-derive"
-version = "0.50.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "754cdc20001c3b51df75784c5d8ce454697d0e86264f1d88da392ea211f662f9"
 dependencies = [
@@ -1066,7 +1066,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-meta"
-version = "0.50.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1685ec123bf256310f876db64f63a19ce0df9721857981a4910f26c48ddf3dc6"
 dependencies = [
@@ -1093,7 +1093,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-modules"
-version = "0.50.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "25824610adec5b01c7b38cd469983940b33a7d11b2c0011af7ad572fe10ac1ae"
 dependencies = [
@@ -1102,7 +1102,7 @@ dependencies = [
 
 [[package]]
 name = "dharitri-sc-scenario"
-version = "0.50.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "25f9434d86800639499dc899c4220f615c4a2aa1a998a56d2d635cd4b5fea851"
 dependencies = [
@@ -2155,7 +2155,7 @@ dependencies = [
 
 [[package]]
 name = "unicode-segmentation"
-version = "1.11.0"
+version = "1.11.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d4c87d22b6e3f4a18d4d40ef354e97c90fcb14dd91d7dc0aa9d8a1172ebf7202"
 
