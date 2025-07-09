@@ -1,0 +1,30 @@
+[package]
+name = "local-host"
+version = "0.0.0"
+publish = false
+edition = "2021"
+authors = ["contact@dharitri.org"]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.dharitri-sc]
+version = "=1.14.0"
+
+[dependencies.client-common]
+path = "../client-common"
+
+[dependencies.host]
+path = "../../host"
+
+[dependencies.common-types]
+path = "../../common/common-types"
+
+[dependencies.common-modules]
+path = "../../common/common-modules"
+
+[dev-dependencies]
+num-bigint = "0.4"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=1.14.0"

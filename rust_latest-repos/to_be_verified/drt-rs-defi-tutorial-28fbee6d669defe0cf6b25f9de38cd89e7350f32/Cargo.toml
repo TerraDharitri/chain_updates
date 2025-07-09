@@ -1,0 +1,24 @@
+[package]
+name = "escrow"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/escrow.rs"
+
+[dependencies.dharitri-sc]
+version = "1.13.6"
+
+[dev-dependencies]
+num-bigint = "0.4"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "1.13.6"
+
+[workspace]
+members = [
+    ".",
+    "meta",
+]
