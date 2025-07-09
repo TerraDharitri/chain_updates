@@ -1,0 +1,12 @@
+[package]
+name = "price-discovery-v2-meta"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies.price-discovery-v2]
+path = ".."
+
+[dependencies.dharitri-sc-meta-lib]
+version = "1.15.0"
+default-features = false

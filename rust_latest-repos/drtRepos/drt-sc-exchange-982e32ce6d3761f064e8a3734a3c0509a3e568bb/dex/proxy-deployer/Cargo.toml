@@ -1,0 +1,31 @@
+[package]
+name = "proxy-deployer"
+version = "0.0.0"
+authors = ["contact@dharitri.org"]
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies.farm]
+path = "../farm"
+
+[dependencies.pausable]
+path = "../../common/modules/pausable"
+
+[dependencies.config]
+path = "../../common/modules/farm/config"
+
+[dependencies.farm_token]
+path = "../../common/modules/farm/farm_token"
+
+[dependencies.dharitri-sc]
+version = "=1.15.0"
+features = ["dcdt-token-payment-legacy-decode"]
+
+[dev-dependencies]
+num-bigint = "0.4.2"
+
+[dev-dependencies.dharitri-sc-scenario]
+version = "=1.15.0"

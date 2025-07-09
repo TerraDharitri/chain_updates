@@ -1,0 +1,79 @@
+{
+    "name": "distribution",
+    "steps": [
+        {
+            "step": "externalSteps",
+            "path": "enter_moa_farm_proxy.scen.json"
+        },
+        {
+            "step": "setState",
+            "currentBlockInfo": {
+                "blockNonce": "10",
+                "blockEpoch": "10"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "14",
+            "tx": {
+                "from": "address:user_with_wrewa1",
+                "to": "sc:proxy_dex_contract",
+                "dcdtValue": [
+                    {
+                        "tokenIdentifier": "str:WFARM-abcdef",
+                        "nonce": "0x01",
+                        "value": "6,000"
+                    }
+                ],
+                "function": "claimRewardsProxy",
+                "arguments": [
+                    "sc:moa_farm_contract"
+                ],
+                "gasLimit": "1,000,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "0",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+                "address:user_with_wrewa1": {
+                    "nonce": "3",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:LKMOA-abcdef": {
+                            "instances": [
+                                {
+                                    "nonce": "0x01",
+                                    "balance": "80,000"
+                                }
+                            ]
+                        },
+                        "str:WFARM-abcdef": {
+                            "instances": [
+                                {
+                                    "nonce": "0x02",
+                                    "balance": "6,000"
+                                },
+                                {
+                                    "nonce": "0x01",
+                                    "balance": "4,000"
+                                }
+                            ]
+                        },
+                        "str:MOA-abcdef": "30,000",
+                        "str:WREWA-abcdef": "1,000,000,000"
+                    },
+                    "storage": {},
+                    "code": ""
+                },
+                "+": ""
+            }
+        }
+    ]
+}

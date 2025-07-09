@@ -1,0 +1,320 @@
+{
+    "name": "distribution",
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "address:owner": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user1": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user2": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user3": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user4": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user5": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "storage": {},
+                    "code": ""
+                },
+                "address:user_with_wrewa1": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:WREWA-abcdef": "1,000,000,000"
+                    },
+                    "code": ""
+                },
+                "address:user_with_wrewa2": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:WREWA-abcdef": "1,000,000,000"
+                    },
+                    "code": ""
+                },
+                "address:user_with_moa1": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:MOA-abcdef": "1,000,000,000"
+                    },
+                    "code": ""
+                },
+                "address:user_with_moa2": {
+                    "nonce": "0",
+                    "balance": "100,000,000",
+                    "dcdt": {
+                        "str:MOA-abcdef": "1,000,000,000"
+                    },
+                    "code": ""
+                }
+            },
+            "newAddresses": [
+                {
+                    "creatorAddress": "address:owner",
+                    "creatorNonce": "0",
+                    "newAddress": "sc:dist_contract"
+                },
+                {
+                    "creatorAddress": "address:owner",
+                    "creatorNonce": "1",
+                    "newAddress": "sc:locked_asset_factory"
+                },
+                {
+                    "creatorAddress": "address:owner",
+                    "creatorNonce": "2",
+                    "newAddress": "sc:proxy_dex_contract"
+                }
+            ]
+        },
+        {
+            "step": "scDeploy",
+            "txId": "1",
+            "tx": {
+                "from": "address:owner",
+                "value": "0",
+                "contractCode": "file:../../distribution/output/distribution.wasm",
+                "arguments": [
+                    "str:MOA-abcdef",
+                    "sc:locked_asset_factory"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scDeploy",
+            "txId": "deploy",
+            "tx": {
+                "from": "address:owner",
+                "contractCode": "file:../../../locked-asset/factory/output/factory.wasm",
+                "value": "0",
+                "arguments": [
+                    "str:MOA-abcdef",
+                    "0x000000000000001b32",
+                    "0x000000000000002c32"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "unpause",
+            "tx": {
+                "from": "address:owner",
+                "to": "sc:locked_asset_factory",
+                "value": "0",
+                "function": "unpause",
+                "arguments": [],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scDeploy",
+            "txId": "1",
+            "tx": {
+                "from": "address:owner",
+                "value": "0",
+                "contractCode": "file:../../proxy_dex/output/proxy_dex.wasm",
+                "arguments": [
+                    "str:MOA-abcdef",
+                    "str:LKMOA-abcdef",
+                    "sc:locked_asset_factory"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "setState",
+            "accounts": {
+                "sc:dist_contract": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:MOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
+                            ]
+                        },
+                        "str:LKMOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:asset_token_id": "str:MOA-abcdef",
+                        "str:locked_asset_factory_address": "sc:locked_asset_factory"
+                    },
+                    "code": "file:../../distribution/output/distribution.wasm",
+                    "owner": "address:owner"
+                },
+                "sc:locked_asset_factory": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:MOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
+                            ]
+                        },
+                        "str:LKMOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTBurn",
+                                "DCDTRoleNFTAddQuantity"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:asset_token_id": "str:MOA-abcdef",
+                        "str:locked_asset_token_id": "str:LKMOA-abcdef",
+                        "str:default_unlock_period": "0x00000002000000000000001b32000000000000002c32",
+                        "str:transfer_exec_gas_limit": "50000000"
+                    },
+                    "code": "file:../../../locked-asset/factory/output/factory.wasm",
+                    "owner": "address:owner"
+                },
+                "sc:proxy_dex_contract": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "dcdt": {
+                        "str:WLPTOK-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
+                            ]
+                        },
+                        "str:WFARM-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTCreate",
+                                "DCDTRoleNFTAddQuantity",
+                                "DCDTRoleNFTBurn"
+                            ]
+                        },
+                        "str:MOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleLocalMint",
+                                "DCDTRoleLocalBurn"
+                            ]
+                        },
+                        "str:LKMOA-abcdef": {
+                            "roles": [
+                                "DCDTRoleNFTBurn"
+                            ]
+                        }
+                    },
+                    "storage": {
+                        "str:wrapped_lp_token_id": "str:WLPTOK-abcdef",
+                        "str:wrapped_lp_token_nonce": "0",
+                        "str:wrapped_farm_token_id": "str:WFARM-abcdef",
+                        "str:wrapped_farm_token_nonce": "0",
+                        "str:asset_token_id": "str:MOA-abcdef",
+                        "str:locked_asset_token_id": "str:LKMOA-abcdef",
+                        "str:locked_asset_factory_address": "sc:locked_asset_factory"
+                    },
+                    "code": "file:../../proxy_dex/output/proxy_dex.wasm",
+                    "owner": "address:owner"
+                }
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "2",
+            "tx": {
+                "from": "address:owner",
+                "to": "sc:locked_asset_factory",
+                "value": "0",
+                "function": "whitelist",
+                "arguments": [
+                    "sc:dist_contract"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "setUnlockPeriod",
+            "tx": {
+                "from": "address:owner",
+                "to": "sc:dist_contract",
+                "value": "0",
+                "function": "setUnlockPeriod",
+                "arguments": [
+                    "u64:0|u8:100"
+                ],
+                "gasLimit": "100,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out": "*",
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        }
+    ]
+}
