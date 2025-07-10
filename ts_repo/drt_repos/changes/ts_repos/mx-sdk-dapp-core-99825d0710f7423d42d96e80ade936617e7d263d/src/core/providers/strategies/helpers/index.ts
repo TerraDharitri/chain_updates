@@ -1,1 +1,0 @@
-export { getPendingTransactionsHandlers } from './getPendingTransactionsHandlers';
