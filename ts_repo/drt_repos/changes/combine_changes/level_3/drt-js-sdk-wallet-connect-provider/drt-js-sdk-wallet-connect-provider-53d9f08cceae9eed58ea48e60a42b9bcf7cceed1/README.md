@@ -1,8 +1,8 @@
-# drt-sdk-js-wallet-connect-provider
+# drt-js-sdk-wallet-connect-provider
 
 Signing provider for dApps: WalletConnect.
 
-Documentation is available on [docs.dharitri.org](https://docs.dharitri.org/sdk-and-tools/sdk-js/sdk-js-signing-providers/#the-wallet-connect-provider), while an integration example can be found [here](https://github.com/TerraDharitri/drt-js-sdk-examples/tree/main/signing-providers).
+Documentation is available on [docs.dharitri.org](https://docs.dharitri.org/sdk-and-tools/sdk-js/-signing-providers/#the-wallet-connect-provider), while an integration example can be found [here](https://github.com/TerraDharitri/drt-js-sdk-examples/tree/main/signing-providers).
 
 Note that **we recommend using [sdk-dapp](https://github.com/TerraDharitri/drt-sdk-dapp)** instead of integrating the signing provider on your own.
 
