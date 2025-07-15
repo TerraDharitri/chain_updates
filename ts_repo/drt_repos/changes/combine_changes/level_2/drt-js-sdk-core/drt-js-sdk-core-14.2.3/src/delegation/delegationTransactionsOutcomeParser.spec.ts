@@ -14,7 +14,7 @@ describe("test delegation transactions outcome parser", () => {
             "Q8M8GTdWSAAA",
             "AQ==",
             "Q8M8GTdWSAAA",
-            "AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABD///8=",
+            "IzMAAAAAAAAAAAAAAAAAAAACMzAAAAAAAAAAABD///8=",
         ];
 
         const delegateEvent = new TransactionEvent({
@@ -24,7 +24,7 @@ describe("test delegation transactions outcome parser", () => {
         });
 
         encodedTopics = [
-            "AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABD///8=",
+            "IzMAAAAAAAAAAAAAAAAAAAACMzAAAAAAAAAAABD///8=",
             "PDXX6ssamaSgzKpTfvDMCuEJ9B9sK0AiA+Yzv7sHH1w=",
         ];
         const scDeployEvent = new TransactionEvent({
@@ -51,7 +51,7 @@ describe("test delegation transactions outcome parser", () => {
             sender: new Address("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv"),
             receiver: new Address("drt18s6a06ktr2v6fgxv4ffhauxvptssnaqlds45qgsrucemlwc8rawqfgxqg5"),
             data: Buffer.from(
-                "QDZmNmJAMDAwMDAwMDAwMDAwMDAwMDAwMDEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxMGZmZmZmZg==",
+                "QDZmNmJAMjMzMzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyMzMzMDAwMDAwMDAwMDAwMDAwMDAxMGZmZmZmZg==",
                 "base64",
             ),
             logs: scResultLog,

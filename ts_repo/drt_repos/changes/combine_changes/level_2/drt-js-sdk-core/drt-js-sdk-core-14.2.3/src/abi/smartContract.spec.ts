@@ -58,7 +58,7 @@ describe("test contract", () => {
         contract.setAddress(SmartContract.computeAddress(alice.address, 42n));
         assert.equal(
             contract.getAddress().toBech32(),
-            "drt1qqqqqqqqqqqqqpgq3ytm9m8dpeud35v3us20vsafp77smqghd8ssgwucv7",
+            "drt1qqqqqqqqqqqqqpgqn45tpxy6uhk950pyyx62xvty0d0w678qw82svxxu3t",
         );
 
         // Sign the transaction
@@ -195,7 +195,7 @@ describe("test contract", () => {
     });
 
     it("v13 should be stricter than v12 on optional<variadic<type>> (exotic) parameters (since NativeSerializer is used under the hood)", async () => {
-        // Related to: https://github.com/TerraDharitri/drt-sdk-js-core/issues/435.
+        // Related to: https://github.com/TerraDharitri/drt-js-sdk-core/issues/435.
         // In v12, contract.call() only supported TypedValue[] as contract call arguments.
         // In v13, NativeSerializer is used under the hood, which allows one to mix typed values with native values.
         // However, this comes with additional rules regarding optional<variadic<?>> parameters.
@@ -215,7 +215,7 @@ describe("test contract", () => {
             ],
         });
 
-        const callerAddress = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const callerAddress = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const contractAddress = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqaxa53w6uk43n6dhyt2la6cd5lyv32qn4396q5vhusg");
 
         const contract = new SmartContract({
@@ -284,7 +284,7 @@ describe("test contract", () => {
             ],
         });
 
-        const callerAddress = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const callerAddress = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const contractAddress = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqaxa53w6uk43n6dhyt2la6cd5lyv32qn4396q5vhusg");
 
         const contract = new SmartContract({

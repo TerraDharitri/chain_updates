@@ -25,7 +25,7 @@ import {
         const transaction = new Transaction({
             nonce: 90n,
             sender: account.address,
-            receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+            receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
             value: 1000000000000000000n,
             gasLimit: 50000n,
             chainID: "D",
@@ -35,7 +35,7 @@ import {
         transaction.signature = await account.signTransaction(transaction);
 
         // instantiating a user verifier; basically gets the public key // md-as-comment
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const aliceVerifier = UserVerifier.fromAddress(alice);
 
         // serialize the transaction for verification // md-as-comment
@@ -65,7 +65,7 @@ import {
         message.signature = await account.signMessage(message);
 
         // instantiating a user verifier; basically gets the public key // md-as-comment
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const aliceVerifier = UserVerifier.fromAddress(alice);
 
         // serialize the message for verification // md-as-comment
@@ -88,7 +88,7 @@ import {
         const transaction = new Transaction({
             nonce: 90n,
             sender: account.address,
-            receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+            receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
             value: 1000000000000000000n,
             gasLimit: 50000n,
             chainID: "D",
@@ -98,7 +98,7 @@ import {
         transaction.signature = await account.signTransaction(transaction);
 
         // instantiating a public key // md-as-comment
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const publicKey = new UserPublicKey(alice.getPublicKey());
 
         // serialize the transaction for verification // md-as-comment

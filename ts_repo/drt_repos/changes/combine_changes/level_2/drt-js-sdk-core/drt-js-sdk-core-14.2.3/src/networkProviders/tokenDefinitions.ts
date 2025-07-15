@@ -43,7 +43,7 @@ export class DefinitionOfFungibleTokenOnNetwork {
 
     /**
      * The implementation has been moved here from the following location:
-     * https://github.com/TerraDharitri/drt-sdk-js-core/blob/release/v9/src/token.ts
+     * https://github.com/TerraDharitri/drt-js-sdk-core/blob/release/v9/src/token.ts
      */
     static fromResponseOfGetTokenProperties(identifier: string, data: Buffer[]): DefinitionOfFungibleTokenOnNetwork {
         let result = new DefinitionOfFungibleTokenOnNetwork();
@@ -107,7 +107,7 @@ export class DefinitionOfTokenCollectionOnNetwork {
 
     /**
      * The implementation has been moved here from the following location:
-     * https://github.com/TerraDharitri/drt-sdk-js-core/blob/release/v9/src/token.ts
+     * https://github.com/TerraDharitri/drt-js-sdk-core/blob/release/v9/src/token.ts
      */
     static fromResponseOfGetTokenProperties(collection: string, data: Buffer[]): DefinitionOfTokenCollectionOnNetwork {
         let result = new DefinitionOfTokenCollectionOnNetwork();

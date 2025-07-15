@@ -44,7 +44,7 @@ import { loadAbiRegistry } from "../src/testutils";
     // ```js
     {
         const response = await axios.get(
-            "https://github.com/TerraDharitri/drt-sdk-js-core/raw/main/src/testdata/adder.abi.json",
+            "https://github.com/TerraDharitri/drt-js-sdk-core/raw/main/src/testdata/adder.abi.json",
         );
         let abi = Abi.create(response.data);
     }
@@ -418,7 +418,7 @@ import { loadAbiRegistry } from "../src/testutils";
     // #### Decoding transaction events
     // You might be interested into decoding events emitted by a contract. You can do so by using the `TransactionEventsParser`.
 
-    // Suppose we'd like to decode a `startPerformAction` event emitted by the [multisig](https://github.com/TerraDharitri/drt-contracts-rs/tree/main/contracts/multisig) contract.
+    // Suppose we'd like to decode a `startPerformAction` event emitted by the [multisig](https://github.com/TerraDharitri/drt-rs-contracts/tree/main/contracts/multisig) contract.
 
     // First, we load the abi file, then we fetch the transaction, we extract the event from the transaction and then we parse it.
 
@@ -438,7 +438,7 @@ import { loadAbiRegistry } from "../src/testutils";
     // #### Decoding transaction events
     // Whenever needed, the contract ABI can be used for manually encoding or decoding custom types.
 
-    // Let's encode a struct called DcdtTokenPayment (of [multisig](https://github.com/TerraDharitri/drt-contracts-rs/tree/main/contracts/multisig) contract) into binary data.
+    // Let's encode a struct called DcdtTokenPayment (of [multisig](https://github.com/TerraDharitri/drt-rs-contracts/tree/main/contracts/multisig) contract) into binary data.
     // ```js
     {
         const abi = await loadAbiRegistry("../src/testdata/multisig-full.abi.json");

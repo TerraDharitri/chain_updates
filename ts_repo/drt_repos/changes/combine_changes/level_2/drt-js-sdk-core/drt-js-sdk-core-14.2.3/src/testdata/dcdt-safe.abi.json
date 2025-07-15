@@ -148,7 +148,7 @@
             "name": "registerToken",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {

@@ -27,7 +27,7 @@ describe("TestEntrypoint", function () {
         );
         assert.equal(
             Buffer.from(transaction.signature).toString("hex"),
-            "69bc7d1777edd0a901e6cf94830475716205c5efdf2fd44d4be31badead59fc8418b34f0aa3b2c80ba14aed5edd30031757d826af58a1abb690a0bee89ba9309",
+            "2b8d6ea92eb346e45d512d34e84e544276bbf83b5f41db2b14356ebf4446dc0dca1c10dad4e44a189d83a5c65b838a37d6f3e00c54a5e83cd1206e81dbbd150b",
         );
     });
 

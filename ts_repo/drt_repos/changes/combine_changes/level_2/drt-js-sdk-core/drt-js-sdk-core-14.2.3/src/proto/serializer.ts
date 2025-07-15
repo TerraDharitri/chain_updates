@@ -31,7 +31,7 @@ export class ProtoSerializer {
         const senderPubkey = transaction.sender.getPublicKey();
 
         let protoTransaction = new proto.Transaction({
-            // drt-chain-go's serializer handles nonce == 0 differently, thus we treat 0 as "undefined".
+            // drt-go-chain's serializer handles nonce == 0 differently, thus we treat 0 as "undefined".
             Nonce: Number(transaction.nonce) ? Number(transaction.nonce) : undefined,
             Value: this.serializeTransactionValue(transaction.value),
             RcvAddr: receiverPubkey,
@@ -72,7 +72,7 @@ export class ProtoSerializer {
     }
 
     /**
-     * Custom serialization, compatible with drt-chain-go.
+     * Custom serialization, compatible with drt-go-chain.
      */
     private serializeTransactionValue(transactionValue: bigint): Buffer {
         let value = new BigNumber(transactionValue.toString());
@@ -82,7 +82,7 @@ export class ProtoSerializer {
 
         // Will retain the magnitude, as a buffer.
         let buffer = bigIntToBuffer(value);
-        // We prepend the "positive" sign marker, in order to be compatible with drt-chain-go's "sign & magnitude" proto-representation (a custom one).
+        // We prepend the "positive" sign marker, in order to be compatible with drt-go-chain's "sign & magnitude" proto-representation (a custom one).
         buffer = Buffer.concat([Buffer.from([0x00]), buffer]);
         return buffer;
     }

@@ -8,7 +8,7 @@ import { Address, AddressComputer, LibraryConfig } from "../src"; // md-ignore
     // ``` js
     {
         // Create an Address object from a bech32-encoded string // md-as-comment
-        const address = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const address = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
 
         console.log("Address (bech32-encoded):", address.toBech32());
         console.log("Public key (hex-encoded):", address.toHex());
@@ -23,7 +23,7 @@ import { Address, AddressComputer, LibraryConfig } from "../src"; // md-ignore
     // ``` js
     {
         // Create an address from a hex-encoded string with a specified HRP // md-as-comment
-        const address = Address.newFromHex("0139472eff6886771a982f3083da5d421f24c29181e63888228dc81ca60d69e1", "erd");
+        const address = Address.newFromHex("0139472eff6886771a982f3083da5d421f24c29181e63888228dc81ca60d69e1", "drt");
 
         console.log("Address (bech32-encoded):", address.toBech32());
         console.log("Public key (hex-encoded):", address.toHex());

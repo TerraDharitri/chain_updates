@@ -18,7 +18,7 @@ describe("AccountAwaiter Tests", () => {
     });
 
     it("should await on balance increase", async () => {
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         // alice account is created with 1000 REWA
         const initialBalance = (await provider.getAccount(alice)).balance;
 

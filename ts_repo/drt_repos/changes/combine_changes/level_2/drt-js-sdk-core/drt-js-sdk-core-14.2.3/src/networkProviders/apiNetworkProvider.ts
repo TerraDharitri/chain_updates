@@ -286,6 +286,7 @@ export class ApiNetworkProvider implements INetworkProvider {
     }
 
     private handleApiError(error: any, resourceUrl: string) {
+        console.log("resource url:: ",resourceUrl)
         if (!error.response) {
             throw new ErrNetworkProvider(resourceUrl, error.toString(), error);
         }

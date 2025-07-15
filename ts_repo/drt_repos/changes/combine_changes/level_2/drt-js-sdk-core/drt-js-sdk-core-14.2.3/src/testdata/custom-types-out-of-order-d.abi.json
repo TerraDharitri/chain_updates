@@ -9,7 +9,7 @@
             "name": "donate_permanent",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [],
             "outputs": []
@@ -18,7 +18,7 @@
             "name": "donate_temporary",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [],
             "outputs": []
@@ -509,7 +509,7 @@
             "name": "auctionBid",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -676,7 +676,7 @@
                 },
                 {
                     "name": "token_identifier",
-                    "type": "EgldOrDcdtTokenIdentifier"
+                    "type": "RewaOrDcdtTokenIdentifier"
                 },
                 {
                     "name": "nonce",

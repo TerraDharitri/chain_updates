@@ -11,5 +11,5 @@ export class LibraryConfig {
     /**
      * The human-readable-part of the bech32 addresses.
      */
-    public static DefaultAddressHrp: string = "erd";
+    public static DefaultAddressHrp: string = "drt";
 }

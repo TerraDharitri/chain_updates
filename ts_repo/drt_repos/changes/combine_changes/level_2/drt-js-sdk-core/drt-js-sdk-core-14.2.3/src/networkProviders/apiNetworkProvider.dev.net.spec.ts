@@ -399,7 +399,7 @@ describe("ApiNetworkProvider Tests", function () {
 
     it("should fetch transactions for an account", async () => {
         const transactions = await apiProvider.getTransactions(
-            Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf"),
+            Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh"),
         );
         assert.isTrue(transactions.length > 0);
     });

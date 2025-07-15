@@ -17,7 +17,7 @@ import { Account, Address, Message, MessageComputer, Transaction, TransactionCom
         const transaction = new Transaction({
             chainID: "D",
             sender: alice.address,
-            receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+            receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
             gasLimit: 50000n,
             nonce: 90n,
         });
@@ -30,14 +30,14 @@ import { Account, Address, Message, MessageComputer, Transaction, TransactionCom
     // #### Signing a Transaction using a SecretKey
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const secretKey = UserSecretKey.fromString(secretKeyHex);
         const publickKey = secretKey.generatePublicKey();
 
         const transaction = new Transaction({
             nonce: 90n,
             sender: publickKey.toAddress(),
-            receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+            receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
             value: 1000000000000000000n,
             gasLimit: 50000n,
             chainID: "D",
@@ -63,7 +63,7 @@ import { Account, Address, Message, MessageComputer, Transaction, TransactionCom
         const transaction = new Transaction({
             nonce: 90n,
             sender: alice.address,
-            receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+            receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
             value: 1000000000000000000n,
             gasLimit: 50000n,
             chainID: "D",
@@ -102,7 +102,7 @@ import { Account, Address, Message, MessageComputer, Transaction, TransactionCom
     // #### Signing a Message using an SecretKey:
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const secretKey = UserSecretKey.fromString(secretKeyHex);
         const publicKey = secretKey.generatePublicKey();
 

@@ -8,20 +8,20 @@ export function createLocalnetProvider(): INetworkProvider {
 export function createTestnetProvider(): INetworkProvider {
     return new ApiNetworkProvider("https://testnet-api.dharitri.org", {
         timeout: 5000,
-        clientName: "drt-sdk-js-core/tests",
+        clientName: "drt-js-sdk-core/tests",
     });
 }
 
 export function createDevnetProvider(): INetworkProvider {
     return new ProxyNetworkProvider("https://devnet-gateway.dharitri.org", {
         timeout: 5000,
-        clientName: "drt-sdk-js-core/tests",
+        clientName: "drt-js-sdk-core/tests",
     });
 }
 
 export function createMainnetProvider(): INetworkProvider {
     return new ProxyNetworkProvider("https://gateway.dharitri.org", {
         timeout: 10000,
-        clientName: "drt-sdk-js-core/tests",
+        clientName: "drt-js-sdk-core/tests",
     });
 }

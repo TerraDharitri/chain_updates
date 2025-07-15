@@ -18,8 +18,8 @@ describe("test governance controller", function () {
     const commitHash = "1db734c0315f9ec422b88f679ccfe3e0197b9d67";
     const governanceAddress = "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqrlllsf45f4t";
 
-    const aliceBech32 = "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf";
-    const secretKey = UserSecretKey.fromString("413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9");
+    const aliceBech32 = "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh";
+    const secretKey = UserSecretKey.fromString("2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c");
     const keypair = new KeyPair(secretKey);
     const alice = Account.newFromKeypair(keypair);
 
@@ -70,7 +70,7 @@ describe("test governance controller", function () {
 
     it("should create transaction for clearing ended proposals", async function () {
         const expectedData =
-            "clearEndedProposals@0139472eff6886771a982f3083da5d421f24c29181e63888228dc81ca60d69e1@8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8";
+            "clearEndedProposals@391f932707a9dfa86d3bcbb3d5d0cc9f25ad0e680fe499f107d844b7e6ea71d5@2190ce43a3fb31821c317a03f7a08e7650df4c08bc808e127af280e6a5a8f134";
 
         const transaction = await controller.createTransactionForClearingEndedProposals(
             alice,
@@ -78,7 +78,7 @@ describe("test governance controller", function () {
             {
                 proposers: [
                     alice.address,
-                    Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+                    Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
                 ],
             },
         );
@@ -192,7 +192,7 @@ describe("test governance controller", function () {
                     "NjXJrcXeoAAA",
                     "MWRiNzM0YzAzMTVmOWVjNDIyYjg4ZjY3OWNjZmUzZTAxOTdiOWQ2Nw==",
                     "AQ==",
-                    "ATlHLv9ohncamC8wg9pdQh8kwpGB5jiIIo3IHKYNaeE=",
+                    "OR+TJwep36htO8uz1dDMnyWtDmgP5JnxB9hEt+bqcdU=",
                     "NQ==",
                     "Nw==",
                     "",

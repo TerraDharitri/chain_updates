@@ -19,7 +19,7 @@ import { Account, DevnetEntrypoint, KeyPair, Mnemonic, UserSecretKey } from "../
     // #### From a Secret Key
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
         const accountFromSecretKey = new Account(secretKey);
@@ -64,7 +64,7 @@ import { Account, DevnetEntrypoint, KeyPair, Mnemonic, UserSecretKey } from "../
 
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const key = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
         const accountWithNonce = new Account(key);
@@ -91,7 +91,7 @@ import { Account, DevnetEntrypoint, KeyPair, Mnemonic, UserSecretKey } from "../
     // #### Saving the Account to a PEM File
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
         const account = new Account(secretKey);
@@ -102,7 +102,7 @@ import { Account, DevnetEntrypoint, KeyPair, Mnemonic, UserSecretKey } from "../
     // #### Saving the Account to a Keystore File
     // ```js
     {
-        const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+        const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
         const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
         const account = new Account(secretKey);
