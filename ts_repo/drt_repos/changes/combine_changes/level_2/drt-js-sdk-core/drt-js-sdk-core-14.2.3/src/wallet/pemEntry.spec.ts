@@ -13,10 +13,10 @@ describe("test pem entry", () => {
         let entry = entries[0];
 
         assert.lengthOf(entries, 1);
-        assert.equal(entry.label, "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        assert.equal(entry.label, "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9",
+            "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c",
         );
 
         text = readFileSync(path.join(walletsPath, "multipleUserKeys.pem"), "utf-8");
@@ -24,24 +24,24 @@ describe("test pem entry", () => {
         entry = entries[0];
 
         assert.lengthOf(entries, 3);
-        assert.equal(entry.label, "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        assert.equal(entry.label, "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9",
+            "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c",
         );
 
         entry = entries[1];
-        assert.equal(entry.label, "drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+        assert.equal(entry.label, "drt18h03w0y7qtqwtra3u4f0gu7e3kn2fslj83lqxny39m5c4rwaectswerhd2");
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "b8ca6f8203fb4b545a8e83c5384da033c415db155b53fb5b8eba7ff5a039d639",
+            "8928add00f0d168620a76ec7af31a92f957038a1a2ed75778a4243248d319f2f",
         );
 
         entry = entries[2];
-        assert.equal(entry.label, "drt1k2s324ww2g0yj38qn2ch2jwctdy8mnfxep94q9arncc6xecg3xaq889n6e");
+        assert.equal(entry.label, "drt1kp072dwz0arfz8m5lzmlypgu2nme9l9q33aty0znualvanfvmy5qd3yy8q");
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "e253a571ca153dc2aee845819f74bcc9773b0586edead15a94cb7235a5027436",
+            "5aa2311a2274ff47cc804f12a4e8b28cf74650a0d1efcb8175b90eda4e3e6b4c",
         );
     });
 
@@ -53,11 +53,11 @@ describe("test pem entry", () => {
         assert.lengthOf(entries, 1);
         assert.equal(
             entry.label,
-            "e7beaa95b3877f47348df4dd1cb578a4f7cabf7a20bfeefe5cdd263878ff132b765e04fef6f40c93512b666c47ed7719b8902f6c922c04247989b7137e837cc81a62e54712471c97a2ddab75aa9c2f58f813ed4c0fa722bde0ab718bff382208",
+            "d3e0427c22ff9cc80ef4156f976644cfa25c54e5a69ed199132053f8cbbfddd4eb15a2f732a3c9b392169c8b1d060e0b5ab0d88b4dd7b4010fa051a17ef81bdbace5e68025965b00bf48e14a9ec8d8e2a8bcc9e62f97ddac3268f6b805f7b80e",
         );
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "7cff99bd671502db7d15bc8abc0c9a804fb925406fbdd50f1e4c17a4cd774247",
+            "132e9b47291fcc62c64b334fd434ab2db74bf64b42d4cc1b4cedd10df77c1936",
         );
 
         text = readFileSync(path.join(walletsPath, "multipleValidatorKeys.pem"), "utf-8");
@@ -67,41 +67,41 @@ describe("test pem entry", () => {
         assert.lengthOf(entries, 4);
         assert.equal(
             entry.label,
-            "f8910e47cf9464777c912e6390758bb39715fffcb861b184017920e4a807b42553f2f21e7f3914b81bcf58b66a72ab16d97013ae1cff807cefc977ef8cbf116258534b9e46d19528042d16ef8374404a89b184e0a4ee18c77c49e454d04eae8d",
+            "d3e0427c22ff9cc80ef4156f976644cfa25c54e5a69ed199132053f8cbbfddd4eb15a2f732a3c9b392169c8b1d060e0b5ab0d88b4dd7b4010fa051a17ef81bdbace5e68025965b00bf48e14a9ec8d8e2a8bcc9e62f97ddac3268f6b805f7b80e",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "7c19bf3a0c57cdd1fb08e4607cebaa3647d6b9261b4693f61e96e54b218d442a",
+            "132e9b47291fcc62c64b334fd434ab2db74bf64b42d4cc1b4cedd10df77c1936",
         );
 
         entry = entries[1];
         assert.equal(
             entry.label,
-            "1b4e60e6d100cdf234d3427494dac55fbac49856cadc86bcb13a01b9bb05a0d9143e86c186c948e7ae9e52427c9523102efe9019a2a9c06db02993f2e3e6756576ae5a3ec7c235d548bc79de1a6990e1120ae435cb48f7fc436c9f9098b92a0d",
+            "b0b6349b3f693e08c433970d10efb2fe943eac4057a945146bee5fd163687f4e1800d541aa0f11bf9e4cb6552f512e126068e68eb471d18fcc477ddfe0b9b3334f34e30d8b7b2c08f914f4ae54454f75fb28922ba9fd28785bcadc627031fa8a",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "3034b1d58628a842984da0c70da0b5a251ebb2aebf51afc5b586e2839b5e5263",
+            "490a55ab40cbea7798f7a743bcd3da44276bec6ad083759a4516646186257466",
         );
 
         entry = entries[2];
         assert.equal(
             entry.label,
-            "e5dc552b4b170cdec4405ff8f9af20313bf0e2756d06c35877b6fbcfa6b354a7b3e2d439ea87999befb09a8fa1b3f014e57ec747bf738c4199338fcd4a87b373dd62f5c8329f1f5f245956bbb06685596a2e83dc38befa63e4a2b5c4ce408506",
+            "67c301358a41bef74df2ae6aa9914e3a5e7a4b528bbd19596cca4b2fd97a62ab2c0a88b02adf1c5973a82c7544cdc40539ae62a9ac05351cfc59c300bbf4492f4266c550987355c39cff8e84ff74e012c7fd372c240eeb916ef87eead82ffd98",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "de7e1b385edbb0e1e8f9fc25d91bd8eed71a1da7caab732e6b47a48042d8523d",
+            "59074392f4f970c3b5d4ba1783955fcf9fcc44d9a5aff2b5cddb0020ca155b5c",
         );
 
         entry = entries[3];
         assert.equal(
             entry.label,
-            "12773304cb718250edd89770cedcbf675ccdb7fe2b30bd3185ca65ffa0d516879768ed03f92e41a6e5bc5340b78a9d02655e3b727c79730ead791fb68eaa02b84e1be92a816a9604a1ab9a6d3874b638487e2145239438a4bafac3889348d405",
+            "ab0a22ba2be6560af8520208393381760f9d4f69fca4f152b0a3fe7b124dd7f932fd8c1fbb372792c235baafac36030ceaf6ebf215de4e8d8d239f347f2fed10a75a07cbf9dc56efbbfca2e319152a363df122c300cdeb2faa02a61ebefd8a0e",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "8ebeb07d296ad2529400b40687a741a135f8357f79f39fcb2894a6f9703a5816",
+            "a6091fb517645196396d04aab3679e4f059db9d85c981625c1999dada985cd5e",
         );
     });
 
@@ -113,11 +113,11 @@ describe("test pem entry", () => {
         assert.lengthOf(entries, 1);
         assert.equal(
             entry.label,
-            "e7beaa95b3877f47348df4dd1cb578a4f7cabf7a20bfeefe5cdd263878ff132b765e04fef6f40c93512b666c47ed7719b8902f6c922c04247989b7137e837cc81a62e54712471c97a2ddab75aa9c2f58f813ed4c0fa722bde0ab718bff382208",
+            "d3e0427c22ff9cc80ef4156f976644cfa25c54e5a69ed199132053f8cbbfddd4eb15a2f732a3c9b392169c8b1d060e0b5ab0d88b4dd7b4010fa051a17ef81bdbace5e68025965b00bf48e14a9ec8d8e2a8bcc9e62f97ddac3268f6b805f7b80e",
         );
         assert.equal(
             Buffer.from(entry.message.slice(0, USER_SEED_LENGTH)).toString("hex"),
-            "7cff99bd671502db7d15bc8abc0c9a804fb925406fbdd50f1e4c17a4cd774247",
+            "132e9b47291fcc62c64b334fd434ab2db74bf64b42d4cc1b4cedd10df77c1936",
         );
 
         text = readFileSync(path.join(walletsPath, "multipleValidatorKeys.pem"), "utf-8");
@@ -127,41 +127,41 @@ describe("test pem entry", () => {
         assert.lengthOf(entries, 4);
         assert.equal(
             entry.label,
-            "f8910e47cf9464777c912e6390758bb39715fffcb861b184017920e4a807b42553f2f21e7f3914b81bcf58b66a72ab16d97013ae1cff807cefc977ef8cbf116258534b9e46d19528042d16ef8374404a89b184e0a4ee18c77c49e454d04eae8d",
+            "d3e0427c22ff9cc80ef4156f976644cfa25c54e5a69ed199132053f8cbbfddd4eb15a2f732a3c9b392169c8b1d060e0b5ab0d88b4dd7b4010fa051a17ef81bdbace5e68025965b00bf48e14a9ec8d8e2a8bcc9e62f97ddac3268f6b805f7b80e",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "7c19bf3a0c57cdd1fb08e4607cebaa3647d6b9261b4693f61e96e54b218d442a",
+            "132e9b47291fcc62c64b334fd434ab2db74bf64b42d4cc1b4cedd10df77c1936",
         );
 
         entry = entries[1];
         assert.equal(
             entry.label,
-            "1b4e60e6d100cdf234d3427494dac55fbac49856cadc86bcb13a01b9bb05a0d9143e86c186c948e7ae9e52427c9523102efe9019a2a9c06db02993f2e3e6756576ae5a3ec7c235d548bc79de1a6990e1120ae435cb48f7fc436c9f9098b92a0d",
+            "b0b6349b3f693e08c433970d10efb2fe943eac4057a945146bee5fd163687f4e1800d541aa0f11bf9e4cb6552f512e126068e68eb471d18fcc477ddfe0b9b3334f34e30d8b7b2c08f914f4ae54454f75fb28922ba9fd28785bcadc627031fa8a",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "3034b1d58628a842984da0c70da0b5a251ebb2aebf51afc5b586e2839b5e5263",
+            "490a55ab40cbea7798f7a743bcd3da44276bec6ad083759a4516646186257466",
         );
 
         entry = entries[2];
         assert.equal(
             entry.label,
-            "e5dc552b4b170cdec4405ff8f9af20313bf0e2756d06c35877b6fbcfa6b354a7b3e2d439ea87999befb09a8fa1b3f014e57ec747bf738c4199338fcd4a87b373dd62f5c8329f1f5f245956bbb06685596a2e83dc38befa63e4a2b5c4ce408506",
+            "67c301358a41bef74df2ae6aa9914e3a5e7a4b528bbd19596cca4b2fd97a62ab2c0a88b02adf1c5973a82c7544cdc40539ae62a9ac05351cfc59c300bbf4492f4266c550987355c39cff8e84ff74e012c7fd372c240eeb916ef87eead82ffd98",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "de7e1b385edbb0e1e8f9fc25d91bd8eed71a1da7caab732e6b47a48042d8523d",
+            "59074392f4f970c3b5d4ba1783955fcf9fcc44d9a5aff2b5cddb0020ca155b5c",
         );
 
         entry = entries[3];
         assert.equal(
             entry.label,
-            "12773304cb718250edd89770cedcbf675ccdb7fe2b30bd3185ca65ffa0d516879768ed03f92e41a6e5bc5340b78a9d02655e3b727c79730ead791fb68eaa02b84e1be92a816a9604a1ab9a6d3874b638487e2145239438a4bafac3889348d405",
+            "ab0a22ba2be6560af8520208393381760f9d4f69fca4f152b0a3fe7b124dd7f932fd8c1fbb372792c235baafac36030ceaf6ebf215de4e8d8d239f347f2fed10a75a07cbf9dc56efbbfca2e319152a363df122c300cdeb2faa02a61ebefd8a0e",
         );
         assert.equal(
             Buffer.from(entry.message).toString("hex"),
-            "8ebeb07d296ad2529400b40687a741a135f8357f79f39fcb2894a6f9703a5816",
+            "a6091fb517645196396d04aab3679e4f059db9d85c981625c1999dada985cd5e",
         );
     });
     it("should convert to text", () => {

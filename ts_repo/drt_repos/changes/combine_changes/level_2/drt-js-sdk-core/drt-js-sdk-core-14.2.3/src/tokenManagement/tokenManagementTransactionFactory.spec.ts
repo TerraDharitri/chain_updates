@@ -146,7 +146,7 @@ describe("test token management transactions factory", () => {
         assert.deepEqual(
             transaction.data,
             Buffer.from(
-                "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654c6f63616c4d696e74",
+                "setSpecialRole@4652414e4b2d313163653365@b20d2fc05606198c671c67e83d571ec4b9e901c1a5aea53ab9d60693abc1cfe4@44434454526f6c654c6f63616c4d696e74",
             ),
         );
         assert.deepEqual(transaction.sender, frank.address);
@@ -169,7 +169,7 @@ describe("test token management transactions factory", () => {
         assert.deepEqual(
             transaction.data,
             Buffer.from(
-                "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654c6f63616c4d696e74",
+                "unSetSpecialRole@4652414e4b2d313163653365@b20d2fc05606198c671c67e83d571ec4b9e901c1a5aea53ab9d60693abc1cfe4@44434454526f6c654c6f63616c4d696e74",
             ),
         );
         assert.deepEqual(transaction.sender, frank.address);
@@ -188,11 +188,10 @@ describe("test token management transactions factory", () => {
                 addRoleDCDTTransferRole: true,
             },
         );
-
         assert.deepEqual(
             transaction.data,
             Buffer.from(
-                "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654c6f63616c4d696e74@44434454526f6c654c6f63616c4275726e@444344545472616e73666572526f6c65",
+                "setSpecialRole@4652414e4b2d313163653365@b20d2fc05606198c671c67e83d571ec4b9e901c1a5aea53ab9d60693abc1cfe4@44434454526f6c654c6f63616c4d696e74@44434454526f6c654c6f63616c4275726e@444344545472616e73666572526f6c65",
             ),
         );
         assert.deepEqual(transaction.sender, frank.address);
@@ -219,7 +218,7 @@ describe("test token management transactions factory", () => {
         assert.deepEqual(
             transaction.data,
             Buffer.from(
-                "setSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e4654437265617465@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465",
+                "setSpecialRole@4652414e4b2d313163653365@b20d2fc05606198c671c67e83d571ec4b9e901c1a5aea53ab9d60693abc1cfe4@44434454526f6c654e4654437265617465@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465",
             ),
         );
         assert.deepEqual(transaction.sender, frank.address);
@@ -245,7 +244,7 @@ describe("test token management transactions factory", () => {
         assert.deepEqual(
             transaction.data,
             Buffer.from(
-                "unSetSpecialRole@4652414e4b2d313163653365@1e8a8b6b49de5b7be10aaa158a5a6a4abb4b56cc08f524bb5e6cd5f211ad3e13@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465",
+                "unSetSpecialRole@4652414e4b2d313163653365@b20d2fc05606198c671c67e83d571ec4b9e901c1a5aea53ab9d60693abc1cfe4@44434454526f6c654e465455706461746541747472696275746573@44434454526f6c654e4654416464555249@44434454526f6c654d6f6469667943726561746f72@44434454526f6c654e46545265637265617465",
             ),
         );
         assert.deepEqual(transaction.sender, frank.address);

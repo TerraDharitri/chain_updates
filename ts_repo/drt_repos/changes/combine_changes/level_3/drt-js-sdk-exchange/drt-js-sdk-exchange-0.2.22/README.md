@@ -1,6 +1,6 @@
-# DharitrI SDK for JavaScript and TypeScript: xExchange utilities
+# DharitrI SDK for JavaScript and TypeScript: Dharitrix utilities
 
-Utilities modules for xExchange interactions
+Utilities modules for Dharitrix interactions
 
 ## Distribution
 

@@ -6,7 +6,7 @@ import * as resources from "./resources";
 
 describe("test multisig controller query methods", () => {
     const mockMultisigAddress: string = "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqyllls4jxmwv";
-    const mockBoardMemberAddress = "drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c";
+    const mockBoardMemberAddress = "drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj";
     const mockProposerAddress = "drt1k2s324ww2g0yj38qn2ch2jwctdy8mnfxep94q9arncc6xecg3xaq889n6e";
     let networkProvider = new MockNetworkProvider();
     let controller: MultisigController;
@@ -241,7 +241,7 @@ describe("test multisig controller query methods", () => {
             new SmartContractQueryResponse({
                 function: "getAllBoardMembers",
                 returnDataParts: [
-                    Buffer.from("ATlHLv9ohncamC8wg9pdQh8kwpGB5jiIIo3IHKYNaeE=", "base64"),
+                    Buffer.from("OR+TJwep36htO8uz1dDMnyWtDmgP5JnxB9hEt+bqcdU=", "base64"),
                     Buffer.from("gEnWOeWmmA0c0jkqvM5BApzadKFWNSOiAvCWQcwmGPg=", "base64"),
                 ],
                 returnCode: "ok",
@@ -254,7 +254,7 @@ describe("test multisig controller query methods", () => {
         });
 
         assert.equal(result.length, 2);
-        assert.equal(result[0], "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        assert.equal(result[0], "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         assert.equal(result[1], "drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
     });
 
@@ -323,7 +323,7 @@ describe("test multisig controller query methods", () => {
                         "base64",
                     ),
                     Buffer.from(
-                        "AAAAAwAAAAAGAAAAAAAAAAAFAEm/+WO9+j6gJxM2IJXfMuPXCOrM/FcAAAABAAAADEFMSUNFLTU2MjdmMQAAAAAAAAAAAAAAAAEAAAAAAExLQAAAABQ2NDY5NzM3NDcyNjk2Mjc1NzQ2NQAAAAAAAAABATlHLv9ohncamC8wg9pdQh8kwpGB5jiIIo3IHKYNaeE=",
+                        "AAAAAwAAAAAGAAAAAAAAAAAFAEm/+WO9+j6gJxM2IJXfMuPXCOrM/FcAAAABAAAADEFMSUNFLTU2MjdmMQAAAAAAAAAAAAAAAAEAAAAAAExLQAAAABQ2NDY5NzM3NDcyNjk2Mjc1NzQ2NQAAAAAAAAABOR+TJwep36htO8uz1dDMnyWtDmgP5JnxB9hEt+bqcdU=",
                         "base64",
                     ),
                     Buffer.from(
@@ -331,7 +331,7 @@ describe("test multisig controller query methods", () => {
                         "base64",
                     ),
                     Buffer.from(
-                        "AAAABgAAAAACgEnWOeWmmA0c0jkqvM5BApzadKFWNSOiAvCWQcwmGPgAAAABATlHLv9ohncamC8wg9pdQh8kwpGB5jiIIo3IHKYNaeE=",
+                        "AAAABgAAAAACgEnWOeWmmA0c0jkqvM5BApzadKFWNSOiAvCWQcwmGPgAAAABOR+TJwep36htO8uz1dDMnyWtDmgP5JnxB9hEt+bqcdU=",
                         "base64",
                     ),
                     Buffer.from(
@@ -344,7 +344,7 @@ describe("test multisig controller query methods", () => {
                     ),
                     Buffer.from("AAAACQAAAAAEAAAAAgAAAAEBOUcu/2iGdxqYLzCD2l1CHyTCkYHmOIgijcgcpg1p4Q==", "base64"),
                     Buffer.from(
-                        "AAAACgAAAAADgEnWOeWmmA0c0jkqvM5BApzadKFWNSOiAvCWQcwmGPgAAAABATlHLv9ohncamC8wg9pdQh8kwpGB5jiIIo3IHKYNaeE=",
+                        "AAAACgAAAAADgEnWOeWmmA0c0jkqvM5BApzadKFWNSOiAvCWQcwmGPgAAAABOR+TJwep36htO8uz1dDMnyWtDmgP5JnxB9hEt+bqcdU=",
                         "base64",
                     ),
                 ],
@@ -563,7 +563,7 @@ describe("test multisig controller query methods", () => {
                 function: "getActionSigners",
                 returnDataParts: [
                     Buffer.from(
-                        "8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8b2a11555ce521e4944e09ab17549d85b487dcd26c84b5017a39e31a3670889ba",
+                        "2190ce43a3fb31821c317a03f7a08e7650df4c08bc808e127af280e6a5a8f134b2a11555ce521e4944e09ab17549d85b487dcd26c84b5017a39e31a3670889ba",
                         "hex",
                     ),
                 ],

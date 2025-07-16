@@ -28,14 +28,14 @@ port_first_validator_rest_api = 10200
 
 [software.drt_chain_go]
 resolution = "remote"
-archive_url = "https://github.com/TerraDharitri/drt-chain-go/archive/refs/heads/master.zip"
-archive_download_folder = "~/dharitri-sdk/localnet_software_remote/downloaded/drt-chain-go"
-archive_extraction_folder = "~/dharitri-sdk/localnet_software_remote/extracted/drt-chain-go"
-local_path = "~/dharitri-sdk/localnet_software_local/drt-chain-go"
+archive_url = "https://github.com/TerraDharitri/drt-go-chain/archive/refs/heads/main.zip"
+archive_download_folder = "~/dharitri-sdk/localnet_software_remote/downloaded/drt-go-chain"
+archive_extraction_folder = "~/dharitri-sdk/localnet_software_remote/extracted/drt-go-chain"
+local_path = "~/dharitri-sdk/localnet_software_local/drt-go-chain"
 
 [software.drt_chain_proxy_go]
 resolution = "remote"
-archive_url = "https://github.com/TerraDharitri/drt-chain-proxy-go/archive/refs/heads/master.zip"
-archive_download_folder = "~/dharitri-sdk/localnet_software_remote/downloaded/drt-chain-proxy-go"
-archive_extraction_folder = "~/dharitri-sdk/localnet_software_remote/extracted/drt-chain-proxy-go"
-local_path = "~/dharitri-sdk/localnet_software_local/drt-chain-proxy-go"
+archive_url = "https://github.com/TerraDharitri/drt-go-chain-proxy/archive/refs/heads/main.zip"
+archive_download_folder = "~/dharitri-sdk/localnet_software_remote/downloaded/drt-go-chain-proxy"
+archive_extraction_folder = "~/dharitri-sdk/localnet_software_remote/extracted/drt-go-chain-proxy"
+local_path = "~/dharitri-sdk/localnet_software_local/drt-go-chain-proxy"

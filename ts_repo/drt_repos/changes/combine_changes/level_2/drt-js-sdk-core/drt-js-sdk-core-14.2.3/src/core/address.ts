@@ -261,7 +261,8 @@ export class Address {
      * Returns whether the address is a smart contract address.
      */
     isSmartContract(): boolean {
-        return this.toHex().startsWith(SMART_CONTRACT_HEX_PUBKEY_PREFIX);
+        const hex = this.toHex();
+        return hex.startsWith(SMART_CONTRACT_HEX_PUBKEY_PREFIX) || hex.startsWith("2333000000000000");
     }
 }
 
@@ -314,7 +315,7 @@ export class AddressComputer {
 
     private isPubkeyOfMetachain(pubkey: Uint8Array): boolean {
         const metachainPrefix = Buffer.from([
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            35, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 51, 48, 0, 0, 0, 0, 0,
         ]);
         const pubkeyPrefix = Buffer.from(pubkey).slice(0, metachainPrefix.length);
 

@@ -46,7 +46,7 @@ export class NumericalBinaryCodec {
             return new NumericalValue(type, value);
         }
 
-        // Also see: https://github.com/TerraDharitri/drt-components-big-int/blob/master/twos-complement/twos2bigint.go
+        // Also see: https://github.com/TerraDharitri/drt-go-bigint/blob/main/twos-complement/twos2bigint.go
         flipBufferBitsInPlace(payload);
         let value = bufferToBigInt(payload);
         let negativeValue = value.multipliedBy(new BigNumber(-1));
@@ -92,7 +92,7 @@ export class NumericalBinaryCodec {
         }
 
         // Negative:
-        // Also see: https://github.com/TerraDharitri/drt-components-big-int/blob/master/twos-complement/bigint2twos.go
+        // Also see: https://github.com/TerraDharitri/drt-go-bigint/blob/main/twos-complement/bigint2twos.go
         let valuePlusOne = primitive.value.plus(new BigNumber(1));
         let buffer = bigIntToBuffer(valuePlusOne);
         flipBufferBitsInPlace(buffer);
@@ -136,7 +136,7 @@ export class NumericalBinaryCodec {
         }
 
         // Negative:
-        // Also see: https://github.com/TerraDharitri/drt-components-big-int/blob/master/twos-complement/bigint2twos.go
+        // Also see: https://github.com/TerraDharitri/drt-go-bigint/blob/main/twos-complement/bigint2twos.go
         let valuePlusOne = primitive.value.plus(new BigNumber(1));
         let buffer = bigIntToBuffer(valuePlusOne);
         flipBufferBitsInPlace(buffer);

@@ -62,9 +62,9 @@ import {
     }
     // ```
 
-    // A full list of available methods for `ApiNetworkProvider` can be found [here](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/ApiNetworkProvider.html).
+    // A full list of available methods for `ApiNetworkProvider` can be found [here](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/ApiNetworkProvider.html).
 
-    // Both `ApiNetworkProvider` and `ProxyNetworkProvider` implement a common interface, which can be found [here](https://TerraDharitri.github.io/drt-sdk-js-core/v14/interfaces/INetworkProvider.html). This allows them to be used interchangeably.
+    // Both `ApiNetworkProvider` and `ProxyNetworkProvider` implement a common interface, which can be found [here](https://TerraDharitri.github.io/drt-js-sdk-core/v14/interfaces/INetworkProvider.html). This allows them to be used interchangeably.
 
     // The classes returned by the API expose the most commonly used fields directly for convenience. However, each object also contains a `raw` field that stores the original API response, allowing access to additional fields if needed.
 
@@ -144,7 +144,7 @@ import {
     {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const account = await api.getAccount(alice);
     }
     // ```
@@ -156,7 +156,7 @@ import {
     {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const account = await api.getAccountStorage(alice);
     }
     // ```
@@ -167,7 +167,7 @@ import {
     {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const account = await api.getAccountStorageEntry(alice, "testKey");
     }
     // ```
@@ -188,7 +188,7 @@ import {
         const condition = (account: any) => {
             return account.balance >= 7000000000000000000n; // 7 REWA // md-as-comment
         };
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const account = await api.awaitAccountOnCondition(alice, condition);
     }
     // ```
@@ -203,8 +203,8 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
-        const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
+        const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
         const transaction = new Transaction({
             sender: alice,
@@ -225,8 +225,8 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
-        const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
+        const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
         const firstTransaction = new Transaction({
             sender: alice,
@@ -271,7 +271,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const contract = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqccmyzj9sade2495w78h42erfrw7qmqxpd8ssdxlctd");
 
         const transaction = new Transaction({
@@ -294,7 +294,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const contract = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqccmyzj9sade2495w78h42erfrw7qmqxpd8ssdxlctd");
 
         const nonce = await entrypoint.recallAccountNonce(alice);
@@ -374,7 +374,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         let token = new Token({ identifier: "TEST-ff155e" }); // DCDT // md-as-comment
         let tokenOnNetwork = await api.getTokenOfAccount(alice, token);
 
@@ -391,7 +391,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const fungibleTokens = await api.getFungibleTokensOfAccount(alice);
     }
     // ```
@@ -404,7 +404,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const nfts = await api.getNonFungibleTokensOfAccount(alice);
     }
     // ```
@@ -451,7 +451,7 @@ import {
         const entrypoint = new DevnetEntrypoint();
         const api = entrypoint.createNetworkProvider();
 
-        const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const url = `transactions/${alice.toBech32()}?function=delegate`;
 
         const response = await api.doGetGeneric(url);

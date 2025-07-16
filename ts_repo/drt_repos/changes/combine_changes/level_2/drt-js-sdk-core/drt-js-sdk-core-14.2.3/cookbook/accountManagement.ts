@@ -26,7 +26,7 @@ import { Account, Address, DevnetEntrypoint } from "../src"; // md-ignore
         alice.nonce = await entrypoint.recallAccountNonce(alice.address);
 
         // we can use a trusted service that provides a guardian, or simply set another address we own or trust // md-as-comment
-        const guardian = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+        const guardian = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
         const transaction = await controller.createTransactionForSettingGuardian(alice, alice.getNonceThenIncrement(), {
             guardianAddress: guardian,
@@ -50,7 +50,7 @@ import { Account, Address, DevnetEntrypoint } from "../src"; // md-ignore
         const alice = await Account.newFromPem(filePath);
 
         // we can use a trusted service that provides a guardian, or simply set another address we own or trust // md-as-comment
-        const guardian = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+        const guardian = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
         const transaction = await factory.createTransactionForSettingGuardian(alice.address, {
             guardianAddress: guardian,

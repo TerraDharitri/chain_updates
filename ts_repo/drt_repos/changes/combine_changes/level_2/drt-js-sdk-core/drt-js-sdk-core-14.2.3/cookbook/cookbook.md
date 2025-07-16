@@ -45,7 +45,7 @@ Accounts are used for signing transactions and messages and managing the account
 #### From a Secret Key
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
     const accountFromSecretKey = new Account(secretKey);
@@ -90,7 +90,7 @@ Each transaction must have the correct nonce, otherwise it will fail to execute.
 
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const key = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
     const accountWithNonce = new Account(key);
@@ -117,7 +117,7 @@ Keystore files offer a higher level of security.
 #### Saving the Account to a PEM File
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
     const account = new Account(secretKey);
@@ -128,7 +128,7 @@ Keystore files offer a higher level of security.
 #### Saving the Account to a Keystore File
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const secretKey = new UserSecretKey(Buffer.from(secretKeyHex, "hex"));
 
     const account = new Account(secretKey);
@@ -208,9 +208,9 @@ When manually instantiating a network provider, you can provide a configuration 
 }
 ```
 
-A full list of available methods for `ApiNetworkProvider` can be found [here](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/ApiNetworkProvider.html).
+A full list of available methods for `ApiNetworkProvider` can be found [here](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/ApiNetworkProvider.html).
 
-Both `ApiNetworkProvider` and `ProxyNetworkProvider` implement a common interface, which can be found [here](https://TerraDharitri.github.io/drt-sdk-js-core/v14/interfaces/INetworkProvider.html). This allows them to be used interchangeably.
+Both `ApiNetworkProvider` and `ProxyNetworkProvider` implement a common interface, which can be found [here](https://TerraDharitri.github.io/drt-js-sdk-core/v14/interfaces/INetworkProvider.html). This allows them to be used interchangeably.
 
 The classes returned by the API expose the most commonly used fields directly for convenience. However, each object also contains a `raw` field that stores the original API response, allowing access to additional fields if needed.
 
@@ -290,7 +290,7 @@ To fetch an account, we need its address. Once we have the address, we create an
 {
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const account = await api.getAccount(alice);
 }
 ```
@@ -302,7 +302,7 @@ We can also fetch an account's storage, allowing us to retrieve all key-value pa
 {
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const account = await api.getAccountStorage(alice);
 }
 ```
@@ -313,7 +313,7 @@ If we only want to fetch a specific key, we can do so as follows:
 {
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const account = await api.getAccountStorageEntry(alice, "testKey");
 }
 ```
@@ -334,7 +334,7 @@ Keep in mind that this method has a default timeout, which can be adjusted using
     const condition = (account: any) => {
         return account.balance >= 7000000000000000000n; // 7 REWA
     };
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const account = await api.awaitAccountOnCondition(alice, condition);
 }
 ```
@@ -349,8 +349,8 @@ To execute transactions, we use the network providers to broadcast them to the n
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const transaction = new Transaction({
         sender: alice,
@@ -371,8 +371,8 @@ To execute transactions, we use the network providers to broadcast them to the n
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const firstTransaction = new Transaction({
         sender: alice,
@@ -417,7 +417,7 @@ A transaction can be simulated before being sent for processing by the network. 
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const contract = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqccmyzj9sade2495w78h42erfrw7qmqxpd8ssdxlctd");
 
     const transaction = new Transaction({
@@ -440,7 +440,7 @@ Before sending a transaction to the network for processing, you can retrieve the
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const contract = Address.newFromBech32("drt1qqqqqqqqqqqqqpgqccmyzj9sade2495w78h42erfrw7qmqxpd8ssdxlctd");
 
     const nonce = await entrypoint.recallAccountNonce(alice);
@@ -520,7 +520,7 @@ We can fetch a specific token (DCDT, MetaDCDT, SFT, NFT) from an account by prov
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     let token = new Token({ identifier: "TEST-ff155e" }); // DCDT
     let tokenOnNetwork = await api.getTokenOfAccount(alice, token);
 
@@ -537,7 +537,7 @@ Fetches all fungible tokens held by an account. Note that this method does not h
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const fungibleTokens = await api.getFungibleTokensOfAccount(alice);
 }
 ```
@@ -550,7 +550,7 @@ Fetches all non-fungible tokens held by an account. Note that this method does n
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const nfts = await api.getNonFungibleTokensOfAccount(alice);
 }
 ```
@@ -597,7 +597,7 @@ Let’s assume we want to retrieve all the transactions sent by Alice in which t
     const entrypoint = new DevnetEntrypoint();
     const api = entrypoint.createNetworkProvider();
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const url = `transactions/${alice.toBech32()}?function=delegate`;
 
     const response = await api.doGetGeneric(url);
@@ -645,7 +645,7 @@ When using the controller, the transaction will be signed because we’ll be wor
 
     const filePath = path.join("../src", "testdata", "testwallets", "alice.pem");
     const alice = await Account.newFromPem(filePath);
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     // the developer is responsible for managing the nonce
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
@@ -681,7 +681,7 @@ You will need to handle these aspects after the transaction is created.
     // the developer is responsible for managing the nonce
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
 
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const transaction = factory.createTransactionForTransfer(alice.address, {
         receiver: bob,
@@ -708,7 +708,7 @@ If you know you’ll only be sending native tokens, you can create the transacti
 
     const filePath = path.join("../src", "testdata", "testwallets", "alice.pem");
     const alice = await Account.newFromPem(filePath);
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     // the developer is responsible for managing the nonce
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
@@ -748,7 +748,7 @@ When using the factory, only the sender's address is required. As a result, the 
 
     const filePath = path.join("../src", "testdata", "testwallets", "alice.pem");
     const alice = await Account.newFromPem(filePath);
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     // the developer is responsible for managing the nonce
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
@@ -789,7 +789,7 @@ We can send both types of tokens using either the `controller` or the `factory`,
 
     const filePath = path.join("../src", "testdata", "testwallets", "alice.pem");
     const alice = await Account.newFromPem(filePath);
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     // the developer is responsible for managing the nonce
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
@@ -836,7 +836,7 @@ While interactions with the contract are possible without the ABI, they are much
 ```js
 {
     const response = await axios.get(
-        "https://github.com/TerraDharitri/drt-sdk-js-core/raw/main/src/testdata/adder.abi.json",
+        "https://github.com/TerraDharitri/drt-js-sdk-core/raw/main/src/testdata/adder.abi.json",
     );
     let abi = Abi.create(response.data);
 }
@@ -919,10 +919,10 @@ This allows arguments to be passed as native Javascript values. If the ABI is no
 ```
 
 :::tip
-When creating transactions using [`SmartContractController`](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/SmartContractController.html) or [`SmartContractTransactionsFactory`](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/SmartContractTransactionsFactory.html), even if the ABI is available and provided,
-you can still use [`TypedValue`](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/TypedValue.html) objects as arguments for deployments and interactions.
+When creating transactions using [`SmartContractController`](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/SmartContractController.html) or [`SmartContractTransactionsFactory`](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/SmartContractTransactionsFactory.html), even if the ABI is available and provided,
+you can still use [`TypedValue`](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/TypedValue.html) objects as arguments for deployments and interactions.
 
-Even further, you can use a mix of [`TypedValue`](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/TypedValue.html) objects and plain JavaScript values and objects. For example:
+Even further, you can use a mix of [`TypedValue`](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/TypedValue.html) objects and plain JavaScript values and objects. For example:
 
 ```js
 let args = [new U32Value(42), "hello", { foo: "bar" }, new TokenIdentifierValue("TEST-abcdef")];
@@ -1210,7 +1210,7 @@ As said before, the `add` endpoint we called does not return anything, but we co
 #### Decoding transaction events
 You might be interested into decoding events emitted by a contract. You can do so by using the `TransactionEventsParser`.
 
-Suppose we'd like to decode a `startPerformAction` event emitted by the [multisig](https://github.com/TerraDharitri/drt-contracts-rs/tree/main/contracts/multisig) contract.
+Suppose we'd like to decode a `startPerformAction` event emitted by the [multisig](https://github.com/TerraDharitri/drt-rs-contracts/tree/main/contracts/multisig) contract.
 
 First, we load the abi file, then we fetch the transaction, we extract the event from the transaction and then we parse it.
 
@@ -1230,7 +1230,7 @@ First, we load the abi file, then we fetch the transaction, we extract the event
 #### Decoding transaction events
 Whenever needed, the contract ABI can be used for manually encoding or decoding custom types.
 
-Let's encode a struct called DcdtTokenPayment (of [multisig](https://github.com/TerraDharitri/drt-contracts-rs/tree/main/contracts/multisig) contract) into binary data.
+Let's encode a struct called DcdtTokenPayment (of [multisig](https://github.com/TerraDharitri/drt-rs-contracts/tree/main/contracts/multisig) contract) into binary data.
 ```js
 {
     const abi = await loadAbiRegistry("../src/testdata/multisig-full.abi.json");
@@ -1464,7 +1464,7 @@ For scripts or quick network interactions, we recommend using the controller. Ho
     // fetch the nonce of the network
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
 
-    const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const bob = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const transaction = await controller.createTransactionForSettingSpecialRoleOnFungibleToken(
         alice,
@@ -1749,8 +1749,8 @@ For scripts or quick network interactions, we recommend using the controller. Ho
 
 These are just a few examples of what you can do using the token management controller or factory. For a complete list of supported methods, please refer to the autogenerated documentation:
 
-- [TokenManagementController](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/TokenManagementController.html)
-- [TokenManagementTransactionsFactory](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/TokenManagementTransactionsFactory.html)
+- [TokenManagementController](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/TokenManagementController.html)
+- [TokenManagementTransactionsFactory](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/TokenManagementTransactionsFactory.html)
 
 ### Account management
 
@@ -1776,7 +1776,7 @@ A guardian can also be set using the WebWallet, which leverages our hosted `Trus
     alice.nonce = await entrypoint.recallAccountNonce(alice.address);
 
     // we can use a trusted service that provides a guardian, or simply set another address we own or trust
-    const guardian = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const guardian = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const transaction = await controller.createTransactionForSettingGuardian(alice, alice.getNonceThenIncrement(), {
         guardianAddress: guardian,
@@ -1800,7 +1800,7 @@ A guardian can also be set using the WebWallet, which leverages our hosted `Trus
     const alice = await Account.newFromPem(filePath);
 
     // we can use a trusted service that provides a guardian, or simply set another address we own or trust
-    const guardian = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
+    const guardian = Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj");
 
     const transaction = await factory.createTransactionForSettingGuardian(alice.address, {
         guardianAddress: guardian,
@@ -1997,8 +1997,8 @@ In this section, we'll cover how to:
 - Undelegate and withdraw funds
 
 These operations can be performed using both the controller and the **factory**. For a complete list of supported methods, please refer to the autogenerated documentation:
-- [DelegationController](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/DelegationController.html)
-- [DelegationTransactionsFactory](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/DelegationTransactionsFactory.html)
+- [DelegationController](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/DelegationController.html)
+- [DelegationTransactionsFactory](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/DelegationTransactionsFactory.html)
 
 #### Creating a New Delegation Contract Using the Controller
 ```js
@@ -2620,7 +2620,7 @@ Create an `Address` object from a bech32-encoded string:
 ``` js
 {
     // Create an Address object from a bech32-encoded string
-    const address = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const address = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
 
     console.log("Address (bech32-encoded):", address.toBech32());
     console.log("Public key (hex-encoded):", address.toHex());
@@ -2836,7 +2836,7 @@ We are going to assume we have an account at this point. If you don't, feel free
     const transaction = new Transaction({
         chainID: "D",
         sender: alice.address,
-        receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+        receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
         gasLimit: 50000n,
         nonce: 90n,
     });
@@ -2849,14 +2849,14 @@ We are going to assume we have an account at this point. If you don't, feel free
 #### Signing a Transaction using a SecretKey
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const secretKey = UserSecretKey.fromString(secretKeyHex);
     const publickKey = secretKey.generatePublicKey();
 
     const transaction = new Transaction({
         nonce: 90n,
         sender: publickKey.toAddress(),
-        receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+        receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
         value: 1000000000000000000n,
         gasLimit: 50000n,
         chainID: "D",
@@ -2882,7 +2882,7 @@ We are going to assume we have an account at this point. If you don't, feel free
     const transaction = new Transaction({
         nonce: 90n,
         sender: alice.address,
-        receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+        receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
         value: 1000000000000000000n,
         gasLimit: 50000n,
         chainID: "D",
@@ -2921,7 +2921,7 @@ We are going to assume we have an account at this point. If you don't, feel free
 #### Signing a Message using an SecretKey:
 ```js
 {
-    const secretKeyHex = "413f42575f7f26fad3317a778771212fdb80245850981e48b58a4f25e344e8f9";
+    const secretKeyHex = "2bbcdae7e193924fa0d301e7a12c7defc92a93bc5e587cc968f04fcb86022e1c";
     const secretKey = UserSecretKey.fromString(secretKeyHex);
     const publicKey = secretKey.generatePublicKey();
 
@@ -2951,7 +2951,7 @@ To simplify this process, we provide wrappers over public keys that make verific
     const transaction = new Transaction({
         nonce: 90n,
         sender: account.address,
-        receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+        receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
         value: 1000000000000000000n,
         gasLimit: 50000n,
         chainID: "D",
@@ -2961,7 +2961,7 @@ To simplify this process, we provide wrappers over public keys that make verific
     transaction.signature = await account.signTransaction(transaction);
 
     // instantiating a user verifier; basically gets the public key
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const aliceVerifier = UserVerifier.fromAddress(alice);
 
     // serialize the transaction for verification
@@ -2991,7 +2991,7 @@ To simplify this process, we provide wrappers over public keys that make verific
     message.signature = await account.signMessage(message);
 
     // instantiating a user verifier; basically gets the public key
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const aliceVerifier = UserVerifier.fromAddress(alice);
 
     // serialize the message for verification
@@ -3014,7 +3014,7 @@ To simplify this process, we provide wrappers over public keys that make verific
     const transaction = new Transaction({
         nonce: 90n,
         sender: account.address,
-        receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
+        receiver: Address.newFromBech32("drt1yxgvusarlvccy8p30gpl0gywwegd7nqghjqguyn672qwdfdg7y6qqta3dj"),
         value: 1000000000000000000n,
         gasLimit: 50000n,
         chainID: "D",
@@ -3024,7 +3024,7 @@ To simplify this process, we provide wrappers over public keys that make verific
     transaction.signature = await account.signTransaction(transaction);
 
     // instantiating a public key
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const publicKey = new UserPublicKey(alice.getPublicKey());
 
     // serialize the transaction for verification
@@ -3061,7 +3061,7 @@ To prepare a message for transmission, you can use the `MessageComputer.packMess
 }
 ```
 
-Then, on the receiving side, you can use [`MessageComputer.unpackMessage()`](https://TerraDharitri.github.io/drt-sdk-js-core/v14/classes/MessageComputer.html#unpackMessage) to reconstruct the message, prior verification:
+Then, on the receiving side, you can use [`MessageComputer.unpackMessage()`](https://TerraDharitri.github.io/drt-js-sdk-core/v14/classes/MessageComputer.html#unpackMessage) to reconstruct the message, prior verification:
 
 ```js
 {

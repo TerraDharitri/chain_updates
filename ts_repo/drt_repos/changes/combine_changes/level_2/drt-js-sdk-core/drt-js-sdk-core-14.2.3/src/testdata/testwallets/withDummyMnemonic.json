@@ -1,21 +1,21 @@
 {
-    "version": 4,
-    "id": "5b448dbc-5c72-4d83-8038-938b1f8dff19",
-    "kind": "mnemonic",
-    "crypto": {
-        "ciphertext": "6d70fbdceba874f56f15af4b1d060223799288cfc5d276d9ebb91732f5a38c3c59f83896fa7e7eb6a04c05475a6fe4d154de9b9441864c507abd0eb6987dac521b64c0c82783a3cd1e09270cd6cb5ae493f9af694b891253ac1f1ffded68b5ef39c972307e3c33a8354337540908acc795d4df72298dda1ca28ac920983e6a39a01e2bc988bd0b21f864c6de8b5356d11e4b77bc6f75ef",
-        "cipherparams": {
-            "iv": "2da5620906634972d9a623bc249d63d4"
-        },
-        "cipher": "aes-128-ctr",
-        "kdf": "scrypt",
-        "kdfparams": {
-            "dklen": 32,
-            "salt": "aa9e0ba6b188703071a582c10e5331f2756279feb0e2768f1ba0fd38ec77f035",
-            "n": 4096,
-            "r": 8,
-            "p": 1
-        },
-        "mac": "5bc1b20b6d903b8ef3273eedf028112d65eaf85a5ef4215917c1209ec2df715a"
-    }
+  "version": 4,
+  "id": "22efac61-f898-4682-9b96-2e4fb49f56d5",
+  "kind": "mnemonic",
+  "crypto": {
+    "ciphertext": "9461b2e5fd8b68cd2fb5ead48dbb690baf30a7b399b5171ad758d7a353dbfa025430fe548d9c603e3e475a011229e184728f71036465bb2b6f0bbc9a7d57f64ee3bd55c3b11f31a940bb5522af0d77e7a53d485714dbaac3e262b6fa309510c2fc726b08c252ab8723201ac5d5b3529149860baa2179df0e779297aa7acf44bf4e702990c6859bd4613e7e59282aa60323d6cdb7",
+    "cipherparams": {
+      "iv": "69f26c6e4181ebfbce9de4080122af15"
+    },
+    "cipher": "aes-128-ctr",
+    "kdf": "scrypt",
+    "kdfparams": {
+      "dklen": 32,
+      "salt": "a3c74d0544a697f3d032da820627f95db417f13a86ec8468bba2acd116c34adf",
+      "n": 4096,
+      "r": 8,
+      "p": 1
+    },
+    "mac": "6caaeb33f1a168910987738e50a06468639621a83d3897666f2510a810dd080e"
+  }
 }

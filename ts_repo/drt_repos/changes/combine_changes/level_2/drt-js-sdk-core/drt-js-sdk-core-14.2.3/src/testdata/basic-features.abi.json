@@ -4893,7 +4893,7 @@
             "name": "issue_fungible_default_callback",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -4911,7 +4911,7 @@
             "name": "issue_fungible_custom_callback",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -4929,7 +4929,7 @@
             "name": "issue_and_set_all_roles_fungible",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -5032,7 +5032,7 @@
             "name": "issue_and_set_all_roles_meta",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -5535,12 +5535,12 @@
             ]
         },
         {
-            "name": "token_identifier_egld",
+            "name": "token_identifier_rewa",
             "mutability": "mutable",
             "inputs": [],
             "outputs": [
                 {
-                    "type": "EgldOrDcdtTokenIdentifier"
+                    "type": "RewaOrDcdtTokenIdentifier"
                 }
             ]
         },
@@ -5550,7 +5550,7 @@
             "inputs": [
                 {
                     "name": "token_id",
-                    "type": "EgldOrDcdtTokenIdentifier"
+                    "type": "RewaOrDcdtTokenIdentifier"
                 }
             ],
             "outputs": [
@@ -5575,10 +5575,10 @@
             ]
         },
         {
-            "name": "returns_egld_decimal",
+            "name": "returns_rewa_decimal",
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [],
             "outputs": [

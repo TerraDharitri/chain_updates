@@ -15,7 +15,7 @@ export class Decryptor {
 
         const computedMAC = crypto.createHmac(DigestAlgorithm, derivedKeySecondHalf).update(ciphertext).digest();
         const actualMAC = data.mac;
-
+        
         if (computedMAC.toString("hex") !== actualMAC) {
             throw new Err("MAC mismatch, possibly wrong password");
         }

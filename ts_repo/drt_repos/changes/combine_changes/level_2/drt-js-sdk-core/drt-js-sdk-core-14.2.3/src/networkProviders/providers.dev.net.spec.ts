@@ -6,7 +6,7 @@ import { INetworkProvider } from "./interface";
 import { ProxyNetworkProvider } from "./proxyNetworkProvider";
 
 describe("test network providers on devnet: Proxy and API", function () {
-    let alice = new Address("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    let alice = new Address("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
 
     let apiProvider: INetworkProvider = new ApiNetworkProvider("https://devnet-api.dharitri.org", {
         timeout: 10000,
@@ -301,7 +301,7 @@ describe("test network providers on devnet: Proxy and API", function () {
         const transaction = new Transaction({
             nonce: BigInt(8),
             value: BigInt(0),
-            receiver: Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf"),
+            receiver: Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh"),
             sender: Address.newFromBech32("drt1zztjf9fhwvuvquzsllknq4qcmffwad6n0hjtn5dyzytr5tgz7uasj8ptq7"),
             data: new Uint8Array(Buffer.from("test")),
             gasPrice: BigInt(1000000000),
