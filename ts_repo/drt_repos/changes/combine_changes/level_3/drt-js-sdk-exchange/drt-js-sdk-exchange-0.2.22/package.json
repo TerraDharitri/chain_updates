@@ -1,11 +1,11 @@
 {
     "name": "@terradharitri/sdk-exchange",
-    "version": "0.2.22",
-    "description": "Utilities modules for xExchange interactions",
+    "version": "0.0.4",
+    "description": "Utilities modules for Dharitrix interactions",
     "author": "DharitrI",
     "repository": {
         "type": "git",
-        "url": "https://github.com/TerraDharitri/drt-sdk-js-exchange.git"
+        "url": "https://github.com/TerraDharitri/drt-js-sdk-exchange.git"
     },
     "license": "MIT",
     "files": [
@@ -33,7 +33,7 @@
         "typescript": "4.8.3"
     },
     "dependencies": {
-        "@terradharitri/sdk-core": "^13.6.3",
+        "@terradharitri/sdk-core": "^0.1.5",
         "bignumber.js": "9.0.1"
     }
 }

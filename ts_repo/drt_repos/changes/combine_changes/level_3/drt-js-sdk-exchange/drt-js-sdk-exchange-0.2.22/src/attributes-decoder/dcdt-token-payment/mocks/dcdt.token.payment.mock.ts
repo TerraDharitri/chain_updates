@@ -1,4 +1,4 @@
 export const DcdtTokenPaymentAttributesOld =
-    'AAAAAApNRVgtZGMyODljAAAAAAAAAAAAAAAKTV4rYVjgfxuhgA==';
+    'AAAAAApNT0EtZGMyODljAAAAAAAAAAAAAAAKTV4rYVjgfxuhgA==';
 export const DcdtTokenPaymentAttributesNew =
-    'AAAACk1FWC1kYzI4OWMAAAAAAAAAAAAAAApNXithWOB/G6GA';
+    'AAAACk1PQS1kYzI4OWMAAAAAAAAAAAAAAApNXithWOB/G6GA';
