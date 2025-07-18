@@ -4,7 +4,7 @@ import { Component, Event, h, Prop } from '@stencil/core';
 import type { IConnectScreenData } from '../../ledger-connect.types';
 
 @Component({
-  tag: 'mvx-ledger-intro',
+  tag: 'drt-ledger-intro',
   styleUrl: 'ledger-intro.scss',
   shadow: true,
 })
@@ -40,7 +40,7 @@ export class LedgerIntro {
     return (
       <div class="ledger-intro">
         <div class="ledger-intro-wrapper">
-          <mvx-ledger-icon class="ledger-intro-icon" />
+          <drt-ledger-icon class="ledger-intro-icon" />
 
           <div class="ledger-intro-description">
             Connect your device <br />
@@ -52,7 +52,7 @@ export class LedgerIntro {
             onClick={this.handleLedgerConnectClick.bind(this)}
           >
             <span class="ledger-intro-button-label">{buttonLabel}</span>
-            {this.isAwaiting && <mvx-spinner-icon />}
+            {this.isAwaiting && <drt-spinner-icon />}
           </button>
 
           {showError && <div class="ledger-intro-error">{this.connectScreenData.error}</div>}

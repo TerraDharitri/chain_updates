@@ -2,11 +2,11 @@ import { Component, Element, h, Prop, State } from '@stencil/core';
 import classNames from 'classnames';
 
 const explorerLinkClasses: Record<string, string> = {
-  icon: 'mvx:flex mvx:justify-center mvx:transition-opacity mvx:duration-200 mvx:ease-in-out mvx:hover:opacity-80',
+  icon: 'drt:flex drt:justify-center drt:transition-opacity drt:duration-200 drt:ease-in-out drt:hover:opacity-80',
 };
 
 @Component({
-  tag: 'mvx-explorer-link',
+  tag: 'drt-explorer-link',
   styleUrl: 'explorer-link.scss',
   shadow: true,
 })
@@ -35,7 +35,7 @@ export class ExplorerLink {
         {this.hasSlotContent ? (
           <slot />
         ) : (
-          <mvx-arrow-up-right-from-square-icon
+          <drt-arrow-up-right-from-square-icon
             class={classNames('explorer-link-icon', {
               [explorerLinkClasses.icon]: true,
               [this.iconClass]: Boolean(this.iconClass),

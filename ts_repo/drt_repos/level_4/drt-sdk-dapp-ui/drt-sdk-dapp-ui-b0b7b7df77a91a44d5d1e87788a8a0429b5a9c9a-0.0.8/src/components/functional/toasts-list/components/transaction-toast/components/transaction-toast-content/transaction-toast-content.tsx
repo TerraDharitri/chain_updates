@@ -8,7 +8,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import type { IToastDataState } from '../../transaction-toast.type';
 @Component({
-  tag: 'mvx-transaction-toast-content',
+  tag: 'drt-transaction-toast-content',
   styleUrl: 'transaction-toast-content.scss',
 })
 export class TransactionToastContent {
@@ -47,7 +47,7 @@ export class TransactionToastContent {
             ></fa-icon>
           ) : (
             <div class="transaction-toast-icon">
-              <mvx-transaction-asset-icon transaction={transaction} iconSize={IconSizeEnumType.small} />
+              <drt-transaction-asset-icon transaction={transaction} iconSize={IconSizeEnumType.small} />
             </div>
           )}
           <div class="transaction-toast-details">
@@ -61,7 +61,7 @@ export class TransactionToastContent {
                 {transaction?.action?.name || title}
               </h4>
               {showAmount && (
-                <mvx-format-amount
+                <drt-format-amount
                   class="transaction-toast-amount"
                   isValid
                   label={amount.label}
@@ -81,10 +81,10 @@ export class TransactionToastContent {
                   {transaction.interactorAsset ? (
                     <img src={transaction.interactorAsset} alt="Service icon" loading="lazy" />
                   ) : (
-                    <mvx-default-transaction-icon-small />
+                    <drt-default-transaction-icon-small />
                   )}
                 </div>
-                <mvx-trim text={transaction.interactor} class="transaction-toast-details-info-text" />
+                <drt-trim text={transaction.interactor} class="transaction-toast-details-info-text" />
               </div>
             )}
           </div>
@@ -98,12 +98,12 @@ export class TransactionToastContent {
           )}
 
           {!hasCloseButton && showExplorerLinkButton && (
-            <mvx-explorer-link link={transaction.link} class="transaction-toast-action-button" />
+            <drt-explorer-link link={transaction.link} class="transaction-toast-action-button" />
           )}
         </div>
 
         {!showExplorerLinkButton && (
-          <mvx-transaction-toast-details
+          <drt-transaction-toast-details
             transactions={this.transactions}
             processedTransactionsStatus={this.processedTransactionsStatus}
           />

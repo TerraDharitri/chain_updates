@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-magnifying-glass-icon',
+  tag: 'drt-magnifying-glass-icon',
   styleUrl: 'magnifying-glass-icon.scss',
   shadow: true,
 })

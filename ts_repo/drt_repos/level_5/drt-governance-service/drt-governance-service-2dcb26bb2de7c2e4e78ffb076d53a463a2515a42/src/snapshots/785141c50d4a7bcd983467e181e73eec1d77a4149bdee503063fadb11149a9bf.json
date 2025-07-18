@@ -1181,7 +1181,7 @@
     "STAKE": {
       "balance": "9900000000000001048576"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "66692178727227955760",
       "balance": "74588532688531750912"
     }
@@ -3103,7 +3103,7 @@
     "STAKE": {
       "balance": "96922513575539982336"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1462249513888058309",
       "balance": "1635379856332404480"
     }
@@ -3653,7 +3653,7 @@
     "STAKE": {
       "balance": "17392500000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "85483585861619547470",
       "balance": "98203543437828538368"
     }
@@ -4585,7 +4585,7 @@
   {
     "address": "drt1wjk8s2pt9ej6y7mkz9qwqe7ejt8ny80p54yq44v2ek8hph7tlkes6935cm",
     "balance": "9764800973730904064",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "8500000847606983494",
       "balance": "9764800973730904064"
     }
@@ -5342,7 +5342,7 @@
   {
     "address": "drt173pza5p43a7j3j2r308zyy0x842ny9738zcpu30zl6hlaak0gu5srt2mu7",
     "balance": "97181682294726836224",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "86893492752795807060",
       "balance": "97181682294726836224"
     }
@@ -7653,7 +7653,7 @@
   {
     "address": "drt15pamw7cs32mvkqlyq36tju2fp0eqjux8fyp5yltjygcw5jae0tts8txasl",
     "balance": "9585921305991845888",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "8571102741409016883",
       "balance": "9585921305991845888"
     }
@@ -7962,7 +7962,7 @@
   {
     "address": "drt1ujk9z4avsav0fmnfu6nnhanp7ax896t2sdlw9tuyhhxuwc4pv8hsfr6pxv",
     "balance": "956362353247755960320",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "855116553333115064276",
       "balance": "956362353247755960320"
     }
@@ -10696,7 +10696,7 @@
     "STAKE": {
       "balance": "1018231313599999872"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "83239029697303223455",
       "balance": "93094530813463920640"
     }
@@ -11390,11 +11390,11 @@
   {
     "address": "drt1ul0z27teegrzu2trwnz8qs8ndzc04g6lwqh77d5af5gams9hcm0q4dm2sy",
     "balance": "9372516503000924416",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1508635526505351159",
       "balance": "1687257972843584768"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "6689814180150887250",
       "balance": "7685258530157339648"
     }
@@ -11573,7 +11573,7 @@
     "STAKE": {
       "balance": "6100000000000001024"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2914994053810217533",
       "balance": "3260129349781347328"
     }
@@ -20399,7 +20399,7 @@
     }
   },
   {
-    "address": "drt1ugdwnd6gcw78jmfdqsd2ljc3jev2mx86cgldzu5nm8n4zahm574spv6f92",
+    "address": "drt1ugdwnd6gcw78jmfdqsd2ljc3jev2mx86cmoazu5nm8n4zahm574spv6f92",
     "balance": "89739610731199987712",
     "STAKE": {
       "balance": "89739610731199987712"
@@ -21017,7 +21017,7 @@
   {
     "address": "drt108g5tq6p45vqchq6f4kyjc69hdvges7jq3maqqzvmfr9zv38a0pq0hzzux",
     "balance": "8938543694849723392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7992260099114559066",
       "balance": "8938543694849723392"
     }
@@ -21791,7 +21791,7 @@
     "STAKE": {
       "balance": "58764026906040000512"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "29785293495275099685",
       "balance": "30229094368354693120"
     }
@@ -24889,7 +24889,7 @@
     "STAKE": {
       "balance": "502557148827940028416"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "363907695145674930508",
       "balance": "369329919803345469440"
     }
@@ -25502,7 +25502,7 @@
     "STAKE": {
       "balance": "7293747492691998932992"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1245704739549608193501",
       "balance": "1393196180712281866240"
     }
@@ -25849,7 +25849,7 @@
     "STAKE": {
       "balance": "500014083694400045056"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "319171439053672882719",
       "balance": "366664149184859406336"
     }
@@ -26210,7 +26210,7 @@
     "STAKE": {
       "balance": "84315709608099987456"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1921257760937471065",
       "balance": "2148734679832467712"
     }
@@ -27530,7 +27530,7 @@
     "STAKE": {
       "balance": "856481940908799688704"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1063419708450428794",
       "balance": "1189328601930959616"
     }
@@ -27748,7 +27748,7 @@
   {
     "address": "drt1tccp9ray899h7lrplfplp4p2jqcl8lmehfe7dja8wjzjmdswpp5qs3lt3q",
     "balance": "856182768857502449664",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "765542532955563656055",
       "balance": "856182768857502449664"
     }
@@ -28249,7 +28249,7 @@
     "STAKE": {
       "balance": "65063985675699994624"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "18127318761604387672",
       "balance": "20273593302978347008"
     }
@@ -28733,7 +28733,7 @@
   {
     "address": "drt1stmqlnyvhnp5ccduyak5f28spd9kf3ddxfy9ru5yxks2rjstwlvqwxx9lk",
     "balance": "85134977621888188416",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "76122118760629641145",
       "balance": "85134977621888188416"
     }
@@ -32496,7 +32496,7 @@
     "STAKE": {
       "balance": "59506224165099995136"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "20888118510741568894",
       "balance": "23996270545139916800"
     }
@@ -32794,7 +32794,7 @@
     "STAKE": {
       "balance": "81189407440200007680"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1921779640301365505",
       "balance": "2149318349713047296"
     }
@@ -32893,7 +32893,7 @@
   {
     "address": "drt1zaz337alqcy7ju6l4zplfqn96fla0aeztqhrgus5nz5az9p2ezzsxmd5ss",
     "balance": "8328263591297846272",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7446587617397930521",
       "balance": "8328263591297846272"
     }
@@ -33492,7 +33492,7 @@
     "STAKE": {
       "balance": "44187312443099987968"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "34721254641048489014",
       "balance": "38832251190548635648"
     }
@@ -33738,7 +33738,7 @@
   {
     "address": "drt10xtgh6vkwwn7cv82y3g7fsxst5ksfqvjz460sl95c7mu22qavv3sfq699w",
     "balance": "8293627987241875456",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7415618729651175038",
       "balance": "8293627987241875456"
     }
@@ -36633,7 +36633,7 @@
     "STAKE": {
       "balance": "78499999999999998951424"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "3025156954551916014057",
       "balance": "3070231793174739156992"
     }
@@ -43837,7 +43837,7 @@
   {
     "address": "drt1ef07gyypmm8l76m42n293d829w22wehkxgph4jw25mwgc8dadh6qsfvzve",
     "balance": "79014043491898556416",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "68779633958825336211",
       "balance": "79014043491898556416"
     }
@@ -44562,7 +44562,7 @@
     "STAKE": {
       "balance": "65759401398099984384"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "11532529050331974311",
       "balance": "12897980489891280896"
     }
@@ -44570,7 +44570,7 @@
   {
     "address": "drt1f04pz5r6f0e3qeg8z6gtj96n74mgm0h6zw42avaa3zeuvd44s5xsvfjyvc",
     "balance": "78657204329218097152",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "70330118320116314347",
       "balance": "78657204329218097152"
     }
@@ -45582,7 +45582,7 @@
     "STAKE": {
       "balance": "477616705983199969280"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "271590740702300294474",
       "balance": "303747084401452711936"
     }
@@ -50966,7 +50966,7 @@
   {
     "address": "drt1uzh8w7ndx8pvcszkt0uknq6ucv2fssqyl8hfdr25x64rxmydp33qqa8k8s",
     "balance": "75834702221140164608",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "67806421871548788065",
       "balance": "75834702221140164608"
     }
@@ -51021,7 +51021,7 @@
     }
   },
   {
-    "address": "drt1cgld3y847ul8fl4varsunct49y0x3gh7c95dcx6ukvtxklfc7nnq8d6gtq",
+    "address": "drt1cmoa3y847ul8fl4varsunct49y0x3gh7c95dcx6ukvtxklfc7nnq8d6gtq",
     "balance": "7580000000000000000",
     "STAKE": {
       "balance": "7580000000000000000"
@@ -52517,7 +52517,7 @@
     "STAKE": {
       "balance": "5306681259900001280"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1978815983976425701",
       "balance": "2213107796479234560"
     }
@@ -54215,7 +54215,7 @@
     "STAKE": {
       "balance": "729300000000000131072"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "15354433638775578149",
       "balance": "17172398581606608896"
     }
@@ -54765,7 +54765,7 @@
     "STAKE": {
       "balance": "6072676629900001280"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1344747969671664800",
       "balance": "1364784714419772672"
     }
@@ -55399,7 +55399,7 @@
     "STAKE": {
       "balance": "5394058259799999488"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1803066445305134168",
       "balance": "2016549512429262080"
     }
@@ -55858,7 +55858,7 @@
     "STAKE": {
       "balance": "1983900000000000131072"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "5332627199008829978020",
       "balance": "5412083344274061524992"
     }
@@ -56181,7 +56181,7 @@
   {
     "address": "drt1m6eguck8nqqhez8kfmrg3q7ksdt2my8rk3q0gr5y98ag4ulert9qjty3k7",
     "balance": "7379283420829546496",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6598071728209536810",
       "balance": "7379283420829546496"
     }
@@ -56794,7 +56794,7 @@
     "STAKE": {
       "balance": "25106068527199997952"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "42129591918351316229",
       "balance": "48398475195801993216"
     }
@@ -57516,7 +57516,7 @@
   {
     "address": "drt195dnhcuqrjd3gn4msj0rheg675aa675y97693k4s40gylvrrc3mqmestk2",
     "balance": "7323071783127710720",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6547810964885291764",
       "balance": "7323071783127710720"
     }
@@ -59536,7 +59536,7 @@
     "STAKE": {
       "balance": "555000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "151789024523057906645",
       "balance": "169760845026588000256"
     }
@@ -60216,7 +60216,7 @@
   {
     "address": "drt14uq7928a2ammk0yuqt9sa0mpuxrk993culw33djvktw8tg6nkztqgrgugl",
     "balance": "7218347347574261760",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6454173236386142150",
       "balance": "7218347347574261760"
     }
@@ -60339,7 +60339,7 @@
     "STAKE": {
       "balance": "60000063658900004864"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10845870206031497067",
       "balance": "12130021238425626624"
     }
@@ -61824,7 +61824,7 @@
   {
     "address": "drt1mkc9dnspz2ua2ktdz5m667jtngn4efal5k4mmqsz7ykv0467w58qdlcyh7",
     "balance": "71603577687474577408",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "64023227546025186853",
       "balance": "71603577687474577408"
     }
@@ -62794,7 +62794,7 @@
     "STAKE": {
       "balance": "6123681888400000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "989076613785003763",
       "balance": "1003813855330400256"
     }
@@ -62833,7 +62833,7 @@
     "STAKE": {
       "balance": "6008007981679998976"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "999999824292906442",
       "balance": "1118399803489186688"
     }
@@ -63250,7 +63250,7 @@
     "STAKE": {
       "balance": "701000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9029435157391038559",
       "balance": "10098520280026138624"
     }
@@ -63867,7 +63867,7 @@
   {
     "address": "drt1jp5776329786ucuw95xwc8gh25dpj8zt2kg48fzesplxmqcxy3ysd9yzlt",
     "balance": "7091755418389569536",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "6987639588520612383",
       "balance": "7091755418389569536"
     }
@@ -64907,7 +64907,7 @@
     "STAKE": {
       "balance": "67557187582100013056"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2699327270200468236",
       "balance": "3018927618992204288"
     }
@@ -65067,7 +65067,7 @@
     }
   },
   {
-    "address": "drt1qj740n2llt9tl9ejtynamqmxsc84708e54xgrh7snruhge9vr2rq0ygd7d",
+    "address": "drt1qj740n2llt9tl9ejtynamqdrtsc84708e54xgrh7snruhge9vr2rq0ygd7d",
     "balance": "7052096188899999744",
     "STAKE": {
       "balance": "7052096188899999744"
@@ -65660,7 +65660,7 @@
     "STAKE": {
       "balance": "680000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "20616511449239241463",
       "balance": "23057506404829167616"
     }
@@ -67878,7 +67878,7 @@
     }
   },
   {
-    "address": "drt1xv0seh8almlrcjx24hxtavwq9t8zuqvmmxsc253sxne0chq28nrqm0c9jx",
+    "address": "drt1xv0seh8almlrcjx24hxtavwq9t8zuqvmdrtsc253sxne0chq28nrqm0c9jx",
     "balance": "7000000000000000000",
     "STAKE": {
       "balance": "7000000000000000000"
@@ -68345,7 +68345,7 @@
     "STAKE": {
       "balance": "300000078262799958016"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "393998371087583159334",
       "balance": "399868946816788135936"
     }
@@ -70852,7 +70852,7 @@
   {
     "address": "drt15zv60wuh44np27fkvtm8fuj7nap0pa4yul7a76unmxhj9tsaprgs4c90f8",
     "balance": "6901850843594988544",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6171182800067049229",
       "balance": "6901850843594988544"
     }
@@ -71136,7 +71136,7 @@
     "STAKE": {
       "balance": "5039859560200000512"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1613554051141086050",
       "balance": "1853650893950879488"
     }
@@ -72985,7 +72985,7 @@
   {
     "address": "drt10kmq60fhzg2wy43le669zm3ftyyqkhtl2lm2z7jsxgdnwzzdmc8q25km6q",
     "balance": "68170224503152181248",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "60953348089370686892",
       "balance": "68170224503152181248"
     }
@@ -75660,7 +75660,7 @@
   {
     "address": "drt1m430fpmel0dgjuh609rpxxma6xaanz5hfnwrfsq9x520edm0yfqqs5wgqu",
     "balance": "6718264551002488832",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6007031966203941927",
       "balance": "6718264551002488832"
     }
@@ -75965,7 +75965,7 @@
     "STAKE": {
       "balance": "48853733182899994624"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "17961813777355624053",
       "balance": "18229444802638221312"
     }
@@ -77485,7 +77485,7 @@
   {
     "address": "drt19ugr8g2nkxzy227ssry3ejl6rr8xeyv0exzzfllq3a2w5g2darus2ek4xn",
     "balance": "66559124306649563136",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "59512807856446312942",
       "balance": "66559124306649563136"
     }
@@ -78126,7 +78126,7 @@
     "STAKE": {
       "balance": "1000092218300000256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5033358936494226140",
       "balance": "5629308634575142912"
     }
@@ -78991,7 +78991,7 @@
     "STAKE": {
       "balance": "60000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5370466508699443375",
       "balance": "6006329743329457152"
     }
@@ -79597,7 +79597,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4996168257786935355",
       "balance": "5587714579508909056"
     }
@@ -79941,7 +79941,7 @@
   {
     "address": "drt1prrtqhz7fdv59qk93txuu3v6ryrr8zse7x6ret88ezdpmas7nl5s9cgz0v",
     "balance": "65795434795300978688",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "58829966733995870570",
       "balance": "65795434795300978688"
     }
@@ -80757,7 +80757,7 @@
     "STAKE": {
       "balance": "528195206375799980032"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "124939907174855396537",
       "balance": "126801511791760719872"
     }
@@ -82214,7 +82214,7 @@
   {
     "address": "drt1xj3yzdd6qcxv3kvrqay0h460qntsm2jukh8lmu3v70mfav4d8r8qze98z9",
     "balance": "65069212160292618240",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "58180626037457631757",
       "balance": "65069212160292618240"
     }
@@ -84129,7 +84129,7 @@
     "STAKE": {
       "balance": "61575185836499984384"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2714923666399894598",
       "balance": "3036370628501642240"
     }
@@ -84973,7 +84973,7 @@
     "STAKE": {
       "balance": "60192111345500012544"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "4092730888055254614",
       "balance": "4153712578287277568"
     }
@@ -85761,7 +85761,7 @@
     "STAKE": {
       "balance": "58536323067200004096"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4977249217703234768",
       "balance": "5566555525079298048"
     }
@@ -85926,7 +85926,7 @@
     "STAKE": {
       "balance": "2381757746799999488"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3598535758550835432",
       "balance": "4024602392363254272"
     }
@@ -86217,7 +86217,7 @@
     "STAKE": {
       "balance": "512473500111500148736"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "125405998557021684114",
       "balance": "127274547935521292288"
     }
@@ -91216,7 +91216,7 @@
   {
     "address": "drt1v20p9euy35x7snkp4pfx06x8vgf22jh7mcv7aw77mdfjt93ua7jswz4ktr",
     "balance": "6246183581025067008",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5584928094621840046",
       "balance": "6246183581025067008"
     }
@@ -92113,7 +92113,7 @@
   {
     "address": "drt198hstgp63tplznrg9tzpmn5pc4kk7essuj4urstfmm4ua7mtzjkqn206lg",
     "balance": "621885306457938329600",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "556049093757097906346",
       "balance": "621885306457938329600"
     }
@@ -93139,7 +93139,7 @@
     "STAKE": {
       "balance": "543318651273900195840"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "66004830071529214213",
       "balance": "75826348786172772352"
     }
@@ -93297,7 +93297,7 @@
     "STAKE": {
       "balance": "60654505453299990528"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1069946182702537365",
       "balance": "1196627810734517760"
     }
@@ -93753,7 +93753,7 @@
   {
     "address": "drt18l2a00d9v0wxkkl0s7jz5trm7axt7rwyzz3c6f9nyk98vd4t0d4s7cvrtm",
     "balance": "6173396080522087424",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5519846280867388858",
       "balance": "6173396080522087424"
     }
@@ -93925,7 +93925,7 @@
     "STAKE": {
       "balance": "4455595070800000512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1531594105663145233",
       "balance": "1712934847773661696"
     }
@@ -96978,7 +96978,7 @@
   {
     "address": "drt1cfyadenn4k9wndha0ljhlsdrww9k0jqafqq626hu9zt79urzvzasqrl8mu",
     "balance": "60893999999999991808",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "60000000000000000000",
       "balance": "60893999999999991808"
     }
@@ -97686,7 +97686,7 @@
   {
     "address": "drt1tefhcndy2nety34xmgsmex3t6cfs008zzs85julmaudujf70xvuskelmdw",
     "balance": "6072642785830779904",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5429759286329380854",
       "balance": "6072642785830779904"
     }
@@ -98051,7 +98051,7 @@
   {
     "address": "drt1ha5p8p8mk0pvzfgh7tgh55wta6cmprn2vxcyrysf0dcffp4p926qvaytxk",
     "balance": "606243458024735113216",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "542063177776050692486",
       "balance": "606243458024735113216"
     }
@@ -103704,7 +103704,7 @@
     "STAKE": {
       "balance": "45000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "14779264590531536834",
       "balance": "14999475632930455552"
     }
@@ -106067,7 +106067,7 @@
     "STAKE": {
       "balance": "25168583313899999232"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "30509648370046088020",
       "balance": "34121990737059545088"
     }
@@ -106817,7 +106817,7 @@
   {
     "address": "drt16efrlfjzdhrfgdqrljvvryu4yppuzc7hg8k0mk55c07uzs4xyzvs2fxakn",
     "balance": "59057491938254020608",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "52805339715892363595",
       "balance": "59057491938254020608"
     }
@@ -107654,7 +107654,7 @@
     "STAKE": {
       "balance": "56909572803700015104"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1803182671873587930",
       "balance": "2016679500223420928"
     }
@@ -108799,7 +108799,7 @@
     "STAKE": {
       "balance": "3098872670690000384"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "2719059167846111567",
       "balance": "2759573149447018496"
     }
@@ -109146,11 +109146,11 @@
     "STAKE": {
       "balance": "578689404959700156416"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1440314631854554944",
       "balance": "1610847884266134272"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "4000075714736193035",
       "balance": "4595286981088938496"
     }
@@ -111027,7 +111027,7 @@
   {
     "address": "drt1lfpsjsctps4hy9hlezcc05dzt6veea9hazw0426n20kjrcnvre4q6dcnku",
     "balance": "5799180875366087680",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5185247563810879275",
       "balance": "5799180875366087680"
     }
@@ -113268,7 +113268,7 @@
   {
     "address": "drt1ddlh8czj0722hqnruveg0h8s638a62hj52jy2n49687lqlx3estst2nwrj",
     "balance": "574170033552344088576",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "513385223133354831752",
       "balance": "574170033552344088576"
     }
@@ -114583,7 +114583,7 @@
     }
   },
   {
-    "address": "drt1cedxg5n2rrf77fngv792hv3enq6cyku0hsmxpy8u0ed0g9jjj3fqnl4suv",
+    "address": "drt1cedxg5n2rrf77fngv792hv3enq6cyku0hsdrtpy8u0ed0g9jjj3fqnl4suv",
     "balance": "5705440000000001024",
     "STAKE": {
       "balance": "5705440000000001024"
@@ -116800,7 +116800,7 @@
     "STAKE": {
       "balance": "53247867686699991040"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2926074501024958230",
       "balance": "3272521721946313728"
     }
@@ -117067,7 +117067,7 @@
   {
     "address": "drt1h0g85x0a965sj04zqe46hgc54wx6vnv8s0xjwcwstgp43hm65hcq6pgeka",
     "balance": "56456549130831396864",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "50479747076923635451",
       "balance": "56456549130831396864"
     }
@@ -119406,7 +119406,7 @@
   {
     "address": "drt1pqjx5uh2andgcmnt2gesqgrd9k67ecrjh3thxfhnxesqte5l3msslewfmc",
     "balance": "558194674485385625600",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "549999679264346958897",
       "balance": "558194674485385625600"
     }
@@ -119477,7 +119477,7 @@
   {
     "address": "drt1a9a2xhy8v9h6ftn8l239ve320a5gkxjce5pxdtjcth3js263snzqa4u30c",
     "balance": "55797536236840509440",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "49890500927074843272",
       "balance": "55797536236840509440"
     }
@@ -119506,7 +119506,7 @@
   {
     "address": "drt1n3gy9xhdggngy8r29cjzfhrs8urdllqnal4j44jqzslh65wz4flq92espe",
     "balance": "5578729111730441216",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4988134041246817605",
       "balance": "5578729111730441216"
     }
@@ -119531,7 +119531,7 @@
     "STAKE": {
       "balance": "53319388338299985920"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2201846699610098825",
       "balance": "2462545348843934720"
     }
@@ -119612,7 +119612,7 @@
     "STAKE": {
       "balance": "30000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "23029431181031053807",
       "balance": "25756115832865132544"
     }
@@ -119889,7 +119889,7 @@
     "STAKE": {
       "balance": "44929653639720001536"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "10607287691232122182",
       "balance": "10765336277831481344"
     }
@@ -120198,7 +120198,7 @@
   {
     "address": "drt17ww2jwqkvzzamrlyvcjmyjzw8d28070qcgttdkkugjc44jhtucaqxvty3j",
     "balance": "55607873972396351488",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "49720917357292872241",
       "balance": "55607873972396351488"
     }
@@ -121620,7 +121620,7 @@
   {
     "address": "drt1cskx260ujkcznaausy5r88r88c9wfzqkvwvqvuzugpe57tdssthsx5s4wn",
     "balance": "5524207046572009472",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4939383982986416900",
       "balance": "5524207046572009472"
     }
@@ -122443,7 +122443,7 @@
     "STAKE": {
       "balance": "25000073057500000256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "26874343060154776084",
       "balance": "30056265278477103104"
     }
@@ -122633,7 +122633,7 @@
   {
     "address": "drt12tg886c0vm6vncfyexl6ygwkm8wrduy8n68l55cjq27tf80faphqlfxd7v",
     "balance": "5500988146574525440",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4918623163961485403",
       "balance": "5500988146574525440"
     }
@@ -124076,7 +124076,7 @@
   {
     "address": "drt1z5xrsvajvxthwj77w0gyudpd8d2tc5hzd22wyfzmushguqhqrkkqqegkcr",
     "balance": "54808063677402234880",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "49005779396818879549",
       "balance": "54808063677402234880"
     }
@@ -124528,7 +124528,7 @@
     "STAKE": {
       "balance": "4093776316599999488"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1228924169946973543",
       "balance": "1374428791668695296"
     }
@@ -125005,7 +125005,7 @@
   {
     "address": "drt19cz9glyd0g5zt2z2uydqh70k452qpcgsdgf4vasuv45cp34ysjrq3yra9q",
     "balance": "5456908954477570048",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4879210438552905436",
       "balance": "5456908954477570048"
     }
@@ -125723,7 +125723,7 @@
     "STAKE": {
       "balance": "4203558278059999232"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1105877838032455020",
       "balance": "1236813774055497728"
     }
@@ -126690,7 +126690,7 @@
   {
     "address": "drt10tslmzhe04kmj68rhjamsk74wzjmr7ycjqk0tmlruvq9u93tdd7qv6fq03",
     "balance": "5415889261345106944",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4842533316653349902",
       "balance": "5415889261345106944"
     }
@@ -128406,7 +128406,7 @@
   {
     "address": "drt1f8d48w0gt7djycxcfhzzcxraqa844mss0pg9zlr68ndtrqlc9vvqwljzy7",
     "balance": "5374768427597737984",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4805765761442899364",
       "balance": "5374768427597737984"
     }
@@ -129012,7 +129012,7 @@
     "STAKE": {
       "balance": "30000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "21117163598856866426",
       "balance": "23617435768961523712"
     }
@@ -130756,7 +130756,7 @@
   {
     "address": "drt1r4dm0an5h5gqady87pl7zjakc60fd0j3sf3dyjepzyhm9xn7ygwqdzukvp",
     "balance": "53214871513708478464",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "46322137459704452912",
       "balance": "53214871513708478464"
     }
@@ -130932,7 +130932,7 @@
   {
     "address": "drt1lf3vwcyak37w55gdkcc4lfzkq6rey4lu00t6pt3cqw2usplg3p4s6dhtc5",
     "balance": "5318172960339384320",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4755161802878561797",
       "balance": "5318172960339384320"
     }
@@ -131391,7 +131391,7 @@
     "STAKE": {
       "balance": "4299999999999998976"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "995024895312345357",
       "balance": "1009850766252499200"
     }
@@ -133250,7 +133250,7 @@
     "STAKE": {
       "balance": "50098180274599993344"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2325811600863091937",
       "balance": "2601187694405281792"
     }
@@ -138238,7 +138238,7 @@
     "STAKE": {
       "balance": "500000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "16267269873968846035",
       "balance": "18193314627046758400"
     }
@@ -139530,7 +139530,7 @@
     "STAKE": {
       "balance": "31192790196799995904"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "20092534740916859108",
       "balance": "20391913508556517376"
     }
@@ -139851,7 +139851,7 @@
     }
   },
   {
-    "address": "drt1te9yt9wuxv7vs7e35utwpat809jylzw02wd7srh8dmaeu7mxvm2qd3vw2s",
+    "address": "drt1te9yt9wuxv7vs7e35utwpat809jylzw02wd7srh8dmaeu7drtvm2qd3vw2s",
     "balance": "5153638640199999488",
     "STAKE": {
       "balance": "5153638640199999488"
@@ -140271,7 +140271,7 @@
     }
   },
   {
-    "address": "drt1723u0xyzncycgldejx5mz0cqpfreu9kf53ftt2k7ctqqs3ljea5sglc520",
+    "address": "drt1723u0xyzncycmoaejx5mz0cqpfreu9kf53ftt2k7ctqqs3ljea5sglc520",
     "balance": "5147860420100000768",
     "STAKE": {
       "balance": "5147860420100000768"
@@ -142483,7 +142483,7 @@
     }
   },
   {
-    "address": "drt1qgq75g8m3r26s6gpgzcmyt2kj3teueh86dcgld445vk4h3wlvs5q78vtxe",
+    "address": "drt1qgq75g8m3r26s6gpgzcmyt2kj3teueh86dcmoa445vk4h3wlvs5q78vtxe",
     "balance": "5109336628100000768",
     "STAKE": {
       "balance": "5109336628100000768"
@@ -145033,7 +145033,7 @@
   {
     "address": "drt12azrhuyxzpn89yrva24kzglca0yf26glpuxgwsynvuqlc5xwxzgqagur95",
     "balance": "5086845740687577088",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4548324160128377310",
       "balance": "5086845740687577088"
     }
@@ -147809,7 +147809,7 @@
     "STAKE": {
       "balance": "50000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "448082003028291961317",
       "balance": "454758424873413443584"
     }
@@ -147964,7 +147964,7 @@
   {
     "address": "drt1hvp4esmqzxhtmdds30kz2m46u5y0a0ycrwzp6t2k68uqw0mwddfs2s7768",
     "balance": "504512463465414459392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "451101988077087315078",
       "balance": "504512463465414459392"
     }
@@ -148738,7 +148738,7 @@
     "STAKE": {
       "balance": "27323333134200000512"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "22701662909040700245",
       "balance": "23039917686385405952"
     }
@@ -148837,7 +148837,7 @@
   {
     "address": "drt1z9lsa7gdlkvve5wuta23elkl2mdr0ulpg2wc2ng0jmc4prlfgglq77m64u",
     "balance": "5034912886613245952",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "4960994074897276604",
       "balance": "5034912886613245952"
     }
@@ -149076,7 +149076,7 @@
   {
     "address": "drt1yqxvpr07c0ku6xa3y06kycc0ag3uxfattlzsv7cqqawk462tfnnqd2g2s8",
     "balance": "50326212525416235008",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "44998401757346411127",
       "balance": "50326212525416235008"
     }
@@ -149411,7 +149411,7 @@
     }
   },
   {
-    "address": "drt1hfhg99t8nh4jgqjz5cd4uzckqusfcgldf9nc3v9v6rwedhgluegsx55erk",
+    "address": "drt1hfhg99t8nh4jgqjz5cd4uzckqusfcmoaf9nc3v9v6rwedhgluegsx55erk",
     "balance": "5028148893800000512",
     "STAKE": {
       "balance": "5028148893800000512"
@@ -149675,7 +149675,7 @@
     "STAKE": {
       "balance": "500000098992299966464"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2281861657117767089",
       "balance": "2552034077320510976"
     }
@@ -149739,7 +149739,7 @@
   {
     "address": "drt12klexluv3h350ruhhu5lpkhe5gvlk8908dztmac7dlp5lq27kzmqs4h4wq",
     "balance": "502480547518534451200",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "449285181972938461511",
       "balance": "502480547518534451200"
     }
@@ -150681,7 +150681,7 @@
     "STAKE": {
       "balance": "42000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7289139420478097735",
       "balance": "8152173527862704128"
     }
@@ -151028,7 +151028,7 @@
     "STAKE": {
       "balance": "500000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "999786153069929313",
       "balance": "1148554332646734848"
     }
@@ -151242,7 +151242,7 @@
     "STAKE": {
       "balance": "500000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "897258923326710232",
       "balance": "1003494379848592768"
     }
@@ -153070,7 +153070,7 @@
   {
     "address": "drt1e9hx56yqma80wyjfwgu078a7r5f8j5z93ug59a5sdqzp2hcwdgcq77v962",
     "balance": "5001788971666613248",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4472271970374296192",
       "balance": "5001788971666613248"
     }
@@ -153204,7 +153204,7 @@
   {
     "address": "drt1raf60v6rsg78ss5nyg5es83eyqae4d97wtwc46fxnlcfng6t2mrsmas579",
     "balance": "5001249550504359936",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4471789655315057248",
       "balance": "5001249550504359936"
     }
@@ -153422,7 +153422,7 @@
   {
     "address": "drt14e486s0mftutpc3mvsypn3dzs48g2rnnq6kc993ywphctlk2pvgqudxqkv",
     "balance": "5000898315067750400",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4471475603601350366",
       "balance": "5000898315067750400"
     }
@@ -153937,11 +153937,11 @@
     "STAKE": {
       "balance": "478396013636070080512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1346722308795825173",
       "balance": "1506174230157250816"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "19805807028703457405",
       "balance": "20100913553431138304"
     }
@@ -165082,7 +165082,7 @@
     "STAKE": {
       "balance": "47565873971299999744"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "2199550052740845683",
       "balance": "2232323348526683904"
     }
@@ -167963,7 +167963,7 @@
     "STAKE": {
       "balance": "2117836139000000512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2489230848846839839",
       "balance": "2783955781350305792"
     }
@@ -168352,7 +168352,7 @@
     "STAKE": {
       "balance": "47285560236099993600"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1498303674956722606",
       "balance": "1675702830071598848"
     }
@@ -169693,7 +169693,7 @@
     "STAKE": {
       "balance": "2895241674800000512"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1712822280195599964",
       "balance": "1967690235488705280"
     }
@@ -170467,7 +170467,7 @@
     "STAKE": {
       "balance": "482920486676499988480"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "997535785112789654",
       "balance": "1012399068310970112"
     }
@@ -171458,7 +171458,7 @@
     "STAKE": {
       "balance": "32417253875699998720"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13991255188028332263",
       "balance": "15647819802290886656"
     }
@@ -172271,7 +172271,7 @@
   {
     "address": "drt10uw02q6srcr3epwwpsczu9vlrq8e4649h56dc2j89nf87mzp4lzsyxqs6u",
     "balance": "4791676782806981632",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4284403418103523829",
       "balance": "4791676782806981632"
     }
@@ -173791,7 +173791,7 @@
   {
     "address": "drt1s0ssy9nsc67e649d80cgxc5xx2agdktw5mnua3ttj9azgayjhyyquhkd4w",
     "balance": "47430434282864377856",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "46734096248757887248",
       "balance": "47430434282864377856"
     }
@@ -174422,7 +174422,7 @@
   {
     "address": "drt1vxr8wnpqwl2nk6z37336ts3028kntumtafnr78ht6q2q4awk86zsswu7fu",
     "balance": "4727451188683352064",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "4115121160065591825",
       "balance": "4727451188683352064"
     }
@@ -178203,7 +178203,7 @@
   {
     "address": "drt1heanj7qu3ggyzv0wfpqneaqmdky3dym5366qr8507cjtrnfhc38qzf5wm3",
     "balance": "4635032517561827328",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4144342379794194628",
       "balance": "4635032517561827328"
     }
@@ -178790,7 +178790,7 @@
     }
   },
   {
-    "address": "drt1m45n8y45cfg5vuga8887x8w49p0detuw6zaxutf2pxwxye0ju0gqkhegld",
+    "address": "drt1m45n8y45cfg5vuga8887x8w49p0detuw6zaxutf2pxwxye0ju0gqkhrewa",
     "balance": "461969693649400037376",
     "STAKE": {
       "balance": "461969693649400037376"
@@ -179961,7 +179961,7 @@
   {
     "address": "drt1xl2j285sphwaa5lxvg4w7ga0km07y0hnkqltzzsqlwyss0qt2fpqkwpt9t",
     "balance": "459855291532466192384",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "411172470969658546699",
       "balance": "459855291532466192384"
     }
@@ -180455,7 +180455,7 @@
     "STAKE": {
       "balance": "12361601198100002816"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "29928804247480905634",
       "balance": "33472374670382645248"
     }
@@ -182486,7 +182486,7 @@
   {
     "address": "drt17cej5kwl2766w0544dzrkp9ppzldrraky2hmgwhqlwadpujnc9ds4tpr0v",
     "balance": "4530276941752076800",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4050676807718237390",
       "balance": "4530276941752076800"
     }
@@ -185567,7 +185567,7 @@
   {
     "address": "drt1y0qdkzlj4ff9ngult39y8ydec7jh6jh75xyr6aajhvqla8aw9kssvj2h4v",
     "balance": "4471242909659628032",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3997892444259323756",
       "balance": "4471242909659628032"
     }
@@ -186058,7 +186058,7 @@
   {
     "address": "drt1nq5jhuw2zprw5qu0yel0dpjhfqkgedkk5wh3w2vkfkae4uhsp8nsthdhvn",
     "balance": "445825498311686291456",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "398627949134197267453",
       "balance": "445825498311686291456"
     }
@@ -186223,7 +186223,7 @@
     "STAKE": {
       "balance": "2222634497900000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1994891886747566804",
       "balance": "2231087086138478848"
     }
@@ -186875,11 +186875,11 @@
   {
     "address": "drt1xjwvwhgdk82x0d99gx2jflssel22lwjfln392e677lmjpjy43nusmylrvx",
     "balance": "44370100823722860544",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "22210748232942469503",
       "balance": "24840500823722860544"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "17000000000000000000",
       "balance": "19529600000000000000"
     }
@@ -187377,7 +187377,7 @@
   {
     "address": "drt19estgck4xt6stkrhaqwjgk7xkvgaj62qausp47q6a5ssqyxd5vhqgzs27z",
     "balance": "4426347845592338944",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3957750219592577635",
       "balance": "4426347845592338944"
     }
@@ -188823,7 +188823,7 @@
     "STAKE": {
       "balance": "11777922469699999744"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "28762473358780127558",
       "balance": "32167950204459700224"
     }
@@ -189881,7 +189881,7 @@
   {
     "address": "drt1gsgfscfe347y4zfjlqn6gclaxhwwptyw9gt5aev38katdc4k2l2sfgc8ms",
     "balance": "43713518940291932160",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "39085764431591501222",
       "balance": "43713518940291932160"
     }
@@ -196973,7 +196973,7 @@
   {
     "address": "drt1pz2q9jhs3masvtt9zcv53w9gs8vv90nqcrqua4daj60p4wmz06ws3yafym",
     "balance": "4285316313541742080",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3831649064325591338",
       "balance": "4285316313541742080"
     }
@@ -197369,7 +197369,7 @@
     "STAKE": {
       "balance": "40740998455400005632"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1821283435812503480",
       "balance": "2036923394612704000"
     }
@@ -197667,7 +197667,7 @@
     "STAKE": {
       "balance": "41672896966689996800"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "913608424556294275",
       "balance": "1021779662023759616"
     }
@@ -198051,7 +198051,7 @@
     }
   },
   {
-    "address": "drt177f9v8a02h4xlsczxf7z2wmswz8dqxaau9rwlzqtq02mxvmfzvcswl4m6n",
+    "address": "drt177f9v8a02h4xlsczxf7z2wmswz8dqxaau9rwlzqtq02drtvmfzvcswl4m6n",
     "balance": "42615499999999",
     "STAKE": {
       "balance": "42615499999999"
@@ -199733,7 +199733,7 @@
   {
     "address": "drt1guestlcwvtm4twc77m85v6teq2z3h78wlkyk8rjedxlmmnm3x8essjn7sv",
     "balance": "422303841184422756352",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "367604318579755209335",
       "balance": "422303841184422756352"
     }
@@ -207105,7 +207105,7 @@
   {
     "address": "drt10sxnr2dtaux9d84dexyex8l2rawjn9up4jauxvj6reh0h7c0yukq3pue2p",
     "balance": "4084442056226057728",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3652040465152054282",
       "balance": "4084442056226057728"
     }
@@ -207641,7 +207641,7 @@
     "STAKE": {
       "balance": "33956620290799996928"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "5919109666817551369",
       "balance": "6799873185240003584"
     }
@@ -210295,7 +210295,7 @@
   {
     "address": "drt1405pwecgfh7wepejvem3wcsuvrcnxnnxalrxp4l9x2en2nvhjaustnpn8r",
     "balance": "4030856081613684224",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3604127397723251343",
       "balance": "4030856081613684224"
     }
@@ -210455,7 +210455,7 @@
     }
   },
   {
-    "address": "drt1aed3h32a8v7u7mpkzpewfg3cqjttsmxpymmxy7qqzk6wexvae5yqhnjqfz",
+    "address": "drt1aed3h32a8v7u7mpkzpewfg3cqjttsdrtpymmxy7qqzk6wexvae5yqhnjqfz",
     "balance": "4029666150300000768",
     "STAKE": {
       "balance": "4029666150300000768"
@@ -212049,7 +212049,7 @@
     "STAKE": {
       "balance": "300000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "98988986434640803896",
       "balance": "100463922332516941824"
     }
@@ -212260,7 +212260,7 @@
   {
     "address": "drt1cyv9qu8g5l32y053qqpt8075ppp07rcd530kru9w7zj55zphh46qmxg9ad",
     "balance": "4002937012022532898816",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "3944168895479883050444",
       "balance": "4002937012022532898816"
     }
@@ -215458,7 +215458,7 @@
     }
   },
   {
-    "address": "drt1fw2mu86dgfxg9ck8wcqelzy383m64wj0sqrc5vutuxvmxvmq6rssf29aad",
+    "address": "drt1fw2mu86dgfxg9ck8wcqelzy383m64wj0sqrc5vutuxvdrtvmq6rssf29aad",
     "balance": "4000000000000000000",
     "STAKE": {
       "balance": "4000000000000000000"
@@ -215897,7 +215897,7 @@
     "STAKE": {
       "balance": "342361350438999949312"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "50030354316805570319",
       "balance": "57474871039146237952"
     }
@@ -219933,7 +219933,7 @@
     "STAKE": {
       "balance": "5000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "30570901051195763385",
       "balance": "34190495735657345024"
     }
@@ -221855,7 +221855,7 @@
     "STAKE": {
       "balance": "35887802349899993088"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2621515154949218550",
       "balance": "2931902549295205888"
     }
@@ -222832,7 +222832,7 @@
     "STAKE": {
       "balance": "353783310970699907072"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "28825696258560607372",
       "balance": "32238658695574183936"
     }
@@ -225381,7 +225381,7 @@
   {
     "address": "drt1turkgrvdywkstwkapl2vpqqe9p9e3wtjzhfrt5rxqmk27jul6rwq7h9h56",
     "balance": "3803279350222467072",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3400643195835539046",
       "balance": "3803279350222467072"
     }
@@ -225550,7 +225550,7 @@
   {
     "address": "drt1qd0gurrrhkmgyq3aycsdggf6fzhlp9pjqfur70vqfmvejr3a5mdqtw6077",
     "balance": "3800246413907881984",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3397931342907619736",
       "balance": "3800246413907881984"
     }
@@ -229581,7 +229581,7 @@
     }
   },
   {
-    "address": "drt1yeyv33q3nqnwj4ze00uj759lqm3efq287sqsvpsmxvm86hl0qdwq70mwdx",
+    "address": "drt1yeyv33q3nqnwj4ze00uj759lqm3efq287sqsvpsdrtvm86hl0qdwq70mwdx",
     "balance": "37251365067300003840",
     "STAKE": {
       "balance": "37251365067300003840"
@@ -231112,7 +231112,7 @@
     "STAKE": {
       "balance": "27522230919596582371328"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "8456483780988649248756",
       "balance": "9457731460657705910272"
     }
@@ -232233,7 +232233,7 @@
   {
     "address": "drt1peh2xcvhlcc4h8hf55277c0esz3j0k06ya0n0lnf5rzhh7qddt5ssluv7h",
     "balance": "3669831773598982656",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3281323116594226323",
       "balance": "3669831773598982656"
     }
@@ -233774,7 +233774,7 @@
   {
     "address": "drt1gfx7nh7ur7e869klddaj4cezdytg482e99peufxk6622mvvtyyeqpy86w6",
     "balance": "36381902913365360640",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "32530313763738699761",
       "balance": "36381902913365360640"
     }
@@ -234209,7 +234209,7 @@
   {
     "address": "drt1ht5zfzfghmdfmn0r354yv0lgrf9yy78xgc3m5ef68fd3f3c6zjxslsp4ee",
     "balance": "36283066362521849856",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "32441940595960162696",
       "balance": "36283066362521849856"
     }
@@ -236551,7 +236551,7 @@
     "STAKE": {
       "balance": "1800000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1561747984730880041346",
       "balance": "1794136084858835042304"
     }
@@ -236898,7 +236898,7 @@
     "STAKE": {
       "balance": "2552492629320000512"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1019391356553706438",
       "balance": "1034580287766356608"
     }
@@ -237140,7 +237140,7 @@
     "STAKE": {
       "balance": "34228920355900010496"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1417652130586561412",
       "balance": "1585502142848010496"
     }
@@ -240039,7 +240039,7 @@
   {
     "address": "drt1rugfnc557jrpj6h55srmlhleqc8fn4976gs0wftjlck49ntdh9qsm6e8eg",
     "balance": "3535097606515177472",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "3483197956956525586",
       "balance": "3535097606515177472"
     }
@@ -240365,7 +240365,7 @@
     "STAKE": {
       "balance": "20000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13671708449874394438",
       "balance": "15290438730339524608"
     }
@@ -241762,7 +241762,7 @@
     "STAKE": {
       "balance": "33050000000000001572864"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1991743448048264030535",
       "balance": "2021420425424182968320"
     }
@@ -244192,7 +244192,7 @@
   {
     "address": "drt16jkgwnmpfpknswlm7k8uxayxqncelgyda8tcllmd2ktkyh078ggscumesz",
     "balance": "3481214685870217216",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3112674075348906323",
       "balance": "3481214685870217216"
     }
@@ -245061,7 +245061,7 @@
   {
     "address": "drt1uhtpwkcp4ssnknjacnav0x62t9pdlxsycgnkljzuuzwz58rxme2qyalvxh",
     "balance": "3467040000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3100000000000000000",
       "balance": "3467040000000000000"
     }
@@ -247984,7 +247984,7 @@
     "STAKE": {
       "balance": "33137132526400008192"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "916891278508540804",
       "balance": "1025451205883952128"
     }
@@ -248345,7 +248345,7 @@
     "STAKE": {
       "balance": "270361619354699988992"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "69577722047147174904",
       "balance": "70614430105649659904"
     }
@@ -251846,7 +251846,7 @@
   {
     "address": "drt1nmr2vy847hmhepyxsztmpwyfumpj4wygxgp79p2pykq2q2u56r5qdle6y7",
     "balance": "33551712739020152832",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "29999743150053781852",
       "balance": "33551712739020152832"
     }
@@ -254983,7 +254983,7 @@
   {
     "address": "drt12enznqq9jgsd8gv9jv4ayfsy6cr7yhk8vapq9hl940fnv9dj8ngsvwrc2l",
     "balance": "3305892321792588288",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2955912304893229512",
       "balance": "3305892321792588288"
     }
@@ -256912,7 +256912,7 @@
     "STAKE": {
       "balance": "19998588494599999488"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "11470157028039848984",
       "balance": "12828223620159768576"
     }
@@ -257973,7 +257973,7 @@
     "STAKE": {
       "balance": "30000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "2315359022590665008",
       "balance": "2659884445152156160"
     }
@@ -259335,7 +259335,7 @@
     "STAKE": {
       "balance": "6309239450600000512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "23407220384207746800",
       "balance": "26178635277697941504"
     }
@@ -260788,7 +260788,7 @@
     "STAKE": {
       "balance": "1000061720700000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1991716350017972480",
       "balance": "2227535565860100608"
     }
@@ -262374,7 +262374,7 @@
     "STAKE": {
       "balance": "20861315381090000896"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10000000004567584581",
       "balance": "11184000005108387840"
     }
@@ -263285,7 +263285,7 @@
   {
     "address": "drt1fq5qctz8gjfwkn3c5sknrh4uaqku0z29lv4xr4g6p7cr3af3am7qwt9q6y",
     "balance": "3198183550767845605376",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2859606179155799039786",
       "balance": "3198183550767845605376"
     }
@@ -264199,7 +264199,7 @@
     "STAKE": {
       "balance": "274836363416899977216"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "37925666781571390677",
       "balance": "43569005998669217792"
     }
@@ -264704,7 +264704,7 @@
   {
     "address": "drt156d93c8hujaz8cnqe5vcyq5l5hkfn0ajdtrqv2ksedr5tyk6psfs7g60c3",
     "balance": "31767983145635971072",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "28404849021491388944",
       "balance": "31767983145635971072"
     }
@@ -265398,7 +265398,7 @@
   {
     "address": "drt1hyy6xfe08zpzhz0s09nkz0v42ga8g3v3qtf3krnw5y7z39pj2upspme9fl",
     "balance": "31667907052960059392",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "27566075080919271059",
       "balance": "31667907052960059392"
     }
@@ -266018,7 +266018,7 @@
     "STAKE": {
       "balance": "2020666141500000512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1015583949195371897",
       "balance": "1135829088780103936"
     }
@@ -272126,7 +272126,7 @@
     "STAKE": {
       "balance": "2000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "941758724132807104",
       "balance": "1081892422283768960"
     }
@@ -272529,7 +272529,7 @@
     "STAKE": {
       "balance": "245474991819799986176"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "55684766026973602159",
       "balance": "62277842324567277568"
     }
@@ -273135,7 +273135,7 @@
     "STAKE": {
       "balance": "28690410580539998208"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1793507378962558191",
       "balance": "2005858652631725312"
     }
@@ -273185,7 +273185,7 @@
   {
     "address": "drt15mzdk0xcfht7fjqw2dfe5mgktje6ljqcw8k30zeuyawzjsha68rsnfjvtl",
     "balance": "3068864493026227712",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2743977550989116379",
       "balance": "3068864493026227712"
     }
@@ -273686,7 +273686,7 @@
     "STAKE": {
       "balance": "250000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "50288658369778207812",
       "balance": "56242835520759947264"
     }
@@ -273823,7 +273823,7 @@
     "STAKE": {
       "balance": "1250000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1783140226859879326493",
       "balance": "1809709016240091299840"
     }
@@ -274384,7 +274384,7 @@
   {
     "address": "drt10rxs7xch9dgury8gzt9mruq8nmqwynu99n7j884jcegtvk289r4s8gn7dm",
     "balance": "3052464802583430144",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2729314022338546022",
       "balance": "3052464802583430144"
     }
@@ -274759,7 +274759,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "299423536093512846692",
       "balance": "303884946781306159104"
     }
@@ -275099,7 +275099,7 @@
     "STAKE": {
       "balance": "1000034075000000128"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "264100587392004817569",
       "balance": "303398754795935170560"
     }
@@ -275159,7 +275159,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1827034186761493859",
       "balance": "2043355034474054656"
     }
@@ -275993,7 +275993,7 @@
   {
     "address": "drt170tm325f34uhkfhwfjd4qcspcx8gqhxmaffst76p3pjh965jakms2cvdke",
     "balance": "303223197878630875136",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "298771502491507432196",
       "balance": "303223197878630875136"
     }
@@ -276162,7 +276162,7 @@
   {
     "address": "drt1cgzj4w2lpcgnq259vuvfmljh5rw5ff7tvtta7anys29wngh0ehxs0jcq3q",
     "balance": "30307488232796819456",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "29862536439843158129",
       "balance": "30307488232796819456"
     }
@@ -277153,7 +277153,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1990049790624690714",
       "balance": "2019701532504998400"
     }
@@ -284609,7 +284609,7 @@
   {
     "address": "drt1h5dq5ceme893kv2hv7pk2rsfzyc42c6nj7jxetq89e8nakr0hwesdv8tw8",
     "balance": "29998951265860911104",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "29558529181063073668",
       "balance": "29998951265860911104"
     }
@@ -286895,7 +286895,7 @@
     "STAKE": {
       "balance": "27725207566179999744"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1985017125422628537",
       "balance": "2014593880591425536"
     }
@@ -287792,7 +287792,7 @@
   {
     "address": "drt10udr9ssa87577lrxupwggxhtgmr4dvuztzxmqe8dgrj37dpperqqy78j4r",
     "balance": "29633122161236848640",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "26495996209975720354",
       "balance": "29633122161236848640"
     }
@@ -290649,7 +290649,7 @@
   {
     "address": "drt12anjjxtpxh23ufwqqh0epujz6ys7cse2mwa0u2xzmn4vfsk6fqjs28fcy5",
     "balance": "29175932726616866816",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "26087207373584464434",
       "balance": "29175932726616866816"
     }
@@ -291780,7 +291780,7 @@
     "STAKE": {
       "balance": "284113289294159970304"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "5218205085626225175",
       "balance": "5994674002367408128"
     }
@@ -291798,7 +291798,7 @@
     "STAKE": {
       "balance": "27610143214699995136"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1378842793899993051",
       "balance": "1399387551529102848"
     }
@@ -291806,7 +291806,7 @@
   {
     "address": "drt1zn78w6qgnp5y8ufuwtkaat4r3exwrpgq8w6t2j02jsdf93vreqcqe908j5",
     "balance": "2900939138099829248",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2593829701448345155",
       "balance": "2900939138099829248"
     }
@@ -292577,7 +292577,7 @@
   {
     "address": "drt1ne6jp45m2k2qdvdjufj97fz8xgsndgesl6ce0fykyzsq9uflz3gqjg3xym",
     "balance": "28954071341455257600",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "25888833459813354708",
       "balance": "28954071341455257600"
     }
@@ -292907,7 +292907,7 @@
   {
     "address": "drt1vcsjv6amh7cj8z0ttphvqnwv0752csjw890ezjy57zu9rt8z35xs34hcuk",
     "balance": "2887800384063809536",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2582081888469071609",
       "balance": "2887800384063809536"
     }
@@ -293013,7 +293013,7 @@
   {
     "address": "drt172r6atx4szyq006xgxwhmzyp94hdgwezf66nnggm62ncrlhuafwq3exvee",
     "balance": "28865376197751590912",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "25809528073812221143",
       "balance": "28865376197751590912"
     }
@@ -293728,7 +293728,7 @@
   {
     "address": "drt1w4g2zkq7c3fwn64e2lm682wh0tmzypcwgxn0ctlwquhh2gf4ek3sdz6tv3",
     "balance": "28740708563645775872",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "25018026256655446824",
       "balance": "28740708563645775872"
     }
@@ -293865,7 +293865,7 @@
     "STAKE": {
       "balance": "50000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "25000094916409168910",
       "balance": "28720109039970852864"
     }
@@ -294972,7 +294972,7 @@
   {
     "address": "drt1dte3nvrr4e22unsscre769vr7rkzmhtjsk2rcjedxae24cdakadsvxrt04",
     "balance": "28553439291745628160",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "25530614531246086742",
       "balance": "28553439291745628160"
     }
@@ -295480,7 +295480,7 @@
     "STAKE": {
       "balance": "25451091320549998592"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "2991166933221459213",
       "balance": "3035735320526458880"
     }
@@ -295915,7 +295915,7 @@
   {
     "address": "drt1ttnsjszasza9fw760uuheugjvrvemruk58w53qv8wlls9shtqhlsr5wm8a",
     "balance": "2841943147062604288",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2541079351808480314",
       "balance": "2841943147062604288"
     }
@@ -296227,7 +296227,7 @@
     "STAKE": {
       "balance": "282435949922100019200"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1211436236723203192",
       "balance": "1354870287151230464"
     }
@@ -297353,7 +297353,7 @@
     }
   },
   {
-    "address": "drt18e9j6e0h0jtj3x5pm7d7zvhzq6cc3l3kr4xdu07qmegld93srqestlj0rz",
+    "address": "drt18e9j6e0h0jtj3x5pm7d7zvhzq6cc3l3kr4xdu07qmrewa93srqestlj0rz",
     "balance": "2819471778499999744",
     "STAKE": {
       "balance": "2819471778499999744"
@@ -299906,7 +299906,7 @@
     "STAKE": {
       "balance": "2748717593259600248832"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "39648036370780072638",
       "balance": "44342363877080432640"
     }
@@ -300768,7 +300768,7 @@
   {
     "address": "drt1gd00qlmrj8fccsy8nwg0km8da45zpdqdztj006kcjjx6t7gzyj2s06a0fx",
     "balance": "27790488755748847616",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "24190885058973576849",
       "balance": "27790488755748847616"
     }
@@ -303313,7 +303313,7 @@
     "STAKE": {
       "balance": "25425575070499999744"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1993837750453088419",
       "balance": "2023545932934839296"
     }
@@ -303478,7 +303478,7 @@
     "STAKE": {
       "balance": "26395773231200002048"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "890086818854869157",
       "balance": "1022531737500473728"
     }
@@ -306639,7 +306639,7 @@
     "STAKE": {
       "balance": "26000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "911870986509299767",
       "balance": "1019836511312000896"
     }
@@ -307933,7 +307933,7 @@
     }
   },
   {
-    "address": "drt1xs56mxscdy6w6ydx3hr00dgultz6snxrc0rfatlllwadf4k6rzvqhs3au7",
+    "address": "drt1xs56drtscdy6w6ydx3hr00dgultz6snxrc0rfatlllwadf4k6rzvqhs3au7",
     "balance": "269043356507500052480",
     "STAKE": {
       "balance": "269043356507500052480"
@@ -308008,7 +308008,7 @@
     "STAKE": {
       "balance": "1012364111600000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1500000001243442735",
       "balance": "1677600001390666496"
     }
@@ -308611,7 +308611,7 @@
   {
     "address": "drt1mrsd9y44y3u9cz2wjc40qcg9304q46e7yslvyxf4y55wglr6m7tqstjuej",
     "balance": "2680153596549700608",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2396417736543008336",
       "balance": "2680153596549700608"
     }
@@ -309450,7 +309450,7 @@
     }
   },
   {
-    "address": "drt1348xd08z4gqqpvxxtu6emuexszse5lh8lhn32yz4jwcrcgldyj6sxsnat6",
+    "address": "drt1348xd08z4gqqpvxxtu6emuexszse5lh8lhn32yz4jwcrcmoayj6sxsnat6",
     "balance": "26687667175000002560",
     "STAKE": {
       "balance": "26687667175000002560"
@@ -311702,7 +311702,7 @@
     "STAKE": {
       "balance": "261993714777100091392"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1882832207737421981",
       "balance": "2105759541133532928"
     }
@@ -312665,7 +312665,7 @@
     "STAKE": {
       "balance": "10000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "14582430652597457349",
       "balance": "16308990441864996864"
     }
@@ -312799,7 +312799,7 @@
   {
     "address": "drt1hgdwll84ae5vuj508hfws6ncvvsmtrcqdxcruc3cnfw7hay3rypqka8aje",
     "balance": "26296323514549936128",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "23512449494411597848",
       "balance": "26296323514549936128"
     }
@@ -318113,7 +318113,7 @@
   {
     "address": "drt1wawg56hm7w4tq6t9apuvfdhtyscrztunlmrkxs9rnun5drsqq0qsf03dc2",
     "balance": "2585053745182726144",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2311385680599719551",
       "balance": "2585053745182726144"
     }
@@ -320135,7 +320135,7 @@
     }
   },
   {
-    "address": "drt14ust7ej9kq0s7ux6zxzhpmr64dxr8ca7zqznferdjsqdwm359d4q8fh8e4",
+    "address": "drt14ust7ej9kq0s7ux6zxzhpmr64dxr8ca7zqznfdrtjsqdwm359d4q8fh8e4",
     "balance": "25655099572800004096",
     "STAKE": {
       "balance": "25655099572800004096"
@@ -320161,7 +320161,7 @@
     "STAKE": {
       "balance": "20000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "4922105693531037909",
       "balance": "5654515020728456192"
     }
@@ -321457,7 +321457,7 @@
   {
     "address": "drt1jutnrdc8uwq2cdct002g55f2874ded4l8z4k89xj5zhl8yjglktq2ly0cd",
     "balance": "25538182709527805952",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "22834569661594960102",
       "balance": "25538182709527805952"
     }
@@ -321671,7 +321671,7 @@
     "STAKE": {
       "balance": "2550000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1802101366873153921",
       "balance": "2015470168710935552"
     }
@@ -322550,7 +322550,7 @@
     "STAKE": {
       "balance": "23231076616449994752"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2000000000000000000",
       "balance": "2236800000000000000"
     }
@@ -324903,7 +324903,7 @@
   {
     "address": "drt1xcst8spusrm472s0dklwtl3hyxj4tpqp66r9hez2z3wxv7m2rz8q4kg29m",
     "balance": "2524626915631247872",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "2487562238280863392",
       "balance": "2524626915631247872"
     }
@@ -325866,7 +325866,7 @@
     "STAKE": {
       "balance": "13990787856599998464"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10000000000000000000",
       "balance": "11184000000000000000"
     }
@@ -326434,7 +326434,7 @@
   {
     "address": "drt1m2yhujlnxnphnur9njeryvfkwc038v7zwgjne2z7em3fednzcxyszsu2u5",
     "balance": "25135232863620755456",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "22474278311535011126",
       "balance": "25135232863620755456"
     }
@@ -327397,7 +327397,7 @@
     "STAKE": {
       "balance": "1001037757700000256"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1486631590384041637",
       "balance": "1508782401080763904"
     }
@@ -327755,7 +327755,7 @@
   {
     "address": "drt15nfrer374zw4q833dal2gla3zqdpsgs9ly02t60g9tly5xkvv2qszhyw54",
     "balance": "2507858851045390336",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2242363064239440650",
       "balance": "2507858851045390336"
     }
@@ -328393,7 +328393,7 @@
   {
     "address": "drt1ez8pq585rkw2xqt3389snxsd5j9rwgurw8zmknz42803fuyfug5s5st80g",
     "balance": "25045539689509912576",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "22394080552136898891",
       "balance": "25045539689509912576"
     }
@@ -337711,7 +337711,7 @@
   {
     "address": "drt10wmxaznrhefvfanvpdt9qaafql3j8usxx6x7c6p4chqlkh0tch5qpwn28m",
     "balance": "2455933945781564928",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2195935216185233191",
       "balance": "2455933945781564928"
     }
@@ -337726,7 +337726,7 @@
   {
     "address": "drt196z8rkxzdme2du8vhljnj9jnc93ng2n8w6ldj944g6p7a9ffa8js3zkf6r",
     "balance": "24558377347702009856",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "21958491906028263119",
       "balance": "24558377347702009856"
     }
@@ -338997,7 +338997,7 @@
     "STAKE": {
       "balance": "16279740975500001280"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7276673031351744679",
       "balance": "8138231118263791616"
     }
@@ -339656,7 +339656,7 @@
   {
     "address": "drt147ec63f6c480s78fg7aqmf72hxwc2kfxctp4qdtsqayj2q7fcpwsm8c3na",
     "balance": "243553823319827480576",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "217769870636469486810",
       "balance": "243553823319827480576"
     }
@@ -341722,7 +341722,7 @@
   {
     "address": "drt1huyr20caqkzzu38g3t3rvqckvklrp44r2my7hmapaty2yl28zrtq6g39jp",
     "balance": "241307038762075193344",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "215760943099137319749",
       "balance": "241307038762075193344"
     }
@@ -341761,7 +341761,7 @@
     "STAKE": {
       "balance": "240128333206699999232"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1148800000000000000"
     }
@@ -342210,7 +342210,7 @@
   {
     "address": "drt1cuvd5fvc3hfkxpauptrz3tmaspzxte96rdp806cgtgcc6yd3p7ss9pdqww",
     "balance": "24088862773295230976",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "21538682737209609429",
       "balance": "24088862773295230976"
     }
@@ -342610,7 +342610,7 @@
   {
     "address": "drt1vsczfj0au7pnlqvw7xulpjcn3gv4yjgl34st7zav6y587fgq49wq54q6t9",
     "balance": "24069376401956409344",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "21521259300747863761",
       "balance": "24069376401956409344"
     }
@@ -343220,7 +343220,7 @@
   {
     "address": "drt1qtl9uqlnf3qeu9ca902j8f28u99dsxzn5ue9hc9tvrvyfuavedystj60v4",
     "balance": "2400961529503670784",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2146782483461794096",
       "balance": "2400961529503670784"
     }
@@ -344848,7 +344848,7 @@
     "STAKE": {
       "balance": "100000064423599980544"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "124280254756042505122",
       "balance": "138995036919157948416"
     }
@@ -345909,7 +345909,7 @@
     "STAKE": {
       "balance": "235847775323699970048"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1980580702870345740",
       "balance": "2010091355343113728"
     }
@@ -348006,7 +348006,7 @@
     "STAKE": {
       "balance": "19167149543100006400"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3942077143326907520",
       "balance": "4408819077096813568"
     }
@@ -349771,7 +349771,7 @@
   {
     "address": "drt1ezf3p5mwsvmqd6u96jcpagyq9ae8kuncsectsfuv7592fgw4354sq7m0mc",
     "balance": "2339574996439745024",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2091894667775165241",
       "balance": "2339574996439745024"
     }
@@ -350552,7 +350552,7 @@
     "STAKE": {
       "balance": "18265997699900002304"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4507446154346374066",
       "balance": "5041127779020985344"
     }
@@ -351872,7 +351872,7 @@
     "STAKE": {
       "balance": "19062622762600001536"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3684215797574968443",
       "balance": "4120426948007844864"
     }
@@ -352394,7 +352394,7 @@
     "STAKE": {
       "balance": "214007898696000045056"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "15044372227555153650",
       "balance": "17282974815015360512"
     }
@@ -353690,7 +353690,7 @@
   {
     "address": "drt13pvx73aezzls98rtpnufejnr9q86gmnypz469y66j06u5fank0zsncymf0",
     "balance": "230074349761381400576",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "200273633148834759067",
       "balance": "230074349761381400576"
     }
@@ -356092,7 +356092,7 @@
   {
     "address": "drt16uyyvjsj8xehud62dnfj7pyjqs3w3ls2mtrqd2xzx6qqgjjnzrxqcvnuvu",
     "balance": "22813867403092459520",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "20398665417643470561",
       "balance": "22813867403092459520"
     }
@@ -357290,7 +357290,7 @@
   {
     "address": "drt1quyhmr66p268jr4tyqmtzn8mz6j4w6u9w2rxf9fh9kpphe5z2psq8mjfc7",
     "balance": "22691075616570564608",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "20288873047720460541",
       "balance": "22691075616570564608"
     }
@@ -360343,7 +360343,7 @@
   {
     "address": "drt109uk0alfdd0x2mp4t9lmw3ykuxh2ga3yd6xkc83x47p3n2u2lw9q902qcj",
     "balance": "22412814809041031168",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "20040070465880749156",
       "balance": "22412814809041031168"
     }
@@ -360396,7 +360396,7 @@
     "STAKE": {
       "balance": "214000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "9948557667360722207",
       "balance": "10096791176604397568"
     }
@@ -361289,7 +361289,7 @@
     "STAKE": {
       "balance": "21323063670799998976"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "904521591647069688",
       "balance": "1011616948098082816"
     }
@@ -361983,7 +361983,7 @@
   {
     "address": "drt1t3w8nvpalxjwrh7j9z8s22qnvuyglrmdl2042lrjmkex4mhaj0vqqt95d3",
     "balance": "2227072117370215424",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1991301964744470064",
       "balance": "2227072117370215424"
     }
@@ -362183,7 +362183,7 @@
     "STAKE": {
       "balance": "1918608097361700061184"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "274240100361400540266",
       "balance": "306710128244190412800"
     }
@@ -362520,7 +362520,7 @@
   {
     "address": "drt1n40ztvtjc9gfqw26hrhqhsrqd7cyzw8x8jaxmq9wht5tuhfwqeqsj62w74",
     "balance": "2223036848283441920",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1987693891526682706",
       "balance": "2223036848283441920"
     }
@@ -364008,7 +364008,7 @@
     "STAKE": {
       "balance": "1019999999999999744"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1065039802463110160",
       "balance": "1191140515074742528"
     }
@@ -364446,7 +364446,7 @@
     "STAKE": {
       "balance": "11000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9903697749213198066",
       "balance": "11076295562720040960"
     }
@@ -364702,7 +364702,7 @@
     "STAKE": {
       "balance": "164726965846799974400"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "49956280826363862708",
       "balance": "55871104476205350912"
     }
@@ -365025,7 +365025,7 @@
   {
     "address": "drt1p2age97d63fwln9kx200qk83qq3wp6wvdszwg97kd4mee6welr0qcrrv53",
     "balance": "2203263094633522176",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1970013496632262065",
       "balance": "2203263094633522176"
     }
@@ -367938,7 +367938,7 @@
   {
     "address": "drt1ecaf47hhasham405cx5s9n4ftwgtpydh7h4gpepzszyeku36mk8qk90xxg",
     "balance": "21854440714537984000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "19540808936460999832",
       "balance": "21854440714537984000"
     }
@@ -369955,7 +369955,7 @@
   {
     "address": "drt1mk5ntl3dqzm75yp7a4ch75ghxyvkgenqzhsdvpzeess82mecnmwsrvjjdt",
     "balance": "2166355704538042624",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1937013326661339960",
       "balance": "2166355704538042624"
     }
@@ -371926,7 +371926,7 @@
     "STAKE": {
       "balance": "2075550135953100374016"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "66986995233066766702",
       "balance": "74918255468661882880"
     }
@@ -375364,7 +375364,7 @@
   {
     "address": "drt1ezgcj6pm7h2kax3dpsp3zkzp4c3ya6uxym4pyqn690dw5swpvfzq4s4j3q",
     "balance": "2123941847402486016",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1899089634658875212",
       "balance": "2123941847402486016"
     }
@@ -379983,7 +379983,7 @@
     }
   },
   {
-    "address": "drt1znezm94rcz2cccjcgldqa8hq9p87sax9fcxtdjf9pkd8vqnuwetsu4g3ea",
+    "address": "drt1znezm94rcz2cccjcmoaqa8hq9p87sax9fcxtdjf9pkd8vqnuwetsu4g3ea",
     "balance": "20959685197900001280",
     "STAKE": {
       "balance": "20959685197900001280"
@@ -380758,7 +380758,7 @@
     "STAKE": {
       "balance": "158740059705200017408"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "44980650247786397665",
       "balance": "50306359237124308992"
     }
@@ -380818,7 +380818,7 @@
     "STAKE": {
       "balance": "208013923409800036352"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "909354770041732324",
       "balance": "1017022374814673536"
     }
@@ -381295,7 +381295,7 @@
   {
     "address": "drt1acfwv029zgnupd4zghgqkzmrdxrwmp5j05usfde5jc7c5jglwpksc436ku",
     "balance": "20877103552851316736",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "18666938083736872001",
       "balance": "20877103552851316736"
     }
@@ -384446,7 +384446,7 @@
   {
     "address": "drt13m4k2tyx3pnqez4m02gxvapcjfjnelam05rhlj3e9zz6pd3guups9m0zlf",
     "balance": "2062954171296057088",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1844558450729664745",
       "balance": "2062954171296057088"
     }
@@ -386918,7 +386918,7 @@
   {
     "address": "drt1240qmm7lfnh2j0murr6vnva8407reqzyprcpryzkhlxsjferevcqkdse3d",
     "balance": "2047913304011694592",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1831109892714319230",
       "balance": "2047913304011694592"
     }
@@ -389313,7 +389313,7 @@
   {
     "address": "drt14t55wytjwtg7cj7mhsfa6lxhz2m3w6za67nen9skzmjhs5hlms2qgnnfmr",
     "balance": "20321771556921188352",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "18170396599536112038",
       "balance": "20321771556921188352"
     }
@@ -389979,7 +389979,7 @@
   {
     "address": "drt18s4anf8z9ajxepr66sdtt9jjkcn7tux9lpc65573256xltmlh2xsstj259",
     "balance": "2028604161848175616",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1998821718246305848",
       "balance": "2028604161848175616"
     }
@@ -390127,7 +390127,7 @@
   {
     "address": "drt1u0jss4yedrt0992lregkjplrgc25k7ww893jucd68x0hmmynml8shjs409",
     "balance": "2027813102150969856",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1998042272293792611",
       "balance": "2027813102150969856"
     }
@@ -390180,7 +390180,7 @@
     "STAKE": {
       "balance": "1026428775999999744"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "986463268695114629",
       "balance": "1001161571398671744"
     }
@@ -391581,7 +391581,7 @@
   {
     "address": "drt1tlthls5fq8tecjgtsul3a5elpzgjgqmfu9pppwwqm0pcwjpjvnnsgxnfjm",
     "balance": "201937963715618111488",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "180559695740001879398",
       "balance": "201937963715618111488"
     }
@@ -392635,7 +392635,7 @@
     "STAKE": {
       "balance": "192654456982000041984"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7743807806920055282",
       "balance": "8660674651259389952"
     }
@@ -398066,7 +398066,7 @@
     }
   },
   {
-    "address": "drt1kzn3q4tn9f2cd4cu4m0egldp8td266fxmxe39j6u9acyyw7l4n8qxyagl9",
+    "address": "drt1kzn3q4tn9f2cd4cu4m0rewap8td266fxmxe39j6u9acyyw7l4n8qxyagl9",
     "balance": "20000000000000000000",
     "STAKE": {
       "balance": "20000000000000000000"
@@ -408533,7 +408533,7 @@
   {
     "address": "drt13zjcjuyfpvmrnqyujtl8cn9ccky5mwrg5f2ckm9xxmcvzzpcmhxsnf8h9y",
     "balance": "1983532272417894912",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1773544592648332334",
       "balance": "1983532272417894912"
     }
@@ -408705,7 +408705,7 @@
     "STAKE": {
       "balance": "15783226442099998720"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "3979423249223299210",
       "balance": "4038716655636725760"
     }
@@ -409633,7 +409633,7 @@
     "STAKE": {
       "balance": "10768591880600000512"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "8862066282115107679",
       "balance": "8994111069718622208"
     }
@@ -410859,7 +410859,7 @@
   {
     "address": "drt1rh5unewrlntgj3dt3lprj5em45kujdh0tvmsn70q4ry0mw6pkr6qaf4nge",
     "balance": "19653721471251636224",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "17573069985024710032",
       "balance": "19653721471251636224"
     }
@@ -412424,7 +412424,7 @@
     "STAKE": {
       "balance": "1948276395123699875840"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1415790318262067508",
       "balance": "1583419891944296448"
     }
@@ -412603,7 +412603,7 @@
     "STAKE": {
       "balance": "45702188060000002048"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "133292218485580014047",
       "balance": "149074017154272690176"
     }
@@ -414193,7 +414193,7 @@
   {
     "address": "drt1q6k34mnhqzs4z5gygq9gh0frpryt60rkydhy9prf6uktx660e8tstywdfs",
     "balance": "1928370313837034496",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1724222383616804507",
       "balance": "1928370313837034496"
     }
@@ -414344,7 +414344,7 @@
     "STAKE": {
       "balance": "191599215358999986176"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "983403137155078694",
       "balance": "1099838068594240000"
     }
@@ -414390,11 +414390,11 @@
     "STAKE": {
       "balance": "100000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5000000000000000000",
       "balance": "5592000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "85779625968791884082",
       "balance": "87057742395726872576"
     }
@@ -415151,7 +415151,7 @@
   {
     "address": "drt1ymwe2afw02ewujfj6e25pu6tuqt5t8w6f27aftkle03906qmv6cs2tkdgn",
     "balance": "191625664444854796288",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "188812360276731537853",
       "balance": "191625664444854796288"
     }
@@ -415827,7 +415827,7 @@
     "STAKE": {
       "balance": "187659618085999968256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2981938488566155214",
       "balance": "3335000005612388352"
     }
@@ -415842,7 +415842,7 @@
   {
     "address": "drt1ghzkm7cehzeafg5dppej5z4m65xq8x74kaxxffld2x9k9jl2qawsqukvhq",
     "balance": "19099195345803137024",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "17077249057406237215",
       "balance": "19099195345803137024"
     }
@@ -416445,7 +416445,7 @@
   {
     "address": "drt1tufqh4khm9a2fjgtng7cxnppwlwafs0fzf5dkykc3netdlt4j4asqltuhg",
     "balance": "1903808229802668288",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1702260577434431364",
       "balance": "1903808229802668288"
     }
@@ -418334,7 +418334,7 @@
     }
   },
   {
-    "address": "drt17r4f0hh2ezfql4yerc6kt3sxn7u7q7dtzjrm75qegld7sevm02wqv6eush",
+    "address": "drt17r4f0hh2ezfql4yerc6kt3sxn7u7q7dtzjrm75qrewa7sevm02wqv6eush",
     "balance": "1890683371900000256",
     "STAKE": {
       "balance": "1890683371900000256"
@@ -419886,7 +419886,7 @@
     "STAKE": {
       "balance": "153726338943799951360"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "30068004214222115948",
       "balance": "33628055913186013184"
     }
@@ -422585,7 +422585,7 @@
     "STAKE": {
       "balance": "1081494113100000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "15511200711663349769",
       "balance": "17347726875924291584"
     }
@@ -423184,7 +423184,7 @@
     "STAKE": {
       "balance": "177918882658399977472"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "5007709905370222624",
       "balance": "5752857139289312256"
     }
@@ -423932,7 +423932,7 @@
     }
   },
   {
-    "address": "drt1nz4v7w9jge7qz6mxpyxltyqe8h0q0jem3nlchz470t2furzfedwqjkwjkc",
+    "address": "drt1nz4v7w9jge7qz6drtpyxltyqe8h0q0jem3nlchz470t2furzfedwqjkwjkc",
     "balance": "18286321050400002048",
     "STAKE": {
       "balance": "18286321050400002048"
@@ -424858,7 +424858,7 @@
   {
     "address": "drt16ldp9t8g9xaeteyupgqmuwqus00rkdzkf7sn0td25krk3j4luq2sf8yemn",
     "balance": "1819631837313050083328",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1792917368522071236973",
       "balance": "1819631837313050083328"
     }
@@ -425597,7 +425597,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "16864492654219178017",
       "balance": "17115773594767042560"
     }
@@ -428251,7 +428251,7 @@
   {
     "address": "drt1uzfd4h5k589v3msf05x2nrs7qrky0q8cqakfrpshjhw93sz63m7q76j7f0",
     "balance": "17946420463325239296",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "15621884108047733770",
       "balance": "17946420463325239296"
     }
@@ -428948,7 +428948,7 @@
     "STAKE": {
       "balance": "177543635197800022016"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "973949523914567995",
       "balance": "1089265147546052864"
     }
@@ -429019,7 +429019,7 @@
   {
     "address": "drt1zdfp9t339r2jda6xrzzs3r2a87cuja6yjwh38hy24pd8ud9veawqwvlqq9",
     "balance": "1786019784859160064",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1596941867720994315",
       "balance": "1786019784859160064"
     }
@@ -429636,7 +429636,7 @@
   {
     "address": "drt1a2packr39ssvlymvumm2j5cq7yskmktsz4eu3drntw84wt524geq88flmg",
     "balance": "1780739762538216960",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1592220817720151079",
       "balance": "1780739762538216960"
     }
@@ -430116,11 +430116,11 @@
     "STAKE": {
       "balance": "170000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5008052676033512410",
       "balance": "5601006112875880448"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "2006804317930016374",
       "balance": "2036705702267173376"
     }
@@ -430243,7 +430243,7 @@
     "STAKE": {
       "balance": "139979672710599999488"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "36971582035217598998",
       "balance": "37522458607542337536"
     }
@@ -432151,7 +432151,7 @@
     "STAKE": {
       "balance": "152966801497799950336"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "22276185462418116782",
       "balance": "22608100625808146432"
     }
@@ -433121,7 +433121,7 @@
     "STAKE": {
       "balance": "1724591304161199915008"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "21680907747903060867",
       "balance": "24247927225254785024"
     }
@@ -433864,7 +433864,7 @@
   {
     "address": "drt1qvppj9wuewks45zp98mr6sel3cz2emcvfzpwyh6t9qkzh63hp84snk754u",
     "balance": "1740686985061296384",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1556408248445364926",
       "balance": "1740686985061296384"
     }
@@ -434820,7 +434820,7 @@
     "STAKE": {
       "balance": "163007746631599980544"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "8994511467131385611",
       "balance": "10059461624839743488"
     }
@@ -435111,7 +435111,7 @@
     "STAKE": {
       "balance": "14006257501099999232"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2923163246267356260",
       "balance": "3269265774625411072"
     }
@@ -437303,7 +437303,7 @@
   {
     "address": "drt1nc5hcr43pjf3fcxd4msqtzzffngwh33z7dhr5awwmzwkk94294pq2amyy3",
     "balance": "170848113615705505792",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "168339849852897346284",
       "balance": "170848113615705505792"
     }
@@ -437650,7 +437650,7 @@
     "STAKE": {
       "balance": "168432501036699975680"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1872893653321546099",
       "balance": "2094644261874817024"
     }
@@ -440104,7 +440104,7 @@
     "STAKE": {
       "balance": "11159133565500000256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5139080668157687534",
       "balance": "5747547819267558400"
     }
@@ -440381,7 +440381,7 @@
     "STAKE": {
       "balance": "145949350492499968000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "20440000018460616047",
       "balance": "22860096020646350848"
     }
@@ -441642,7 +441642,7 @@
   {
     "address": "drt14uqmdsj268vvyy39jhs2tx5m9tch0v43lq444yqkgm8pmuc9u5hs5h93nz",
     "balance": "1677600000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1500000000000000000",
       "balance": "1677600000000000000"
     }
@@ -443284,7 +443284,7 @@
     "STAKE": {
       "balance": "1661083188913400184832"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1994111288814306142",
       "balance": "2023823547017638912"
     }
@@ -444916,7 +444916,7 @@
   {
     "address": "drt1yvu9wlxvhtjhksm0nfvmpprn0rs2rww7alr025l8pe0mrncxf4hqzf46ne",
     "balance": "16495815379110868992",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "14359170768724641606",
       "balance": "16495815379110868992"
     }
@@ -445050,7 +445050,7 @@
   {
     "address": "drt1xfhhexa5kuaruy43v608as7qce2xavrp34342m9frhjztzz3gl7sevjmw6",
     "balance": "1647773137666173952",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1473330774021972306",
       "balance": "1647773137666173952"
     }
@@ -445275,7 +445275,7 @@
   {
     "address": "drt1w8tv7tq39swuu6wgd4r46a7xrqta4087jflacmaenlz749deu5jqzh484n",
     "balance": "1646367982312278272",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1472074376173353126",
       "balance": "1646367982312278272"
     }
@@ -445822,7 +445822,7 @@
   {
     "address": "drt1jclpzpr4t9whxck0vcv754jyfaf0np74eqjdfxl6wsl0e8hz6feqrd6xn7",
     "balance": "16421427855075520512",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "14682964820346495725",
       "balance": "16421427855075520512"
     }
@@ -445987,11 +445987,11 @@
     "STAKE": {
       "balance": "30502865938000007168"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "332066316452159632577",
       "balance": "371382968320095354880"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1220328544522700465245",
       "balance": "1238511439836088631296"
     }
@@ -446100,7 +446100,7 @@
     "STAKE": {
       "balance": "15201316636099999744"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1069366905876379264",
       "balance": "1195979947532142592"
     }
@@ -446167,7 +446167,7 @@
     "STAKE": {
       "balance": "118743075324700000256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "40397697226363752783",
       "balance": "45180784577965228032"
     }
@@ -446535,7 +446535,7 @@
     "STAKE": {
       "balance": "162282299191700029440"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1137637307582067328",
       "balance": "1272333564799784192"
     }
@@ -447260,7 +447260,7 @@
     "STAKE": {
       "balance": "27770941354800009216"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "133229715567078809831",
       "balance": "135214838329028280320"
     }
@@ -447686,7 +447686,7 @@
     }
   },
   {
-    "address": "drt1876gtutmxvm2emnp8gycn028naa7j3u9k05qsz5hhx0kdtq0rjaqutmzvp",
+    "address": "drt1876gtutdrtvm2emnp8gycn028naa7j3u9k05qsz5hhx0kdtq0rjaqutmzvp",
     "balance": "162594769295099985920",
     "STAKE": {
       "balance": "162594769295099985920"
@@ -447891,7 +447891,7 @@
   {
     "address": "drt1pcfsr6jklvvcvmv58wkx3l8nhmr9xgxetryzy53x7jfsxm97a8uqedhexs",
     "balance": "1623961446446965981184",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1452039919927544635041",
       "balance": "1623961446446965981184"
     }
@@ -449911,7 +449911,7 @@
     "STAKE": {
       "balance": "97564432837399986176"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1350529290158779354649",
       "balance": "1510431958113578909696"
     }
@@ -452649,7 +452649,7 @@
   {
     "address": "drt15azvrkuv0lq0sjceuklrae3gv3ulyf9slrgvmz0ghpay04f0qauqn9jkcu",
     "balance": "15942343178133428224",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "14254598692894694713",
       "balance": "15942343178133428224"
     }
@@ -454921,7 +454921,7 @@
     "STAKE": {
       "balance": "150000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6974051796313834454",
       "balance": "7799779528997393408"
     }
@@ -455972,7 +455972,7 @@
   {
     "address": "drt1djlzxqf8pt7uj2y2lnyw5lkdkrvtyumx8uegcdtvt76ny34app5sykfg74",
     "balance": "157021193987800465408",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "140398063293813001485",
       "balance": "157021193987800465408"
     }
@@ -456256,7 +456256,7 @@
     "STAKE": {
       "balance": "1549462002209600307200"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "17178141081183545952",
       "balance": "19212032985195679744"
     }
@@ -456477,7 +456477,7 @@
     "STAKE": {
       "balance": "4413088972399998976"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10068282896882145036",
       "balance": "11260367591872991232"
     }
@@ -456751,7 +456751,7 @@
   {
     "address": "drt1lzlr5cajf6mxwqh3ch3g6wc96t5pwq88t3pyn89rvtw55k5pvcasumd9fz",
     "balance": "1565649125712518656",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1399900863476858572",
       "balance": "1565649125712518656"
     }
@@ -456797,7 +456797,7 @@
     "STAKE": {
       "balance": "566053799999999"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1542536864190507006433",
       "balance": "1565520663466945282048"
     }
@@ -456915,7 +456915,7 @@
     }
   },
   {
-    "address": "drt1kpnjur7smxpyl7sjhrwr30sda9slakexmsdsq7yl8qgwt2t560esy5w0hx",
+    "address": "drt1kpnjur7sdrtpyl7sjhrwr30sda9slakexmsdsq7yl8qgwt2t560esy5w0hx",
     "balance": "1564693141239600250880",
     "STAKE": {
       "balance": "1564693141239600250880"
@@ -457249,7 +457249,7 @@
     "STAKE": {
       "balance": "10226118373899999232"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4820453030706231874",
       "balance": "5391194669541850112"
     }
@@ -458023,7 +458023,7 @@
     "STAKE": {
       "balance": "10671211531799998464"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "4380666387299887786",
       "balance": "4899337287556194304"
     }
@@ -458570,7 +458570,7 @@
   {
     "address": "drt1tdhya9xnlsgrdv7twjt4d5al7j3cdhhedukatkjm5fw2tf6lqqqsy3smxx",
     "balance": "15536290819627950080",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13891533279352600980",
       "balance": "15536290819627950080"
     }
@@ -459747,7 +459747,7 @@
   {
     "address": "drt1gmksm7k5ku2vd0a8pjcxed3xymlwxkcmextwk93lejh06kgk3nxsgl5nhw",
     "balance": "1546270361704716032",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1382573642439838916",
       "balance": "1546270361704716032"
     }
@@ -462093,7 +462093,7 @@
   {
     "address": "drt1kaxjlfpkalacv0h8rajcme7lt5v7qwdnyaehlwsur76v5wnn9ytqpud0cq",
     "balance": "15309017701183154176",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13688320548268197707",
       "balance": "15309017701183154176"
     }
@@ -462181,7 +462181,7 @@
     "STAKE": {
       "balance": "13284214470320001024"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1986789114016898915",
       "balance": "2016392271815750400"
     }
@@ -462388,7 +462388,7 @@
     "STAKE": {
       "balance": "13418247931699998720"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1672950588112036995",
       "balance": "1871027937744502528"
     }
@@ -462875,7 +462875,7 @@
     "STAKE": {
       "balance": "102503779282599985152"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "49271306376136449523",
       "balance": "50005448841140879360"
     }
@@ -464237,7 +464237,7 @@
     "STAKE": {
       "balance": "1500000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "16754704788246654994",
       "balance": "17004349889591529472"
     }
@@ -464308,7 +464308,7 @@
   {
     "address": "drt182cgtzwg9w6qk4v4wmn43j0gk4pgs85lzd46hm3qzsw5c527areqfdyuhf",
     "balance": "1516520420619595008",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1355973194402355853",
       "balance": "1516520420619595008"
     }
@@ -464638,7 +464638,7 @@
   {
     "address": "drt1ulwqw70w9ywyelvt96peumqgrhjh768gka7m44u8ndr63qdau4xsa59rcn",
     "balance": "1514694704797631488",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1354340758939226860",
       "balance": "1514694704797631488"
     }
@@ -464730,7 +464730,7 @@
   {
     "address": "drt102em6ntcg2swh7srawrx3fmnfkru840dcgttu7h4j3e0d2dpct3qaf3eaz",
     "balance": "15139658496561985536",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13536890644279314884",
       "balance": "15139658496561985536"
     }
@@ -471405,7 +471405,7 @@
     "STAKE": {
       "balance": "124423003595599986688"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "24907530576824787825",
       "balance": "25278652782419472384"
     }
@@ -471441,7 +471441,7 @@
   {
     "address": "drt1la2uaef9cnlhuut5r0hnu2jx7aqf02vjp5knd2c59kc6hqmy3s8qvd0nqv",
     "balance": "1496928815495714048",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1338455664785152010",
       "balance": "1496928815495714048"
     }
@@ -475229,7 +475229,7 @@
   {
     "address": "drt1dgd2d79patkjl67jh6lhn0xc38xsnc9qpqwx6vwy7ejgjdwp2zmqlzrmfj",
     "balance": "147530973610935287808",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "131912530052696060106",
       "balance": "147530973610935287808"
     }
@@ -475713,7 +475713,7 @@
   {
     "address": "drt1xlla00tsh0zkvhd2e6kuvm7z3kukd49ewjplh6usmlyyp5d3x8nq9frn7d",
     "balance": "1471885503461646925824",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1281237381146976640494",
       "balance": "1471885503461646925824"
     }
@@ -477723,7 +477723,7 @@
   {
     "address": "drt185ejgrk7qmesvlx27n32am7xffyxfhngsya8z8yy2ltewmk0lpsq50vpsp",
     "balance": "1459728824252297216",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1305193870039607620",
       "balance": "1459728824252297216"
     }
@@ -479932,7 +479932,7 @@
     "STAKE": {
       "balance": "72038175529269993472"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "63233924611052831676",
       "balance": "72643132593177493504"
     }
@@ -481760,7 +481760,7 @@
   {
     "address": "drt17s3a64wjdw5cva36jfpz3s6hl0prlhte7lvn83s502qc0fpdtt6qtg0q6k",
     "balance": "14366965719447138304",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "12506063474449112022",
       "balance": "14366965719447138304"
     }
@@ -482916,7 +482916,7 @@
   {
     "address": "drt10cjjtn5qeuycgjzgl2ar0h8hwtv8x6adu6qnth49r745gvhf90nqdw76lm",
     "balance": "142996260265751117824",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "140896896507785138947",
       "balance": "142996260265751117824"
     }
@@ -484800,7 +484800,7 @@
   {
     "address": "drt12f03gmc9dhxs4p2svtl5lhy873n6ww6wjysmtt6xg67kce38y5aqy9y9t3",
     "balance": "1418628616935430656",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1268444757631822786",
       "balance": "1418628616935430656"
     }
@@ -485133,7 +485133,7 @@
     "STAKE": {
       "balance": "12741138627499997184"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1243751531940994881",
       "balance": "1428821759893814784"
     }
@@ -487643,7 +487643,7 @@
     "STAKE": {
       "balance": "125306528794900004864"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "13496634422919187231",
       "balance": "15094635938592819200"
     }
@@ -489716,7 +489716,7 @@
   {
     "address": "drt139p86uhuqa5aqlwekeacjhm9e7uhkuvrzx4wt92hta697v4an6ksftgse8",
     "balance": "1398728448980829440",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1250651331349096486",
       "balance": "1398728448980829440"
     }
@@ -490637,7 +490637,7 @@
     "STAKE": {
       "balance": "5009999999999998976"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "7981275858984756493",
       "balance": "8926258920688551936"
     }
@@ -491254,7 +491254,7 @@
   {
     "address": "drt16jn6yy654a9fuhs44tls5gyw4alu75hr2xj9hdujv083yt62s2hq9w0p0x",
     "balance": "13904577134605897728",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "12432561815634743943",
       "balance": "13904577134605897728"
     }
@@ -492168,7 +492168,7 @@
     "STAKE": {
       "balance": "1251000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "132875239409551651314",
       "balance": "134855080476753969152"
     }
@@ -493429,7 +493429,7 @@
   {
     "address": "drt1vy7pswgjd0kc3k5rfunvlqtejnkupuhspyrksnrmhqnc0c8fa9kqequgef",
     "balance": "1379675582951688448",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1233615506931051761",
       "balance": "1379675582951688448"
     }
@@ -494651,7 +494651,7 @@
     "STAKE": {
       "balance": "126124632239200010240"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9978100185414968654",
       "balance": "11159507247368101888"
     }
@@ -494900,7 +494900,7 @@
     "STAKE": {
       "balance": "136000021126199984128"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1148800000000000000"
     }
@@ -498184,7 +498184,7 @@
   {
     "address": "drt1qxtv7k7fa4p52h7erwewszquxnwnest2juxxf7f0jd4tykhsyppsz4ux9d",
     "balance": "1353346200036313923584",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1333477386970454365179",
       "balance": "1353346200036313923584"
     }
@@ -498360,7 +498360,7 @@
   {
     "address": "drt124jvjs93kv5t4ypcl6fqlxuaay90pmq5l63t0en9hdwsdw4t02cq8ujv7v",
     "balance": "1352304387123600384",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1177145183777507317",
       "balance": "1352304387123600384"
     }
@@ -498749,7 +498749,7 @@
     "STAKE": {
       "balance": "1300000000000000000000"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "49770894066405263549",
       "balance": "50512480387994697728"
     }
@@ -499170,7 +499170,7 @@
   {
     "address": "drt10w2mwlrzxq6s6jmtmnyy5hp06tz9vnfkpzfl3knxppf9trvvvs7qkz9sn6",
     "balance": "13499528069637408768",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "13301338131478383150",
       "balance": "13499528069637408768"
     }
@@ -499804,7 +499804,7 @@
     "STAKE": {
       "balance": "1344449967472099983360"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1701755986003009338",
       "balance": "1903243894745765632"
     }
@@ -500204,7 +500204,7 @@
   {
     "address": "drt1gsjxdc883txwuhczyhanqm3dldt9x3tjv8z63aphckvr07t3cu0sevltv2",
     "balance": "134409861451377606656",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "120180491283420595997",
       "balance": "134409861451377606656"
     }
@@ -503964,7 +503964,7 @@
   {
     "address": "drt1nssd24ufmymufsq970z88k7s2xg586ce6d3p5cdrf3t5ppmdxp7sl5nrj0",
     "balance": "1326868285837057536",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1186398681900087091",
       "balance": "1326868285837057536"
     }
@@ -505445,7 +505445,7 @@
     "STAKE": {
       "balance": "131013381701100027904"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "996918875226544209",
       "balance": "1011772966467419648"
     }
@@ -505621,7 +505621,7 @@
   {
     "address": "drt1p30s9hkeem3sqnc6t7pfml3ndwu4tnef2mxjr0d9kzwv9cen4trqafvge7",
     "balance": "1319912808131695476736",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1148949171423829599960",
       "balance": "1319912808131695476736"
     }
@@ -507253,7 +507253,7 @@
   {
     "address": "drt10hnu89s0azv97q6qzrsg7c5hawvn6awkzeas30932ar6ze7jp8dsfqemke",
     "balance": "1312220212278350592",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1173301334297523659",
       "balance": "1312220212278350592"
     }
@@ -510299,7 +510299,7 @@
   {
     "address": "drt1r04wmv9wx7mz97xt43veyenur5s2xcyt9aclnu06x0246dpktq6sfg65dh",
     "balance": "1304824710540300288",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1135815381737726491",
       "balance": "1304824710540300288"
     }
@@ -510655,7 +510655,7 @@
     }
   },
   {
-    "address": "drt1h59t44sjgz3nn6a7ke7r4pxndxyalvnkxa4jezkjmxvm6t4ky0mqfs2nzy",
+    "address": "drt1h59t44sjgz3nn6a7ke7r4pxndxyalvnkxa4jezkjdrtvm6t4ky0mqfs2nzy",
     "balance": "13033373902600001536",
     "STAKE": {
       "balance": "13033373902600001536"
@@ -516789,7 +516789,7 @@
   {
     "address": "drt1xvktwxxanw9yyfpwcvv9ekdyrldmcn4actg3rjc93pzhmjc9zpes7t7h6z",
     "balance": "128371627427470753792",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "114781498057466699134",
       "balance": "128371627427470753792"
     }
@@ -523678,7 +523678,7 @@
   {
     "address": "drt1w343da29skga5jeg6apudsvsd6vves6kr6e9mvhe02m7uv7ej2esf3peae",
     "balance": "1256731943229809408",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1093951900443775543",
       "balance": "1256731943229809408"
     }
@@ -524279,7 +524279,7 @@
     }
   },
   {
-    "address": "drt1lr4te9mjq6gvzttcy22mjkms30t2a7f5aade97evvhnkgk3gcmxsccvvmp",
+    "address": "drt1lr4te9mjq6gvzttcy22mjkms30t2a7f5aade97evvhnkgk3gcdrtsccvvmp",
     "balance": "1254544111199999744",
     "STAKE": {
       "balance": "1254544111199999744"
@@ -524424,7 +524424,7 @@
     "STAKE": {
       "balance": "60502607561100001280"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "58031521696327350643",
       "balance": "64902453865172516864"
     }
@@ -527594,7 +527594,7 @@
     }
   },
   {
-    "address": "drt1g6yl3yxgauxsgepana8pfnqr4arwendsdy37aadsqr97fax9dses4kmm3z",
+    "address": "drt1g6yl3yxgauxsgepana8pfnqr4andesdsdy37aadsqr97fax9dses4kmm3z",
     "balance": "1245734438499999744",
     "STAKE": {
       "balance": "1245734438499999744"
@@ -529535,7 +529535,7 @@
   {
     "address": "drt1kz86gzqp072337pgxaykqn6f5pez30gvu9tnz8cgm7x746ql6pgs6wqqxe",
     "balance": "1238790820339974912",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1107645583279662735",
       "balance": "1238790820339974912"
     }
@@ -532591,7 +532591,7 @@
     "STAKE": {
       "balance": "10785561253899999232"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1354505891561303602",
       "balance": "1514879389122161920"
     }
@@ -534051,7 +534051,7 @@
     "STAKE": {
       "balance": "111826301030270009344"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "10611124854157730489",
       "balance": "10769230614484678656"
     }
@@ -535886,7 +535886,7 @@
   {
     "address": "drt1grfntlza3ulwzzuznxz2ns9le76lx7jkm5090p9gma2g0zqu60hqv5ndyg",
     "balance": "1219916727993135360",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1090769606574691821",
       "balance": "1219916727993135360"
     }
@@ -539560,7 +539560,7 @@
     }
   },
   {
-    "address": "drt1qphcegld4rdqu783vjxxm6k0skhj3hyc6s9ypxaes3ekaa6jl5ds8ekhvk",
+    "address": "drt1qphcrewa4rdqu783vjxxm6k0skhj3hyc6s9ypxaes3ekaa6jl5ds8ekhvk",
     "balance": "1207785170399999744",
     "STAKE": {
       "balance": "1207785170399999744"
@@ -539600,7 +539600,7 @@
     "STAKE": {
       "balance": "5365936797800000512"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6000000000000000006",
       "balance": "6710400000000000000"
     }
@@ -545936,7 +545936,7 @@
   {
     "address": "drt16l75m9szhtsyk908y0jelqjz6669s48hnufra9f7m4vr872lwgjsjh5ykr",
     "balance": "1196700122339549952",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1070010839001743331",
       "balance": "1196700122339549952"
     }
@@ -547323,7 +547323,7 @@
   {
     "address": "drt1mqln7zktpmpg83lq2mqz6p8a2ue3jtg3kvhf0mlex8u0mcx8xr6qxn7kjs",
     "balance": "1191894019162590208",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1065713536447237307",
       "balance": "1191894019162590208"
     }
@@ -547793,7 +547793,7 @@
   {
     "address": "drt14clllcnpwjx8jyt5gcusfy6c4mgzgq6uhypphtwv8u5s3qqnah6qkzwppv",
     "balance": "119009816593841438720",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "106410780216238776063",
       "balance": "119009816593841438720"
     }
@@ -549257,7 +549257,7 @@
   {
     "address": "drt1vjsy9jt0j6m70cn8gs8kkm33tqakwk5u6c4grjgtu8t3f9nu80kqcjystz",
     "balance": "1185455065867767296",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1059956246305228132",
       "balance": "1185455065867767296"
     }
@@ -550042,7 +550042,7 @@
   {
     "address": "drt1flmlw0uktzhetqdpa0fj9jexvg80u9g0m0kft44p8fdvh6m8u68sc9rz4c",
     "balance": "1182849015887384064",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1057626087166831276",
       "balance": "1182849015887384064"
     }
@@ -550050,7 +550050,7 @@
   {
     "address": "drt1u2pd3njgp33g9jfk8kc43wksmavhdacjdy5mesa7rdyrjl76h0ysxpvh5m",
     "balance": "1182849015887384064",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1057626087166831276",
       "balance": "1182849015887384064"
     }
@@ -550058,7 +550058,7 @@
   {
     "address": "drt1yjq8v2r6e53rysj3062qq33ekx0mh3d77uvxu6h68yhx6k9vpj6s3e6sv5",
     "balance": "1182849015887384064",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1057626087166831276",
       "balance": "1182849015887384064"
     }
@@ -550619,7 +550619,7 @@
   {
     "address": "drt1dd37mszv8cger2zqpcjee8lc2a6f5v9le6vljua7946cgmsrv6wscps8zu",
     "balance": "1181058618988385024",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1056025231570444240",
       "balance": "1181058618988385024"
     }
@@ -550669,7 +550669,7 @@
   {
     "address": "drt1pg96lnnqy3dan9dk5kphfet8q5ek5tpx82nnuusx0yqx5pymc55qqsxfp9",
     "balance": "1180854648872039680",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1055842854856973985",
       "balance": "1180854648872039680"
     }
@@ -551461,7 +551461,7 @@
   {
     "address": "drt1kp6v8f8gt8hqzhu0wg0d9gedkf3hk6et4l2erlktwqpxh8qpjrwqk3kpmw",
     "balance": "1178308743664091392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1053566473233271880",
       "balance": "1178308743664091392"
     }
@@ -551469,7 +551469,7 @@
   {
     "address": "drt14ruyveq2z7frk3lwzduuyr7kdm94cary23zqh88u4rdgaaqdgk7szpgpzl",
     "balance": "1178308743664091392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1053566473233271880",
       "balance": "1178308743664091392"
     }
@@ -551477,7 +551477,7 @@
   {
     "address": "drt1vlash0dzuu2ruckdwfg9yudje3lyy8lj5par32jpfwf3nhu9s4fs2r0g87",
     "balance": "1178308743664091392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1053566473233271880",
       "balance": "1178308743664091392"
     }
@@ -551485,7 +551485,7 @@
   {
     "address": "drt1c0s9zsfnqv6ym280p830ccvm3hunwtncxhwfc944rfxe5jdld99qdhrktg",
     "balance": "1178308743664091392",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1053566473233271880",
       "balance": "1178308743664091392"
     }
@@ -554212,7 +554212,7 @@
     "STAKE": {
       "balance": "85399999999999983616"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "28166822197581460149",
       "balance": "31501773945775104000"
     }
@@ -554601,7 +554601,7 @@
     "STAKE": {
       "balance": "1013666949899999744"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9536026758371326708",
       "balance": "10665092326562492416"
     }
@@ -554682,7 +554682,7 @@
     "STAKE": {
       "balance": "106642871896480038912"
     },
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "9972174826261376608",
       "balance": "10120760231172671488"
     }
@@ -555061,7 +555061,7 @@
   {
     "address": "drt1wxqhxjzu2peasavvltuvlwqhj752drscsdjq4dh6jfklk8vm7nys3t45k9",
     "balance": "11664912000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10430000000000000000",
       "balance": "11664912000000000000"
     }
@@ -556161,7 +556161,7 @@
   {
     "address": "drt1d8e4z48j8kwns4gqeyns7h26mq9de5dwz9q34dc5mdvxa0vpg33swnyj77",
     "balance": "1162973125929771264",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1039854368678264514",
       "balance": "1162973125929771264"
     }
@@ -558997,7 +558997,7 @@
   {
     "address": "drt1rsphtp6mjgzwnugh5586z6ryj6r7vn06lwmzguzcrtm4fwl6tvuqul2jlr",
     "balance": "115412451932077293568",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "100463485316919644618",
       "balance": "115412451932077293568"
     }
@@ -561161,7 +561161,7 @@
   {
     "address": "drt1zfv5r6xfp520q0jm5nwk2cj05t6jzj30mnst4jygjzlh42nxrryshdhsdy",
     "balance": "11488000000000000000",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "10000000000000000000",
       "balance": "11488000000000000000"
     }
@@ -561169,7 +561169,7 @@
   {
     "address": "drt155a5vsmwhme3d4p4j7uh85akupuzt9vhde2uup4neaep5dcwemwq49rd9l",
     "balance": "1148800000000000000",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1148800000000000000"
     }
@@ -563074,7 +563074,7 @@
   {
     "address": "drt1lnmfa5p9j6qy40kjtrf0wfq6cl056car6hyvrq5uxdcalc2gu7zs7j2u6p",
     "balance": "1143065686732206848",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1022054440926508169",
       "balance": "1143065686732206848"
     }
@@ -567705,7 +567705,7 @@
     "STAKE": {
       "balance": "105235868119199973376"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "6854195220849665578",
       "balance": "7665731934998266880"
     }
@@ -567846,7 +567846,7 @@
   {
     "address": "drt1je0y33ass7c2xkd8e8dhlecc3lnk6amc6urp83tsgetuyu64w6jqq25j5d",
     "balance": "1128608060309290752",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1009127378674258453",
       "balance": "1128608060309290752"
     }
@@ -568078,7 +568078,7 @@
   {
     "address": "drt10zgr5pma3lvkxjs0ahtqeu9an2knadfjxms9qrzytm83202dtpvspvh290",
     "balance": "112798642740117815296",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "100857155525856406142",
       "balance": "112798642740117815296"
     }
@@ -568467,7 +568467,7 @@
     "STAKE": {
       "balance": "109072387647499993088"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "3216230628937185545",
       "balance": "3597032335403348992"
     }
@@ -570799,7 +570799,7 @@
   {
     "address": "drt127u9m68frgqty76vk9mxmxvul2v87jxm30zvv7mem9wr3esfdtzssn2445",
     "balance": "1120400729653321344",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1001788921363842347",
       "balance": "1120400729653321344"
     }
@@ -571521,7 +571521,7 @@
   {
     "address": "drt16f8pr44eenza439f0k3k9d5axx6l8zwlk3ew8uyvx7ztctzyzzss8e27aj",
     "balance": "1118409990953811712",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1000008933256269287",
       "balance": "1118409990953811712"
     }
@@ -571536,7 +571536,7 @@
   {
     "address": "drt1wcampknphfz2dplpnvntpu2k55r6qejeky2t3z6gujwnwwjvzgjqasw4j4",
     "balance": "11184000000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "10000000000000000000",
       "balance": "11184000000000000000"
     }
@@ -571544,7 +571544,7 @@
   {
     "address": "drt1gr7r64exe29qqw529nef4n2zzxvqge3p3y9jkkn24ueeswlhvkys5uavk3",
     "balance": "1118400000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1118400000000000000"
     }
@@ -571552,7 +571552,7 @@
   {
     "address": "drt1d0l0sl4wmxfk7mkxu50775mdwtdgmk2k02hqvlykyfnlmstmx30qpudu0f",
     "balance": "1118400000000000000",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1118400000000000000"
     }
@@ -572400,7 +572400,7 @@
   {
     "address": "drt1uk334ne36fksr5zpj4vfpnz8zqlanjrewv8ee25927v4xphh4x9svc66mc",
     "balance": "111614336455301332992",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "99798226444296594887",
       "balance": "111614336455301332992"
     }
@@ -575337,7 +575337,7 @@
     "STAKE": {
       "balance": "5486044838300000256"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5012268632691498295",
       "balance": "5605721238802171904"
     }
@@ -577476,7 +577476,7 @@
     "STAKE": {
       "balance": "1000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "8978148816345257235",
       "balance": "10041161636200536064"
     }
@@ -577561,7 +577561,7 @@
   {
     "address": "drt1l2jas6l5jwlu5fj7g68s0cxxeeswhm4hufush94uk8enj7de45es8tqll2",
     "balance": "1103975303760000000",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "1087767567011528324",
       "balance": "1103975303760000000"
     }
@@ -577730,7 +577730,7 @@
   {
     "address": "drt1zmpxuxaupa26mnt8vx7l4wvs7gy6fj6ugzsl29352psr6zsjy67qk88ujp",
     "balance": "1103668424114785408",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "986827990088327385",
       "balance": "1103668424114785408"
     }
@@ -577916,7 +577916,7 @@
     "STAKE": {
       "balance": "10000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "921748283688135378",
       "balance": "1030883280476810752"
     }
@@ -578365,7 +578365,7 @@
   {
     "address": "drt1ucm37n4m7szu08666qcz9nxdr86s5kx8rmwhd3g47va40gc5nwdsd9v232",
     "balance": "1102104907117740288",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "985429995634603225",
       "balance": "1102104907117740288"
     }
@@ -579405,7 +579405,7 @@
     "STAKE": {
       "balance": "1000000000000000000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "87282441582897361916",
       "balance": "100270068890432503808"
     }
@@ -584120,7 +584120,7 @@
     "STAKE": {
       "balance": "81112287579400011776"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "25079783091202454795",
       "balance": "28811654815173378048"
     }
@@ -586625,7 +586625,7 @@
     }
   },
   {
-    "address": "drt1ss438kp3vcfwd045k7cmwnj2c92q80m47aw7rmfv39z30mmxvmgqafr0y2",
+    "address": "drt1ss438kp3vcfwd045k7cmwnj2c92q80m47aw7rmfv39z30mdrtvmgqafr0y2",
     "balance": "1093954503380000000",
     "STAKE": {
       "balance": "1093954503380000000"
@@ -587089,7 +587089,7 @@
   {
     "address": "drt1zg7k7yqzar6gc3gxlw7uvjrlp20c4xu3dg6cpntwnuk2hkwgd2qs9t6jel",
     "balance": "109285154586693107712",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "97715624630448052558",
       "balance": "109285154586693107712"
     }
@@ -591433,7 +591433,7 @@
     "STAKE": {
       "balance": "41533900000000"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "942611127134087789",
       "balance": "1082871662851640064"
     }
@@ -592743,7 +592743,7 @@
   {
     "address": "drt1zgaf0ka8kxhmscje3e5y5k8htn8e8nqjy2knwcp8cudau6v8xyhs2z9a9m",
     "balance": "107936286897485168640",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "93955681491543492952",
       "balance": "107936286897485168640"
     }
@@ -592856,7 +592856,7 @@
   {
     "address": "drt1wtruvvqx8d6r563rqqtqjq0nq0r7lfdxx33vwwkt0dgg2fqaq2hsmd7vtj",
     "balance": "10791758982907869184",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9649283783000598960",
       "balance": "10791758982907869184"
     }
@@ -594432,7 +594432,7 @@
   {
     "address": "drt1g0ctuyeyasu4djcjqfg9a6q50hfeqya6r6u8zany26vu60a2m7qs4exsmd",
     "balance": "107606210967650664448",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "96214423254337148442",
       "balance": "107606210967650664448"
     }
@@ -594590,7 +594590,7 @@
     "STAKE": {
       "balance": "50055581324899999744"
     },
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "50079783091202454795",
       "balance": "57531654815173386240"
     }
@@ -597942,7 +597942,7 @@
     }
   },
   {
-    "address": "drt1au03ayly5ccszm3hwzfzk3ptycgld7evzsd5mmt6aq0gcpfczaus3cw666",
+    "address": "drt1au03ayly5ccszm3hwzfzk3ptycmoa7evzsd5mmt6aq0gcpfczaus3cw666",
     "balance": "1067953589999999872",
     "STAKE": {
       "balance": "1067953589999999872"
@@ -599328,7 +599328,7 @@
     }
   },
   {
-    "address": "drt1xz2jgx97zdnle2ydjfj7gzmqq4c42a5j6zgdrv7cgld3kvumtqmqfv2sqw",
+    "address": "drt1xz2jgx97zdnle2ydjfj7gzmqq4c42a5j6zgdrv7cmoa3kvumtqmqfv2sqw",
     "balance": "106482174979999989760",
     "STAKE": {
       "balance": "106482174979999989760"
@@ -601223,7 +601223,7 @@
     "STAKE": {
       "balance": "5000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "5012062419572031416",
       "balance": "5605490610049359872"
     }
@@ -603768,7 +603768,7 @@
     "STAKE": {
       "balance": "102439456547220013056"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "2741330487761929589",
       "balance": "3065904017512942592"
     }
@@ -607619,7 +607619,7 @@
   {
     "address": "drt193lny0lueey8g08juapc8uf3xe6xmft9h3dguwkct6k095kyv53qa63fd4",
     "balance": "1049426907526644608",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "938328779977328726",
       "balance": "1049426907526644608"
     }
@@ -609104,7 +609104,7 @@
   {
     "address": "drt1fjcx68jl6z8m5cag4yzyp45x46f0ej6k6v626lcz5687tku9kyssufemlk",
     "balance": "1045898750811269234688",
-    "LEGLD": {
+    "LREWA": {
       "original_balance": "910427185594767808640",
       "balance": "1045898750811269234688"
     }
@@ -609693,7 +609693,7 @@
   {
     "address": "drt1eansm7zrwew4g87hr6a544hadaa9guq6heljg6p3f6tu9qfmstvsxzhr00",
     "balance": "10446612882671472640",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9340676754892232616",
       "balance": "10446612882671472640"
     }
@@ -613936,7 +613936,7 @@
   {
     "address": "drt1u8j90mxv4wvdj265nffuuguwl4gw8e8mvnkuhd0tt34q8fdc45qs4kr38l",
     "balance": "10364334160448621379584",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "10212172785938145890636",
       "balance": "10364334160448621379584"
     }
@@ -614490,7 +614490,7 @@
   {
     "address": "drt1ajfyjdkkewmdsfh7xnmam4eh5agds0u6r5ej8ev949nex9eg776qffpq88",
     "balance": "1035517481818321152",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "925891882884764932",
       "balance": "1035517481818321152"
     }
@@ -618103,7 +618103,7 @@
   {
     "address": "drt1f5wl3mf60jfa0pcypydcvhue9jxajkzns64k4fs4alphmu46hheqen066w",
     "balance": "1029175987465444096",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "920221734142922073",
       "balance": "1029175987465444096"
     }
@@ -618408,7 +618408,7 @@
     "STAKE": {
       "balance": "101000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1663920918986338457",
       "balance": "1860929155794321152"
     }
@@ -620166,7 +620166,7 @@
   {
     "address": "drt1al7xuy7qv30f4lz39tvrx0z0v58tu4tpyl40nq8smjammkaemy4s00ncew",
     "balance": "102563699683911270400",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "91705740060721803551",
       "balance": "102563699683911270400"
     }
@@ -622858,7 +622858,7 @@
     "STAKE": {
       "balance": "101000000000000000000"
     },
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "1000000000000000000",
       "balance": "1118400000000000000"
     }
@@ -625456,7 +625456,7 @@
   {
     "address": "drt1ng0gpthzgh7c2zrs9gt0f9aaurhjwxwy3fh7ftpjjrmhlxt369hs3xtnu9",
     "balance": "10184799257457156096",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9106580165823637384",
       "balance": "10184799257457156096"
     }
@@ -626353,7 +626353,7 @@
   {
     "address": "drt1th9v8ngaazlcgmwqxxp4l35ufaazpulzlmuw0r0sa8rnm5zr025se9lhj8",
     "balance": "101705413753774145536",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "90938317018753700868",
       "balance": "101705413753774145536"
     }
@@ -626375,7 +626375,7 @@
   {
     "address": "drt1e76fphgf5tflcpr3vntslqctjk3t4py08ng7scxlfpmjlytlumdqkpr3rz",
     "balance": "1017022374814673536",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "909354770041732324",
       "balance": "1017022374814673536"
     }
@@ -628504,7 +628504,7 @@
   {
     "address": "drt1l8dny648zjky9tmggljw0e0y5vxl7hhpe52wugxkdwvrh25tgjwquzsn6x",
     "balance": "1014098087534613376",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "999209860611502056",
       "balance": "1014098087534613376"
     }
@@ -629247,7 +629247,7 @@
   {
     "address": "drt1sfydskrlakd0zmlq3hcyn4rxlrcrwz2nxzd0rqz2pjfss4qhchqqzjkr30",
     "balance": "1013140212759428864",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "905883595099632433",
       "balance": "1013140212759428864"
     }
@@ -631026,7 +631026,7 @@
   {
     "address": "drt1z9v5uh9xxynhfkqlrhu7kn2j962jxvegyc5awt0s5fwaauudp0dqelmzlv",
     "balance": "101081833439495520256",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "90380752360063940824",
       "balance": "101081833439495520256"
     }
@@ -636130,7 +636130,7 @@
   {
     "address": "drt1ardlgd6h2ydkq9tccaqlwjzm3g974exzkeehj24jyl4w8ek6gc7spgd8xp",
     "balance": "10084438811534258176",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "9016844430914035875",
       "balance": "10084438811534258176"
     }
@@ -636740,7 +636740,7 @@
   {
     "address": "drt1mm5jpvdrgdp3qeya5q5erdwwcq7xxvply8gxrw53jfcvggju727qzkygpg",
     "balance": "1007813680015096192",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "901120958525658225",
       "balance": "1007813680015096192"
     }
@@ -637812,7 +637812,7 @@
   {
     "address": "drt1vcl2lnzurtm6cuvfqm2emm4m4hu7c4shzznnrezpsvsumv2pwtps58vtmz",
     "balance": "1006633374811389952",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "991854739197349512",
       "balance": "1006633374811389952"
     }
@@ -638044,7 +638044,7 @@
   {
     "address": "drt1jkaa007l2n5au653xfa596mxgtupcdluhxp00mtm9kgcpv3rzjtq7d354l",
     "balance": "10063092063307345920",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "8997757567334894121",
       "balance": "10063092063307345920"
     }
@@ -639291,7 +639291,7 @@
   {
     "address": "drt1uc89av0g75wqumpvv20sv5wa9cflpx96qmwtn6t59kxmhxzdswxqzs4vqj",
     "balance": "100515060016990158848",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "89873980701886756484",
       "balance": "100515060016990158848"
     }
@@ -641154,7 +641154,7 @@
   {
     "address": "drt1jxn68ycl5eexemz4r9t5g2eq8d6gymxf089rwn6ugwkh69jwunxq6tv75q",
     "balance": "1003787644711078912",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "989050787970321108",
       "balance": "1003787644711078912"
     }
@@ -641351,7 +641351,7 @@
   {
     "address": "drt1lr98vwn8llvlwx5c76tk5h4y54sll5yqsdtu3rvgm7nwuvtl5zassua9cm",
     "balance": "100361391250909102080",
-    "XEGLD": {
+    "XREWA": {
       "original_balance": "98887960637411665899",
       "balance": "100361391250909102080"
     }
@@ -642465,7 +642465,7 @@
   {
     "address": "drt1mn0lt9h0sr9cc69yw5y94vsrm4e69yxzdkzj0vj6d68r5mpmlmfqqwgzdy",
     "balance": "100251668224170246144",
-    "SEGLD": {
+    "SREWA": {
       "original_balance": "89638473018750216073",
       "balance": "100251668224170246144"
     }
@@ -652523,7 +652523,7 @@
     }
   },
   {
-    "address": "drt1yyvuqjpyq7782xta7x2mkyncydq9784m6a596ws58rcmxpyulwusf630p2",
+    "address": "drt1yyvuqjpyq7782xta7x2mkyncydq9784m6a596ws58rcdrtpyulwusf630p2",
     "balance": "10000000000000000000",
     "STAKE": {
       "balance": "10000000000000000000"

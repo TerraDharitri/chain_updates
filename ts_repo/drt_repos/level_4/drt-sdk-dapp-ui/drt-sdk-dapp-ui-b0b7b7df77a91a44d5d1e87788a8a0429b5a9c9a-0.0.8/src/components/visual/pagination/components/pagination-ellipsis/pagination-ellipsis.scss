@@ -1,10 +1,10 @@
 .pagination-ellipsis {
-  @apply mvx:w-8 mvx:h-8 mvx:cursor-pointer mvx:flex mvx:items-center mvx:justify-center mvx:transition-all;
-  @apply mvx:duration-200 mvx:rounded-full mvx:ease-in-out;
-  color: var(--mvx-text-color-primary);
+  @apply drt:w-8 drt:h-8 drt:cursor-pointer drt:flex drt:items-center drt:justify-center drt:transition-all;
+  @apply drt:duration-200 drt:rounded-full drt:ease-in-out;
+  color: var(--drt-text-color-primary);
 
   &:hover,
   &.active {
-    background-color: var(--mvx-pagination-item-bg-hover);
+    background-color: var(--drt-pagination-item-bg-hover);
   }
 }

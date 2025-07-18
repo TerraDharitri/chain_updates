@@ -7,7 +7,7 @@ import type { DataFieldType } from './sign-transactions-advanced.types';
 const DECODE_METHODS = Object.values(DecodeMethodEnum);
 
 @Component({
-  tag: 'mvx-sign-transactions-advanced',
+  tag: 'drt-sign-transactions-advanced',
   styleUrl: 'sign-transactions-advanced.css',
 })
 export class SignTransactionsAdvanced {

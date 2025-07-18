@@ -9,7 +9,7 @@ import { getIsExtensionAvailable, getIsMetaMaskAvailable } from './helpers';
 import { UnlockPanelEventsEnum } from './unlock-panel.types';
 
 @Component({
-  tag: 'mvx-unlock-panel',
+  tag: 'drt-unlock-panel',
   styleUrl: 'unlock-panel.scss',
   shadow: true,
 })
@@ -149,7 +149,7 @@ export class UnlockPanel {
     const isCustomProviderActive = this.selectedMethod && this.isCustomProvider(this.selectedMethod.type);
 
     return (
-      <mvx-side-panel
+      <drt-side-panel
         isOpen={this.isOpen}
         panelTitle={panelTitle}
         onClose={this.handleClose}
@@ -164,7 +164,7 @@ export class UnlockPanel {
           class={{ 'unlock-panel-anchor': this.isLoggingIn || this.isIntroScreenVisible }}
         >
           {this.isIntroScreenVisible && (
-            <mvx-provider-idle-screen
+            <drt-provider-idle-screen
               onAccess={this.handleAccess}
               provider={this.selectedMethod}
               onClose={this.handleResetLoginState}
@@ -176,26 +176,26 @@ export class UnlockPanel {
           <div class="unlock-panel">
             <div class="unlock-panel-groups">
               {hasDetectedProviders && (
-                <mvx-unlock-panel-group
+                <drt-unlock-panel-group
                   groupTitle="Detected"
                   providers={detectedProviders}
                   onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
                 />
               )}
 
-              <mvx-unlock-panel-group
+              <drt-unlock-panel-group
                 providers={otherProviders}
                 groupTitle={hasDetectedProviders ? 'Other Options' : 'Options'}
                 onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
               >
                 <slot />
-              </mvx-unlock-panel-group>
+              </drt-unlock-panel-group>
             </div>
 
-            <mvx-unlock-panel-footer />
+            <drt-unlock-panel-footer />
           </div>
         )}
-      </mvx-side-panel>
+      </drt-side-panel>
     );
   }
 }

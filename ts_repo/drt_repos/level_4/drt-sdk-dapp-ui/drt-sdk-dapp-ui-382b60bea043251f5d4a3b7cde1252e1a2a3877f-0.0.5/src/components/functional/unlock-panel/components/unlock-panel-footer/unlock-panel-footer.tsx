@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import { processImgSrc } from 'utils/processImgSrc';
 
 const unlockPanelClasses: Record<string, string> = {
-  footerIcon: 'mvx:w-4! mvx:h-auto!',
+  footerIcon: 'drt:w-4! drt:h-auto!',
 };
 
 @Component({
-  tag: 'mvx-unlock-panel-footer',
+  tag: 'drt-unlock-panel-footer',
   styleUrl: 'unlock-panel-footer.scss',
   shadow: true,
 })
@@ -24,7 +24,7 @@ export class UnlockPanel {
             Take full control of <br /> your assets.
           </div>
 
-          <mvx-arrow-up-right-icon
+          <drt-arrow-up-right-icon
             class={classNames('unlock-panel-footer-icon', {
               [unlockPanelClasses.footerIcon]: true,
             })}

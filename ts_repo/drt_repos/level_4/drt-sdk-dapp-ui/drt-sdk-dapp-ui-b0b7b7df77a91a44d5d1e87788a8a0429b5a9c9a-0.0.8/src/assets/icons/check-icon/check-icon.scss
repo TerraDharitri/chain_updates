@@ -1,7 +1,7 @@
 :host {
-  @apply mvx:flex;
+  @apply drt:flex;
 
   .check-icon {
-    @apply mvx:w-4 mvx:h-4;
+    @apply drt:w-4 drt:h-4;
   }
 }

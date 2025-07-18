@@ -151,7 +151,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {

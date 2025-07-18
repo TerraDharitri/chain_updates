@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
-  tag: 'mvx-transaction-account-name',
+  tag: 'drt-transaction-account-name',
   styleUrl: 'transaction-account-name.scss',
 })
 export class TransactionAccountName {
@@ -26,11 +26,11 @@ export class TransactionAccountName {
     }
 
     return (
-      <mvx-trim
+      <drt-trim
         text={this.address}
         class={classNames(this.class, 'transaction-account-name')}
         dataTestId={this.dataTestId}
-      ></mvx-trim>
+      ></drt-trim>
     );
   }
 }

@@ -251,7 +251,7 @@ import { Address, Transaction, TransactionPayload } from '@terradharitri/sdk-cor
 import {
   GAS_PRICE,
   GAS_LIMIT
-} from '@terradharitri/sdk-dapp/out/constants/mvx.constants';
+} from '@terradharitri/sdk-dapp/out/constants/drt.constants';
 import { getAccountProvider } from '@terradharitri/sdk-dapp/out/providers/helpers/accountProvider';
 import { refreshAccount } from '@terradharitri/sdk-dapp/out/utils/account/refreshAccount';
 
@@ -631,7 +631,7 @@ flowchart LR
 
 ```typescript
 const modalElement = await createUIElement<LedgerConnectModal>(
-  'mvx-ledger-connect-panel'
+  'drt-ledger-connect-panel'
 );
 const eventBus = await modalElement.getEventBus();
 eventBus.publish('TRANSACTION_TOAST_DATA_UPDATE', someData);

@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-passkey-provider-icon',
+  tag: 'drt-passkey-provider-icon',
   styleUrl: 'passkey-provider-icon.scss',
   shadow: true,
 })

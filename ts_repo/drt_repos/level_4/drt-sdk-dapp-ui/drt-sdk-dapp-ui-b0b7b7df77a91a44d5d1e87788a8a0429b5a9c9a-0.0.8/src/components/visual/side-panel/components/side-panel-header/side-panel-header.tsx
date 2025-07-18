@@ -7,7 +7,7 @@ export enum SidePanelHeaderSlotEnum {
 }
 
 @Component({
-  tag: 'mvx-side-panel-header',
+  tag: 'drt-side-panel-header',
   styleUrl: 'side-panel-header.scss',
   shadow: true,
 })
@@ -38,7 +38,7 @@ export class SidePanelHeader {
           onClick={this.handleLeftIconClick.bind(this)}
         >
           <slot name={SidePanelHeaderSlotEnum.leftIcon}>
-            <mvx-back-arrow-icon />
+            <drt-back-arrow-icon />
           </slot>
         </div>
 
@@ -49,7 +49,7 @@ export class SidePanelHeader {
           onClick={this.handleRightIconClick.bind(this)}
         >
           <slot name={SidePanelHeaderSlotEnum.rightIcon}>
-            <mvx-close-icon />
+            <drt-close-icon />
           </slot>
         </div>
       </div>

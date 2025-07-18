@@ -71,12 +71,12 @@ Visual components are the most basic building blocks that handle pure presentati
 
 Components:
 
-- **Preloader** (`mvx-preloader`): A loading indicator for asynchronous operations
-- **Font Awesome Icon** (`mvx-fa-icon`): Icon component with Font Awesome integration
-- **Side Panel** (`mvx-side-panel`): Sliding panel with header and content sections
-- **Tooltip** (`mvx-tooltip`): Contextual information display with hover/click activation
+- **Preloader** (`drt-preloader`): A loading indicator for asynchronous operations
+- **Font Awesome Icon** (`drt-fa-icon`): Icon component with Font Awesome integration
+- **Side Panel** (`drt-side-panel`): Sliding panel with header and content sections
+- **Tooltip** (`drt-tooltip`): Contextual information display with hover/click activation
 - **Transaction List Item**: Structured display of transaction information
-- **Pagination** (`mvx-pagination`): Navigation controls for paginated content
+- **Pagination** (`drt-pagination`): Navigation controls for paginated content
 
 ### Visual Component Example
 
@@ -103,9 +103,9 @@ export const ExplorerLink = ({
   const store = getStore();
   const network = networkSelector(store.getState());
   return (
-    <mvx-explorer-link link={`${network.explorerAddress}${page}`} class={className} data-testid={dataTestId} {...rest}>
+    <drt-explorer-link link={`${network.explorerAddress}${page}`} class={className} data-testid={dataTestId} {...rest}>
       {children ? <div>{children}</div> : null}
-    </mvx-explorer-link>
+    </drt-explorer-link>
   );
 };
 ```
@@ -116,8 +116,8 @@ Controlled components are designed to display data that is processed by a contro
 
 Components:
 
-- **Format Amount** (`mvx-format-amount`): Numerical amount formatting with validation
-- **Transactions Table** (`mvx-transactions-table`): Structured display of transaction data
+- **Format Amount** (`drt-format-amount`): Numerical amount formatting with validation
+- **Transactions Table** (`drt-transactions-table`): Structured display of transaction data
 
 ### Controlled Component Example
 
@@ -139,7 +139,7 @@ export const TransactionsTable = () => {
     transactions: props.transactions || [],
   });
 
-  return <mvx-transactions-table transactions={data} />;
+  return <drt-transactions-table transactions={data} />;
 };
 ```
 
@@ -149,12 +149,12 @@ Functional components handle specific application functionality and business log
 
 Components:
 
-- **Sign Transactions Panel** (`mvx-sign-transactions-panel`): Transaction signing workflow
-- **Notifications Feed** (`mvx-notifications-feed`): Transaction notifications and history
-- **Wallet Connect** (`mvx-wallet-connect`): Wallet connection flow
-- **Unlock Panel** (`mvx-unlock-panel`): Wallet authentication
-- **Toast List** (`mvx-toast-list`): Notification management
-- **Ledger Connect** (`mvx-ledger-connect`): Hardware wallet connection
+- **Sign Transactions Panel** (`drt-sign-transactions-panel`): Transaction signing workflow
+- **Notifications Feed** (`drt-notifications-feed`): Transaction notifications and history
+- **Wallet Connect** (`drt-wallet-connect`): Wallet connection flow
+- **Unlock Panel** (`drt-unlock-panel`): Wallet authentication
+- **Toast List** (`drt-toast-list`): Notification management
+- **Ledger Connect** (`drt-ledger-connect`): Hardware wallet connection
 
 You can check out the way these components are used in `@terradharitri/sdk-dapp` [here](https://github.com/TerraDharitri/drt-sdk-dapp/blob/main/src/managers/UnlockPanelManager/UnlockPanelManager.ts).
 

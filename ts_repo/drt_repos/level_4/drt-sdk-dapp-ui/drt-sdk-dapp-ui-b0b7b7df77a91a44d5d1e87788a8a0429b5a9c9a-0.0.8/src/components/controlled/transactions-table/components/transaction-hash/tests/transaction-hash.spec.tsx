@@ -45,16 +45,16 @@ describe('TransactionHash', () => {
 
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash transaction={transaction}></mvx-transaction-hash>,
+      template: () => <drt-transaction-hash transaction={transaction}></drt-transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <drt-transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><span>0x123456789abcdef</span></mvx-explorer-link>
+            <drt-transaction-icon></drt-transaction-icon>
+            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123"><span>0x123456789abcdef</span></drt-explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </drt-transaction-hash>
     `);
   });
 
@@ -83,16 +83,16 @@ describe('TransactionHash', () => {
 
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash transaction={initialTransactionData}></mvx-transaction-hash>,
+      template: () => <drt-transaction-hash transaction={initialTransactionData}></drt-transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <drt-transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><span>0xInitialHash</span></mvx-explorer-link>
+            <drt-transaction-icon></drt-transaction-icon>
+            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial"><span>0xInitialHash</span></drt-explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </drt-transaction-hash>
     `);
 
     const updatedTransactionData: TransactionRowType = {
@@ -121,24 +121,24 @@ describe('TransactionHash', () => {
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <drt-transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><span>0xUpdatedHash</span></mvx-explorer-link>
+            <drt-transaction-icon></drt-transaction-icon>
+            <drt-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated"><span>0xUpdatedHash</span></drt-explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </drt-transaction-hash>
     `);
   });
 
   it('renders null when transaction is not provided', async () => {
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash></mvx-transaction-hash>,
+      template: () => <drt-transaction-hash></drt-transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
-      </mvx-transaction-hash>
+      <drt-transaction-hash>
+      </drt-transaction-hash>
     `);
   });
 });

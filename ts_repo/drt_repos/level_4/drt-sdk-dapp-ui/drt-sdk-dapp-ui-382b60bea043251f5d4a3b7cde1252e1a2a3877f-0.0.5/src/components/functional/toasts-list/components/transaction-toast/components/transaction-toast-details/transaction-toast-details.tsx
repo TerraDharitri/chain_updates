@@ -4,7 +4,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import type { ITransactionListItem } from 'components/visual/transaction-list-item/transaction-list-item.types';
 
 @Component({
-  tag: 'mvx-transaction-toast-details',
+  tag: 'drt-transaction-toast-details',
   styleUrl: 'transaction-toast-details.css',
 })
 export class TransactionToastDetails {
@@ -39,7 +39,7 @@ export class TransactionToastDetails {
     return (
       <div class="transaction-details-container">
         <div class="transaction-details-status" onClick={this.toggleExpand.bind(this)}>
-          <mvx-fa-icon icon={faChevronDown} class={`transaction-details-status-icon ${this.isExpanded ? 'rotate-up' : ''}`}></mvx-fa-icon>
+          <drt-fa-icon icon={faChevronDown} class={`transaction-details-status-icon ${this.isExpanded ? 'rotate-up' : ''}`}></drt-fa-icon>
           <span class="transaction-details-status-text">{this.processedTransactionsStatus}</span>
         </div>
 
@@ -50,7 +50,7 @@ export class TransactionToastDetails {
           }}
         >
           {visibleTransactions.map(({ hash, status, link }, index) => (
-            <mvx-transaction-toast-details-body transactionClass={this.transactionClass} hash={hash} status={status} link={link} index={`#${index + 1}`} key={hash} />
+            <drt-transaction-toast-details-body transactionClass={this.transactionClass} hash={hash} status={status} link={link} index={`#${index + 1}`} key={hash} />
           ))}
 
           {hasMoreTransactionsToShow && !this.showAllTransactions && (

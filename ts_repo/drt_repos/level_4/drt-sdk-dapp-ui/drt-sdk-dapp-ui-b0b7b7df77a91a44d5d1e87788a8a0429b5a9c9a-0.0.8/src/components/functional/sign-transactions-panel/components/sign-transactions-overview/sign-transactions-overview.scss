@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: var(--mvx-bg-accent-variant-color);
+  background: var(--drt-bg-accent-variant-color);
   border-radius: 16px;
   overflow: hidden;
 }
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   padding: 16px 20px;
-  background: var(--mvx-bg-color-secondary);
+  background: var(--drt-bg-color-secondary);
   position: relative;
   overflow: hidden;
   min-height: 80px;
@@ -45,15 +45,15 @@
   position: relative;
   
   &:before {
-    @apply mvx:absolute mvx:opacity-60 mvx:top-0 mvx:bottom-0 mvx:left-0 mvx:right-0 mvx:transition-all mvx:duration-200;
-    @apply mvx:rounded-b-xl mvx:pointer-events-none mvx:ease-in-out;
+    @apply drt:absolute drt:opacity-60 drt:top-0 drt:bottom-0 drt:left-0 drt:right-0 drt:transition-all drt:duration-200;
+    @apply drt:rounded-b-xl drt:pointer-events-none drt:ease-in-out;
     content: '';
-    background: var(--mvx-bg-color-tertiary);
+    background: var(--drt-bg-color-tertiary);
   }
 }
 
 .detail-label {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -80,7 +80,7 @@
 .amount-value {
   font-size: 24px;
   font-weight: 500;
-  color: var(--mvx-text-color-primary);
+  color: var(--drt-text-color-primary);
   letter-spacing: -0.24px;
   line-height: 24px;
   text-align: right;
@@ -89,12 +89,12 @@
 
 .identifier {
   font-size: 14px;
-  color: var(--mvx-text-color-primary);
+  color: var(--drt-text-color-primary);
 }
 
 .usd-value {
   font-size: 14px;
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
 }
 
 .token-icon {
@@ -102,7 +102,7 @@
   height: 40px;
   border-radius: 2px;
   overflow: hidden;
-  border: 1px solid var(--mvx-neutral-700);
+  border: 1px solid var(--drt-neutral-700);
 }
 
 .token-icon img {
@@ -136,7 +136,7 @@
 .interactor-name {
   font-size: 16px;
   font-weight: 400;
-  color: var(--mvx-text-color-primary);
+  color: var(--drt-text-color-primary);
   letter-spacing: -0.16px;
   line-height: 22px;
   max-width: 150px;
@@ -151,7 +151,7 @@
   justify-content: center;
   width: 23px;
   height: 23px;
-  background: var(--mvx-bg-accent-variant-color);
+  background: var(--drt-bg-accent-variant-color);
   border-radius: 50%;
   left: 21px;
   top: 76px;
@@ -160,7 +160,7 @@
 }
 
 .direction-arrow {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,7 +183,7 @@
   height: 2px;
   position: relative;
   border-radius: 50%;
-  background-color: var(--mvx-text-color-secondary);
+  background-color: var(--drt-text-color-secondary);
 }
 
 /* Action section */
@@ -191,7 +191,7 @@
   margin-left: auto;
   font-size: 14px;
   font-weight: 500;
-  color:  var(--mvx-text-color-secondary);
+  color:  var(--drt-text-color-secondary);
   position: relative;
   z-index: 1;
 }
@@ -215,7 +215,7 @@
 }
 
 .fee-label {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 400;
   line-height: 19.6px;
@@ -230,14 +230,14 @@
 .info-icon::before {
   content: 'ⓘ';
   font-size: 14px;
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   position: absolute;
   top: -2px;
   left: 0;
 }
 
 .fee-value {
-  color: var(--mvx-text-color-primary);
+  color: var(--drt-text-color-primary);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

@@ -78,7 +78,7 @@
   },
   "itsKnownTokens": {
     "devnet": {
-      "EGLD": {
+      "REWA": {
         "tokenId": "2c2a94e0c1200b3432349f28ac617a7c9242bbc9d2c9cb46d7fe9ac555104710",
         "tokenManager": "drt1qqqqqqqqqqqqqpgqlmu50mwf6a8j9ys7txr7u0f6g730th4wkklsnacfzx"
       },
@@ -86,7 +86,7 @@
         "tokenId": "81748eb162a0c2c245b3fb7f29e125edf1a95cf01712d21e20a7594add9d82cd",
         "tokenManager": "drt1s96gavtz5rpvy3dnldljncf9ahc6jh8szufdy83q5av54hvastxsclwsfl"
       },
-      "MEX-a659d0": {
+      "MOA-a659d0": {
         "tokenId": "5f2a70ee6ef62578e6c13283c84b20edaa76d20ff6744b703b613aa4ec376522",
         "tokenManager": "drt1qqqqqqqqqqqqqpgqyud9dhd7d4al34l5xvaz4g6hm6nypqawkklslcf6ye"
       }

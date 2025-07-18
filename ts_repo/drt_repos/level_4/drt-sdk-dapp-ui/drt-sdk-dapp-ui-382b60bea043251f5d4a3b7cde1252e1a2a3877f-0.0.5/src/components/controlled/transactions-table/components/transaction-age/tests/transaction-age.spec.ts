@@ -7,7 +7,7 @@ describe('TransactionAge', () => {
   it('renders with age prop', async () => {
     const page = await newSpecPage({
       components: [TransactionAge],
-      html: '<mvx-transaction-age age="2 days ago"></mvx-transaction-age>',
+      html: '<transaction-age age="2 days ago"></transaction-age>',
     });
 
     const ageSpan = page.root.querySelector(`[data-testid="${DataTestIdsEnum.transactionAge}"]`);
@@ -18,7 +18,7 @@ describe('TransactionAge', () => {
   it('renders without tooltip when not provided', async () => {
     const page = await newSpecPage({
       components: [TransactionAge],
-      html: '<mvx-transaction-age age="3 hours ago"></mvx-transaction-age>',
+      html: '<transaction-age age="3 hours ago"></transaction-age>',
     });
 
     const ageSpan = page.root.querySelector(`[data-testid="${DataTestIdsEnum.transactionAge}"]`);
@@ -29,7 +29,7 @@ describe('TransactionAge', () => {
   it('renders with tooltip when provided', async () => {
     const page = await newSpecPage({
       components: [TransactionAge],
-      html: '<mvx-transaction-age age="1 minute ago" tooltip="2023-05-17 10:30:00 UTC"></mvx-transaction-age>',
+      html: '<transaction-age age="1 minute ago" tooltip="2023-05-17 10:30:00 UTC"></transaction-age>',
     });
 
     const ageSpan = page.root.querySelector(`[data-testid="${DataTestIdsEnum.transactionAge}"]`);
@@ -40,7 +40,7 @@ describe('TransactionAge', () => {
   it('updates when age prop changes', async () => {
     const page = await newSpecPage({
       components: [TransactionAge],
-      html: '<mvx-transaction-age age="5 minutes ago"></mvx-transaction-age>',
+      html: '<transaction-age age="5 minutes ago"></transaction-age>',
     });
 
     let ageSpan = page.root.querySelector(`[data-testid="${DataTestIdsEnum.transactionAge}"]`);
@@ -56,7 +56,7 @@ describe('TransactionAge', () => {
   it('updates when tooltip prop changes', async () => {
     const page = await newSpecPage({
       components: [TransactionAge],
-      html: '<mvx-transaction-age age="1 hour ago" tooltip="2023-05-17 09:30:00 UTC"></mvx-transaction-age>',
+      html: '<transaction-age age="1 hour ago" tooltip="2023-05-17 09:30:00 UTC"></transaction-age>',
     });
 
     let ageSpan = page.root.querySelector(`[data-testid="${DataTestIdsEnum.transactionAge}"]`);

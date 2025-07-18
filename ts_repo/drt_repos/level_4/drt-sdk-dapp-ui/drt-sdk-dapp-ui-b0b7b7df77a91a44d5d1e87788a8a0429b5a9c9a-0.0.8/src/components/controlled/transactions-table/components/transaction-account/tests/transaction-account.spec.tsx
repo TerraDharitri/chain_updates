@@ -18,10 +18,10 @@ describe('TransactionAccount Component', () => {
   it('should render basic account information', async () => {
     const page = await newSpecPage({
       components: [TransactionAccount],
-      template: () => <mvx-transaction-account account={baseAccount} scope="sender"></mvx-transaction-account>,
+      template: () => <drt-transaction-account account={baseAccount} scope="sender"></drt-transaction-account>,
     });
 
-    const transactionAccountName = page.root.querySelector('mvx-transaction-account-name');
+    const transactionAccountName = page.root.querySelector('drt-transaction-account-name');
     expect(transactionAccountName).not.toBeNull();
     expect(transactionAccountName.getAttribute('name')).toBe('John Doe');
     expect(transactionAccountName.getAttribute('description')).toBe('Test Account');
@@ -33,15 +33,15 @@ describe('TransactionAccount Component', () => {
     const page = await newSpecPage({
       components: [TransactionAccount],
       template: () => (
-        <mvx-transaction-account
+        <drt-transaction-account
           account={lockedAccount}
           showLockedAccounts={true}
           scope="receiver"
-        ></mvx-transaction-account>
+        ></drt-transaction-account>
       ),
     });
 
-    const lockedIcon = page.root.querySelector('mvx-fa-icon');
+    const lockedIcon = page.root.querySelector('drt-fa-icon');
     expect(lockedIcon).not.toBeNull();
   });
 
@@ -50,10 +50,10 @@ describe('TransactionAccount Component', () => {
 
     const page = await newSpecPage({
       components: [TransactionAccount],
-      template: () => <mvx-transaction-account account={contractAccount} scope="sender"></mvx-transaction-account>,
+      template: () => <drt-transaction-account account={contractAccount} scope="sender"></drt-transaction-account>,
     });
 
-    const contractIcon = page.root.querySelector('mvx-fa-icon');
+    const contractIcon = page.root.querySelector('drt-fa-icon');
     expect(contractIcon).not.toBeNull();
   });
 
@@ -62,10 +62,10 @@ describe('TransactionAccount Component', () => {
 
     const page = await newSpecPage({
       components: [TransactionAccount],
-      template: () => <mvx-transaction-account account={linkedAccount} scope="receiver"></mvx-transaction-account>,
+      template: () => <drt-transaction-account account={linkedAccount} scope="receiver"></drt-transaction-account>,
     });
 
-    const explorerLink = page.root.querySelector('mvx-explorer-link');
+    const explorerLink = page.root.querySelector('drt-explorer-link');
     expect(explorerLink).not.toBeNull();
     expect(explorerLink.getAttribute('link')).toBe(linkedAccount.link);
     expect(explorerLink.getAttribute('data-testid')).toBe('receiverLink');
@@ -75,12 +75,12 @@ describe('TransactionAccount Component', () => {
     const page = await newSpecPage({
       components: [TransactionAccount],
       template: () => (
-        <mvx-transaction-account
+        <drt-transaction-account
           account={baseAccount}
           class="custom-class"
           dataTestId="test-id"
           scope="sender"
-        ></mvx-transaction-account>
+        ></drt-transaction-account>
       ),
     });
 

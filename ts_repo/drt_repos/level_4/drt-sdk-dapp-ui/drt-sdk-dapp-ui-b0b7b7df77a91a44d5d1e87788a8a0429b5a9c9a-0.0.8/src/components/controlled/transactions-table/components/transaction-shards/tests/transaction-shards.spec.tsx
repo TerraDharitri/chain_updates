@@ -47,21 +47,21 @@ describe('TransactionShards', () => {
 
     const page = await newSpecPage({
       components: [TransactionShards],
-      template: () => <mvx-transaction-shards transaction={transaction}></mvx-transaction-shards>,
+      template: () => <drt-transaction-shards transaction={transaction}></drt-transaction-shards>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-shards>
+      <drt-transaction-shards>
           <div class="transaction-shards">
-            <mvx-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
+            <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
               <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
-            </mvx-explorer-link>
+            </drt-explorer-link>
             <span class="transaction-shards-arrow">&#10132;</span>
-            <mvx-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
+            <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
               <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
-            </mvx-explorer-link>
+            </drt-explorer-link>
           </div>
-      </mvx-transaction-shards>
+      </drt-transaction-shards>
     `);
   });
 
@@ -70,21 +70,21 @@ describe('TransactionShards', () => {
 
     const page = await newSpecPage({
       components: [TransactionShards],
-      template: () => <mvx-transaction-shards class="custom-class" transaction={transaction}></mvx-transaction-shards>,
+      template: () => <drt-transaction-shards class="custom-class" transaction={transaction}></drt-transaction-shards>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-shards class="custom-class">
+      <drt-transaction-shards class="custom-class">
           <div class="custom-class transaction-shards">
-            <mvx-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
+            <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardFromLink}" link="/blocks?shard=0">
               <span data-testid="${DataTestIdsEnum.senderShard}">0</span>
-            </mvx-explorer-link>
+            </drt-explorer-link>
             <span class="transaction-shards-arrow">&#10132;</span>
-            <mvx-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
+            <drt-explorer-link class="transactions-table-body-cell-link" data-testid="${DataTestIdsEnum.shardToLink}" link="/blocks?shard=1">
               <span data-testid="${DataTestIdsEnum.receiverShard}">1</span>
-            </mvx-explorer-link>
+            </drt-explorer-link>
           </div>
-      </mvx-transaction-shards>
+      </drt-transaction-shards>
     `);
   });
 
@@ -93,7 +93,7 @@ describe('TransactionShards', () => {
 
     const page = await newSpecPage({
       components: [TransactionShards],
-      template: () => <mvx-transaction-shards transaction={transaction}></mvx-transaction-shards>,
+      template: () => <drt-transaction-shards transaction={transaction}></drt-transaction-shards>,
     });
 
     const senderShard = page.root.querySelector(`[data-testid="${DataTestIdsEnum.senderShard}"]`);

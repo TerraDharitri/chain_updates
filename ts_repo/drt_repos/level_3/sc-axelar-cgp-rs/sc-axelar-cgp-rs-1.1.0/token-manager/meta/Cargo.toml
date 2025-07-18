@@ -3,7 +3,7 @@ name = "token-manager-meta"
 version = "0.0.0"
 edition = "2018"
 publish = false
-authors = [ "you",]
+authors = ["contact@dharitri.org"]
 
 [dev-dependencies]
 

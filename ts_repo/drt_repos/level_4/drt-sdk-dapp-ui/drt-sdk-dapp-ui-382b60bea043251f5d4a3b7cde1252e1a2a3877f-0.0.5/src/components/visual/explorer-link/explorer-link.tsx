@@ -4,7 +4,7 @@ import { getIconHtmlFromIconDefinition } from 'utils/icons/getIconHtmlFromIconDe
 import { getIconHtmlFromIconName } from 'utils/icons/getIconHtmlFromIconName';
 
 @Component({
-  tag: 'mvx-explorer-link',
+  tag: 'drt-explorer-link',
   styleUrl: 'explorer-link.css',
 })
 export class ExplorerLink {
@@ -30,8 +30,8 @@ export class ExplorerLink {
     }
 
     return (
-      <a data-testid={this.dataTestId} href={this.link} target="_blank" class={{ 'mvx:explorer-link': true, [this.class]: Boolean(this.class) }} rel="noreferrer">
-        {this.hasSlotContent ? <slot name="content"></slot> : this.text ?? <mvx-fa-icon icon={icon} class={this.iconClass}></mvx-fa-icon>}
+      <a data-testid={this.dataTestId} href={this.link} target="_blank" class={{ 'drt:explorer-link': true, [this.class]: Boolean(this.class) }} rel="noreferrer">
+        {this.hasSlotContent ? <slot name="content"></slot> : this.text ?? <drt-fa-icon icon={icon} class={this.iconClass}></drt-fa-icon>}
       </a>
     );
   }

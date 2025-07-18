@@ -5,7 +5,7 @@ import type { ITransactionListItem } from 'components/visual/transaction-list-it
 import type { IToastDataState, ITransactionProgressState } from './transaction-toast.type';
 
 @Component({
-  tag: 'mvx-transaction-toast',
+  tag: 'drt-transaction-toast',
   styleUrl: './transaction-toast.css',
 })
 export class TransactionToast {
@@ -25,15 +25,15 @@ export class TransactionToast {
   render() {
     return (
       <div class="transaction-toast">
-        <mvx-transaction-toast-progress key={this.toastId} startTime={this.transactionProgressState?.startTime} endTime={this.transactionProgressState?.endTime}>
-          <mvx-transaction-toast-content
+        <drt-transaction-toast-progress key={this.toastId} startTime={this.transactionProgressState?.startTime} endTime={this.transactionProgressState?.endTime}>
+          <drt-transaction-toast-content
             fullWidth={this.fullWidth}
             toastDataState={this.toastDataState}
             transactions={this.transactions}
             processedTransactionsStatus={this.processedTransactionsStatus}
             onDeleteToast={this.handleDeleteToast.bind(this)}
           />
-        </mvx-transaction-toast-progress>
+        </drt-transaction-toast-progress>
       </div>
     );
   }

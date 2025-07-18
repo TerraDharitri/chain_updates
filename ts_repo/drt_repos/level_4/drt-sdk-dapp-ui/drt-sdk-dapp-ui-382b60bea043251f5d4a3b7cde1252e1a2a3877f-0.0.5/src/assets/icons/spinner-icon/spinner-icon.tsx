@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-spinner-icon',
+  tag: 'drt-spinner-icon',
   styleUrl: 'spinner-icon.scss',
   shadow: true,
 })

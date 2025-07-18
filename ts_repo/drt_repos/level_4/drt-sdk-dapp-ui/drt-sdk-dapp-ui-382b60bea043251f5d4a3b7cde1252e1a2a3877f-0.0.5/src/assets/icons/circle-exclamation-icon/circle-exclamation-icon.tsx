@@ -1,7 +1,7 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-circle-exclamation-icon',
+  tag: 'drt-circle-exclamation-icon',
   shadow: true,
 })
 export class CircleExclamationIcon {

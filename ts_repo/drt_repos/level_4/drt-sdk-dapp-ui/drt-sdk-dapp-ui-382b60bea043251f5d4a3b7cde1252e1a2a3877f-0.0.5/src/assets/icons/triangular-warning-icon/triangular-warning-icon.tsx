@@ -1,7 +1,7 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-triangular-warning-icon',
+  tag: 'drt-triangular-warning-icon',
   shadow: true,
 })
 export class TriangularWarningIcon {

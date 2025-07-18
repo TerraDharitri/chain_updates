@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   shadow: true,
-  tag: 'mvx-wallet-connect-google-play-icon',
+  tag: 'drt-wallet-connect-google-play-icon',
   styleUrl: 'wallet-connect-google-play-icon.scss',
 })
 export class WalletConnectGooglePlayIcon {

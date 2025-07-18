@@ -5,11 +5,11 @@ import type { IProviderBase } from 'types/provider.types';
 import { ProviderTypeEnum } from 'types/provider.types';
 
 const unlockButtonClasses: Record<string, string> = {
-  statusIcon: 'mvx:fill-teal-400!',
+  statusIcon: 'drt:fill-teal-400!',
 };
 
 @Component({
-  tag: 'mvx-unlock-button',
+  tag: 'drt-unlock-button',
   styleUrl: 'unlock-button.scss',
   shadow: true,
 })
@@ -47,7 +47,7 @@ export class UnlockButton {
             <div class="unlock-button-status-text">{shouldShowOpenLabel ? 'Open' : 'Install'}</div>
 
             {!shouldShowOpenLabel && (
-              <mvx-arrow-up-right-icon
+              <drt-arrow-up-right-icon
                 class={classNames('unlock-button-status-icon', {
                   [unlockButtonClasses.statusIcon]: true,
                 })}

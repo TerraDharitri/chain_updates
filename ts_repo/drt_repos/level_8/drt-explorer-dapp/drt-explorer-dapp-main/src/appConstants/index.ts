@@ -41,7 +41,7 @@ export const PLACEHOLDER_IMAGE_PATH = 'assets/img/default.png';
 export const SVG_PLACEHOLDER_IMAGE_PATH = 'assets/img/default.svg';
 export const SVG_ICON_PLACEHOLDER_IMAGE_PATH = 'assets/img/default-icon.svg';
 
-export const DEFAULT_HRP = 'erd';
+export const DEFAULT_HRP = 'drt';
 
 export const DEFAULT_PROVIDER_COLORS: {
   [index: string]: string;

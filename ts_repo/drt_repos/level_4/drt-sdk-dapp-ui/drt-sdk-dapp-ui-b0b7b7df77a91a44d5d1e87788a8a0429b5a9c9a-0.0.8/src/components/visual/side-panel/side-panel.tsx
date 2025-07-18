@@ -3,7 +3,7 @@ import { Component, Event, h, Prop, State, Watch } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
-  tag: 'mvx-side-panel',
+  tag: 'drt-side-panel',
   styleUrl: 'side-panel.scss',
   shadow: true,
 })
@@ -78,7 +78,7 @@ export class SidePanel {
       >
         <div class={classNames('side-panel', { visible: this.shouldAnimate }, this.panelClassName)}>
           {this.showHeader && (
-            <mvx-side-panel-header
+            <drt-side-panel-header
               panelTitle={this.panelTitle}
               panelClassName={this.panelClassName}
               hasLeftButton={this.hasBackButton}

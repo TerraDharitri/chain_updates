@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 @Component({
-  tag: 'mvx-transaction-method',
+  tag: 'transaction-method',
   styleUrl: 'transaction-method.css',
 })
 export class TransactionMethod {

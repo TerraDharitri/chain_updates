@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  background: var(--mvx-bg-accent-variant-color);
+  background: var(--drt-bg-accent-variant-color);
   border-radius: 16px;
   padding-bottom: 12px;
 }
@@ -33,10 +33,10 @@
   position: relative;
   
   &:before {
-    @apply mvx:absolute mvx:opacity-60 mvx:top-0 mvx:bottom-0 mvx:left-0 mvx:right-0 mvx:transition-all mvx:duration-200 mvx:rounded-xl;
-    @apply mvx:pointer-events-none mvx:ease-in-out;
+    @apply drt:absolute drt:opacity-60 drt:top-0 drt:bottom-0 drt:left-0 drt:right-0 drt:transition-all drt:duration-200 drt:rounded-xl;
+    @apply drt:pointer-events-none drt:ease-in-out;
     content: '';
-    background: var(--mvx-bg-color-tertiary);
+    background: var(--drt-bg-color-tertiary);
   }
 }
 
@@ -48,7 +48,7 @@
 }
 
 .gas-price {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -57,7 +57,7 @@
 }
 
 .gas-price-value {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -70,7 +70,7 @@
   align-items: center;
   gap: 4px;
   padding: 2px;
-  background: var(--mvx-bg-accent-variant-color);
+  background: var(--drt-bg-accent-variant-color);
   border-radius: 20px;
   position: relative;
   z-index: 1;
@@ -87,18 +87,18 @@
 }
 
 .speed-option.active {
-  background: var(--mvx-button-bg-primary);
+  background: var(--drt-button-bg-primary);
 }
 
 .speed-text {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
 }
 
 .speed-option.active .speed-text {
-  color: var(--mvx-button-text-primary);
+  color: var(--drt-button-text-primary);
 }
 
 .gas-limit-row {
@@ -109,7 +109,7 @@
 }
 
 .gas-limit {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -118,7 +118,7 @@
 }
 
 .gas-limit-value {
-  color: var(--mvx-text-color-secondary);
+  color: var(--drt-text-color-secondary);
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;

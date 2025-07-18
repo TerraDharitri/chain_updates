@@ -8,7 +8,7 @@ import type { IAccountScreenData, ILedgerAccount } from '../../ledger-connect.ty
 const TOTAL_ADDRESSES_COUNT = 5000;
 
 @Component({
-  tag: 'mvx-ledger-addresses',
+  tag: 'drt-ledger-addresses',
   styleUrl: 'ledger-addresses.scss',
   shadow: true,
 })
@@ -57,23 +57,23 @@ export class LedgerAddresses {
     const isIndexInTheThousands = lastIndexOfPage >= 1000;
 
     const ledgerAddressesClasses: Record<string, string> = {
-      pagination: 'mvx:relative mvx:z-1',
-      buttonTooltip: 'mvx:absolute mvx:top-0 mvx:h-12 mvx:left-0 mvx:right-0',
+      pagination: 'drt:relative drt:z-1',
+      buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
       preloaderItem:
-        'mvx:h-16! mvx:border mvx:border-solid mvx:border-transparent mvx:rounded-lg! mvx:flex mvx:items-center mvx:w-full! mvx:p-4',
-      preloaderItemCheckbox: 'mvx:h-4! mvx:mr-2 mvx:min-w-4! mvx:w-4! mvx:rounded-full! mvx:bg-preloader!',
-      preloaderItemAddress: 'mvx:w-40! mvx:h-4! mvx:bg-preloader! mvx:rounded-lg! mvx:mr-auto',
-      preloaderItemBalance: 'mvx:w-24! mvx:h-4! mvx:bg-preloader! mvx:rounded-lg! mvx:ml-2',
-      preloaderItemIndex: classNames('mvx:mr-2 mvx:h-4! mvx:bg-preloader! mvx:rounded-lg!', {
-        'mvx:w-9!': isSingleDigitIndex,
-        'mvx:w-10!': isIndexBelowOneHundred,
-        'mvx:w-13!': isIndexInTheHundreds,
-        'mvx:w-17!': isIndexInTheThousands,
+        'drt:h-16! drt:border drt:border-solid drt:border-transparent drt:rounded-lg! drt:flex drt:items-center drt:w-full! drt:p-4',
+      preloaderItemCheckbox: 'drt:h-4! drt:mr-2 drt:min-w-4! drt:w-4! drt:rounded-full! drt:bg-preloader!',
+      preloaderItemAddress: 'drt:w-40! drt:h-4! drt:bg-preloader! drt:rounded-lg! drt:mr-auto',
+      preloaderItemBalance: 'drt:w-24! drt:h-4! drt:bg-preloader! drt:rounded-lg! drt:ml-2',
+      preloaderItemIndex: classNames('drt:mr-2 drt:h-4! drt:bg-preloader! drt:rounded-lg!', {
+        'drt:w-9!': isSingleDigitIndex,
+        'drt:w-10!': isIndexBelowOneHundred,
+        'drt:w-13!': isIndexInTheHundreds,
+        'drt:w-17!': isIndexInTheThousands,
       }),
     };
 
     if (isAddressesLoadingInitially) {
-      return <mvx-ledger-intro isAwaiting={true} />;
+      return <drt-ledger-intro isAwaiting={true} />;
     }
 
     return (
@@ -85,31 +85,31 @@ export class LedgerAddresses {
         <div class="ledger-addresses-wrapper">
           <div class={{ 'ledger-addresses-preloader': true, 'visible': isPageChanging }}>
             {Array.from({ length: this.accountScreenData.addressesPerPage }, () => (
-              <mvx-preloader
+              <drt-preloader
                 class={classNames('ledger-addresses-preloader-item', ledgerAddressesClasses.preloaderItem)}
               >
-                <mvx-preloader
+                <drt-preloader
                   class={classNames(
                     'ledger-addresses-preloader-item-checkbox',
                     ledgerAddressesClasses.preloaderItemCheckbox,
                   )}
                 />
-                <mvx-preloader
+                <drt-preloader
                   class={classNames('ledger-addresses-preloader-item-index', ledgerAddressesClasses.preloaderItemIndex)}
                 />
-                <mvx-preloader
+                <drt-preloader
                   class={classNames(
                     'ledger-addresses-preloader-item-address',
                     ledgerAddressesClasses.preloaderItemAddress,
                   )}
                 />
-                <mvx-preloader
+                <drt-preloader
                   class={classNames(
                     'ledger-addresses-preloader-item-balance',
                     ledgerAddressesClasses.preloaderItemBalance,
                   )}
                 />
-              </mvx-preloader>
+              </drt-preloader>
             ))}
           </div>
 
@@ -141,7 +141,7 @@ export class LedgerAddresses {
                   #{this.processLedgerAddressIndex(accountDerivation)}
                 </div>
 
-                <mvx-trim text={accountDerivation.address} class="ledger-addresses-list-item-address" />
+                <drt-trim text={accountDerivation.address} class="ledger-addresses-list-item-address" />
                 <div class="ledger-addresses-list-item-balance">{accountDerivation.usdValue}</div>
               </div>
             ))}
@@ -149,7 +149,7 @@ export class LedgerAddresses {
         </div>
 
         <div class="ledger-addresses-pagination">
-          <mvx-pagination
+          <drt-pagination
             totalPages={totalPages}
             isDisabled={isPageChanging}
             class={ledgerAddressesClasses.pagination}
@@ -161,7 +161,7 @@ export class LedgerAddresses {
         <div class="ledger-addresses-button-wrapper">
           {isAccessWalletDisabled && (
             <div class="ledger-addresses-button-tooltip-wrapper">
-              <mvx-tooltip
+              <drt-tooltip
                 trigger={
                   <div
                     class={{ 'ledger-addresses-button-tooltip': true, [ledgerAddressesClasses.buttonTooltip]: true }}
@@ -169,7 +169,7 @@ export class LedgerAddresses {
                 }
               >
                 You have to select a wallet from the list that you want to access.
-              </mvx-tooltip>
+              </drt-tooltip>
             </div>
           )}
 
@@ -179,7 +179,7 @@ export class LedgerAddresses {
             class={{ 'ledger-addresses-button': true, 'loading': isPageChanging, 'disabled': isAccessWalletDisabled }}
           >
             <span class="ledger-addresses-button-label">{isPageChanging ? 'Loading Wallets...' : 'Access Wallet'}</span>
-            {isPageChanging && <mvx-spinner-icon />}
+            {isPageChanging && <drt-spinner-icon />}
           </button>
         </div>
       </div>

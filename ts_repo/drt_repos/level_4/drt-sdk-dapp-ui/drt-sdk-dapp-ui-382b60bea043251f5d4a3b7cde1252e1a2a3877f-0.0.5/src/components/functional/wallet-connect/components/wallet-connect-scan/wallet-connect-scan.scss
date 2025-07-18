@@ -1,62 +1,62 @@
 :host {
-  @apply mvx:flex mvx:flex-1 mvx:flex-col mvx:w-full;
+  @apply drt:flex drt:flex-1 drt:flex-col drt:w-full;
 
   .wallet-connect-scan {
-    @apply mvx:flex mvx:items-center mvx:flex-col mvx:gap-3 mvx:flex-1 mvx:w-full;
+    @apply drt:flex drt:items-center drt:flex-col drt:gap-3 drt:flex-1 drt:w-full;
 
     .wallet-connect-scan-qr {
-      @apply mvx:flex mvx:justify-center mvx:items-center mvx:mt-auto mvx:relative mvx:w-75 mvx:h-75;
+      @apply drt:flex drt:justify-center drt:items-center drt:mt-auto drt:relative drt:w-75 drt:h-75;
 
       .wallet-connect-scan-qr-embed {
-        @apply mvx:w-full mvx:h-auto mvx:absolute mvx:opacity-0 mvx:transition-all mvx:duration-200 mvx:pointer-events-none mvx:w-85 mvx:h-85;
+        @apply drt:w-full drt:h-auto drt:absolute drt:opacity-0 drt:transition-all drt:duration-200 drt:pointer-events-none drt:w-85 drt:h-85;
         transition-timing-function: ease;
 
         &:before {
-          @apply mvx:pointer-events-none mvx:left-0 mvx:bottom-0 mvx:top-0 mvx:right-0 mvx:absolute;
+          @apply drt:pointer-events-none drt:left-0 drt:bottom-0 drt:top-0 drt:right-0 drt:absolute;
           content: '';
           border: calc(12px / 4) solid #101010;
         }
 
         path {
-          @apply mvx:stroke-white;
+          @apply drt:stroke-white;
           fill: #101010;
         }
 
         &.visible {
-          @apply mvx:opacity-100;
+          @apply drt:opacity-100;
         }
       }
     }
 
     .wallet-connect-scan-description {
-      @apply mvx:leading-5 mvx:font-medium mvx:text-base mvx:h-16 mvx:z-1 mvx:mb-auto;
+      @apply drt:leading-5 drt:font-medium drt:text-base drt:h-16 drt:z-1 drt:mb-auto;
       color: #a09a93;
     }
 
     .wallet-connect-scan-download {
-      @apply mvx:rounded-xl mvx:w-full mvx:flex mvx:gap-6 mvx:items-center mvx:p-6 mvx:relative mvx:mt-16 mvx:h-44;
+      @apply drt:rounded-xl drt:w-full drt:flex drt:gap-6 drt:items-center drt:p-6 drt:relative drt:mt-16 drt:h-44;
       background: #0a0a0a;
 
       .wallet-connect-scan-download-wrapper {
-        @apply mvx:flex mvx:flex-col mvx:gap-4 mvx:items-start;
+        @apply drt:flex drt:flex-col drt:gap-4 drt:items-start;
 
         .wallet-connect-scan-download-title {
-          @apply mvx:text-white mvx:text-base mvx:leading-5 mvx:font-medium;
+          @apply drt:text-white drt:text-base drt:leading-5 drt:font-medium;
         }
 
         .wallet-connect-scan-download-button {
-          @apply mvx:rounded-lg mvx:text-xs mvx:leading-none mvx:text-center mvx:p-2 mvx:font-bold mvx:cursor-pointer mvx:transition-all mvx:duration-200;
+          @apply drt:rounded-lg drt:text-xs drt:leading-none drt:text-center drt:p-2 drt:font-bold drt:cursor-pointer drt:transition-all drt:duration-200;
           background: #23f7dd;
           transition-timing-function: ease;
 
           &:hover {
-            @apply mvx:opacity-75;
+            @apply drt:opacity-75;
           }
         }
       }
 
       .wallet-connect-scan-download-image {
-        @apply mvx:absolute mvx:right-0 mvx:bottom-0;
+        @apply drt:absolute drt:right-0 drt:bottom-0;
       }
     }
   }

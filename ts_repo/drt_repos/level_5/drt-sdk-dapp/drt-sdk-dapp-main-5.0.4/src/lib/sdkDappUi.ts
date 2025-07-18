@@ -1,10 +1,10 @@
-export { MvxLedgerConnect } from '@terradharitri/sdk-dapp-ui/web-components/mvx-ledger-connect';
-export type { MvxSignTransactionsPanel } from '@terradharitri/sdk-dapp-ui/web-components/mvx-sign-transactions-panel';
-export type { MvxWalletConnect } from '@terradharitri/sdk-dapp-ui/web-components/mvx-wallet-connect';
-export type { MvxPendingTransactionsPanel } from '@terradharitri/sdk-dapp-ui/web-components/mvx-pending-transactions-panel';
-export type { MvxNotificationsFeed } from '@terradharitri/sdk-dapp-ui/web-components/mvx-notifications-feed';
-export type { MvxToastList } from '@terradharitri/sdk-dapp-ui/web-components/mvx-toast-list';
-export type { MvxUnlockPanel } from '@terradharitri/sdk-dapp-ui/web-components/mvx-unlock-panel';
+export { MvxLedgerConnect } from '@terradharitri/sdk-dapp-ui/web-components/drt-ledger-connect';
+export type { MvxSignTransactionsPanel } from '@terradharitri/sdk-dapp-ui/web-components/drt-sign-transactions-panel';
+export type { MvxWalletConnect } from '@terradharitri/sdk-dapp-ui/web-components/drt-wallet-connect';
+export type { MvxPendingTransactionsPanel } from '@terradharitri/sdk-dapp-ui/web-components/drt-pending-transactions-panel';
+export type { MvxNotificationsFeed } from '@terradharitri/sdk-dapp-ui/web-components/drt-notifications-feed';
+export type { MvxToastList } from '@terradharitri/sdk-dapp-ui/web-components/drt-toast-list';
+export type { MvxUnlockPanel } from '@terradharitri/sdk-dapp-ui/web-components/drt-unlock-panel';
 
 export type { IEventBus } from '@terradharitri/sdk-dapp-ui/types/utils/EventBus';
 export type {

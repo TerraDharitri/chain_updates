@@ -410,7 +410,7 @@
     {
       "name": "activateOffer",
       "mutability": "mutable",
-      "payableInTokens": ["EGLD"],
+      "payableInTokens": ["REWA"],
       "inputs": [
         {
           "name": "swap_id",
@@ -472,7 +472,7 @@
     {
       "name": "acceptOffer",
       "mutability": "mutable",
-      "payableInTokens": ["EGLD"],
+      "payableInTokens": ["REWA"],
       "inputs": [
         {
           "name": "swap_id",

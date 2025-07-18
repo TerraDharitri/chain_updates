@@ -4,7 +4,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import type { TransactionRowType } from '../../transactions-table.type';
 
 @Component({
-  tag: 'mvx-transaction-hash',
+  tag: 'drt-transaction-hash',
 })
 export class TransactionHash {
   @Prop() class?: string;
@@ -17,11 +17,11 @@ export class TransactionHash {
 
     return (
       <div class={{ 'transaction-hash': true, [this.class]: Boolean(this.class) }}>
-        <mvx-transaction-icon iconInfo={this.transaction.iconInfo} />
+        <drt-transaction-icon iconInfo={this.transaction.iconInfo} />
 
-        <mvx-explorer-link dataTestId={DataTestIdsEnum.transactionLink} link={this.transaction.link}>
+        <drt-explorer-link dataTestId={DataTestIdsEnum.transactionLink} link={this.transaction.link}>
           <span>{this.transaction.txHash}</span>
-        </mvx-explorer-link>
+        </drt-explorer-link>
       </div>
     );
   }

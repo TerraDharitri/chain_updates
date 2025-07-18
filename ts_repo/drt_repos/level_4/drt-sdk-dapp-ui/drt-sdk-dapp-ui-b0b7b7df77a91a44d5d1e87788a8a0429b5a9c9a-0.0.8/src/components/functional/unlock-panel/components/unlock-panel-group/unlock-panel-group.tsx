@@ -8,12 +8,12 @@ export enum UnlockPanelGroupSlotEnum {
 }
 
 const unlockPanelGroupClasses: Record<string, string> = {
-  detectedPanelGroup: 'mvx:hidden mvx:sm:block',
-  lastProviderButton: 'mvx:rounded-bl-lg mvx:rounded-br-lg mvx:overflow-hidden',
+  detectedPanelGroup: 'drt:hidden drt:sm:block',
+  lastProviderButton: 'drt:rounded-bl-lg drt:rounded-br-lg drt:overflow-hidden',
 };
 
 @Component({
-  tag: 'mvx-unlock-panel-group',
+  tag: 'drt-unlock-panel-group',
   styleUrl: 'unlock-panel-group.scss',
   shadow: true,
 })
@@ -39,7 +39,7 @@ export class UnlockPanelGroup {
 
         <div class="unlock-panel-group-providers">
           {this.providers.map((provider, providerIndex) => (
-            <mvx-unlock-provider-button
+            <drt-unlock-provider-button
               provider={provider}
               onClick={() => this.handleLogin(provider)}
               class={classNames({

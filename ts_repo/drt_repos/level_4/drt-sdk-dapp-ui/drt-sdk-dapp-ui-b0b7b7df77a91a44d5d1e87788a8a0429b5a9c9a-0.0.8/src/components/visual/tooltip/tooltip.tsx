@@ -2,7 +2,7 @@ import type { EventEmitter } from '@stencil/core';
 import { Component, Event, h, Prop, State } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-tooltip',
+  tag: 'drt-tooltip',
   styleUrl: 'tooltip.scss',
   shadow: true,
 })

@@ -23,7 +23,7 @@
   color: transparent;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--mvx-gray-200);
+  border: 1px solid var(--drt-gray-200);
 }
 
 .badge {
@@ -54,23 +54,23 @@
 }
 
 .badge-primary {
-  color: var(--mvx-white);
-  background-color: var(--mvx-blue-600);
+  color: var(--drt-white);
+  background-color: var(--drt-blue-600);
 }
 
 .badge-secondary {
-  color: var(--mvx-white);
-  background-color: var(--mvx-gray-500);
+  color: var(--drt-white);
+  background-color: var(--drt-gray-500);
 }
 
 .badge-danger {
-  color: var(--mvx-white);
-  background-color: var(--mvx-red-600);
+  color: var(--drt-white);
+  background-color: var(--drt-red-600);
 }
 
 .badge-light {
-  color: var(--mvx-gray-900);
-  background-color: var(--mvx-gray-100);
+  color: var(--drt-gray-900);
+  background-color: var(--drt-gray-100);
 }
 
 .text-truncate {
@@ -84,5 +84,5 @@
 }
 
 .text-white {
-  color: var(--mvx-white);
+  color: var(--drt-white);
 }

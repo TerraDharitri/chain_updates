@@ -13,7 +13,7 @@ const xPortalDownloadOptions = [
 ];
 
 @Component({
-  tag: 'mvx-wallet-connect-download',
+  tag: 'drt-wallet-connect-download',
   styleUrl: 'wallet-connect-download.scss',
   shadow: true,
 })
@@ -22,7 +22,7 @@ export class WalletConnect {
     return (
       <div class="wallet-connect-download">
         <div class="wallet-connect-download-wrapper">
-          <mvx-xportal-download-qr-icon class="wallet-connect-download-qr" />
+          <drt-xportal-download-qr-icon class="wallet-connect-download-qr" />
           <div class="wallet-connect-download-description">
             Scan this QR code on your phone <br /> to get the xPortal app
           </div>

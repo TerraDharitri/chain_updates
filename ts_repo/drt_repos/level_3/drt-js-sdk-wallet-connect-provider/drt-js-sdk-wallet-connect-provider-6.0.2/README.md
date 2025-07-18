@@ -178,7 +178,7 @@ console.log(message.toJSON());
 
 ## Namespaces
 
-DharitrI Namespace: `mvx`
+DharitrI Namespace: `drt`
 
 Reference: `1` for `Mainnet`, `T` for `Testnet`, `D` for `Devnet` ( same as the DharitrI chainID )
 
@@ -189,8 +189,8 @@ The DharitrI namespaces respect the [CAIP Standards](https://namespaces.chainagn
 ```json
 {
   "requiredNamespaces": {
-    "mvx": {
-      "chains": ["mvx:D"],
+    "drt": {
+      "chains": ["drt:D"],
       "methods": [
         "drt_signTransaction",
         "drt_signTransactions",
@@ -209,8 +209,8 @@ If the wallet (or the user) does NOT approve the session, then it is rejected. O
 ```json
 {
   "sessionNamespaces": {
-    "mvx": {
-      "chains": ["mvx:D"],
+    "drt": {
+      "chains": ["drt:D"],
       "methods": [
         "drt_signTransaction",
         "drt_signTransactions",
@@ -218,7 +218,7 @@ If the wallet (or the user) does NOT approve the session, then it is rejected. O
       ],
       "events": [],
       "accounts": [
-        "mvx:D:drt1p47hljmqsetgzc4yqp700z6443r655zfkkg9lfkh0tx2wzyxl8sa5jdjq"
+        "drt:D:drt1p47hljmqsetgzc4yqp700z6443r655zfkkg9lfkh0tx2wzyxl8sa5jdjq"
       ]
     }
   }

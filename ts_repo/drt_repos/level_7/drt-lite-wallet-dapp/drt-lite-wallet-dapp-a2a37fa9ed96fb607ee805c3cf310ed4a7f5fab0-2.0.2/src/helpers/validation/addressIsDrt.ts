@@ -1,6 +1,6 @@
 import { Address } from '@terradharitri/sdk-core';
 
-export const addressIsErd = (address: string) => {
+export const addressIsDrt = (address: string) => {
   try {
     const addressObj = Address.newFromBech32(address);
     return addressObj.toBech32().startsWith('drt');

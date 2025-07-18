@@ -1,65 +1,65 @@
 :host {
-  @apply mvx:flex mvx:flex-col;
+  @apply drt:flex drt:flex-col;
 
   .sign-transactions-header {
-    @apply mvx:flex mvx:flex-1 mvx:flex-col mvx:gap-5 mvx:py-5;
+    @apply drt:flex drt:flex-1 drt:flex-col drt:gap-5 drt:py-5;
 
     .sign-transactions-header-pager {
-      @apply mvx:flex mvx:relative mvx:rounded-2xl mvx:h-9 mvx:items-center mvx:px-5 mvx:justify-center mvx:drt-auto mvx:gap-5;
-      background-color: var(--mvx-bg-color-secondary);
+      @apply drt:flex drt:relative drt:rounded-2xl drt:h-9 drt:items-center drt:px-5 drt:justify-center drt:drt-auto drt:gap-5;
+      background-color: var(--drt-bg-color-secondary);
 
       .sign-transactions-header-pager-icon {
-        @apply mvx:relative mvx:z-1 mvx:cursor-pointer mvx:flex mvx:items-center mvx:justify-center mvx:transition-all;
-        @apply mvx:ease-in-out mvx:duration-200 mvx:w-5;
-        fill: var(--mvx-text-color-secondary);
+        @apply drt:relative drt:z-1 drt:cursor-pointer drt:flex drt:items-center drt:justify-center drt:transition-all;
+        @apply drt:ease-in-out drt:duration-200 drt:w-5;
+        fill: var(--drt-text-color-secondary);
 
         &:hover {
-          fill: var(--mvx-text-color-primary);
+          fill: var(--drt-text-color-primary);
         }
 
         &.disabled {
-          @apply mvx:pointer-events-none mvx:opacity-50;
+          @apply drt:pointer-events-none drt:opacity-50;
         }
       }
 
       .sign-transactions-header-pager-text {
-        @apply mvx:relative mvx:z-1 mvx:flex mvx:text-base mvx:leading-none mvx:select-none mvx:items-center mvx:gap-2;
+        @apply drt:relative drt:z-1 drt:flex drt:text-base drt:leading-none drt:select-none drt:items-center drt:gap-2;
 
         .sign-transactions-header-pager-text-label {
-          color: var(--mvx-text-color-secondary);
+          color: var(--drt-text-color-secondary);
         }
 
         .sign-transactions-header-pager-text-value {
-          @apply mvx:font-medium mvx:flex mvx:items-center mvx:justify-center mvx:w-2.5;
-          color: var(--mvx-text-color-primary);
+          @apply drt:font-medium drt:flex drt:items-center drt:justify-center drt:w-2.5;
+          color: var(--drt-text-color-primary);
 
           &.large {
-            @apply mvx:w-5;
+            @apply drt:w-5;
           }
         }
       }
     }
 
     .sign-transactions-header-origin {
-      @apply mvx:py-6 mvx:flex mvx:flex-col mvx:drt-auto mvx:text-center mvx:justify-center mvx:items-center;
-      @apply mvx:select-none mvx:gap-3 mvx:leading-none mvx:text-base;
+      @apply drt:py-6 drt:flex drt:flex-col drt:drt-auto drt:text-center drt:justify-center drt:items-center;
+      @apply drt:select-none drt:gap-3 drt:leading-none drt:text-base;
 
       &.centered {
-        @apply mvx:m-auto;
+        @apply drt:m-auto;
       }
 
       .sign-transactions-header-origin-label {
-        color: var(--mvx-text-color-secondary);
+        color: var(--drt-text-color-secondary);
       }
 
       .sign-transactions-header-origin-image {
-        @apply mvx:flex mvx:items-center mvx:rounded-3xl mvx:justify-center mvx:w-18 mvx:h-18;
-        background: var(--mvx-neutral-950);
-        border: 1px solid var(--mvx-neutral-900);
+        @apply drt:flex drt:items-center drt:rounded-3xl drt:justify-center drt:w-18 drt:h-18;
+        background: var(--drt-neutral-950);
+        border: 1px solid var(--drt-neutral-900);
       }
 
       .sign-transactions-header-origin-name {
-        color: var(--mvx-text-color-primary);
+        color: var(--drt-text-color-primary);
       }
     }
   }

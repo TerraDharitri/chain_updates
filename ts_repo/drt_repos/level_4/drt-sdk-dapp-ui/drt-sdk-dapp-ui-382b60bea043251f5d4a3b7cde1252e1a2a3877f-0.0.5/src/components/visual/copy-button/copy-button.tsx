@@ -5,7 +5,7 @@ import { getIconHtmlFromIconDefinition } from 'utils/icons/getIconHtmlFromIconDe
 import { getIconHtmlFromIconName } from 'utils/icons/getIconHtmlFromIconName';
 
 @Component({
-  tag: 'mvx-copy-button',
+  tag: 'drt-copy-button',
   styleUrl: 'copy-button.css',
 })
 export class CopyButton {
@@ -57,7 +57,7 @@ export class CopyButton {
 
     return (
       <a href="/#" class={this.class} onClick={this.handleClick}>
-        <mvx-fa-icon icon={this.isSuccess ? successIcon : copyIcon} class={this.iconClass}></mvx-fa-icon>
+        <drt-fa-icon icon={this.isSuccess ? successIcon : copyIcon} class={this.iconClass}></drt-fa-icon>
       </a>
     );
   }

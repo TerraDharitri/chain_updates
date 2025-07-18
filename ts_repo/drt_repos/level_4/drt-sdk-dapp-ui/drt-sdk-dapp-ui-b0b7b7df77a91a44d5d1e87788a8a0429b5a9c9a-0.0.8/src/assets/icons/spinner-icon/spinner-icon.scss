@@ -5,7 +5,7 @@
 }
 
 .spinner {
-  @apply mvx:w-4 mvx:h-4;
-  fill: var(--mvx-text-color-secondary);
+  @apply drt:w-4 drt:h-4;
+  fill: var(--drt-text-color-secondary);
   animation: SpinnerAnimation 3000ms linear infinite;
 }

@@ -13,18 +13,18 @@
 }
 
 :host {
-  @apply mvx:relative;
-  background-color: var(--mvx-white);
+  @apply drt:relative;
+  background-color: var(--drt-white);
 
   &:before {
-    @apply mvx:absolute mvx:rounded-lg mvx:w-77 mvx:h-77 mvx:transform mvx:-translate-x-1/2 mvx:-translate-y-1/2;
-    @apply mvx:top-1/2 mvx:left-1/2;
-    border: calc((24px + 4px) / 2) solid var(--mvx-white) !important;
+    @apply drt:absolute drt:rounded-lg drt:w-77 drt:h-77 drt:transform drt:-translate-x-1/2 drt:-translate-y-1/2;
+    @apply drt:top-1/2 drt:left-1/2;
+    border: calc((24px + 4px) / 2) solid var(--drt-white) !important;
     content: '';
   }
 
   .xportal-qr-code-preloader {
-    @apply mvx:transition-all mvx:duration-200 mvx:w-70 mvx:h-70 mvx:ease-in-out;
+    @apply drt:transition-all drt:duration-200 drt:w-70 drt:h-70 drt:ease-in-out;
     animation: XPortalQrCodePreloaderPulsation 1s infinite;
     fill: none;
   }

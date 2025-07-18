@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 import { ELLIPSIS } from 'constants/htmlStrings';
 
 @Component({
-  tag: 'mvx-pagination-ellipsis',
+  tag: 'drt-pagination-ellipsis',
   styleUrl: 'pagination-ellipsis.scss',
   shadow: true,
 })

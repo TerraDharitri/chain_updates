@@ -12,11 +12,11 @@ const iconData: Record<string, IconDefinition> = {
 };
 
 const transactionToastDetailsBodyClasses: Record<string, string> = {
-  explorerLinkIcon: 'mvx:fill-primary!',
+  explorerLinkIcon: 'drt:fill-primary!',
 };
 
 @Component({
-  tag: 'mvx-transaction-toast-details-body',
+  tag: 'drt-transaction-toast-details-body',
   styleUrl: 'transaction-toast-details-body.scss',
 })
 export class TransactionDetailsBody {
@@ -45,17 +45,17 @@ export class TransactionDetailsBody {
         )}
         <div class="transaction-details-list-item-hash-index">{this.index}</div>
         <div class="transaction-details-list-item-hash-value">
-          <mvx-trim text={this.hash} />
+          <drt-trim text={this.hash} />
         </div>
 
-        <mvx-copy-button
+        <drt-copy-button
           text={this.hash}
           class="transaction-details-list-item-copy"
           iconClass="transaction-details-list-item-copy-icon"
         />
 
         <div class="transaction-details-list-item-explorer-link-icon">
-          <mvx-explorer-link link={this.link} class={transactionToastDetailsBodyClasses.explorerLinkIcon} />
+          <drt-explorer-link link={this.link} class={transactionToastDetailsBodyClasses.explorerLinkIcon} />
         </div>
       </div>
     );

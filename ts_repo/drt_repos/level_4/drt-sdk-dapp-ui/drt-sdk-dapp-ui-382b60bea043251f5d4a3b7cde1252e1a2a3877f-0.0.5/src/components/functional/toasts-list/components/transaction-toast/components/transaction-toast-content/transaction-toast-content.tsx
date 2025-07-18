@@ -8,7 +8,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 import type { IToastDataState } from '../../transaction-toast.type';
 @Component({
-  tag: 'mvx-transaction-toast-content',
+  tag: 'drt-transaction-toast-content',
   styleUrl: 'transaction-toast-content.css',
 })
 export class TransactionToastContent {
@@ -43,7 +43,7 @@ export class TransactionToastContent {
             <fa-icon icon={this.toastDataState.icon} class={`transaction-toast-icon ${this.toastDataState.iconClassName ?? ''}`}></fa-icon>
           ) : (
             <div class="transaction-toast-icon">
-              <mvx-transaction-asset-icon transaction={transaction} iconSize={IconSizeEnumType.small} />
+              <drt-transaction-asset-icon transaction={transaction} iconSize={IconSizeEnumType.small} />
             </div>
           )}
           <div class="transaction-toast-details">
@@ -57,7 +57,7 @@ export class TransactionToastContent {
                 {transaction?.action?.name || title}
               </h4>
               {showAmount && (
-                <mvx-format-amount
+                <drt-format-amount
                   class="transaction-toast-amount"
                   isValid
                   label={amount.label}
@@ -72,19 +72,19 @@ export class TransactionToastContent {
               <div class="transaction-toast-details-info">
                 {transaction.directionLabel && <span class="transaction-toast-details-info-text">{transaction.directionLabel}</span>}
                 <div class="transaction-toast-details-info-icon">
-                  {transaction.interactorAsset ? <img src={transaction.interactorAsset} alt="Service icon" loading="lazy" /> : <mvx-default-transaction-icon-small />}
+                  {transaction.interactorAsset ? <img src={transaction.interactorAsset} alt="Service icon" loading="lazy" /> : <drt-default-transaction-icon-small />}
                 </div>
-                <mvx-trim-text text={transaction.interactor} class="transaction-toast-details-info-text" />
+                <drt-trim-text text={transaction.interactor} class="transaction-toast-details-info-text" />
               </div>
             )}
           </div>
 
           {hasCloseButton && <fa-icon icon={faTimes} class="transaction-toast-close-icon" onClick={this.handleDeleteToast.bind(this)}></fa-icon>}
 
-          {!hasCloseButton && showExplorerLinkButton && <mvx-explorer-link link={transaction.link} class="transaction-toast-action-button"></mvx-explorer-link>}
+          {!hasCloseButton && showExplorerLinkButton && <drt-explorer-link link={transaction.link} class="transaction-toast-action-button"></drt-explorer-link>}
         </div>
 
-        {!showExplorerLinkButton && <mvx-transaction-toast-details transactions={this.transactions} processedTransactionsStatus={this.processedTransactionsStatus} />}
+        {!showExplorerLinkButton && <drt-transaction-toast-details transactions={this.transactions} processedTransactionsStatus={this.processedTransactionsStatus} />}
       </div>
     );
   }

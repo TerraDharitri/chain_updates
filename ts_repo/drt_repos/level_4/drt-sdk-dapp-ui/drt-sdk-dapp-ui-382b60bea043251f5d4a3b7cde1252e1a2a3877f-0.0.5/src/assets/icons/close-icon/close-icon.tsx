@@ -1,7 +1,7 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-close-icon',
+  tag: 'drt-close-icon',
   shadow: true,
 })
 export class CloseIcon {

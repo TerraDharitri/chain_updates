@@ -1,74 +1,74 @@
 :host {
-  @apply mvx:flex mvx:flex-col mvx:flex-1;
+  @apply drt:flex drt:flex-col drt:flex-1;
 
   .sign-transactions-footer {
-    @apply mvx:mt-auto mvx:flex mvx:flex-col mvx:items-center mvx:pt-5 mvx:gap-5 mvx:text-center;
+    @apply drt:mt-auto drt:flex drt:flex-col drt:items-center drt:pt-5 drt:gap-5 drt:text-center;
 
     .sign-transactions-footer-buttons {
-      @apply mvx:flex mvx:items-center mvx:w-full mvx:gap-3;
+      @apply drt:flex drt:items-center drt:w-full drt:gap-3;
 
       .sign-transactions-footer-button-wrapper {
-        @apply mvx:relative mvx:flex mvx:flex-col mvx:flex-1;
+        @apply drt:relative drt:flex drt:flex-col drt:flex-1;
 
         &.cancel {
-          @apply mvx:w-32 mvx:max-w-32;
+          @apply drt:w-32 drt:max-w-32;
         }
 
         .sign-transactions-footer-button-tooltip-wrapper {
-          @apply mvx:absolute mvx:inset-0;
+          @apply drt:absolute drt:inset-0;
         }
 
         .sign-transactions-footer-button {
-          @apply mvx:rounded-xl mvx:px-4 mvx:py-2 mvx:flex mvx:justify-center mvx:items-center mvx:max-h-10 mvx:min-h-10;
-          @apply mvx:leading-none mvx:text-base mvx:font-bold mvx:transition-all mvx:duration-200 mvx:cursor-pointer;
-          @apply mvx:ease-in-out mvx:gap-2 mvx:w-full;
+          @apply drt:rounded-xl drt:px-4 drt:py-2 drt:flex drt:justify-center drt:items-center drt:max-h-10 drt:min-h-10;
+          @apply drt:leading-none drt:text-base drt:font-bold drt:transition-all drt:duration-200 drt:cursor-pointer;
+          @apply drt:ease-in-out drt:gap-2 drt:w-full;
           border: 1px solid transparent;
 
           &.cancel {
-            @apply mvx:relative;
-            color: var(--mvx-button-text-secondary);
+            @apply drt:relative;
+            color: var(--drt-button-text-secondary);
 
             &:after {
-              @apply mvx:absolute mvx:inset-0 mvx:rounded-xl mvx:opacity-40 mvx:transition-all mvx:duration-200 mvx:ease-in-out;
-              background-color: var(--mvx-button-bg-secondary);
+              @apply drt:absolute drt:inset-0 drt:rounded-xl drt:opacity-40 drt:transition-all drt:duration-200 drt:ease-in-out;
+              background-color: var(--drt-button-bg-secondary);
               content: '';
             }
 
             &:hover {
-              color: var(--mvx-button-text-primary);
+              color: var(--drt-button-text-primary);
 
               &:after {
-                @apply mvx:opacity-100;
-                background-color: var(--mvx-button-bg-primary);
+                @apply drt:opacity-100;
+                background-color: var(--drt-button-bg-primary);
               }
             }
           }
 
           &.highlighted {
-            @apply mvx:flex-1;
-            color: var(--mvx-button-text-primary);
-            background-color: var(--mvx-button-bg-primary);
+            @apply drt:flex-1;
+            color: var(--drt-button-text-primary);
+            background-color: var(--drt-button-bg-primary);
 
             &:hover {
-              @apply mvx:opacity-75;
+              @apply drt:opacity-75;
             }
           }
 
           &.disabled {
-            @apply mvx:bg-transparent mvx:cursor-default mvx:pointer-events-none;
-            border-color: var(--mvx-text-color-secondary);
-            color: var(--mvx-text-color-secondary);
+            @apply drt:bg-transparent drt:cursor-default drt:pointer-events-none;
+            border-color: var(--drt-text-color-secondary);
+            color: var(--drt-text-color-secondary);
           }
 
           .sign-transactions-footer-button-label {
-            @apply mvx:relative mvx:z-1;
+            @apply drt:relative drt:z-1;
           }
 
           .sign-transactions-footer-button-icon {
-            @apply mvx:flex mvx:transition-all mvx:duration-200 mvx:ease-in-out;
+            @apply drt:flex drt:transition-all drt:duration-200 drt:ease-in-out;
 
             &.lighter {
-              fill: var(--mvx-text-color-secondary);
+              fill: var(--drt-text-color-secondary);
             }
           }
         }
@@ -76,41 +76,41 @@
     }
 
     .sign-transactions-footer-identity {
-      @apply mvx:max-w-64 mvx:flex mvx:items-center mvx:text-base mvx:gap-2;
+      @apply drt:max-w-64 drt:flex drt:items-center drt:text-base drt:gap-2;
 
       .sign-transactions-footer-identity-label {
-        @apply mvx:whitespace-nowrap;
-        color: var(--mvx-text-color-secondary);
+        @apply drt:whitespace-nowrap;
+        color: var(--drt-text-color-secondary);
       }
 
       .sign-transactions-footer-identity-address {
-        @apply mvx:relative mvx:min-w-0 mvx:max-w-none;
+        @apply drt:relative drt:min-w-0 drt:max-w-none;
         top: 0.25px;
-        color: var(--mvx-text-color-primary);
+        color: var(--drt-text-color-primary);
 
         .trim-wrapper {
-          @apply mvx:items-end mvx:leading-none;
+          @apply drt:items-end drt:leading-none;
         }
       }
 
       .sign-transactions-footer-identity-username {
-        @apply mvx:flex mvx:items-center mvx:text-base;
-        color: var(--mvx-text-color-primary);
+        @apply drt:flex drt:items-center drt:text-base;
+        color: var(--drt-text-color-primary);
 
         .sign-transactions-footer-identity-username-prefix {
-          color: var(--mvx-text-accent-color);
+          color: var(--drt-text-accent-color);
         }
       }
 
       .sign-transactions-footer-identity-copy {
-        @apply mvx:flex;
+        @apply drt:flex;
 
         .sign-transactions-footer-identity-copy-icon {
-          @apply mvx:h-4 mvx:w-4 mvx:flex mvx:justify-center mvx:transition-all mvx:duration-200 mvx:ease-in-out;
-          color: var(--mvx-link-color);
+          @apply drt:h-4 drt:w-4 drt:flex drt:justify-center drt:transition-all drt:duration-200 drt:ease-in-out;
+          color: var(--drt-link-color);
 
           &:hover {
-            @apply mvx:opacity-80;
+            @apply drt:opacity-80;
           }
         }
       }

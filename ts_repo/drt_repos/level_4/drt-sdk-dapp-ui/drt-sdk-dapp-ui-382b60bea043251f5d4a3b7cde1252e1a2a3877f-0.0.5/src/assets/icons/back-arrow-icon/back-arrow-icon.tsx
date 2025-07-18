@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   shadow: true,
-  tag: 'mvx-back-arrow-icon',
+  tag: 'drt-back-arrow-icon',
 })
 export class BackArrowIcon {
   render() {

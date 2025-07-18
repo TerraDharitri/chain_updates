@@ -14,7 +14,7 @@ const API_URLS = {
   mainnet: "https://api.dharitri.org",
 };
 
-const CLIENT_NAME = "mvx-mcp";
+const CLIENT_NAME = "drt-mcp";
 
 const ENTRYPOINTS = {
   devnet: new DevnetEntrypoint(undefined, undefined, CLIENT_NAME),

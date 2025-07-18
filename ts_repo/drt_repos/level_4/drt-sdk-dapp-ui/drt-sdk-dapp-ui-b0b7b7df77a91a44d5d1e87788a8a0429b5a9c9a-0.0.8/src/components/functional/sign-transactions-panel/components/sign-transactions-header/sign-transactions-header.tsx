@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import state from '../../signTransactionsPanelStore';
 
 const signTransactionsHeaderClasses: Record<string, string> = {
-  pagerIcon: 'mvx:w-auto! mvx:h-5!',
+  pagerIcon: 'drt:w-auto! drt:h-5!',
 };
 
 @Component({
-  tag: 'mvx-sign-transactions-header',
+  tag: 'drt-sign-transactions-header',
   styleUrl: 'sign-transactions-header.scss',
   shadow: true,
 })
@@ -21,7 +21,7 @@ export class SignTransactionsHeader {
       <div class="sign-transactions-header">
         {transactionsCount > 1 && (
           <div class="sign-transactions-header-pager" onClick={(event: MouseEvent) => event.stopPropagation()}>
-            <mvx-single-angle-left-icon
+            <drt-single-angle-left-icon
               onClick={onBack}
               class={classNames('sign-transactions-header-pager-icon', {
                 [signTransactionsHeaderClasses.pagerIcon]: true,
@@ -40,7 +40,7 @@ export class SignTransactionsHeader {
               </div>
             </div>
 
-            <mvx-single-angle-right-icon
+            <drt-single-angle-right-icon
               onClick={onNext}
               class={classNames('sign-transactions-header-pager-icon', {
                 disabled: currentIndex + 1 === transactionsCount,

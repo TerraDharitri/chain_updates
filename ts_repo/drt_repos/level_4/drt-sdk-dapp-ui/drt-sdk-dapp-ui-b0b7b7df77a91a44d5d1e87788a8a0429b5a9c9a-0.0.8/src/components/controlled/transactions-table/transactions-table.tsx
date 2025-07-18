@@ -7,7 +7,7 @@ import type { TransactionRowType } from './transactions-table.type';
 const COLUMNS = ['TxHash', 'Age', 'Shard', 'From', 'To', 'Method', 'Value'];
 
 @Component({
-  tag: 'mvx-transactions-table',
+  tag: 'drt-transactions-table',
   styleUrl: 'transactions-table.scss',
 })
 export class TransactionsTable {
@@ -30,41 +30,41 @@ export class TransactionsTable {
           {this.transactions.map(transaction => (
             <tr class="transactions-table-body-row">
               <td class="transactions-table-body-cell">
-                <mvx-transaction-hash transaction={transaction}></mvx-transaction-hash>
+                <drt-transaction-hash transaction={transaction}></drt-transaction-hash>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-age
+                <drt-transaction-age
                   age={transaction.age.timeAgo}
                   tooltip={transaction.age.tooltip}
-                ></mvx-transaction-age>
+                ></drt-transaction-age>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-shards transaction={transaction}></mvx-transaction-shards>
+                <drt-transaction-shards transaction={transaction}></drt-transaction-shards>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-account
+                <drt-transaction-account
                   account={transaction.sender}
                   dataTestId={DataTestIdsEnum.transactionSender}
                   scope="sender"
                   showLockedAccounts={true}
-                ></mvx-transaction-account>
+                ></drt-transaction-account>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-account
+                <drt-transaction-account
                   account={transaction.receiver}
                   dataTestId={DataTestIdsEnum.transactionReceiver}
                   scope="receiver"
                   showLockedAccounts={true}
-                ></mvx-transaction-account>
+                ></drt-transaction-account>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-method
+                <drt-transaction-method
                   method={transaction.method.name}
                   actionDescription={transaction.method.actionDescription}
-                ></mvx-transaction-method>
+                ></drt-transaction-method>
               </td>
               <td class="transactions-table-body-cell">
-                <mvx-transaction-value value={transaction.value}></mvx-transaction-value>
+                <drt-transaction-value value={transaction.value}></drt-transaction-value>
               </td>
             </tr>
           ))}

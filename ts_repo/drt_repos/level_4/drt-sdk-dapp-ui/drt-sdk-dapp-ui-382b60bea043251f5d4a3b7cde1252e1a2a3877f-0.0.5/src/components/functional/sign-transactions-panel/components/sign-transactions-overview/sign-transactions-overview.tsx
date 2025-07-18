@@ -4,7 +4,7 @@ import { Component, h, Prop } from '@stencil/core';
 import { handleAmountResize } from '../../helpers';
 
 @Component({
-  tag: 'mvx-sign-transactions-overview',
+  tag: 'drt-sign-transactions-overview',
   styleUrl: 'sign-transactions-overview.css',
 })
 export class SignTransactionsOverview {
@@ -51,10 +51,10 @@ export class SignTransactionsOverview {
 
           <div class="direction-indicator">
             <div class="direction-icon">
-              {this.isApp && <mvx-fa-icon icon={faChevronUp} class="direction-arrow" />}
+              {this.isApp && <drt-fa-icon icon={faChevronUp} class="direction-arrow" />}
               <span class="ellipse" />
               <span class="ellipse" />
-              {!this.isApp && <mvx-fa-icon icon={faChevronDown} class="direction-arrow" />}
+              {!this.isApp && <drt-fa-icon icon={faChevronDown} class="direction-arrow" />}
             </div>
           </div>
 
@@ -66,7 +66,7 @@ export class SignTransactionsOverview {
                   <img src={this.interactorIconUrl} alt={this.interactor} />
                 </div>
               )}
-              {this.interactor && <mvx-trim-text class="interactor-name" text={this.interactor}></mvx-trim-text>}
+              {this.interactor && <drt-trim-text class="interactor-name" text={this.interactor}></drt-trim-text>}
             </div>
           </div>
 

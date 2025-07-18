@@ -11,7 +11,7 @@ export interface IDataHightlight {
 }
 
 @Component({
-  tag: 'mvx-sign-transactions-advanced-data',
+  tag: 'drt-sign-transactions-advanced-data',
   styleUrl: 'sign-transactions-advanced-data.scss',
   shadow: true,
 })
@@ -60,12 +60,12 @@ export class SignTransactionsAdvancedData {
         <div class="sign-transactions-advanced-data-top">
           <div class="sign-transactions-advanced-data-label">Data</div>
 
-          <mvx-tooltip
+          <drt-tooltip
             onTriggerRender={(event: CustomEvent) => {
               this.isDecodeTooltipOpen = event.detail;
             }}
             trigger={
-              <mvx-sign-transactions-advanced-data-decode
+              <drt-sign-transactions-advanced-data-decode
                 isToggled={this.isDecodeTooltipOpen}
                 currentDecodeMethod={this.decodeMethod}
               />
@@ -87,7 +87,7 @@ export class SignTransactionsAdvancedData {
                 </div>
               ))}
             </div>
-          </mvx-tooltip>
+          </drt-tooltip>
         </div>
 
         <div class="sign-transactions-advanced-data-bottom">

@@ -1,8 +1,8 @@
 .tooltip {
-  @apply mvx:flex mvx:relative;
+  @apply drt:flex drt:relative;
 
   .tooltip-content-wrapper {
-    @apply mvx:left-1/2 mvx:absolute mvx:z-1 mvx:transform mvx:-translate-x-1/2;
+    @apply drt:left-1/2 drt:absolute drt:z-1 drt:transform drt:-translate-x-1/2;
 
     &.top {
       bottom: calc(100% + 16px);
@@ -13,26 +13,26 @@
     }
 
     .tooltip-content {
-      @apply mvx:flex-row mvx:cursor-default mvx:p-2 mvx:whitespace-nowrap mvx:text-xs mvx:rounded-xl;
-      background: var(--mvx-bg-accent-color);
-      border: 1px solid var(--mvx-neutral-800);
-      color: var(--mvx-text-color-primary);
+      @apply drt:flex-row drt:cursor-default drt:p-2 drt:whitespace-nowrap drt:text-xs drt:rounded-xl;
+      background: var(--drt-bg-accent-color);
+      border: 1px solid var(--drt-neutral-800);
+      color: var(--drt-text-color-primary);
 
       &:after {
-        @apply mvx:left-1/2 mvx:origin-center mvx:w-2 mvx:h-2 mvx:absolute;
-        border: 1px solid var(--mvx-neutral-800);
-        background-color: var(--mvx-bg-accent-color);
+        @apply drt:left-1/2 drt:origin-center drt:w-2 drt:h-2 drt:absolute;
+        border: 1px solid var(--drt-neutral-800);
+        background-color: var(--drt-bg-accent-color);
         content: '';
         transform: translateX(calc(50% - 8px)) rotateZ(calc(45deg * -1));
       }
 
       &.top:after {
-        @apply mvx:border-t-0 mvx:border-r-0;
+        @apply drt:border-t-0 drt:border-r-0;
         bottom: calc(4px * -1);
       }
 
       &.bottom:after {
-        @apply mvx:border-b-0 mvx:border-l-0;
+        @apply drt:border-b-0 drt:border-l-0;
         top: calc(4px * -1);
       }
     }

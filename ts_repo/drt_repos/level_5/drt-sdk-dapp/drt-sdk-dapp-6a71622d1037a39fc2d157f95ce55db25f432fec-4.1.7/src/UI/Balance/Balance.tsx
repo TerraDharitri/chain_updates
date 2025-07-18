@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import DharitriSymbol from 'assets/icons/mvx-icon-simple.svg';
+import DharitriSymbol from 'assets/icons/drt-icon-simple.svg';
 import { withStyles } from 'hocs/withStyles';
 import { WithClassnameType } from 'UI/types';
 

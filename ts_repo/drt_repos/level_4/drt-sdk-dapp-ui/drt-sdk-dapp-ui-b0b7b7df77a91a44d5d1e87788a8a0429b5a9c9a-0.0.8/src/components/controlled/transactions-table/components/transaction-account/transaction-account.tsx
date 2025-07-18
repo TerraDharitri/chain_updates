@@ -7,7 +7,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import type { TransactionAccountType } from '../../transactions-table.type';
 
 @Component({
-  tag: 'mvx-transaction-account',
+  tag: 'drt-transaction-account',
   styleUrl: 'transaction-account.scss',
 })
 export class TransactionAccount {
@@ -24,14 +24,14 @@ export class TransactionAccount {
     return (
       <div class={classNames(this.class, 'transaction-account')} data-testid={this.dataTestId}>
         {this.showLockedAccounts && this.account.isTokenLocked && (
-          <mvx-fa-icon icon={faLock} description={this.account.name} />
+          <drt-fa-icon icon={faLock} description={this.account.name} />
         )}
 
-        {this.account.isContract && <mvx-fa-icon icon={faFileAlt} description="Smart Contract" />}
+        {this.account.isContract && <drt-fa-icon icon={faFileAlt} description="Smart Contract" />}
         {this.account.showLink ? (
-          <mvx-explorer-link link={this.account.link} data-testid={explorerLinkDataTestId} />
+          <drt-explorer-link link={this.account.link} data-testid={explorerLinkDataTestId} />
         ) : (
-          <mvx-transaction-account-name
+          <drt-transaction-account-name
             name={this.account.name}
             description={this.account.description}
             address={this.account.address}

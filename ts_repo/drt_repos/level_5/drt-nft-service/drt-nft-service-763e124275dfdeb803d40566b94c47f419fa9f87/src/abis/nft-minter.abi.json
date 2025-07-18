@@ -176,7 +176,7 @@
     {
       "name": "issueTokenForBrand",
       "mutability": "mutable",
-      "payableInTokens": ["EGLD"],
+      "payableInTokens": ["REWA"],
       "inputs": [
         {
           "name": "collection_hash",
@@ -204,7 +204,7 @@
         },
         {
           "name": "mint_price_token_id",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "token_display_name",
@@ -443,7 +443,7 @@
       "inputs": [],
       "outputs": [
         {
-          "type": "variadic<multi<EgldOrDcdtTokenIdentifier,BigUint>>",
+          "type": "variadic<multi<RewaOrDcdtTokenIdentifier,BigUint>>",
           "multi_result": true
         }
       ]
@@ -454,7 +454,7 @@
       "inputs": [],
       "outputs": [
         {
-          "type": "variadic<multi<EgldOrDcdtTokenIdentifier,BigUint>>",
+          "type": "variadic<multi<RewaOrDcdtTokenIdentifier,BigUint>>",
           "multi_result": true
         }
       ]
@@ -469,7 +469,7 @@
         },
         {
           "name": "tokens",
-          "type": "variadic<EgldOrDcdtTokenIdentifier>",
+          "type": "variadic<RewaOrDcdtTokenIdentifier>",
           "multi_arg": true
         }
       ],
@@ -635,7 +635,7 @@
       "fields": [
         {
           "name": "token_id",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "amount",

@@ -1,7 +1,7 @@
 [package]
 name = "interchain-token-service"
 version = "0.0.0"
-authors = [ "you",]
+authors = ["contact@dharitri.org"]
 edition = "2018"
 publish = false
 

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 
 @Component({
-  tag: 'mvx-transaction-age',
+  tag: 'drt-transaction-age',
   styleUrl: 'transaction-age.scss',
 })
 export class TransactionAge {

@@ -6,7 +6,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import { getIconHtmlFromIconDefinition } from 'utils/icons/getIconHtmlFromIconDefinition';
 
 @Component({
-  tag: 'mvx-custom-toast',
+  tag: 'drt-custom-toast',
   styleUrl: 'custom-toast.scss',
 })
 export class CustomToast {

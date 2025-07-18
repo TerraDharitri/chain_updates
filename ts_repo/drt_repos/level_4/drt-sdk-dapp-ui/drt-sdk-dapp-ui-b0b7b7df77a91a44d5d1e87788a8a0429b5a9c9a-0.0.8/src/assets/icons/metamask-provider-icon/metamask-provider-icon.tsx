@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-metamask-provider-icon',
+  tag: 'drt-metamask-provider-icon',
   styleUrl: 'metamask-provider-icon.scss',
   shadow: true,
 })

@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-arrow-up-right-from-square-icon',
+  tag: 'drt-arrow-up-right-from-square-icon',
   styleUrl: 'arrow-up-right-from-square-icon.scss',
   shadow: true,
 })

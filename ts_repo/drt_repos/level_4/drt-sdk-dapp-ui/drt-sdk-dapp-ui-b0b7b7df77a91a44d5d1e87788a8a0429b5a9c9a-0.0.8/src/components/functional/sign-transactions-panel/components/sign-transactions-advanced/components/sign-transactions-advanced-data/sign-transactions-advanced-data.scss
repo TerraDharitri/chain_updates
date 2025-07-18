@@ -1,33 +1,33 @@
 :host {
-  @apply mvx:flex mvx:flex-col mvx:w-full;
+  @apply drt:flex drt:flex-col drt:w-full;
 
   .sign-transactions-advanced-data {
-    @apply mvx:flex mvx:flex-col mvx:gap-2 mvx:w-full mvx:p-3;
+    @apply drt:flex drt:flex-col drt:gap-2 drt:w-full drt:p-3;
 
     .sign-transactions-advanced-data-top {
-      @apply mvx:flex mvx:justify-between mvx:items-center mvx:px-2;
+      @apply drt:flex drt:justify-between drt:items-center drt:px-2;
 
       .sign-transactions-advanced-data-label {
-        @apply mvx:text-base mvx:leading-none mvx:text-right;
-        color: var(--mvx-text-color-secondary);
+        @apply drt:text-base drt:leading-none drt:text-right;
+        color: var(--drt-text-color-secondary);
       }
 
       .sign-transactions-advanced-data-decode-options {
-        @apply mvx:text-base mvx:-m-1 mvx:gap-1 mvx:flex mvx:flex-col;
+        @apply drt:text-base drt:-m-1 drt:gap-1 drt:flex drt:flex-col;
 
         .sign-transactions-advanced-data-decode-option {
-          @apply mvx:capitalize mvx:text-center mvx:leading-none mvx:cursor-pointer mvx:transition-all mvx:duration-200;
-          @apply mvx:ease-in-out mvx:px-3 mvx:py-2 mvx:text-xs mvx:rounded-lg;
+          @apply drt:capitalize drt:text-center drt:leading-none drt:cursor-pointer drt:transition-all drt:duration-200;
+          @apply drt:ease-in-out drt:px-3 drt:py-2 drt:text-xs drt:rounded-lg;
 
           &:hover,
           &:focus,
           &.active {
-            background-color: var(--mvx-select-option-bg);
-            color: var(--mvx-text-accent-color);
+            background-color: var(--drt-select-option-bg);
+            color: var(--drt-text-accent-color);
 
             @media (min-width: 768px) {
-              background-color: var(--mvx-select-option-bg-mobile);
-              color: var(--mvx-select-option-color);
+              background-color: var(--drt-select-option-bg-mobile);
+              color: var(--drt-select-option-color);
             }
           }
         }
@@ -35,48 +35,48 @@
     }
 
     .sign-transactions-advanced-data-bottom {
-      @apply mvx:flex-1 mvx:relative;
+      @apply drt:flex-1 drt:relative;
 
       .sign-transactions-advanced-data-wrapper {
-        @apply mvx:h-30 mvx:p-2 mvx:rounded-lg mvx:overflow-auto mvx:flex mvx:flex-col mvx:break-words mvx:text-base;
-        border: 1px solid var(--mvx-neutral-800);
+        @apply drt:h-30 drt:p-2 drt:rounded-lg drt:overflow-auto drt:flex drt:flex-col drt:break-words drt:text-base;
+        border: 1px solid var(--drt-neutral-800);
 
         &::-webkit-scrollbar,
         &::-webkit-scrollbar-track,
         &::-webkit-scrollbar-track:hover,
         &::-webkit-scrollbar-corner {
-          @apply mvx:bg-transparent;
+          @apply drt:bg-transparent;
         }
 
         &::-webkit-scrollbar {
-          @apply mvx:w-4;
+          @apply drt:w-4;
         }
 
         &::-webkit-scrollbar-track,
         &::-webkit-scrollbar-track:hover {
-          @apply mvx:bg-transparent mvx:bg-clip-padding;
+          @apply drt:bg-transparent drt:bg-clip-padding;
           border: 4px solid transparent;
           border-radius: 9999px;
         }
 
         &::-webkit-scrollbar-thumb,
         &::-webkit-scrollbar-thumb:hover {
-          @apply mvx:bg-clip-padding;
+          @apply drt:bg-clip-padding;
           border: 4px solid transparent;
-          background-color: var(--mvx-neutral-700);
+          background-color: var(--drt-neutral-700);
           border-radius: 9999px;
         }
 
         &::-webkit-scrollbar-button {
-          @apply mvx:hidden;
+          @apply drt:hidden;
         }
 
         &::-webkit-resizer {
-          @apply mvx:bg-transparent;
+          @apply drt:bg-transparent;
         }
 
         &:before {
-          @apply mvx:absolute mvx:pointer-events-none mvx:right-4 mvx:border-l-0 mvx:rounded-lg mvx:border-r-0;
+          @apply drt:absolute drt:pointer-events-none drt:right-4 drt:border-l-0 drt:rounded-lg drt:border-r-0;
           left: 1px;
           top: 1px;
           bottom: 1px;
@@ -87,14 +87,14 @@
         }
 
         .sign-transactions-advanced-data-text {
-          color: var(--mvx-text-color-secondary);
+          color: var(--drt-text-color-secondary);
         }
 
         .sign-transactions-advanced-data-highlight {
-          color: var(--mvx-text-color-primary);
+          color: var(--drt-text-color-primary);
 
           &.bolded {
-            @apply mvx:font-medium;
+            @apply drt:font-medium;
           }
         }
       }

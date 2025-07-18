@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   shadow: true,
-  tag: 'mvx-check-icon',
+  tag: 'drt-check-icon',
   styleUrl: 'check-icon.scss',
 })
 export class CheckIcon {

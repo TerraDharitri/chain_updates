@@ -7,7 +7,7 @@ export enum IconSizeEnumType {
 }
 
 @Component({
-  tag: 'mvx-transaction-asset-icon',
+  tag: 'drt-transaction-asset-icon',
   shadow: true,
 })
 export class TransactionAssetIcon {
@@ -17,9 +17,9 @@ export class TransactionAssetIcon {
   render() {
     if (this.transaction?.asset === null) {
       return this.iconSize === IconSizeEnumType.small ? (
-        <mvx-default-transaction-icon-small />
+        <drt-default-transaction-icon-small />
       ) : (
-        <mvx-default-transaction-icon-large />
+        <drt-default-transaction-icon-large />
       );
     }
 
@@ -28,7 +28,7 @@ export class TransactionAssetIcon {
     }
 
     if (this.transaction.asset.icon) {
-      return <mvx-fa-icon icon={this.transaction.asset.icon} />;
+      return <drt-fa-icon icon={this.transaction.asset.icon} />;
     }
 
     if (this.transaction.asset.text) {
@@ -36,9 +36,9 @@ export class TransactionAssetIcon {
     }
 
     return this.iconSize === IconSizeEnumType.small ? (
-      <mvx-default-transaction-icon-small />
+      <drt-default-transaction-icon-small />
     ) : (
-      <mvx-default-transaction-icon-large />
+      <drt-default-transaction-icon-large />
     );
   }
 }

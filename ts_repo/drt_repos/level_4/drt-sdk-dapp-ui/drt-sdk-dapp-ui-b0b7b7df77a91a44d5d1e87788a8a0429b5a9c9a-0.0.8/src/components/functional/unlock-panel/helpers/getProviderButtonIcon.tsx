@@ -5,19 +5,19 @@ import { ProviderTypeEnum } from 'types/provider.types';
 export const getProviderButtonIcon = (providerType: IProviderBase['type']): HTMLElement => {
   switch (providerType) {
     case ProviderTypeEnum.extension:
-      return <mvx-extension-provider-icon />;
+      return <drt-extension-provider-icon />;
     case ProviderTypeEnum.metamask:
-      return <mvx-metamask-provider-icon />;
+      return <drt-metamask-provider-icon />;
     case ProviderTypeEnum.passkey:
-      return <mvx-passkey-provider-icon />;
+      return <drt-passkey-provider-icon />;
     case ProviderTypeEnum.walletConnect:
-      return <mvx-dharitri-logo-icon />;
+      return <drt-dharitri-logo-icon />;
     case ProviderTypeEnum.ledger:
-      return <mvx-ledger-provider-icon />;
+      return <drt-ledger-provider-icon />;
     case ProviderTypeEnum.crossWindow:
-      return <mvx-wallet-provider-icon />;
+      return <drt-wallet-provider-icon />;
 
     default:
-      return <mvx-dharitri-logo-icon />;
+      return <drt-dharitri-logo-icon />;
   }
 };

@@ -22,12 +22,12 @@
         "docs": [
             "Args:",
             "- base_asset_token_id: The only token that is accepted for the lockTokens endpoint.",
-            "    NOTE: The SC also needs the ESDTLocalMint and ESDTLocalBurn roles for this token.",
+            "    NOTE: The SC also needs the DCDTLocalMint and DCDTLocalBurn roles for this token.",
             "- legacy_token_id: The token ID of the old locked asset.",
             "    NOTE: The SC also needs the NFTBurn role for this token.",
             "- old_locked_asset_factory_address",
             "- min_migrated_token_locked_period - The minimum number of epochs that",
-            "    a migrated old LKMEX token will be locked for after the average is calculated",
+            "    a migrated old LKMOA token will be locked for after the average is calculated",
             "- lock_options: See `addLockOptions` endpoint doc for details."
         ],
         "inputs": [
@@ -58,7 +58,7 @@
     "endpoints": [
         {
             "docs": [
-                "Locks a whitelisted token until `unlock_epoch` and receive meta ESDT LOCKED tokens",
+                "Locks a whitelisted token until `unlock_epoch` and receive meta DCDT LOCKED tokens",
                 "on a 1:1 ratio. Accepted input tokens:",
                 "- base asset token",
                 "- old factory token -> extends all periods to the provided option",
@@ -119,7 +119,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {

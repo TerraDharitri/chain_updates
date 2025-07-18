@@ -1,102 +1,102 @@
 @import '../../../global/variables.css';
 
 .feed-content {
-  @apply mvx:h-full mvx:w-full mvx:flex mvx:flex-col mvx:relative mvx:gap-5 mvx:overflow-x-hidden mvx:overflow-y-scroll mvx:pt-6;
+  @apply drt:h-full drt:w-full drt:flex drt:flex-col drt:relative drt:gap-5 drt:overflow-x-hidden drt:overflow-y-scroll drt:pt-6;
 
   .transaction-toast-content-wrapper {
-    @apply mvx:w-full;
-    background: var(--mvx-bg-color-secondary);
-    border-color: var(--mvx-bg-color-secondary);
+    @apply drt:w-full;
+    background: var(--drt-bg-color-secondary);
+    border-color: var(--drt-bg-color-secondary);
   }
 
   @media (min-width: 375px) {
-    @apply mvx:max-w-110;
+    @apply drt:max-w-110;
   }
 }
 
 .notifications-info {
-  @apply mvx:flex mvx:items-start mvx:gap-2.5 mvx:text-xs mvx:font-normal mvx:leading-4;
-  color: var(--mvx-warning-text);
+  @apply drt:flex drt:items-start drt:gap-2.5 drt:text-xs drt:font-normal drt:leading-4;
+  color: var(--drt-warning-text);
 
   .info-icon {
-    @apply mvx:text-center mvx:text-base mvx:font-normal mvx:leading-none mvx:w-5 mvx:h-5;
-    color: var(--mvx-warning-text) !important;
+    @apply drt:text-center drt:text-base drt:font-normal drt:leading-none drt:w-5 drt:h-5;
+    color: var(--drt-warning-text) !important;
   }
 }
 
 .notifications-container {
-  @apply mvx:flex mvx:flex-col mvx:gap-3;
+  @apply drt:flex drt:flex-col drt:gap-3;
 
   .processing-status {
-    @apply mvx:text-base mvx:font-normal mvx:leading-6 mvx:tracking-tight;
-    color: var(--mvx-text-color-secondary);
+    @apply drt:text-base drt:font-normal drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
   }
 }
 
 .activity-section {
-  @apply mvx:flex mvx:flex-col mvx:gap-3;
+  @apply drt:flex drt:flex-col drt:gap-3;
 }
 
 .activity-header {
-  @apply mvx:flex mvx:items-center mvx:justify-between mvx:gap-2.5 mvx:pt-3;
+  @apply drt:flex drt:items-center drt:justify-between drt:gap-2.5 drt:pt-3;
 
   .activity-title {
-    @apply mvx:text-base mvx:font-normal mvx:m-0 mvx:leading-6 mvx:tracking-tight;
-    color: var(--mvx-text-color-secondary);
+    @apply drt:text-base drt:font-normal drt:m-0 drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
   }
 
   .clear-button {
-    @apply mvx:text-xs mvx:font-normal mvx:underline mvx:cursor-pointer mvx:leading-4;
-    color: var(--mvx-text-color-primary);
+    @apply drt:text-xs drt:font-normal drt:underline drt:cursor-pointer drt:leading-4;
+    color: var(--drt-text-color-primary);
     text-decoration-skip-ink: none;
     text-underline-position: from-font;
   }
 }
 
 .activity-list {
-  @apply mvx:flex mvx:flex-col mvx:gap-1 mvx:flex-1 mvx:overflow-y-auto mvx:overflow-x-hidden mvx:min-h-0;
+  @apply drt:flex drt:flex-col drt:gap-1 drt:flex-1 drt:overflow-y-auto drt:overflow-x-hidden drt:min-h-0;
 
   .no-activity {
-    @apply mvx:p-4 mvx:text-center;
-    color: var(--mvx-neutral-500);
+    @apply drt:p-4 drt:text-center;
+    color: var(--drt-neutral-500);
   }
 
   &::-webkit-scrollbar,
   &::-webkit-scrollbar-track,
   &::-webkit-scrollbar-track:hover,
   &::-webkit-scrollbar-corner {
-    @apply mvx:bg-transparent;
+    @apply drt:bg-transparent;
   }
 
   &::-webkit-scrollbar {
-    @apply mvx:w-4;
+    @apply drt:w-4;
   }
 
   &::-webkit-scrollbar-track,
   &::-webkit-scrollbar-track:hover {
-    @apply mvx:bg-transparent mvx:bg-clip-padding;
+    @apply drt:bg-transparent drt:bg-clip-padding;
     border: 4px solid transparent;
     border-radius: 9999px;
   }
 
   &::-webkit-scrollbar-thumb,
   &::-webkit-scrollbar-thumb:hover {
-    @apply mvx:bg-clip-padding;
+    @apply drt:bg-clip-padding;
     border: 4px solid transparent;
-    background-color: var(--mvx-neutral-700);
+    background-color: var(--drt-neutral-700);
     border-radius: 9999px;
   }
 
   &::-webkit-scrollbar-button {
-    @apply mvx:hidden;
+    @apply drt:hidden;
   }
 
   &::-webkit-resizer {
-    @apply mvx:bg-transparent;
+    @apply drt:bg-transparent;
   }
 
   // Ensure children don't cause horizontal scroll
   > * {
-    @apply mvx:w-full mvx:max-w-full mvx:box-border;
+    @apply drt:w-full drt:max-w-full drt:box-border;
   }
 }

@@ -108,7 +108,7 @@ export const FormatAmount = (props: IFormatAmountProps) => {
 ```typescript
 import { TransactionsTableController } from 'controllers/TransactionsTableController/TransactionsTableController';
 import { useEffect, useState } from 'react';
-import type { MvxTransactionsTable as MvxTransactionsTablePropsType } from '@terradharitri/sdk-dapp-ui/web-components/mvx-transactions-table';
+import type { MvxTransactionsTable as MvxTransactionsTablePropsType } from '@terradharitri/sdk-dapp-ui/web-components/drt-transactions-table';
 import type { ServerTransactionType } from '@terradharitri/sdk-dapp/out/types/serverTransactions.types';
 import {
   MvxTransactionsTable,

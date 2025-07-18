@@ -1,9 +1,9 @@
 :host {
-  @apply mvx:flex mvx:h-auto! mvx:w-auto! mvx:rotate-0!;
+  @apply drt:flex drt:h-auto! drt:w-auto! drt:rotate-0!;
   transform: none !important;
 
   .single-angle-down-icon {
-    @apply mvx:flex mvx:w-4 mvx:h-2.5;
-    fill: var(--mvx-text-color-secondary);
+    @apply drt:flex drt:w-4 drt:h-2.5;
+    fill: var(--drt-text-color-secondary);
   }
 }

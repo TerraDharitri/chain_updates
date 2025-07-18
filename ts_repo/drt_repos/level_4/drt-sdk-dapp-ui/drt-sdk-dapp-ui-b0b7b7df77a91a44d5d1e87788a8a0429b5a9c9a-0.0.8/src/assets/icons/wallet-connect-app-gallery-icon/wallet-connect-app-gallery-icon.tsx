@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   shadow: true,
-  tag: 'mvx-wallet-connect-app-gallery-icon',
+  tag: 'drt-wallet-connect-app-gallery-icon',
   styleUrl: 'wallet-connect-app-gallery-icon.scss',
 })
 export class WalletConnectAppGalleryIcon {

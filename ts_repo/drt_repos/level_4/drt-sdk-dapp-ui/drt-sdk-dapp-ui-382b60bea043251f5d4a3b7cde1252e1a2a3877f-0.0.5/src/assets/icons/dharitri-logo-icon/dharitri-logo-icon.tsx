@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-dharitri-logo-icon',
+  tag: 'drt-dharitri-logo-icon',
   styleUrl: 'dharitri-logo-icon.scss',
   shadow: true,
 })

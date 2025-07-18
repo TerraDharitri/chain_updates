@@ -1,5 +1,5 @@
 {
-  "name": "mx-template-dapp-angular",
+  "name": "drt-angular-template-dapp",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
