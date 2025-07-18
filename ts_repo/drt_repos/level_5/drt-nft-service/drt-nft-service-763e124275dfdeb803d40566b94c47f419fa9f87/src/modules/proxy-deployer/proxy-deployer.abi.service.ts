@@ -10,7 +10,7 @@ import {
   VariadicValue,
 } from '@terradharitri/sdk-core';
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { gas, drtConfig } from 'src/config';
 import { ContractLoader } from '../auctions/contractLoader';
 import { MarketplaceUtils } from '../auctions/marketplaceUtils';
@@ -19,7 +19,7 @@ import { DeployMinterRequest, UpgradeMinterRequest } from './models/requests/Dep
 
 @Injectable()
 export class ProxyDeployerAbiService {
-  constructor(private drtApiService: MxApiService) {}
+  constructor(private drtApiService: DrtApiService) {}
   async getFactory(abiPath?: string): Promise<SmartContractTransactionsFactory> {
     return new SmartContractTransactionsFactory({
       config: new TransactionsFactoryConfig({ chainID: drtConfig.chainID }),

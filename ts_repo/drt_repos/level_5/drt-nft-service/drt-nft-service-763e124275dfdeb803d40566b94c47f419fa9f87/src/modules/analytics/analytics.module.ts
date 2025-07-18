@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { AuctionsModuleGraph } from '../auctions/auctions.module';
 import { CommonModule } from 'src/common.module';
 import { TrendingCollectionsService } from './trending/trending-collections.service';
@@ -59,7 +59,7 @@ import { MarketplacesModuleGraph } from '../marketplaces/marketplaces.module';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({ ...ormconfig, keepConnectionAlive: true }),
-    MxCommunicationModule,
+    DrtCommunicationModule,
     CommonModule,
     forwardRef(() => AuctionsModuleGraph),
     forwardRef(() => CollectionsModuleGraph),

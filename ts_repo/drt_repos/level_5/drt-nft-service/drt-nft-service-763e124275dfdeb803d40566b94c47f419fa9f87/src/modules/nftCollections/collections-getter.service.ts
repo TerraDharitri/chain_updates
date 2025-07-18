@@ -3,7 +3,7 @@ import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { ElasticQuery, ElasticSortOrder, QueryType } from '@terradharitri/sdk-nestjs-elastic';
 import { Injectable } from '@nestjs/common';
 import { orderBy } from 'lodash';
-import { MxApiService, MxElasticService, MxIdentityService } from 'src/common';
+import { DrtApiService, DrtElasticService, DrtIdentityService } from 'src/common';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { CollectionElastic } from 'src/common/services/drt-communication/elastic-collection.model';
@@ -25,8 +25,8 @@ import { CollectionsFilter, CollectionsSortingEnum } from './models/Collections-
 @Injectable()
 export class CollectionsGetterService {
   constructor(
-    private apiService: MxApiService,
-    private idService: MxIdentityService,
+    private apiService: DrtApiService,
+    private idService: DrtIdentityService,
     private smartContractArtistService: SmartContractArtistsService,
     private persistenceService: PersistenceService,
     private collectionNftsCountRedis: CollectionsNftsCountRedisHandler,
@@ -35,7 +35,7 @@ export class CollectionsGetterService {
     private analyticsService: TrendingCollectionsService,
     private documentDbService: DocumentDbService,
     private blacklistedCollectionsService: BlacklistedCollectionsService,
-    private elasticService: MxElasticService,
+    private elasticService: DrtElasticService,
   ) {}
 
   async getCollections(

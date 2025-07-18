@@ -1,6 +1,6 @@
 import { Logger, Module } from '@nestjs/common';
 import { AdminOperationsResolver } from './admin-operations.resolver';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { FlagNftService } from './flag-nft.service';
 import { VerifyContentService } from '../assets/verify-content.service';
 import { CommonModule } from 'src/common.module';
@@ -20,7 +20,7 @@ import { ScamUpdatePublisherModule } from '../rabbitmq/elastic-updates/scam-trig
     CommonModule,
     CacheEventsPublisherModule,
     ScamUpdatePublisherModule,
-    MxCommunicationModule,
+    DrtCommunicationModule,
     NftRarityModuleGraph,
     NftTraitsModule,
     MarketplacesModuleGraph,

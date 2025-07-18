@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { elasticDictionary } from 'src/config';
 import { Asset } from '../assets/models';
 import { ScamInfo } from '../assets/models/ScamInfo.dto';
@@ -9,7 +9,7 @@ import { ELASTIC_TOKENS_INDEX } from 'src/utils/constants';
 
 @Injectable()
 export class NftScamElasticService {
-  constructor(private drtService: MxElasticService, private readonly logger: Logger) {}
+  constructor(private drtService: DrtElasticService, private readonly logger: Logger) {}
 
   async getNftWithScamInfoFromElastic(identifier: string): Promise<any> {
     let nft: any;

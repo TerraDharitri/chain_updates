@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MxLink, OutputContainer } from 'components';
+import { DrtLink, OutputContainer } from 'components';
 import { useGetAccountInfo } from 'lib';
 import { DataTestIdsEnum } from 'localConstants';
 import { useLazyGetNftsQuery } from 'redux/endpoints';
@@ -21,20 +21,20 @@ export const NFTs = () => {
           <p className='text-gray-400'>No NFTs found</p>
         </OutputContainer>
         <div className='mt-5 flex flex-row gap-4'>
-          <MxLink
+          <DrtLink
             className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
             data-testid={DataTestIdsEnum.issueNftBtn}
             to={routeNames.createNft}
           >
             Create NFT
-          </MxLink>
-          <MxLink
+          </DrtLink>
+          <DrtLink
             className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
             data-testid={DataTestIdsEnum.issueCollectionBtn}
             to={routeNames.issueCollection}
           >
             Issue Collection
-          </MxLink>
+          </DrtLink>
         </div>
       </div>
     );
@@ -49,20 +49,20 @@ export const NFTs = () => {
         {nftsData?.map((nft) => <NFTRow key={nft.identifier} nft={nft} />)}
       </OutputContainer>
       <div className='mt-5 flex flex-row gap-4'>
-        <MxLink
+        <DrtLink
           className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
           data-testid={DataTestIdsEnum.issueNftBtn}
           to={routeNames.createNft}
         >
           Create NFT
-        </MxLink>
-        <MxLink
+        </DrtLink>
+        <DrtLink
           className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
           data-testid={DataTestIdsEnum.issueCollectionBtn}
           to={routeNames.issueCollection}
         >
           Issue Collection
-        </MxLink>
+        </DrtLink>
       </div>
     </div>
   );

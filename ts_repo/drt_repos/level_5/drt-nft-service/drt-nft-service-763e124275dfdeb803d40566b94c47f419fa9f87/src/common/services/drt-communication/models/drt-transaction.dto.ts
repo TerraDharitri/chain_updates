@@ -1,4 +1,4 @@
-export interface SignedMxTransactionDTO {
+export interface SignedDrtTransactionDTO {
   /**
    * Transactions nonce
    */
@@ -52,7 +52,7 @@ export interface SignedMxTransactionDTO {
 /**
  * Transaction object from DharitrI chain.
  */
-export interface MxTransactionDTO extends SignedMxTransactionDTO {
+export interface DrtTransactionDTO extends SignedDrtTransactionDTO {
   /**
    * Transaction hash
    */

@@ -20,7 +20,7 @@ import { RedisCacheService } from '@multiversx/sdk-nestjs-cache';
 import { Constants } from '@multiversx/sdk-nestjs-common';
 import { Inject, Injectable, Logger, forwardRef } from '@nestjs/common';
 import BigNumber from 'bignumber.js';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { BadRequestError } from 'src/common/models/errors/bad-request-error';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { getCollectionAndNonceFromIdentifier, numberToFixedHexBuffer } from 'src/utils/helpers';
@@ -44,7 +44,7 @@ export class NftMarketplaceAbiService {
   private config = new TransactionsFactoryConfig({ chainID: mxConfig.chainID });
 
   constructor(
-    private readonly apiService: MxApiService,
+    private readonly apiService: DrtApiService,
     private readonly auctionsService: AuctionsGetterService,
     private readonly offersService: OffersService,
     private readonly logger: Logger,

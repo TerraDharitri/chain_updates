@@ -1,10 +1,10 @@
 import { ElasticQuery, ElasticSortOrder, MatchQuery, QueryType } from '@terradharitri/sdk-nestjs-elastic';
 import { Injectable } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 
 @Injectable()
 export class ElasticAnalyticsService {
-  constructor(private readonly elasticService: MxElasticService) {}
+  constructor(private readonly elasticService: DrtElasticService) {}
 
   public async getAllEvents(
     startDateUtc: number,

@@ -4,7 +4,7 @@ import { ApiService } from './api.service';
 import { NftViewsCount } from './models/nft-views.dto';
 
 @Injectable()
-export class MxStatsService {
+export class DrtStatsService {
   constructor(private readonly logger: Logger, private readonly apiService: ApiService) {}
 
   async getTrending(dimension: 'identifier' | 'collection'): Promise<string[]> {
@@ -15,7 +15,7 @@ export class MxStatsService {
       return response.data;
     } catch (error) {
       this.logger.error(`An error occurred while calling the drt stats service on url ${removeCredentialsFromUrl(url)}`, {
-        path: `${MxStatsService.name}.${this.getTrending.name}`,
+        path: `${DrtStatsService.name}.${this.getTrending.name}`,
         dimension,
         exception: error,
       });
@@ -31,7 +31,7 @@ export class MxStatsService {
       return response.data;
     } catch (error) {
       this.logger.error(`An error occurred while calling the drt stats service on url ${removeCredentialsFromUrl(url)}`, {
-        path: `${MxStatsService.name}.${this.getNftsViewsCount.name}`,
+        path: `${DrtStatsService.name}.${this.getNftsViewsCount.name}`,
         identifier,
         exception: error,
       });

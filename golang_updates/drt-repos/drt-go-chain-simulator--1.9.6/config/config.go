@@ -13,8 +13,8 @@ type Config struct {
 			InitialRound      int64  `toml:"initial-round"`
 			InitialNonce      uint64 `toml:"initial-nonce"`
 			InitialEpoch      uint32 `toml:"initial-epoch"`
-			MxChainRepo       string `toml:"drt-go-chain-repo"`
-			MxProxyRepo       string `toml:"drt-go-chain-proxy-repo"`
+			ChainRepo         string `toml:"drt-go-chain-repo"`
+			ProxyRepo         string `toml:"drt-go-chain-proxy-repo"`
 		} `toml:"simulator"`
 		Logs struct {
 			LogFileLifeSpanInMB  int    `toml:"log-file-life-span-in-mb"`

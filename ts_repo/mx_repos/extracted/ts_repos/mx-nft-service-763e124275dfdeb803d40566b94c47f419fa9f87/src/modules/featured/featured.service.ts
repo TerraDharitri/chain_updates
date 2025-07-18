@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { Asset } from '../assets/models';
 import { Collection } from '../nftCollections/models';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
@@ -13,7 +13,7 @@ import { constants } from 'src/config';
 @Injectable()
 export class FeaturedService {
   constructor(
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private persistenceService: PersistenceService,
     private readonly logger: Logger,
     private readonly featuredCollectionsCachingService: FeaturedCollectionsCachingService,

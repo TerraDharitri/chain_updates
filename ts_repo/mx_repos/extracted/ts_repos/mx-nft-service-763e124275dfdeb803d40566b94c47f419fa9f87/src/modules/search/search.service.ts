@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService, MxIdentityService } from 'src/common';
+import { DrtApiService, MxIdentityService } from 'src/common';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { NFT_IDENTIFIER_RGX } from 'src/utils/constants';
 import { SearchNftCollectionResponse, SearchItemResponse } from './models/SearchItemResponse';
@@ -15,7 +15,7 @@ export class SearchService {
   private fieldsRequested: string = 'identifier,name,assets,type';
   constructor(
     private accountsService: MxIdentityService,
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private readonly logger: Logger,
     private redisCacheService: RedisCacheService,
     private collectionsGetterService: CollectionsGetterService,

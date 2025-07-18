@@ -1,6 +1,6 @@
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, MxLink } from 'components';
+import { Button, DrtLink } from 'components';
 import { getRewaLabel } from 'lib';
 import { DataTestIdsEnum } from 'localConstants';
 import { routeNames } from 'routes';
@@ -98,12 +98,12 @@ export const CreateDisclaimerScreen = ({
 
       <div className='flex flex-col items-center justify-center mt-1 gap-1'>
         <p>Already have a wallet?</p>
-        <MxLink
+        <DrtLink
           className='text-blue-400 underline decoration-dotted hover:decoration-solid'
           to={routeNames.unlock}
         >
           Access it
-        </MxLink>
+        </DrtLink>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-export interface MxnestConfigService {
+export interface DrtnestConfigService {
   getSecurityAdmins(): string[];
 
   getJwtSecret(): string;

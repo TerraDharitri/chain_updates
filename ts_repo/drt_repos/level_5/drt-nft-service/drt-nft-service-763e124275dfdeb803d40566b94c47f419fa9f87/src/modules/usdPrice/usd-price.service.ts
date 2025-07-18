@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { drtConfig } from 'src/config';
 import { computeUsdAmount } from 'src/utils/helpers';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Token } from './Token.model';
-import { MxDataApiService } from 'src/common/services/drt-communication/drt-data.service';
+import { DrtDataApiService } from 'src/common/services/drt-communication/drt-data.service';
 import { DateUtils } from 'src/utils/date-utils';
 
 @Injectable()
 export class UsdPriceService {
   constructor(
     private readonly cacheService: CacheService,
-    private readonly drtApiService: MxApiService,
-    private readonly drtDataApi: MxDataApiService,
+    private readonly drtApiService: DrtApiService,
+    private readonly drtDataApi: DrtDataApiService,
   ) {}
 
   async getUsdAmountDenom(token: string, amount: string): Promise<string> {

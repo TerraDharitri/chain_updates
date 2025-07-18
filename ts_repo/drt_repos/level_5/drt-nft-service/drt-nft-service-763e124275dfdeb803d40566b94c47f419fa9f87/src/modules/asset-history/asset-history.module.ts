@@ -1,6 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { AssetsHistoryResolver, AssetsHistoryService } from '.';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { AssetHistoryAccountResolver } from './asset-history-account-resolver';
 import { AccountsProvider } from '../account-stats/loaders/accounts.loader';
 import { AccountsRedisHandler } from '../account-stats/loaders/accounts.redis-handler';
@@ -26,6 +26,6 @@ import { AssetsHistoryElasticService } from './assets-history-elastic.service';
     AssetsHistoryCachingService,
     AssetsHistoryElasticService,
   ],
-  imports: [forwardRef(() => MxCommunicationModule)],
+  imports: [forwardRef(() => DrtCommunicationModule)],
 })
 export class AssetHistoryModuleGraph {}

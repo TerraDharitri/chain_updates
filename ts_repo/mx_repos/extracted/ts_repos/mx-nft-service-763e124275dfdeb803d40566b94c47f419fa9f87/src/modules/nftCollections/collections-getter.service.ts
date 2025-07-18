@@ -3,7 +3,7 @@ import { CacheService } from '@multiversx/sdk-nestjs-cache';
 import { ElasticQuery, ElasticSortOrder, QueryType } from '@multiversx/sdk-nestjs-elastic';
 import { Injectable } from '@nestjs/common';
 import { orderBy } from 'lodash';
-import { MxApiService, MxElasticService, MxIdentityService } from 'src/common';
+import { DrtApiService, MxElasticService, MxIdentityService } from 'src/common';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { CollectionElastic } from 'src/common/services/mx-communication/elastic-collection.model';
@@ -25,7 +25,7 @@ import { CollectionsFilter, CollectionsSortingEnum } from './models/Collections-
 @Injectable()
 export class CollectionsGetterService {
   constructor(
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private idService: MxIdentityService,
     private smartContractArtistService: SmartContractArtistsService,
     private persistenceService: PersistenceService,

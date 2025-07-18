@@ -1,7 +1,7 @@
 import { forwardRef, Logger, Module } from '@nestjs/common';
 import { OrdersService } from './order.service';
 import { OrdersResolver } from './orders.resolver';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { AuctionProvider, AuctionsRedisHandler } from '../auctions';
 import { AccountsStatsModuleGraph } from '../account-stats/accounts-stats.module';
 import { AccountsProvider } from '../account-stats/loaders/accounts.loader';
@@ -33,7 +33,7 @@ import { UsdPriceModuleGraph } from '../usdPrice/usd-price.module';
     AccountsRedisHandler,
   ],
   imports: [
-    MxCommunicationModule,
+    DrtCommunicationModule,
     OrdersCachingModule,
     forwardRef(() => AccountsStatsModuleGraph),
     forwardRef(() => NotificationsModuleGraph),

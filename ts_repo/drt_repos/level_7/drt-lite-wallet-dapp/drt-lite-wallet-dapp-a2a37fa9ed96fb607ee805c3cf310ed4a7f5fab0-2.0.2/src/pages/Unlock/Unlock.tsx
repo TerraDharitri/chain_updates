@@ -1,4 +1,4 @@
-import { MxLink } from 'components';
+import { DrtLink } from 'components';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
@@ -73,20 +73,20 @@ export const Unlock = () => {
           <div className='flex flex-col items-center justify-center mt-1 gap-1'>
             <p className='text-center text-gray-400'>Don't have a wallet?</p>
             <div className='flex flex-col md:flex-row md:gap-4 items-center justify-center'>
-              <MxLink
+              <DrtLink
                 className='text-blue-400 underline decoration-dotted hover:decoration-solid'
                 data-testid={DataTestIdsEnum.createWalletBtn}
                 to={CreateRecoverRoutesEnum.create}
               >
                 Create
-              </MxLink>
-              <MxLink
+              </DrtLink>
+              <DrtLink
                 className='text-blue-400 underline decoration-dotted hover:decoration-solid'
                 data-testid={DataTestIdsEnum.recoverWalletBtn}
                 to={CreateRecoverRoutesEnum.recover}
               >
                 Recover
-              </MxLink>
+              </DrtLink>
             </div>
           </div>
         </div>

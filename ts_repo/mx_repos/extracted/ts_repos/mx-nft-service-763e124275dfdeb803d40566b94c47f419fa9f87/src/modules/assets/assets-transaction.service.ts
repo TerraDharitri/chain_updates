@@ -14,7 +14,7 @@ import { Constants } from '@multiversx/sdk-nestjs-common';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import BigNumber from 'bignumber.js';
 import { FileUpload } from 'graphql-upload-ts';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { MxStats } from 'src/common/services/mx-communication/models/mx-stats.model';
 import { gas, mxConfig } from 'src/config';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
@@ -32,7 +32,7 @@ export class AssetsTransactionService {
   constructor(
     private pinataService: PinataService,
     private s3Service: S3Service,
-    private mxApiService: MxApiService,
+    private mxApiService: DrtApiService,
     private readonly logger: Logger,
     private redisCacheService: RedisCacheService,
   ) {}

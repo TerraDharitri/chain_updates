@@ -1,4 +1,4 @@
-export class MxApiServiceMock {
+export class DrtApiServiceMock {
   async getNftsForUserCount(_address: string, _query: string = ''): Promise<number> {
     return Promise.resolve(4);
   }

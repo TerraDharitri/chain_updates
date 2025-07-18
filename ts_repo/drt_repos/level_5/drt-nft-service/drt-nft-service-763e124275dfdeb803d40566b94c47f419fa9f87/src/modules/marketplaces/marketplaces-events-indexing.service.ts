@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import '../../utils/extensions';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
 import { MarketplacesService } from './marketplaces.service';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { MarketplaceEventsEntity } from 'src/db/marketplaces/marketplace-events.entity';
 import { MarketplaceEventsIndexingRequest } from './models/MarketplaceEventsIndexingRequest';
 import { BinaryUtils, Locker } from '@terradharitri/sdk-nestjs-common';
@@ -19,7 +19,7 @@ export class MarketplaceEventsIndexingService {
     private readonly logger: Logger,
     private readonly persistenceService: PersistenceService,
     private readonly marketplaceService: MarketplacesService,
-    private readonly drtElasticService: MxElasticService,
+    private readonly drtElasticService: DrtElasticService,
     private readonly cacheEventsPublisher: CacheEventsPublisherService,
   ) {}
 

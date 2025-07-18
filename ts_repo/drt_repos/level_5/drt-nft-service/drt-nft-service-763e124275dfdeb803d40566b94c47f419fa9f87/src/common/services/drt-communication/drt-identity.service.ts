@@ -5,7 +5,7 @@ import { Privacy } from './models';
 import { AccountIdentity } from './models/account.identity';
 
 @Injectable()
-export class MxIdentityService {
+export class DrtIdentityService {
   constructor(private readonly logger: Logger, private readonly apiService: ApiService) {}
 
   async getProfiles(addresses: string[]): Promise<AccountIdentity[]> {

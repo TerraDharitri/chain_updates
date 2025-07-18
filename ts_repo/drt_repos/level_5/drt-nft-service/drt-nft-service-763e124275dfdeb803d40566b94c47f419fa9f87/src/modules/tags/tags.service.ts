@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MxApiService, NftTag } from 'src/common';
+import { DrtApiService, NftTag } from 'src/common';
 import { Tag } from './models';
 import { TagTypeEnum } from './models/Tag-type.enum';
 import { TagsFilter } from './models/Tags.Filter';
@@ -10,7 +10,7 @@ import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 
 @Injectable()
 export class TagsService {
-  constructor(private apiService: MxApiService, private persistenceService: PersistenceService, private cacheService: CacheService) {}
+  constructor(private apiService: DrtApiService, private persistenceService: PersistenceService, private cacheService: CacheService) {}
 
   async getTags(offset: number = 0, limit: number = 10, filters: TagsFilter): Promise<[Tag[], number]> {
     if (filters.tagType === TagTypeEnum.Nft) {

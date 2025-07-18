@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MxLink, OutputContainer } from 'components';
+import { DrtLink, OutputContainer } from 'components';
 import { useGetAccountInfo } from 'lib';
 import { DataTestIdsEnum } from 'localConstants';
 import { useLazyGetTokensQuery } from 'redux/endpoints';
@@ -22,13 +22,13 @@ export const Tokens = () => {
           <p className='text-gray-400'>No tokens found</p>
         </OutputContainer>
         <div className='mt-5'>
-          <MxLink
+          <DrtLink
             className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
             data-testid={DataTestIdsEnum.issueTokenBtn}
             to={routeNames.issueToken}
           >
             Issue Token
-          </MxLink>
+          </DrtLink>
         </div>
       </div>
     );
@@ -42,13 +42,13 @@ export const Tokens = () => {
         ))}
       </OutputContainer>
       <div className='mt-5'>
-        <MxLink
+        <DrtLink
           className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
           data-testid={DataTestIdsEnum.issueTokenBtn}
           to={routeNames.issueToken}
         >
           Issue Token
-        </MxLink>
+        </DrtLink>
       </div>
     </div>
   );

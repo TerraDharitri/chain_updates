@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { DcdtToken } from '../models/dcdtToken.model';
 import { CacheTtlInfo } from 'src/services/caching/cache.ttl.info';
-import { MXApiService } from 'src/services/dharitri-communication/drt.api.service';
+import { DRTApiService } from 'src/services/dharitri-communication/drt.api.service';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 
 @Injectable()
 export class TokenService {
     constructor(
-        private readonly apiService: MXApiService,
+        private readonly apiService: DRTApiService,
         protected readonly cachingService: CacheService,
     ) {}
 

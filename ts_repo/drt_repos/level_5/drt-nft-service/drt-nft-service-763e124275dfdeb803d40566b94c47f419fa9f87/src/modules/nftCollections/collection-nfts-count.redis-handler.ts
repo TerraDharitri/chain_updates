@@ -1,7 +1,7 @@
 import { Constants } from '@terradharitri/sdk-nestjs-common';
 import { RedisCacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { AssetsQuery } from '../assets/assets-query';
 import { RedisValue } from '../common/redis-value.dto';
 import { BaseCollectionsAssetsRedisHandler } from './base-collection-assets.redis-handler';
@@ -9,7 +9,7 @@ import { BaseCollectionsAssetsRedisHandler } from './base-collection-assets.redi
 @Injectable()
 export class CollectionsNftsCountRedisHandler extends BaseCollectionsAssetsRedisHandler {
   protected redisCacheService: RedisCacheService;
-  constructor(redisCacheService: RedisCacheService, private apiService: MxApiService) {
+  constructor(redisCacheService: RedisCacheService, private apiService: DrtApiService) {
     super(redisCacheService, 'collectionAssetsCount');
   }
   mapValues(returnValues: { key: string; value: any }[], data: any): RedisValue[] {

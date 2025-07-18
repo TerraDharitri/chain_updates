@@ -6,7 +6,7 @@ export const Widget = ({
   description,
   reference,
   anchor,
-  widget: MxWidget,
+  widget: DrtWidget,
   props = {}
 }: WidgetType) => {
   return (
@@ -16,7 +16,7 @@ export const Widget = ({
       reference={reference}
       anchor={anchor}
     >
-      <MxWidget {...props} />
+      <DrtWidget {...props} />
     </Card>
   );
 };

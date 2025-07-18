@@ -10,7 +10,7 @@ import { AnalyticsAggregateValue } from 'src/modules/analytics/models/analytics-
 import * as moment from 'moment';
 
 @Injectable()
-export class MxToolsService {
+export class DrtToolsService {
   private url: string;
   private nativeAuthSigner: NativeAuthSigner;
 
@@ -171,7 +171,7 @@ export class MxToolsService {
     } catch (error) {
       this.logger.error(`Error when trying to get run ${name}`, {
         error: error.message,
-        path: `${MxToolsService.name}.${this.doPost.name}`,
+        path: `${DrtToolsService.name}.${this.doPost.name}`,
       });
     }
   }

@@ -21,7 +21,7 @@ import { ReindexGlobalOfferAcceptedHandler } from './marketplaces-reindex-handle
 import { ReindexAuctionUpdatedHandler } from './marketplaces-reindex-handlers/reindex-auction-updated.handler';
 import { constants, drtConfig } from 'src/config';
 import { MarketplaceReindexState } from './models/MarketplaceReindexState';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { MarketplaceReindexDataArgs } from './models/MarketplaceReindexDataArgs';
 import { NUMBATNFTSWAP_KEY } from 'src/utils/constants';
 import { DateUtils } from 'src/utils/date-utils';
@@ -49,7 +49,7 @@ export class MarketplacesReindexService {
     private readonly reindexOfferAcceptedHandler: ReindexOfferAcceptedHandler,
     private readonly reindexOfferClosedHandler: ReindexOfferClosedHandler,
     private readonly reindexGlobalOfferAcceptedHandler: ReindexGlobalOfferAcceptedHandler,
-    private readonly drtApiService: MxApiService,
+    private readonly drtApiService: DrtApiService,
     private readonly logger: Logger,
   ) {}
 

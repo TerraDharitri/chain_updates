@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { CollectionWithTraitsFlag } from './models/collection-with-traits-flag.model';
 import { EncodedNftValues, NftTraits } from './models/nft-traits.model';
 import {
@@ -13,7 +13,7 @@ import { ELASTIC_NFT_HASTRAITSUMMARY, ELASTIC_NFT_TRAITS, ELASTIC_TOKENS_INDEX }
 
 @Injectable()
 export class NftTraitsElasticService {
-  constructor(private readonly elasticService: MxElasticService, private readonly logger: Logger) {}
+  constructor(private readonly elasticService: DrtElasticService, private readonly logger: Logger) {}
 
   async setNftsTraitsInElastic(nfts: NftTraits[]): Promise<void> {
     if (nfts.length > 0) {

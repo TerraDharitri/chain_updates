@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { ProxyDeployerMutationsResolver } from './proxy-deployer-mutations.resolver';
 import { PubSubListenerModule } from 'src/pubsub/pub.sub.listener.module';
 import { CommonModule } from 'src/common.module';
@@ -13,7 +13,7 @@ import { ProxyDeployerQueriesResolver } from './proxy-deployer-queries.resolver'
   providers: [ProxyDeployerMutationsResolver, ProxyDeployerQueriesResolver, ProxyDeployerAbiService],
   imports: [
     PubSubListenerModule,
-    MxCommunicationModule,
+    DrtCommunicationModule,
     CommonModule,
     forwardRef(() => AuthModule),
     forwardRef(() => MintersModuleGraph),

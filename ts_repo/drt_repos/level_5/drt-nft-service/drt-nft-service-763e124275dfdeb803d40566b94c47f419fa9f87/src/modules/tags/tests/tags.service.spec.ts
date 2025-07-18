@@ -2,17 +2,17 @@ import { Test } from '@nestjs/testing';
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import * as Transport from 'winston-transport';
-import { MxApiService } from 'src/common';
-import { MxApiServiceMock } from 'src/common/services/drt-communication/drt-api.service.mock';
+import { DrtApiService } from 'src/common';
+import { DrtApiServiceMock } from 'src/common/services/drt-communication/drt-api.service.mock';
 import { TagsService } from '../tags.service';
 import { Tag } from '../models';
 import { TagsFilter } from '../models/Tags.Filter';
 
 describe.skip('SearchService', () => {
   let service: TagsService;
-  const MxApiServiceProvider = {
-    provide: MxApiService,
-    useClass: MxApiServiceMock,
+  const DrtApiServiceProvider = {
+    provide: DrtApiService,
+    useClass: DrtApiServiceMock,
   };
 
   const logTransports: Transport[] = [
@@ -22,7 +22,7 @@ describe.skip('SearchService', () => {
   ];
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      providers: [MxApiServiceProvider, TagsService],
+      providers: [DrtApiServiceProvider, TagsService],
       imports: [
         WinstonModule.forRoot({
           transports: logTransports,

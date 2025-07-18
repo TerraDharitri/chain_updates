@@ -9,14 +9,14 @@ import { CustomRank } from 'src/modules/nft-rarity/models/custom-rank.model';
 import { XOXNO_MINTING_MANAGER } from 'src/utils/constants';
 import { Token } from '../../../modules/usdPrice/Token.model';
 import { CollectionApi } from './models/collection.dto';
-import { MxApiAbout } from './models/mx-api-about.model';
+import { DrtApiAbout } from './models/mx-api-about.model';
 import { MxStats } from './models/mx-stats.model';
 import { Nft, NftMetadata, NftTag } from './models/nft.dto';
 import { OwnerApi } from './models/owner.api';
 import { SmartContractApi } from './models/smart-contract.api';
 
 @Injectable()
-export class MxApiService {
+export class DrtApiService {
   private apiProvider: ApiNetworkProvider;
 
   constructor(private readonly logger: Logger) {
@@ -49,7 +49,7 @@ export class MxApiService {
       const response = await this.getService().doGetGeneric(resourceUrl);
       profiler.stop();
 
-      MetricsCollector.setExternalCall(MxApiService.name, profiler.duration, name);
+      MetricsCollector.setExternalCall(DrtApiService.name, profiler.duration, name);
 
       return response;
     } catch (error) {
@@ -65,7 +65,7 @@ export class MxApiService {
         name: error.name,
       };
       this.logger.error(`An error occurred while calling the mx api service on url ${resourceUrl}`, {
-        path: `${MxApiService.name}.${name}`,
+        path: `${DrtApiService.name}.${name}`,
         error: customError,
       });
     }
@@ -77,7 +77,7 @@ export class MxApiService {
       const response = await this.getService().doPostGeneric(resourceUrl, payload);
       profiler.stop();
 
-      MetricsCollector.setExternalCall(MxApiService.name, profiler.duration, name);
+      MetricsCollector.setExternalCall(DrtApiService.name, profiler.duration, name);
 
       return response;
     } catch (error) {
@@ -93,7 +93,7 @@ export class MxApiService {
         name: error.name,
       };
       this.logger.error(`An error occurred while calling the mx api service on url ${resourceUrl}`, {
-        path: `${MxApiService.name}.${name}`,
+        path: `${DrtApiService.name}.${name}`,
         error: customError,
       });
     }
@@ -377,12 +377,12 @@ export class MxApiService {
 
   async getAllDexTokens(): Promise<Token[]> {
     const allTokens = await this.doGetGeneric(this.getAllDexTokens.name, 'mex/tokens?size=10000');
-    return allTokens.map((t) => Token.fromMxApiDexToken(t));
+    return allTokens.map((t) => Token.fromDrtApiDexToken(t));
   }
 
   async getAllTokens(): Promise<Token[]> {
     const allTokens = await this.doGetGeneric(this.getAllTokens.name, 'tokens?size=10000&fields=identifier,name,ticker,decimals,price');
-    return allTokens.map((t) => Token.fromMxApiToken(t));
+    return allTokens.map((t) => Token.fromDrtApiToken(t));
   }
 
   async getEgldPriceFromEconomics(): Promise<string> {
@@ -444,9 +444,9 @@ export class MxApiService {
     return new MxStats(stats);
   }
 
-  async getMxApiAbout(): Promise<MxApiAbout> {
+  async getDrtApiAbout(): Promise<DrtApiAbout> {
     const about = await this.doGetGeneric(this.getMxStats.name, 'about');
-    return new MxApiAbout(about);
+    return new DrtApiAbout(about);
   }
 
   private filterUniqueNftsByNonce(nfts: Nft[]): Nft[] {

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NftMarketplaceAbiService } from '../nft-marketplace.abi.service';
-import { MxApiService, MxProxyService } from 'src/common';
+import { DrtApiService, DrtProxyService } from 'src/common';
 import { RedisCacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Logger } from '@nestjs/common';
 import { OffersService } from 'src/modules/offers/offers.service';
@@ -47,11 +47,11 @@ describe('Nft Marketplace Abi Service', () => {
       providers: [
         NftMarketplaceAbiService,
         {
-          provide: MxProxyService,
+          provide: DrtProxyService,
           useValue: {},
         },
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
         {
@@ -413,7 +413,7 @@ describe('Nft Marketplace Abi Service', () => {
     it('without active auction and no whitelisted marketplace throw expected error', async () => {
       const marketplaceService = module.get<MarketplacesService>(MarketplacesService);
       marketplaceService.getMarketplaceByKey = jest.fn().mockReturnValueOnce(null);
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifierAndAddress = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleDCDT,
         balance: 10,
@@ -430,7 +430,7 @@ describe('Nft Marketplace Abi Service', () => {
     it('without active auction and user not owner of nft throw expected error', async () => {
       const marketplaceService = module.get<MarketplacesService>(MarketplacesService);
       marketplaceService.getMarketplaceByKey = jest.fn().mockReturnValueOnce(marketplace);
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifierAndAddress = jest.fn().mockReturnValueOnce(null);
       const offersService = module.get<OffersService>(OffersService);
       jest.spyOn(offersService, 'getOfferById').mockResolvedValueOnce(offerResponse);
@@ -443,7 +443,7 @@ describe('Nft Marketplace Abi Service', () => {
     it('without active auction and not enouth balance throw expected error', async () => {
       const marketplaceService = module.get<MarketplacesService>(MarketplacesService);
       marketplaceService.getMarketplaceByKey = jest.fn().mockReturnValueOnce(marketplace);
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifierAndAddress = jest
         .fn()
         .mockReturnValueOnce({ type: NftTypeEnum.SemiFungibleDCDT, balance: 1, identifier: 'GEN-8984e7-01' });
@@ -458,7 +458,7 @@ describe('Nft Marketplace Abi Service', () => {
       const marketplaceService = module.get<MarketplacesService>(MarketplacesService);
       marketplaceService.getMarketplaceByKey = jest.fn().mockReturnValueOnce(marketplace);
 
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifierAndAddress = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleDCDT,
         balance: 10,

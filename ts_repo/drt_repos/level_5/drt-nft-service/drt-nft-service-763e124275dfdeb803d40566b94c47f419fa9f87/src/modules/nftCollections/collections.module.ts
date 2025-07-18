@@ -12,7 +12,7 @@ import { CollectionAssetsResolver } from './collection-assets.resolver';
 import { CollectionsMutationsResolver } from './collections-mutations.resolver';
 import { CollectionsNftsRedisHandler } from './collection-nfts.redis-handler';
 import { CollectionsNftsCountRedisHandler } from './collection-nfts-count.redis-handler';
-import { MxCommunicationModule } from 'src/common/services/drt-communication/drt-communication.module';
+import { DrtCommunicationModule } from 'src/common/services/drt-communication/drt-communication.module';
 import { OnSaleAssetsCountForCollectionProvider } from './loaders/onsale-assets-count.loader';
 import { OnSaleAssetsCountForCollectionRedisHandler } from './loaders/onsale-assets-count.redis-handler';
 import { ArtistAddressProvider } from '../artists/artists.loader';
@@ -57,7 +57,7 @@ import { CollectionAssetsModelResolver } from './collection-assets-model.resolve
     SmartContractArtistsService,
   ],
   imports: [
-    forwardRef(() => MxCommunicationModule),
+    forwardRef(() => DrtCommunicationModule),
     forwardRef(() => AssetsModuleGraph),
     forwardRef(() => CommonModule),
     forwardRef(() => AuthModule),

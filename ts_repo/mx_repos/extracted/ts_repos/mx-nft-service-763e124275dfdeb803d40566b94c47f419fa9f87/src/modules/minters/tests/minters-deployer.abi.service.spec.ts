@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { MintersDeployerAbiService } from '../minters-deployer.abi.service';
 import { DeployMinterRequest, UpgradeMinterRequest } from '../models/requests/DeployMinterRequest';
 
@@ -12,7 +12,7 @@ describe('Minters Deployer Abi Service', () => {
       providers: [
         MintersDeployerAbiService,
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
       ],

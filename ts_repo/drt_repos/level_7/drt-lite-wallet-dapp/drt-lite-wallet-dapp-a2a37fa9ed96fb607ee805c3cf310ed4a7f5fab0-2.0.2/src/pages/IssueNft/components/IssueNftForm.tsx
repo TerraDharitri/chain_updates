@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import Select from 'react-select';
-import { Button, MxLink } from 'components';
+import { Button, DrtLink } from 'components';
 import { getFormHasError } from 'helpers';
 import { DataTestIdsEnum } from 'localConstants';
 import { routeNames } from 'routes';
@@ -193,13 +193,13 @@ export const IssueNftForm = () => {
         >
           Create
         </Button>
-        <MxLink
+        <DrtLink
           className='block w-full mt-2 px-4 py-2 text-sm text-center text-blue-600'
           data-testid={DataTestIdsEnum.cancelBtn}
           to={routeNames.dashboard}
         >
           Cancel
-        </MxLink>
+        </DrtLink>
       </div>
     </form>
   );

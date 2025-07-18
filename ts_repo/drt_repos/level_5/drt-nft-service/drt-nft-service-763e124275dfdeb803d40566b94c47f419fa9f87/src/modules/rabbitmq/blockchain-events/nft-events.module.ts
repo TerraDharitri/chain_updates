@@ -3,7 +3,7 @@ import { NftEventsService } from './nft-events.service';
 import { NftEventsConsumer } from './nft-events.consumer';
 import { RevertEventsConsumer } from './revert-events.consumer';
 import { RevertEventsService } from './revert.events.service';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { MinterEventsService } from './minter-events.service';
 import { CommonModule } from 'src/common.module';
 import { RarityUpdaterService } from 'src/crons/elastic.updater/rarity.updater.service';
@@ -56,7 +56,7 @@ import { DisabledMarketplaceEventsModule } from './disable-marketplace/disable-m
     forwardRef(() => NotificationsModuleGraph),
     forwardRef(() => MarketplacesModuleGraph),
     forwardRef(() => MintersModuleGraph),
-    forwardRef(() => MxCommunicationModule),
+    forwardRef(() => DrtCommunicationModule),
     forwardRef(() => OffersModuleGraph),
     forwardRef(() => PluginModule),
     forwardRef(() => DisabledMarketplaceEventsModule),

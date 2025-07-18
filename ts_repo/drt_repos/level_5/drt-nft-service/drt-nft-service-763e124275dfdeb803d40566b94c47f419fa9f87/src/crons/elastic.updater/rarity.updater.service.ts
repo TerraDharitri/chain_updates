@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { NftRarityService } from 'src/modules/nft-rarity/nft-rarity.service';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { NftRarityElasticService } from 'src/modules/nft-rarity/nft-rarity.elastic.service';
@@ -10,7 +10,7 @@ import { ELASTIC_TOKENS_INDEX } from 'src/utils/constants';
 @Injectable()
 export class RarityUpdaterService {
   constructor(
-    private readonly elasticService: MxElasticService,
+    private readonly elasticService: DrtElasticService,
     private readonly nftRarityService: NftRarityService,
     private readonly nftRarityElasticService: NftRarityElasticService,
     private readonly redisCacheService: RedisCacheService,

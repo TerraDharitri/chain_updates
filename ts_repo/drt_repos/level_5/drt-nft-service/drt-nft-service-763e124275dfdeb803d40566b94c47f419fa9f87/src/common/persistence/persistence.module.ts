@@ -19,7 +19,7 @@ import { ReportNftsRepository } from 'src/db/reports/report-nft.repository';
 import { CacheEventsPublisherModule } from 'src/modules/rabbitmq/cache-invalidation/cache-invalidation-publisher/change-events-publisher.module';
 import { PersistenceService } from './persistence.service';
 import { UsdPriceService } from 'src/modules/usdPrice/usd-price.service';
-import { MxCommunicationModule } from '../services/drt-communication';
+import { DrtCommunicationModule } from '../services/drt-communication';
 import { MarketplaceEventsRepository } from 'src/db/marketplaces/marketplace-events.repository';
 import { BlacklistedCollectionsRepository } from 'src/db/blacklistedCollections/blacklisted.repository';
 import { ReportCollectionEntity, ReportCollectionsRepository, ReportNftEntity } from 'src/db/reports';
@@ -61,7 +61,7 @@ import { MintersRepository } from 'src/db/minters/minters.repository';
       MinterEntity,
     ]),
     CacheEventsPublisherModule,
-    MxCommunicationModule,
+    DrtCommunicationModule,
   ],
   providers: [
     UsdPriceService,

@@ -1,6 +1,6 @@
-import { MxToolsService } from 'src/common/services/drt-communication/drt-tools.service';
+import { DrtToolsService } from 'src/common/services/drt-communication/drt-tools.service';
 import { AnalyticsInput } from './models/analytics-input.model';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import * as hash from 'object-hash';
@@ -14,8 +14,8 @@ import { HoldersCount } from './models/general-stats.model';
 @Injectable()
 export class CollectionsAnalyticsService {
   constructor(
-    private toolsService: MxToolsService,
-    private elasticService: MxElasticService,
+    private toolsService: DrtToolsService,
+    private elasticService: DrtElasticService,
     private cacheService: CacheService,
     private persistenceService: PersistenceService,
     private readonly analyticsGetter: AnalyticsGetterService,

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { drtConfig } from 'src/config';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { AssetsQuery } from '../assets';
@@ -12,7 +12,7 @@ import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 export class CollectionsStatsService {
   constructor(
     private persistenceService: PersistenceService,
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private readonly logger: Logger,
     private redisCacheService: RedisCacheService,
   ) {}

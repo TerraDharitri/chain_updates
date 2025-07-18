@@ -1,4 +1,4 @@
-export class MxApiAbout {
+export class DrtApiAbout {
   appVersion: string;
   pluginsVersion: string;
   network: string;
@@ -6,7 +6,7 @@ export class MxApiAbout {
   version: string;
   scamEngineVersion: string = '1.0.0';
 
-  constructor(init?: Partial<MxApiAbout>) {
+  constructor(init?: Partial<DrtApiAbout>) {
     Object.assign(this, init);
   }
 }

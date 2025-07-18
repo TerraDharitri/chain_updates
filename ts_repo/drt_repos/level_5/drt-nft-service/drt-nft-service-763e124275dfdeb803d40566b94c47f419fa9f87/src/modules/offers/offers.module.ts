@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { OffersService } from './offers.service';
 import { OffersResolver } from './offers.resolver';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { AuctionProvider, AuctionsRedisHandler } from '../auctions';
 import { AccountsProvider } from '../account-stats/loaders/accounts.loader';
 import { AccountsRedisHandler } from '../account-stats/loaders/accounts.redis-handler';
@@ -28,7 +28,7 @@ import { MarketplaceRedisHandler } from '../marketplaces/loaders/marketplace.red
     MarketplaceProvider,
   ],
   imports: [
-    MxCommunicationModule,
+    DrtCommunicationModule,
     OffersCachingModule,
     forwardRef(() => AuctionsModuleGraph),
     forwardRef(() => NotificationsModuleGraph),

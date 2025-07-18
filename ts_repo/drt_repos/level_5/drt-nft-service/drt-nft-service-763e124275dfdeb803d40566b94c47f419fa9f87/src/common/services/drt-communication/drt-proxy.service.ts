@@ -4,7 +4,7 @@ import * as Agent from 'agentkeepalive';
 import { drtConfig } from '../../../config';
 
 @Injectable()
-export class MxProxyService {
+export class DrtProxyService {
   private readonly proxy: ProxyNetworkProvider;
   constructor() {
     const keepAliveOptions = {

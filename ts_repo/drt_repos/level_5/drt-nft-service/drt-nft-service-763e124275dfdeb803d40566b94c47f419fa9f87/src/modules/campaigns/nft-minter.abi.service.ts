@@ -16,7 +16,7 @@ import {
 } from '@terradharitri/sdk-core';
 import { Injectable } from '@nestjs/common';
 import BigNumber from 'bignumber.js';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { nominateVal } from 'src/utils';
 import { getCollectionAndNonceFromIdentifier } from 'src/utils/helpers';
 import { gas, drtConfig } from '../../config';
@@ -32,7 +32,7 @@ import { UpgradeNftRequest } from './models/requests/UpgradeNftRequest ';
 export class NftMinterAbiService {
   private readonly abiPath: string = './src/abis/nft-minter.abi.json';
 
-  constructor(private drtApiService: MxApiService) {}
+  constructor(private drtApiService: DrtApiService) {}
 
   public async getCampaignsForScAddress(address: string) {
     const controller = await ContractLoader.getController(this.drtApiService.getService(), this.abiPath);

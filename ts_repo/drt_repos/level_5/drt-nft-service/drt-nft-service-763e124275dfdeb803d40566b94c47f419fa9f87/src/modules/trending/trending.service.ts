@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService, MxStatsService } from 'src/common';
+import { DrtApiService, DrtStatsService } from 'src/common';
 import { Asset } from '../assets/models';
 
 @Injectable()
 export class TrendingService {
-  constructor(private apiService: MxApiService, private statsService: MxStatsService, private readonly logger: Logger) {}
+  constructor(private apiService: DrtApiService, private statsService: DrtStatsService, private readonly logger: Logger) {}
 
   async getTrendingAssets(): Promise<[Asset[], number]> {
     try {

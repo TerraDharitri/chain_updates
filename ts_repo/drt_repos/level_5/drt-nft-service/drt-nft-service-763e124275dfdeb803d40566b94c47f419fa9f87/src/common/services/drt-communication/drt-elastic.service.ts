@@ -15,7 +15,7 @@ export interface AddressTransactionCount {
 }
 
 @Injectable()
-export class MxElasticService {
+export class DrtElasticService {
   private readonly url = process.env.NUMBAT_ELASTICSEARCH;
   constructor(private readonly apiService: ApiService, private readonly logger: Logger) {}
 
@@ -92,7 +92,7 @@ export class MxElasticService {
       return [responseMap, data?.hits?.total.value, data?.hits?.hits[data?.hits?.hits?.length - 1]?._source.timestamp];
     } catch (e) {
       this.logger.error('Fail to get logs', {
-        path: `${MxElasticService.name}.${this.getNftHistory.name}`,
+        path: `${DrtElasticService.name}.${this.getNftHistory.name}`,
         address: nonce,
         exception: e.toString(),
       });

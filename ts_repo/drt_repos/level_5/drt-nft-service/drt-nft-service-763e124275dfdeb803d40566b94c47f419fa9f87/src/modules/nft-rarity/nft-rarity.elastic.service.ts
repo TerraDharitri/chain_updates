@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { ElasticQuery, ElasticSortOrder, MatchQuery, QueryOperator, QueryType } from '@terradharitri/sdk-nestjs-elastic';
 import { Locker } from '@terradharitri/sdk-nestjs-common';
 import { NftTypeEnum } from '../assets/models';
@@ -25,7 +25,7 @@ import {
 
 @Injectable()
 export class NftRarityElasticService {
-  constructor(private readonly elasticService: MxElasticService, private readonly logger: Logger) {}
+  constructor(private readonly elasticService: DrtElasticService, private readonly logger: Logger) {}
 
   async setCollectionRarityFlagInElastic(collection: string, hasRarities: boolean, currentFlagValue?: boolean): Promise<void> {
     if (hasRarities === currentFlagValue) {

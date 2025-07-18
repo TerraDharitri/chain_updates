@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import '../../utils/extensions';
 import { AssetLikeEntity } from 'src/db/assets';
-import { MxFeedService } from 'src/common/services/drt-communication/drt-feed.service';
+import { DrtFeedService } from 'src/common/services/drt-communication/drt-feed.service';
 import { EventEnum, Feed } from 'src/common/services/drt-communication/models/feed.dto';
 import { AssetByIdentifierService } from './asset-by-identifier.service';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
@@ -19,7 +19,7 @@ export class AssetsLikesService {
   constructor(
     private persistenceService: PersistenceService,
     private assetByIdentifierService: AssetByIdentifierService,
-    private accountFeedService: MxFeedService,
+    private accountFeedService: DrtFeedService,
     private assetsLikesCachingService: AssetsLikesCachingService,
     private cacheEventsPublisherService: CacheEventsPublisherService,
     private nftLikePublisherService: NftLikePublisherService,

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LabelComponent } from '../label/label.component';
 import { FormatAmountComponent } from '../format-amount/format-amount.component';
-import { MxLinkComponent } from '../drt-link/drt-link.component';
+import { DrtLinkComponent } from '../drt-link/drt-link.component';
 import { SignedTransactionType } from '../ping-pong-output/ping-pong-output.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { SignedTransactionType } from '../ping-pong-output/ping-pong-output.comp
     CommonModule,
     LabelComponent,
     FormatAmountComponent,
-    MxLinkComponent,
+    DrtLinkComponent,
   ],
   templateUrl: './transaction-output.component.html',
 })

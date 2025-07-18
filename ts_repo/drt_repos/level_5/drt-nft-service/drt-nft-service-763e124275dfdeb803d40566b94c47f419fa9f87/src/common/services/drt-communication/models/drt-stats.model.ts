@@ -1,4 +1,4 @@
-export class MxStats {
+export class DrtStats {
   shards: number;
   blocks: number;
   accounts: number;
@@ -8,7 +8,7 @@ export class MxStats {
   roundsPassed: number;
   roundsPerEpoch: number;
 
-  constructor(init?: Partial<MxStats>) {
+  constructor(init?: Partial<DrtStats>) {
     Object.assign(this, init);
   }
 }

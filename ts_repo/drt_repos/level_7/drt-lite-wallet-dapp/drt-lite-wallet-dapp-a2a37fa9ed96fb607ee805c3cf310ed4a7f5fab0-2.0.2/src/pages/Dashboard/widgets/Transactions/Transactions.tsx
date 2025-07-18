@@ -63,7 +63,7 @@ export const Transactions = () => {
               {interpretedTransactions?.map((transaction) => (
                 <TransactionRow
                   key={transaction.txHash}
-                  className='mx-transactions text-gray-500'
+                  className='drt-transactions text-gray-500'
                   transaction={transaction}
                 />
               ))}

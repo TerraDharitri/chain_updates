@@ -14,8 +14,8 @@ import { Constants } from '@terradharitri/sdk-nestjs-common';
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import BigNumber from 'bignumber.js';
 import { FileUpload } from 'graphql-upload-ts';
-import { MxApiService } from 'src/common';
-import { MxStats } from 'src/common/services/drt-communication/models/drt-stats.model';
+import { DrtApiService } from 'src/common';
+import { DrtStats } from 'src/common/services/drt-communication/models/drt-stats.model';
 import { gas, drtConfig } from 'src/config';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { getCollectionAndNonceFromIdentifier, timestampToEpochAndRound } from 'src/utils/helpers';
@@ -32,7 +32,7 @@ export class AssetsTransactionService {
   constructor(
     private pinataService: PinataService,
     private s3Service: S3Service,
-    private drtApiService: MxApiService,
+    private drtApiService: DrtApiService,
     private readonly logger: Logger,
     private redisCacheService: RedisCacheService,
   ) {}
@@ -50,7 +50,7 @@ export class AssetsTransactionService {
   }
 
   async burnQuantity(ownerAddress: string, request: UpdateQuantityRequest): Promise<TransactionNode> {
-    const [nft, drtStats] = await Promise.all([this.drtApiService.getNftByIdentifier(request.identifier), this.getOrSetAproximateMxStats()]);
+    const [nft, drtStats] = await Promise.all([this.drtApiService.getNftByIdentifier(request.identifier), this.getOrSetAproximateDrtStats()]);
     if (!nft) {
       throw new NotFoundException('NFT not found');
     }
@@ -146,20 +146,20 @@ export class AssetsTransactionService {
     return fileData;
   }
 
-  private async getOrSetAproximateMxStats(): Promise<MxStats> {
+  private async getOrSetAproximateDrtStats(): Promise<DrtStats> {
     try {
-      const cacheKey = this.getApproximateMxStatsCacheKey();
-      const getMxStats = () => this.drtApiService.getMxStats();
-      return this.redisCacheService.getOrSet(cacheKey, getMxStats, Constants.oneDay());
+      const cacheKey = this.getApproximateDrtStatsCacheKey();
+      const getDrtStats = () => this.drtApiService.getDrtStats();
+      return this.redisCacheService.getOrSet(cacheKey, getDrtStats, Constants.oneDay());
     } catch (error) {
       this.logger.error('An error occurred while getting drt stats', {
-        path: `${AssetsTransactionService.name}.${this.getOrSetAproximateMxStats.name}`,
+        path: `${AssetsTransactionService.name}.${this.getOrSetAproximateDrtStats.name}`,
         exception: error,
       });
     }
   }
 
-  private getApproximateMxStatsCacheKey() {
-    return generateCacheKeyFromParams('assets', 'approximateMxStats');
+  private getApproximateDrtStatsCacheKey() {
+    return generateCacheKeyFromParams('assets', 'approximateDrtStats');
   }
 }

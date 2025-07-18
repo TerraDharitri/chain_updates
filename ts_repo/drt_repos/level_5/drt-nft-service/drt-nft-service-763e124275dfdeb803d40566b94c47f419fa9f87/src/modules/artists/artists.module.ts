@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { ArtistsResolver } from './artists.resolver';
 import { ArtistsService } from './artists.service';
 import { CollectionsModuleGraph } from '../nftCollections/collections.module';
@@ -9,7 +9,7 @@ import { MarketplacesModuleGraph } from '../marketplaces/marketplaces.module';
 
 @Module({
   providers: [ArtistsService, ArtistsResolver],
-  imports: [MxCommunicationModule, CollectionsModuleGraph, CommonModule, PubSubListenerModule, MarketplacesModuleGraph],
+  imports: [DrtCommunicationModule, CollectionsModuleGraph, CommonModule, PubSubListenerModule, MarketplacesModuleGraph],
   exports: [ArtistsService],
 })
 export class ArtistsModuleGraph {}

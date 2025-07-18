@@ -1,17 +1,17 @@
 import { Logger, Module } from '@nestjs/common';
 import { ApiService } from './api.service';
-import { MxApiService } from './drt-api.service';
-import { MxElasticService } from './drt-elastic.service';
-import { MxFeedService } from './drt-feed.service';
-import { MxIdentityService } from './drt-identity.service';
-import { MxPrivateApiService } from './drt-private-api.service';
-import { MxProxyService } from './drt-proxy.service';
-import { MxStatsService } from './drt-stats.service';
+import { DrtApiService } from './drt-api.service';
+import { DrtElasticService } from './drt-elastic.service';
+import { DrtFeedService } from './drt-feed.service';
+import { DrtIdentityService } from './drt-identity.service';
+import { DrtPrivateApiService } from './drt-private-api.service';
+import { DrtProxyService } from './drt-proxy.service';
+import { DrtStatsService } from './drt-stats.service';
 import { SlackReportService } from './slack-report.service';
 import { ConfigService } from '@nestjs/config';
 import { ApiConfigService } from 'src/modules/common/api-config/api.config.service';
-import { MxDataApiService } from './drt-data.service';
-import { MxToolsService } from './drt-tools.service';
+import { DrtDataApiService } from './drt-data.service';
+import { DrtToolsService } from './drt-tools.service';
 
 @Module({
   providers: [
@@ -19,29 +19,29 @@ import { MxToolsService } from './drt-tools.service';
     ApiService,
     ConfigService,
     ApiConfigService,
-    MxProxyService,
-    MxApiService,
-    MxPrivateApiService,
-    MxStatsService,
-    MxElasticService,
-    MxIdentityService,
-    MxFeedService,
+    DrtProxyService,
+    DrtApiService,
+    DrtPrivateApiService,
+    DrtStatsService,
+    DrtElasticService,
+    DrtIdentityService,
+    DrtFeedService,
     SlackReportService,
-    MxDataApiService,
-    MxToolsService,
+    DrtDataApiService,
+    DrtToolsService,
   ],
   exports: [
     ApiService,
-    MxProxyService,
-    MxStatsService,
-    MxElasticService,
-    MxApiService,
-    MxPrivateApiService,
-    MxIdentityService,
-    MxFeedService,
+    DrtProxyService,
+    DrtStatsService,
+    DrtElasticService,
+    DrtApiService,
+    DrtPrivateApiService,
+    DrtIdentityService,
+    DrtFeedService,
     SlackReportService,
-    MxDataApiService,
-    MxToolsService,
+    DrtDataApiService,
+    DrtToolsService,
   ],
 })
-export class MxCommunicationModule {}
+export class DrtCommunicationModule {}
