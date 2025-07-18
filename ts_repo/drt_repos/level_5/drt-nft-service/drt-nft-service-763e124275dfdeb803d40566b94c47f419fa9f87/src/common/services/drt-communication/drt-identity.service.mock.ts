@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class MxIdentityServiceMock {
+export class DrtIdentityServiceMock {
   async getAcountsByHerotag(searchTerm: string): Promise<any> {
     return Promise.resolve({ herotags: [searchTerm] });
   }

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TagsService } from './tags.service';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { TagsResolver } from './tags.resolver';
 
 @Module({
   providers: [TagsService, TagsResolver],
-  imports: [MxCommunicationModule],
+  imports: [DrtCommunicationModule],
   exports: [TagsService],
 })
 export class TagsModuleGraph {}

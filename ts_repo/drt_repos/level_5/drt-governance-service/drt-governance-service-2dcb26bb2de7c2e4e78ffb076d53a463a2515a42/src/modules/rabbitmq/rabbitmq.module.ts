@@ -2,7 +2,7 @@ import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 import { DynamicModule, Module } from '@nestjs/common';
 import { CommonAppModule } from 'src/common.app.module';
 import { RabbitMqConsumer } from './rabbitmq.consumer';
-import { MXCommunicationModule } from 'src/services/dharitri-communication/drt.communication.module';
+import { DRTCommunicationModule } from 'src/services/dharitri-communication/drt.communication.module';
 import { ContextModule } from 'src/services/context/context.module';
 import { TokenModule } from '../tokens/token.module';
 import { EnergyHandler } from './handlers/energy.handler.service';
@@ -13,7 +13,7 @@ import { GovernanceModule } from '../governance/governance.module';
 @Module({
     imports: [
         CommonAppModule,
-        MXCommunicationModule,
+        DRTCommunicationModule,
         ContextModule,
         TokenModule,
         EnergyModule,

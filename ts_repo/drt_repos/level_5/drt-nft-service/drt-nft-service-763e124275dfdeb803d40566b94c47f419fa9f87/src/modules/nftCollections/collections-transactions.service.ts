@@ -6,7 +6,7 @@ import {
   TransactionsFactoryConfig,
 } from '@terradharitri/sdk-core';
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { drtConfig } from 'src/config';
 import { NftTypeEnum } from '../assets/models';
 import { TransactionNode } from '../common/transaction';
@@ -14,7 +14,7 @@ import { IssueCollectionRequest, SetNftRolesRequest } from './models/requests';
 
 @Injectable()
 export class CollectionsTransactionsService {
-  constructor(private apiService: MxApiService) {}
+  constructor(private apiService: DrtApiService) {}
   async issueToken(ownerAddress: string, request: IssueCollectionRequest) {
     const factory = new TokenManagementTransactionsFactory({ config: new TransactionsFactoryConfig({ chainID: drtConfig.chainID }) });
     if (request.collectionType === 'issueNonFungible') {

@@ -1,12 +1,12 @@
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { XOXNO_MINTING_MANAGER } from 'src/utils/constants';
 
 @Injectable()
 export class SmartContractArtistsService {
-  constructor(private cacheService: CacheService, private drtApiService: MxApiService, private logger: Logger) {}
+  constructor(private cacheService: CacheService, private drtApiService: DrtApiService, private logger: Logger) {}
 
   async getOrSetArtistForScAddress(address: string) {
     return this.cacheService.getOrSet(

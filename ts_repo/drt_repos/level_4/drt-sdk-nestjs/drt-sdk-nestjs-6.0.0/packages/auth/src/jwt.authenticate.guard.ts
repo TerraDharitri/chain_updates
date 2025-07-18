@@ -1,14 +1,14 @@
 import { Injectable, CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { verify } from 'jsonwebtoken';
 import { PerformanceProfiler } from '@terradharitri/sdk-nestjs-monitoring';
-import { MxnestConfigService, DRTNEST_CONFIG_SERVICE, DecoratorUtils, ExecutionContextUtils } from '@terradharitri/sdk-nestjs-common';
+import { DrtnestConfigService, DRTNEST_CONFIG_SERVICE, DecoratorUtils, ExecutionContextUtils } from '@terradharitri/sdk-nestjs-common';
 import { NoAuthOptions } from './decorators/no.auth';
 
 @Injectable()
 export class JwtAuthenticateGuard implements CanActivate {
   constructor(
     @Inject(DRTNEST_CONFIG_SERVICE)
-    private readonly drtnestConfigService: MxnestConfigService
+    private readonly drtnestConfigService: DrtnestConfigService
   ) { }
 
   async canActivate(

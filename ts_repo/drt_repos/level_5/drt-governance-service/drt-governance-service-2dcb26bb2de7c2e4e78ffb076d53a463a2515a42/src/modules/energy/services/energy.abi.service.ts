@@ -1,12 +1,12 @@
 import { Energy, EnergyType } from '@terradharitri/sdk-exchange';
 import { Address, AddressValue, Interaction } from '@terradharitri/sdk-core';
 import { Injectable } from '@nestjs/common';
-import { MXProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
+import { DRTProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
 import { GenericAbiService } from 'src/services/generics/generic.abi.service';
 import { GetOrSetCache } from 'src/helpers/decorators/caching.decorator';
 import { Constants, ErrorLoggerAsync } from '@terradharitri/sdk-nestjs-common';
 import { CacheTtlInfo } from 'src/services/caching/cache.ttl.info';
-import { MXApiService } from 'src/services/dharitri-communication/drt.api.service';
+import { DRTApiService } from 'src/services/dharitri-communication/drt.api.service';
 import { IEnergyAbiService } from './interfaces';
 
 @Injectable()
@@ -15,8 +15,8 @@ export class EnergyAbiService
     implements IEnergyAbiService
 {
     constructor(
-        protected readonly drtProxy: MXProxyService,
-        private readonly mxAPI: MXApiService,
+        protected readonly drtProxy: DRTProxyService,
+        private readonly mxAPI: DRTApiService,
     ) {
         super(drtProxy);
     }

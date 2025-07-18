@@ -1,7 +1,7 @@
 import { Constants } from '@terradharitri/sdk-nestjs-common';
 import { RedisCacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { AssetsQuery } from '../assets/assets-query';
 import { NftTypeEnum } from '../assets/models';
@@ -12,7 +12,7 @@ import { CollectionAssetModel } from './models/CollectionAsset.dto';
 @Injectable()
 export class CollectionsNftsRedisHandler extends BaseCollectionsAssetsRedisHandler {
   protected redisCacheService: RedisCacheService;
-  constructor(redisCacheService: RedisCacheService, private apiService: MxApiService) {
+  constructor(redisCacheService: RedisCacheService, private apiService: DrtApiService) {
     super(redisCacheService, CacheInfo.CollectionNfts.key);
   }
   mapValues(returnValues: { key: string; value: any }[], assetsIdentifiers: { [key: string]: any[] }): RedisValue[] {

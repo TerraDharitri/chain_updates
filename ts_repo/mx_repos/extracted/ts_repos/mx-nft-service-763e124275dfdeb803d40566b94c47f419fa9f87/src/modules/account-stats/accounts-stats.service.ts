@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { AccountStatsEntity } from 'src/db/account-stats/account-stats';
 import { AssetsQuery } from '../assets';
 import { AccountsStatsCachingService } from './accounts-stats.caching.service';
@@ -18,7 +18,7 @@ export class AccountsStatsService {
   constructor(
     private persistenceService: PersistenceService,
     private collectionsService: CollectionsGetterService,
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private readonly logger: Logger,
     private accountStatsCachingService: AccountsStatsCachingService,
     private marketplacesService: MarketplacesService,

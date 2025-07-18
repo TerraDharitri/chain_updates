@@ -4,7 +4,7 @@ import { ApiService } from './api.service';
 import { ApiConfigService } from 'src/modules/common/api-config/api.config.service';
 
 @Injectable()
-export class MxDataApiService {
+export class DrtDataApiService {
   private url: string;
 
   constructor(

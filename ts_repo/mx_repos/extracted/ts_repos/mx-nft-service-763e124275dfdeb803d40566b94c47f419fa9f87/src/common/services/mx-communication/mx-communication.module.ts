@@ -1,6 +1,6 @@
 import { Logger, Module } from '@nestjs/common';
 import { ApiService } from './api.service';
-import { MxApiService } from './mx-api.service';
+import { DrtApiService } from './mx-api.service';
 import { MxElasticService } from './mx-elastic.service';
 import { MxFeedService } from './mx-feed.service';
 import { MxIdentityService } from './mx-identity.service';
@@ -20,7 +20,7 @@ import { MxToolsService } from './mx-tools.service';
     ConfigService,
     ApiConfigService,
     MxProxyService,
-    MxApiService,
+    DrtApiService,
     MxPrivateApiService,
     MxStatsService,
     MxElasticService,
@@ -35,7 +35,7 @@ import { MxToolsService } from './mx-tools.service';
     MxProxyService,
     MxStatsService,
     MxElasticService,
-    MxApiService,
+    DrtApiService,
     MxPrivateApiService,
     MxIdentityService,
     MxFeedService,

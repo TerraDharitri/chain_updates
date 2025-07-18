@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MxIdentityService } from 'src/common';
+import { DrtIdentityService } from 'src/common';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { Account } from '../account-stats/models';
@@ -10,7 +10,7 @@ import { CollectionsGetterService } from '../nftCollections/collections-getter.s
 @Injectable()
 export class ArtistsService {
   constructor(
-    private idService: MxIdentityService,
+    private idService: DrtIdentityService,
     private cacheService: CacheService,
     private collectionsGetterService: CollectionsGetterService,
   ) {}

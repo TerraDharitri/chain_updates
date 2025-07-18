@@ -1,5 +1,5 @@
 import DataLoader = require('dataloader');
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { BaseProvider } from '../../common/base.loader';
 import { AssetsSupplyRedisHandler } from './assets-supply.redis-handler';
 import { Injectable, Scope } from '@nestjs/common';
@@ -8,7 +8,7 @@ import { Injectable, Scope } from '@nestjs/common';
   scope: Scope.REQUEST,
 })
 export class AssetsSupplyLoader extends BaseProvider<string> {
-  constructor(private assetsSupplyRedisHandler: AssetsSupplyRedisHandler, private apiService: MxApiService) {
+  constructor(private assetsSupplyRedisHandler: AssetsSupplyRedisHandler, private apiService: DrtApiService) {
     super(assetsSupplyRedisHandler, new DataLoader(async (keys: string[]) => await this.batchLoad(keys)));
   }
 

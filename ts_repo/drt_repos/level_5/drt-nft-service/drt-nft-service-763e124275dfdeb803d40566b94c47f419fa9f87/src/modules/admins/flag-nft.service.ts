@@ -1,7 +1,7 @@
 import { ElasticQuery, MatchQuery, QueryOperator, QueryType } from '@terradharitri/sdk-nestjs-elastic';
 import { Locker } from '@terradharitri/sdk-nestjs-common';
 import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
-import { MxElasticService, NftMedia } from 'src/common';
+import { DrtElasticService, NftMedia } from 'src/common';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
 import { NsfwUpdaterService } from 'src/crons/elastic.updater/nsfw.updater.service';
 import { NftFlagsEntity } from 'src/db/nftFlags';
@@ -21,7 +21,7 @@ export class FlagNftService {
   constructor(
     private assetByIdentifierService: AssetByIdentifierService,
     private verifyContent: VerifyContentService,
-    private elasticUpdater: MxElasticService,
+    private elasticUpdater: DrtElasticService,
     private persistenceService: PersistenceService,
     @Inject(forwardRef(() => NsfwUpdaterService))
     private nsfwUpdateService: NsfwUpdaterService,

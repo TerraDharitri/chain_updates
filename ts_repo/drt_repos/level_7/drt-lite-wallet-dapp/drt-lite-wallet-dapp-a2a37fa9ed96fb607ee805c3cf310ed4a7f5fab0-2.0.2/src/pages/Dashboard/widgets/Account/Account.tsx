@@ -1,6 +1,6 @@
 import QRCode from 'react-qr-code';
 import { useSelector } from 'react-redux';
-import { Copy, MxLink } from 'components';
+import { Copy, DrtLink } from 'components';
 import { FormatAmount } from 'components/sdkDapp.components';
 import { useGetAccountInfo, useGetNetworkConfig } from 'lib';
 import { DataTestIdsEnum } from 'localConstants';
@@ -67,37 +67,37 @@ export const Account = () => {
               Open in Explorer
             </a>
             <FaucetButton />
-            <MxLink
+            <DrtLink
               className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
               data-testid={DataTestIdsEnum.sendBtn}
               to={routeNames.send}
             >
               Send
-            </MxLink>
-            <MxLink
+            </DrtLink>
+            <DrtLink
               className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
               data-testid={DataTestIdsEnum.signMessageBtn}
               to={routeNames.signMessage}
             >
               Sign Message
-            </MxLink>
+            </DrtLink>
             {hasSovereignTransfer && (
-              <MxLink
+              <DrtLink
                 className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
                 data-testid={DataTestIdsEnum.sovereignTransferBtn}
                 to={routeNames.sovereignTransfer}
               >
                 Sovereign Transfer
-              </MxLink>
+              </DrtLink>
             )}
             {hasRegisterToken && (
-              <MxLink
+              <DrtLink
                 className='inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white'
                 data-testid={DataTestIdsEnum.registerTokenBtn}
                 to={routeNames.registerToken}
               >
                 Register Token
-              </MxLink>
+              </DrtLink>
             )}
           </div>
         </div>

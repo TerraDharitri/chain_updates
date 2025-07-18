@@ -1,10 +1,10 @@
 {
-  "name": "mx-explorer-dapp",
+  "name": "drt-explorer-dapp",
   "description": "DharitrI Blockchain Explorer",
   "version": "2.1.0",
   "author": "DharitrI",
   "license": "GPL-3.0-or-later",
-  "repository": "dharitri/mx-explorer-dapp",
+  "repository": "TerraDharitri/drt-explorer-dapp",
   "keywords": [
     "dharitri",
     "explorer"

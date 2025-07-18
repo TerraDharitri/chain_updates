@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { mxConfig } from 'src/config';
 import { computeUsdAmount } from 'src/utils/helpers';
@@ -12,7 +12,7 @@ import { DateUtils } from 'src/utils/date-utils';
 export class UsdPriceService {
   constructor(
     private readonly cacheService: CacheService,
-    private readonly mxApiService: MxApiService,
+    private readonly mxApiService: DrtApiService,
     private readonly mxDataApi: MxDataApiService,
   ) {}
 

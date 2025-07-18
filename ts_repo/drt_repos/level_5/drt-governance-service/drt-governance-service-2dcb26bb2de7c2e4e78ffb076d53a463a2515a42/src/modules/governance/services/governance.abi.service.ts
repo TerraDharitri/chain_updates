@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MXProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
+import { DRTProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
 import { GenericAbiService } from 'src/services/generics/generic.abi.service';
 import { ErrorLoggerAsync } from '@terradharitri/sdk-nestjs-common';
 import { ProposalVotes } from '../models/governance.proposal.votes.model';
@@ -23,7 +23,7 @@ import { ResultsParser } from '@terradharitri/sdk-core/out';
 export class GovernanceTokenSnapshotAbiService extends GenericAbiService {
     protected type = GovernanceType.TOKEN_SNAPSHOT;
     constructor(
-        protected readonly drtProxy: MXProxyService,
+        protected readonly drtProxy: DRTProxyService,
         protected readonly governanceMerkle: GovernanceTokenSnapshotMerkleService,
         protected readonly governanceDescription: GovernanceDescriptionService,
     ) {
@@ -435,7 +435,7 @@ export class GovernanceTokenSnapshotAbiService extends GenericAbiService {
 @Injectable()
 export class GovernanceEnergyAbiService extends GovernanceTokenSnapshotAbiService {
     constructor(
-        protected readonly drtProxy: MXProxyService,
+        protected readonly drtProxy: DRTProxyService,
         protected readonly governanceMerkle: GovernanceTokenSnapshotMerkleService,
         protected readonly governanceDescription: GovernanceDescriptionService,
     ) {

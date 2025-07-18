@@ -1,5 +1,5 @@
 import { forwardRef, Logger, Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { MarketplacesService } from './marketplaces.service';
 import { PubSubListenerModule } from 'src/pubsub/pub.sub.listener.module';
 import { MarketplacesQueriesResolver } from './marketplaces-queries.resolver';
@@ -56,7 +56,7 @@ import { DisabledMarketplaceEventsModule } from '../rabbitmq/blockchain-events/d
   ],
   imports: [
     PubSubListenerModule,
-    MxCommunicationModule,
+    DrtCommunicationModule,
     forwardRef(() => CommonModule),
     forwardRef(() => AuctionsModuleGraph),
     forwardRef(() => OffersModuleGraph),

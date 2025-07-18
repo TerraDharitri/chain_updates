@@ -31,7 +31,7 @@ pub const SECOND_TEST_TOKEN: &str = "LTST-4f849e";
 pub const SOV_TOKEN: &str = "sov-GREEN-0e161c";
 pub const TOKEN_TICKER: &str = "GREEN";
 
-pub const SOV_TO_DRT_TOKEN_STORAGE_KEY: &str = "sovToMxTokenId";
+pub const SOV_TO_DRT_TOKEN_STORAGE_KEY: &str = "sovToDrtTokennId";
 pub const DRT_TO_SOV_TOKEN_STORAGE_KEY: &str = "drtToSovTokenId";
 pub const OPERATION_HASH_STATUS_STORAGE_KEY: &str = "operationHashStatus";
 

@@ -1,9 +1,9 @@
-import { MxApiAbout } from 'src/common/services/mx-communication/models/mx-api-about.model';
+import { DrtApiAbout } from 'src/common/services/mx-communication/models/mx-api-about.model';
 import { Asset } from 'src/modules/assets/models';
 import { NftScamInfoModel } from './nft-scam-info.model';
 
 export class NftScamRelatedData {
-  mxApiAbout?: MxApiAbout;
+  mxApiAbout?: DrtApiAbout;
   nftFromApi?: Asset;
   nftFromElastic?: any;
   nftFromDb?: NftScamInfoModel;

@@ -1,7 +1,7 @@
 import { Injectable, CanActivate, ExecutionContext, Optional, Inject, Logger } from '@nestjs/common';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { NativeAuthError, NativeAuthServer } from '@terradharitri/sdk-native-auth-server';
-import { DecoratorUtils, MxnestConfigService, DRTNEST_CONFIG_SERVICE, UrlUtils, ExecutionContextUtils } from '@terradharitri/sdk-nestjs-common';
+import { DecoratorUtils, DrtnestConfigService, DRTNEST_CONFIG_SERVICE, UrlUtils, ExecutionContextUtils } from '@terradharitri/sdk-nestjs-common';
 import { PerformanceProfiler } from '@terradharitri/sdk-nestjs-monitoring';
 import { NativeAuthInvalidOriginError } from './errors/native.auth.invalid.origin.error';
 import { NoAuthOptions } from './decorators';
@@ -17,7 +17,7 @@ export class NativeAuthGuard implements CanActivate {
   private readonly authServer: NativeAuthServer;
 
   constructor(
-    @Inject(DRTNEST_CONFIG_SERVICE) drtnestConfigService: MxnestConfigService,
+    @Inject(DRTNEST_CONFIG_SERVICE) drtnestConfigService: DrtnestConfigService,
     @Optional() cacheService?: CacheService,
   ) {
     const nativeAuthServerConfig: NativeAuthServerConfig = {

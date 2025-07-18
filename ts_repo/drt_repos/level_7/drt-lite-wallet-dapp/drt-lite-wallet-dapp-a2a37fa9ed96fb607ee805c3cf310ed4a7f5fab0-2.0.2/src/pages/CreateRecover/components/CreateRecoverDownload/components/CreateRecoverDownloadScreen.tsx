@@ -1,5 +1,5 @@
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { MxLink, PageState } from 'components';
+import { DrtLink, PageState } from 'components';
 import { DataTestIdsEnum } from 'localConstants';
 import { routeNames } from 'routes';
 import { CreateRecoverDownloadType } from '../CreateRecoverDownload';
@@ -21,13 +21,13 @@ export const CreateRecoverDownloadScreen = ({
           description={infoSection}
         />
 
-        <MxLink
+        <DrtLink
           className='text-blue-400 underline decoration-dotted hover:decoration-solid'
           data-testid={DataTestIdsEnum.accessWalletBtn}
           to={routeNames.unlock}
         >
           {accessWalletBtnLabel}
-        </MxLink>
+        </DrtLink>
 
         {hasDownload && (
           <ReDownloadButton

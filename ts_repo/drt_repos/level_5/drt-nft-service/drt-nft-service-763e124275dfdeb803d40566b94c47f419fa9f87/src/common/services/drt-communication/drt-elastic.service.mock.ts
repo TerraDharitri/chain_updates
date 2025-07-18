@@ -5,7 +5,7 @@ export interface AddressTransactionCount {
   transactionCount: number;
 }
 
-export class MxElasticServiceMock {
+export class DrtElasticServiceMock {
   async getNftHistory(
     collection: string,
     nonce: string,

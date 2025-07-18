@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ContextModule } from './context/context.module';
 import { CacheWarmerService } from './crons/cache.warmer.service';
-import { MXCommunicationModule } from './dharitri-communication/drt.communication.module';
+import { DRTCommunicationModule } from './dharitri-communication/drt.communication.module';
 import { CommonAppModule } from 'src/common.app.module';
 import { RemoteConfigModule } from 'src/modules/remote-config/remote-config.module';
 import { TokenModule } from 'src/modules/tokens/token.module';
@@ -15,7 +15,7 @@ import { GovernanceModule } from '../modules/governance/governance.module';
     imports: [
         ScheduleModule.forRoot(),
         CommonAppModule,
-        MXCommunicationModule,
+        DRTCommunicationModule,
         ContextModule,
         TokenModule,
         RemoteConfigModule,

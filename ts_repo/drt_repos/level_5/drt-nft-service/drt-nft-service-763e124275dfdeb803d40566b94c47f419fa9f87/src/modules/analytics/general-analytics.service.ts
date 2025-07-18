@@ -1,6 +1,6 @@
-import { MxToolsService } from 'src/common/services/drt-communication/drt-tools.service';
+import { DrtToolsService } from 'src/common/services/drt-communication/drt-tools.service';
 import { AnalyticsInput } from './models/analytics-input.model';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { CollectionsGetterService } from '../nftCollections/collections-getter.service';
 import { MarketplacesService } from '../marketplaces/marketplaces.service';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
@@ -12,8 +12,8 @@ import { AnalyticsAggregateValue } from './models/analytics-aggregate-value';
 @Injectable()
 export class GeneralAnalyticsService {
   constructor(
-    private toolsService: MxToolsService,
-    private elasticService: MxElasticService,
+    private toolsService: DrtToolsService,
+    private elasticService: DrtElasticService,
     private cacheService: CacheService,
     private collectionsService: CollectionsGetterService,
     private marketplacesService: MarketplacesService,

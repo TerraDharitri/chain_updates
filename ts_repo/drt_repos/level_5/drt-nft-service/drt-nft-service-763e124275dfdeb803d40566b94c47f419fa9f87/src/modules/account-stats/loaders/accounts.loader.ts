@@ -1,6 +1,6 @@
 import { Injectable, Scope } from '@nestjs/common';
 import DataLoader = require('dataloader');
-import { MxIdentityService } from 'src/common';
+import { DrtIdentityService } from 'src/common';
 import { BaseProvider } from '../../common/base.loader';
 import { AccountsRedisHandler } from './accounts.redis-handler';
 
@@ -8,7 +8,7 @@ import { AccountsRedisHandler } from './accounts.redis-handler';
   scope: Scope.REQUEST,
 })
 export class AccountsProvider extends BaseProvider<string> {
-  constructor(private accountsService: MxIdentityService, accountsRedisHandler: AccountsRedisHandler) {
+  constructor(private accountsService: DrtIdentityService, accountsRedisHandler: AccountsRedisHandler) {
     super(accountsRedisHandler, new DataLoader(async (keys: string[]) => await this.batchLoad(keys)));
   }
 

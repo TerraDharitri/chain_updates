@@ -1,6 +1,6 @@
 import { Address, AddressValue, SmartContractController, SmartContractQuery, U32Value } from '@multiversx/sdk-core';
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { gas } from 'src/config';
 import { ContractLoader } from '../auctions/contractLoader';
 import { MarketplaceUtils } from '../auctions/marketplaceUtils';
@@ -9,7 +9,7 @@ import { DeployMinterRequest, UpgradeMinterRequest } from './models/requests/Dep
 
 @Injectable()
 export class MintersDeployerAbiService {
-  constructor(private mxApiService: MxApiService) {}
+  constructor(private mxApiService: DrtApiService) {}
   async deployMinter(request: DeployMinterRequest): Promise<TransactionNode> {
     const factory = await ContractLoader.getFactory(MarketplaceUtils.deployerMintersAbiPath);
     const transaction = factory.createTransactionForExecute(Address.newFromBech32(request.ownerAddress), {

@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
 import { NftTraitsService } from 'src/modules/nft-traits/nft-traits.service';
 import { ElasticQuery } from '@terradharitri/sdk-nestjs-elastic';
@@ -17,7 +17,7 @@ export class TraitsUpdaterService {
   constructor(
     private readonly nftTraitsService: NftTraitsService,
     private readonly redisCacheService: RedisCacheService,
-    private readonly elasticService: MxElasticService,
+    private readonly elasticService: DrtElasticService,
     private readonly logger: Logger,
   ) {}
 

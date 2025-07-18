@@ -10,7 +10,7 @@ import { MetricsCollector } from 'src/utils/metrics.collector';
 import { Address } from '@terradharitri/sdk-core/out';
 
 @Injectable()
-export class MXGatewayService {
+export class DRTGatewayService {
     private url: string;
     private config: AxiosRequestConfig;
 
@@ -100,7 +100,7 @@ export class MXGatewayService {
             profiler.stop();
 
             MetricsCollector.setExternalCall(
-                MXGatewayService.name,
+                DRTGatewayService.name,
                 name,
                 profiler.duration,
             );

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
 import { ClientProxy } from '@nestjs/microservices';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { Locker } from '@terradharitri/sdk-nestjs-common';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 
@@ -11,7 +11,7 @@ export class TokensWarmerService {
   constructor(
     @Inject('PUBSUB_SERVICE') private clientProxy: ClientProxy,
     private cacheService: CacheService,
-    private drtApiService: MxApiService,
+    private drtApiService: DrtApiService,
   ) {}
 
   @Cron(CronExpression.EVERY_10_MINUTES)

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { DraggableArea } from 'react-draggable-tags';
 import Select from 'react-select';
-import { Button, MxLink } from 'components';
+import { Button, DrtLink } from 'components';
 import { DataTestIdsEnum } from 'localConstants';
 import { routeNames } from 'routes';
 import { RecoverMnemonicsPropsType, useRecoverMnemonics } from './hooks';
@@ -33,12 +33,12 @@ export const RecoverMnemonics = ({
   );
 
   const goToUnlockSection = (
-    <MxLink
+    <DrtLink
       className='text-blue-400 underline decoration-dotted hover:decoration-solid'
       to={routeNames.unlock}
     >
       Back to unlock
-    </MxLink>
+    </DrtLink>
   );
 
   return (

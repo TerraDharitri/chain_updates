@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService, MxIdentityService } from 'src/common';
+import { DrtApiService, DrtIdentityService } from 'src/common';
 import { SearchService } from '../search.service';
 import { SearchItemResponse, SearchNftCollectionResponse } from '../models/SearchItemResponse';
 import { Logger } from '@nestjs/common';
@@ -23,7 +23,7 @@ describe('SearchService', () => {
           },
         },
         {
-          provide: MxIdentityService,
+          provide: DrtIdentityService,
           useFactory: () => ({}),
         },
         {
@@ -37,7 +37,7 @@ describe('SearchService', () => {
           },
         },
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {
             getNftsCountForCollection: jest.fn(),
           },

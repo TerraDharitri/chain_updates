@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { MxElasticService } from 'src/common';
+import { DrtElasticService } from 'src/common';
 import { ElasticQuery, ElasticSortOrder, MatchQuery, QueryType, RangeLowerThan } from '@terradharitri/sdk-nestjs-elastic';
 import { constants } from 'src/config';
 
 @Injectable()
 export class AssetsHistoryElasticService {
-  constructor(private readonly drtElasticService: MxElasticService) {}
+  constructor(private readonly drtElasticService: DrtElasticService) {}
 
   async getHistoryLog(collection: string, nonce: string, limit: number, beforeTimestamp: number): Promise<any> {
     let elasticLogs = [];

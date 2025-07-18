@@ -1,6 +1,6 @@
 import { AccountsStatsService } from '../accounts-stats.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { AccountStatsEntity } from 'src/db/account-stats/account-stats';
 import { PersistenceService } from 'src/common/persistence/persistence.service';
 import { Logger } from '@nestjs/common';
@@ -29,7 +29,7 @@ describe('AccountsStatsService', () => {
           useFactory: () => ({}),
         },
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {
             getNftsCountForCollection: jest.fn(),
           },

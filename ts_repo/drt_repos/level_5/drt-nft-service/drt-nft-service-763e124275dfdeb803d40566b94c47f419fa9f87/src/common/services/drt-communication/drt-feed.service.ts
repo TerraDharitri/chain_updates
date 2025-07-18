@@ -6,7 +6,7 @@ import { Feed } from './models/feed.dto';
 import { SubscriptionFeed } from './models/subscription-feed.dto';
 
 @Injectable()
-export class MxFeedService {
+export class DrtFeedService {
   constructor(private readonly logger: Logger, private readonly apiService: ApiService) {}
 
   async subscribe(identifier: string, authKey?: string): Promise<boolean> {
@@ -26,7 +26,7 @@ export class MxFeedService {
         return response.data;
       } catch (error) {
         this.logger.error(`An error occurred while calling the drt feed api on url ${removeCredentialsFromUrl(url)}`, {
-          path: `${MxFeedService.name}.${this.subscribe.name}`,
+          path: `${DrtFeedService.name}.${this.subscribe.name}`,
           identifier,
           exception: error,
         });
@@ -54,7 +54,7 @@ export class MxFeedService {
         return response.data;
       } catch (error) {
         this.logger.error(`An error occurred while calling the drt feed api on url ${removeCredentialsFromUrl(url)}`, {
-          path: `${MxFeedService.name}.${this.unsubscribe.name}`,
+          path: `${DrtFeedService.name}.${this.unsubscribe.name}`,
           reference,
           exception: error,
         });
@@ -73,7 +73,7 @@ export class MxFeedService {
         return response.data;
       } catch (error) {
         this.logger.error(`An error occurred while calling the drt feed api on url ${removeCredentialsFromUrl(url)}`, {
-          path: `${MxFeedService.name}.${this.addFeed.name}`,
+          path: `${DrtFeedService.name}.${this.addFeed.name}`,
           feed: feed,
           exception: error,
         });

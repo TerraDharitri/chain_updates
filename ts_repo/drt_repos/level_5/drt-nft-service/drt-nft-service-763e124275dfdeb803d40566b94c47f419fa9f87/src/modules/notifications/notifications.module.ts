@@ -1,7 +1,7 @@
 import { forwardRef, Logger, Module } from '@nestjs/common';
 import { NotificationsService } from './notifications.service';
 import { NotificationsResolver } from './notifications.resolver';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { CommonModule } from 'src/common.module';
 import { OrdersModuleGraph } from '../orders/orders.module';
 import { AssetByIdentifierService } from '../assets/asset-by-identifier.service';
@@ -13,7 +13,7 @@ import { AuctionsModuleGraph } from '../auctions/auctions.module';
 @Module({
   providers: [Logger, NotificationsService, NotificationsCachingService, NotificationsResolver, AssetByIdentifierService],
   imports: [
-    MxCommunicationModule,
+    DrtCommunicationModule,
     CacheEventsPublisherModule,
     CommonModule,
     forwardRef(() => OrdersModuleGraph),

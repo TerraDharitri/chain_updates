@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { CommonModule } from 'src/common.module';
 import { AssetsRedisHandler } from 'src/modules/assets';
 import { CollectionAssetsCountRedisHandler } from 'src/modules/nftCollections/loaders/collection-assets-count.redis-handler';
@@ -33,7 +33,7 @@ import { ScamUpdatePublisherModule } from '../elastic-updates/scam-trigger/scam-
         uri: process.env.COMMON_RABBITMQ_URL,
       };
     }),
-    forwardRef(() => MxCommunicationModule),
+    forwardRef(() => DrtCommunicationModule),
   ],
   providers: [
     CacheEventsConsumer,

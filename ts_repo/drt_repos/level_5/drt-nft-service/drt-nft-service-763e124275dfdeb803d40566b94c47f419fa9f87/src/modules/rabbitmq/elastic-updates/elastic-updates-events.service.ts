@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { FlagNftService } from 'src/modules/admins/flag-nft.service';
 import { AssetByIdentifierService } from 'src/modules/assets';
 import { Asset, NftEventEnum, NftTypeEnum } from 'src/modules/assets/models';
@@ -22,7 +22,7 @@ export class ElasticUpdatesEventsService {
     private readonly nftScamInfoService: NftScamService,
     private readonly documentDbService: DocumentDbService,
     private readonly redisCacheService: RedisCacheService,
-    private readonly drtApiService: MxApiService,
+    private readonly drtApiService: DrtApiService,
   ) { }
 
   public async handleNftMintEvents(mintEvents: any[], hash: string): Promise<void> {

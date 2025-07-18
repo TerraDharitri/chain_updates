@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Button, MxLink } from 'components';
+import { Button, DrtLink } from 'components';
 import { getFormHasError } from 'helpers';
 import { CollectionTypeByNftEnum, DataTestIdsEnum } from 'localConstants';
 import { routeNames } from 'routes';
@@ -147,13 +147,13 @@ export const IssueCollectionForm = () => {
         >
           Issue
         </Button>
-        <MxLink
+        <DrtLink
           className='block w-full mt-2 px-4 py-2 text-sm text-center text-blue-600'
           data-testid={DataTestIdsEnum.cancelBtn}
           to={routeNames.dashboard}
         >
           Cancel
-        </MxLink>
+        </DrtLink>
       </div>
     </form>
   );

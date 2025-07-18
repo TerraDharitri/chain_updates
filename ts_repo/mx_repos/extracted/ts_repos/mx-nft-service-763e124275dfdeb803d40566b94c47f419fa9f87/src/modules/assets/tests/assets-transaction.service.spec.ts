@@ -1,7 +1,7 @@
 import { RedisCacheService } from '@multiversx/sdk-nestjs-cache';
 import { Logger, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { MxStats } from 'src/common/services/mx-communication/models/mx-stats.model';
 import { UploadToIpfsResult } from 'src/modules/ipfs/ipfs.model';
 import { PinataService } from 'src/modules/ipfs/pinata.service';
@@ -28,7 +28,7 @@ describe('Assets Transaction Service', () => {
           useValue: {},
         },
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
         {
@@ -87,7 +87,7 @@ describe('Assets Transaction Service', () => {
     });
 
     it('returns built transaction with right arguments', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleESDT,
         balance: 10,
@@ -115,7 +115,7 @@ describe('Assets Transaction Service', () => {
     });
 
     it('if no nft for identifier throws expected error', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce(null);
 
       const redisCacheService = module.get<RedisCacheService>(RedisCacheService);
@@ -126,7 +126,7 @@ describe('Assets Transaction Service', () => {
     });
 
     it('returns burn transaction if after activation epoch', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleESDT,
         balance: 10,

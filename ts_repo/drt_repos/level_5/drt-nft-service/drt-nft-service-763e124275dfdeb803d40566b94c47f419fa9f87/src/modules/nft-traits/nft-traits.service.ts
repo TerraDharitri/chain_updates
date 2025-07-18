@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService, Nft } from 'src/common';
+import { DrtApiService, Nft } from 'src/common';
 import { CollectionTraitSummary } from './models/collection-traits.model';
 import { NftTrait, EncodedNftValues, NftTraits } from './models/nft-traits.model';
 import { getCollectionAndNonceFromIdentifier } from 'src/utils/helpers';
@@ -15,7 +15,7 @@ import { Locker } from '@terradharitri/sdk-nestjs-common';
 @Injectable()
 export class NftTraitsService {
   constructor(
-    private readonly apiService: MxApiService,
+    private readonly apiService: DrtApiService,
     private readonly nftTraitsElasticService: NftTraitsElasticService,
     private readonly documentDbService: DocumentDbService,
     private readonly logger: Logger,

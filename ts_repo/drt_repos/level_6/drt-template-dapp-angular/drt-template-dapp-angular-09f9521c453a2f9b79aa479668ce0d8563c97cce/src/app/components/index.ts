@@ -1,5 +1,5 @@
 export { ButtonComponent } from './button/button.component';
-export { MxLinkComponent } from './drt-link/drt-link.component';
+export { DrtLinkComponent } from './drt-link/drt-link.component';
 export { LayoutComponent } from './layout/layout.component';
 export { HeaderComponent } from './header/header.component';
 export { FooterComponent } from './footer/footer.component';

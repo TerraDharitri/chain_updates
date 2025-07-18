@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Interaction } from '@terradharitri/sdk-core/out/smartcontracts/interaction';
-import { MXProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
+import { DRTProxyService } from 'src/services/dharitri-communication/drt.proxy.service';
 import { GenericAbiService } from 'src/services/generics/generic.abi.service';
 
 @Injectable()
 export class AbiLockedAssetService extends GenericAbiService {
-    constructor(protected readonly drtProxy: MXProxyService) {
+    constructor(protected readonly drtProxy: DRTProxyService) {
         super(drtProxy);
     }
 

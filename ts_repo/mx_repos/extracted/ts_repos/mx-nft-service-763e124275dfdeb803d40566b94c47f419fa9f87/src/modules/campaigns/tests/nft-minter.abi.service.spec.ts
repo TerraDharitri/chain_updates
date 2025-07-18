@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { MediaMimeTypeEnum } from 'src/modules/assets/models/MediaTypes.enum';
 import { BuyRequest, IssueCampaignRequest, TierRequest } from '../models/requests';
 import { UpgradeNftRequest } from '../models/requests/UpgradeNftRequest ';
@@ -14,7 +14,7 @@ describe('Nft Minter Abi Service', () => {
       providers: [
         NftMinterAbiService,
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
       ],

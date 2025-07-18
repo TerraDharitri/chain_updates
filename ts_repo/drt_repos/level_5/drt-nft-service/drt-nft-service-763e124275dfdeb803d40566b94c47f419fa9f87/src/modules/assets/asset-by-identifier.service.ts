@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import '../../utils/extensions';
 import { Asset, NftTypeEnum } from './models';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
@@ -9,7 +9,7 @@ import { LocalRedisCacheService } from 'src/common/services/caching/local-redis-
 
 @Injectable()
 export class AssetByIdentifierService {
-  constructor(private apiService: MxApiService, private readonly logger: Logger, private localRedisCacheService: LocalRedisCacheService) {}
+  constructor(private apiService: DrtApiService, private readonly logger: Logger, private localRedisCacheService: LocalRedisCacheService) {}
 
   public async getAsset(identifier: string): Promise<Asset> {
     try {

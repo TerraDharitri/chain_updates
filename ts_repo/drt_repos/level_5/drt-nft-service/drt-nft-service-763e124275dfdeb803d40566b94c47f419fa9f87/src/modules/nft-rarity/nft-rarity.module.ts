@@ -1,5 +1,5 @@
 import { Logger, Module } from '@nestjs/common';
-import { MxCommunicationModule } from 'src/common';
+import { DrtCommunicationModule } from 'src/common';
 import { CommonModule } from 'src/common.module';
 import { RarityUpdaterService } from 'src/crons/elastic.updater/rarity.updater.service';
 import { CollectionsModuleGraph } from 'src/modules/nftCollections/collections.module';
@@ -12,7 +12,7 @@ import { NftRarityElasticService } from './nft-rarity.elastic.service';
 import { NftRarityService } from './nft-rarity.service';
 
 @Module({
-  imports: [CollectionsModuleGraph, MxCommunicationModule, CommonModule],
+  imports: [CollectionsModuleGraph, DrtCommunicationModule, CommonModule],
   providers: [
     Logger,
     NftRarityService,

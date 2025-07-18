@@ -20,7 +20,7 @@ export class Token {
     Object.assign(this, init);
   }
 
-  static fromMxApiDexToken(token: DexToken): Token {
+  static fromDrtApiDexToken(token: DexToken): Token {
     return new Token({
       identifier: token.id,
       symbol: token.symbol,
@@ -29,7 +29,7 @@ export class Token {
     });
   }
 
-  static fromMxApiToken(token: ApiToken): Token {
+  static fromDrtApiToken(token: ApiToken): Token {
     return new Token({
       identifier: token.identifier,
       symbol: token.ticker,

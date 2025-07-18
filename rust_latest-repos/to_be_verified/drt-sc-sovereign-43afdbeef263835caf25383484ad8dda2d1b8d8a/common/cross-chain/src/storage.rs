@@ -17,7 +17,7 @@ pub trait CrossChainStorage {
     #[storage_mapper("headerVerifierAddress")]
     fn header_verifier_address(&self) -> SingleValueMapper<ManagedAddress>;
 
-    #[storage_mapper("sovToMxTokenId")]
+    #[storage_mapper("sovToDrtTokennId")]
     fn sovereign_to_dharitri_token_id_mapper(
         &self,
         sov_token_id: &TokenIdentifier,

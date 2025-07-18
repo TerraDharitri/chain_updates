@@ -2,13 +2,13 @@ import DataLoader = require('dataloader');
 import { BaseProvider } from '../../common/base.loader';
 import { Injectable, Scope } from '@nestjs/common';
 import { AssetsViewsRedisHandler } from './assets-views.redis-handler';
-import { MxStatsService } from 'src/common/services/drt-communication/drt-stats.service';
+import { DrtStatsService } from 'src/common/services/drt-communication/drt-stats.service';
 
 @Injectable({
   scope: Scope.REQUEST,
 })
 export class AssetsViewsLoader extends BaseProvider<string> {
-  constructor(assetsViewsRedisHandler: AssetsViewsRedisHandler, private statsService: MxStatsService) {
+  constructor(assetsViewsRedisHandler: AssetsViewsRedisHandler, private statsService: DrtStatsService) {
     super(assetsViewsRedisHandler, new DataLoader(async (keys: string[]) => await this.batchLoad(keys)));
   }
 

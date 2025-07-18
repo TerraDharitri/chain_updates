@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { CollectionsGetterService } from '../nftCollections/collections-getter.service';
 import { ExploreCollectionsStats, ExploreNftsStats, ExploreStats } from './models/Explore-Stats.dto';
 import { CacheInfo } from 'src/common/services/caching/entities/cache.info';
@@ -15,7 +15,7 @@ export class ExploreStatsService {
     private cacheService: CacheService,
     private collectionsService: CollectionsGetterService,
     private auctionsService: AuctionsGetterService,
-    private apiService: MxApiService,
+    private apiService: DrtApiService,
     private offersService: OffersService,
   ) {}
 

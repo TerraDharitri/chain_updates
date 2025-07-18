@@ -10,7 +10,7 @@ import { promises } from 'fs';
 import { GovernanceType } from '../../utils/governance';
 
 @Injectable()
-export class MXProxyService {
+export class DRTProxyService {
     private readonly proxy: ProxyNetworkProviderProfiler;
     private static smartContracts: SmartContract[];
 
@@ -40,7 +40,7 @@ export class MXProxyService {
             },
         );
 
-        MXProxyService.smartContracts = [];
+        DRTProxyService.smartContracts = [];
     }
 
     getService(): ProxyNetworkProviderProfiler {
@@ -87,7 +87,7 @@ export class MXProxyService {
     ): Promise<SmartContract> {
         const key = `${contractInterface}.${contractAddress}`;
         return (
-            MXProxyService.smartContracts[key] ||
+            DRTProxyService.smartContracts[key] ||
             this.createSmartContract(
                 contractAddress,
                 contractAbiPath,
@@ -110,7 +110,7 @@ export class MXProxyService {
             abi: AbiRegistry.create(json),
         });
         const key = `${contractInterface}.${contractAddress}`;
-        MXProxyService.smartContracts[key] = newSC;
+        DRTProxyService.smartContracts[key] = newSC;
         return newSC;
     }
 }

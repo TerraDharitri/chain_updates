@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { Button, MxLink } from '@/components';
+import { Button, DrtLink } from '@/components';
 import { environment } from '@/config';
 import { getAccountProvider, useGetIsLoggedIn } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
@@ -21,12 +21,12 @@ export const Header = () => {
 
   return (
     <header className='flex flex-row align-center justify-between pl-6 pr-6 pt-6'>
-      <MxLink
+      <DrtLink
         className='flex items-center justify-between'
         to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
       >
         <Image src={drtLogo} alt='logo' className='w-full h-6' />
-      </MxLink>
+      </DrtLink>
 
       <nav className='h-full w-full text-sm sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>
         <div className='flex justify-end container mx-auto items-center gap-2'>

@@ -1,8 +1,8 @@
 import { RedisCacheService } from '@terradharitri/sdk-nestjs-cache';
 import { Logger, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
-import { MxStats } from 'src/common/services/drt-communication/models/drt-stats.model';
+import { DrtApiService } from 'src/common';
+import { DrtStats } from 'src/common/services/drt-communication/models/drt-stats.model';
 import { UploadToIpfsResult } from 'src/modules/ipfs/ipfs.model';
 import { PinataService } from 'src/modules/ipfs/pinata.service';
 import { S3Service } from 'src/modules/s3/s3.service';
@@ -28,7 +28,7 @@ describe('Assets Transaction Service', () => {
           useValue: {},
         },
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
         {
@@ -87,7 +87,7 @@ describe('Assets Transaction Service', () => {
     });
 
     it('returns built transaction with right arguments', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleDCDT,
         balance: 10,
@@ -95,7 +95,7 @@ describe('Assets Transaction Service', () => {
       });
 
       const redisCacheService = module.get<RedisCacheService>(RedisCacheService);
-      redisCacheService.getOrSet = jest.fn().mockReturnValueOnce(new MxStats({}));
+      redisCacheService.getOrSet = jest.fn().mockReturnValueOnce(new DrtStats({}));
       const expectedResult = {
         chainID: 'T',
         data: 'RVNEVE5GVFRyYW5zZmVyQDQ3NDU0ZTJkNjU2NjY2MzUzMTYzQDAzQDBhQDZlN2FkNmU3YWQ2ZTdhZDZlN2FkNmU3YWQ2ZTdhZDZlN2FkNmU3YWQ2ZTdhZDZlN2FkNmU3YWQ2ZTdhZDZlN2E=',
@@ -115,18 +115,18 @@ describe('Assets Transaction Service', () => {
     });
 
     it('if no nft for identifier throws expected error', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce(null);
 
       const redisCacheService = module.get<RedisCacheService>(RedisCacheService);
-      redisCacheService.getOrSet = jest.fn().mockReturnValueOnce(new MxStats({}));
+      redisCacheService.getOrSet = jest.fn().mockReturnValueOnce(new DrtStats({}));
 
       const result = service.burnQuantity(ownerAddress, burnRequest);
       await expect(result).rejects.toThrowError(new NotFoundException('NFT not found'));
     });
 
     it('returns burn transaction if after activation epoch', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getNftByIdentifier = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleDCDT,
         balance: 10,
@@ -137,10 +137,10 @@ describe('Assets Transaction Service', () => {
       const redisCacheService = module.get<RedisCacheService>(RedisCacheService);
       redisCacheService.getOrSet = jest
         .fn()
-        .mockReturnValueOnce(new MxStats({ epoch: 1684, roundsPassed: 10103, roundsPerEpoch: 14400, refreshRate: 6000 }));
+        .mockReturnValueOnce(new DrtStats({ epoch: 1684, roundsPassed: 10103, roundsPerEpoch: 14400, refreshRate: 6000 }));
       const expectedResult = {
         chainID: 'T',
-        data: 'RVNEVE5GVEJ1cm5ANDc0NTRlMmQ2NTY2NjYzNTMxNjNAMDNAMGE=',
+        data: 'RVNEVE5GVEJ1cm5ANDc0NTRlMmQ2NTY2NjYzNTDrtNjNAMDNAMGE=',
         gasLimit: 200000,
         gasPrice: 1000000000,
         nonce: 0,

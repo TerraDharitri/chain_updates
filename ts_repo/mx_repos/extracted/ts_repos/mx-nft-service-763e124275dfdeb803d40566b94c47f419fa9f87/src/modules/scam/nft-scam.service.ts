@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { MxApiService, MxElasticService } from 'src/common';
+import { DrtApiService, MxElasticService } from 'src/common';
 import { ScamInfo } from '../assets/models/ScamInfo.dto';
 import { Asset, ScamInfoTypeEnum } from '../assets/models';
 import { NftScamElasticService } from './nft-scam.elastic.service';
@@ -22,7 +22,7 @@ export class NftScamService {
     private readonly assetByIdentifierService: AssetByIdentifierService,
     private readonly nftScamElasticService: NftScamElasticService,
     private readonly mxElasticService: MxElasticService,
-    private readonly mxApiService: MxApiService,
+    private readonly mxApiService: DrtApiService,
     private readonly pluginsService: PluginService,
     private readonly cacheEventsPublisher: CacheEventsPublisherService,
     private readonly logger: Logger,
@@ -48,7 +48,7 @@ export class NftScamService {
       'updateAllNftsScamInfos: Update scam info for all existing NFTs',
       async () => {
         try {
-          const mxApiAbout = await this.mxApiService.getMxApiAbout();
+          const mxApiAbout = await this.mxApiService.getDrtApiAbout();
           const scamEngineVersion = mxApiAbout.scamEngineVersion;
 
           const collections = await this.nftScamElasticService.getAllCollectionsFromElastic();
@@ -139,7 +139,7 @@ export class NftScamService {
     const [nftFromElastic, nftFromDb, mxApiAbout] = await Promise.all([
       this.nftScamElasticService.getNftWithScamInfoFromElastic(nftFromApi.identifier),
       this.documentDbService.getNftScamInfo(nftFromApi.identifier),
-      this.mxApiService.getMxApiAbout(),
+      this.mxApiService.getDrtApiAbout(),
     ]);
 
     return new NftScamRelatedData({

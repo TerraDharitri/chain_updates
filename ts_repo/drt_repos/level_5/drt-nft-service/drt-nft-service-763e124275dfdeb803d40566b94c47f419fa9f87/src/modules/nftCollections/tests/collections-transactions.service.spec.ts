@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MxApiService } from 'src/common';
+import { DrtApiService } from 'src/common';
 import { NftTypeEnum } from 'src/modules/assets/models';
 import { CollectionsTransactionsService } from '../collections-transactions.service';
 import { IssueCollectionRequest, SetNftRolesRequest } from '../models/requests';
@@ -14,7 +14,7 @@ describe('Collections Transactions Service', () => {
       providers: [
         CollectionsTransactionsService,
         {
-          provide: MxApiService,
+          provide: DrtApiService,
           useValue: {},
         },
       ],
@@ -90,7 +90,7 @@ describe('Collections Transactions Service', () => {
 
   describe('setNftRoles', () => {
     it('returns built transaction with right arguments', async () => {
-      const apiService = module.get<MxApiService>(MxApiService);
+      const apiService = module.get<DrtApiService>(DrtApiService);
       apiService.getCollectionForIdentifier = jest.fn().mockReturnValueOnce({
         type: NftTypeEnum.SemiFungibleDCDT,
         balance: 10,

@@ -2,7 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
 import { generateCacheKeyFromParams } from 'src/utils/generate-cache-key';
-import { MXApiService } from '../dharitri-communication/drt.api.service';
+import { DRTApiService } from '../dharitri-communication/drt.api.service';
 import { PUB_SUB } from '../redis.pubSub.module';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Constants, Locker } from '@terradharitri/sdk-nestjs-common';
@@ -16,7 +16,7 @@ import { ApiConfigService } from '../../helpers/api.config.service';
 @Injectable()
 export class CacheWarmerService {
     constructor(
-        private readonly apiService: MXApiService,
+        private readonly apiService: DRTApiService,
         private readonly cachingService: CacheService,
         private readonly configService: ApiConfigService,
         @Inject(PUB_SUB) private pubSub: RedisPubSub,

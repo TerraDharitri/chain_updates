@@ -5,7 +5,7 @@ export * from './Copy';
 export * from './Label';
 export * from './Layout';
 export * from './MissingNativeAuthError';
-export * from './MxLink';
+export * from './DrtLink';
 export * from './OutputContainer';
 export * from './PasswordVisibilityToggle';
 export * from './PrivateKeyCheckWrapper';

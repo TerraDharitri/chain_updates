@@ -1,7 +1,7 @@
 import { useNavigate } from '@solidjs/router';
 import DharitrILogo from 'assets/img/dharitri-logo.svg?component-solid';
 import { Button } from 'components/Button';
-import { MxLink } from 'components/MxLink';
+import { DrtLink } from 'components/DrtLink';
 import { getAccountProvider, getIsLoggedIn } from 'lib';
 import { RouteNamesEnum } from 'localConstants';
 import { ConnectButton } from './ConnectButton';
@@ -19,12 +19,12 @@ export const Header = () => {
 
   return (
     <header class='flex flex-row align-center justify-between pl-6 pr-6 pt-6'>
-      <MxLink
+      <DrtLink
         class='flex items-center justify-between'
         to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
       >
         <DharitrILogo class='w-full h-6' viewBox='0 0 490 80' />
-      </MxLink>
+      </DrtLink>
 
       <nav class='h-full w-full text-sm sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>
         <div class='flex justify-end container mx-auto items-center gap-2'>

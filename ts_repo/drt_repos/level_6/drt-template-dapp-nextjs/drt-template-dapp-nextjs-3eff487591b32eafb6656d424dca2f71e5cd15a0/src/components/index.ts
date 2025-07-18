@@ -1,5 +1,5 @@
 export * from './Button';
-export * from './MxLink';
+export * from './DrtLink';
 export * from './Card';
 export * from './ContractAddress';
 export * from './OutputContainer';

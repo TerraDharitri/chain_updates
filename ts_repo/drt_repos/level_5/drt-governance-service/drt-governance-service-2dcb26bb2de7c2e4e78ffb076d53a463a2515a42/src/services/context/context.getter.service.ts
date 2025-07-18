@@ -3,7 +3,7 @@ import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Constants } from '@terradharitri/sdk-nestjs-common';
 import { Logger } from 'winston';
 import { CacheService } from '@terradharitri/sdk-nestjs-cache';
-import { MXApiService } from '../dharitri-communication/drt.api.service';
+import { DRTApiService } from '../dharitri-communication/drt.api.service';
 import { GenericGetterService } from '../generics/generic.getter.service';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class ContextGetterService extends GenericGetterService {
     constructor(
         protected readonly cachingService: CacheService,
         @Inject(WINSTON_MODULE_PROVIDER) protected readonly logger: Logger,
-        private readonly apiService: MXApiService,
+        private readonly apiService: DRTApiService,
     ) {
         super(cachingService, logger);
         this.baseKey = 'context';

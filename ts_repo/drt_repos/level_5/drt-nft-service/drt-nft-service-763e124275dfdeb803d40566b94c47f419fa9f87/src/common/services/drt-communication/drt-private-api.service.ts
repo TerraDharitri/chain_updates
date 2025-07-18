@@ -6,7 +6,7 @@ import { drtConfig } from 'src/config';
 import { ApiNetworkProvider } from '@terradharitri/sdk-core';
 
 @Injectable()
-export class MxPrivateApiService {
+export class DrtPrivateApiService {
   private privateApiProvider: ApiNetworkProvider;
 
   constructor(private readonly logger: Logger) {
@@ -41,7 +41,7 @@ export class MxPrivateApiService {
       const response = await service.doPostGeneric(resourceUrl, payload);
       profiler.stop();
 
-      MetricsCollector.setExternalCall(MxPrivateApiService.name, profiler.duration, name);
+      MetricsCollector.setExternalCall(DrtPrivateApiService.name, profiler.duration, name);
 
       return response;
     } catch (error) {
@@ -57,7 +57,7 @@ export class MxPrivateApiService {
         name: error.name,
       };
       this.logger.error(`An error occurred while calling the drt private-api service on url ${resourceUrl}`, {
-        path: `${MxPrivateApiService.name}.${this.doPostGeneric.name}`,
+        path: `${DrtPrivateApiService.name}.${this.doPostGeneric.name}`,
         error: customError,
       });
     }
