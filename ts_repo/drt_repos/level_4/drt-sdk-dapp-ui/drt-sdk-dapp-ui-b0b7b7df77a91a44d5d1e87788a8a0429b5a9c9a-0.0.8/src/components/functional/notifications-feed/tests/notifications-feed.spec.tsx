@@ -29,7 +29,7 @@ describe('notifications-feed', () => {
   it('renders closed by default', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     expect(page.root).not.toBeNull();
@@ -39,7 +39,7 @@ describe('notifications-feed', () => {
   it('opens when handleViewAll is called', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     page.rootInstance.handleViewAll();
@@ -51,7 +51,7 @@ describe('notifications-feed', () => {
   it('closes when handleClose is called', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     const eventBusMock = {
@@ -72,7 +72,7 @@ describe('notifications-feed', () => {
   it('updates pending transactions', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     page.rootInstance.pendingTransactionsUpdate(mockPendingTransactions);
@@ -84,7 +84,7 @@ describe('notifications-feed', () => {
   it('updates transactions history', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     page.rootInstance.transactionsHistoryUpdate(mockTransactionsHistory);
@@ -96,7 +96,7 @@ describe('notifications-feed', () => {
   it('handles clear history action', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     const eventBusMock = {
@@ -115,7 +115,7 @@ describe('notifications-feed', () => {
   it('subscribes to events on componentDidLoad', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     const eventBusMock = {
@@ -142,7 +142,7 @@ describe('notifications-feed', () => {
   it('unsubscribes from events on disconnectedCallback', async () => {
     const page = await newSpecPage({
       components: [NotificationsFeed],
-      html: '<mvx-notifications-feed></mvx-notifications-feed>',
+      html: '<drt-notifications-feed></drt-notifications-feed>',
     });
 
     const unsubscribe1 = jest.fn();

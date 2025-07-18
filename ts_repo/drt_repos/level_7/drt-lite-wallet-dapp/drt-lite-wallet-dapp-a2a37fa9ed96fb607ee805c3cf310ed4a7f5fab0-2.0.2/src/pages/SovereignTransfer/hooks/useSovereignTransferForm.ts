@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { array, number, object, string } from 'yup';
-import { addressIsErd, getSelectedTokenBalance } from 'helpers';
+import { addressIsDrt, getSelectedTokenBalance } from 'helpers';
 import { useSendTransactions, useTokenOptions } from 'hooks';
 import { addressIsValid, useGetAccountInfo, useGetNetworkConfig } from 'lib';
 import { networkSelector } from 'redux/selectors';
@@ -51,7 +51,7 @@ export const useSovereignTransferForm = () => {
         .test(
           'addressIsValid',
           'Address is invalid',
-          (value) => !value || addressIsValid(value) || addressIsErd(value)
+          (value) => !value || addressIsValid(value) || addressIsDrt(value)
         )
         .required('Receiver is required'),
       [SovereignTransferFormFieldsEnum.contract]: string()

@@ -1,8 +1,8 @@
 :host {
-  @apply mvx:flex;
+  @apply drt:flex;
 
   .arrow-up-right-icon {
-    @apply mvx:flex mvx:h-2.5 mvx:w-2.5;
-    fill: var(--mvx-text-color-primary);
+    @apply drt:flex drt:h-2.5 drt:w-2.5;
+    fill: var(--drt-text-color-primary);
   }
 }

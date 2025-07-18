@@ -24,7 +24,7 @@
     "endpoints": [
         {
             "docs": [
-                "Locks any token (including EGLD) until `unlock_epoch` and receive meta ESDT LOCKED tokens.",
+                "Locks any token (including REWA) until `unlock_epoch` and receive meta DCDT LOCKED tokens.",
                 "on a 1:1 ratio. If unlock epoch has already passed, the original tokens are sent instead.",
                 "",
                 "Expected payment: Any token",
@@ -91,7 +91,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -131,7 +131,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -318,7 +318,7 @@
             "onlyOwner": true,
             "mutability": "mutable",
             "payableInTokens": [
-                "EGLD"
+                "REWA"
             ],
             "inputs": [
                 {
@@ -348,7 +348,7 @@
                 "Add a farm to the whitelist.",
                 "Currently, two types of farms are supported, denoted by the `farm_type` argument:",
                 "`0` - SimpleFarm - rewards are fungible tokens",
-                "`1` - FarmWithLockedRewards - rewards are META ESDT locked tokens"
+                "`1` - FarmWithLockedRewards - rewards are META DCDT locked tokens"
             ],
             "name": "addFarmToWhitelist",
             "onlyOwner": true,

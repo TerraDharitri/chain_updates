@@ -8,7 +8,7 @@ import { EventBus } from 'utils/EventBus';
 import { WalletConnectEventsEnum } from './wallet-connect.types';
 
 @Component({
-  tag: 'mvx-wallet-connect',
+  tag: 'drt-wallet-connect',
   styleUrl: 'wallet-connect.scss',
   shadow: true,
 })
@@ -68,22 +68,22 @@ export class WalletConnect {
   render() {
     return (
       <Fragment>
-        <mvx-side-panel-header
+        <drt-side-panel-header
           panelTitle={providerLabels.walletConnect}
           hasRightButton={true}
           hasLeftButton={!this.showScanPage}
           onRightButtonClick={() => this.eventBus.publish(WalletConnectEventsEnum.CLOSE)}
           onLeftButtonClick={this.handlePageToggle.bind(this)}
         >
-          {!this.showScanPage && <mvx-back-arrow-icon slot={SidePanelHeaderSlotEnum.leftIcon} />}
-          <mvx-close-icon slot={SidePanelHeaderSlotEnum.rightIcon} />
-        </mvx-side-panel-header>
+          {!this.showScanPage && <drt-back-arrow-icon slot={SidePanelHeaderSlotEnum.leftIcon} />}
+          <drt-close-icon slot={SidePanelHeaderSlotEnum.rightIcon} />
+        </drt-side-panel-header>
 
         <div class="wallet-connect">
           {this.showScanPage ? (
-            <mvx-wallet-connect-scan qrCodeSvg={this.qrCodeSvg} onDownloadClick={this.handlePageToggle.bind(this)} />
+            <drt-wallet-connect-scan qrCodeSvg={this.qrCodeSvg} onDownloadClick={this.handlePageToggle.bind(this)} />
           ) : (
-            <mvx-wallet-connect-download />
+            <drt-wallet-connect-download />
           )}
         </div>
       </Fragment>

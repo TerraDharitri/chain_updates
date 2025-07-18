@@ -6,7 +6,7 @@ import type { CustomToastType, ITransactionToast } from './components/transactio
 import { ToastEventsEnum } from './toast-list.types';
 
 @Component({
-  tag: 'mvx-toast-list',
+  tag: 'drt-toast-list',
   styleUrl: 'toast-list.css',
 })
 export class ToastList {
@@ -79,11 +79,11 @@ export class ToastList {
         id="toast-list"
       >
         {this.customToasts?.map(toast => (
-          <mvx-generic-toast toast={toast} onDeleteToast={() => this.handleCustomToastDelete(toast.toastId)} />
+          <drt-generic-toast toast={toast} onDeleteToast={() => this.handleCustomToastDelete(toast.toastId)} />
         ))}
 
         {this.transactionToasts?.map(toast => (
-          <mvx-transaction-toast {...toast} onDeleteToast={() => this.handleTransactionToastDelete(toast.toastId)} />
+          <drt-transaction-toast {...toast} onDeleteToast={() => this.handleTransactionToastDelete(toast.toastId)} />
         ))}
 
         {hasTransactionToasts && (

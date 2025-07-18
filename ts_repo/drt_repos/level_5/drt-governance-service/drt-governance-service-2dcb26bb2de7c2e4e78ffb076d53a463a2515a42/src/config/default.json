@@ -1,8 +1,8 @@
 {
     "dharitri": {
         "chainID": "T",
-        "EGLDIdentifier": "EGLD",
-        "EGLDDecimals": 18,
+        "REWAIdentifier": "REWA",
+        "REWADecimals": 18,
         "version": 1,
         "proxyTimeout": 60000,
         "timeoutLimit": 10000,

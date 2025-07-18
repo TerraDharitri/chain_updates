@@ -18,13 +18,13 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value"></div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -42,17 +42,17 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
             <div class="badge badge-pill badge-secondary font-weight-light transaction-value-badge" data-testid="transactionNftBadge">
               NFT
             </div>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -70,15 +70,15 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
-            <mvx-format-amount class="mr-1" datatestid="transactionActionFormattedAmount" isvalid="" label="xREWA" valuedecimal="123" valueinteger="123"></mvx-format-amount>
+            <format-amount class="mr-1" datatestid="transactionActionFormattedAmount" isvalid="" label="xREWA" valuedecimal="123" valueinteger="123"></format-amount>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -95,19 +95,19 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
-            <mvx-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
+            <explorer-link class="transaction-value-link text-truncate" link="https://example.com">
               <div class="transaction-value-content" slot="content">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
-            </mvx-explorer-link>
+            </explorer-link>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -125,20 +125,20 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
-            <mvx-explorer-link class="transaction-value-link side-link d-flex" link="https://example.com">
+            <explorer-link class="transaction-value-link side-link d-flex" link="https://example.com">
               <div class="transaction-value-content" slot="content">
                 <img alt="Example Icon" class="transaction-value-img" src="https://example.com/icon.svg">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
-            </mvx-explorer-link>
+            </explorer-link>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -156,19 +156,19 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
-            <mvx-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
+            <explorer-link class="transaction-value-link text-truncate" link="https://example.com">
               <div class="transaction-value-content" slot="content">
                 <span class="transaction-value-link-text truncate">Example Link</span>
               </div>
-            </mvx-explorer-link>
+            </explorer-link>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 
@@ -186,20 +186,20 @@ describe('TransactionValue', () => {
 
     const page = await newSpecPage({
       components: [TransactionValue],
-      template: () => <mvx-transaction-value value={value}></mvx-transaction-value>,
+      template: () => <transaction-value value={value}></transaction-value>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-value>
+      <transaction-value>
           <div class="transaction-value">
-            <mvx-explorer-link class="transaction-value-link text-truncate" link="https://example.com">
+            <explorer-link class="transaction-value-link text-truncate" link="https://example.com">
               <div class="transaction-value-content" slot="content">
                 <span class="transaction-value-link-text">Example Link</span>
               </div>
-            </mvx-explorer-link>
-            <mvx-fa-icon class="transaction-value-icon" title="Title Text"></mvx-fa-icon>
+            </explorer-link>
+            <fa-icon class="transaction-value-icon" title="Title Text"></fa-icon>
           </div>
-      </mvx-transaction-value>
+      </transaction-value>
     `);
   });
 });

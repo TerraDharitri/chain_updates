@@ -7,7 +7,7 @@ describe('transaction-method', () => {
   const createPage = async (props: { method?: string; actionDescription?: string }) => {
     const page = await newSpecPage({
       components: [TransactionMethod],
-      html: '<mvx-transaction-method></mvx-transaction-method>',
+      html: '<drt-transaction-method></drt-transaction-method>',
     });
 
     const component = page.rootInstance as TransactionMethod;
@@ -21,7 +21,7 @@ describe('transaction-method', () => {
     it('renders with default props', async () => {
       const page = await newSpecPage({
         components: [TransactionMethod],
-        html: '<mvx-transaction-method></mvx-transaction-method>',
+        html: '<drt-transaction-method></drt-transaction-method>',
       });
 
       expect(page.root).toBeTruthy();
@@ -30,7 +30,7 @@ describe('transaction-method', () => {
     it('has correct data-testid', async () => {
       const page = await newSpecPage({
         components: [TransactionMethod],
-        html: '<mvx-transaction-method></mvx-transaction-method>',
+        html: '<drt-transaction-method></drt-transaction-method>',
       });
 
       const spanElement = page.root.querySelector(`[data-testid="${DataTestIdsEnum.method}"]`);
@@ -82,7 +82,7 @@ describe('transaction-method', () => {
     it('applies correct CSS classes to outer span', async () => {
       const page = await newSpecPage({
         components: [TransactionMethod],
-        html: '<mvx-transaction-method></mvx-transaction-method>',
+        html: '<drt-transaction-method></drt-transaction-method>',
       });
 
       const outerSpan = page.root.querySelector('span');
@@ -95,7 +95,7 @@ describe('transaction-method', () => {
     it('applies correct CSS classes to inner div', async () => {
       const page = await newSpecPage({
         components: [TransactionMethod],
-        html: '<mvx-transaction-method></mvx-transaction-method>',
+        html: '<drt-transaction-method></drt-transaction-method>',
       });
 
       const innerDiv = page.root.querySelector('div > div');

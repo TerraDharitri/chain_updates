@@ -6,11 +6,11 @@ import type { ProviderTypeEnum } from 'types/provider.types';
 import { getProviderButtonIcon } from '../../helpers';
 
 const unlockProviderButtonClasses: Record<string, string> = {
-  button: 'mvx:w-full',
+  button: 'drt:w-full',
 };
 
 @Component({
-  tag: 'mvx-unlock-provider-button',
+  tag: 'drt-unlock-provider-button',
   shadow: true,
 })
 export class UnlockProviderButton {
@@ -25,7 +25,7 @@ export class UnlockProviderButton {
     const icon: HTMLElement | null = !this.provider.iconUrl ? getProviderButtonIcon(this.provider.type) : null;
 
     return (
-      <mvx-unlock-button
+      <drt-unlock-button
         iconUrl={this.provider.iconUrl}
         label={this.provider.name}
         type={this.provider.type}

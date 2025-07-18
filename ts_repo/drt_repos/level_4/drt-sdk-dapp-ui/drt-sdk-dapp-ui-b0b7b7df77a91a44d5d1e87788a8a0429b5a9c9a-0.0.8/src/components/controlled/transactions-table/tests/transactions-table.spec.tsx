@@ -100,7 +100,7 @@ describe('TransactionsTable', () => {
   it('renders with transactions', async () => {
     const page = await newSpecPage({
       components: [TransactionsTable],
-      template: () => <mvx-transactions-table transactions={mockTransactions}></mvx-transactions-table>,
+      template: () => <drt-transactions-table transactions={mockTransactions}></drt-transactions-table>,
     });
 
     expect(page.root).toBeTruthy();
@@ -111,7 +111,7 @@ describe('TransactionsTable', () => {
     const page = await newSpecPage({
       components: [TransactionsTable],
       template: () => (
-        <mvx-transactions-table class="custom-class" transactions={mockTransactions}></mvx-transactions-table>
+        <drt-transactions-table class="custom-class" transactions={mockTransactions}></drt-transactions-table>
       ),
     });
 
@@ -121,24 +121,24 @@ describe('TransactionsTable', () => {
   it('renders transaction details correctly', async () => {
     const page = await newSpecPage({
       components: [TransactionsTable],
-      template: () => <mvx-transactions-table transactions={mockTransactions}></mvx-transactions-table>,
+      template: () => <drt-transactions-table transactions={mockTransactions}></drt-transactions-table>,
     });
 
     const rows = page.root.querySelectorAll('tbody tr');
     expect(rows.length).toBe(2);
 
     rows.forEach((row, index) => {
-      expect(row.querySelector('mvx-transaction-hash')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-age')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-shards')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-account[scope="sender"]')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-account[scope="receiver"]')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-method')).toBeTruthy();
-      expect(row.querySelector('mvx-transaction-value')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-hash')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-age')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-shards')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-account[scope="sender"]')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-account[scope="receiver"]')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-method')).toBeTruthy();
+      expect(row.querySelector('drt-transaction-value')).toBeTruthy();
 
       // Check some specific values
-      expect(row.querySelector('mvx-transaction-age').getAttribute('age')).toBe(mockTransactions[index].age.timeAgo);
-      expect(row.querySelector('mvx-transaction-method').getAttribute('method')).toBe(
+      expect(row.querySelector('drt-transaction-age').getAttribute('age')).toBe(mockTransactions[index].age.timeAgo);
+      expect(row.querySelector('drt-transaction-method').getAttribute('method')).toBe(
         mockTransactions[index].method.name,
       );
     });

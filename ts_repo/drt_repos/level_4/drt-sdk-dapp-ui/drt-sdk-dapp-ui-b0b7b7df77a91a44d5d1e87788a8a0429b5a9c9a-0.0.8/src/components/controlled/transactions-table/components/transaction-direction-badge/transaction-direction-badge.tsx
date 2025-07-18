@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
-  tag: 'mvx-transaction-direction-badge',
+  tag: 'drt-transaction-direction-badge',
   styleUrl: 'transaction-direction-badge.scss',
 })
 export class TransactionDirectionBadge {

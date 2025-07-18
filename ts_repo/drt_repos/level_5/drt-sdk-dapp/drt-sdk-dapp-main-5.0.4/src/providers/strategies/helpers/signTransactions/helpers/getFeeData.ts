@@ -1,4 +1,4 @@
-import { GAS_PER_DATA_BYTE, GAS_PRICE_MODIFIER } from 'constants/mvx.constants';
+import { GAS_PER_DATA_BYTE, GAS_PRICE_MODIFIER } from 'constants/drt.constants';
 import { Transaction } from 'lib/sdkCore';
 import { formatAmount } from 'lib/sdkDappUtils';
 import { calculateFeeInFiat } from './calculateFeeInFiat';

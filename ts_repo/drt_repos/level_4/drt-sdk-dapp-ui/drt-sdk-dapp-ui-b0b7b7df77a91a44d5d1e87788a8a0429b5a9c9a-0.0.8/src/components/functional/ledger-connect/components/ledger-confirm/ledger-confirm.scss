@@ -1,64 +1,64 @@
 :host {
-  @apply mvx:flex mvx:flex-col mvx:flex-1  mvx:overflow-hidden;
+  @apply drt:flex drt:flex-col drt:flex-1  drt:overflow-hidden;
 
   .ledger-confirm {
-    @apply mvx:flex mvx:flex-col mvx:flex-1 mvx:gap-3 mvx:overflow-auto mvx:py-6;
-    color: var(--mvx-text-color-primary);
+    @apply drt:flex drt:flex-col drt:flex-1 drt:gap-3 drt:overflow-auto drt:py-6;
+    color: var(--drt-text-color-primary);
 
     &::-webkit-scrollbar {
-      @apply mvx:hidden;
+      @apply drt:hidden;
     }
 
     .ledger-confirm-items {
-      @apply mvx:flex mvx:flex-col mvx:gap-5;
+      @apply drt:flex drt:flex-col drt:gap-5;
 
       .ledger-confirm-item {
-        @apply mvx:flex mvx:flex-col mvx:gap-4;
+        @apply drt:flex drt:flex-col drt:gap-4;
 
         .ledger-confirm-item-label {
-          @apply mvx:text-base mvx:leading-none;
+          @apply drt:text-base drt:leading-none;
         }
 
         .ledger-confirm-item-value {
-          @apply mvx:min-h-16 mvx:p-3 mvx:rounded-xl mvx:flex mvx:gap-3 mvx:items-center mvx:justify-between;
-          background-color: var(--mvx-bg-color-secondary);
+          @apply drt:min-h-16 drt:p-3 drt:rounded-xl drt:flex drt:gap-3 drt:items-center drt:justify-between;
+          background-color: var(--drt-bg-color-secondary);
 
           .ledger-confirm-item-value-text {
-            @apply mvx:relative mvx:break-all;
+            @apply drt:relative drt:break-all;
 
             &.highlighted {
-              color: var(--mvx-text-accent-color);
+              color: var(--drt-text-accent-color);
             }
           }
 
           .ledger-confirm-item-value-copy {
-            @apply mvx:flex;
+            @apply drt:flex;
 
             .ledger-confirm-item-value-copy-icon {
-              @apply mvx:w-4 mvx:h-4 mvx:flex mvx:justify-center mvx:transition-all mvx:duration-200 mvx:ease-in-out;
-              color: var(--mvx-text-color-primary);
+              @apply drt:w-4 drt:h-4 drt:flex drt:justify-center drt:transition-all drt:duration-200 drt:ease-in-out;
+              color: var(--drt-text-color-primary);
 
               &:hover {
-                @apply mvx:opacity-80;
+                @apply drt:opacity-80;
               }
             }
           }
 
           .ledger-confirm-item-value-explorer {
-            @apply mvx:flex;
+            @apply drt:flex;
 
             .ledger-confirm-item-value-explorer-icon {
-              @apply mvx:w-4 mvx:h-4 mvx:flex mvx:transition-all mvx:duration-200 mvx:ease-in-out;
-              color: var(--mvx-text-color-primary);
+              @apply drt:w-4 drt:h-4 drt:flex drt:transition-all drt:duration-200 drt:ease-in-out;
+              color: var(--drt-text-color-primary);
 
               &:hover {
-                @apply mvx:opacity-80;
+                @apply drt:opacity-80;
               }
             }
           }
 
           .ledger-confirm-item-value-actions {
-            @apply mvx:relative mvx:flex mvx:items-center mvx:gap-3 mvx:z-1 mvx:flex-1;
+            @apply drt:relative drt:flex drt:items-center drt:gap-3 drt:z-1 drt:flex-1;
           }
         }
       }
@@ -68,37 +68,37 @@
       display: initial;
 
       strong {
-        @apply mvx:font-bold;
-        color: var(--mvx-text-accent-color);
+        @apply drt:font-bold;
+        color: var(--drt-text-accent-color);
       }
     }
 
     .ledger-confirm-footer {
-      @apply mvx:mt-auto mvx:p-3 mvx:rounded-xl mvx:flex mvx:items-center mvx:gap-2;
-      background: var(--mvx-red-600);
+      @apply drt:mt-auto drt:p-3 drt:rounded-xl drt:flex drt:items-center drt:gap-2;
+      background: var(--drt-red-600);
 
       @media (min-width: 480px) {
-        @apply mvx:min-h-16;
+        @apply drt:min-h-16;
       }
 
       .ledger-confirm-footer-icon {
-        @apply mvx:w-6 mvx:h-6 mvx:flex-1 mvx:min-w-6 mvx:p-0.5;
-        fill: var(--mvx-white);
+        @apply drt:w-6 drt:h-6 drt:flex-1 drt:min-w-6 drt:p-0.5;
+        fill: var(--drt-white);
       }
 
       .ledger-confirm-footer-description {
-        @apply mvx:text-xs;
-        color: var(--mvx-white);
+        @apply drt:text-xs;
+        color: var(--drt-white);
       }
 
       .ledger-confirm-footer-button {
-        @apply mvx:px-3 mvx:py-3 mvx:whitespace-nowrap mvx:flex mvx:items-center mvx:font-bold mvx:text-xs;
-        @apply mvx:rounded-lg mvx:transition-all mvx:leading-none mvx:duration-200 mvx:ease-in-out;
-        color: var(--mvx-neutral-925);
-        background: var(--mvx-white);
+        @apply drt:px-3 drt:py-3 drt:whitespace-nowrap drt:flex drt:items-center drt:font-bold drt:text-xs;
+        @apply drt:rounded-lg drt:transition-all drt:leading-none drt:duration-200 drt:ease-in-out;
+        color: var(--drt-neutral-925);
+        background: var(--drt-white);
 
         &:hover {
-          @apply mvx:opacity-75;
+          @apply drt:opacity-75;
         }
       }
     }

@@ -5,4 +5,4 @@ export {
 export {
   GAS_LIMIT,
   GAS_PRICE
-} from '@terradharitri/sdk-dapp/out/constants/mvx.constants';
+} from '@terradharitri/sdk-dapp/out/constants/drt.constants';

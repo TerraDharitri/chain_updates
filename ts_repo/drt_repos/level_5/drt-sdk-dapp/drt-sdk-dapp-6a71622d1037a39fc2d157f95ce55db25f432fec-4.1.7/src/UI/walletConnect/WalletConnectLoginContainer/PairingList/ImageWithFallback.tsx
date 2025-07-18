@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PlaceholderImage from 'assets/icons/mvx-icon-rounded.svg';
+import PlaceholderImage from 'assets/icons/drt-icon-rounded.svg';
 
 interface ImageWithFallbackType extends React.ComponentProps<'img'> {
   src: string;

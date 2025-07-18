@@ -4,7 +4,7 @@ import { Component, Event, h, Prop, State, Watch } from '@stencil/core';
 import { getPagination } from './helpers';
 
 @Component({
-  tag: 'mvx-pagination',
+  tag: 'drt-pagination',
   styleUrl: 'pagination.scss',
   shadow: true,
 })
@@ -69,14 +69,14 @@ export class Pagination {
           onClick={this.handleEdgePageClick(1)}
           class={{ 'pagination-angle': true, 'disabled': this.isDisabled, 'inactive': isLeftToggleDisabled }}
         >
-          <mvx-angles-left-icon class="pagination-angle-icon" />
+          <drt-angles-left-icon class="pagination-angle-icon" />
         </span>
 
         <div
           onClick={this.handleEdgePageClick(this.currentPageIndex - 1)}
           class={{ 'pagination-edge-button': true, 'disabled': this.isDisabled, 'inactive': isLeftToggleDisabled }}
         >
-          <mvx-single-angle-left-icon class="pagination-edge-button-icon" />
+          <drt-single-angle-left-icon class="pagination-edge-button-icon" />
         </div>
 
         <div class="pagination-items">
@@ -94,10 +94,10 @@ export class Pagination {
                   <span class="pagination-item-text">{paginationItem}</span>
                 </div>
               ) : (
-                <mvx-tooltip
+                <drt-tooltip
                   triggerOnClick
                   trigger={
-                    <mvx-pagination-ellipsis
+                    <drt-pagination-ellipsis
                       isActive={this.isTooltipOpen && this.activeTooltipIndex === paginationItemIndex}
                     />
                   }
@@ -107,13 +107,13 @@ export class Pagination {
                   }}
                 >
                   {!this.isDisabled && (
-                    <mvx-pagination-ellipsis-form
+                    <drt-pagination-ellipsis-form
                       isVisible={this.isTooltipOpen}
                       maxPageToSearchFor={this.totalPages}
                       onSearch={(event: CustomEvent) => this.handlePageClick(event.detail)}
                     />
                   )}
-                </mvx-tooltip>
+                </drt-tooltip>
               )}
             </div>
           ))}
@@ -123,14 +123,14 @@ export class Pagination {
           onClick={this.handleEdgePageClick(this.currentPageIndex + 1)}
           class={{ 'pagination-edge-button': true, 'disabled': this.isDisabled, 'inactive': isRightToggleDisabled }}
         >
-          <mvx-single-angle-right-icon class="pagination-edge-button-icon" />
+          <drt-single-angle-right-icon class="pagination-edge-button-icon" />
         </div>
 
         <span
           onClick={this.handleEdgePageClick(this.totalPages)}
           class={{ 'pagination-angle': true, 'disabled': this.isDisabled, 'inactive': isRightToggleDisabled }}
         >
-          <mvx-angles-right-icon class="pagination-angle-icon" />
+          <drt-angles-right-icon class="pagination-angle-icon" />
         </span>
       </div>
     );

@@ -22,7 +22,7 @@ const getProviderIntroText = (providerType?: IProviderBase['type']) => {
 };
 
 @Component({
-  tag: 'mvx-provider-idle-screen',
+  tag: 'drt-provider-idle-screen',
   styleUrl: 'provider-idle-screen.scss',
   shadow: true,
 })
@@ -51,20 +51,20 @@ export class ProviderIdleScreen {
     if (this.provider.type === ProviderTypeEnum.ledger) {
       return (
         <Fragment>
-          <mvx-side-panel-header
+          <drt-side-panel-header
             hasLeftButton={false}
             panelTitle={this.provider.name}
             onRightButtonClick={this.close.emit}
           />
 
-          <mvx-ledger-intro onConnect={this.access.emit} />
+          <drt-ledger-intro onConnect={this.access.emit} />
         </Fragment>
       );
     }
 
     return (
       <Fragment>
-        <mvx-side-panel-header
+        <drt-side-panel-header
           hasLeftButton={false}
           panelTitle={this.provider.name}
           onRightButtonClick={this.close.emit}
@@ -73,7 +73,7 @@ export class ProviderIdleScreen {
         <div class="unlock-provider-intro">
           {isExtensionProvider ? (
             <div class="unlock-provider-intro-icon">
-              <mvx-extension-provider-icon width={extensionProviderIconWidth} height={extensionProviderIconHeight} />
+              <drt-extension-provider-icon width={extensionProviderIconWidth} height={extensionProviderIconHeight} />
             </div>
           ) : (
             <div class="unlock-provider-intro-icon">{providerIntroIcon}</div>

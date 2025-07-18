@@ -29,7 +29,7 @@ export const Account = () => {
             <Label>Balance: </Label>
             <FormatAmount
               value={account().balance}
-              egldLabel={network().egldLabel}
+              rewaLabel={network().rewaLabel}
               data-testid='balance'
             />
           </p>

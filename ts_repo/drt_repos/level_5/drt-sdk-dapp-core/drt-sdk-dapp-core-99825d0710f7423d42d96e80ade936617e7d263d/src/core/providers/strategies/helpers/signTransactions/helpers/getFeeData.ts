@@ -1,5 +1,5 @@
 import { Transaction } from '@terradharitri/sdk-core/out';
-import { GAS_PER_DATA_BYTE, GAS_PRICE_MODIFIER } from 'constants/mvx.constants';
+import { GAS_PER_DATA_BYTE, GAS_PRICE_MODIFIER } from 'constants/drt.constants';
 import { formatAmount } from 'lib/sdkDappUtils';
 import { calculateFeeInFiat } from './calculateFeeInFiat';
 import { calculateFeeLimit } from './calculateFeeLimit';

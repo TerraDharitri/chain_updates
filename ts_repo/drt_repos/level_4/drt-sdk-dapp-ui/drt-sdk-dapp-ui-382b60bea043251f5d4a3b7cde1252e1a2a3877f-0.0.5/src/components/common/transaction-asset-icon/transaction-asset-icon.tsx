@@ -4,7 +4,7 @@ import type { ITransactionListItem } from 'components/visual/transaction-list-it
 import { IconSizeEnumType } from './transaction-asset-icon.types';
 
 @Component({
-  tag: 'mvx-transaction-asset-icon',
+  tag: 'drt-transaction-asset-icon',
 })
 export class TransactionAssetIcon {
   @Prop() transaction: ITransactionListItem;
@@ -12,7 +12,7 @@ export class TransactionAssetIcon {
 
   render() {
     if (this.transaction?.asset === null) {
-      return this.iconSize === IconSizeEnumType.small ? <mvx-default-transaction-icon-small /> : <mvx-default-transaction-icon-large />;
+      return this.iconSize === IconSizeEnumType.small ? <drt-default-transaction-icon-small /> : <drt-default-transaction-icon-large />;
     }
 
     if (this.transaction.asset.imageUrl) {
@@ -20,13 +20,13 @@ export class TransactionAssetIcon {
     }
 
     if (this.transaction.asset.icon) {
-      return <mvx-fa-icon icon={this.transaction.asset.icon} />;
+      return <drt-fa-icon icon={this.transaction.asset.icon} />;
     }
 
     if (this.transaction.asset.text) {
       return <span>{this.transaction.asset.text}</span>;
     }
 
-    return this.iconSize === IconSizeEnumType.small ? <mvx-default-transaction-icon-small /> : <mvx-default-transaction-icon-large />;
+    return this.iconSize === IconSizeEnumType.small ? <drt-default-transaction-icon-small /> : <drt-default-transaction-icon-large />;
   }
 }

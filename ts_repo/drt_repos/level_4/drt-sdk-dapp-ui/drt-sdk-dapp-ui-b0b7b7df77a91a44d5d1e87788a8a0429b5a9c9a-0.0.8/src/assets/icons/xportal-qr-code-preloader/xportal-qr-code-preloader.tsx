@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-xportal-qr-code-preloader',
+  tag: 'drt-xportal-qr-code-preloader',
   styleUrl: 'xportal-qr-code-preloader.scss',
   shadow: true,
 })

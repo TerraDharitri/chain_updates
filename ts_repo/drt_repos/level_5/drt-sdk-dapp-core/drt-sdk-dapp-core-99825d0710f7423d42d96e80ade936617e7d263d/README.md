@@ -168,7 +168,7 @@ import { Transaction, TransactionPayload } from '@terradharitri/sdk-core/out';
 import {
   GAS_PRICE,
   GAS_LIMIT
-} from '@terradharitri/sdk-dapp-core/out/constants/mvx.constants';
+} from '@terradharitri/sdk-dapp-core/out/constants/drt.constants';
 import { getAccountProvider } from '@terradharitri/sdk-dapp-core/out/core/providers/helpers/accountProvider';
 import { refreshAccount } from '@terradharitri/sdk-dapp-core/out/utils/account/refreshAccount';
 

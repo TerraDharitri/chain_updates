@@ -45,7 +45,7 @@ describe('toast-list', () => {
   it('renders empty toast list when no toasts are provided', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     expect(page.root).not.toBeNull();
@@ -63,41 +63,41 @@ describe('toast-list', () => {
   it('renders transaction toasts correctly', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     page.rootInstance.transactionToasts = mockTransactionToasts;
     await page.waitForChanges();
 
-    const transactionToastElements = page.root.querySelectorAll('mvx-transaction-toast');
+    const transactionToastElements = page.root.querySelectorAll('drt-transaction-toast');
     expect(transactionToastElements.length).toBe(2);
   });
 
   it('renders custom toasts correctly', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     page.rootInstance.customToasts = mockCustomToasts;
     await page.waitForChanges();
 
-    const genericToastElements = page.root.querySelectorAll('mvx-generic-toast');
+    const genericToastElements = page.root.querySelectorAll('drt-generic-toast');
     expect(genericToastElements.length).toBe(2);
   });
 
   it('renders both transaction and custom toasts simultaneously', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     page.rootInstance.transactionToasts = mockTransactionToasts;
     page.rootInstance.customToasts = mockCustomToasts;
     await page.waitForChanges();
 
-    const transactionToastElements = page.root.querySelectorAll('mvx-transaction-toast');
-    const genericToastElements = page.root.querySelectorAll('mvx-generic-toast');
+    const transactionToastElements = page.root.querySelectorAll('drt-transaction-toast');
+    const genericToastElements = page.root.querySelectorAll('drt-generic-toast');
 
     expect(transactionToastElements.length).toBe(2);
     expect(genericToastElements.length).toBe(2);
@@ -106,7 +106,7 @@ describe('toast-list', () => {
   it('handles transaction toast deletion correctly', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     const eventBusMock = {
@@ -126,7 +126,7 @@ describe('toast-list', () => {
   it('handles custom toast deletion correctly', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     const eventBusMock = {
@@ -146,7 +146,7 @@ describe('toast-list', () => {
   it('properly subscribes to events in componentDidLoad', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     const eventBusMock = {
@@ -168,7 +168,7 @@ describe('toast-list', () => {
   it('updates transaction toasts when receiving the update event', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     expect(page.rootInstance.transactionToasts).toStrictEqual([]);
@@ -182,7 +182,7 @@ describe('toast-list', () => {
   it('updates custom toasts when receiving the update event', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     expect(page.rootInstance.customToasts).toStrictEqual([]);
@@ -196,7 +196,7 @@ describe('toast-list', () => {
   it('returns the event bus instance when getEventBus is called', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     const originalEventBus = page.rootInstance.eventBus;
@@ -209,7 +209,7 @@ describe('toast-list', () => {
   it('renders View All button when transaction toasts are present', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     page.rootInstance.transactionToasts = mockTransactionToasts;
@@ -223,7 +223,7 @@ describe('toast-list', () => {
   it('does not render View All button when no transaction toasts are present', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     page.root.customToasts = mockCustomToasts;
@@ -236,7 +236,7 @@ describe('toast-list', () => {
   it('publishes OPEN event when View All button is clicked', async () => {
     const page = await newSpecPage({
       components: [ToastList],
-      html: '<mvx-toast-list></mvx-toast-list>',
+      html: '<drt-toast-list></drt-toast-list>',
     });
 
     const eventBusMock = {

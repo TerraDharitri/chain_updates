@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-extension-provider-icon',
+  tag: 'drt-extension-provider-icon',
   styleUrl: 'extension-provider-icon.scss',
   shadow: true,
 })

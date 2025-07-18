@@ -1,13 +1,13 @@
 :host {
-  @apply mvx:flex;
+  @apply drt:flex;
 
   .xportal-download-qr-icon {
-    @apply mvx:w-75 mvx:h-75;
-    background-color: var(--mvx-white);
+    @apply drt:w-75 drt:h-75;
+    background-color: var(--drt-white);
     fill: none;
 
     path {
-      fill: var(--mvx-black);
+      fill: var(--drt-black);
     }
   }
 }

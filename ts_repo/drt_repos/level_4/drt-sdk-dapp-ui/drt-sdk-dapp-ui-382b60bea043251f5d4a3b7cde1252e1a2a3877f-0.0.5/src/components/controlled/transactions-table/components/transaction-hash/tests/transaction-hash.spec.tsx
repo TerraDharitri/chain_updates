@@ -45,16 +45,16 @@ describe('TransactionHash', () => {
 
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash transaction={transaction}></mvx-transaction-hash>,
+      template: () => <transaction-hash transaction={transaction}></transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123" text="0x123456789abcdef"></mvx-explorer-link>
+            <transaction-icon></transaction-icon>
+            <explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/123" text="0x123456789abcdef"></explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </transaction-hash>
     `);
   });
 
@@ -83,16 +83,16 @@ describe('TransactionHash', () => {
 
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash transaction={initialTransactionData}></mvx-transaction-hash>,
+      template: () => <transaction-hash transaction={initialTransactionData}></transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial" text="0xInitialHash"></mvx-explorer-link>
+            <transaction-icon></transaction-icon>
+            <explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/initial" text="0xInitialHash"></explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </transaction-hash>
     `);
 
     const updatedTransactionData: ITransactionsTableRow = {
@@ -121,24 +121,24 @@ describe('TransactionHash', () => {
     await page.waitForChanges();
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
+      <transaction-hash>
           <div class="transaction-hash">
-            <mvx-transaction-icon></mvx-transaction-icon>
-            <mvx-explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated" text="0xUpdatedHash"></mvx-explorer-link>
+            <transaction-icon></transaction-icon>
+            <explorer-link dataTestId="${DataTestIdsEnum.transactionLink}" link="https://example.com/tx/updated" text="0xUpdatedHash"></explorer-link>
           </div>
-      </mvx-transaction-hash>
+      </transaction-hash>
     `);
   });
 
   it('renders null when transaction is not provided', async () => {
     const page = await newSpecPage({
       components: [TransactionHash],
-      template: () => <mvx-transaction-hash></mvx-transaction-hash>,
+      template: () => <transaction-hash></transaction-hash>,
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-transaction-hash>
-      </mvx-transaction-hash>
+      <transaction-hash>
+      </transaction-hash>
     `);
   });
 });

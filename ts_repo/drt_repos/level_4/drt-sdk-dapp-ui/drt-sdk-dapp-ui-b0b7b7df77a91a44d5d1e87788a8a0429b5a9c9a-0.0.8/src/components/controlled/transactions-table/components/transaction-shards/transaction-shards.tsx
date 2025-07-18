@@ -5,7 +5,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import type { TransactionRowType } from '../../transactions-table.type';
 
 @Component({
-  tag: 'mvx-transaction-shards',
+  tag: 'drt-transaction-shards',
   styleUrl: 'transaction-shards.scss',
 })
 export class TransactionShards {
@@ -15,23 +15,23 @@ export class TransactionShards {
   render() {
     return (
       <div class={classNames(this.class, 'transaction-shards')}>
-        <mvx-explorer-link
+        <drt-explorer-link
           link={this.transaction.sender.shardLink}
           class="transactions-table-body-cell-link"
           data-testid={DataTestIdsEnum.shardFromLink}
         >
           <span data-testid={DataTestIdsEnum.senderShard}>{this.transaction.sender.shard}</span>
-        </mvx-explorer-link>
+        </drt-explorer-link>
 
         <span class="transaction-shards-arrow">&#10132;</span>
 
-        <mvx-explorer-link
+        <drt-explorer-link
           class="transactions-table-body-cell-link"
           link={this.transaction.receiver.shardLink}
           data-testid={DataTestIdsEnum.shardToLink}
         >
           <span data-testid={DataTestIdsEnum.receiverShard}>{this.transaction.receiver.shard}</span>
-        </mvx-explorer-link>
+        </drt-explorer-link>
       </div>
     );
   }

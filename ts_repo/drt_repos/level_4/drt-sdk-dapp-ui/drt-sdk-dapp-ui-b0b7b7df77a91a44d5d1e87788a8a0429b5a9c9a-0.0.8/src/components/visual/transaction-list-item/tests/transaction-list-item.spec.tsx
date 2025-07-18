@@ -9,7 +9,7 @@ describe('transaction-list-item', () => {
   const createPage = async (transaction: ITransactionListItem) => {
     const page = await newSpecPage({
       components: [TransactionListItem, TransactionAssetIcon, FormatAmount],
-      html: '<mvx-transaction-list-item></mvx-transaction-list-item>',
+      html: '<drt-transaction-list-item></drt-transaction-list-item>',
     });
 
     page.root.transaction = transaction;
@@ -40,7 +40,7 @@ describe('transaction-list-item', () => {
     it('renders empty when no transaction is provided', async () => {
       const page = await newSpecPage({
         components: [TransactionListItem],
-        html: '<mvx-transaction-list-item></mvx-transaction-list-item>',
+        html: '<drt-transaction-list-item></drt-transaction-list-item>',
       });
       expect(page.root.querySelector('.transaction-item')).toBeFalsy();
     });
@@ -50,7 +50,7 @@ describe('transaction-list-item', () => {
     it('renders with asset image', async () => {
       const page = await createPage(baseTransaction);
 
-      const assetIcon = page.root.querySelector('mvx-transaction-asset-icon');
+      const assetIcon = page.root.querySelector('drt-transaction-asset-icon');
       expect(assetIcon).not.toBeNull();
 
       const iconImg = assetIcon.shadowRoot.querySelector('img');
@@ -63,10 +63,10 @@ describe('transaction-list-item', () => {
     it('renders with asset icon', async () => {
       const transaction = { ...baseTransaction, asset: { icon: 'faArrowsRotate' } };
       const page = await createPage(transaction);
-      const assetIcon = page.root.querySelector('mvx-transaction-asset-icon');
+      const assetIcon = page.root.querySelector('drt-transaction-asset-icon');
 
       expect(assetIcon).not.toBeNull();
-      const iconComponent = assetIcon.shadowRoot.querySelector('mvx-fa-icon');
+      const iconComponent = assetIcon.shadowRoot.querySelector('drt-fa-icon');
       expect(iconComponent).not.toBeNull();
       expect(iconComponent.getAttribute('icon')).toBe('faArrowsRotate');
     });
@@ -74,7 +74,7 @@ describe('transaction-list-item', () => {
     it('renders with asset text', async () => {
       const transaction = { ...baseTransaction, asset: { text: 'TX' } };
       const page = await createPage(transaction);
-      const assetIcon = page.root.querySelector('mvx-transaction-asset-icon');
+      const assetIcon = page.root.querySelector('drt-transaction-asset-icon');
 
       expect(assetIcon).not.toBeNull();
       const iconText = assetIcon.shadowRoot.querySelector('span');
@@ -86,10 +86,10 @@ describe('transaction-list-item', () => {
       const transaction = { ...baseTransaction, asset: {} };
       const page = await createPage(transaction);
 
-      const assetIcon = page.root.querySelector('mvx-transaction-asset-icon');
+      const assetIcon = page.root.querySelector('drt-transaction-asset-icon');
       expect(assetIcon).not.toBeNull();
 
-      const defaultIcon = assetIcon.shadowRoot.querySelector('mvx-default-transaction-icon-large');
+      const defaultIcon = assetIcon.shadowRoot.querySelector('drt-default-transaction-icon-large');
       expect(defaultIcon).not.toBeNull();
     });
 
@@ -100,10 +100,10 @@ describe('transaction-list-item', () => {
       const regularIcon = page.root.querySelector('.icon-text');
       expect(regularIcon).toBeFalsy();
 
-      const assetIcon = page.root.querySelector('mvx-transaction-asset-icon');
+      const assetIcon = page.root.querySelector('drt-transaction-asset-icon');
       expect(assetIcon).not.toBeNull();
 
-      const defaultIcon = assetIcon.shadowRoot.querySelector('mvx-default-transaction-icon-large');
+      const defaultIcon = assetIcon.shadowRoot.querySelector('drt-default-transaction-icon-large');
       expect(defaultIcon).not.toBeNull();
     });
   });
@@ -123,7 +123,7 @@ describe('transaction-list-item', () => {
       expect(interactorAsset.getAttribute('alt')).toBe('Service icon');
       expect(interactorAsset.getAttribute('loading')).toBe('lazy');
 
-      const interactor = page.root.querySelector('mvx-trim');
+      const interactor = page.root.querySelector('drt-trim');
       expect(interactor.getAttribute('text')).toBe(baseTransaction.interactor);
       expect(interactor.className).toBe('transaction-details-info-text');
     });
@@ -134,7 +134,7 @@ describe('transaction-list-item', () => {
         directionLabel: undefined,
       };
       const page = await createPage(transaction);
-      const directionLabel = page.root.querySelector('.transaction-details-info-text:not(mvx-trim)');
+      const directionLabel = page.root.querySelector('.transaction-details-info-text:not(drt-trim)');
       expect(directionLabel).toBeFalsy();
     });
 

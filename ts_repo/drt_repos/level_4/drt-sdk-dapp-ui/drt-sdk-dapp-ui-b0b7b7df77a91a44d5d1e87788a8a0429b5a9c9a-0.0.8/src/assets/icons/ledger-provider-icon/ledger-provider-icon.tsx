@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-ledger-provider-icon',
+  tag: 'drt-ledger-provider-icon',
   styleUrl: 'ledger-provider-icon.scss',
   shadow: true,
 })

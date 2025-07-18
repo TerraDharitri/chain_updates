@@ -4,7 +4,7 @@
   "description": "A library to hold the main logic for swapping between tokens on the DharitrI blockchain",
   "author": "DharitrI",
   "license": "GPL-3.0-or-later",
-  "repository": "TerraDharitri/mx-sdk-dapp-swap",
+  "repository": "TerraDharitri/drt-sdk-dapp-swap",
   "main": "./__commonjs",
   "module": "./",
   "types": "./",

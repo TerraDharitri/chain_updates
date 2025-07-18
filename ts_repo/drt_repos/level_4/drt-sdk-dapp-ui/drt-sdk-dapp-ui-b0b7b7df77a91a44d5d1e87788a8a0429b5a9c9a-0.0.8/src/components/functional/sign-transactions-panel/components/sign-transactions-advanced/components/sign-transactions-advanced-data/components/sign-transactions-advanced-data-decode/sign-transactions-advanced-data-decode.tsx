@@ -3,12 +3,12 @@ import classNames from 'classnames';
 import { DecodeMethodEnum } from 'components/functional/sign-transactions-panel/sign-transactions-panel.types';
 
 const signTransactionsAdvancedDataDecodeClasses: Record<string, string> = {
-  icon: 'mvx:transition-all mvx:duration-200 mvx:ease-in-out mvx:relative mvx:h-3! mvx:w-auto!',
-  iconRotated: 'mvx:rotate-90',
+  icon: 'drt:transition-all drt:duration-200 drt:ease-in-out drt:relative drt:h-3! drt:w-auto!',
+  iconRotated: 'drt:rotate-90',
 };
 
 @Component({
-  tag: 'mvx-sign-transactions-advanced-data-decode',
+  tag: 'drt-sign-transactions-advanced-data-decode',
   styleUrl: 'sign-transactions-advanced-data-decode.scss',
   shadow: true,
 })
@@ -21,7 +21,7 @@ export class SignTransactionsAdvancedDataDecode {
       <div class="sign-transactions-advanced-data-decode">
         <div class="sign-transactions-advanced-data-decode-label">{this.currentDecodeMethod}</div>
 
-        <mvx-single-angle-down-icon
+        <drt-single-angle-down-icon
           class={classNames('sign-transactions-advanced-data-decode-icon', {
             [signTransactionsAdvancedDataDecodeClasses.icon]: true,
             [signTransactionsAdvancedDataDecodeClasses.iconRotated]: this.isToggled,

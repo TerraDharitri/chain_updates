@@ -19,7 +19,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { contractAddress } from '../../config';
 import { Address, Transaction } from '@terradharitri/sdk-core/out';
-import { GAS_PRICE } from '@terradharitri/sdk-dapp/out/constants/mvx.constants';
+import { GAS_PRICE } from '@terradharitri/sdk-dapp/out/constants/drt.constants';
 import BigNumber from 'bignumber.js';
 import { getAccount } from '@terradharitri/sdk-dapp/out/methods/account/getAccount';
 import { getNetworkConfig } from '@terradharitri/sdk-dapp/out/methods/network/getNetworkConfig';

@@ -3,7 +3,7 @@ import { Component, h, Prop } from '@stencil/core';
 @Component({
   shadow: true,
   styleUrl: 'xportal-download-qr-icon.scss',
-  tag: 'mvx-xportal-download-qr-icon',
+  tag: 'drt-xportal-download-qr-icon',
 })
 export class XPortalDownloadQrIcon {
   @Prop() class?: string = '';

@@ -7,7 +7,7 @@ import type { ITransactionToast } from '../toasts-list/components/transaction-to
 import { NotificationsFeedEventsEnum } from './notifications-feed.types';
 
 @Component({
-  tag: 'mvx-notifications-feed',
+  tag: 'drt-notifications-feed',
   styleUrl: 'notifications-feed.scss',
   shadow: true,
 })
@@ -84,7 +84,7 @@ export class NotificationsFeed {
     const hasPending = this.pendingTransactions?.length > 0;
 
     return (
-      <mvx-side-panel
+      <drt-side-panel
         isOpen={this.isOpen}
         panelTitle="Notifications Feed"
         onClose={this.handleClose}
@@ -93,13 +93,13 @@ export class NotificationsFeed {
         <div class="feed-content">
           <div class="notifications-info">
             This feed is stored in your browser and will be reset when a new session is started.
-            <mvx-circle-exclamation-icon class="info-icon" />
+            <drt-circle-exclamation-icon class="info-icon" />
           </div>
 
           {hasPending && (
             <div class="notifications-container">
               <div class="processing-status">Processing...</div>
-              {this.pendingTransactions?.map(toast => <mvx-transaction-toast fullWidth={true} {...toast} />)}
+              {this.pendingTransactions?.map(toast => <drt-transaction-toast fullWidth={true} {...toast} />)}
             </div>
           )}
 
@@ -115,14 +115,14 @@ export class NotificationsFeed {
 
             <div class="activity-list">
               {hasActivity ? (
-                this.transactionsHistory.map(transaction => <mvx-transaction-list-item transaction={transaction} />)
+                this.transactionsHistory.map(transaction => <drt-transaction-list-item transaction={transaction} />)
               ) : (
                 <div class="no-activity">No activity to show</div>
               )}
             </div>
           </div>
         </div>
-      </mvx-side-panel>
+      </drt-side-panel>
     );
   }
 }

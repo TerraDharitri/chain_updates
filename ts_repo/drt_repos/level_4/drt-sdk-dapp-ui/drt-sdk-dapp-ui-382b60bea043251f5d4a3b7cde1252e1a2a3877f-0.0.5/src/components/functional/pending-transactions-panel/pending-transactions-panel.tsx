@@ -23,7 +23,7 @@ const getProviderIntroText = (providerType?: IProviderBase['type']) => {
 };
 
 @Component({
-  tag: 'mvx-pending-transactions-panel',
+  tag: 'drt-pending-transactions-panel',
   styleUrl: 'pending-transactions-panel.css',
 })
 export class PendingTransactionstPanel {
@@ -70,13 +70,13 @@ export class PendingTransactionstPanel {
 
   render() {
     return (
-      <mvx-side-panel
+      <drt-side-panel
         isOpen={this.isOpen}
         panelTitle={this?.provider?.name}
         panelClassName="pending-transactions-panel"
         showHeader={false}
       >
-        <mvx-provider-idle-screen
+        <drt-provider-idle-screen
           provider={this.provider}
           onClose={this.handleClose}
           introTitle="Signing Transaction"
@@ -85,8 +85,8 @@ export class PendingTransactionstPanel {
           <button onClick={this.handleClose} slot="close-button">
             Close
           </button>
-        </mvx-provider-idle-screen>
-      </mvx-side-panel>
+        </drt-provider-idle-screen>
+      </drt-side-panel>
     );
   }
 }

@@ -276,13 +276,13 @@ async function configurePublicApp(publicApp: NestExpressApplication, apiConfigSe
     customSiteTitle: 'Dharitri API',
     customCss: `.topbar-wrapper img
           {
-            content:url(\'/img/mvx-ledger-icon-mint.png\'); width:100px; height:auto;
+            content:url(\'/img/drt-ledger-icon-mint.png\'); width:100px; height:auto;
           }
           .swagger-ui .topbar { background-color: #FAFAFA; }
           .swagger-ui .scheme-container {background-color: #FAFAFA;}`,
 
 
-    customfavIcon: '/img/mvx-ledger-icon-mint.png',
+    customfavIcon: '/img/drt-ledger-icon-mint.png',
     swaggerOptions: {
       filter: true,
       displayRequestDuration: true,

@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-preloader',
+  tag: 'drt-preloader',
   styleUrl: 'preloader.scss',
   shadow: true,
 })

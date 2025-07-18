@@ -11,7 +11,7 @@ interface LedgerConfirmationItemType {
 }
 
 @Component({
-  tag: 'mvx-ledger-confirm',
+  tag: 'drt-ledger-confirm',
   styleUrl: 'ledger-confirm.scss',
   shadow: true,
 })
@@ -50,14 +50,14 @@ export class LedgerConfirm {
                 </div>
 
                 <div class="ledger-confirm-item-value-actions">
-                  <mvx-copy-button
+                  <drt-copy-button
                     text={ledgerConfirmationItem.value}
                     class="ledger-confirm-item-value-copy"
                     iconClass="ledger-confirm-item-value-copy-icon"
                   />
 
                   {ledgerConfirmationItem.explorerLink && (
-                    <mvx-explorer-link
+                    <drt-explorer-link
                       link={ledgerConfirmationItem.explorerLink}
                       class="ledger-confirm-item-value-explorer"
                       iconClass="ledger-confirm-item-value-explorer-icon"
@@ -74,7 +74,7 @@ export class LedgerConfirm {
         </div>
 
         <div class="ledger-confirm-footer">
-          <mvx-triangular-warning-icon class="ledger-confirm-footer-icon" />
+          <drt-triangular-warning-icon class="ledger-confirm-footer-icon" />
           <div class="ledger-confirm-footer-description">
             If the address does not mach close this page and contact support.
           </div>

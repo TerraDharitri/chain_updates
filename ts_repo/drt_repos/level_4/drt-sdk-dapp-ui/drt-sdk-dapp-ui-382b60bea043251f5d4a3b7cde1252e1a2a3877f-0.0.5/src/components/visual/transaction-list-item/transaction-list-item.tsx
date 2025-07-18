@@ -6,7 +6,7 @@ import { getAmountParts } from 'components/functional/toasts-list/helpers';
 import type { ITransactionListItem } from './transaction-list-item.types';
 
 @Component({
-  tag: 'mvx-transaction-list-item',
+  tag: 'drt-transaction-list-item',
   styleUrl: 'transaction-list-item.scss',
 })
 export class TransactionListItem {
@@ -22,14 +22,14 @@ export class TransactionListItem {
       <a class="transaction-link" href={this.transaction.link} target="_blank" rel="noreferrer">
         <div class="transaction-item">
           <div class="transaction-icon">
-            <mvx-transaction-asset-icon transaction={this.transaction} iconSize={IconSizeEnumType.large} />
+            <drt-transaction-asset-icon transaction={this.transaction} iconSize={IconSizeEnumType.large} />
           </div>
 
           <div class="transaction-details">
             <div class="transaction-details-header">
               <h4 class="transaction-title">{this.transaction.action.name}</h4>
               {this.transaction.amount && (
-                <mvx-format-amount
+                <drt-format-amount
                   class={classNames('transaction-amount', {
                     'amount-negative': this.transaction.amount.startsWith('-'),
                     'amount-positive': !this.transaction.amount.startsWith('-'),
@@ -48,10 +48,10 @@ export class TransactionListItem {
               {this.transaction.directionLabel && <span class="transaction-details-info-text">{this.transaction.directionLabel}</span>}
 
               <div class="transaction-details-info-icon">
-                {this.transaction.interactorAsset ? <img src={this.transaction.interactorAsset} alt="Service icon" loading="lazy" /> : <mvx-default-transaction-icon-small />}
+                {this.transaction.interactorAsset ? <img src={this.transaction.interactorAsset} alt="Service icon" loading="lazy" /> : <drt-default-transaction-icon-small />}
               </div>
 
-              <mvx-trim-text text={this.transaction.interactor} class="transaction-details-info-text" />
+              <drt-trim-text text={this.transaction.interactor} class="transaction-details-info-text" />
             </div>
           </div>
         </div>

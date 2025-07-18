@@ -1,8 +1,8 @@
 :host {
-  @mvx:flex;
+  @drt:flex;
 
   .wallet-provider-icon {
-    @apply mvx:w-full mvx:h-full mvx:max-w-37.5 mvx:max-h-37.5;
+    @apply drt:w-full drt:h-full drt:max-w-37.5 drt:max-h-37.5;
     fill: none;
   }
 }

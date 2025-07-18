@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import unlockPanelWalletImg from '../../../../../assets/unlock-panel-wallet.webp';
 
 const unlockPanelClasses: Record<string, string> = {
-  footerIcon: 'mvx:w-4! mvx:h-auto! mvx:hidden mvx:xs:flex mvx:ml-auto mvx:mt-auto',
+  footerIcon: 'drt:w-4! drt:h-auto! drt:hidden drt:xs:flex drt:ml-auto drt:mt-auto',
 };
 
 @Component({
-  tag: 'mvx-unlock-panel-footer',
+  tag: 'drt-unlock-panel-footer',
   styleUrl: 'unlock-panel-footer.scss',
   shadow: true,
 })
@@ -43,7 +43,7 @@ export class UnlockPanel {
             </a>
           </div>
 
-          <mvx-arrow-up-right-icon
+          <drt-arrow-up-right-icon
             class={classNames('unlock-panel-footer-icon', {
               [unlockPanelClasses.footerIcon]: true,
             })}

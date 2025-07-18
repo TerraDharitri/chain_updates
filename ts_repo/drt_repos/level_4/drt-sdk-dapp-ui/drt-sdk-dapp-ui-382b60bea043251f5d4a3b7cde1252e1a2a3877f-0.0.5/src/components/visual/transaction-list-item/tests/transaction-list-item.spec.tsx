@@ -9,7 +9,7 @@ describe('transaction-list-item', () => {
   const createPage = async (transaction: ITransactionListItem) => {
     const page = await newSpecPage({
       components: [TransactionListItem, TransactionAssetIcon, FormatAmount],
-      html: '<mvx-transaction-list-item></mvx-transaction-list-item>',
+      html: '<drt-transaction-list-item></drt-transaction-list-item>',
     });
 
     page.root.transaction = transaction;
@@ -40,7 +40,7 @@ describe('transaction-list-item', () => {
     it('renders empty when no transaction is provided', async () => {
       const page = await newSpecPage({
         components: [TransactionListItem],
-        html: '<mvx-transaction-list-item></mvx-transaction-list-item>',
+        html: '<drt-transaction-list-item></drt-transaction-list-item>',
       });
       expect(page.root.querySelector('.transaction-item')).toBeFalsy();
     });
@@ -64,7 +64,7 @@ describe('transaction-list-item', () => {
         },
       };
       const page = await createPage(transaction);
-      const iconComponent = page.root.querySelector('mvx-fa-icon');
+      const iconComponent = page.root.querySelector('drt-fa-icon');
       expect(iconComponent).toBeTruthy();
       expect(iconComponent.getAttribute('icon')).toBe('faArrowsRotate');
     });
@@ -88,7 +88,7 @@ describe('transaction-list-item', () => {
         asset: {},
       };
       const page = await createPage(transaction);
-      const defaultIcon = page.root.querySelector('mvx-default-transaction-icon-large');
+      const defaultIcon = page.root.querySelector('drt-default-transaction-icon-large');
       expect(defaultIcon).toBeTruthy();
     });
 
@@ -100,7 +100,7 @@ describe('transaction-list-item', () => {
       const page = await createPage(transaction);
       const regularIcon = page.root.querySelector('.icon-text');
       expect(regularIcon).toBeFalsy();
-      const defaultIcon = page.root.querySelector('mvx-default-transaction-icon-large');
+      const defaultIcon = page.root.querySelector('drt-default-transaction-icon-large');
       expect(defaultIcon).toBeTruthy();
     });
   });
@@ -120,7 +120,7 @@ describe('transaction-list-item', () => {
       expect(interactorAsset.getAttribute('alt')).toBe('Service icon');
       expect(interactorAsset.getAttribute('loading')).toBe('lazy');
 
-      const interactor = page.root.querySelector('mvx-trim-text');
+      const interactor = page.root.querySelector('drt-trim-text');
       expect(interactor.getAttribute('text')).toBe(baseTransaction.interactor);
       expect(interactor.className).toBe('transaction-details-info-text');
     });
@@ -131,7 +131,7 @@ describe('transaction-list-item', () => {
         directionLabel: undefined,
       };
       const page = await createPage(transaction);
-      const directionLabel = page.root.querySelector('.transaction-details-info-text:not(mvx-trim-text)');
+      const directionLabel = page.root.querySelector('.transaction-details-info-text:not(drt-trim-text)');
       expect(directionLabel).toBeFalsy();
     });
 

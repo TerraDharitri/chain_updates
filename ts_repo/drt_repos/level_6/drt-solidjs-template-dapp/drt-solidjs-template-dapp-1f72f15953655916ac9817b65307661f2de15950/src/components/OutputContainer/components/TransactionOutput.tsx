@@ -43,7 +43,7 @@ export const TransactionOutput = ({
         <Label>Amount: </Label>
         <FormatAmount
           value={transaction.value}
-          egldLabel={network.egldLabel}
+          rewaLabel={network.rewaLabel}
           data-testid='balance'
         />
       </p>

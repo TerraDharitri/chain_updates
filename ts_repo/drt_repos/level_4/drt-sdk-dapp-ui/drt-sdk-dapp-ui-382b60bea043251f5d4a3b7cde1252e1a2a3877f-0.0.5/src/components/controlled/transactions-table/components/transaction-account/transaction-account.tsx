@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import type { ITransactionAccount } from '../../transactions-table.type';
 
 @Component({
-  tag: 'mvx-transaction-account',
+  tag: 'drt-transaction-account',
   styleUrl: 'transaction-account.css',
 })
 export class TransactionAccount {
@@ -19,21 +19,21 @@ export class TransactionAccount {
   render() {
     return (
       <div class={classNames(this.class, 'transaction-account')} data-testid={this.dataTestId}>
-        {this.showLockedAccounts && this.account.isTokenLocked && <mvx-fa-icon icon={faLock} description={this.account.name}></mvx-fa-icon>}
+        {this.showLockedAccounts && this.account.isTokenLocked && <drt-fa-icon icon={faLock} description={this.account.name}></drt-fa-icon>}
 
-        {this.account.isContract && <mvx-fa-icon icon={faFileAlt} description="Smart Contract"></mvx-fa-icon>}
+        {this.account.isContract && <drt-fa-icon icon={faFileAlt} description="Smart Contract"></drt-fa-icon>}
 
         {this.account.showLink ? (
-          <mvx-explorer-link link={this.account.link} data-testid={`${this.scope}Link`}>
-            <mvx-transaction-account-name
+          <drt-explorer-link link={this.account.link} data-testid={`${this.scope}Link`}>
+            <drt-transaction-account-name
               slot="content"
               name={this.account.name}
               description={this.account.description}
               address={this.account.address}
-            ></mvx-transaction-account-name>
-          </mvx-explorer-link>
+            ></drt-transaction-account-name>
+          </drt-explorer-link>
         ) : (
-          <mvx-transaction-account-name name={this.account.name} description={this.account.description} address={this.account.address}></mvx-transaction-account-name>
+          <drt-transaction-account-name name={this.account.name} description={this.account.description} address={this.account.address}></drt-transaction-account-name>
         )}
       </div>
     );

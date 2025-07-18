@@ -6,13 +6,13 @@ describe('FormatAmount component', () => {
   const renderComponent = async (props: any) => {
     const page = await newSpecPage({
       components: [FormatAmount],
-      html: `<mvx-format-amount
+      html: `<drt-format-amount
       is-valid="${props.isValid}"
       value-integer="${props.valueInteger}"
       value-decimal="${props.valueDecimal}"
       label="${props.label}"
       show-label="${props.showLabel}"
-    ></mvx-format-amount>`,
+    ></drt-format-amount>`,
     });
 
     await page.waitForChanges();

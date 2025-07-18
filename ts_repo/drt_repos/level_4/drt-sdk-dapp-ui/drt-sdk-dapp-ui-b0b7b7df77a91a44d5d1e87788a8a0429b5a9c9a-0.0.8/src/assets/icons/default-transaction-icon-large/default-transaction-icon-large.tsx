@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-default-transaction-icon-large',
+  tag: 'drt-default-transaction-icon-large',
   styleUrl: 'default-transaction-icon-large.scss',
   shadow: true,
 })

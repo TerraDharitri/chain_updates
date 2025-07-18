@@ -7,55 +7,55 @@ describe('ExplorerLink', () => {
   it('renders with default props', async () => {
     const page = await newSpecPage({
       components: [ExplorerLink],
-      html: '<mvx-explorer-link link="https://example.com"></mvx-explorer-link>',
+      html: '<drt-explorer-link link="https://example.com"></drt-explorer-link>',
     });
     expect(page.root).toEqualHtml(`
-      <mvx-explorer-link link="https://example.com">
-        <a href="https://example.com" target="_blank" class="mvx:explorer-link" rel="noreferrer">
-          <mvx-fa-icon class="explorer-link-icon" icon="faArrowUpRightFromSquare"></mvx-fa-icon>
+      <drt-explorer-link link="https://example.com">
+        <a href="https://example.com" target="_blank" class="drt:explorer-link" rel="noreferrer">
+          <drt-fa-icon class="explorer-link-icon" icon="faArrowUpRightFromSquare"></drt-fa-icon>
         </a>
-      </mvx-explorer-link>
+      </drt-explorer-link>
     `);
   });
 
   it('renders with custom text', async () => {
     const page = await newSpecPage({
       components: [ExplorerLink],
-      html: '<mvx-explorer-link link="https://example.com" text="View on Explorer"></mvx-explorer-link>',
+      html: '<drt-explorer-link link="https://example.com" text="View on Explorer"></drt-explorer-link>',
     });
     expect(page.root).toEqualHtml(`
-      <mvx-explorer-link link="https://example.com" text="View on Explorer">
-        <a href="https://example.com" target="_blank" class="mvx:explorer-link" rel="noreferrer">
+      <drt-explorer-link link="https://example.com" text="View on Explorer">
+        <a href="https://example.com" target="_blank" class="drt:explorer-link" rel="noreferrer">
           View on Explorer
         </a>
-      </mvx-explorer-link>
+      </drt-explorer-link>
     `);
   });
 
   it('renders with custom class', async () => {
     const page = await newSpecPage({
       components: [ExplorerLink],
-      html: '<mvx-explorer-link link="https://example.com" class="custom-class"></mvx-explorer-link>',
+      html: '<drt-explorer-link link="https://example.com" class="custom-class"></drt-explorer-link>',
     });
     expect(page.root).toEqualHtml(`
-      <mvx-explorer-link link="https://example.com" class="custom-class">
-        <a href="https://example.com" target="_blank" class="mvx:explorer-link custom-class" rel="noreferrer">
-          <mvx-fa-icon class="explorer-link-icon" icon="faArrowUpRightFromSquare"></mvx-fa-icon>
+      <drt-explorer-link link="https://example.com" class="custom-class">
+        <a href="https://example.com" target="_blank" class="drt:explorer-link custom-class" rel="noreferrer">
+          <drt-fa-icon class="explorer-link-icon" icon="faArrowUpRightFromSquare"></drt-fa-icon>
         </a>
-      </mvx-explorer-link>
+      </drt-explorer-link>
     `);
   });
 
   it('renders with custom icon', async () => {
     const page = await newSpecPage({
       components: [ExplorerLink],
-      html: '<mvx-explorer-link link="https://example.com"></mvx-explorer-link>',
+      html: '<drt-explorer-link link="https://example.com"></drt-explorer-link>',
     });
 
     page.root.icon = faCheck;
     await page.waitForChanges();
 
-    const iconEl = page.root.querySelector('mvx-fa-icon');
+    const iconEl = page.root.querySelector('drt-fa-icon');
     expect(iconEl).toBeTruthy();
     expect(iconEl.getAttribute('class')).toBe('explorer-link-icon');
     const iconAttr = iconEl.getAttribute('icon');

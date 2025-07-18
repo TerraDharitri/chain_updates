@@ -5,7 +5,7 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import walletConnectDownloadImg from '../../../../../assets/wallet-connect-download.webp';
 
 @Component({
-  tag: 'mvx-wallet-connect-scan',
+  tag: 'drt-wallet-connect-scan',
   styleUrl: 'wallet-connect-scan.scss',
   shadow: true,
 })
@@ -25,7 +25,7 @@ export class WalletConnectScan {
     return (
       <div class={{ 'wallet-connect-scan': true, [this.class]: Boolean(this.class) }}>
         <div class="wallet-connect-scan-qr">
-          <mvx-xportal-qr-code-preloader data-testid={DataTestIdsEnum.walletConnectLoading} />
+          <drt-xportal-qr-code-preloader data-testid={DataTestIdsEnum.walletConnectLoading} />
 
           <div
             class={{ 'wallet-connect-scan-qr-embed': true, 'visible': Boolean(this.qrCodeSvg) }}

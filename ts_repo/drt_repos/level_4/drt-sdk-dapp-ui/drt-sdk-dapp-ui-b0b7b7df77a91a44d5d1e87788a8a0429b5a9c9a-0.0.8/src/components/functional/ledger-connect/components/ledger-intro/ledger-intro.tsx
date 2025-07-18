@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import type { IConnectScreenData } from '../../ledger-connect.types';
 
 const ledgerIntroClasses: Record<string, string> = {
-  icon: 'mvx:w-50 mvx:h-auto mvx:xs:w-100 mvx:xs:h-85',
+  icon: 'drt:w-50 drt:h-auto drt:xs:w-100 drt:xs:h-85',
 };
 
 @Component({
-  tag: 'mvx-ledger-intro',
+  tag: 'drt-ledger-intro',
   styleUrl: 'ledger-intro.scss',
   shadow: true,
 })
@@ -45,7 +45,7 @@ export class LedgerIntro {
     return (
       <div class="ledger-intro">
         <div class="ledger-intro-wrapper">
-          <mvx-ledger-icon
+          <drt-ledger-icon
             class={classNames('ledger-intro-icon', {
               [ledgerIntroClasses.icon]: true,
             })}
@@ -61,7 +61,7 @@ export class LedgerIntro {
             onClick={this.handleLedgerConnectClick.bind(this)}
           >
             <span class="ledger-intro-button-label">{buttonLabel}</span>
-            {this.isAwaiting && <mvx-spinner-icon />}
+            {this.isAwaiting && <drt-spinner-icon />}
           </button>
 
           {showError && <div class="ledger-intro-error">{this.connectScreenData.error}</div>}

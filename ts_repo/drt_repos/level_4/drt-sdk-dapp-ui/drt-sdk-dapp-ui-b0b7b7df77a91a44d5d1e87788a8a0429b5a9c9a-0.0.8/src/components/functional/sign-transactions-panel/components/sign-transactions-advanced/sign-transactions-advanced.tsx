@@ -4,7 +4,7 @@ import { DecodeMethodEnum } from '../../sign-transactions-panel.types';
 import state from '../../signTransactionsPanelStore';
 
 @Component({
-  tag: 'mvx-sign-transactions-advanced',
+  tag: 'drt-sign-transactions-advanced',
   styleUrl: 'sign-transactions-advanced.scss',
   shadow: true,
 })
@@ -63,7 +63,7 @@ export class SignTransactionsAdvanced {
           </div>
         </div>
 
-        <mvx-sign-transactions-advanced-data highlight={this.highlight} data={this.data} />
+        <drt-sign-transactions-advanced-data highlight={this.highlight} data={this.data} />
       </div>
     );
   }

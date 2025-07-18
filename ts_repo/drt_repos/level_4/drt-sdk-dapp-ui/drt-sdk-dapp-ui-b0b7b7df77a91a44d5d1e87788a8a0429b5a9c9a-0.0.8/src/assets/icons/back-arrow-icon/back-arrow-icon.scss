@@ -1,12 +1,12 @@
 :host {
-  @apply mvx:flex;
+  @apply drt:flex;
 
   .back-arrow-icon {
-    @apply mvx:w-5 mvx:h-5;
+    @apply drt:w-5 drt:h-5;
     fill: none;
 
     path {
-      fill: var(--mvx-neutral-400);
+      fill: var(--drt-neutral-400);
     }
   }
 }

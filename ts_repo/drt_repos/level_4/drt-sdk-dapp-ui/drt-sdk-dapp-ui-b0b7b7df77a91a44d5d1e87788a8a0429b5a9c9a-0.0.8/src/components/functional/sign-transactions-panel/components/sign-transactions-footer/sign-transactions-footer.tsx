@@ -4,12 +4,12 @@ import { DataTestIdsEnum } from 'constants/dataTestIds.enum';
 import state from '../../signTransactionsPanelStore';
 
 const signTransactionsFooterClasses: Record<string, string> = {
-  buttonTooltip: 'mvx:absolute mvx:top-0 mvx:h-12 mvx:left-0 mvx:right-0',
-  explorerLinkIcon: 'mvx:fill-link!',
+  buttonTooltip: 'drt:absolute drt:top-0 drt:h-12 drt:left-0 drt:right-0',
+  explorerLinkIcon: 'drt:fill-link!',
 };
 
 @Component({
-  tag: 'mvx-sign-transactions-footer',
+  tag: 'drt-sign-transactions-footer',
   styleUrl: 'sign-transactions-footer.scss',
   shadow: true,
 })
@@ -48,7 +48,7 @@ export class SignTransactionsFooter {
                 class="sign-transactions-footer-button-tooltip-wrapper"
                 onClick={(event: MouseEvent) => event.stopPropagation()}
               >
-                <mvx-tooltip
+                <drt-tooltip
                   trigger={
                     <div
                       class={{
@@ -68,7 +68,7 @@ export class SignTransactionsFooter {
                       please go back and confirm consecutively.
                     </Fragment>
                   )}
-                </mvx-tooltip>
+                </drt-tooltip>
               </div>
             )}
 
@@ -91,11 +91,11 @@ export class SignTransactionsFooter {
                 <span
                   class={{ 'sign-transactions-footer-button-icon': true, 'lighter': currentIndexCannotBeSignedYet }}
                 >
-                  {needsSigning ? <mvx-pencil-icon /> : <mvx-check-icon />}
+                  {needsSigning ? <drt-pencil-icon /> : <drt-check-icon />}
                 </span>
               ) : (
                 <span class="sign-transactions-footer-button-icon">
-                  <mvx-arrow-right-icon />
+                  <drt-arrow-right-icon />
                 </span>
               )}
             </button>
@@ -112,15 +112,15 @@ export class SignTransactionsFooter {
             </div>
           )}
 
-          {!username && address && <mvx-trim text={address} class="sign-transactions-footer-identity-address" />}
+          {!username && address && <drt-trim text={address} class="sign-transactions-footer-identity-address" />}
 
-          <mvx-copy-button
+          <drt-copy-button
             text={username ?? address}
             class="sign-transactions-footer-identity-copy"
             iconClass="sign-transactions-footer-identity-copy-icon"
           />
 
-          <mvx-explorer-link link={explorerLink} iconClass={signTransactionsFooterClasses.explorerLinkIcon} />
+          <drt-explorer-link link={explorerLink} iconClass={signTransactionsFooterClasses.explorerLinkIcon} />
         </div>
       </div>
     );

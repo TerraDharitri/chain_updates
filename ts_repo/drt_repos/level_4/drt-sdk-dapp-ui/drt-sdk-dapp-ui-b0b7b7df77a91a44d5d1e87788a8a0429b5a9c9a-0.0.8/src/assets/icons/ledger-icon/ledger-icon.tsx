@@ -3,7 +3,7 @@ import { Component, h, Prop } from '@stencil/core';
 @Component({
   shadow: true,
   styleUrl: 'ledger-icon.scss',
-  tag: 'mvx-ledger-icon',
+  tag: 'drt-ledger-icon',
 })
 export class LedgerIcon {
   @Prop() class?: string;

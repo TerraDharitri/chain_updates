@@ -3,7 +3,7 @@ import { Component, h, Prop } from '@stencil/core';
 @Component({
   shadow: true,
   styleUrl: 'back-arrow-icon.scss',
-  tag: 'mvx-back-arrow-icon',
+  tag: 'drt-back-arrow-icon',
 })
 export class BackArrowIcon {
   @Prop() class?: string;

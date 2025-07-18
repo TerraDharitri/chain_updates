@@ -1,7 +1,7 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-angles-right-icon',
+  tag: 'drt-angles-right-icon',
   shadow: true,
 })
 export class AnglesRightIcon {

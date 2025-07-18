@@ -29,7 +29,7 @@ describe('Username Utils', () => {
       expect(UsernameUtils.extractUsernameFromRawBase64("YWxpY2UubnVtYmF0")).toStrictEqual("alice.numbat");
       expect(UsernameUtils.extractUsernameFromRawBase64("YWxpY2UyLnN1ZmZpeA==")).toStrictEqual("alice2.suffix");
       expect(UsernameUtils.extractUsernameFromRawBase64("dGVzdC4=")).toStrictEqual("test.");
-      expect(UsernameUtils.extractUsernameFromRawBase64("YWxpY2UubXZ4")).toStrictEqual("alice.mvx");
+      expect(UsernameUtils.extractUsernameFromRawBase64("YWxpY2UubXZ4")).toStrictEqual("alice.drt");
     });
   });
 });

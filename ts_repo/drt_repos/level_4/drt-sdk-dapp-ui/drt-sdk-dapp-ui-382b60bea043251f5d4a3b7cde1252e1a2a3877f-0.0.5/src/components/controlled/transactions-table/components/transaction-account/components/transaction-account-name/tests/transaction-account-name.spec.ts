@@ -7,7 +7,7 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           name="Alice"
           description="Alice's Wallet"
@@ -28,14 +28,14 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           data-test-id="account-trim"
         />
       `,
     });
 
-    const trimElement = root?.querySelector('mvx-trim-text');
+    const trimElement = root?.querySelector('drt-trim-text');
     expect(trimElement).not.toBeNull();
     expect(trimElement?.getAttribute('text')).toBe('drt1q...');
     expect(trimElement?.getAttribute('datatestid')).toBe('account-trim');
@@ -45,14 +45,14 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           name=""
         />
       `,
     });
 
-    const trimElement = root?.querySelector('mvx-trim-text');
+    const trimElement = root?.querySelector('drt-trim-text');
     expect(trimElement).not.toBeNull();
   });
 
@@ -60,7 +60,7 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           name="Bob"
           class="custom-class"
@@ -78,7 +78,7 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           name="Charlie"
         />
@@ -93,7 +93,7 @@ describe('transaction-account-name', () => {
     const { root } = await newSpecPage({
       components: [TransactionAccountName],
       html: `
-        <mvx-transaction-account-name
+        <drt-transaction-account-name
           address="drt1q..."
           name="Dave"
           description="Dave's Savings"

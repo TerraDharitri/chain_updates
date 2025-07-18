@@ -11,13 +11,13 @@ import type { IUnlockPanelManagerData } from './unlock-panel.types';
 import { UnlockPanelEventsEnum } from './unlock-panel.types';
 
 const unlockPanelClasses: Record<string, string> = {
-  detectedPanelGroup: 'mvx:hidden mvx:sm:flex',
-  desktopPanelGroupTitle: 'mvx:hidden mvx:sm:flex',
-  mobilePanelGroupTitle: 'mvx:sm:hidden',
+  detectedPanelGroup: 'drt:hidden drt:sm:flex',
+  desktopPanelGroupTitle: 'drt:hidden drt:sm:flex',
+  mobilePanelGroupTitle: 'drt:sm:hidden',
 };
 
 @Component({
-  tag: 'mvx-unlock-panel',
+  tag: 'drt-unlock-panel',
   styleUrl: 'unlock-panel.scss',
   shadow: true,
 })
@@ -158,7 +158,7 @@ export class UnlockPanel {
     const isCustomProviderActive = this.selectedMethod && this.isCustomProvider(this.selectedMethod.type);
 
     return (
-      <mvx-side-panel
+      <drt-side-panel
         isOpen={this.isOpen}
         panelTitle={panelTitle}
         onClose={this.handleClose}
@@ -172,7 +172,7 @@ export class UnlockPanel {
           class={{ 'unlock-panel-anchor': this.isLoggingIn || this.isIntroScreenVisible }}
         >
           {this.isIntroScreenVisible && (
-            <mvx-provider-idle-screen
+            <drt-provider-idle-screen
               onAccess={this.handleAccess}
               provider={this.selectedMethod}
               onClose={this.handleResetLoginState}
@@ -184,16 +184,16 @@ export class UnlockPanel {
           <div class="unlock-panel">
             <div class="unlock-panel-groups">
               {hasDetectedProviders && (
-                <mvx-unlock-panel-group
+                <drt-unlock-panel-group
                   providers={detectedProviders}
                   onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
                   class={unlockPanelClasses.detectedPanelGroup}
                 >
                   <div slot={UnlockPanelGroupSlotEnum.groupLabel}>Detected</div>
-                </mvx-unlock-panel-group>
+                </drt-unlock-panel-group>
               )}
 
-              <mvx-unlock-panel-group
+              <drt-unlock-panel-group
                 providers={otherProviders}
                 onLogin={(event: CustomEvent) => this.handleLogin(event.detail)}
               >
@@ -205,13 +205,13 @@ export class UnlockPanel {
                 </div>
 
                 <slot />
-              </mvx-unlock-panel-group>
+              </drt-unlock-panel-group>
             </div>
 
-            <mvx-unlock-panel-footer walletAddress={this.walletAddress} />
+            <drt-unlock-panel-footer walletAddress={this.walletAddress} />
           </div>
         )}
-      </mvx-side-panel>
+      </drt-side-panel>
     );
   }
 }

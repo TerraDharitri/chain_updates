@@ -3,7 +3,7 @@ import { Component, Event, h, Prop } from '@stencil/core';
 import type { IProviderBase } from 'types/provider.types';
 
 @Component({
-  tag: 'mvx-unlock-panel-group',
+  tag: 'drt-unlock-panel-group',
   styleUrl: 'unlock-panel-group.scss',
   shadow: true,
 })
@@ -23,7 +23,7 @@ export class UnlockPanelGroup {
 
         <div class="unlock-panel-group-providers">
           {this.providers.map(provider => (
-            <mvx-unlock-provider-button provider={provider} onClick={() => this.handleLogin(provider)} />
+            <drt-unlock-provider-button provider={provider} onClick={() => this.handleLogin(provider)} />
           ))}
           <slot />
         </div>

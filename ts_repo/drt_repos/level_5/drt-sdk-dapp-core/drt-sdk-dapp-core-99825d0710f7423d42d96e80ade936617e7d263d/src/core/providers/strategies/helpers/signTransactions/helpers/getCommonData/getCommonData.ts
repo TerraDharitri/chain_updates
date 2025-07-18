@@ -1,5 +1,5 @@
 import { getPersistedTokenDetails } from 'apiCalls/tokens/getPersistedTokenDetails';
-import { MULTI_TRANSFER_REWA_TOKEN } from 'constants/mvx.constants';
+import { MULTI_TRANSFER_REWA_TOKEN } from 'constants/drt.constants';
 import {
   FungibleTransactionType,
   ISignTransactionsPanelCommonData

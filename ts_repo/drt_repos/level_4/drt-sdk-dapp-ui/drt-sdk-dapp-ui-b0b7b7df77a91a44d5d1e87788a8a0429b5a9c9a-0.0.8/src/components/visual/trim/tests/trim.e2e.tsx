@@ -17,7 +17,7 @@ describe('trim', () => {
   it('should render the full text when not overflowing', async () => {
     const page = await newSpecPage({
       components: [Trim],
-      html: '<mvx-trim text="Short text"></mvx-trim>',
+      html: '<drt-trim text="Short text"></drt-trim>',
     });
 
     const trimElement = page.root;
@@ -32,7 +32,7 @@ describe('trim', () => {
   it('should handle overflow and truncate text', async () => {
     const page = await newSpecPage({
       components: [Trim],
-      html: '<mvx-trim text="A very long text that should be truncated due to container width limitations"></mvx-trim>',
+      html: '<drt-trim text="A very long text that should be truncated due to container width limitations"></drt-trim>',
     });
 
     const component = page.rootInstance;
@@ -65,7 +65,7 @@ describe('trim', () => {
   it('should use custom class and data-testid', async () => {
     const page = await newSpecPage({
       components: [Trim],
-      html: '<mvx-trim text="Custom" class="custom-class" data-testid="custom-id"></mvx-trim>',
+      html: '<drt-trim text="Custom" class="custom-class" data-testid="custom-id"></drt-trim>',
     });
 
     const trimElement = page.root;

@@ -1,4 +1,4 @@
 export enum ThemesEnum {
-  light = 'mvx:light-theme',
-  dark = 'mvx:dark-theme'
+  light = 'drt:light-theme',
+  dark = 'drt:dark-theme'
 }

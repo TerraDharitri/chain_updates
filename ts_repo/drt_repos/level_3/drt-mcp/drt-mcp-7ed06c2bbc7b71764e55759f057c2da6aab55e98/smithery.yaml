@@ -6,14 +6,14 @@ startCommand:
     # JSON Schema defining the configuration options for the MCP.
     type: object
     required:
-      - mvxNetwork
+      - drtNetwork
     properties:
-      mvxNetwork:
+      drtNetwork:
         type: string
         enum: ["devnet", "testnet", "mainnet"]
         default: devnet
         description: "The DharitrI network to interact with, e.g., 'devnet', 'mainnet'."
-      mvxWallet:
+      drtWallet:
         type: string
         description: "The absolute path to a PEM wallet. Will be used for signing transactions."
   commandFunction:
@@ -21,9 +21,9 @@ startCommand:
     |-
     (config) => ({ command: 'node', args: ['build/index.js'],
       env: {
-        DRT_NETWORK: config.mvxNetwork,
-        DRT_WALLET: config.mvxWallet
+        DRT_NETWORK: config.drtNetwork,
+        DRT_WALLET: config.drtWallet
       }})
   exampleConfig:
-    mvxNetwork: devnet
-    mvxWallet: /Users/user/wallet.pem
+    drtNetwork: devnet
+    drtWallet: /Users/user/wallet.pem

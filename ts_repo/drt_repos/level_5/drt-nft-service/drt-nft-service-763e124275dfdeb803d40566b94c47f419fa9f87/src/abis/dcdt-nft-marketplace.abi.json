@@ -25,7 +25,7 @@
       },
       {
         "name": "tokens_to_whitelist",
-        "type": "variadic<EgldOrDcdtTokenIdentifier>",
+        "type": "variadic<RewaOrDcdtTokenIdentifier>",
         "multi_arg": true
       }
     ],
@@ -63,7 +63,7 @@
         },
         {
           "name": "accepted_payment_token",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "opt_min_bid_diff",
@@ -300,7 +300,7 @@
         },
         {
           "name": "token_nonce_pairs",
-          "type": "variadic<multi<EgldOrDcdtTokenIdentifier,u64>>",
+          "type": "variadic<multi<RewaOrDcdtTokenIdentifier,u64>>",
           "multi_arg": true
         }
       ],
@@ -323,7 +323,7 @@
         },
         {
           "name": "token_id",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "token_nonce",
@@ -343,7 +343,7 @@
       "inputs": [
         {
           "name": "tokens_to_add",
-          "type": "variadic<EgldOrDcdtTokenIdentifier>",
+          "type": "variadic<RewaOrDcdtTokenIdentifier>",
           "multi_arg": true
         }
       ],
@@ -356,7 +356,7 @@
       "inputs": [
         {
           "name": "tokens_to_remove",
-          "type": "variadic<EgldOrDcdtTokenIdentifier>",
+          "type": "variadic<RewaOrDcdtTokenIdentifier>",
           "multi_arg": true
         }
       ],
@@ -368,7 +368,7 @@
       "inputs": [],
       "outputs": [
         {
-          "type": "variadic<EgldOrDcdtTokenIdentifier>",
+          "type": "variadic<RewaOrDcdtTokenIdentifier>",
           "multi_result": true
         }
       ]
@@ -449,7 +449,7 @@
         },
         {
           "name": "accepted_payment_token",
-          "type": "EgldOrDcdtTokenIdentifier",
+          "type": "RewaOrDcdtTokenIdentifier",
           "indexed": true
         },
         {
@@ -628,7 +628,7 @@
         },
         {
           "name": "payment_token_type",
-          "type": "EgldOrDcdtTokenIdentifier",
+          "type": "RewaOrDcdtTokenIdentifier",
           "indexed": true
         },
         {
@@ -683,7 +683,7 @@
         },
         {
           "name": "payment_token_type",
-          "type": "EgldOrDcdtTokenIdentifier",
+          "type": "RewaOrDcdtTokenIdentifier",
           "indexed": true
         },
         {
@@ -738,7 +738,7 @@
         },
         {
           "name": "payment_token_type",
-          "type": "EgldOrDcdtTokenIdentifier",
+          "type": "RewaOrDcdtTokenIdentifier",
           "indexed": true
         },
         {
@@ -789,7 +789,7 @@
         },
         {
           "name": "payment_token",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "payment_nonce",
@@ -858,12 +858,12 @@
         }
       ]
     },
-    "EgldOrDcdtTokenPayment": {
+    "RewaOrDcdtTokenPayment": {
       "type": "struct",
       "fields": [
         {
           "name": "token_identifier",
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         },
         {
           "name": "token_nonce",
@@ -901,7 +901,7 @@
         },
         {
           "name": "payment",
-          "type": "EgldOrDcdtTokenPayment"
+          "type": "RewaOrDcdtTokenPayment"
         },
         {
           "name": "start_time",

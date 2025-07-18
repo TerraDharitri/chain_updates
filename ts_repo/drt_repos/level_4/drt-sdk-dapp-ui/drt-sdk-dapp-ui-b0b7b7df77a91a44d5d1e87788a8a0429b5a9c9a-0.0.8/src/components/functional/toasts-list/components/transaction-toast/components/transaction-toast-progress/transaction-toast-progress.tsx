@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const DEFAULT_INFINITE_ANIMATION_DURATION = 30;
 
 @Component({
-  tag: 'mvx-transaction-toast-progress',
+  tag: 'drt-transaction-toast-progress',
   styleUrl: 'transaction-toast-progress.scss',
 })
 export class ToastProgress {

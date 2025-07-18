@@ -1,6 +1,6 @@
 import { ACCOUNTS_ENDPOINT } from 'apiCalls';
 import { getPersistedTokenDetails } from 'apiCalls/tokens/getPersistedTokenDetails';
-import { MULTI_TRANSFER_REWA_TOKEN } from 'constants/mvx.constants';
+import { MULTI_TRANSFER_REWA_TOKEN } from 'constants/drt.constants';
 import { safeWindow } from 'constants/window.constants';
 import { formatAmount } from 'lib/sdkDappUtils';
 import {

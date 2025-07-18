@@ -8,7 +8,7 @@ import { SignEventsEnum, TransactionTabsEnum } from './sign-transactions-panel.t
 import state, { resetState } from './signTransactionsPanelStore';
 
 @Component({
-  tag: 'mvx-sign-transactions-panel',
+  tag: 'drt-sign-transactions-panel',
   styleUrl: 'sign-transactions-panel.scss',
   shadow: true,
 })
@@ -115,14 +115,14 @@ export class SignTransactionsPanel {
     const { data, highlight } = commonData;
 
     return (
-      <mvx-side-panel
+      <drt-side-panel
         isOpen={this.isOpen}
         onClose={this.handleClose}
         panelTitle="Confirm Transaction"
         hasBackButton={false}
       >
         <div class="sign-transactions-panel">
-          <mvx-sign-transactions-header />
+          <drt-sign-transactions-header />
 
           <div class="sign-transaction-content">
             <div class="sign-transactions-tabs">
@@ -137,15 +137,15 @@ export class SignTransactionsPanel {
             </div>
 
             {this.activeTab === TransactionTabsEnum.overview ? (
-              <mvx-sign-transactions-overview style={{ width: '100%' }} {...this.overviewProps} />
+              <drt-sign-transactions-overview style={{ width: '100%' }} {...this.overviewProps} />
             ) : (
-              <mvx-sign-transactions-advanced style={{ width: '100%' }} data={data} highlight={highlight} />
+              <drt-sign-transactions-advanced style={{ width: '100%' }} data={data} highlight={highlight} />
             )}
           </div>
 
-          <mvx-sign-transactions-footer />
+          <drt-sign-transactions-footer />
         </div>
-      </mvx-side-panel>
+      </drt-side-panel>
     );
   }
 }

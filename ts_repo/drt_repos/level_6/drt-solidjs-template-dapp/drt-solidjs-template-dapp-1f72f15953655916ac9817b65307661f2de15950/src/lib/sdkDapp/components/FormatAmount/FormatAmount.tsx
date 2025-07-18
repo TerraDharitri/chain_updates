@@ -7,7 +7,7 @@ import { IPropsWithClass } from 'types';
 interface FormatAmountPropsType
   extends Partial<FormatAmountSDKPropsType>,
     IPropsWithClass {
-  egldLabel?: string;
+  rewaLabel?: string;
   value: string;
 }
 
@@ -18,7 +18,7 @@ export const FormatAmount = (props: FormatAmountPropsType) => {
     FormatAmountController.getData({
       digits: DIGITS,
       decimals: DECIMALS,
-      egldLabel: props.egldLabel,
+      rewaLabel: props.rewaLabel,
       input: props.value
     })
   );
@@ -32,5 +32,5 @@ export const FormatAmount = (props: FormatAmountPropsType) => {
     Object.assign(elementRef, props, data);
   });
 
-  return <mvx-format-amount ref={elementRef} />;
+  return <drt-format-amount ref={elementRef} />;
 };

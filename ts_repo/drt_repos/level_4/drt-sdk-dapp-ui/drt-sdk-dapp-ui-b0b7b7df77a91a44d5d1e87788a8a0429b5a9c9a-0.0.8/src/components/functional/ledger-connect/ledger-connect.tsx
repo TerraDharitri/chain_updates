@@ -7,7 +7,7 @@ import type { ILedgerConnectPanelData } from './ledger-connect.types';
 import { LedgerConnectEventsEnum } from './ledger-connect.types';
 
 @Component({
-  tag: 'mvx-ledger-connect',
+  tag: 'drt-ledger-connect',
   styleUrl: 'ledger-connect.scss',
   shadow: true,
 })
@@ -80,13 +80,13 @@ export class LedgerConnect {
     if (this.ledgerDataState.accountScreenData) {
       return (
         <Fragment>
-          <mvx-side-panel-header
+          <drt-side-panel-header
             panelTitle={providerLabels.ledger}
             hasLeftButton={false}
             onRightButtonClick={this.handleClose.bind(this)}
           />
 
-          <mvx-ledger-addresses
+          <drt-ledger-addresses
             selectedIndex={this.selectedIndex}
             accountScreenData={this.ledgerDataState.accountScreenData}
             onAccessWallet={() => this.accessWallet()}
@@ -102,25 +102,25 @@ export class LedgerConnect {
     if (this.ledgerDataState.confirmScreenData) {
       return (
         <Fragment>
-          <mvx-side-panel-header
+          <drt-side-panel-header
             panelTitle={providerLabels.ledger}
             hasLeftButton={false}
             onRightButtonClick={this.handleClose.bind(this)}
           />
-          <mvx-ledger-confirm confirmScreenData={this.ledgerDataState.confirmScreenData} />
+          <drt-ledger-confirm confirmScreenData={this.ledgerDataState.confirmScreenData} />
         </Fragment>
       );
     }
 
     return (
       <Fragment>
-        <mvx-side-panel-header
+        <drt-side-panel-header
           panelTitle={providerLabels.ledger}
           hasLeftButton={false}
           onRightButtonClick={this.handleClose.bind(this)}
         />
 
-        <mvx-ledger-intro
+        <drt-ledger-intro
           connectScreenData={this.ledgerDataState.connectScreenData}
           onConnect={this.handleIntroConnect.bind(this)}
         />

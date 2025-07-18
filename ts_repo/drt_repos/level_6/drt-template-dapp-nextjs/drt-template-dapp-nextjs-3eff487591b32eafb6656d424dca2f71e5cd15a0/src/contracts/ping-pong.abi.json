@@ -32,7 +32,7 @@
       "Necessary configuration when deploying:",
       "`ping_amount` - the exact amount that needs to be sent when `ping`-ing.  ",
       "`duration_in_seconds` - how much time (in seconds) until `pong` can be called after the initial `ping` call  ",
-      "`token_id` - Optional. The Token Identifier of the token that is going to be used. Default is \"EGLD\"."
+      "`token_id` - Optional. The Token Identifier of the token that is going to be used. Default is \"REWA\"."
     ],
     "inputs": [
       {
@@ -45,7 +45,7 @@
       },
       {
         "name": "opt_token_id",
-        "type": "optional<EgldOrDcdtTokenIdentifier>",
+        "type": "optional<RewaOrDcdtTokenIdentifier>",
         "multi_arg": true
       }
     ],
@@ -124,7 +124,7 @@
       "inputs": [],
       "outputs": [
         {
-          "type": "EgldOrDcdtTokenIdentifier"
+          "type": "RewaOrDcdtTokenIdentifier"
         }
       ]
     },

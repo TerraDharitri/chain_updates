@@ -7,7 +7,7 @@
     "build": "tsc && node scripts/addShebang.js"
   },
   "bin": {
-    "mx-mcp": "build/index.js"
+    "drt-mcp": "build/index.js"
   },
   "keywords": [],
   "author": "",

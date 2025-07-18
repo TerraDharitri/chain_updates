@@ -19,13 +19,13 @@ export const ExplorerLink = ({
   const store = useStore();
   const network = networkSelector(store());
   return (
-    <mvx-explorer-link
+    <drt-explorer-link
       link={`${network.explorerAddress}${page}`}
       class={className}
       data-testid={dataTestId}
       {...rest}
     >
       {children ? <div slot='content'>{children}</div> : null}
-    </mvx-explorer-link>
+    </drt-explorer-link>
   );
 };

@@ -7,30 +7,30 @@ describe('CopyButton', () => {
   it('renders with default props', async () => {
     const page = await newSpecPage({
       components: [CopyButton],
-      html: '<mvx-copy-button text="Copy me"></mvx-copy-button>',
+      html: '<drt-copy-button text="Copy me"></drt-copy-button>',
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-copy-button text="Copy me">
+      <drt-copy-button text="Copy me">
         <a href="/#" class="copy-button">
-          <mvx-fa-icon class="copy-button-icon" icon="faCopy"></mvx-fa-icon>
+          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
         </a>
-      </mvx-copy-button>
+      </drt-copy-button>
     `);
   });
 
   it('renders with custom class', async () => {
     const page = await newSpecPage({
       components: [CopyButton],
-      html: '<mvx-copy-button class="custom-class" text="Copy me"></mvx-copy-button>',
+      html: '<drt-copy-button class="custom-class" text="Copy me"></drt-copy-button>',
     });
 
     expect(page.root).toEqualHtml(`
-      <mvx-copy-button class="custom-class" text="Copy me">
+      <drt-copy-button class="custom-class" text="Copy me">
         <a href="/#" class="custom-class">
-          <mvx-fa-icon class="copy-button-icon" icon="faCopy"></mvx-fa-icon>
+          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
         </a>
-      </mvx-copy-button>
+      </drt-copy-button>
     `);
   });
 
@@ -39,7 +39,7 @@ describe('CopyButton', () => {
 
     const page = await newSpecPage({
       components: [CopyButton],
-      html: '<mvx-copy-button text="Copy me"></mvx-copy-button>',
+      html: '<drt-copy-button text="Copy me"></drt-copy-button>',
     });
 
     const copyButton = page.root;
@@ -49,11 +49,11 @@ describe('CopyButton', () => {
     await page.waitForChanges();
 
     expect(copyButton).toEqualHtml(`
-      <mvx-copy-button text="Copy me">
+      <drt-copy-button text="Copy me">
         <a href="/#" class="copy-button">
-          <mvx-fa-icon class="copy-button-icon" icon="faCheck"></mvx-fa-icon>
+          <drt-fa-icon class="copy-button-icon" icon="faCheck"></drt-fa-icon>
         </a>
-      </mvx-copy-button>
+      </drt-copy-button>
     `);
   });
 
@@ -62,7 +62,7 @@ describe('CopyButton', () => {
 
     const page = await newSpecPage({
       components: [CopyButton],
-      html: '<mvx-copy-button text="Copy me"></mvx-copy-button>',
+      html: '<drt-copy-button text="Copy me"></drt-copy-button>',
     });
 
     const copyButton = page.root;
@@ -72,18 +72,18 @@ describe('CopyButton', () => {
     await page.waitForChanges();
 
     expect(copyButton).toEqualHtml(`
-      <mvx-copy-button text="Copy me">
+      <drt-copy-button text="Copy me">
         <a href="/#" class="copy-button">
-          <mvx-fa-icon class="copy-button-icon" icon="faCopy"></mvx-fa-icon>
+          <drt-fa-icon class="copy-button-icon" icon="faCopy"></drt-fa-icon>
         </a>
-      </mvx-copy-button>
+      </drt-copy-button>
     `);
   });
 
   it('prevents default behavior and stops propagation on click', async () => {
     const page = await newSpecPage({
       components: [CopyButton],
-      html: '<mvx-copy-button text="Copy me"></mvx-copy-button>',
+      html: '<drt-copy-button text="Copy me"></drt-copy-button>',
     });
 
     const copyButton = page.root;

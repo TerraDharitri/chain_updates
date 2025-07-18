@@ -80,24 +80,24 @@
 }
 
 .sign-transaction-content {
-  @apply mvx:flex mvx:flex-col mvx:items-center mvx:gap-2 mvx:relative mvx:min-w-0 mvx:self-stretch mvx:flex-nowrap mvx:shrink-0;
+  @apply drt:flex drt:flex-col drt:items-center drt:gap-2 drt:relative drt:min-w-0 drt:self-stretch drt:flex-nowrap drt:shrink-0;
 
   .sign-transactions-tabs {
-    @apply mvx:px-4 mvx:gap-2 mvx:flex mvx:mr-auto;
+    @apply drt:px-4 drt:gap-2 drt:flex drt:mr-auto;
 
     .sign-transactions-tab {
-      @apply mvx:px-4 mvx:h-8 mvx:flex mvx:items-center mvx:leading-none mvx:justify-center mvx:transition-all mvx:duration-200;
-      @apply mvx:ease-in-out mvx:cursor-pointer mvx:relative mvx:rounded-3xl;
-      color: var(--mvx-text-color-secondary);
+      @apply drt:px-4 drt:h-8 drt:flex drt:items-center drt:leading-none drt:justify-center drt:transition-all drt:duration-200;
+      @apply drt:ease-in-out drt:cursor-pointer drt:relative drt:rounded-3xl;
+      color: var(--drt-text-color-secondary);
 
       &:hover,
       &.active {
-        color: var(--mvx-text-accent-color);
-        background-color: var(--mvx-bg-color-secondary);
+        color: var(--drt-text-accent-color);
+        background-color: var(--drt-bg-color-secondary);
       }
 
       .sign-transactions-tab-text {
-        @apply mvx:text-base mvx:z-1 mvx:relative mvx:capitalize;
+        @apply drt:text-base drt:z-1 drt:relative drt:capitalize;
       }
     }
   }
@@ -111,5 +111,5 @@
 }
 
 .sign-transactions-panel {
-  @apply mvx:flex mvx:flex-col mvx:flex-1 mvx:pb-6;
+  @apply drt:flex drt:flex-col drt:flex-1 drt:pb-6;
 }

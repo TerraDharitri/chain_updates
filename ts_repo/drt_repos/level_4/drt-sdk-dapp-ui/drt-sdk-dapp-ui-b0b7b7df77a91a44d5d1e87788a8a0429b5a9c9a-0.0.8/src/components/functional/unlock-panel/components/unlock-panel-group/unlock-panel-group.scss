@@ -1,24 +1,24 @@
 :host {
-  @apply mvx:overflow-hidden mvx:flex;
+  @apply drt:overflow-hidden drt:flex;
 
   @media (min-width: 640px) {
-    @apply mvx:overflow-visible;
+    @apply drt:overflow-visible;
   }
 
   .unlock-panel-group {
-    @apply mvx:flex mvx:flex-col mvx:flex-1 mvx:overflow-hidden;
+    @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
 
     .unlock-panel-group-label {
-      @apply mvx:leading-none mvx:relative;
-      color: var(--mvx-text-color-secondary);
+      @apply drt:leading-none drt:relative;
+      color: var(--drt-text-color-secondary);
     }
 
     .unlock-panel-group-providers {
-      @apply mvx:flex mvx:flex-col mvx:gap-0.5 mvx:rounded-tl-lg mvx:rounded-tr-lg mvx:overflow-auto;
-      @apply mvx:pb-6 mvx:mt-3;
+      @apply drt:flex drt:flex-col drt:gap-0.5 drt:rounded-tl-lg drt:rounded-tr-lg drt:overflow-auto;
+      @apply drt:pb-6 drt:mt-3;
 
       &::-webkit-scrollbar {
-        @apply mvx:hidden;
+        @apply drt:hidden;
       }
     }
   }

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import type { TransactionIconInfoType } from '../../transactions-table.type';
 
 @Component({
-  tag: 'mvx-transaction-icon',
+  tag: 'drt-transaction-icon',
 })
 export class TransactionIcon {
   @Prop() class?: string;
@@ -17,7 +17,7 @@ export class TransactionIcon {
     }
 
     return (
-      <mvx-fa-icon
+      <drt-fa-icon
         class={classNames(
           {
             'fa-sm': this.iconInfo.icon === (faTimes as unknown as string),

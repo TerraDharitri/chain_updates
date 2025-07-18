@@ -11,13 +11,13 @@ interface XPortalDownloadOptionType {
 }
 
 const xPortalDownloadOptions: XPortalDownloadOptionType[] = [
-  { image: <mvx-wallet-connect-app-store-icon />, link: XPORTAL_APP_STORE_LINK },
-  { image: <mvx-wallet-connect-google-play-icon />, link: XPORTAL_PLAY_STORE_LINK },
-  { image: <mvx-wallet-connect-app-gallery-icon />, link: XPORTAL_APP_GALLERY_LINK },
+  { image: <drt-wallet-connect-app-store-icon />, link: XPORTAL_APP_STORE_LINK },
+  { image: <drt-wallet-connect-google-play-icon />, link: XPORTAL_PLAY_STORE_LINK },
+  { image: <drt-wallet-connect-app-gallery-icon />, link: XPORTAL_APP_GALLERY_LINK },
 ];
 
 @Component({
-  tag: 'mvx-wallet-connect-download',
+  tag: 'drt-wallet-connect-download',
   styleUrl: 'wallet-connect-download.scss',
   shadow: true,
 })
@@ -28,7 +28,7 @@ export class WalletConnect {
     return (
       <div class={{ 'wallet-connect-download': true, [this.class]: Boolean(this.class) }}>
         <div class="wallet-connect-download-wrapper">
-          <mvx-xportal-download-qr-icon class="wallet-connect-download-qr" />
+          <drt-xportal-download-qr-icon class="wallet-connect-download-qr" />
 
           <div class="wallet-connect-download-description">
             Scan this QR code on your phone <br /> to get the xPortal app

@@ -4,7 +4,7 @@ import { Button, MxLink } from '@/components';
 import { environment } from '@/config';
 import { getAccountProvider, useGetIsLoggedIn } from '@/lib';
 import { RouteNamesEnum } from '@/localConstants';
-import mvxLogo from '../../../../public/assets/img/dharitri-logo.svg';
+import drtLogo from '../../../../public/assets/img/dharitri-logo.svg';
 import Image from 'next/image';
 import { ConnectButton } from './components';
 import { NotificationsButton } from './components/NotificationsButton';
@@ -25,7 +25,7 @@ export const Header = () => {
         className='flex items-center justify-between'
         to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
       >
-        <Image src={mvxLogo} alt='logo' className='w-full h-6' />
+        <Image src={drtLogo} alt='logo' className='w-full h-6' />
       </MxLink>
 
       <nav className='h-full w-full text-sm sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>

@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-single-angle-down-icon',
+  tag: 'drt-single-angle-down-icon',
   styleUrl: 'single-angle-down-icon.scss',
   shadow: true,
 })

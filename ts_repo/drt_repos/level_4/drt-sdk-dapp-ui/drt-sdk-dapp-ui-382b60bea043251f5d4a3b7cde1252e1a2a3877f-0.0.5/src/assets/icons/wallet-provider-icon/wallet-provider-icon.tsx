@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'mvx-wallet-provider-icon',
+  tag: 'drt-wallet-provider-icon',
   styleUrl: 'wallet-provider-icon.scss',
   shadow: true,
 })

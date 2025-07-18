@@ -1,16 +1,16 @@
 :host {
-  @apply mvx:flex;
+  @apply drt:flex;
 
   .default-transaction-icon-large {
-    @apply mvx:h-10 mvx:w-10;
+    @apply drt:h-10 drt:w-10;
     fill: none;
 
     rect {
-      fill: var(--mvx-icon-bg);
+      fill: var(--drt-icon-bg);
     }
 
     path {
-      fill: var(--mvx-text-color-primary);
+      fill: var(--drt-text-color-primary);
     }
   }
 }

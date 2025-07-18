@@ -1556,9 +1556,9 @@
     axios "^1.7.4"
     bip39 "3.1.0"
 
-"@terradharitri/sdk-dapp-ui@/home/dugong/Desktop/teja-work/temp/chain_updates/ts_repo/drt_repos/level_4/drt-sdk-dapp-ui/mx-sdk-dapp-ui-382b60bea043251f5d4a3b7cde1252e1a2a3877f":
+"@terradharitri/sdk-dapp-ui@/home/dugong/Desktop/teja-work/temp/chain_updates/ts_repo/drt_repos/level_4/drt-sdk-dapp-ui/drt-sdk-dapp-ui-382b60bea043251f5d4a3b7cde1252e1a2a3877f":
   version "0.0.5"
-  resolved "file:../../../level_4/drt-sdk-dapp-ui/mx-sdk-dapp-ui-382b60bea043251f5d4a3b7cde1252e1a2a3877f"
+  resolved "file:../../../level_4/drt-sdk-dapp-ui/drt-sdk-dapp-ui-382b60bea043251f5d4a3b7cde1252e1a2a3877f"
   dependencies:
     "@fortawesome/fontawesome-svg-core" ">= 6.7.2"
     "@fortawesome/free-solid-svg-icons" ">= 6.7.2"

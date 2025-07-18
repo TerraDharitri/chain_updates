@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   shadow: true,
-  tag: 'mvx-ledger-icon',
+  tag: 'drt-ledger-icon',
 })
 export class LedgerIcon {
   render() {

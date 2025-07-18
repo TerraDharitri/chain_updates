@@ -16,7 +16,7 @@
     "keepAliveMaxSockets": 100,
     "keepAliveMaxFreeSockets": 10,
     "decimals": 18,
-    "egld": "EGLD",
+    "rewa": "REWA",
     "burnAddress": "drt1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqksct7k",
     "pemFileName": "wallet.pem",
     "marketplacesIconsBaseUrl": "https://media.dharitri.org/markets",
