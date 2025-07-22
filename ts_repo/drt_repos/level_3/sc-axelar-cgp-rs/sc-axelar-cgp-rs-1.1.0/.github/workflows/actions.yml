@@ -39,7 +39,7 @@ jobs:
           cargo install wasm-opt
           cargo install twiggy
           
-          cargo install dharitri-sc-meta --version 0.50.3 --locked
+          cargo install dharitri-sc-meta --version 1.11.6 --locked
 
           which drtpy
           which wasm-opt

@@ -17,3 +17,6 @@ members = [
     "interchain-token-service-proxy",
     "interchain-token-service-proxy/meta"
 ]
+
+[patch.crates-io]
+zip = { path = "/home/dugong/Desktop/teja-work/temp/crates/zip2-2.1.1" }
