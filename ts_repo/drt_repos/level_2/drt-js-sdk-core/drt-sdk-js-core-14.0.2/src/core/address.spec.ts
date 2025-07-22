@@ -3,9 +3,9 @@ import { Address, AddressComputer } from "./address";
 import * as errors from "./errors";
 
 describe("test address", () => {
-    let aliceBech32 = "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf";
+    let aliceBech32 = "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh";
     let bobBech32 = "drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c";
-    let aliceHex = "0139472eff6886771a982f3083da5d421f24c29181e63888228dc81ca60d69e1";
+    let aliceHex = "391f932707a9dfa86d3bcbb3d5d0cc9f25ad0e680fe499f107d844b7e6ea71d5";
     let bobHex = "8049d639e5a6980d1cd2392abcce41029cda74a1563523a202f09641cc2618f8";
 
     it("should create address", async () => {
@@ -23,12 +23,12 @@ describe("test address", () => {
         let address = Address.newFromHex(aliceHex, "test");
         assert.deepEqual(address.getPublicKey(), Buffer.from(aliceHex, "hex"));
         assert.equal(address.getHrp(), "test");
-        assert.equal(address.toBech32(), "test1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ss5hqhtr");
+        assert.equal(address.toBech32(), "test18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82s4udwpa");
 
         address = Address.newFromHex(bobHex, "xdrt");
         assert.deepEqual(address.getPublicKey(), Buffer.from(bobHex, "hex"));
         assert.equal(address.getHrp(), "xdrt");
-        assert.equal(address.toBech32(), "xdrt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruq9thc9j");
+        assert.equal(address.toBech32(), "xdrt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqchqmxv");
     });
 
     it("should create empty address", async () => {
@@ -73,7 +73,7 @@ describe("test address", () => {
 
     it("should check whether isSmartContract", () => {
         assert.isFalse(
-            Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf").isSmartContract(),
+            Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh").isSmartContract(),
         );
         assert.isTrue(
             Address.newFromBech32("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqplllsphc9lf").isSmartContract(),
@@ -99,7 +99,7 @@ describe("test address", () => {
     it("should get address shard", () => {
         const addressComputer = new AddressComputer();
 
-        let address = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        let address = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         let shard = addressComputer.getShardOfAddress(address);
         assert.equal(shard, 1);
 

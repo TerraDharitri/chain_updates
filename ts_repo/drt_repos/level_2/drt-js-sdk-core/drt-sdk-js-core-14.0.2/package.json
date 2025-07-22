@@ -1,6 +1,6 @@
 {
   "name": "@terradharitri/sdk-core",
-  "version": "14.0.2",
+  "version": "0.1.12",
   "description": "DharitrI SDK for JavaScript and TypeScript",
   "author": "DharitrI",
   "homepage": "https://dharitri.org",
@@ -37,7 +37,7 @@
     "prepare": "npm run compile"
   },
   "dependencies": {
-    "@terradharitri/sdk-transaction-decoder": "1.0.2",
+    "@terradharitri/sdk-transaction-decoder": "0.0.7",
     "json-bigint": "1.0.0",
     "bech32": "1.1.4",
     "blake2b": "2.1.3",
@@ -78,7 +78,7 @@
   },
   "optionalDependencies": {
     "axios": "^1.7.4",
-    "@terradharitri/sdk-bls-wasm": "0.3.5",
+    "@terradharitri/sdk-bls-wasm": "0.0.3",
     "bip39": "3.1.0"
   }
 }

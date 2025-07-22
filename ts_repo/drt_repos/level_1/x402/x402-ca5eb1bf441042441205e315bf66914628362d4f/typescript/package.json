@@ -6,7 +6,7 @@
   },
   "packageManager": "pnpm@10.7.0",
   "private": "true",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "x402 Payment Protocol Monorepo",
   "main": "index.js",
   "scripts": {

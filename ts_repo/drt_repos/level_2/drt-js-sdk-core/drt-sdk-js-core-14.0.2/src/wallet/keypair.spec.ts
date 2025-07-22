@@ -30,7 +30,7 @@ describe("test keypair", () => {
             nonce: 89n,
             value: 0n,
             receiver: Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c"),
-            sender: Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf"),
+            sender: Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh"),
             gasPrice: 1000000000n,
             gasLimit: 50000n,
             chainID: "local-testnet",
@@ -46,7 +46,7 @@ describe("test keypair", () => {
         transaction.signature = await keypair.sign(serializedTx);
         assert.equal(
             Buffer.from(transaction.signature).toString("hex"),
-            "b56769014f2bdc5cf9fc4a05356807d71fcf8775c819b0f1b0964625b679c918ffa64862313bfef86f99b38cb84fcdb16fa33ad6eb565276616723405cd8f109",
+            "c34ce0a79225a7c05a52117dda097c16874a8a8fdc1cb5ce907b0af61d87a23da26fe9d6ee1ccc412eee85672fde0e6e3d0c1cfb657d90a38d09cbd0ed189109",
         );
         assert.isTrue(await keypair.verify(serializedTx, transaction.signature));
     });
