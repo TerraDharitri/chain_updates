@@ -1,6 +1,6 @@
 {
   "name": "@terradharitri/mcp",
-  "version": "1.0.3",
+  "version": "0.0.1",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
-    "@terradharitri/sdk-core": "14.0.2",
+    "@terradharitri/sdk-core": "0.1.12",
     "bignumber.js": "^9.1.2",
     "dotenv": "^16.4.7",
     "zod": "^3.24.2"
