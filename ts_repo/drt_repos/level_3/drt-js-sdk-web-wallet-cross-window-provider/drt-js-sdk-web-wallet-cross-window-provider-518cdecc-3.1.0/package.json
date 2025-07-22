@@ -1,6 +1,6 @@
 {
   "name": "@terradharitri/sdk-web-wallet-cross-window-provider",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "Signing provider for dApps: Cross Window",
   "main": "out/index.js",
   "types": "out/index.d.js",
@@ -20,7 +20,7 @@
   "author": "Dharitri",
   "license": "MIT",
   "devDependencies": {
-    "@terradharitri/sdk-core": "0.1.13",
+    "@terradharitri/sdk-core": "0.1.11",
     "@types/jest": "^29.5.11",
     "@types/node": "18.19.0",
     "@types/qs": "6.9.10",
@@ -41,7 +41,7 @@
     "typescript": "5.0.4"
   },
   "peerDependencies": {
-    "@terradharitri/sdk-core": "^14.x"
+    "@terradharitri/sdk-core": "^0.1.11"
   },
   "dependencies": {
     "qs": "6.11.2"
