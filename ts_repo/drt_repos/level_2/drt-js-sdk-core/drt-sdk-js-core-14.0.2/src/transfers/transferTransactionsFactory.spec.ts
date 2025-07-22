@@ -10,7 +10,7 @@ describe("test transfer transactions factory", function () {
         config: config,
     });
 
-    const alice = Address.newFromBech32("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    const alice = Address.newFromBech32("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     const bob = Address.newFromBech32("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
 
     it("should throw error, no token transfer provided", async () => {

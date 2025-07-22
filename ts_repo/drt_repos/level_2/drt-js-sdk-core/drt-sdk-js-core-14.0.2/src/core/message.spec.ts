@@ -23,7 +23,7 @@ describe("test message", () => {
 
         assert.equal(
             Buffer.from(serialized).toString("hex"),
-            "2162d6271208429e6d3e664139e98ba7c5f1870906fb113e8903b1d3f531004d",
+            "0f6fce3fa6130fc58a25eaff6e157ea1bcb02fbf9773dca514dfaf3cd1e0bdfe",
         );
     });
 
@@ -39,15 +39,15 @@ describe("test message", () => {
 
         assert.equal(
             Buffer.from(message.signature).toString("hex"),
-            "7aff43cd6e3d880a65033bf0a1b16274854fd7dfa9fe5faa7fa9a665ee851afd4c449310f5f1697d348e42d1819eaef69080e33e7652d7393521ed50d7427a0e",
+            "2758dcd8e5b5f7ccfaeaf7e0362ace8f83145c573da3f495d9218b2de367d161e007f3db5f288123b937cd7abaefaf7e66f417cc59ef8618c405de22578e6608",
         );
 
         const packedMessage = messageComputer.packMessage(message);
         assert.deepEqual(packedMessage, {
-            address: "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf",
+            address: "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh",
             message: "74657374",
             signature:
-                "7aff43cd6e3d880a65033bf0a1b16274854fd7dfa9fe5faa7fa9a665ee851afd4c449310f5f1697d348e42d1819eaef69080e33e7652d7393521ed50d7427a0e",
+                "2758dcd8e5b5f7ccfaeaf7e0362ace8f83145c573da3f495d9218b2de367d161e007f3db5f288123b937cd7abaefaf7e66f417cc59ef8618c405de22578e6608",
             version: 1,
             signer: SDK_JS_SIGNER,
         });
@@ -65,7 +65,7 @@ describe("test message", () => {
 
     it("should unpack legacy message", async () => {
         const legacyMessage = {
-            address: "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf",
+            address: "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh",
             message: "0x7468697320697320612074657374206d657373616765",
             signature:
                 "0xb16847437049986f936dd4a0917c869730cbf29e40a0c0821ca70db33f44758c3d41bcbea446dee70dea13d50942343bb78e74979dc434bbb2b901e0f4fd1809",
@@ -86,7 +86,7 @@ describe("test message", () => {
 
     it("should unpack message", async () => {
         const packedMessage = {
-            address: "drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf",
+            address: "drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh",
             message: "0x7468697320697320612074657374206d657373616765",
             signature:
                 "0xb16847437049986f936dd4a0917c869730cbf29e40a0c0821ca70db33f44758c3d41bcbea446dee70dea13d50942343bb78e74979dc434bbb2b901e0f4fd1809",

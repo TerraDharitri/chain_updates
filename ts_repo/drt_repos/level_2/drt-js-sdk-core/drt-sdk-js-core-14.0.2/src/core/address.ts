@@ -261,7 +261,8 @@ export class Address {
      * Returns whether the address is a smart contract address.
      */
     isSmartContract(): boolean {
-        return this.toHex().startsWith(SMART_CONTRACT_HEX_PUBKEY_PREFIX);
+        const hex = this.toHex();
+        return hex.startsWith(SMART_CONTRACT_HEX_PUBKEY_PREFIX) || hex.startsWith("2333000000000000");
     }
 }
 

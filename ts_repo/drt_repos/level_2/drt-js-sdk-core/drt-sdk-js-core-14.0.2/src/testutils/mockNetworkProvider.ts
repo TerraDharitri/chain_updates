@@ -25,7 +25,7 @@ import { SmartContractResult } from "../transactionsOutcomeParsers";
 import { createAccountBalance } from "./utils";
 
 export class MockNetworkProvider implements INetworkProvider {
-    static AddressOfAlice = new Address("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+    static AddressOfAlice = new Address("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
     static AddressOfBob = new Address("drt1spyavw0956vq68xj8y4tenjpq2wd5a9p2c6j8gsz7ztyrnpxrruqlqde3c");
     static AddressOfCarol = new Address("drt1k2s324ww2g0yj38qn2ch2jwctdy8mnfxep94q9arncc6xecg3xaq889n6e");
 

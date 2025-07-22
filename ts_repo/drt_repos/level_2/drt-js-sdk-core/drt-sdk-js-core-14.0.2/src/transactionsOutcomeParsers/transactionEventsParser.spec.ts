@@ -50,7 +50,7 @@ describe("test transaction events parser", () => {
                                 topics: b64TopicsToBytes([
                                     "ZGVwb3NpdA==",
                                     "cmzC1LRt1r10pMhNAnFb+FyudjGMq4G8CefCYdQUmmc=",
-                                    "AAAADFdFR0xELTAxZTQ5ZAAAAAAAAAAAAAAAAWQ=",
+                                    "AAAADFdSRVdBLTAxZTQ5ZAAAAAAAAAAAAAAAAWQ=",
                                 ]),
                                 additionalData: [Buffer.from("AAAAAAAAA9sAAAA=", "base64")],
                             }),
@@ -109,7 +109,7 @@ describe("test transaction events parser", () => {
 
         const events = findEventsByFirstTopic(transactionOnNetwork, "startPerformAction");
         const parsed = parser.parseEvents({ events });
-
+        console.log("adress :: ",parsed[0].data.signers[0].bech32())
         assert.deepEqual(parsed, [
             {
                 data: {

@@ -43,7 +43,7 @@ describe("test smart contract interactor", function () {
     it("should set transfers (payments) on contract calls (transfer and execute)", async function () {
         let contract = new SmartContract({ address: dummyAddress });
         let dummyFunction = new ContractFunction("dummy");
-        let alice = new Address("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        let alice = new Address("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
 
         const TokenFoo = (amount: BigNumber.Value) =>
             new TokenTransfer({ token: new Token({ identifier: "FOO-6ce17b" }), amount: BigInt(amount.toString()) });
@@ -59,7 +59,7 @@ describe("test smart contract interactor", function () {
 
         const hexFoo = "464f4f2d366365313762";
         const hexBar = "4241522d356263303866";
-        const hexLKMOA = "4c4b4d45582d616162393130";
+        const hexLKMOA = "4c4b4d4f412d616162393130";
         const hexNFT = "4d4f532d623962346232";
         const hexContractAddress = contract.getAddress().toHex();
         const hexDummyFunction = "64756d6d79";
@@ -176,7 +176,7 @@ describe("test smart contract interactor", function () {
     it("should create transaction, with ABI, with transfer & execute", async function () {
         const abi = await loadAbiRegistry("src/testdata/answer.abi.json");
         const contract = new SmartContract({ address: dummyAddress, abi: abi });
-        const alice = new Address("drt1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssey5egf");
+        const alice = new Address("drt18y0exfc84806smfmeweat5xvnuj66rngpljfnug8mpzt0eh2w82sc0eqzh");
         const token = new Token({ identifier: "FOO-abcdef", nonce: 0n });
 
         const transaction = contract.methods
@@ -246,14 +246,14 @@ describe("test smart contract interactor", function () {
         let hash = await provider.sendTransaction(transaction);
         assert.equal(transaction.nonce, 0n);
         assert.equal(transaction.data.toString(), "getUltimateAnswer");
-        assert.equal(hash, "3579ad09099feb9755c860ddd225251170806d833342e912fccdfe2ed5c3a364");
+        assert.equal(hash, "e6600aa5f0ba7ffa9a81b9086c34179d1658facd0320d81eebc8c417bee53d5f");
 
         transaction = interaction.withNonce(1n).buildTransaction();
         transaction.sender = alice.address;
         transaction.signature = await alice.signTransaction(transaction);
         hash = await provider.sendTransaction(transaction);
         assert.equal(transaction.nonce, 1n);
-        assert.equal(hash, "ad513ce7c5d371d30e48f073326899766736eac1ac231d847d45bc3facbcb496");
+        assert.equal(hash, "a778dfb5c7a243a74d0c2a2ca4bf1ba4225de7f680877ec289ae14d82e026199");
 
         // Execute, and wait for execution
         transaction = interaction.withNonce(2n).buildTransaction();

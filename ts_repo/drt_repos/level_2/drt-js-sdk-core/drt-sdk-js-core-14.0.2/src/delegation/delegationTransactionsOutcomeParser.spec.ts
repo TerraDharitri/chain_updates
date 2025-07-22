@@ -8,7 +8,7 @@ describe("test delegation transactions outcome parser", () => {
     const parser = new DelegationTransactionsOutcomeParser();
 
     it("should test parseCreateNewDelegationContract ", () => {
-        const contractAddress = Address.newFromBech32("drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqy8llllssrzx6z");
+        const contractAddress = Address.newFromBech32("drt1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqy8lllls8knyn2");
         let encodedTopics = [
             "Q8M8GTdWSAAA",
             "Q8M8GTdWSAAA",
