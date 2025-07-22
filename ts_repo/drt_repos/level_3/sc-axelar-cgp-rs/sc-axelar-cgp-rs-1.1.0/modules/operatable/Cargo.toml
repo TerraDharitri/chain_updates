@@ -9,7 +9,7 @@ publish = false
 path = "src/operatable.rs"
 
 [dependencies.dharitri-sc]
-version = "0.50.3"
+version = "=1.11.6"
 
 [dependencies]
 bitflags = "2.4.1"

@@ -6,7 +6,7 @@ use dharitri_sc::api::KECCAK256_RESULT_LEN;
 dharitri_sc::imports!();
 dharitri_sc::derive_imports!();
 
-pub const DHARITRI_SIGNED_MESSAGE_PREFIX: &[u8; 28] = b"\x19DharitrI Signed Message:\n";
+pub const DHARITRI_SIGNED_MESSAGE_PREFIX: &[u8; 26] = b"\x19DharitrI Signed Message:\n";
 
 #[derive(TypeAbi, TopEncode, NestedEncode)]
 pub enum CommandType {
