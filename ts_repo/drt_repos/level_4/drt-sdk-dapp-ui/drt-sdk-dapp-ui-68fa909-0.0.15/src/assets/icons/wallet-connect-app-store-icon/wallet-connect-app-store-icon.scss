@@ -1,0 +1,13 @@
+:host {
+  @apply drt:flex;
+
+  .wallet-connect-app-store-icon {
+    @apply drt:w-48 drt:h-16 drt:flex drt:fill-none;
+
+    rect {
+        &:hover {
+            fill: var(--drt-neutral-800);
+        }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+:host {
+  @apply drt:flex;
+
+  .default-transaction-icon-large {
+    @apply drt:h-10 drt:w-10;
+    fill: none;
+
+    rect {
+      fill: var(--drt-icon-bg);
+    }
+
+    path {
+      fill: var(--drt-text-color-primary);
+    }
+  }
+}

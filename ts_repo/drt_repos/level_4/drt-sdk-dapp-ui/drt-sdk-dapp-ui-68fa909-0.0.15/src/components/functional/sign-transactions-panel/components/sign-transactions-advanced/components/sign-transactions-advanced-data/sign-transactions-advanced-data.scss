@@ -1,0 +1,103 @@
+:host {
+  @apply drt:flex drt:flex-col drt:w-full;
+
+  .sign-transactions-advanced-data {
+    @apply drt:flex drt:flex-col drt:gap-2 drt:w-full drt:p-3;
+
+    .sign-transactions-advanced-data-top {
+      @apply drt:flex drt:justify-between drt:items-center drt:px-2;
+
+      .sign-transactions-advanced-data-label {
+        @apply drt:text-base drt:leading-none drt:text-right;
+        color: var(--drt-text-color-secondary);
+      }
+
+      .sign-transactions-advanced-data-decode-options {
+        @apply drt:text-base drt:-m-1 drt:gap-1 drt:flex drt:flex-col;
+
+        .sign-transactions-advanced-data-decode-option {
+          @apply drt:capitalize drt:text-center drt:leading-none drt:cursor-pointer drt:transition-all drt:duration-200;
+          @apply drt:ease-in-out drt:px-3 drt:py-2 drt:text-xs drt:rounded-lg;
+
+          &:hover,
+          &:focus,
+          &.active {
+            background-color: var(--drt-select-option-bg);
+            color: var(--drt-text-accent-color);
+
+            @media (min-width: 768px) {
+              background-color: var(--drt-select-option-bg-mobile);
+              color: var(--drt-select-option-color);
+            }
+          }
+        }
+      }
+    }
+
+    .sign-transactions-advanced-data-bottom {
+      @apply drt:flex-1 drt:relative;
+
+      .sign-transactions-advanced-data-wrapper {
+        @apply drt:h-30 drt:p-2 drt:rounded-lg drt:overflow-auto drt:flex drt:flex-col drt:break-words drt:text-base;
+        border: 1px solid var(--drt-neutral-800);
+
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-track:hover,
+        &::-webkit-scrollbar-corner {
+          @apply drt:bg-transparent;
+        }
+
+        &::-webkit-scrollbar {
+          @apply drt:w-4;
+        }
+
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-track:hover {
+          @apply drt:bg-transparent drt:bg-clip-padding;
+          border: 4px solid transparent;
+          border-radius: 9999px;
+        }
+
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-thumb:hover {
+          @apply drt:bg-clip-padding;
+          border: 4px solid transparent;
+          background-color: var(--drt-neutral-700);
+          border-radius: 9999px;
+        }
+
+        &::-webkit-scrollbar-button {
+          @apply drt:hidden;
+        }
+
+        &::-webkit-resizer {
+          @apply drt:bg-transparent;
+        }
+
+        &:before {
+          @apply drt:absolute drt:pointer-events-none drt:right-4 drt:border-l-0 drt:rounded-lg drt:border-r-0;
+          left: 1px;
+          top: 1px;
+          bottom: 1px;
+          border: calc((24px + 4px) / 4) solid transparent;
+          border-bottom-width: calc(20px / 2);
+          border-top-width: calc(20px / 2);
+          content: '';
+        }
+
+        .sign-transactions-advanced-data-text {
+          color: var(--drt-text-color-secondary);
+        }
+
+        .sign-transactions-advanced-data-highlight {
+          color: var(--drt-text-color-primary);
+
+          &.bolded {
+            @apply drt:font-medium;
+          }
+        }
+      }
+    }
+  }
+}

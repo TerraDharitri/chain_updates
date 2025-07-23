@@ -1,0 +1,31 @@
+@keyframes XPortalQrCodePreloaderPulsation {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+:host {
+  @apply drt:relative;
+  background-color: var(--drt-white);
+
+  &:before {
+    @apply drt:absolute drt:rounded-lg drt:w-77 drt:h-77 drt:transform drt:-translate-x-1/2 drt:-translate-y-1/2;
+    @apply drt:top-1/2 drt:left-1/2;
+    border: calc((24px + 4px) / 2) solid var(--drt-white) !important;
+    content: '';
+  }
+
+  .xportal-qr-code-preloader {
+    @apply drt:transition-all drt:duration-200 drt:w-70 drt:h-70 drt:ease-in-out;
+    animation: XPortalQrCodePreloaderPulsation 1s infinite;
+    fill: none;
+  }
+}

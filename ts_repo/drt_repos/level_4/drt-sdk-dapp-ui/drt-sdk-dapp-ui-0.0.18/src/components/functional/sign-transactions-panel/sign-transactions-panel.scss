@@ -1,0 +1,115 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-self: stretch;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  min-width: 0;
+  padding: 24px 24px 12px 24px;
+}
+
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 0 0 0 0;
+}
+
+.frame-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  gap: 4px;
+  position: relative;
+}
+
+.frame-2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  width: 30px;
+}
+
+.mx-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.transaction-navigation {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: stretch;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  min-width: 0;
+  padding: 0 24px 0 24px;
+}
+
+.navigation-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.sign-transaction-content {
+  @apply drt:flex drt:flex-col drt:items-center drt:gap-2 drt:relative drt:min-w-0 drt:self-stretch drt:flex-nowrap drt:shrink-0;
+
+  .sign-transactions-tabs {
+    @apply drt:px-4 drt:gap-2 drt:flex drt:mr-auto;
+
+    .sign-transactions-tab {
+      @apply drt:px-4 drt:h-8 drt:flex drt:items-center drt:leading-none drt:justify-center drt:transition-all drt:duration-200;
+      @apply drt:ease-in-out drt:cursor-pointer drt:relative drt:rounded-3xl;
+      color: var(--drt-text-color-secondary);
+
+      &:hover,
+      &.active {
+        color: var(--drt-text-accent-color);
+        background-color: var(--drt-bg-color-secondary);
+      }
+
+      .sign-transactions-tab-text {
+        @apply drt:text-base drt:z-1 drt:relative drt:capitalize;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.sign-transactions-panel {
+  @apply drt:flex drt:flex-col drt:flex-1 drt:pb-6;
+}
