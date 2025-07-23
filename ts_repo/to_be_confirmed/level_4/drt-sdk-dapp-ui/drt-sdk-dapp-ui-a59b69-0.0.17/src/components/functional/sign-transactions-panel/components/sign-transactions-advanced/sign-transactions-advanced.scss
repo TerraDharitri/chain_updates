@@ -1,0 +1,127 @@
+.advanced-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: var(--drt-bg-accent-variant-color);
+  border-radius: 16px;
+  padding-bottom: 12px;
+}
+
+.advanced-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 4px;
+  position: relative;
+}
+
+.gas-settings {
+  width: 100%;
+  padding: 4px;
+}
+
+.gas-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 30px 20px;
+  border-radius: 12px;
+  position: relative;
+  
+  &:before {
+    @apply drt:absolute drt:opacity-60 drt:top-0 drt:bottom-0 drt:left-0 drt:right-0 drt:transition-all drt:duration-200 drt:rounded-xl;
+    @apply drt:pointer-events-none drt:ease-in-out;
+    content: '';
+    background: var(--drt-bg-color-tertiary);
+  }
+}
+
+.gas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gas-price {
+  color: var(--drt-text-color-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gas-price-value {
+  color: var(--drt-text-color-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gas-speed-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px;
+  background: var(--drt-bg-accent-variant-color);
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.speed-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 4px 12px;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.speed-option.active {
+  background: var(--drt-button-bg-primary);
+}
+
+.speed-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--drt-text-color-secondary);
+}
+
+.speed-option.active .speed-text {
+  color: var(--drt-button-text-primary);
+}
+
+.gas-limit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gas-limit {
+  color: var(--drt-text-color-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.gas-limit-value {
+  color: var(--drt-text-color-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,25 @@
+:host {
+  @apply drt:overflow-hidden drt:flex;
+
+  @media (min-width: 640px) {
+    @apply drt:overflow-visible;
+  }
+
+  .unlock-panel-group {
+    @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
+
+    .unlock-panel-group-label {
+      @apply drt:leading-none drt:relative;
+      color: var(--drt-text-color-secondary);
+    }
+
+    .unlock-panel-group-providers {
+      @apply drt:flex drt:flex-col drt:gap-0.5 drt:rounded-tl-lg drt:rounded-tr-lg drt:overflow-auto;
+      @apply drt:pb-6 drt:mt-3;
+
+      &::-webkit-scrollbar {
+        @apply drt:hidden;
+      }
+    }
+  }
+}

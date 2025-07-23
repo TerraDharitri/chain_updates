@@ -1,0 +1,132 @@
+@import '../../../global/variables.css';
+
+.feed-content {
+  font-family: 'Satoshi', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 20px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  .transaction-toast-content-wrapper {
+    width: 100%;
+    background: var(--drt-tx-bg-transparent);
+    border-color: var(--drt-tx-bg-transparent);
+  }
+}
+
+.notifications-info {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+
+  color: var(--drt-warning-text);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16.8px;
+
+  .info-icon {
+    color: var(--drt-warning-text) !important;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 18.8px;
+    height: 18.8px;
+  }
+}
+
+.notifications-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .processing-status {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22.4px;
+    letter-spacing: -0.16px;
+    color: var(--drt-body-label-color);
+  }
+}
+
+.activity-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+
+  .activity-title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22.4px;
+    letter-spacing: -0.16px;
+    margin: 0;
+    color: var(--drt-body-label-color);
+  }
+
+  .clear-button {
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16.8px;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    cursor: pointer;
+  }
+}
+
+.activity-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .no-activity {
+    padding: 16px;
+    text-align: center;
+    color: #666666;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+  }
+
+  // Ensure children don't cause horizontal scroll
+  > * {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

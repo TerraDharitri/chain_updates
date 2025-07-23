@@ -1,0 +1,21 @@
+:host {
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
+
+  .unlock-provider-intro {
+    @apply drt:flex drt:flex-col drt:flex-1 drt:justify-center drt:items-center drt:text-center drt:p-12 drt:gap-4;
+    color: var(--drt-text-color-primary);
+
+    .unlock-provider-intro-icon {
+      @apply drt:mb-6 drt:h-37.5 drt:items-end drt:flex drt:justify-start drt:w-37.5;
+    }
+
+    .unlock-provider-intro-title {
+      @apply drt:text-xl drt:font-medium drt:leading-none;
+    }
+
+    .unlock-provider-intro-text {
+      @apply drt:text-base drt:font-medium drt:leading-5;
+      color: var(--drt-text-color-secondary);
+    }
+  }
+}

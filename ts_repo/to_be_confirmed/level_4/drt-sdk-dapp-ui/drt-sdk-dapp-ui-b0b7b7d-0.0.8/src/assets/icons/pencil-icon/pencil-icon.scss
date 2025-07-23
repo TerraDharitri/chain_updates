@@ -1,0 +1,7 @@
+:host {
+  @apply drt:flex;
+
+  .pencil-icon {
+    @apply drt:w-4 drt:h-4;
+  }
+}

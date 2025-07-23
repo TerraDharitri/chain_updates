@@ -62,7 +62,7 @@
     "bignumber.js": "^9.x"
   },
   "optionalDependencies": {
-    "@terradharitri/sdk-dapp-ui": ">=0.0.15"
+    "@terradharitri/sdk-dapp-ui": ">=0.0.4"
   },
   "resolutions": {
     "strip-ansi": "6.0.1",

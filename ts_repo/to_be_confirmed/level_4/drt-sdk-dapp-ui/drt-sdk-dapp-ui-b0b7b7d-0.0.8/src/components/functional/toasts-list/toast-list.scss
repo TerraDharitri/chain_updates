@@ -1,0 +1,31 @@
+@import '../../../global/variables.css';
+
+.toast-list {
+  @apply drt:fixed drt:bottom-4 drt:right-4 drt:flex drt:flex-col drt:gap-2 drt:max-w-full drt:pointer-events-none;
+  z-index: 9999;
+
+  > * {
+    @apply drt:pointer-events-auto;
+  }
+}
+
+.toast-list-bottom {
+  @apply drt:bottom-16;
+}
+
+.view-all-button-container {
+  @apply drt:absolute drt:-bottom-12 drt:right-0 drt:z-1;
+}
+
+.view-all-button {
+  @apply drt:backdrop-blur-2xl drt:py-2 drt:px-4 drt:text-base drt:font-normal drt:leading-6 drt:cursor-pointer;
+  @apply drt:ease-in-out drt:transition-opacity drt:duration-200;
+  border-radius: 100px;
+  border: 0.5px solid var(--drt-bg-accent-variant-color);
+  background: var(--drt-bg-color-primary);
+  color: var(--drt-text-color-primary);
+
+  &:hover {
+    @apply drt:opacity-80;
+  }
+}

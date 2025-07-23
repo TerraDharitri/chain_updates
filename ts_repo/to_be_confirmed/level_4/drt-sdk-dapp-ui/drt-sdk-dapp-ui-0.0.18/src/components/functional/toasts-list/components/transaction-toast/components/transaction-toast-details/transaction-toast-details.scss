@@ -1,0 +1,52 @@
+.transaction-details-container {
+  @apply drt:flex drt:flex-col drt:items-start drt:self-stretch drt:gap-3 drt:w-full;
+}
+
+.transaction-details-status {
+  @apply drt:flex drt:items-center drt:gap-3 drt:self-stretch drt:cursor-pointer;
+}
+
+.transaction-details-status-icon {
+  @apply drt:items-center drt:flex drt:h-5 drt:w-5 drt:justify-center drt:transition-transform drt:duration-200 drt:ease-in-out;
+  color: var(--drt-text-color-tertiary);
+
+  .svg-inline--fa {
+    @apply drt:h-3.5 drt:w-3.5;
+    color: var(--drt-text-color-tertiary);
+  }
+
+  &.rotate-up {
+    @apply drt:rotate-90;
+  }
+}
+
+.transaction-details-status-text {
+  @apply drt:text-sm drt:font-normal drt:leading-5;
+  color: var(--drt-text-color-tertiary);
+}
+
+.transaction-details-list {
+  @apply drt:flex drt:flex-col drt:items-start drt:gap-1 drt:self-stretch drt:max-h-0 drt:overflow-hidden drt:w-full;
+  @apply drt:transition-all drt:duration-200 drt:ease-in-out;
+
+  &.expanded {
+    @apply drt:w-full drt:overflow-y-scroll drt:max-h-125;
+  }
+}
+
+.view-all-container {
+  @apply drt:w-full drt:flex drt:justify-center drt:mt-2;
+}
+
+.show-more-button {
+  @apply drt:text-xs drt:font-normal drt:leading-4 drt:cursor-pointer drt:rounded-sm drt:bg-none drt:border-0 drt:relative;
+  @apply drt:transition-colors drt:duration-200 drt:ease-in-out;
+  color: var(--drt-text-color-tertiary);
+
+  &:hover::before {
+    @apply drt:absolute drt:opacity-5 drt:top-0 drt:bottom-0 drt:left-0 drt:right-0 drt:transition-all drt:duration-200;
+    @apply drt:pointer-events-none drt:ease-in-out;
+    content: '';
+    background-color: var(--drt-hover-bg-primary);
+  }
+}

@@ -1,0 +1,15 @@
+.unlock-panel-anchor {
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
+}
+
+.unlock-panel {
+  @apply drt:flex drt:flex-col drt:h-full drt:justify-between drt:overflow-auto drt:pb-6;
+
+  .unlock-panel-groups {
+    @apply drt:flex drt:flex-col drt:gap-4 drt:pt-6;
+  }
+
+  &::-webkit-scrollbar {
+    @apply drt:hidden;
+  }
+}

@@ -1,0 +1,43 @@
+.unlock-button {
+  @apply drt:pl-3 drt:pr-4 drt:h-15 drt:flex! drt:gap-4 drt:cursor-pointer drt:items-center;
+  @apply drt:transition-all drt:duration-200 drt:ease-in-out;
+  background: var(--drt-bg-color-secondary);
+
+  &:hover {
+    background: var(--drt-hover-color-primary);
+  }
+
+  .unlock-button-icon {
+    @apply drt:h-10 drt:flex drt:relative drt:z-1 drt:items-center drt:justify-center drt:w-10;
+    order: -1;
+
+    &.clipped {
+      @apply drt:items-end drt:justify-start;
+    }
+  }
+
+  .unlock-button-label {
+    @apply drt:text-base drt:relative drt:z-1 drt:leading-none;
+    color: var(--drt-text-color-primary);
+  }
+
+  .unlock-button-status {
+    @apply drt:ml-auto drt:relative drt:z-1 drt:leading-none drt:flex drt:items-center drt:py-1 drt:px-2 drt:font-medium drt:gap-1;
+    @apply drt:text-xs;
+    border-radius: 20px;
+    border: 1px solid var(--drt-border-color-primary);
+    background: var(--drt-bg-color-primary);
+
+    .unlock-button-status-text {
+      color: var(--drt-text-accent-color);
+    }
+
+    .unlock-button-status-icon {
+      @apply drt:flex drt:items-center;
+
+      svg path {
+        fill: var(--drt-teal-400);
+      }
+    }
+  }
+}

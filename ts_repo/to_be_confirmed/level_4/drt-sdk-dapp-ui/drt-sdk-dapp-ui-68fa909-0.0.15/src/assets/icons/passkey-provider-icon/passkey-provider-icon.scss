@@ -1,0 +1,8 @@
+:host {
+  @apply drt:flex;
+
+  .passkey-provider-icon {
+    @apply drt:w-full drt:h-full  drt:max-w-37.5 drt:max-h-37.5;
+    fill: none;
+  }
+}
