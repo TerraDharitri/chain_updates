@@ -14,7 +14,7 @@ describe('getHumanReadableTimeFormat', () => {
       utc
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33:12 AM`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03:12 AM`);
   });
 
   it('returns readable date without seconds, non-UTC', () => {
@@ -30,7 +30,7 @@ describe('getHumanReadableTimeFormat', () => {
       utc
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33 AM`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03 AM`);
   });
 
   it('returns full readable date in UTC', () => {
@@ -46,7 +46,7 @@ describe('getHumanReadableTimeFormat', () => {
       utc
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33:12 AM UTC`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03:12 AM UTC`);
   });
 
   it('returns full readable date without seconds in UTC', () => {
@@ -62,7 +62,7 @@ describe('getHumanReadableTimeFormat', () => {
       utc
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33 AM UTC`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03 AM UTC`);
   });
 
   it('returns full readable date, non-UTC, without meridiem', () => {
@@ -80,7 +80,7 @@ describe('getHumanReadableTimeFormat', () => {
       meridiem
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33:12`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03:12`);
   });
 
   it('returns readable date without seconds, non-UTC, without meridiem', () => {
@@ -98,7 +98,7 @@ describe('getHumanReadableTimeFormat', () => {
       meridiem
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03`);
   });
 
   it('returns full readable date in UTC, without meridiem', () => {
@@ -116,7 +116,7 @@ describe('getHumanReadableTimeFormat', () => {
       meridiem
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33:12 UTC`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03:12 UTC`);
   });
 
   it('returns full readable date without seconds in UTC, without meridiem', () => {
@@ -134,6 +134,6 @@ describe('getHumanReadableTimeFormat', () => {
       meridiem
     });
 
-    expect(result).toEqual(`Apr 23, 1993 0${hours}:33 UTC`);
+    expect(result).toEqual(`Apr 23, 1993 0${hours}:03 UTC`);
   });
 });

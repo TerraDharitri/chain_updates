@@ -1,6 +1,6 @@
 import { UITagsEnum } from 'constants/UITags.enum';
 
-import { MvxLedgerConnect } from 'lib/sdkDappUi';
+import { DrtLedgerConnect } from 'lib/sdkDappUi';
 import { UnlockPanelEventsEnum } from 'managers/UnlockPanelManager/UnlockPanelManager.types';
 import {
   IAccountScreenData,
@@ -27,7 +27,7 @@ type ProviderInitEventsParams = {
 };
 
 export class LedgerConnectStateManager extends UIBaseManager<
-  MvxLedgerConnect,
+  DrtLedgerConnect,
   ILedgerConnectPanelData,
   LedgerConnectEventsEnum
 > {

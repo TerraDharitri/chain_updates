@@ -11,7 +11,7 @@ export const mockGetCommonDataInput = {
         sender: testAddress,
         gasPrice: 1000000000,
         gasLimit: 4200000,
-        data: 'd3JhcEVnbGQ=',
+        data: 'd3JhcFJld2E=',
         chainID: 'D',
         version: 1
       },
@@ -27,7 +27,7 @@ export const mockGetCommonDataInput = {
         sender: testAddress,
         gasPrice: 1000000000,
         gasLimit: 10000000,
-        data: 'TXVsdGlFU0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzQ1NDc0YzQ0MmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0NTU4MmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
+        data: 'TXVsdGlEQ0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzUyNDU1NzQxMmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0ZjQxMmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
         chainID: 'D',
         version: 1
       },
@@ -43,11 +43,11 @@ export const mockGetCommonDataInput = {
         sender: testAddress,
         gasPrice: 1000000000,
         gasLimit: 10000000,
-        data: 'TXVsdGlFU0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzQ1NDc0YzQ0MmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0NTU4MmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
+        data: 'TXVsdGlEQ0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzUyNDU1NzQxMmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0ZjQxMmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
         chainID: 'D',
         version: 1
       },
-      multiTxData: '4d45582d613635396430@@e177704bc43f9bee3106',
+      multiTxData: '4d4f412d613635396430@@e177704bc43f9bee3106',
       transactionIndex: 1,
       needsSigning: false
     },
@@ -59,7 +59,7 @@ export const mockGetCommonDataInput = {
         sender: testAddress,
         gasPrice: 1000000000,
         gasLimit: 10000000,
-        data: 'TXVsdGlFU0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzQ1NDc0YzQ0MmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0NTU4MmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
+        data: 'TXVsdGlEQ0RUTkZUVHJhbnNmZXJAMDAwMDAwMDAwMDAwMDAwMDA1MDAxMzllZDdhZTRhYTAzNzkyZTZiY2IzMzIzOTRhNDBmZTc0NmVlZmE0N2NlYkAwMkA1NzUyNDU1NzQxMmQ2MTMyMzg2MzM1MzlAQDBkZTBiNmIzYTc2NDAwMDBANGQ0ZjQxMmQ2MTM2MzUzOTY0MzBAQGUxNzc3MDRiYzQzZjliZWUzMTA2QDYxNjQ2NDRjNjk3MTc1Njk2NDY5NzQ3OUAwZGJkMmZjMTM3YTMwMDAwQGRmMzYzZTg4NzJlZDBkOTIzNWE3',
         chainID: 'D',
         version: 1
       },
@@ -105,12 +105,12 @@ export const mockGetCommonDataInput = {
       receiver:
         '00000000000000000500139ed7ae4aa03792e6bcb332394a40fe746eefa47ceb'
     },
-    '4d45582d613635396430@@e177704bc43f9bee3106': {
+    '4d4f412d613635396430@@e177704bc43f9bee3106': {
       tokenId: 'MOA-a659d0',
       amount: '1064735712967374589014278',
       type: 'dcdtTransaction',
       nonce: '',
-      multiTxData: '4d45582d613635396430@@e177704bc43f9bee3106',
+      multiTxData: '4d4f412d613635396430@@e177704bc43f9bee3106',
       receiver:
         '00000000000000000500139ed7ae4aa03792e6bcb332394a40fe746eefa47ceb'
     },

@@ -1,0 +1,43 @@
+{
+    "dharitri": {
+        "chainID": "T",
+        "REWAIdentifier": "REWA",
+        "REWADecimals": 18,
+        "version": 1,
+        "proxyTimeout": 60000,
+        "timeoutLimit": 10000,
+        "localCacheMaxItems": 50000,
+        "keepAlive": true,
+        "keepAliveTimeout": 50000,
+        "keepAliveFreeSocketTimeout": 30000,
+        "keepAliveMaxSockets": 100,
+        "keepAliveMaxFreeSockets": 10
+    },
+    "caching": {
+        "default": 120
+    },
+    "gasLimits": {
+        "governance": {
+            "vote":  {
+                "energy": 7000000,
+                "tokenSnapshot": 50000000
+            }
+        }
+    },
+    "abi": {
+        "lockedAssetFactory": "./src/abis/factory.abi.json",
+        "simpleLockEnergy": "./src/abis/energy-factory.abi.json",
+        "governance": {
+            "energy": "./src/abis/governance-v2.abi.json",
+            "tokenSnapshot": "./src/abis/governance-v2-merkle-proof.abi.json"
+        }
+    },
+    "cron": {
+        "transactionCollectorMaxHyperblocks": 10,
+        "transactionCollectorMaxLookBehind": 100
+    },
+    "constants": {
+        "MAINTENANCE": false,
+        "MAX_USER_NFTS": 10000
+    }
+}
