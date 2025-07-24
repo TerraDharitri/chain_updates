@@ -38,7 +38,7 @@ describe('getMultiSigLoginToken', () => {
     const result = await getModifiedLoginToken(validInput);
 
     const expectedTokenLogin =
-      'aHR0cHM6Ly9kZXZuZXQueGV4Y2hhbmdlLmNvbQ.d9ee880c609d5fe482a675826eb7e74f707c882e796ec191913a6c18d762685d.86400.eyJtdWx0aXNpZyI6ImVyZDFxcXFxcXFxcXFxcXFxcGdxOTQ0aDdoNm1ja3c2cTBkM2cyMjNjano0eXR2a2VuODZ1MDBzejdjYXJ3IiwidGltZXN0YW1wIjoxNzA2MTgwMDI3fQ';
+      'aHR0cHM6Ly9kZXZuZXQueGV4Y2hhbmdlLmNvbQ.d9ee880c609d5fe482a675826eb7e74f707c882e796ec191913a6c18d762685d.86400.eyJtdWx0aXNpZyI6ImRydDFxcXFxcXFxcXFxcXFxcGdxOTQ0aDdoNm1ja3c2cTBkM2cyMjNjano0eXR2a2VuODZ1MDBzbHowN3FzIiwidGltZXN0YW1wIjoxNzA2MTgwMDI3fQ';
 
     expect(result).toEqual(expectedTokenLogin);
   });
