@@ -1,0 +1,469 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.60.0-nightly",
+            "commitHash": "a00e130dae74a213338e2b095ec855156d8f3d8a",
+            "commitDate": "2022-01-29",
+            "channel": "Nightly",
+            "short": "rustc 1.60.0-nightly (a00e130da 2022-01-29)"
+        },
+        "contractCrate": {
+            "name": "factory",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "numbat-wasm",
+            "version": "0.29.3"
+        }
+    },
+    "name": "LockedAssetFactory",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "asset_token_id",
+                "type": "TokenIdentifier"
+            },
+            {
+                "name": "default_unlock_period",
+                "type": "variadic<UnlockMilestone>",
+                "multi_arg": true
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "whitelist",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "removeWhitelist",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "createAndForwardCustomPeriod",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "address",
+                    "type": "Address"
+                },
+                {
+                    "name": "start_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "unlock_period",
+                    "type": "UnlockSchedule"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "DcdtTokenPayment"
+                }
+            ]
+        },
+        {
+            "name": "createAndForward",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "address",
+                    "type": "Address"
+                },
+                {
+                    "name": "start_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "opt_accept_funds_func",
+                    "type": "optional<bytes>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "DcdtTokenPayment"
+                }
+            ]
+        },
+        {
+            "name": "unlockAssets",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "lockAssets",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "DcdtTokenPayment"
+                }
+            ]
+        },
+        {
+            "name": "setUnlockPeriod",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "milestones",
+                    "type": "variadic<UnlockMilestone>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "registerLockedAssetToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "payableInTokens": [
+                "REWA"
+            ],
+            "inputs": [
+                {
+                    "name": "token_display_name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "token_ticker",
+                    "type": "bytes"
+                },
+                {
+                    "name": "num_decimals",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setLocalRolesLockedAssetToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                },
+                {
+                    "name": "roles",
+                    "type": "variadic<DcdtLocalRole>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setInitEpoch",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "init_epoch",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getLastErrorMessage",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "getInitEpoch",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getWhitelistedContracts",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<Address>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "getDefaultUnlockPeriod",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "UnlockSchedule"
+                }
+            ]
+        },
+        {
+            "name": "set_transfer_exec_gas_limit",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "gas_limit",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getLockedAssetTokenId",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        },
+        {
+            "name": "getAssetTokenId",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        },
+        {
+            "name": "getUnlockScheduleForSFTNonce",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "nonce",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Option<UnlockScheduleEx>"
+                }
+            ]
+        },
+        {
+            "name": "getCacheSize",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getTransferExecGasLimit",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "mergeLockedAssetTokens",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "opt_accept_funds_func",
+                    "type": "optional<bytes>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "DcdtTokenPayment"
+                }
+            ]
+        },
+        {
+            "name": "getExtendedAttributesActivationNonce",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        }
+    ],
+    "hasCallback": true,
+    "types": {
+        "DcdtLocalRole": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "None",
+                    "discriminant": 0
+                },
+                {
+                    "name": "Mint",
+                    "discriminant": 1
+                },
+                {
+                    "name": "Burn",
+                    "discriminant": 2
+                },
+                {
+                    "name": "NftCreate",
+                    "discriminant": 3
+                },
+                {
+                    "name": "NftAddQuantity",
+                    "discriminant": 4
+                },
+                {
+                    "name": "NftBurn",
+                    "discriminant": 5
+                },
+                {
+                    "name": "NftAddUri",
+                    "discriminant": 6
+                },
+                {
+                    "name": "NftUpdateAttributes",
+                    "discriminant": 7
+                }
+            ]
+        },
+        "DcdtTokenPayment": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "token_type",
+                    "type": "DcdtTokenType"
+                },
+                {
+                    "name": "token_identifier",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "token_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        "DcdtTokenType": {
+            "type": "enum",
+            "variants": [
+                {
+                    "name": "Fungible",
+                    "discriminant": 0
+                },
+                {
+                    "name": "NonFungible",
+                    "discriminant": 1
+                },
+                {
+                    "name": "SemiFungible",
+                    "discriminant": 2
+                },
+                {
+                    "name": "Meta",
+                    "discriminant": 3
+                },
+                {
+                    "name": "Invalid",
+                    "discriminant": 4
+                }
+            ]
+        },
+        "UnlockMilestone": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "unlock_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "unlock_percent",
+                    "type": "u8"
+                }
+            ]
+        },
+        "UnlockMilestoneEx": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "unlock_epoch",
+                    "type": "u64"
+                },
+                {
+                    "name": "unlock_percent",
+                    "type": "u64"
+                }
+            ]
+        },
+        "UnlockSchedule": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "unlock_milestones",
+                    "type": "List<UnlockMilestone>"
+                }
+            ]
+        },
+        "UnlockScheduleEx": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "unlock_milestones",
+                    "type": "List<UnlockMilestoneEx>"
+                }
+            ]
+        }
+    }
+}

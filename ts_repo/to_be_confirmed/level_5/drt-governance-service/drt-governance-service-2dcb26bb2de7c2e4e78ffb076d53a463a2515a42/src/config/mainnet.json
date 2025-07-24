@@ -1,0 +1,37 @@
+{
+    "dharitri": {
+        "chainID": "1"
+    },
+    "scAddress": {
+        "lockedAssetAddress": "drt1qqqqqqqqqqqqqpgqjpt0qqgsrdhp2xqygpjtfrpwf76f9nvg2jps4fhagf",
+        "simpleLockAddress": [
+            "drt1qqqqqqqqqqqqqpgqs0jjyjmx0cvek4p8yj923q5yreshtpa62jpslxmgyt",
+            "drt1qqqqqqqqqqqqqpgqawujux7w60sjhm8xdx3n0ed8v9h7kpqu2jpsyyee6g",
+            "drt1qqqqqqqqqqqqqpgq6nu2t8lzakmcfmu4pu5trjdarca587hn2jpsew2zq2"
+        ],
+        "simpleLockEnergy": "drt1qqqqqqqqqqqqqpgq0tajepcazernwt74820t8ef7t28vjfgukp2snkxx20"
+    },
+    "governance": {
+        "oldEnergy": {
+            "cvadratic": [
+                "drt1qqqqqqqqqqqqqpgqdt9aady5jp7av97m7rqxh6e5ywyqsplz2jpsf8evfd"
+            ]
+        },
+        "energy": {
+            "cvadratic": [
+              "drt1qqqqqqqqqqqqqpgqyxqwuhtj3xhftcpn2kzuq07lhdp4ng222jps8gctg4"
+            ]
+        },
+        "tokenSnapshot": {
+            "linear": [
+                "drt1qqqqqqqqqqqqqpgq7cywmem5g66ad49rce0ctu6yqmscmp9v7j6qry66wt",
+                "drt1qqqqqqqqqqqqqpgq8xqp6c0kzwn3f2c5zsxfex6h69s2x9rwhg4sxjct2x",
+                "drt1qqqqqqqqqqqqqpgq4qvrwlr2e6ld50f3qfc94am38p8298kthg4sv4c02d",
+                "drt1qqqqqqqqqqqqqpgqfn2mu8l0dte34eqh6qtgmpjpxpkhunccrl4sek8zvq"
+            ],
+            "cvadratic": [
+                "drt1qqqqqqqqqqqqqpgqrgnkavjf5nl943crczz5wjxzs5garatj47dswqk9cy"
+            ]
+        }
+    }
+}
