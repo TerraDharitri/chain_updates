@@ -1,0 +1,19 @@
+{
+  "DharitrI": {
+    "chainID": "T",
+    "dcdtNftAddress": "drt1yvesqqqqqqqqqqqqqqqqqqqqqqqqyvesqqqqqqqqqqqqqqqzlllsd5j0s2",
+    "nftMarketplaceAddress": "drt1qqqqqqqqqqqqqpgqvfpluw9whepv7ge0e60khnx70yys6p3lu00sqhsz2h",
+    "issueNftCost": 50000000000000000,
+    "wrewa": "WREWA-71e90a",
+    "moa": "MOA-27f4cd",
+    "lkmoa": "",
+    "usdc": "USDC-8c999d",
+    "burnNftActivationEpoch": 0
+  },
+  "fileStorage": {
+    "host": "ipfs.infura.io",
+    "port": "5001",
+    "protocol": "https",
+    "cdnUrl": "https://ipfs.io/ipfs/"
+  }
+}

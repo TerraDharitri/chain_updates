@@ -1,0 +1,5 @@
+process.env.DEPLOYER_ADDRESS = 'drt1qqqqqqqqqqqqqpgqut6lamz9dn480ytj8cmcwvydcu3lj55epltqchj479';
+process.env.PROXY_DEPLOYER_ADDRESS = 'drt1qqqqqqqqqqqqqpgqut6lamz9dn480ytj8cmcwvydcu3lj55epltqchj479';
+process.env.TEMPLATE_BULK_ADDRESS = 'drt1qqqqqqqqqqqqqpgqzs3y0vr4t4sqyet32t6jp9m85l3hlr93u00sswjq9r';
+process.env.TEMPLATE_MINTER_ADDRESS = 'drt1qqqqqqqqqqqqqpgqzs3y0vr4t4sqyet32t6jp9m85l3hlr93u00sswjq9r';
+process.env.TEMPLATE_MARKETPLACE_ADDRESS = 'drt1qqqqqqqqqqqqqpgq9ac9zvc4ugzrgqaqjqgjdhvxxtx7wu2eu00sm948c0';
