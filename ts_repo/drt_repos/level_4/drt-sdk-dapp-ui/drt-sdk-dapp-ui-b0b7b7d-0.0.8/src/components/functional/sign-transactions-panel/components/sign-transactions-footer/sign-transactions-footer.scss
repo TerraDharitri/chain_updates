@@ -1,0 +1,119 @@
+:host {
+  @apply drt:flex drt:flex-col drt:flex-1;
+
+  .sign-transactions-footer {
+    @apply drt:mt-auto drt:flex drt:flex-col drt:items-center drt:pt-5 drt:gap-5 drt:text-center;
+
+    .sign-transactions-footer-buttons {
+      @apply drt:flex drt:items-center drt:w-full drt:gap-3;
+
+      .sign-transactions-footer-button-wrapper {
+        @apply drt:relative drt:flex drt:flex-col drt:flex-1;
+
+        &.cancel {
+          @apply drt:w-32 drt:max-w-32;
+        }
+
+        .sign-transactions-footer-button-tooltip-wrapper {
+          @apply drt:absolute drt:inset-0;
+        }
+
+        .sign-transactions-footer-button {
+          @apply drt:rounded-xl drt:px-4 drt:py-2 drt:flex drt:justify-center drt:items-center drt:max-h-10 drt:min-h-10;
+          @apply drt:leading-none drt:text-base drt:font-bold drt:transition-all drt:duration-200 drt:cursor-pointer;
+          @apply drt:ease-in-out drt:gap-2 drt:w-full;
+          border: 1px solid transparent;
+
+          &.cancel {
+            @apply drt:relative;
+            color: var(--drt-button-text-secondary);
+
+            &:after {
+              @apply drt:absolute drt:inset-0 drt:rounded-xl drt:opacity-40 drt:transition-all drt:duration-200 drt:ease-in-out;
+              background-color: var(--drt-button-bg-secondary);
+              content: '';
+            }
+
+            &:hover {
+              color: var(--drt-button-text-primary);
+
+              &:after {
+                @apply drt:opacity-100;
+                background-color: var(--drt-button-bg-primary);
+              }
+            }
+          }
+
+          &.highlighted {
+            @apply drt:flex-1;
+            color: var(--drt-button-text-primary);
+            background-color: var(--drt-button-bg-primary);
+
+            &:hover {
+              @apply drt:opacity-75;
+            }
+          }
+
+          &.disabled {
+            @apply drt:bg-transparent drt:cursor-default drt:pointer-events-none;
+            border-color: var(--drt-text-color-secondary);
+            color: var(--drt-text-color-secondary);
+          }
+
+          .sign-transactions-footer-button-label {
+            @apply drt:relative drt:z-1;
+          }
+
+          .sign-transactions-footer-button-icon {
+            @apply drt:flex drt:transition-all drt:duration-200 drt:ease-in-out;
+
+            &.lighter {
+              fill: var(--drt-text-color-secondary);
+            }
+          }
+        }
+      }
+    }
+
+    .sign-transactions-footer-identity {
+      @apply drt:max-w-64 drt:flex drt:items-center drt:text-base drt:gap-2;
+
+      .sign-transactions-footer-identity-label {
+        @apply drt:whitespace-nowrap;
+        color: var(--drt-text-color-secondary);
+      }
+
+      .sign-transactions-footer-identity-address {
+        @apply drt:relative drt:min-w-0 drt:max-w-none;
+        top: 0.25px;
+        color: var(--drt-text-color-primary);
+
+        .trim-wrapper {
+          @apply drt:items-end drt:leading-none;
+        }
+      }
+
+      .sign-transactions-footer-identity-username {
+        @apply drt:flex drt:items-center drt:text-base;
+        color: var(--drt-text-color-primary);
+
+        .sign-transactions-footer-identity-username-prefix {
+          color: var(--drt-text-accent-color);
+        }
+      }
+
+      .sign-transactions-footer-identity-copy {
+        @apply drt:flex;
+
+        .sign-transactions-footer-identity-copy-icon {
+          @apply drt:h-4 drt:w-4 drt:flex drt:justify-center drt:transition-all drt:duration-200 drt:ease-in-out;
+          color: var(--drt-link-color);
+
+          &:hover {
+            @apply drt:opacity-80;
+          }
+        }
+      }
+    }
+  }
+}

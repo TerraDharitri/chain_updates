@@ -1,0 +1,13 @@
+:host {
+  @apply drt:flex drt:flex-col drt:flex-1 drt:overflow-hidden;
+
+  .wallet-connect {
+    @apply drt:flex drt:flex-col drt:transition-all drt:duration-400 drt:flex-1 drt:py-6 drt:ease-in-out drt:overflow-auto;
+    transform-style: preserve-3d;
+    height: max(100%, 680px);
+
+    &::-webkit-scrollbar {
+      @apply drt:hidden;
+    }
+  }
+}

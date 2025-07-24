@@ -1,0 +1,24 @@
+@keyframes PreloaderPulseAnimation {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+:host {
+  @apply drt:p-0! drt:flex drt:border-0! drt:bg-transparent!;
+
+  .preloader {
+    @apply drt:w-30 drt:h-30 drt:relative drt:transition-all drt:duration-200 drt:overflow-hidden;
+    @apply drt:rounded-lg drt:ease-in-out;
+    animation: PreloaderPulseAnimation 2s infinite;
+    background: var(--drt-preloader-bg);
+  }
+}

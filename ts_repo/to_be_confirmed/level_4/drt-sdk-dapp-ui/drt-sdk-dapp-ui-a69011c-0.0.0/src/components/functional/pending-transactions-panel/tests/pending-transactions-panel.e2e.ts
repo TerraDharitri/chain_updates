@@ -1,0 +1,27 @@
+import { newE2EPage } from '@stencil/core/testing';
+
+const tag = 'drt-pending-transactions-panel';
+const title = 'Confirm on Dharitri DeFi wallet';
+
+describe('pending-transactions-panel', () => {
+  it(`renders ${tag}`, async () => {
+    const page = await newE2EPage();
+
+    await page.setContent(`<${tag}></${tag}>`);
+    const element = await page.find(tag);
+    expect(element).toHaveClass('hydrated');
+  });
+
+  it('check title & subtitle', async () => {
+    const page = await newE2EPage();
+
+    await page.setContent(`<${tag}></${tag}>`);
+    const component = await page.find(tag);
+    component.setProperty('data', { provider: { name: title }, shouldClose: false });
+
+    await page.waitForChanges();
+    const panel = await page.find('drt-side-panel');
+    const titleAttr = await panel.getProperty('panelTitle');
+    expect(titleAttr).toBe(title);
+  });
+});

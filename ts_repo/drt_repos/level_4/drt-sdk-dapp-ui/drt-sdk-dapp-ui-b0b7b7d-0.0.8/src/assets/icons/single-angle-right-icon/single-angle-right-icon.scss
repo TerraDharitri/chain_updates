@@ -1,0 +1,7 @@
+:host {
+  @apply drt:flex;
+
+  .single-angle-right-icon {
+    @apply drt:flex drt:h-4 drt:w-2.5;
+  }
+}

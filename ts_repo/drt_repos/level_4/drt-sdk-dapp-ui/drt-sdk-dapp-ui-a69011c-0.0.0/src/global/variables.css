@@ -1,0 +1,41 @@
+:root {
+  /* Base Colors */
+  --drt-accent: #ffffff;
+  --drt-white: #ffffff;
+  --drt-black: #000000;
+  --drt-neutral-900: #171717;
+  --drt-neutral-50: #fafafa;
+  --drt-neutral-400: #a3a3a3;
+
+  /* Text Colors */
+  --drt-text: var(--drt-white);
+  --drt-primary-text: #262626;
+  --drt-secondary-text: #868686;
+  --drt-warning-text: #facc15;
+  --drt-body-label-color: #a09a93;
+  --drt-warning-text: #facc15;
+  --drt-tx-bg: rgba(53, 53, 53);
+  --drt-tx-bg-transparent: rgba(53, 53, 53, 0.3);
+  --drt-tx-text-primary: #e8e8e8;
+  --drt-tx-text-secondary: #737373;
+  --drt-tx-success: #4ADE80;
+  --drt-tx-fail: #ff4747;
+
+  /* Toast Colors */
+  --drt-toast-backdrop-blur: 38px;
+  --drt-toast-success-bg: #1d6030;
+  --drt-toast-success-color: #4ade80;
+  --drt-toast-pending-bg: #453412;
+  --drt-toast-pending-color: #facc15;
+  --drt-toast-error-bg: rgba(255, 71, 71, 0.2);
+  --drt-toast-error-color: #ff4747;
+
+  /* Font Settings */
+  --font-family-roobert: 'Roobert PRO', system-ui, -apple-system, sans-serif;
+
+  /* Explorer Link Colors */
+  --drt-explorer-link-color: var(--drt-primary-text);
+
+  /* Transition */
+  --drt-transition: 0.3s ease-in-out;
+}

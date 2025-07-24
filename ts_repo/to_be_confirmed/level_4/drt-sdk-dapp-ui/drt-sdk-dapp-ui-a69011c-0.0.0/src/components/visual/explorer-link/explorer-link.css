@@ -1,0 +1,4 @@
+.drt\:explorer-link {
+  @apply drt:decoration-0;
+  color: var(--drt-explorer-link-color, -webkit-link);
+}

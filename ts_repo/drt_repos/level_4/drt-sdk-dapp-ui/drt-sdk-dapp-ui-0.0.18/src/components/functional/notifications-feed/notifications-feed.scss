@@ -1,0 +1,105 @@
+@import '../../../global/variables.css';
+
+.feed-content {
+  @apply drt:h-full drt:w-full drt:flex drt:flex-col drt:relative drt:gap-5 drt:overflow-x-hidden drt:overflow-y-scroll drt:pt-6;
+
+  .transaction-toast-content-wrapper {
+    @apply drt:w-full;
+    background: var(--drt-bg-color-secondary);
+    border-color: var(--drt-bg-color-secondary);
+  }
+
+  @media (min-width: 375px) {
+    @apply drt:max-w-110;
+  }
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover
+  &::-webkit-scrollbar-corner 
+  {
+    @apply drt:bg-transparent;
+  }
+
+  &::-webkit-scrollbar {
+    @apply drt:w-1.5;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track:hover {
+    @apply drt:bg-clip-padding;
+    border: 4px solid transparent;
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb:hover {
+    @apply drt:bg-clip-padding;
+    border: 4px solid transparent;
+    background: var(--drt-scrollbar-thumb) !important;
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-button {
+    @apply drt:hidden;
+  }
+
+  &::-webkit-resizer {
+    @apply drt:bg-transparent;
+  }
+
+}
+
+.notifications-info {
+  @apply drt:flex drt:items-start drt:gap-2.5 drt:text-xs drt:font-normal drt:leading-4;
+  color: var(--drt-warning-text);
+
+  .info-icon {
+    @apply drt:text-center drt:text-base drt:font-normal drt:leading-none drt:w-5 drt:h-5;
+    color: var(--drt-warning-text) !important;
+  }
+}
+
+.notifications-container {
+  @apply drt:flex drt:flex-col drt:gap-3;
+
+  .processing-status {
+    @apply drt:text-base drt:font-normal drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
+  }
+}
+
+.activity-section {
+  @apply drt:flex drt:flex-col drt:gap-3;
+}
+
+.activity-header {
+  @apply drt:flex drt:items-center drt:justify-between drt:gap-2.5 drt:pt-3;
+
+  .activity-title {
+    @apply drt:text-base drt:font-normal drt:m-0 drt:leading-6 drt:tracking-tight;
+    color: var(--drt-text-color-secondary);
+  }
+
+  .clear-button {
+    @apply drt:text-xs drt:font-normal drt:underline drt:cursor-pointer drt:leading-4;
+    color: var(--drt-text-color-primary);
+    text-decoration-skip-ink: none;
+    text-underline-position: from-font;
+  }
+}
+
+.activity-list {
+  @apply drt:flex drt:flex-col drt:gap-1 drt:flex-1 drt:overflow-y-auto drt:overflow-x-hidden drt:min-h-0;
+
+  .no-activity {
+    @apply drt:p-4 drt:text-center;
+    color: var(--drt-neutral-500);
+  }
+
+
+  // Ensure children don't cause horizontal scroll
+  > * {
+    @apply drt:w-full drt:max-w-full drt:box-border;
+  }
+}

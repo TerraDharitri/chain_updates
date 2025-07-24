@@ -1,0 +1,64 @@
+.unlock-button {
+  padding: 0 12px;
+  padding-right: 16px;
+  height: 60px;
+  background: rgba(53, 53, 53, 0.3);
+  display: flex;
+  transition: all 200ms ease;
+  cursor: pointer;
+  font-family: 'Satoshi', sans-serif;
+  align-items: center;
+  gap: 16px;
+
+  &:hover {
+    background: rgba(53, 53, 53, 1);
+  }
+
+  .unlock-button-icon {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    order: -1;
+
+    &.clipped {
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+  }
+
+  .unlock-button-label {
+    color: #e8e8e8;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .unlock-button-status {
+    margin-left: auto;
+    font-weight: 500;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 4px 8px;
+    border: 1px solid rgba(64, 64, 64, 0.4);
+    background: rgba(11, 11, 11, 0.8);
+    gap: 4px;
+
+    .unlock-button-status-text {
+      color: #23f7dd;
+    }
+
+    .unlock-button-status-icon {
+      display: flex;
+      align-items: center;
+
+      svg path {
+        fill: #23f7dd;
+      }
+    }
+  }
+}

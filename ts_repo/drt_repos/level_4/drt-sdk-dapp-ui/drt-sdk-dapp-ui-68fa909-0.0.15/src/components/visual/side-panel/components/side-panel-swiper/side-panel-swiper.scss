@@ -1,0 +1,93 @@
+:host {
+  @apply drt:flex;
+
+  @media (min-width: 480px) {
+    @apply drt:flex-col drt:h-full;
+  }
+
+  .side-panel-swiper-wrapper {
+    @apply drt:fixed drt:left-0 drt:top-0 drt:bottom-0 drt:right-0 drt:z-50;
+
+    @media (min-width: 480px) {
+      @apply drt:static drt:h-full;
+    }
+
+    &:before {
+      @apply drt:opacity-90 drt:left-0 drt:top-0 drt:right-0 drt:bottom-0 drt:transition-all drt:duration-200;
+      @apply drt:pointer-events-none drt:absolute drt:ease-in-out;
+      background: var(--drt-neutral-900);
+      content: '';
+
+      @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        @apply drt:opacity-50;
+        background: var(--drt-neutral-900);
+        -webkit-backdrop-filter: blur(0.375rem);
+        backdrop-filter: blur(0.375rem);
+      }
+
+      @media (min-width: 480px) {
+        content: none;
+      }
+    }
+
+    &.visible {
+      @apply drt:block;
+    }
+
+    &.hidden {
+      @apply drt:hidden;
+
+      @media (min-width: 480px) {
+        @apply drt:block;
+      }
+
+      .side-panel-swiper {
+        @apply drt:translate-y-full;
+      }
+    }
+
+    .side-panel-swiper {
+      @apply drt:bottom-0 drt:absolute drt:left-0 drt:right-0 drt:flex drt:flex-col drt:justify-end drt:touch-pan-y;
+      @apply drt:h-auto drt:min-h-dvh drt:rounded-t-3xl drt:transition-none;
+      backface-visibility: hidden;
+      will-change: transform;
+
+      @media (min-width: 480px) {
+        @apply drt:h-full drt:static drt:rounded-none drt:transform-none;
+        justify-content: unset;
+        min-height: auto;
+      }
+
+      .side-panel-swiper-handle-wrapper {
+        @apply drt:top-8 drt:relative drt:h-8 drt:w-full drt:z-12;
+
+        @media (min-width: 480px) {
+          @apply drt:hidden;
+        }
+
+        .side-panel-swiper-handle-container {
+          @apply drt:flex drt:top-0 drt:bottom-0 drt:absolute drt:right-0 drt:left-0 drt:justify-center;
+          @apply drt:touch-none drt:select-none drt:cursor-grab;
+
+          &:active {
+            @apply drt:cursor-grabbing;
+          }
+
+          .side-panel-swiper-handle {
+            @apply drt:w-32 drt:mt-3 drt:h-1 drt:rounded;
+            background-color: var(--drt-text-color-primary);
+          }
+        }
+      }
+
+      .side-panel-swiper-content {
+        @apply drt:overflow-y-auto;
+        max-height: calc(100dvh - 4rem);
+
+        @media (min-width: 480px) {
+          @apply drt:max-h-none drt:h-full;
+        }
+      }
+    }
+  }
+}

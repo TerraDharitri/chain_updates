@@ -1,0 +1,71 @@
+:host {
+  @apply drt:flex drt:flex-col;
+  font-family: 'Satoshi', sans-serif;
+
+  .sign-transactions-header {
+    @apply drt:flex drt:flex-1 drt:flex-col drt:gap-5 drt:py-5;
+
+    .sign-transactions-header-pager {
+      @apply drt:flex drt:relative drt:rounded-2xl drt:h-9 drt:items-center drt:px-5 drt:justify-center drt:mx-auto drt:gap-5;
+
+      &:before {
+        @apply drt:absolute drt:left-0 drt:top-0 drt:bottom-0 drt:right-0 drt:pointer-events-none drt:rounded-2xl;
+        opacity: 40%;
+        content: '';
+        background-color: #353535;
+      }
+
+      .sign-transactions-header-pager-icon {
+        @apply drt:relative drt:z-1 drt:cursor-pointer drt:flex drt:items-center drt:justify-center drt:transition-all drt:duration-200 drt:w-5;
+        transition-timing-function: ease;
+        fill: #b6b3af;
+
+        &:hover {
+          @apply drt:fill-white;
+        }
+
+        &.disabled {
+          @apply drt:pointer-events-none drt:opacity-50;
+        }
+      }
+
+      .sign-transactions-header-pager-text {
+        @apply drt:relative drt:z-1 drt:flex drt:text-base drt:leading-none drt:select-none drt:items-center drt:gap-2;
+
+        .sign-transactions-header-pager-text-label {
+          color: #b6b3af;
+        }
+
+        .sign-transactions-header-pager-text-value {
+          @apply drt:text-white drt:font-medium drt:flex drt:items-center drt:justify-center;
+          width: calc(20px / 2);
+
+          &.large {
+            @apply drt:w-5;
+          }
+        }
+      }
+    }
+
+    .sign-transactions-header-origin {
+      @apply drt:py-6 drt:flex drt:flex-col drt:mx-auto drt:text-center drt:justify-center drt:items-center drt:select-none drt:gap-3 drt:leading-none drt:text-base;
+
+      &.centered {
+        @apply drt:m-auto;
+      }
+
+      .sign-transactions-header-origin-label {
+        color: #b6b3af;
+      }
+
+      .sign-transactions-header-origin-image {
+        @apply drt:flex drt:items-center drt:rounded-3xl drt:bg-black drt:justify-center drt:border drt:w-18 drt:h-18;
+        border: 1px solid #212121;
+      }
+
+      .sign-transactions-header-origin-name {
+        @apply drt:text-white;
+      }
+    }
+  }
+}

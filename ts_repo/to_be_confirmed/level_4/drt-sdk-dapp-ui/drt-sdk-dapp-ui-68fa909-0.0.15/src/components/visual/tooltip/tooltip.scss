@@ -1,0 +1,40 @@
+.tooltip {
+  @apply drt:flex drt:relative;
+
+  .tooltip-content-wrapper {
+    @apply drt:left-1/2 drt:absolute drt:z-1 drt:transform drt:-translate-x-1/2;
+
+    &.top {
+      bottom: calc(100% + 16px);
+    }
+
+    &.bottom {
+      top: calc(100% + 16px);
+    }
+
+    .tooltip-content {
+      @apply drt:flex-row drt:cursor-default drt:p-2 drt:whitespace-nowrap drt:text-xs drt:rounded-xl;
+      background: var(--drt-bg-accent-color);
+      border: 1px solid var(--drt-neutral-800);
+      color: var(--drt-text-color-primary);
+
+      &:after {
+        @apply drt:left-1/2 drt:origin-center drt:w-2 drt:h-2 drt:absolute;
+        border: 1px solid var(--drt-neutral-800);
+        background-color: var(--drt-bg-accent-color);
+        content: '';
+        transform: translateX(calc(50% - 8px)) rotateZ(calc(45deg * -1));
+      }
+
+      &.top:after {
+        @apply drt:border-t-0 drt:border-r-0;
+        bottom: calc(4px * -1);
+      }
+
+      &.bottom:after {
+        @apply drt:border-b-0 drt:border-l-0;
+        top: calc(4px * -1);
+      }
+    }
+  }
+}

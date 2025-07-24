@@ -1,0 +1,9 @@
+:host {
+  @apply drt:flex drt:h-auto! drt:w-auto! drt:rotate-0!;
+  transform: none !important;
+
+  .single-angle-down-icon {
+    @apply drt:flex drt:w-4 drt:h-2.5;
+    fill: var(--drt-text-color-secondary);
+  }
+}

@@ -1,0 +1,8 @@
+:host {
+  @apply drt:flex drt:p-0!;
+
+  .magnifying-glass-icon {
+    @apply drt:transition-all drt:duration-200 drt:w-3 drt:h-3 drt:box-content drt:ease-in-out;
+    fill: var(--drt-neutral-500);
+  }
+}

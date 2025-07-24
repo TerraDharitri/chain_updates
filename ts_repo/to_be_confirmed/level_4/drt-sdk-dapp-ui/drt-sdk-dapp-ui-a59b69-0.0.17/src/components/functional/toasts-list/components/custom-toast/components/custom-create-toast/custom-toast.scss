@@ -1,0 +1,19 @@
+.toast-wrapper {
+  @apply drt:relative drt:flex drt:flex-col drt:p-3 drt:items-start drt:gap-3 drt:rounded-xl drt:backdrop-blur-2xl drt:w-80;
+  border: 0.5px solid var(--drt-bg-accent-variant-color);
+  background: var(--drt-bg-color-primary);
+}
+
+.icon-close {
+  @apply drt:flex drt:w-5 drt:h-5 drt:flex-col drt:justify-center drt:shrink-0 drt:p-0 drt:cursor-pointer drt:absolute drt:right-3 drt:top-3 drt:bg-none drt:border-0;
+  color: var(--drt-text-color-primary);
+  
+  .svg-inline--fa {
+    @apply drt:text-center;
+    color: var(--drt-text-color-primary);
+  }
+}
+
+.toast-body {
+  @apply drt:flex drt:items-start drt:gap-3 drt:self-stretch drt:w-full;
+}

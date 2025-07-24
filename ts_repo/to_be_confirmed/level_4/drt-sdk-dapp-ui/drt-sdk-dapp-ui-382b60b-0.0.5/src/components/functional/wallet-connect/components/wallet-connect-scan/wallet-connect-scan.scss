@@ -1,0 +1,63 @@
+:host {
+  @apply drt:flex drt:flex-1 drt:flex-col drt:w-full;
+
+  .wallet-connect-scan {
+    @apply drt:flex drt:items-center drt:flex-col drt:gap-3 drt:flex-1 drt:w-full;
+
+    .wallet-connect-scan-qr {
+      @apply drt:flex drt:justify-center drt:items-center drt:mt-auto drt:relative drt:w-75 drt:h-75;
+
+      .wallet-connect-scan-qr-embed {
+        @apply drt:w-full drt:h-auto drt:absolute drt:opacity-0 drt:transition-all drt:duration-200 drt:pointer-events-none drt:w-85 drt:h-85;
+        transition-timing-function: ease;
+
+        &:before {
+          @apply drt:pointer-events-none drt:left-0 drt:bottom-0 drt:top-0 drt:right-0 drt:absolute;
+          content: '';
+          border: calc(12px / 4) solid #101010;
+        }
+
+        path {
+          @apply drt:stroke-white;
+          fill: #101010;
+        }
+
+        &.visible {
+          @apply drt:opacity-100;
+        }
+      }
+    }
+
+    .wallet-connect-scan-description {
+      @apply drt:leading-5 drt:font-medium drt:text-base drt:h-16 drt:z-1 drt:mb-auto;
+      color: #a09a93;
+    }
+
+    .wallet-connect-scan-download {
+      @apply drt:rounded-xl drt:w-full drt:flex drt:gap-6 drt:items-center drt:p-6 drt:relative drt:mt-16 drt:h-44;
+      background: #0a0a0a;
+
+      .wallet-connect-scan-download-wrapper {
+        @apply drt:flex drt:flex-col drt:gap-4 drt:items-start;
+
+        .wallet-connect-scan-download-title {
+          @apply drt:text-white drt:text-base drt:leading-5 drt:font-medium;
+        }
+
+        .wallet-connect-scan-download-button {
+          @apply drt:rounded-lg drt:text-xs drt:leading-none drt:text-center drt:p-2 drt:font-bold drt:cursor-pointer drt:transition-all drt:duration-200;
+          background: #23f7dd;
+          transition-timing-function: ease;
+
+          &:hover {
+            @apply drt:opacity-75;
+          }
+        }
+      }
+
+      .wallet-connect-scan-download-image {
+        @apply drt:absolute drt:right-0 drt:bottom-0;
+      }
+    }
+  }
+}

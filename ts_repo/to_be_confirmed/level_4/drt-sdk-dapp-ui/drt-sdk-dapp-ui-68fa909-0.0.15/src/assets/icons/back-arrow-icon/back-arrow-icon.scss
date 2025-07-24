@@ -1,0 +1,12 @@
+:host {
+  @apply drt:flex;
+
+  .back-arrow-icon {
+    @apply drt:w-5 drt:h-5;
+    fill: none;
+
+    path {
+      fill: var(--drt-neutral-400);
+    }
+  }
+}

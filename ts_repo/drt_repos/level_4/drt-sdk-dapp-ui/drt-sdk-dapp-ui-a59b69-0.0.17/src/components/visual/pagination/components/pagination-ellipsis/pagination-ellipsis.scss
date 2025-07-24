@@ -1,0 +1,10 @@
+.pagination-ellipsis {
+  @apply drt:w-8 drt:h-8 drt:cursor-pointer drt:flex drt:items-center drt:justify-center drt:transition-all;
+  @apply drt:duration-200 drt:rounded-full drt:ease-in-out;
+  color: var(--drt-text-color-primary);
+
+  &:hover,
+  &.active {
+    background-color: var(--drt-pagination-item-bg-hover);
+  }
+}

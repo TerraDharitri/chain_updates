@@ -1,0 +1,8 @@
+:host {
+  @apply drt:flex;
+
+  .arrow-up-right-from-square-icon {
+    @apply drt:w-4 drt:h-4 drt:flex;
+    fill: var(--drt-text-color-primary);
+  }
+}
