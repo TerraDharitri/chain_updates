@@ -4289,7 +4289,7 @@
 
 "streamx@^2.15.0", "streamx@^2.21.0":
   "integrity" "sha512-sLh1evHOzBy/iWRiR6d1zRcLao4gGZr3C1kzNz4fopCOKJb6xD9ub8Mpi9Mr1R6id5o43S+d93fI48UC5uM9aw=="
-  "resolved" "https://registry.yarnpkg.com/streamx/-/streadrt-2.22.0.tgz"
+  "resolved" "https://registry.yarnpkg.com/streamx/-/streamx-2.22.0.tgz"
   "version" "2.22.0"
   dependencies:
     "fast-fifo" "^1.3.2"

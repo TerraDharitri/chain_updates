@@ -1,0 +1,4 @@
+.explorer-link {
+  text-decoration: none;
+  color: var(--drt-explorer-link-color, -webkit-link); /* Default color */
+}

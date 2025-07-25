@@ -1,0 +1,16 @@
+/* side-panel.css */
+:host {
+  display: block;
+}
+
+.unlock-panel {
+  background: #f5f1ec;
+  max-width: 340px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem;
+}
