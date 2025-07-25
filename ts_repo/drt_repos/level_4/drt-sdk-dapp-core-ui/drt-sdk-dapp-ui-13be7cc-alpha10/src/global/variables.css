@@ -1,0 +1,49 @@
+:root {
+    /* Base Colors */
+    --drt-accent: #000000;
+    --drt-white: #FFFFFF;
+    --drt-black: #000000;
+
+    /* Text Colors */
+    --drt-text-primary: #262626;
+    --drt-text-secondary: #868686;
+  
+    /* Toast Colors */
+    --drt-toast-text-primary: var(--drt-text-primary);
+    --drt-toast-text-secondary: var(--drt-text-secondary);
+    --drt-toast-border: #C7C7C7;
+    --drt-toast-bg: rgba(169, 169, 169, 0.40);
+    --drt-toast-tx-bg: #FFF;
+    --drt-toast-tx-border: #FFF;
+    --drt-toast-backdrop-blur: 38px;
+    --drt-toast-copy-button-color: var(--drt-white);
+  
+    /* Toast Status Colors */
+    --drt-toast-success-bg: #1D6030;
+    --drt-toast-success-icon: #4ADE80;
+    --drt-toast-pending-bg: ##453412;
+    --drt-toast-pending-icon: ##FACC15;
+    --drt-toast-error-bg: rgba(255, 71, 71, 0.2);
+    --drt-toast-error-icon: #FF4747;
+  
+    /* Side Panel Variables */
+    --drt-side-panel-bg: var(--drt-white);
+    --drt-side-panel-text: var(--drt-toast-text-primary);
+    --drt-side-panel-overlay: rgba(0, 0, 0, 0.7);
+    --drt-side-panel-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    --drt-side-panel-max-width: 480px;
+    --drt-side-panel-border-radius: 24px;
+    --drt-side-panel-mobile-height: 90%;
+  
+    /* Font Settings */
+    --font-family-roobert: "Roobert PRO", system-ui, -apple-system, sans-serif;
+  
+    /* Dapp Core Colors - for backward compatibility */
+    --drt-dapp-core-color-primary: #3B82F6;
+
+    /* Explorer Link Colors */
+    --drt-explorer-link-color: var(--drt-text-primary);
+
+    /* Transition */
+    --drt-transition: 0.3s ease-in-out;
+  } 

@@ -1,0 +1,84 @@
+.transaction-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 100%;
+}
+
+.transaction-details-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.transaction-details-status-icon {
+  color: var(--drt-toast-text-primary);
+  transition: transform var(--drt-transition);
+  align-items: center;
+  display: flex;
+  height: 20px;
+  width: 20px;
+  justify-content: center;
+
+  .svg-inline--fa {
+    height: 14px;
+    width: 14px;
+    color: var(--drt-toast-text-primary);
+  }
+}
+
+.transaction-details-status-icon.rotate-up {
+  transform: rotate(90deg);
+}
+
+.transaction-details-status-text {
+  color: var(--drt-toast-text-primary);
+  font-family: var(--font-family-roobert);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 19.6px */
+}
+
+.transaction-details-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--drt-transition);
+}
+
+.transaction-details-list.expanded {
+  max-height: 500px;
+}
+
+.view-all-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.show-more-button {
+  background: none;
+  border: none;
+  color: var(--drt-toast-text-primary);
+  font-family: var(--font-family-roobert);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color var(--drt-transition);
+}
+
+.show-more-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
